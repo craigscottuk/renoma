@@ -1,3 +1,5 @@
+// cSpell:disable
+
 import type { StructureResolver } from 'sanity/structure';
 import {
   Home,
@@ -8,94 +10,94 @@ import {
   GraduationCap,
   Users,
   Mail,
+  Settings,
 } from 'lucide-react';
 
 export const structure: StructureResolver = (S) =>
   S.list()
-    .title('Content')
+    .title('Zawartość')
     .items([
-      // Singleton entry for "Home"
+      // Singleton entry for "Home" (Dom)
       S.listItem()
-        .title('Home')
+        .title('Dom')
         .icon(Home)
-        .child(S.document().schemaType('home').documentId('singletonHome')),
+        .child(S.document().schemaType('dom').documentId('singletonDom')),
 
-      // Singleton entry for "About Us"
+      // Singleton entry for "About Us" (O Nas)
       S.listItem()
-        .title('About Us')
+        .title('O Nas')
         .icon(Info)
-        .child(
-          S.document().schemaType('aboutUs').documentId('singletonAboutUs')
-        ),
+        .child(S.document().schemaType('oNas').documentId('singletonONas')),
 
-      // Singleton entry for "Services"
+      // Singleton entry for "Services" (Usługi)
       S.listItem()
-        .title('Services')
+        .title('Usługi')
         .icon(Briefcase)
-        .child(
-          S.document().schemaType('services').documentId('singletonServices')
-        ),
+        .child(S.document().schemaType('uslugi').documentId('singletonUslugi')),
 
-      // Singleton entry for "Projects"
-      S.listItem()
-        .title('Projects')
-        .icon(FolderOpen)
-        .child(
-          S.document().schemaType('projects').documentId('singletonProjects')
-        ),
+      // Realizacje (regular document type)
+      S.documentTypeListItem('realizacje').title('Realizacje').icon(FolderOpen),
 
-      // Singleton entry for "Renomal Lab"
+      // Singleton entry for "Renoma LAB" (Renoma LAB)
       S.listItem()
-        .title('Renomal Lab')
+        .title('Renoma LAB')
         .icon(Beaker)
         .child(
-          S.document()
-            .schemaType('renomalLab')
-            .documentId('singletonRenomalLab')
+          S.document().schemaType('renomaLab').documentId('singletonRenomaLab')
         ),
 
-      // Singleton entry for "Learn With Us"
+      // Singleton entry for "Learn With Us" (Ucz Się z Nami)
       S.listItem()
-        .title('Learn With Us')
+        .title('Ucz Się z Nami')
         .icon(GraduationCap)
         .child(
           S.document()
-            .schemaType('learnWithUs')
-            .documentId('singletonLearnWithUs')
+            .schemaType('uczSieZNami')
+            .documentId('singletonUczSieZNami')
         ),
 
-      // Singleton entry for "Work With Us"
+      // Singleton entry for "Work With Us" (Pracuj z Nami)
       S.listItem()
-        .title('Work With Us')
+        .title('Pracuj z Nami')
         .icon(Users)
         .child(
           S.document()
-            .schemaType('workWithUs')
-            .documentId('singletonWorkWithUs')
+            .schemaType('pracujZNami')
+            .documentId('singletonPracujZNami')
         ),
 
-      // Singleton entry for "Contact"
+      // Singleton entry for "Contact" (Kontakt)
       S.listItem()
-        .title('Contact')
+        .title('Kontakt')
         .icon(Mail)
         .child(
-          S.document().schemaType('contact').documentId('singletonContact')
+          S.document().schemaType('kontakt').documentId('singletonKontakt')
+        ),
+
+      // Singleton entry for "Ustawienia" (Settings)
+      S.listItem()
+        .title('Ustawienia')
+        .icon(Settings)
+        .child(
+          S.document()
+            .schemaType('ustawienia')
+            .documentId('singletonUstawienia')
         ),
 
       // All other document types (excluding singletons) will appear in the main list
       ...S.documentTypeListItems().filter(
         (item) =>
+          item.getId() && // Type guard to ensure `getId()` is not undefined
           ![
-            'home',
-            'aboutUs',
-            'services',
-            'projects',
-            'renomalLab',
-            'learnWithUs',
-            'workWithUs',
-            'contact',
+            'dom',
+            'oNas',
+            'uslugi',
+            'realizacje', // Add "realizacje" here
+            'renomaLab',
+            'uczSieZNami',
+            'pracujZNami',
+            'kontakt',
+            'ustawienia',
           ].includes(item.getId() as string)
       ),
     ]);
-
-// https://www.sanity.io/docs/structure-builder-cheat-sheet
