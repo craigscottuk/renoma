@@ -4,6 +4,7 @@
         "datetime",
         "glowna",
         "lucide",
+        "tailwindcss",
         "uber"
     ]
 }
