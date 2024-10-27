@@ -1,0 +1,35 @@
+{
+  "locale-layout": {
+    "title": "To jest tytuł!"
+  },
+  "not-found-page": {
+    "title": "Strona nie znaleziona",
+    "description": "Przepraszamy, strona, której szukasz, nie istnieje.",
+    "goBackHome": "Wróć na stronę główną"
+  },
+  "error-page": {
+    "description": "<p>Niestety wystąpił błąd.</p><p>Możesz spróbować <retry>odświeżyć stronę</retry>, którą odwiedzałeś.</p>",
+    "title": "Coś poszło nie tak!"
+  },
+
+  "navigation": {
+    "home": "Strona główna",
+    "about-link": "O nas"
+  },
+  "locale-switcher": {
+    "label": "Change language",
+    "locale": "{locale, select, de {🇩🇪 Deutsch} en {🇺🇸 English} pl {🇵🇱 Polski} other {Unknown}}"
+  },
+  "home-page": {
+    "title": "Witaj świecie!",
+    "about-link": "O nas"
+  },
+  "about-page": {
+    "title": "Strona O nas!",
+    "description": "To jest strona O nas"
+  },
+  "PathnamesPage": {
+    "description": " This is a test route",
+    "title": "Pathnames PL"
+  }
+}
