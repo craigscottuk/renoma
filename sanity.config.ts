@@ -8,6 +8,7 @@ import { internationalizedArray } from 'sanity-plugin-internationalized-array';
 import { apiVersion, dataset, projectId } from './src/sanity/env';
 import { schema } from './src/sanity/schemaTypes';
 import { structure } from './src/sanity/structure';
+import { plPLLocale } from '@sanity/locale-pl-pl';
 
 export default defineConfig({
   basePath: '/admin',
@@ -15,6 +16,8 @@ export default defineConfig({
   dataset,
   schema,
   plugins: [
+    // Polish Studio UI language
+    // plPLLocale(),
     structureTool({ structure }),
     visionTool({ defaultApiVersion: apiVersion }),
 
