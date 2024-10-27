@@ -6,6 +6,9 @@ export const pracujZNami = defineType({
   name: 'pracujZNami',
   title: 'Pracuj z Nami',
   type: 'document',
+  options: {
+    singleton: true,
+  },
   fields: [
     defineField({
       name: 'tytul',

@@ -6,6 +6,9 @@ export const dom = defineType({
   name: 'dom',
   title: 'Dom',
   type: 'document',
+  options: {
+    singleton: true,
+  },
   fields: [
     defineField({
       name: 'powitanie',

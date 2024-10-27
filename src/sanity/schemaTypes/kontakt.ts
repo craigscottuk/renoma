@@ -4,6 +4,9 @@ export const kontakt = defineType({
   name: 'kontakt',
   title: 'Kontakt',
   type: 'document',
+  options: {
+    singleton: true,
+  },
   fields: [
     defineField({
       name: 'email',

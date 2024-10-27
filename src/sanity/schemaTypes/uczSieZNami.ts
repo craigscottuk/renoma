@@ -6,6 +6,9 @@ export const uczSieZNami = defineType({
   name: 'uczSieZNami',
   title: 'Ucz Się z Nami',
   type: 'document',
+  options: {
+    singleton: true,
+  },
   fields: [
     defineField({
       name: 'tytul',

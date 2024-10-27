@@ -23,6 +23,7 @@
     "react-dom": "^18",
     "sanity": "^3.62.2",
     "sanity-plugin-internationalized-array": "^3.0.1",
+    "sanity-plugin-singleton-tools": "^1.1.0",
     "styled-components": "^6.1.13",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7"

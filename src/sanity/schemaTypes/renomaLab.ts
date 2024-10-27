@@ -4,6 +4,9 @@ export const renomaLab = defineType({
   name: 'renomaLab',
   title: 'Renoma LAB',
   type: 'document',
+  options: {
+    singleton: true,
+  },
   fields: [
     defineField({
       name: 'opis',

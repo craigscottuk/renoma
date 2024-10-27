@@ -4,6 +4,9 @@ export const ustawienia = defineType({
   name: 'ustawienia',
   title: 'Ustawienia',
   type: 'document',
+  options: {
+    singleton: true,
+  },
   fields: [
     defineField({
       name: 'nazwaStrony',

@@ -4,6 +4,9 @@ export const oNas = defineType({
   name: 'oNas',
   title: 'O Nas',
   type: 'document',
+  options: {
+    singleton: true,
+  },
   fields: [
     defineField({
       name: 'opis',

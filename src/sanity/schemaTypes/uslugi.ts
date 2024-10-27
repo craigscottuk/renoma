@@ -6,6 +6,9 @@ export const uslugi = defineType({
   name: 'uslugi',
   title: 'Usługi',
   type: 'document',
+  options: {
+    singleton: true,
+  },
   fields: [
     defineField({
       name: 'nazwa',

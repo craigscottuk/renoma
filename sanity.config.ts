@@ -9,6 +9,7 @@ import { apiVersion, dataset, projectId } from './src/sanity/env';
 import { schema } from './src/sanity/schemaTypes';
 import { structure } from './src/sanity/structure';
 import { plPLLocale } from '@sanity/locale-pl-pl';
+import { singletonTools } from 'sanity-plugin-singleton-tools';
 
 export default defineConfig({
   basePath: '/admin',
@@ -18,6 +19,7 @@ export default defineConfig({
   plugins: [
     // Polish Studio UI language
     // plPLLocale(),
+    singletonTools(),
     structureTool({ structure }),
     visionTool({ defaultApiVersion: apiVersion }),
 

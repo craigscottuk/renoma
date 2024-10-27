@@ -2,6 +2,10 @@
 
 import type { StructureResolver } from 'sanity/structure';
 import {
+  singletonDocumentListItem,
+  filteredDocumentListItems,
+} from 'sanity-plugin-singleton-tools';
+import {
   Home,
   Info,
   Briefcase,
@@ -13,91 +17,98 @@ import {
   Settings,
 } from 'lucide-react';
 
-export const structure: StructureResolver = (S) =>
+export const structure: StructureResolver = (S, context) =>
   S.list()
     .title('Zawartość')
     .items([
-      // Singleton entry for "Home" (Dom)
-      S.listItem()
-        .title('Dom')
-        .icon(Home)
-        .child(S.document().schemaType('dom').documentId('singletonDom')),
+      // Singleton entry for "Dom" (Home)
+      singletonDocumentListItem({
+        S,
+        context,
+        type: 'dom',
+        title: 'Dom',
+        icon: Home,
+        id: 'singletonDom',
+      }),
 
-      // Singleton entry for "About Us" (O Nas)
-      S.listItem()
-        .title('O Nas')
-        .icon(Info)
-        .child(S.document().schemaType('oNas').documentId('singletonONas')),
+      // Singleton entry for "O Nas" (About Us)
+      singletonDocumentListItem({
+        S,
+        context,
+        type: 'oNas',
+        title: 'O Nas',
+        icon: Info,
+        id: 'singletonONas',
+      }),
 
-      // Singleton entry for "Services" (Usługi)
-      S.listItem()
-        .title('Usługi')
-        .icon(Briefcase)
-        .child(S.document().schemaType('uslugi').documentId('singletonUslugi')),
+      // Singleton entry for "Usługi" (Services)
+      singletonDocumentListItem({
+        S,
+        context,
+        type: 'uslugi',
+        title: 'Usługi',
+        icon: Briefcase,
+        id: 'singletonUslugi',
+      }),
 
-      // Realizacje (regular document type)
+      // Regular document list for "Realizacje" (Projects)
       S.documentTypeListItem('realizacje').title('Realizacje').icon(FolderOpen),
 
-      // Singleton entry for "Renoma LAB" (Renoma LAB)
-      S.listItem()
-        .title('Renoma LAB')
-        .icon(Beaker)
-        .child(
-          S.document().schemaType('renomaLab').documentId('singletonRenomaLab')
-        ),
+      // Singleton entry for "Renoma LAB" (Lab)
+      singletonDocumentListItem({
+        S,
+        context,
+        type: 'renomaLab',
+        title: 'Renoma LAB',
+        icon: Beaker,
+        id: 'singletonRenomaLab',
+      }),
 
-      // Singleton entry for "Learn With Us" (Ucz Się z Nami)
-      S.listItem()
-        .title('Ucz Się z Nami')
-        .icon(GraduationCap)
-        .child(
-          S.document()
-            .schemaType('uczSieZNami')
-            .documentId('singletonUczSieZNami')
-        ),
+      // Singleton entry for "Ucz Się z Nami" (Learn With Us)
+      singletonDocumentListItem({
+        S,
+        context,
+        type: 'uczSieZNami',
+        title: 'Ucz Się z Nami',
+        icon: GraduationCap,
+        id: 'singletonUczSieZNami',
+      }),
 
-      // Singleton entry for "Work With Us" (Pracuj z Nami)
-      S.listItem()
-        .title('Pracuj z Nami')
-        .icon(Users)
-        .child(
-          S.document()
-            .schemaType('pracujZNami')
-            .documentId('singletonPracujZNami')
-        ),
+      // Singleton entry for "Pracuj z Nami" (Work With Us)
+      singletonDocumentListItem({
+        S,
+        context,
+        type: 'pracujZNami',
+        title: 'Pracuj z Nami',
+        icon: Users,
+        id: 'singletonPracujZNami',
+      }),
 
-      // Singleton entry for "Contact" (Kontakt)
-      S.listItem()
-        .title('Kontakt')
-        .icon(Mail)
-        .child(
-          S.document().schemaType('kontakt').documentId('singletonKontakt')
-        ),
+      // Singleton entry for "Kontakt" (Contact)
+      singletonDocumentListItem({
+        S,
+        context,
+        type: 'kontakt',
+        title: 'Kontakt',
+        icon: Mail,
+        id: 'singletonKontakt',
+      }),
+
+      // Divider
+      S.divider(),
 
       // Singleton entry for "Ustawienia" (Settings)
-      S.listItem()
-        .title('Ustawienia')
-        .icon(Settings)
-        .child(
-          S.document()
-            .schemaType('ustawienia')
-            .documentId('singletonUstawienia')
-        ),
+      singletonDocumentListItem({
+        S,
+        context,
+        type: 'ustawienia',
+        title: 'Ustawienia',
+        icon: Settings,
+        id: 'singletonUstawienia',
+      }),
 
-      // All other document types (excluding singletons) will appear in the main list
-      ...S.documentTypeListItems().filter(
-        (item) =>
-          item.getId() && // Type guard to ensure `getId()` is not undefined
-          ![
-            'dom',
-            'oNas',
-            'uslugi',
-            'realizacje', // Add "realizacje" here
-            'renomaLab',
-            'uczSieZNami',
-            'pracujZNami',
-            'kontakt',
-            'ustawienia',
-          ].includes(item.getId() as string)
+      // Filtered list of non-singleton items (excluding singletons and "realizacje")
+      ...filteredDocumentListItems({ S, context }).filter(
+        (item) => item.getId() !== 'realizacje'
       ),
     ]);
