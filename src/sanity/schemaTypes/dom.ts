@@ -13,13 +13,13 @@ export const dom = defineType({
     defineField({
       name: 'powitanie',
       title: 'Powitanie',
-      type: 'string',
+      type: 'internationalizedArrayString',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'wiadomosc',
       title: 'Wiadomość',
-      type: 'text',
+      type: 'internationalizedArrayText',
     }),
   ],
 });
