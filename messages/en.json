@@ -43,20 +43,7 @@
   },
   "locale-switcher": {
     "label": "Change language",
-    "locale": {
-      "en": {
-        "flag": "🇬🇧",
-        "name": "English"
-      },
-      "pl": {
-        "flag": "🇵🇱",
-        "name": "Polski"
-      },
-      "de": {
-        "flag": "🇩🇪",
-        "name": "Deutsch"
-      }
-    }
+    "locale": "{locale, select, en {🇬🇧 English} pl {🇵🇱 Polski} de {🇩🇪 Deutsch} other {Unknown}}"
   },
   "home-page": {
     "title": "Hello world!",

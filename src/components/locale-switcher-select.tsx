@@ -13,7 +13,13 @@ import {
 import { useParams } from "next/navigation";
 import { ChangeEvent, ReactNode, useTransition } from "react";
 import { Locale, usePathname, useRouter } from "@/i18n/routing";
-import { useTranslations } from "next-intl";
+
+// Define a simple object to map locale codes to flags and names
+const localeMap: Record<string, { flag: string; name: string }> = {
+  en: { flag: "🇬🇧", name: "English" },
+  pl: { flag: "🇵🇱", name: "Polski" },
+  de: { flag: "🇩🇪", name: "Deutsch" },
+};
 
 type Props = {
   children: ReactNode;
@@ -30,8 +36,9 @@ export default function LocaleSwitcherSelect({
   const [isPending, startTransition] = useTransition();
   const pathname = usePathname();
   const params = useParams();
-  const [language, setLanguage] = React.useState(defaultValue);
-  const t = useTranslations("locale-switcher");
+  const [language, setLanguage] = React.useState<keyof typeof localeMap>(
+    defaultValue as keyof typeof localeMap,
+  );
 
   function onSelectChange(event: ChangeEvent<HTMLSelectElement>) {
     const nextLocale = event.target.value as Locale;
@@ -48,8 +55,8 @@ export default function LocaleSwitcherSelect({
       <DropdownMenuTrigger asChild>
         <Button variant="outline" className="w-40 justify-between">
           <span className="flex items-center">
-            <span className="mr-2 text-lg">{t(`locale.${language}.flag`)}</span>
-            {t(`locale.${language}.name`)}
+            <span className="mr-2 text-lg">{localeMap[language].flag}</span>
+            {localeMap[language].name}
           </span>
           <ChevronDown className="h-4 w-4 opacity-50" />
         </Button>
@@ -69,10 +76,8 @@ export default function LocaleSwitcherSelect({
                 }}
                 className="cursor-pointer"
               >
-                <span className="mr-2 text-lg">
-                  {t(`locale.${value}.flag`)}
-                </span>
-                <span className="flex-1">{t(`locale.${value}.name`)}</span>
+                <span className="mr-2 text-lg">{localeMap[value].flag}</span>
+                <span className="flex-1">{localeMap[value].name}</span>
                 {language === value && (
                   <Check className="ml-auto h-4 w-4 opacity-50" />
                 )}
