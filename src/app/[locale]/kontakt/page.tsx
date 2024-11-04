@@ -1,13 +1,13 @@
 // cSpell:disable
 
 import { setRequestLocale } from "next-intl/server";
-import { client } from "@/sanity/client";
+// import { client } from "@/sanity/client";
 
-const QUERY = `
+// const QUERY = `
 
-`;
+// `;
 
-const OPTIONS = { next: { revalidate: 30 } };
+// const OPTIONS = { next: { revalidate: 30 } };
 
 type Props = {
   params: { locale: string };
@@ -23,7 +23,7 @@ export default async function Kontakt({ params: { locale } }: Props) {
   setRequestLocale(locale);
 
   // Fetch localized content from Sanity using locale from params
-  const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
+  // const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
   return (
     <main className="container mx-auto min-h-screen max-w-3xl p-8">
