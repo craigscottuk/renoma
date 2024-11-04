@@ -28,10 +28,10 @@ export default async function IndexPage({ params: { locale } }: Props) {
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, options);
 
-  console.log(
-    `Content for locale "${locale}":`,
-    JSON.stringify(content, null, 2),
-  );
+  // console.log(
+  //   `Content for locale "${locale}":`,
+  //   JSON.stringify(content, null, 2),
+  // );
 
   return (
     <main className="container mx-auto min-h-screen max-w-3xl p-8">
