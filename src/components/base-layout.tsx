@@ -1,18 +1,19 @@
-import { clsx } from 'clsx';
-import { Inter } from 'next/font/google';
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
-import { ReactNode } from 'react';
-import Navigation from '@/components/navigation';
-import localFont from 'next/font/local';
+import { clsx } from "clsx";
+import { Inter } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { ReactNode } from "react";
+import Navigation from "@/components/main-navigation";
+import Footer from "@/components/footer";
+import localFont from "next/font/local";
 
 const helveticaNeueLight = localFont({
-  src: './fonts/HelveticaNeue-Light.woff2',
-  variable: '--font-helvetica-neue-light',
-  weight: '300',
+  src: "./fonts/HelveticaNeue-Light.woff2",
+  variable: "--font-helvetica-neue-light",
+  weight: "300",
 });
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 type Props = {
   children: ReactNode;
@@ -25,16 +26,19 @@ export default async function BaseLayout({ children, locale }: Props) {
   const messages = await getMessages();
 
   return (
-    <html className='h-full' lang={locale}>
+    <html className="h-full" lang={locale}>
       <body
         className={clsx(
           helveticaNeueLight.variable,
-          ' font-sans antialiased flex h-full flex-col'
+          "h-full font-sans antialiased",
         )}
       >
         <NextIntlClientProvider messages={messages}>
-          <Navigation />
-          {children}
+          <div className="flex min-h-screen flex-col">
+            <Navigation />
+            <main className="flex-1 grow">{children}</main>
+            <Footer />
+          </div>
         </NextIntlClientProvider>
       </body>
     </html>
