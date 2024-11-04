@@ -1,3 +1,5 @@
+// cSpell:disable
+
 import { setRequestLocale } from "next-intl/server";
 import { client } from "@/sanity/client";
 
