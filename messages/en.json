@@ -11,13 +11,52 @@
     "description": "<p>We've unfortunately encountered an error.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>",
     "title": "Something went wrong!"
   },
-  "navigation": {
-    "home": "Home",
-    "about-link": "About"
+  "main-navigation": {
+    "oNas": {
+      "label": "About Us",
+      "link": "/about-us"
+    },
+    "uslugi": {
+      "label": "Services",
+      "link": "/services"
+    },
+    "realizacje": {
+      "label": "Projects",
+      "link": "/projects"
+    },
+    "renomaLab": {
+      "label": "Renoma Lab",
+      "link": "/renoma-lab"
+    },
+    "uczSieZNami": {
+      "label": "Learn with Us",
+      "link": "/learn-with-us"
+    },
+    "pracujZNami": {
+      "label": "Work with Us",
+      "link": "/work-with-us"
+    },
+    "kontakt": {
+      "label": "Contact",
+      "link": "/contact"
+    }
   },
   "locale-switcher": {
     "label": "Change language",
-    "locale": "{locale, select, de {🇩🇪 Deutsch} en {🇺🇸 English} pl {🇵🇱 Polski} other {Unknown}}"
+    "locale": {
+      "en": {
+        "flag": "🇬🇧",
+        "name": "English"
+      },
+      "pl": {
+        "flag": "🇵🇱",
+        "name": "Polski"
+      },
+      "de": {
+        "flag": "🇩🇪",
+        "name": "Deutsch"
+      }
+    }
   },
   "home-page": {
     "title": "Hello world!",

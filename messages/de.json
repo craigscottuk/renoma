@@ -11,13 +11,52 @@
     "description": "<p>Leider ist ein Fehler aufgetreten.</p><p>Sie können versuchen, die <retry>Seite neu zu laden</retry>, die Sie besucht haben.</p>",
     "title": "Etwas ist schiefgelaufen!"
   },
-  "navigation": {
-    "home": "Startseite",
-    "about-link": "Über"
+  "main-navigation": {
+    "oNas": {
+      "label": "Über uns",
+      "link": "/ueber-uns"
+    },
+    "uslugi": {
+      "label": "Dienstleistungen",
+      "link": "/dienstleistungen"
+    },
+    "realizacje": {
+      "label": "Projekte",
+      "link": "/projekte"
+    },
+    "renomaLab": {
+      "label": "Renoma Lab",
+      "link": "/renoma-lab"
+    },
+    "uczSieZNami": {
+      "label": "Lernen Sie mit uns",
+      "link": "/lernen-sie-mit-uns"
+    },
+    "pracujZNami": {
+      "label": "Arbeiten Sie mit uns",
+      "link": "/arbeiten-sie-mit-uns"
+    },
+    "kontakt": {
+      "label": "Kontakt",
+      "link": "/kontakt"
+    }
   },
   "locale-switcher": {
     "label": "Change language",
-    "locale": "{locale, select, de {🇩🇪 Deutsch} en {🇺🇸 English} pl {🇵🇱 Polski} other {Unknown}}"
+    "locale": {
+      "en": {
+        "flag": "🇬🇧",
+        "name": "English"
+      },
+      "pl": {
+        "flag": "🇵🇱",
+        "name": "Polski"
+      },
+      "de": {
+        "flag": "🇩🇪",
+        "name": "Deutsch"
+      }
+    }
   },
   "home-page": {
     "title": "Hallo Welt!",

@@ -11,14 +11,52 @@
     "description": "<p>Niestety wystąpił błąd.</p><p>Możesz spróbować <retry>odświeżyć stronę</retry>, którą odwiedzałeś.</p>",
     "title": "Coś poszło nie tak!"
   },
-
-  "navigation": {
-    "home": "Strona główna",
-    "about-link": "O nas"
+  "main-navigation": {
+    "oNas": {
+      "label": "O nas",
+      "link": "/o-nas"
+    },
+    "uslugi": {
+      "label": "Usługi",
+      "link": "/uslugi"
+    },
+    "realizacje": {
+      "label": "Realizacje",
+      "link": "/realizacje"
+    },
+    "renomaLab": {
+      "label": "Renoma Lab",
+      "link": "/renoma-lab"
+    },
+    "uczSieZNami": {
+      "label": "Ucz się z nami",
+      "link": "/ucz-sie-z-nami"
+    },
+    "pracujZNami": {
+      "label": "Pracuj z nami",
+      "link": "/pracuj-z-nami"
+    },
+    "kontakt": {
+      "label": "Kontakt",
+      "link": "/kontakt"
+    }
   },
   "locale-switcher": {
     "label": "Change language",
-    "locale": "{locale, select, de {🇩🇪 Deutsch} en {🇺🇸 English} pl {🇵🇱 Polski} other {Unknown}}"
+    "locale": {
+      "en": {
+        "flag": "🇬🇧",
+        "name": "English"
+      },
+      "pl": {
+        "flag": "🇵🇱",
+        "name": "Polski"
+      },
+      "de": {
+        "flag": "🇩🇪",
+        "name": "Deutsch"
+      }
+    }
   },
   "home-page": {
     "title": "Witaj świecie!",
