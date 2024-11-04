@@ -1,5 +1,6 @@
 TO DO!
 
-1. delete the database in sanity to ensure we just have one home page
-2. we need to get portable text installed and the document translations installed
-3. test
+- meta stuff in the layout
+- we need to get portable text installed and the document translations installed
+- test
+- do something with this: "const OPTIONS = { next: { revalidate: 30 } };"
