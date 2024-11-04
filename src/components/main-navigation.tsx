@@ -3,6 +3,9 @@
 import { useTranslations } from "next-intl";
 import LocaleSwitcher from "./locale-switcher";
 import NavigationLinkItem from "./navigation-link-item";
+import MaxWidhthWrapper from "./max-width-wrapper";
+import Image from "next/image";
+import { Link } from "@/i18n/routing";
 
 type NavItem = {
   label: string;
@@ -51,17 +54,31 @@ export default function MainNavigation() {
   ];
 
   return (
-    <div className="bg-slate-850">
-      <nav className="container flex justify-between p-2 text-black">
-        <div>
+    <MaxWidhthWrapper>
+      <header className="flex w-full items-center justify-between">
+        {/* Logo */}
+        <div className="">
+          <Link href="/">
+            <img
+              className="h-200 w-auto"
+              src="/renoma-logo.svg"
+              alt="Renoma PKZ"
+            />
+          </Link>
+        </div>
+
+        {/* Nav Items */}
+        <nav className="container flex justify-between p-2 uppercase text-black">
           {navItems.map((item, index) => (
             <NavigationLinkItem key={index} href={item.link}>
               {item.label}
             </NavigationLinkItem>
           ))}
-        </div>
-        <LocaleSwitcher />
-      </nav>
-    </div>
+
+          {/* Locale Switcher */}
+          <LocaleSwitcher />
+        </nav>
+      </header>
+    </MaxWidhthWrapper>
   );
 }
