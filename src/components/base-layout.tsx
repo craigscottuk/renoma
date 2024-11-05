@@ -1,5 +1,4 @@
 import { clsx } from "clsx";
-import { Inter } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { ReactNode } from "react";
@@ -8,12 +7,9 @@ import Footer from "@/components/footer";
 import localFont from "next/font/local";
 
 const helveticaNeueLight = localFont({
-  src: "./fonts/HelveticaNeue-Light.woff2",
+  src: "./fonts/HelveticaNeueLight.otf",
   variable: "--font-helvetica-neue-light",
-  weight: "300",
 });
-
-const inter = Inter({ subsets: ["latin"] });
 
 type Props = {
   children: ReactNode;
