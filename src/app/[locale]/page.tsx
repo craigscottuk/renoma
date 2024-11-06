@@ -42,8 +42,8 @@ export default async function IndexPage({ params: { locale } }: Props) {
           objectPosition="center"
         />
       </div>
-      <MaxWidthWrapper>
-        <section className="mx-auto bg-white px-6 py-16 md:py-24">
+      <section className="mx-auto bg-white py-16 md:py-44">
+        <MaxWidthWrapper>
           <div className="grid gap-12 md:grid-cols-2 md:gap-24">
             {/* Right Column (Heading and Title) for Mobile, Hidden on Desktop */}
             <div className="space-y-4 md:hidden">
@@ -86,15 +86,17 @@ export default async function IndexPage({ params: { locale } }: Props) {
               </CustomButton>
             </div>
           </div>
-        </section>
+        </MaxWidthWrapper>
+      </section>
 
-        <div className="container mx-auto">
-          <h1 className="mb-8 text-4xl font-bold">{content.powitanie}</h1>
-          <p>{content.wiadomosc}</p>
-        </div>
+      <div className="container mx-auto">
+        <h1 className="mb-8 text-4xl font-bold">{content.powitanie}</h1>
+        <p>{content.wiadomosc}</p>
+      </div>
 
-        {/* Section with Black Background */}
-        <section className="mx-auto bg-black px-6 py-16 text-white md:py-24">
+      {/* Section with Black Background */}
+      <section className="mx-auto bg-black py-16 text-white md:py-44">
+        <MaxWidthWrapper>
           <div className="grid items-center gap-12 md:grid-cols-2 md:gap-24">
             {/* Left Column */}
             <div className="space-y-4 md:space-y-8">
@@ -119,8 +121,8 @@ export default async function IndexPage({ params: { locale } }: Props) {
               </div>
             </div>
           </div>
-        </section>
-      </MaxWidthWrapper>
+        </MaxWidthWrapper>
+      </section>
     </>
   );
 }
