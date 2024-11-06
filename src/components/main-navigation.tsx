@@ -4,7 +4,6 @@ import { useTranslations } from "next-intl";
 import LocaleSwitcher from "./locale-switcher";
 import NavigationLinkItem from "./navigation-link-item";
 import MaxWidhthWrapper from "./max-width-wrapper";
-import Image from "next/image";
 import { Link } from "@/i18n/routing";
 
 type NavItem = {
@@ -55,12 +54,12 @@ export default function MainNavigation() {
 
   return (
     <MaxWidhthWrapper>
-      <header className="flex w-full items-center justify-between">
+      <header className="flex h-24 w-full items-end justify-between py-4">
         {/* Logo */}
         <div className="">
           <Link href="/">
             <img
-              className="h-200 w-auto"
+              className="h-[70px] w-auto"
               src="/renoma-logo.svg"
               alt="Renoma PKZ"
             />
@@ -68,16 +67,18 @@ export default function MainNavigation() {
         </div>
 
         {/* Nav Items */}
-        <nav className="container flex justify-between p-2 uppercase text-black">
-          {navItems.map((item, index) => (
-            <NavigationLinkItem key={index} href={item.link}>
-              {item.label}
-            </NavigationLinkItem>
-          ))}
+        <div className="ml-auto">
+          <nav className="flex items-end">
+            {navItems.map((item, index) => (
+              <NavigationLinkItem key={index} href={item.link}>
+                {item.label}
+              </NavigationLinkItem>
+            ))}
 
-          {/* Locale Switcher */}
-          <LocaleSwitcher />
-        </nav>
+            {/* Locale Switcher */}
+            <LocaleSwitcher />
+          </nav>
+        </div>
       </header>
     </MaxWidhthWrapper>
   );
