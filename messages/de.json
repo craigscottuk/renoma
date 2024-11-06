@@ -43,7 +43,7 @@
   },
   "locale-switcher": {
     "label": "Sprache ändern",
-    "locale": "{locale, select, en {🇬🇧 English} pl {🇵🇱 Polski} de {🇩🇪 Deutsch} other {Unbekannt}}"
+    "locale": "{locale, select, en {🇬🇧 EN} pl {🇵🇱 PL} de {🇩🇪 DE} other {Unbekannt}}"
   },
   "home-page": {
     "title": "Hallo Welt!",
