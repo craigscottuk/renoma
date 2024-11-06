@@ -16,9 +16,9 @@ import { Locale, usePathname, useRouter } from "@/i18n/routing";
 
 // Define a simple object to map locale codes to flags and names
 const localeMap: Record<string, { flag: string; name: string }> = {
-  en: { flag: "🇬🇧", name: "English" },
-  pl: { flag: "🇵🇱", name: "Polski" },
-  de: { flag: "🇩🇪", name: "Deutsch" },
+  en: { flag: "🇬🇧", name: "EN" },
+  pl: { flag: "🇵🇱", name: "PL" },
+  de: { flag: "🇩🇪", name: "DE" },
 };
 
 type Props = {
@@ -53,15 +53,18 @@ export default function LocaleSwitcherSelect({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="w-40 justify-between">
-          <span className="flex items-center">
-            <span className="mr-2 text-lg">{localeMap[language].flag}</span>
+        <Button
+          variant="ghost"
+          className="w-fit justify-between text-neutral-700 hover:bg-neutral-50"
+        >
+          <span className="flex items-center text-base tracking-wide">
+            <span className="mr-2 text-base">{localeMap[language].flag}</span>
             {localeMap[language].name}
           </span>
           <ChevronDown className="h-4 w-4 opacity-50" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-40">
+      <DropdownMenuContent className="w-fit">
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child)) {
             const { value } = child.props;
@@ -76,8 +79,10 @@ export default function LocaleSwitcherSelect({
                 }}
                 className="cursor-pointer"
               >
-                <span className="mr-2 text-lg">{localeMap[value].flag}</span>
-                <span className="flex-1">{localeMap[value].name}</span>
+                <span className="mr-2 text-base">{localeMap[value].flag}</span>
+                <span className="flex-1 text-base tracking-wider">
+                  {localeMap[value].name}
+                </span>
                 {language === value && (
                   <Check className="ml-auto h-4 w-4 opacity-50" />
                 )}
