@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { Check, ChevronDown } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -55,7 +54,7 @@ export default function LocaleSwitcherSelect({
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="w-fit justify-between text-neutral-700 hover:bg-neutral-50"
+          className="w-fit justify-between border-0 text-neutral-700 hover:bg-neutral-50 focus-visible:ring-[none]"
         >
           <span className="flex items-center text-base tracking-wide">
             <span className="mr-2 text-base">{localeMap[language].flag}</span>
