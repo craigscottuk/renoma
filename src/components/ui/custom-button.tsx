@@ -29,7 +29,7 @@ export default function CustomButton({
     <>
       <span
         className={clsx(
-          "relative mr-4 flex items-center tracking-[0.045em] group-hover:text-current",
+          "relative mr-4 flex items-center uppercase tracking-[0.045em] group-hover:text-current",
         )}
         style={{ userSelect: "none" }}
       >
