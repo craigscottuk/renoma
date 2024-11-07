@@ -1,52 +1,24 @@
 can we add more singleton pages using the icons I've added in the import as a reference:
 
-The singleton docs are:
-
-About Us
-Services
-Projects
-Renomal Lab
-Learn With Us
-Work With Us
-Contact
-
-here are the icons for each:
-
-Info, // About Us
-Briefcase, // Services
-FolderOpen, // Projects
-Beaker, // Renomal Lab
-GraduationCap, // Learn With Us
-Users, // Work With Us
-Mail, // Contact
-
-This is the structure.ts file so far:
-
 ```js
+<MaxWidthWrapper>
+  <div className="space-y-4 md:space-y-8">
+    {/* First Title with Looping Blur */}
+    <h2 className="motion-opacity-loop motion-blur-sm-loop motion-duration-2000 text-4xl font-light leading-tight md:text-6xl">
+      {content.heroSection.sectionTitle}
+    </h2>
 
-import type { StructureResolver } from 'sanity/structure';
-import {
-Home,
-Info,
-Briefcase,
-FolderOpen,
-Beaker,
-GraduationCap,
-Users,
-Mail,
-} from 'lucide-react';
+    {/* Second Title with Looping Blur and Delay */}
+    <h2 className="motion-opacity-loop motion-blur-sm-loop motion-duration-2000 motion-delay-1000 text-3xl font-light leading-tight md:text-5xl">
+      Your second title text here
+    </h2>
 
-export const structure: StructureResolver = (S) =>
-S.list()
-  .title('Content')
-  .items([
-    // Singleton entry for "Home"
-    S.listItem().title('Home').icon(Home).child(
-      S.document().schemaType('home').documentId('singletonHome') // Fixed ID to make it a singleton
-    ),
-
-    // All other document types (excluding 'home') will appear in the main list
-    ...S.documentTypeListItems().filter((item) => item.getId() !== 'home'),
-  ]);
-
+    {/* Call-to-action Button with One-time Animation */}
+    <div className="motion-preset-pop motion-duration-1000 mt-4">
+      <CustomButton variant="dark" href="/uslugi">
+        {content.heroSection.sectionCTA}
+      </CustomButton>
+    </div>
+  </div>
+</MaxWidthWrapper>
 ```
