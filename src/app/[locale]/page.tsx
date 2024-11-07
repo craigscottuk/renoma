@@ -64,7 +64,7 @@ export default async function IndexPage({ params: { locale } }: Props) {
   return (
     <>
       {content.heroSection && (
-        <div className="relative min-h-[calc(100vh-96px)]">
+        <div className="relative mt-24 min-h-[calc(100vh-96px)]">
           {/* Background Image */}
           <Image
             src="/cover-img.png"
