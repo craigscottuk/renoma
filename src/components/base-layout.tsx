@@ -23,10 +23,14 @@ export default async function BaseLayout({ children, locale }: Props) {
 
   return (
     <html className="h-full" lang={locale}>
+      <head>
+        {/* Meta tag for responsive layout on mobile devices */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
       <body
         className={clsx(
           helveticaNeueLight.variable,
-          "h-full font-sans antialiased",
+          "h-full overflow-x-hidden overflow-y-visible font-sans antialiased",
         )}
       >
         <NextIntlClientProvider messages={messages}>
