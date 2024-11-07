@@ -8,61 +8,154 @@ export const dom = defineType({
   options: {
     singleton: true,
   },
+  fields: [
+    {
+      name: "placeholder",
+      title: "Placeholder",
+      type: "string",
+    },
+  ],
+});
+
+// Hero section
+export const heroSection = defineType({
+  name: "heroSection",
+  title: "Sekcja Powitalny",
+  type: "document",
+  options: { singleton: true },
   groups: [
     {
-      name: "hero",
-      title: "Sekcja Powitalna",
+      name: "tytulSekcji",
+      title: "Tytuł Sekcji",
     },
     {
-      name: "about",
-      title: "O Nas",
-    },
-    {
-      name: "services",
-      title: "Usługi",
+      name: "przyciskSekcji",
+      title: "Przycisk Sekcji",
     },
   ],
   fields: [
     defineField({
-      name: "powitanie",
-      title: "Powitanie",
-      group: "hero",
+      name: "sectionTitle",
+      title: "Tytuł Sekcji",
       type: "internationalizedArrayString",
+      group: "tytulSekcji",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "wiadomosc",
-      title: "Wiadomość",
-      group: "hero",
-      type: "internationalizedArrayText",
+      name: "sectionCTA",
+      title: "Przycisk Sekcji",
+      type: "internationalizedArrayString",
+      group: "przyciskSekcji",
+      validation: (Rule) => Rule.required(),
     }),
+  ],
+});
 
-    // O Nas
+// about section
+export const aboutSection = defineType({
+  name: "aboutSection",
+  title: "Sekcja O Nas",
+  type: "document",
+  options: { singleton: true },
+  groups: [
+    {
+      name: "etykietaSekcji",
+      title: "Etykieta Sekcji",
+    },
+    {
+      name: "tytulSekcji",
+      title: "Tytuł Sekcji",
+    },
+    {
+      name: "opisSekcji",
+      title: "Opis Sekcji",
+    },
+    {
+      name: "przyciskSekcji",
+      title: "Przycisk Sekcji",
+    },
+  ],
+  fields: [
     defineField({
-      name: "oNasSectionLabel",
-      title: "Etykieta Sekcji O Nas",
-      group: "about",
+      name: "sectionLabel",
+      title: "Etykieta Sekcji",
       type: "internationalizedArrayString",
+      group: "etykietaSekcji",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "oNasSectionTitle",
-      title: "Tytuł Sekcji O Nas",
-      group: "about",
+      name: "sectionTitle",
+      title: "Tytuł Sekcji",
       type: "internationalizedArrayString",
+      group: "tytulSekcji",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "oNasSectionDescription",
-      title: "Opis Sekcji O Nas",
-      group: "about",
+      name: "sectionDescription",
+      title: "Opis Sekcji",
       type: "internationalizedArrayText",
+      group: "opisSekcji",
     }),
     defineField({
-      name: "oNasSectionCTA",
-      title: "Przycisk Sekcji O Nas",
-      group: "about",
+      name: "sectionCTA",
+      title: "Przycisk Sekcji",
       type: "internationalizedArrayString",
+      group: "przyciskSekcji",
+      validation: (Rule) => Rule.required(),
+    }),
+  ],
+});
+
+// about section
+export const servicesSection = defineType({
+  name: "servicesSection",
+  title: "Sekcja Usług",
+  type: "document",
+  options: { singleton: true },
+  groups: [
+    {
+      name: "etykietaSekcji",
+      title: "Etykieta Sekcji",
+    },
+    {
+      name: "tytulSekcji",
+      title: "Tytuł Sekcji",
+    },
+    {
+      name: "opisSekcji",
+      title: "Opis Sekcji",
+    },
+    {
+      name: "przyciskSekcji",
+      title: "Przycisk Sekcji",
+    },
+  ],
+  fields: [
+    defineField({
+      name: "sectionLabel",
+      title: "Etykieta Sekcji",
+      type: "internationalizedArrayString",
+      group: "etykietaSekcji",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "sectionTitle",
+      title: "Tytuł Sekcji",
+      type: "internationalizedArrayString",
+      group: "tytulSekcji",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "sectionDescription",
+      title: "Opis Sekcji",
+      type: "internationalizedArrayText",
+      group: "opisSekcji",
+    }),
+    defineField({
+      name: "sectionCTA",
+      title: "Przycisk Sekcji",
+      type: "internationalizedArrayString",
+      group: "przyciskSekcji",
       validation: (Rule) => Rule.required(),
     }),
   ],
