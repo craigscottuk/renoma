@@ -21,7 +21,7 @@ export default function CustomButton({
   href,
 }: ButtonProps) {
   const defaultClasses =
-    "group inline-flex items-center text-sm transition-opacity";
+    "group inline-flex items-center text-base transition-opacity";
   const lightClasses = "text-black border-black hover:text-black";
   const darkClasses = "text-white border-white hover:text-white";
 
