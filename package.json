@@ -28,7 +28,8 @@
     "sanity-plugin-singleton-tools": "^1.1.0",
     "styled-components": "^6.1.13",
     "tailwind-merge": "^2.5.4",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "tailwindcss-motion": "^0.4.1-beta"
   },
   "devDependencies": {
     "@types/node": "^20",
