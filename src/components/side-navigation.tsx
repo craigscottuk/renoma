@@ -40,7 +40,7 @@ export default function SideNavigation({ navItems }: { navItems: NavItem[] }) {
         <Button
           variant="outline"
           size="icon"
-          className="fixed right-4 top-4 z-50"
+          className="fixed right-4 top-4 z-50 xl:hidden"
         >
           <Menu className="h-6 w-6" />
           <span className="sr-only">Toggle navigation menu</span>
