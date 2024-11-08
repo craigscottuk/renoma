@@ -30,7 +30,7 @@ export default async function BaseLayout({ children, locale }: Props) {
       <body
         className={clsx(
           helveticaNeueLight.variable,
-          "h-full overflow-x-hidden overflow-y-visible font-sans antialiased",
+          "h-full font-sans antialiased",
         )}
       >
         <NextIntlClientProvider messages={messages}>
