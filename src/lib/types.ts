@@ -7,4 +7,5 @@ export type RoutePaths =
   | "/renoma-lab"
   | "/ucz-sie-z-nami"
   | "/pracuj-z-nami"
-  | "/kontakt";
+  | "/kontakt"
+  | "/polityka-prywatnosci";

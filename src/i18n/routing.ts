@@ -43,6 +43,11 @@ export const routing = defineRouting({
       de: "/kontakt",
       pl: "/kontakt",
     },
+    "/polityka-prywatnosci": {
+      en: "/privacy-policy",
+      de: "/datenschutzrichtlinie",
+      pl: "/polityka-prywatnosci",
+    },
   },
 });
 
