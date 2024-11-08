@@ -48,7 +48,7 @@ export default function MainNavigation() {
   ];
 
   return (
-    <header className="main-header fixed left-0 right-0 top-0 z-30 flex h-24 w-full items-center justify-between bg-white md:bg-blue-500 lg:bg-white">
+    <header className="main-header fixed left-0 right-0 top-0 z-30 flex h-24 w-full items-center justify-between bg-white md:bg-blue-500 lg:bg-red-500 xl:bg-white">
       <MaxWidthWrapper className="flex h-full justify-between">
         {/* Logo */}
         <div className="my-auto flex-shrink-0">
@@ -73,14 +73,12 @@ export default function MainNavigation() {
                 {item.label}
               </NavigationLinkItem>
             ))}
-
-            {/* Locale Switcher */}
-            <LocaleSwitcher />
           </nav>
+          {/* Locale Switcher */}
+          <LocaleSwitcher className="hidden xl:flex" />
+          {/* Side Navigation */}
+          <SideNavigation navItems={navItems} />
         </div>
-
-        {/* Side Navigation */}
-        <SideNavigation navItems={navItems} />
       </MaxWidthWrapper>
     </header>
   );
