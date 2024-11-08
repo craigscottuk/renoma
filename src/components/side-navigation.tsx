@@ -11,6 +11,7 @@ import {
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
+import clsx from "clsx";
 
 type NavItem = {
   label: string;
@@ -39,21 +40,34 @@ export default function SideNavigation({ navItems }: { navItems: NavItem[] }) {
       <SheetTrigger asChild>
         <Button
           variant="outline"
-          size="icon"
-          className="fixed right-4 top-4 z-50 xl:hidden"
+          className="z-50 h-11 w-10 border-black text-black hover:bg-black hover:text-white xl:hidden"
         >
           <Menu className="h-6 w-6" />
           <span className="sr-only">Toggle navigation menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="right" className="w-[300px] p-0 sm:w-[400px]">
+      <SheetContent
+        side="right"
+        className={clsx(
+          "w-5/6",
+          "md:w-1/2",
+          // "bg-white/10", // Use this line to position the icon
+        )}
+      >
         <SheetHeader className="p-4">
           <SheetTitle className="mb-6 text-2xl font-bold">Menu</SheetTitle>
           <SheetClose asChild>
             <Button
               variant="outline"
               size="icon"
-              className="absolute right-4 top-4"
+              className={clsx(
+                "absolute",
+                "right-3",
+                "top-5",
+                "h-11",
+                "w-10",
+                // "bg-white/10", // // Use this line to position the icon
+              )}
             >
               <X className="h-6 w-6" />
               <span className="sr-only">Close navigation menu</span>
