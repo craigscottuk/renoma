@@ -54,7 +54,7 @@ export const structure: StructureResolver = (S, context) =>
                 context,
                 type: "servicesSection",
                 title: "Sekcja 3: Usługi",
-                id: "singletonAboutSection",
+                id: "singletonServicesSection",
               }),
             ]),
         ),

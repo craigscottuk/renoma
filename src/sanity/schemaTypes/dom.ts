@@ -106,7 +106,7 @@ export const aboutSection = defineType({
   ],
 });
 
-// about section
+// services section
 export const servicesSection = defineType({
   name: "servicesSection",
   title: "Sekcja Usług",
