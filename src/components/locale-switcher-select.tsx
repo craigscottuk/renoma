@@ -24,12 +24,14 @@ type Props = {
   children: ReactNode;
   defaultValue: string;
   label: string;
+  className?: string;
 };
 
 export default function LocaleSwitcherSelect({
   children,
   defaultValue,
   label,
+  className,
 }: Props) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -51,7 +53,7 @@ export default function LocaleSwitcherSelect({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild className="h-[20px] py-0">
+      <DropdownMenuTrigger asChild className={`h-[20px] py-0 ${className}`}>
         <Button
           variant="ghost"
           className="w-fit justify-between border-0 text-black hover:bg-white focus-visible:ring-[none]"
