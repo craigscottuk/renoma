@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { RoutePaths } from "@/lib/types";
 import { Link } from "@/i18n/routing";
+import clsx from "clsx";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -47,7 +48,16 @@ const formSchema = z.object({
 // Define TypeScript type based on the schema
 type FormData = z.infer<typeof formSchema>;
 
-export default function ContactForm() {
+const darkInputClassNames =
+  "border-none bg-zinc-800 text-white ring-offset-black focus-visible:ring-white";
+const darkSelectContentClassNames = "border-zinc-900 bg-zinc-700 text-white";
+const darkCheckboxClassNames = "border-white";
+
+interface ContactFormProps {
+  theme?: "light" | "dark";
+}
+
+export default function ContactForm({ theme = "light" }: ContactFormProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -63,6 +73,12 @@ export default function ContactForm() {
       privacy: false,
     },
   });
+
+  const inputClassNames = theme === "dark" ? darkInputClassNames : "";
+  const selectContentClassNames =
+    theme === "dark" ? darkSelectContentClassNames : "";
+  const checkboxContentClassNames =
+    theme === "dark" ? darkCheckboxClassNames : "";
 
   async function onSubmit(values: FormData) {
     setIsLoading(true);
@@ -88,7 +104,12 @@ export default function ContactForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Imię" aria-label="Imię" {...field} />
+                    <Input
+                      placeholder="Imię"
+                      aria-label="Imię"
+                      className={inputClassNames}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage aria-live="assertive" />
                 </FormItem>
@@ -103,6 +124,7 @@ export default function ContactForm() {
                     <Input
                       placeholder="Nazwisko"
                       aria-label="Nazwisko"
+                      className={inputClassNames}
                       {...field}
                     />
                   </FormControl>
@@ -122,6 +144,7 @@ export default function ContactForm() {
                     <Input
                       placeholder="Adres email"
                       aria-label="Adres email"
+                      className={inputClassNames}
                       {...field}
                     />
                   </FormControl>
@@ -137,6 +160,7 @@ export default function ContactForm() {
                   <FormControl>
                     <Input
                       placeholder="Numer telefonu"
+                      className={inputClassNames}
                       aria-label="Numer telefonu"
                       {...field}
                     />
@@ -157,10 +181,13 @@ export default function ContactForm() {
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
-                    <SelectTrigger aria-label="Wybierz temat">
+                    <SelectTrigger
+                      className={inputClassNames}
+                      aria-label="Wybierz temat"
+                    >
                       <SelectValue placeholder="Wybierz temat..." />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className={clsx(selectContentClassNames)}>
                       <SelectItem value="general">Zapytanie ogólne</SelectItem>
                       <SelectItem value="support">
                         Wsparcie techniczne
@@ -182,7 +209,7 @@ export default function ContactForm() {
                 <FormControl>
                   <Textarea
                     placeholder="Wiadomość"
-                    className="min-h-[150px]"
+                    className={clsx("min-h-[150px]", inputClassNames)}
                     {...field}
                     aria-label="Wiadomość"
                   />
@@ -200,6 +227,7 @@ export default function ContactForm() {
               <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                 <FormControl>
                   <Checkbox
+                    className={clsx(checkboxContentClassNames)}
                     checked={field.value}
                     onCheckedChange={field.onChange}
                     aria-label="Zgoda na politykę prywatności"
