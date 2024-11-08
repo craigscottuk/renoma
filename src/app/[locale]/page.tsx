@@ -9,20 +9,20 @@ import Image from "next/image";
 const QUERY = `
 {
   "heroSection": *[_type == "heroSection"][0]{
-    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Missing translation"),
-    "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Missing translation")
+    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
+    "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia")
   },
   "aboutSection": *[_type == "aboutSection"][0]{
-    "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Missing translation"),
-    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Missing translation"),
-    "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Missing translation"),
-    "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Missing translation")
+    "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Brak tłumaczenia"),
+    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
+    "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Brak tłumaczenia"),
+    "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia")
   },
   "servicesSection": *[_type == "servicesSection"][0]{
-    "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Missing translation"),
-    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Missing translation"),
-    "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Missing translation"),
-    "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Missing translation")
+    "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Brak tłumaczenia"),
+    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
+    "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Brak tłumaczenia"),
+    "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia")
   }
 }
 `;
