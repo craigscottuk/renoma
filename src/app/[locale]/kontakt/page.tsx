@@ -5,14 +5,36 @@ import { Mail, MapPin, Phone, FileText } from "lucide-react";
 import Link from "next/link";
 import ContactForm from "@/components/contact-form";
 import Image from "next/image";
+import { client } from "@/sanity/client";
+import PageHeaderSection from "@/components/page-header-section";
 
-// import { client } from "@/sanity/client";
+const QUERY = `
+{
+  "kontaktHeaderSection": *[_type == "kontaktHeaderSection"][0]{
+    "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Brak tłumaczenia"),
+    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
+    "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Brak tłumaczenia"),
+    "headerImage": headerImage.asset->url
+  },
+  "contactFormSection": *[_type == "contactFormSection"][0]{
+    "contactFormSubjects": contactFormSubjects[]{
+      "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia")
+    }
+  },
+  "contactDetailsSection": *[_type == "contactDetailsSection"][0]{
+    "numerTelefonu": coalesce(numerTelefonu, "Brak tłumaczenia"),
+    "adresEmail": coalesce(adresEmail, "Brak tłumaczenia"),
+    "adresBiuraLineOne": coalesce(adresBiuraLineOne[_key == $locale][0].value, "Brak tłumaczenia"),
+    "adresBiuraLineTwo": coalesce(adresBiuraLineTwo[_key == $locale][0].value, "Brak tłumaczenia"),
+    "nazwaFirmy": coalesce(nazwaFirmy, "Brak tłumaczenia"),
+    "adresFaktur": coalesce(adresFaktur[_key == $locale][0].value, "Brak tłumaczenia"),
+    "numerNip": coalesce(numerNip[_key == $locale][0].value, "Brak tłumaczenia"),
+    "numerRegon": coalesce(numerRegon[_key == $locale][0].value, "Brak tłumaczenia")
+  }
+}
+`;
 
-// const QUERY = `
-
-// `;
-
-// const OPTIONS = { next: { revalidate: 30 } };
+const OPTIONS = { next: { revalidate: 30 } };
 
 type Props = {
   params: { locale: string };
@@ -21,6 +43,22 @@ type Props = {
 interface Content {
   powitanie: string;
   wiadomosc: string;
+  kontaktHeaderSection: {
+    sectionLabel: string;
+    sectionTitle: string;
+    sectionDescription: string;
+    headerImage?: string;
+  };
+  contactDetailsSection: {
+    numerTelefonu: string;
+    adresEmail: string;
+    adresBiuraLineOne: string;
+    adresBiuraLineTwo: string;
+    nazwaFirmy: string;
+    adresFaktur: string;
+    numerNip: string;
+    numerRegon: string;
+  };
 }
 
 export default async function Kontakt({ params: { locale } }: Props) {
@@ -28,50 +66,24 @@ export default async function Kontakt({ params: { locale } }: Props) {
   setRequestLocale(locale);
 
   // Fetch localized content from Sanity using locale from params
-  // const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
+  const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
+
+  const { kontaktHeaderSection, contactDetailsSection } = content;
 
   // Define contact form color scheme as either 'light' or 'dark'
   const color = "dark";
 
   return (
     <>
-      {/* White Section */}
-      <section className="relative mt-24 bg-white py-12 lg:py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
-            <div className="max-w-xl">
-              <div className="space-y-4">
-                <p className="text-sm uppercase tracking-wider text-muted-foreground">
-                  KONTAKT
-                </p>
-                <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
-                  Skontaktuj się z nami
-                </h1>
-                <p className="text-lg text-muted-foreground">
-                  W razie pytań lub potrzeby uzyskania pomocy, Renoma pozostaje
-                  do pełnej dyspozycji. Chętnie udzielimy wszelkich informacji.
-                  Zachęcamy do kontaktu.
-                </p>
-              </div>
-            </div>
-            <div className="relative z-10 h-[680px] w-[560px] lg:absolute lg:right-[5%] lg:top-0">
-              <div className="relative mt-24 h-full w-full">
-                <Image
-                  src="/test-image.png"
-                  alt="Building exterior with technical equipment"
-                  fill
-                  style={{
-                    objectFit: "cover",
-                    objectPosition: "center",
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* White Page Header Section */}
+      <PageHeaderSection
+        sectionLabel={kontaktHeaderSection.sectionLabel}
+        sectionTitle={kontaktHeaderSection.sectionTitle}
+        sectionDescription={kontaktHeaderSection.sectionDescription}
+        headerImage={kontaktHeaderSection.headerImage}
+      />
 
-      {/* White Section */}
+      {/* Black/White Contact Form Section */}
       <section
         className={`min-h-screen p-6 md:p-8 lg:p-12 ${
           color === "dark" ? "bg-black text-white" : "bg-white text-black"
@@ -89,7 +101,7 @@ export default async function Kontakt({ params: { locale } }: Props) {
               <Phone className="h-6 w-6" aria-hidden="true" />
               <div>
                 <h3 className="font-semibold">Telefon</h3>
-                <p>+48 555 555 555</p>
+                <p>{contactDetailsSection.numerTelefonu}</p>
               </div>
             </div>
 
@@ -98,7 +110,7 @@ export default async function Kontakt({ params: { locale } }: Props) {
               <Mail className="h-6 w-6" aria-hidden="true" />
               <div>
                 <h3 className="font-semibold">Email</h3>
-                <p>info@pkzrenoma.com</p>
+                <p>{contactDetailsSection.adresEmail}</p>
               </div>
             </div>
 
@@ -107,8 +119,8 @@ export default async function Kontakt({ params: { locale } }: Props) {
               <MapPin className="h-7 w-7" aria-hidden="true" />
               <div>
                 <h3 className="font-semibold">Biuro</h3>
-                <p>ul. Jana Mohna 71/3,</p>
-                <p>87-100 Toruń, Polska</p>
+                <p>{contactDetailsSection.adresBiuraLineOne}</p>
+                <p>{contactDetailsSection.adresBiuraLineTwo}</p>
                 <Link href="#" className="text-sm underline">
                   Zobacz na mapie
                 </Link>
@@ -120,10 +132,10 @@ export default async function Kontakt({ params: { locale } }: Props) {
               <FileText className="h-10 w-10" aria-hidden="true" />
               <div>
                 <h3 className="font-semibold">Dane do faktur</h3>
-                <p>RENOMA IGOR GÓŹDŹ</p>
-                <p>ul. Jana Mohna 71/3, 87-100 Toruń</p>
-                <p>NIP: 7632077673</p>
-                <p>REGON: 302752730</p>
+                <p>{contactDetailsSection.nazwaFirmy}</p>
+                <p>{contactDetailsSection.adresFaktur}</p>
+                <p>{contactDetailsSection.numerNip}</p>
+                <p>{contactDetailsSection.numerRegon}</p>
               </div>
             </div>
           </div>
