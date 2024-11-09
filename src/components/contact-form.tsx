@@ -52,12 +52,13 @@ const darkInputClassNames =
   "border-none bg-zinc-800 text-white ring-offset-black focus-visible:ring-white";
 const darkSelectContentClassNames = "border-zinc-900 bg-zinc-700 text-white";
 const darkCheckboxClassNames = "border-white";
+const darkButtonClassNames = " bg-black hover:text-black";
 
 interface ContactFormProps {
-  theme?: "light" | "dark";
+  color?: "light" | "dark";
 }
 
-export default function ContactForm({ theme = "light" }: ContactFormProps) {
+export default function ContactForm({ color = "light" }: ContactFormProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -74,11 +75,12 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
     },
   });
 
-  const inputClassNames = theme === "dark" ? darkInputClassNames : "";
+  const inputClassNames = color === "dark" ? darkInputClassNames : "";
   const selectContentClassNames =
-    theme === "dark" ? darkSelectContentClassNames : "";
+    color === "dark" ? darkSelectContentClassNames : "";
   const checkboxContentClassNames =
-    theme === "dark" ? darkCheckboxClassNames : "";
+    color === "dark" ? darkCheckboxClassNames : "";
+  const buttonClassNames = color === "dark" ? darkButtonClassNames : "";
 
   async function onSubmit(values: FormData) {
     setIsLoading(true);
@@ -252,7 +254,12 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
             )}
           />
 
-          <Button type="submit" disabled={isLoading} className="w-auto">
+          <Button
+            variant="outline"
+            type="submit"
+            disabled={isLoading}
+            className={clsx("w-auto", buttonClassNames)}
+          >
             {isLoading ? "Wysyłanie..." : "WYŚLIJ"}
           </Button>
         </form>
