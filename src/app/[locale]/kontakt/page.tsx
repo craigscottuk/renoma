@@ -26,8 +26,8 @@ const QUERY = `
     "adresBiuraLineTwo": coalesce(adresBiuraLineTwo[_key == $locale][0].value, "Brak tłumaczenia"),
     "nazwaFirmy": coalesce(nazwaFirmy, "Brak tłumaczenia"),
     "adresFaktur": coalesce(adresFaktur[_key == $locale][0].value, "Brak tłumaczenia"),
-    "numerNip": coalesce(numerNip, "Brak tłumaczenia"),
-    "numerRegon": coalesce(numerRegon, "Brak tłumaczenia")
+    "numerNip": coalesce(numerNip[_key == $locale][0].value, "Brak tłumaczenia"),
+    "numerRegon": coalesce(numerRegon[_key == $locale][0].value, "Brak tłumaczenia")
   }
 }
 `;
@@ -57,8 +57,8 @@ interface Content {
     adresBiuraLineTwo: string;
     nazwaFirmy: string;
     adresFaktur: string;
-    numerNip: { value: string }[];
-    numerRegon: { value: string }[];
+    numerNip: string;
+    numerRegon: string;
   };
 }
 
@@ -143,16 +143,8 @@ export default async function Kontakt({ params: { locale } }: Props) {
                 <h3 className="font-semibold">Dane do faktur</h3>
                 <p>{contactDetailsSection.nazwaFirmy}</p>
                 <p>{contactDetailsSection.adresFaktur}</p>
-                <p>
-                  {contactDetailsSection.numerNip
-                    .map((nip) => nip.value)
-                    .join(", ")}
-                </p>
-                <p>
-                  {contactDetailsSection.numerRegon
-                    .map((regon) => regon.value)
-                    .join(", ")}
-                </p>
+                <p>{contactDetailsSection.numerNip}</p>
+                <p>{contactDetailsSection.numerRegon}</p>
               </div>
             </div>
           </div>
