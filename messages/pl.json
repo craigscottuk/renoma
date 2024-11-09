@@ -13,32 +13,25 @@
   },
   "main-navigation": {
     "oNas": {
-      "label": "O nas",
-      "link": "/o-nas"
+      "label": "O nas"
     },
     "uslugi": {
-      "label": "Usługi",
-      "link": "/uslugi"
+      "label": "Usługi"
     },
     "realizacje": {
-      "label": "Realizacje",
-      "link": "/realizacje"
+      "label": "Realizacje"
     },
     "renomaLab": {
-      "label": "Renoma Lab",
-      "link": "/renoma-lab"
+      "label": "Renoma Lab"
     },
     "uczSieZNami": {
-      "label": "Ucz się z nami",
-      "link": "/ucz-sie-z-nami"
+      "label": "Ucz się z nami"
     },
     "pracujZNami": {
-      "label": "Pracuj z nami",
-      "link": "/pracuj-z-nami"
+      "label": "Pracuj z nami"
     },
     "kontakt": {
-      "label": "Kontakt",
-      "link": "/kontakt"
+      "label": "Kontakt"
     }
   },
   "locale-switcher": {
