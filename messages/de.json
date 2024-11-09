@@ -13,32 +13,25 @@
   },
   "main-navigation": {
     "oNas": {
-      "label": "Über uns",
-      "link": "/ueber-uns"
+      "label": "Über uns"
     },
     "uslugi": {
-      "label": "Dienstleistungen",
-      "link": "/dienstleistungen"
+      "label": "Dienstleistungen"
     },
     "realizacje": {
-      "label": "Projekte",
-      "link": "/projekte"
+      "label": "Projekte"
     },
     "renomaLab": {
-      "label": "Renoma Lab",
-      "link": "/renoma-lab"
+      "label": "Renoma Lab"
     },
     "uczSieZNami": {
-      "label": "Lernen Sie mit uns",
-      "link": "/lernen-sie-mit-uns"
+      "label": "Lernen Sie mit uns"
     },
     "pracujZNami": {
-      "label": "Arbeiten Sie mit uns",
-      "link": "/arbeiten-sie-mit-uns"
+      "label": "Arbeiten Sie mit uns"
     },
     "kontakt": {
-      "label": "Kontakt",
-      "link": "/kontakt"
+      "label": "Kontakt"
     }
   },
   "locale-switcher": {
