@@ -1,12 +1,14 @@
 // cSpell:disable
 import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 interface PageHeaderSectionProps {
   sectionLabel: string;
   sectionTitle: string;
   sectionDescription: string;
   sectionButton?: string;
-  headerImage?: string;
+  headerImage?: SanityImageSource | string; // Allows both Sanity image object and URL string
 }
 
 export default function PageHeaderSection({
@@ -16,6 +18,17 @@ export default function PageHeaderSection({
   sectionButton,
   headerImage,
 }: PageHeaderSectionProps) {
+  // Determine the URL for the header image, with a 1200px cap on the longest edge
+  const headerImageUrl =
+    typeof headerImage === "string"
+      ? headerImage
+      : headerImage
+        ? urlFor(headerImage, 1200)
+        : undefined;
+
+  // Log the generated URL for debugging
+  console.log("Generated Header Image URL:", headerImageUrl);
+
   return (
     <section className="relative mt-24 bg-white py-12 lg:py-24">
       <div className="container mx-auto px-4">
@@ -33,11 +46,11 @@ export default function PageHeaderSection({
               </p>
             </div>
           </div>
-          {headerImage && (
+          {headerImageUrl && (
             <div className="relative z-10 h-[680px] w-[560px] lg:absolute lg:right-[5%] lg:top-0">
               <div className="relative mt-24 h-full w-full">
                 <Image
-                  src={headerImage}
+                  src={headerImageUrl}
                   alt="Header Image"
                   fill
                   style={{
