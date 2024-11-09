@@ -14,7 +14,7 @@ const QUERY = `
     "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Brak tłumaczenia"),
     "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
     "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Brak tłumaczenia"),
-    "headerImage": headerImage.asset->url
+    "headerImage": headerImage // Fetch full image object with asset._ref
   },
   "contactFormSection": *[_type == "contactFormSection"][0]{
     "contactFormSubjects": contactFormSubjects[].label[_key == $locale][0].value
