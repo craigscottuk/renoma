@@ -63,6 +63,15 @@ export const kontaktHeaderSection = defineType({
       type: "internationalizedArrayText",
       group: "opisSekcji",
     }),
+    defineField({
+      name: "headerImage",
+      title: "Obraz nagłówka",
+      description: "Obraz wyświetlany w nagłówku strony kontaktowej.",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+    }),
   ],
 });
 
@@ -192,7 +201,7 @@ export const contactDetailsSection = defineType({
     defineField({
       name: "numerRegon",
       title: "REGON",
-      type: "number",
+      type: "internationalizedArrayString",
       group: "daneDoFaktur",
     }),
   ],
