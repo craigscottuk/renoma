@@ -112,15 +112,41 @@ export const structure: StructureResolver = (S, context) =>
         id: "singletonPracujZNami",
       }),
 
-      // Singleton entry for "Kontakt" (Contact)
-      singletonDocumentListItem({
-        S,
-        context,
-        type: "kontakt",
-        title: "Kontakt",
-        icon: Mail,
-        id: "singletonKontakt",
-      }),
+      // Grouped Singleton entry for "Kontakt" (Contact) with Sections
+      S.listItem()
+        .title("Kontakt")
+        .icon(Home)
+        .child(
+          S.list()
+            .title("Sekcje Kontaktu") // tytuł panelu
+            .items([
+              // Sekcja Nagłówka Singleton
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "kontaktHeaderSection",
+                title: "Sekcja 1: Nagłówek",
+                id: "singletonKontaktHeaderSection",
+              }),
+              // Sekcja Formularza Kontaktowego Singleton
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "contactFormSection",
+                title: "Sekcja 2: Formularz Kontaktowy",
+                id: "singletonContactFormSection",
+              }),
+
+              // Contact Details Section Singleton
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "contactDetailsSection",
+                title: "Sekcja 3: Dane Kontaktowe",
+                id: "singletonContactDetailsSection",
+              }),
+            ]),
+        ),
 
       // Divider
       S.divider(),

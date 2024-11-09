@@ -10,7 +10,12 @@ import { realizacje } from "./realizacje";
 import { renomaLab } from "./renomaLab";
 import { uczSieZNami } from "./uczSieZNami";
 import { pracujZNami } from "./pracujZNami";
-import { kontakt } from "./kontakt";
+import {
+  kontakt,
+  kontaktHeaderSection,
+  contactFormSection,
+  contactDetailsSection,
+} from "./kontakt";
 import { ustawienia } from "./ustawienia";
 
 // Export schema configuration
@@ -29,7 +34,13 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     renomaLab,
     uczSieZNami,
     pracujZNami,
+
+    // Kontakt
     kontakt,
+    kontaktHeaderSection,
+    contactFormSection,
+    contactDetailsSection,
+
     ustawienia,
   ],
 };
