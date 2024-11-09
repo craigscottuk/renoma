@@ -13,32 +13,25 @@
   },
   "main-navigation": {
     "oNas": {
-      "label": "About Us",
-      "link": "/about-us"
+      "label": "About Us"
     },
     "uslugi": {
-      "label": "Services",
-      "link": "/services"
+      "label": "Services"
     },
     "realizacje": {
-      "label": "Projects",
-      "link": "/projects"
+      "label": "Projects"
     },
     "renomaLab": {
-      "label": "Renoma Lab",
-      "link": "/renoma-lab"
+      "label": "Renoma Lab"
     },
     "uczSieZNami": {
-      "label": "Learn with Us",
-      "link": "/learn-with-us"
+      "label": "Learn with Us"
     },
     "pracujZNami": {
-      "label": "Work with Us",
-      "link": "/work-with-us"
+      "label": "Work with Us"
     },
     "kontakt": {
-      "label": "Contact",
-      "link": "/contact"
+      "label": "Contact"
     }
   },
   "locale-switcher": {
