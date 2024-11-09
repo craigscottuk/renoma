@@ -17,9 +17,7 @@ const QUERY = `
     "headerImage": headerImage.asset->url
   },
   "contactFormSection": *[_type == "contactFormSection"][0]{
-    "contactFormSubjects": contactFormSubjects[]{
-      "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia")
-    }
+    "contactFormSubjects": contactFormSubjects[].label[_key == $locale][0].value
   },
   "contactDetailsSection": *[_type == "contactDetailsSection"][0]{
     "numerTelefonu": coalesce(numerTelefonu, "Brak tłumaczenia"),
@@ -28,8 +26,8 @@ const QUERY = `
     "adresBiuraLineTwo": coalesce(adresBiuraLineTwo[_key == $locale][0].value, "Brak tłumaczenia"),
     "nazwaFirmy": coalesce(nazwaFirmy, "Brak tłumaczenia"),
     "adresFaktur": coalesce(adresFaktur[_key == $locale][0].value, "Brak tłumaczenia"),
-    "numerNip": coalesce(numerNip[_key == $locale][0].value, "Brak tłumaczenia"),
-    "numerRegon": coalesce(numerRegon[_key == $locale][0].value, "Brak tłumaczenia")
+    "numerNip": coalesce(numerNip, "Brak tłumaczenia"),
+    "numerRegon": coalesce(numerRegon, "Brak tłumaczenia")
   }
 }
 `;
@@ -49,6 +47,9 @@ interface Content {
     sectionDescription: string;
     headerImage?: string;
   };
+  contactFormSection: {
+    contactFormSubjects: string[];
+  };
   contactDetailsSection: {
     numerTelefonu: string;
     adresEmail: string;
@@ -56,8 +57,8 @@ interface Content {
     adresBiuraLineTwo: string;
     nazwaFirmy: string;
     adresFaktur: string;
-    numerNip: string;
-    numerRegon: string;
+    numerNip: { value: string }[];
+    numerRegon: { value: string }[];
   };
 }
 
@@ -68,7 +69,10 @@ export default async function Kontakt({ params: { locale } }: Props) {
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
-  const { kontaktHeaderSection, contactDetailsSection } = content;
+  console.log(content);
+
+  const { kontaktHeaderSection, contactDetailsSection, contactFormSection } =
+    content;
 
   // Define contact form color scheme as either 'light' or 'dark'
   const color = "dark";
@@ -91,7 +95,12 @@ export default async function Kontakt({ params: { locale } }: Props) {
       >
         <div className="mx-auto grid max-w-7xl gap-36 lg:grid-cols-2">
           <div className="space-y-8">
-            <ContactForm color={color} />
+            <ContactForm
+              color={color}
+              contactFormSubjects={contactFormSection.contactFormSubjects.map(
+                (subject) => ({ label: subject }),
+              )}
+            />
           </div>
 
           {/* Contact Information in 2x2 Grid */}
@@ -134,8 +143,16 @@ export default async function Kontakt({ params: { locale } }: Props) {
                 <h3 className="font-semibold">Dane do faktur</h3>
                 <p>{contactDetailsSection.nazwaFirmy}</p>
                 <p>{contactDetailsSection.adresFaktur}</p>
-                <p>{contactDetailsSection.numerNip}</p>
-                <p>{contactDetailsSection.numerRegon}</p>
+                <p>
+                  {contactDetailsSection.numerNip
+                    .map((nip) => nip.value)
+                    .join(", ")}
+                </p>
+                <p>
+                  {contactDetailsSection.numerRegon
+                    .map((regon) => regon.value)
+                    .join(", ")}
+                </p>
               </div>
             </div>
           </div>

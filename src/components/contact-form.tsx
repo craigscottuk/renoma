@@ -56,9 +56,13 @@ const darkButtonClassNames = " bg-black hover:text-black";
 
 interface ContactFormProps {
   color?: "light" | "dark";
+  contactFormSubjects: { label: string }[];
 }
 
-export default function ContactForm({ color = "light" }: ContactFormProps) {
+export default function ContactForm({
+  color = "light",
+  contactFormSubjects,
+}: ContactFormProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -190,11 +194,11 @@ export default function ContactForm({ color = "light" }: ContactFormProps) {
                       <SelectValue placeholder="Wybierz temat..." />
                     </SelectTrigger>
                     <SelectContent className={clsx(selectContentClassNames)}>
-                      <SelectItem value="general">Zapytanie ogólne</SelectItem>
-                      <SelectItem value="support">
-                        Wsparcie techniczne
-                      </SelectItem>
-                      <SelectItem value="billing">Rozliczenia</SelectItem>
+                      {contactFormSubjects.map((subject, index) => (
+                        <SelectItem key={index} value={subject.label}>
+                          {subject.label}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </FormControl>
