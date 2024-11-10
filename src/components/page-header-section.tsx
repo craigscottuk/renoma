@@ -2,7 +2,9 @@
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-
+import SectionTitle from "@/components/section-title";
+import SectionDescription from "@/components/section-description";
+import MaxWidthWrapper from "./max-width-wrapper";
 interface PageHeaderSectionProps {
   sectionLabel: string;
   sectionTitle: string;
@@ -26,43 +28,33 @@ export default function PageHeaderSection({
         ? urlFor(headerImage, 1200)
         : undefined;
 
-  // Log the generated URL for debugging
-  console.log("Generated Header Image URL:", headerImageUrl);
-
   return (
-    <section className="relative mt-24 bg-white py-12 lg:py-24">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
-          <div className="max-w-xl">
-            <div className="space-y-4">
-              <p className="text-sm uppercase tracking-wider text-muted-foreground">
-                {sectionLabel}
-              </p>
-              <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
-                {sectionTitle}
-              </h1>
-              <p className="text-lg text-muted-foreground">
-                {sectionDescription}
-              </p>
+    <section className="relative mx-auto mt-24 bg-white py-12 lg:py-24">
+      <MaxWidthWrapper>
+        <SectionTitle
+          label={sectionLabel}
+          title={sectionTitle}
+          as="h1"
+          motionPreset="blur-left"
+          textColor="black"
+        />
+        <SectionDescription description={sectionDescription} />
+        {headerImageUrl && (
+          <div className="relative z-10 h-[620px] w-[520px] lg:absolute lg:right-[5%] lg:top-0">
+            <div className="relative mt-12 h-full w-full">
+              <Image
+                src={headerImageUrl}
+                alt="Header Image"
+                fill
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "center",
+                }}
+              />
             </div>
           </div>
-          {headerImageUrl && (
-            <div className="relative z-10 h-[680px] w-[560px] lg:absolute lg:right-[5%] lg:top-0">
-              <div className="relative mt-24 h-full w-full">
-                <Image
-                  src={headerImageUrl}
-                  alt="Header Image"
-                  fill
-                  style={{
-                    objectFit: "cover",
-                    objectPosition: "center",
-                  }}
-                />
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
+        )}
+      </MaxWidthWrapper>
     </section>
   );
 }
