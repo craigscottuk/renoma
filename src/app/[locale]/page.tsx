@@ -2,9 +2,9 @@
 
 import { setRequestLocale } from "next-intl/server";
 import { client } from "@/sanity/client";
-import HeroSection from "@/components/section-hero";
-import SectionAbout from "@/components/section-about";
-import SectionUslugiHome from "@/components/section-uslugi-home";
+import HeroSection from "@/components/sections-home/section-hero";
+import SectionAbout from "@/components/sections-home/section-about";
+import SectionUslugiHome from "@/components/sections-home/section-uslugi-home";
 
 const QUERY = `
 {
@@ -54,7 +54,7 @@ interface Content {
   };
 }
 
-export default async function IndexPage({ params: { locale } }: Props) {
+export default async function HomePage({ params: { locale } }: Props) {
   // Set the locale for static generation
   setRequestLocale(locale);
 
