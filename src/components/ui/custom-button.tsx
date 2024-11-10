@@ -26,7 +26,7 @@ export default function CustomButton({
   const darkClasses = "text-white border-white hover:text-white";
 
   const buttonContent = (
-    <>
+    <div className="mt-16 flex">
       <span
         className={clsx(
           "relative mr-4 flex items-center uppercase tracking-[0.045em] group-hover:text-current",
@@ -49,7 +49,7 @@ export default function CustomButton({
       >
         <ChevronRight className="transform transition-transform" />
       </div>
-    </>
+    </div>
   );
 
   return href ? (
