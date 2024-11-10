@@ -1,9 +1,8 @@
 // cSpell:disable
-
 import Image from "next/image";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import CustomButton from "@/components/ui/custom-button";
-import HeroTitle from "@/components/hero-title";
+import SectionTitle from "@/components/section-title";
 
 interface HeroSectionProps {
   sectionTitle: string;
@@ -28,31 +27,27 @@ export default function HeroSection({
       />
 
       {/* Overlay for better readability */}
-      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+      <div className="absolute inset-0 bg-black bg-opacity-40"></div>
 
       {/* Hero Content */}
-      <div className="absolute inset-0 flex items-center justify-center text-white">
+      <div className="absolute inset-0 flex items-center">
         <MaxWidthWrapper>
-          <div className="items-center">
-            {/* Left Column */}
-            <div className="max-w-[22rem] space-y-24 text-left md:max-w-[43rem]">
-              <HeroTitle
-                title={sectionTitle}
-                as="h1"
-                className="custom-class"
-                motionPreset="blur-left"
-              />
-              <div>
-                <CustomButton
-                  className="motion-preset-blur-right delay-300"
-                  variant="dark"
-                  href="/uslugi"
-                >
-                  {sectionCTA}
-                </CustomButton>
-              </div>
-            </div>
-          </div>
+          {/* Hero Title */}
+          <SectionTitle
+            title={sectionTitle}
+            as="h1"
+            className="custom-class"
+            motionPreset="blur-right"
+            textColor="white"
+          />
+          {/* CTA Button */}
+          <CustomButton
+            className="motion-preset-blur-right delay-300"
+            variant="dark"
+            href="/uslugi"
+          >
+            {sectionCTA}
+          </CustomButton>
         </MaxWidthWrapper>
       </div>
     </div>
