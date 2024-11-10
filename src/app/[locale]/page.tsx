@@ -78,6 +78,7 @@ export default async function HomePage({ params: { locale } }: Props) {
           sectionTitle={content.aboutSection.sectionTitle}
           sectionDescription={content.aboutSection.sectionDescription}
           sectionCTA={content.aboutSection.sectionCTA}
+          paddingY="py-20 md:py-48"
         />
       )}
 
