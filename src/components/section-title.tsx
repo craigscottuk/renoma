@@ -8,7 +8,7 @@ interface SectionTitleProps {
   motionPreset?: "blur-right" | "blur-left";
   textColor?: "black" | "white";
   textAlign?: "left" | "right";
-  label?: string; // New property for the label
+  label?: string;
 }
 
 export default function HeroTitle({
@@ -25,7 +25,7 @@ export default function HeroTitle({
       {label && (
         <p
           className={clsx(
-            "mb-7 text-sm uppercase tracking-wide",
+            "mb-6 text-sm uppercase tracking-wide",
             textAlign === "left" ? "text-left" : "text-right",
           )}
         >
