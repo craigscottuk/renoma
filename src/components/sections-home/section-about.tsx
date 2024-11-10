@@ -3,6 +3,7 @@ import MaxWidthWrapper from "@/components/max-width-wrapper";
 import CustomButton from "@/components/ui/custom-button";
 import SectionTitle from "@/components/section-title";
 import clsx from "clsx";
+import SectionDescription from "@/components/section-description";
 
 interface SectionAboutProps {
   sectionLabel: string;
@@ -36,9 +37,11 @@ export default function SectionAbout({
 
           {/* Left Column (Text Content) */}
           <div className="flex h-full flex-col justify-center space-y-6">
-            <p className="max-w-sm text-base leading-relaxed md:max-w-md">
-              {sectionDescription}
-            </p>
+            <SectionDescription
+              description={sectionDescription}
+              textAlign="left"
+              textColor="black"
+            />
           </div>
 
           {/* Right Column (Heading, Title, and Button) for Desktop */}
