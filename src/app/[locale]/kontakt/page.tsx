@@ -3,8 +3,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { Mail, MapPin, Phone, FileText } from "lucide-react";
 import Link from "next/link";
-import ContactForm from "@/components/contact-form";
-import Image from "next/image";
+import ContactForm from "@/components/sections-contact/contact-form";
 import { client } from "@/sanity/client";
 import PageHeaderSection from "@/components/page-header-section";
 
