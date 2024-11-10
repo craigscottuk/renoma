@@ -187,8 +187,14 @@ export const contactDetailsSection = defineType({
       group: "daneDoFaktur",
     }),
     defineField({
-      name: "adresFaktur",
-      title: "Adres do faktur",
+      name: "adresFakturLineOne",
+      title: "Adres do faktur, linia 1",
+      type: "internationalizedArrayString",
+      group: "daneDoFaktur",
+    }),
+    defineField({
+      name: "adresFakturLineTwo",
+      title: "Adres do faktur, linia 2",
       type: "internationalizedArrayString",
       group: "daneDoFaktur",
     }),
