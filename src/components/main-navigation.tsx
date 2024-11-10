@@ -53,11 +53,7 @@ export default function MainNavigation() {
         {/* Logo */}
         <div className="my-auto flex-shrink-0">
           <Link href="/">
-            <img
-              className="h-16 w-auto"
-              src="/renoma-logo.png"
-              alt="Renoma PKZ"
-            />
+            <img className="h-[65px]" src="/renoma-logo.svg" alt="Renoma PKZ" />
           </Link>
         </div>
 
