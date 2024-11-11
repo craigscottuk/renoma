@@ -50,9 +50,9 @@ type FormData = z.infer<typeof formSchema>;
 
 const darkInputClassNames =
   "border-none bg-zinc-800 text-white ring-offset-black focus-visible:ring-white";
-const darkSelectContentClassNames = "border-zinc-900 bg-zinc-700 text-white";
+const darkSelectContentClassNames = "border-zinc-800 bg-zinc-800 text-white/90";
 const darkCheckboxClassNames = "border-white";
-const darkButtonClassNames = " bg-black hover:text-black";
+const darkButtonClassNames = " bg-black hover:text-black px-6 py-5";
 
 interface ContactFormProps {
   color?: "light" | "dark";
@@ -233,14 +233,14 @@ export default function ContactForm({
               <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                 <FormControl>
                   <Checkbox
-                    className={clsx(checkboxContentClassNames)}
+                    className={clsx(checkboxContentClassNames, "mt-1.5")}
                     checked={field.value}
                     onCheckedChange={field.onChange}
                     aria-label="Zgoda na politykę prywatności"
                   />
                 </FormControl>
                 <div className="space-y-1 leading-none">
-                  <FormLabel>
+                  <FormLabel className="text-balance text-[1.1rem] leading-relaxed md:text-[1.1rem]">
                     Wyrażam zgodę na przetwarzanie moich danych osobowych
                     zgodnie z{" "}
                     <Link
