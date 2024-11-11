@@ -5,12 +5,14 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import SectionTitle from "@/components/section-title";
 import SectionDescription from "@/components/section-description";
 import MaxWidthWrapper from "./max-width-wrapper";
+
 interface PageHeaderSectionProps {
   sectionLabel: string;
   sectionTitle: string;
   sectionDescription: string;
   sectionButton?: string;
-  headerImage?: SanityImageSource | string; // Allows both Sanity image object and URL string
+  headerImage?: SanityImageSource | string;
+  headerImageAlt?: string;
 }
 
 export default function PageHeaderSection({
@@ -19,8 +21,8 @@ export default function PageHeaderSection({
   sectionDescription,
   sectionButton,
   headerImage,
+  headerImageAlt,
 }: PageHeaderSectionProps) {
-  // Determine the URL for the header image, with a 1200px cap on the longest edge
   const headerImageUrl =
     typeof headerImage === "string"
       ? headerImage
@@ -30,28 +32,29 @@ export default function PageHeaderSection({
 
   return (
     <section className="relative mx-auto mt-24 bg-white py-12 lg:py-24">
-      <MaxWidthWrapper>
-        <SectionTitle
-          label={sectionLabel}
-          title={sectionTitle}
-          as="h1"
-          motionPreset="blur-left"
-          textColor="black"
-        />
-        <SectionDescription description={sectionDescription} />
+      <MaxWidthWrapper className="flex flex-col lg:flex-row lg:items-start">
+        <div className="flex-1">
+          <SectionTitle
+            label={sectionLabel}
+            title={sectionTitle}
+            as="h1"
+            motionPreset="blur-left"
+            textColor="black"
+          />
+          <SectionDescription description={sectionDescription} />
+        </div>
+
         {headerImageUrl && (
-          <div className="relative z-10 h-[620px] w-[520px] lg:absolute lg:right-[5%] lg:top-0">
-            <div className="relative mt-12 h-full w-full">
-              <Image
-                src={headerImageUrl}
-                alt="Header Image"
-                fill
-                style={{
-                  objectFit: "cover",
-                  objectPosition: "center",
-                }}
-              />
-            </div>
+          <div className="relative z-20 mt-12 lg:-mb-80 lg:-mt-12 lg:ml-auto lg:h-[620px] lg:w-[510px]">
+            <Image
+              src={headerImageUrl}
+              alt={headerImageAlt || "Header Image"}
+              fill
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+            />
           </div>
         )}
       </MaxWidthWrapper>
