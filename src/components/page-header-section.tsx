@@ -45,10 +45,10 @@ export default function PageHeaderSection({
         </div>
 
         {headerImageUrl && (
-          <div className="relative z-20 mt-12 lg:-mb-80 lg:-mt-12 lg:ml-auto lg:h-[620px] lg:w-[510px]">
+          <div className="relative z-20 mt-12 lg:-mb-80 lg:-mt-12 lg:ml-auto lg:h-[620px] lg:w-[520px]">
             <Image
               src={headerImageUrl}
-              alt={headerImageAlt || "Header Image"}
+              alt={headerImageAlt || "Header image"}
               fill
               style={{
                 objectFit: "cover",
