@@ -8,6 +8,7 @@ import { useState } from "react";
 import { RoutePaths } from "@/lib/types";
 import { Link } from "@/i18n/routing";
 import clsx from "clsx";
+import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -29,31 +30,6 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 
-// Define schema for form validation
-const formSchema = z.object({
-  firstName: z.string().min(2, "Imię musi mieć co najmniej 2 znaki"),
-  lastName: z.string().min(2, "Nazwisko musi mieć co najmniej 2 znaki"),
-  email: z.string().email("Nieprawidłowy adres email"),
-  phone: z.string().regex(/^\+?[0-9\s-]{9,}$/, "Nieprawidłowy numer telefonu"),
-  topic: z.string().min(1, "Wybierz temat"),
-  message: z
-    .string()
-    .min(10, "Wiadomość musi mieć co najmniej 10 znaków")
-    .max(1500, "Wiadomość nie może przekraczać 1500 znaków"),
-  privacy: z
-    .boolean()
-    .refine((val) => val === true, "Musisz zaakceptować politykę prywatności"),
-});
-
-// Define TypeScript type based on the schema
-type FormData = z.infer<typeof formSchema>;
-
-const darkInputClassNames =
-  "border-none bg-zinc-800 text-white ring-offset-black focus-visible:ring-white";
-const darkSelectContentClassNames = "border-zinc-800 bg-zinc-800 text-white/90";
-const darkCheckboxClassNames = "border-white";
-const darkButtonClassNames = " bg-black hover:text-black px-6 py-5";
-
 interface ContactFormProps {
   color?: "light" | "dark";
   contactFormSubjects: { label: string }[];
@@ -63,6 +39,36 @@ export default function ContactForm({
   color = "light",
   contactFormSubjects,
 }: ContactFormProps) {
+  const darkInputClassNames =
+    "border-none bg-zinc-800 text-white ring-offset-black focus-visible:ring-white";
+  const darkSelectContentClassNames =
+    "border-zinc-800 bg-zinc-800 text-white/90";
+  const darkCheckboxClassNames = "border-white";
+  const darkButtonClassNames = " bg-black hover:text-black px-6 py-5";
+
+  const t = useTranslations();
+
+  // Define schema for form validation
+  const formSchema = z.object({
+    firstName: z.string().min(2, t("contact-form.validation.firstName")),
+    lastName: z.string().min(2, t("contact-form.validation.lastName")),
+    email: z.string().email(t("contact-form.validation.email")),
+    phone: z
+      .string()
+      .regex(/^\+?[0-9\s-]{9,}$/, t("contact-form.validation.phone")),
+    topic: z.string().min(1, t("contact-form.validation.topic")),
+    message: z
+      .string()
+      .min(10, t("contact-form.validation.messageMin"))
+      .max(1500, t("contact-form.validation.messageMax")),
+    privacy: z
+      .boolean()
+      .refine((val) => val === true, t("contact-form.validation.privacy")),
+  });
+
+  // Define TypeScript type based on the schema
+  type FormData = z.infer<typeof formSchema>;
+
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -100,7 +106,7 @@ export default function ContactForm({
   return (
     <Form {...form}>
       {isSubmitted ? (
-        <div className="text-green-600">Dziękujemy za kontakt!</div>
+        <div className="text-green-600">{t("contact-form.success")}</div>
       ) : (
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <div className="grid gap-4 md:grid-cols-2">
@@ -111,8 +117,8 @@ export default function ContactForm({
                 <FormItem>
                   <FormControl>
                     <Input
-                      placeholder="Imię"
-                      aria-label="Imię"
+                      placeholder={t("contact-form.firstName")}
+                      aria-label={t("contact-form.firstName")}
                       className={inputClassNames}
                       {...field}
                     />
@@ -128,8 +134,8 @@ export default function ContactForm({
                 <FormItem>
                   <FormControl>
                     <Input
-                      placeholder="Nazwisko"
-                      aria-label="Nazwisko"
+                      placeholder={t("contact-form.lastName")}
+                      aria-label={t("contact-form.lastName")}
                       className={inputClassNames}
                       {...field}
                     />
@@ -148,8 +154,8 @@ export default function ContactForm({
                 <FormItem>
                   <FormControl>
                     <Input
-                      placeholder="Adres email"
-                      aria-label="Adres email"
+                      placeholder={t("contact-form.email")}
+                      aria-label={t("contact-form.email")}
                       className={inputClassNames}
                       {...field}
                     />
@@ -165,9 +171,9 @@ export default function ContactForm({
                 <FormItem>
                   <FormControl>
                     <Input
-                      placeholder="Numer telefonu"
+                      placeholder={t("contact-form.phone")}
                       className={inputClassNames}
-                      aria-label="Numer telefonu"
+                      aria-label={t("contact-form.phone")}
                       {...field}
                     />
                   </FormControl>
@@ -189,9 +195,9 @@ export default function ContactForm({
                   >
                     <SelectTrigger
                       className={inputClassNames}
-                      aria-label="Wybierz temat"
+                      aria-label={t("contact-form.topic")}
                     >
-                      <SelectValue placeholder="Wybierz temat..." />
+                      <SelectValue placeholder={t("contact-form.topic")} />
                     </SelectTrigger>
                     <SelectContent className={clsx(selectContentClassNames)}>
                       {contactFormSubjects.map((subject, index) => (
@@ -214,14 +220,16 @@ export default function ContactForm({
               <FormItem>
                 <FormControl>
                   <Textarea
-                    placeholder="Wiadomość"
+                    placeholder={t("contact-form.message")}
                     className={clsx("min-h-[150px]", inputClassNames)}
                     {...field}
-                    aria-label="Wiadomość"
+                    aria-label={t("contact-form.message")}
                   />
                 </FormControl>
                 <FormMessage aria-live="assertive" />
-                <p className="text-xs text-zinc-400">Maksymalnie 1500 znaków</p>
+                <p className="text-xs text-zinc-400">
+                  {t("contact-form.validation.messageMax")}
+                </p>
               </FormItem>
             )}
           />
@@ -236,21 +244,22 @@ export default function ContactForm({
                     className={clsx(checkboxContentClassNames, "mt-1.5")}
                     checked={field.value}
                     onCheckedChange={field.onChange}
-                    aria-label="Zgoda na politykę prywatności"
+                    aria-label={t("contact-form.privacy")}
                   />
                 </FormControl>
                 <div className="space-y-1 leading-none">
                   <FormLabel className="text-balance text-[1.1rem] leading-relaxed md:text-[1.1rem]">
-                    Wyrażam zgodę na przetwarzanie moich danych osobowych
-                    zgodnie z{" "}
-                    <Link
-                      href={"/polityka-prywatnosci" as RoutePaths}
-                      target="_blank"
-                      className="underline"
-                    >
-                      Polityką Prywatności
-                    </Link>{" "}
-                    w celu odpowiedzi na moje zapytanie.
+                    {t.rich("contact-form.privacy", {
+                      policy: (chunks) => (
+                        <Link
+                          href={"/polityka-prywatnosci" as RoutePaths}
+                          target="_blank"
+                          className="underline"
+                        >
+                          {chunks}
+                        </Link>
+                      ),
+                    })}
                   </FormLabel>
                   <FormMessage aria-live="assertive" />
                 </div>
@@ -264,7 +273,7 @@ export default function ContactForm({
             disabled={isLoading}
             className={clsx("w-auto", buttonClassNames)}
           >
-            {isLoading ? "Wysyłanie..." : "WYŚLIJ"}
+            {isLoading ? t("contact-form.sending") : t("contact-form.submit")}
           </Button>
         </form>
       )}
