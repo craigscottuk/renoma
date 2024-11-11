@@ -13,7 +13,7 @@
   },
   "main-navigation": {
     "oNas": {
-      "label": "Über uns"
+      "label": "Über"
     },
     "uslugi": {
       "label": "Dienstleistungen"
@@ -22,7 +22,7 @@
       "label": "Projekte"
     },
     "renomaLab": {
-      "label": "Renoma Lab"
+      "label": "Lab"
     },
     "uczSieZNami": {
       "label": "Lernen Sie mit uns"
@@ -49,5 +49,32 @@
   "PathnamesPage": {
     "description": " This is a test route",
     "title": "Pathnames DE"
+  },
+  "kontakt-page": {
+    "phone": "Telefon",
+    "email": "Email",
+    "office": "Büro",
+    "invoice-info": "Rechnungsinformationen"
+  },
+  "contact-form": {
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail-Adresse",
+    "phone": "Telefonnummer",
+    "topic": "Thema",
+    "message": "Nachricht",
+    "privacy": "Durch die Angabe Ihrer persönlichen Daten akzeptieren Sie unsere DSGVO-Richtlinie und die Art und Weise, wie Ihre Daten in unserer <policy>Datenschutzrichtlinie</policy> beschrieben werden.",
+    "submit": "SENDEN",
+    "sending": "Senden...",
+    "success": "Danke für Ihre Kontaktaufnahme!",
+    "validation": {
+      "firstName": "Der Vorname muss mindestens 2 Zeichen lang sein",
+      "lastName": "Der Nachname muss mindestens 2 Zeichen lang sein",
+      "email": "Ungültige E-Mail-Adresse",
+      "phone": "Ungültige Telefonnummer",
+      "topic": "Wählen Sie ein Thema",
+      "messageMin": "Die Nachricht muss mindestens 10 Zeichen lang sein",
+      "messageMax": "Die Nachricht darf 1500 Zeichen nicht überschreiten"
+    }
   }
 }
