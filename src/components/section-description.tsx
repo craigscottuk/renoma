@@ -19,7 +19,7 @@ export default function SectionDescription({
   return (
     <div className="mt-10">
       <p
-        className={`max-w-sm text-[1.1rem] leading-relaxed ${textColorClass} ${textAlign} ${className} md:max-w-md`}
+        className={`max-w-sm text-balance text-[1.1rem] leading-relaxed ${textColorClass} ${textAlign} ${className} md:max-w-[30rem]`}
       >
         {description}
       </p>

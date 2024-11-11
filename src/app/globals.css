@@ -12,13 +12,6 @@ body {
   }
 }
 
-/* Ensure the scrollbar is always visible on larger screens */
-/* @media (min-width: 1024px) {
-  html {
-    overflow-y: scroll;
-  }
-} */
-
 @layer base {
   :root {
     --background: 0 0% 100%;

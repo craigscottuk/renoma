@@ -35,7 +35,7 @@ export default function HeroTitle({
       <Tag
         className={clsx(
           `motion-preset-${motionPreset}`,
-          "text-5xl font-light leading-[1.06] md:text-6xl md:leading-[1.06]",
+          "text-balance text-5xl font-light leading-[1.06] md:text-6xl md:leading-[1.06]",
           className,
           textColor === "black" ? "text-black" : "text-white",
           textAlign === "left" ? "text-left" : "text-right",
