@@ -5,6 +5,7 @@ import { ReactNode } from "react";
 import Navigation from "@/components/main-navigation";
 import Footer from "@/components/footer";
 import localFont from "next/font/local";
+import Header from "./header";
 
 const helveticaNeueLight = localFont({
   src: "./fonts/HelveticaNeueLight.otf",
@@ -35,7 +36,7 @@ export default async function BaseLayout({ children, locale }: Props) {
       >
         <NextIntlClientProvider messages={messages}>
           <div className="flex min-h-screen flex-col">
-            <Navigation />
+            <Header />
             <main className="flex-1 grow">{children}</main>
             <Footer />
           </div>
