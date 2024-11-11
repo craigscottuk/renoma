@@ -49,5 +49,32 @@
   "PathnamesPage": {
     "description": " This is a test route",
     "title": "Pathnames PL"
+  },
+  "kontakt-page": {
+    "phone": "Telefon",
+    "email": "Email",
+    "office": "Biuro",
+    "invoice-info": "Dane do faktur"
+  },
+  "contact-form": {
+    "firstName": "Imię",
+    "lastName": "Nazwisko",
+    "email": "Adres email",
+    "phone": "Numer telefonu",
+    "topic": "Wybierz temat",
+    "message": "Wiadomość",
+    "privacy": "Podając swoje dane osobowe, akceptujesz naszą politykę RODO i sposób przetwarzania Twoich danych opisany w <policy>Polityką Prywatności</policy>.",
+    "submit": "WYŚLIJ",
+    "sending": "Wysyłanie...",
+    "success": "Dziękujemy za kontakt!",
+    "validation": {
+      "firstName": "Imię musi mieć co najmniej 2 znaki",
+      "lastName": "Nazwisko musi mieć co najmniej 2 znaki",
+      "email": "Nieprawidłowy adres email",
+      "phone": "Nieprawidłowy numer telefonu",
+      "topic": "Wybierz temat",
+      "messageMin": "Wiadomość musi mieć co najmniej 10 znaków",
+      "messageMax": "Wiadomość nie może przekraczać 1500 znaków"
+    }
   }
 }
