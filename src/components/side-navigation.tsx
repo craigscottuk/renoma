@@ -1,5 +1,7 @@
 "use client";
+// cSpell:disable
 
+import { useTranslations } from "next-intl";
 import * as React from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,10 +14,12 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import clsx from "clsx";
+import { RoutePaths } from "@/lib/types";
+import { useNavItems } from "@/lib/navItems";
 
 type NavItem = {
   label: string;
-  link: string;
+  link: RoutePaths;
 };
 
 const SideNavItem = ({ item, index }: { item: NavItem; index: number }) => {
@@ -34,7 +38,10 @@ const SideNavItem = ({ item, index }: { item: NavItem; index: number }) => {
   );
 };
 
-export default function SideNavigation({ navItems }: { navItems: NavItem[] }) {
+export default function SideNavigation() {
+  const t = useTranslations("main-navigation");
+  const navItems = useNavItems();
+
   return (
     <Sheet>
       <SheetTrigger asChild>
