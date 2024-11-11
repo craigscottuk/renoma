@@ -20,17 +20,19 @@ export default function HeroTitle({
   textAlign = "left",
   label,
 }: SectionTitleProps) {
+  const LabelTag = Tag === "h1" ? "h2" : "p";
+
   return (
     <div className="max-w-[22rem] sm:max-w-[33rem] md:max-w-[43rem]">
       {label && (
-        <p
+        <LabelTag
           className={clsx(
             "mb-6 text-sm uppercase tracking-wide",
             textAlign === "left" ? "text-left" : "text-right",
           )}
         >
           {label}
-        </p>
+        </LabelTag>
       )}
       <Tag
         className={clsx(
