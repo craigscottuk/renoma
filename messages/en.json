@@ -49,5 +49,32 @@
   "PathnamesPage": {
     "description": " This is a test route",
     "title": "Pathnames EN"
+  },
+  "kontakt-page": {
+    "phone": "Phone",
+    "email": "Email",
+    "office": "Office",
+    "invoice-info": "Invoice Details"
+  },
+  "contact-form": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "topic": "Choose a topic",
+    "message": "Message",
+    "privacy": "By providing your personal data, you accept our GDPR policy and the way your data is processed as described in our <policy>Privacy Policy</policy>.",
+    "submit": "SUBMIT",
+    "sending": "Sending...",
+    "success": "Thank you for contacting us!",
+    "validation": {
+      "firstName": "First name must be at least 2 characters",
+      "lastName": "Last name must be at least 2 characters",
+      "email": "Invalid email address",
+      "phone": "Invalid phone number",
+      "topic": "Select a topic",
+      "messageMin": "Message must be at least 10 characters",
+      "messageMax": "Message cannot exceed 1500 characters"
+    }
   }
 }
