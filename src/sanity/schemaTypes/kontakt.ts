@@ -72,6 +72,13 @@ export const kontaktHeaderSection = defineType({
         hotspot: true,
       },
     }),
+    defineField({
+      name: "headerImageAlt",
+      title: "Alternatywny tekst obrazu nagłówka",
+      description:
+        "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie przedstawiające biuro firmy'.",
+      type: "internationalizedArrayString",
+    }),
   ],
 });
 
