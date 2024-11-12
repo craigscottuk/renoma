@@ -2,7 +2,7 @@ TO DO!
 
 - useTranslations for the contact form fields and validations
 - is it possible to have the headings in the dane contact to be updated server side form a json object without the useTranslations hook?
-- add correct heading tags to kontakt from and header component... finalise margins and spacing
+- add correct heading tags to kontakt from and header component... finalize margins and spacing
   -blur animations to hero and header components
 
 - meta stuff in the layout
