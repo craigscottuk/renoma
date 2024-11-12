@@ -1,7 +1,4 @@
 // cSpell:disable
-
-// structure.ts
-
 import type { StructureResolver } from "sanity/structure";
 import {
   singletonDocumentListItem,
@@ -39,35 +36,44 @@ export const structure: StructureResolver = (S, context) =>
                 title: "Sekcja 1: Powitalna",
                 id: "singletonHeroSection",
               }),
-              // About Section Singleton
+              // About Section for the Home Singleton
               singletonDocumentListItem({
                 S,
                 context,
-                type: "aboutSection",
+                type: "aboutSectionHome",
                 title: "Sekcja 2: O Nas",
-                id: "singletonAboutSection",
+                id: "singletonAboutSectionHome",
               }),
 
-              // services Section Singleton
+              // services Section for the Home Singleton
               singletonDocumentListItem({
                 S,
                 context,
-                type: "servicesSection",
+                type: "servicesSectionHome",
                 title: "Sekcja 3: Usługi",
-                id: "singletonServicesSection",
+                id: "singletonServicesSectionHome",
               }),
             ]),
         ),
 
       // Singleton entry for "O Nas" (About Us)
-      singletonDocumentListItem({
-        S,
-        context,
-        type: "oNas",
-        title: "O Nas",
-        icon: Info,
-        id: "singletonONas",
-      }),
+      S.listItem()
+        .title("O Nas")
+        .icon(Info)
+        .child(
+          S.list()
+            .title("Sekcje o nas") // tytuł panelu
+            .items([
+              // Sekcja Nagłówka Singleton
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "aboutHeaderSection",
+                title: "Sekcja 1: Nagłówek",
+                id: "singletonAboutHeaderSection",
+              }),
+            ]),
+        ),
 
       // Singleton entry for "Usługi" (Services)
       singletonDocumentListItem({
@@ -115,11 +121,19 @@ export const structure: StructureResolver = (S, context) =>
       // Grouped Singleton entry for "Kontakt" (Contact) with Sections
       S.listItem()
         .title("Kontakt")
-        .icon(Home)
+        .icon(Mail)
         .child(
           S.list()
             .title("Sekcje Kontaktu") // tytuł panelu
             .items([
+              // Sekcja Nagłówka Singleton
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "kontaktHeaderSectionTest",
+                title: "Sekcja 1: Nagłówek Test",
+                id: "singletonKontaktHeaderSectionTest",
+              }),
               // Sekcja Nagłówka Singleton
               singletonDocumentListItem({
                 S,
