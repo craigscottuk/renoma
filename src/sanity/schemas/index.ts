@@ -17,6 +17,7 @@ import {
 } from "./kontakt";
 import { ustawienia } from "./ustawienia";
 import { privacy, privacyHeaderSection } from "./privacy";
+import { portableText } from "./portableText";
 
 // Export schema configuration
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -60,5 +61,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
 
     privacy,
     privacyHeaderSection,
+    portableText,
   ],
 };
