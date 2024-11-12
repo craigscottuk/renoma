@@ -17,3 +17,21 @@ workWithUsHeaderSection
 businessCasesHeaderSection
 renomaLabHeaderSection
 learnWithUsHeaderSection
+
+// const QUERY = `
+
+// _[_type == "realizacje" && language == $locale]{
+// title,
+// slug,
+// content,
+// language,
+// // Get the translations metadata
+// // And resolve the 'value' reference field in each array item
+// "\_translations": _[_type == "translation.metadata" && references(^._id)].translations[].value->{
+// title,
+// slug,
+// language,
+// content
+// },
+// }
+// `;
