@@ -20,23 +20,20 @@ export const structure: StructureResolver = (S, context) =>
   S.list()
     .title("Zawartość")
     .items([
-      // Grouped Singleton for "Dom" with Sections
       S.listItem()
         .title("Dom")
         .icon(Home)
         .child(
           S.list()
-            .title("Sekcje Domu") // pane title
+            .title("Sekcje strony głównej")
             .items([
-              // Hero Section Singleton
               singletonDocumentListItem({
                 S,
                 context,
                 type: "heroSection",
-                title: "Sekcja 1: Powitalna",
+                title: "Sekcja 1: Powitanie",
                 id: "singletonHeroSection",
               }),
-              // About Section for the Home Singleton
               singletonDocumentListItem({
                 S,
                 context,
@@ -44,8 +41,6 @@ export const structure: StructureResolver = (S, context) =>
                 title: "Sekcja 2: O Nas",
                 id: "singletonAboutSectionHome",
               }),
-
-              // services Section for the Home Singleton
               singletonDocumentListItem({
                 S,
                 context,
@@ -55,16 +50,13 @@ export const structure: StructureResolver = (S, context) =>
               }),
             ]),
         ),
-
-      // Singleton entry for "O Nas" (About Us)
       S.listItem()
         .title("O Nas")
         .icon(Info)
         .child(
           S.list()
-            .title("Sekcje o nas") // tytuł panelu
+            .title("Sekcje strony o nas")
             .items([
-              // Sekcja Nagłówka Singleton
               singletonDocumentListItem({
                 S,
                 context,
@@ -74,59 +66,78 @@ export const structure: StructureResolver = (S, context) =>
               }),
             ]),
         ),
-
-      // Singleton entry for "Usługi" (Services)
-      singletonDocumentListItem({
-        S,
-        context,
-        type: "uslugi",
-        title: "Usługi",
-        icon: Briefcase,
-        id: "singletonUslugi",
-      }),
-
-      // Regular document list for "Realizacje" (Projects)
+      S.listItem()
+        .title("Usługi")
+        .icon(Briefcase)
+        .child(
+          S.list()
+            .title("Sekcje strony usług")
+            .items([
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "servicesHeaderSection",
+                title: "Sekcja 1: Nagłówek",
+                id: "singletonServicesHeaderSection",
+              }),
+            ]),
+        ),
       S.documentTypeListItem("realizacje").title("Realizacje").icon(FolderOpen),
-
-      // Singleton entry for "Renoma LAB" (Lab)
-      singletonDocumentListItem({
-        S,
-        context,
-        type: "renomaLab",
-        title: "Renoma LAB",
-        icon: Beaker,
-        id: "singletonRenomaLab",
-      }),
-
-      // Singleton entry for "Ucz Się z Nami" (Learn With Us)
-      singletonDocumentListItem({
-        S,
-        context,
-        type: "uczSieZNami",
-        title: "Ucz Się z Nami",
-        icon: GraduationCap,
-        id: "singletonUczSieZNami",
-      }),
-
-      // Singleton entry for "Pracuj z Nami" (Work With Us)
-      singletonDocumentListItem({
-        S,
-        context,
-        type: "pracujZNami",
-        title: "Pracuj z Nami",
-        icon: Users,
-        id: "singletonPracujZNami",
-      }),
-
-      // Grouped Singleton entry for "Kontakt" (Contact) with Sections
+      S.listItem()
+        .title("Renoma LAB")
+        .icon(Beaker)
+        .child(
+          S.list()
+            .title("Sekcje strony Renoma LAB")
+            .items([
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "renomaLabHeaderSection",
+                title: "Sekcja 1: Nagłówek",
+                id: "singletonRenomaLabHeaderSection",
+              }),
+            ]),
+        ),
+      S.listItem()
+        .title("Ucz Się z Nami")
+        .icon(GraduationCap)
+        .child(
+          S.list()
+            .title("Sekcje strony Ucz się z nami")
+            .items([
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "learnWithUsHeaderSection",
+                title: "Sekcja 1: Nagłówek",
+                id: "singletonLearnWithUsHeaderSection",
+              }),
+            ]),
+        ),
+      S.listItem()
+        .title("Pracuj z Nami")
+        .icon(Users)
+        .child(
+          S.list()
+            .title("Sekcje strony Pracuj z nami")
+            .items([
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "workWithUsHeaderSection",
+                title: "Sekcja 1: Nagłówek",
+                id: "singletonWorkWithUsHeaderSection",
+              }),
+            ]),
+        ),
       S.listItem()
         .title("Kontakt")
         .icon(Mail)
         .child(
           S.list()
-            .title("Sekcje Kontaktu") // tytuł panelu
+            .title("Sekcje strony kontaktowej")
             .items([
-              // Sekcja Nagłówka Singleton
               singletonDocumentListItem({
                 S,
                 context,
@@ -134,7 +145,6 @@ export const structure: StructureResolver = (S, context) =>
                 title: "Sekcja 1: Nagłówek Test",
                 id: "singletonKontaktHeaderSectionTest",
               }),
-              // Sekcja Nagłówka Singleton
               singletonDocumentListItem({
                 S,
                 context,
@@ -142,7 +152,6 @@ export const structure: StructureResolver = (S, context) =>
                 title: "Sekcja 1: Nagłówek",
                 id: "singletonKontaktHeaderSection",
               }),
-              // Sekcja Formularza Kontaktowego Singleton
               singletonDocumentListItem({
                 S,
                 context,
@@ -150,8 +159,6 @@ export const structure: StructureResolver = (S, context) =>
                 title: "Sekcja 2: Formularz Kontaktowy",
                 id: "singletonContactFormSection",
               }),
-
-              // Contact Details Section Singleton
               singletonDocumentListItem({
                 S,
                 context,
@@ -161,11 +168,7 @@ export const structure: StructureResolver = (S, context) =>
               }),
             ]),
         ),
-
-      // Divider
       S.divider(),
-
-      // Singleton entry for "Ustawienia" (Settings)
       singletonDocumentListItem({
         S,
         context,
@@ -174,8 +177,6 @@ export const structure: StructureResolver = (S, context) =>
         icon: Settings,
         id: "singletonUstawienia",
       }),
-
-      // Filtered list of non-singleton items (excluding singletons and "realizacje")
       ...filteredDocumentListItems({ S, context }).filter(
         (item) => item.getId() !== "realizacje",
       ),
