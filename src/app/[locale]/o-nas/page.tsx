@@ -1,21 +1,35 @@
 // cSpell:disable
-
 import { setRequestLocale } from "next-intl/server";
-// import { client } from "@/sanity/client";
+import PageHeaderSection from "@/components/page-header-section";
+import { client } from "@/sanity/client";
 
-// const QUERY = `
+const QUERY = `
+{
+  "aboutHeaderSection": *[_type == "aboutHeaderSection"][0]{
+    "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Brak tłumaczenia"),
+    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
+    "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Brak tłumaczenia"),
+    "headerImage": headerImage, // Fetch full image object with asset._ref
+    "headerImageAlt": coalesce(headerImage.alt[_key == $locale][0].value, "Brak tłumaczenia")
+  },
+}
 
-// `;
+`;
 
-// const OPTIONS = { next: { revalidate: 30 } };
+const OPTIONS = { next: { revalidate: 30 } };
 
 type Props = {
   params: { locale: string };
 };
 
 interface Content {
-  powitanie: string;
-  wiadomosc: string;
+  aboutHeaderSection: {
+    sectionLabel: string;
+    sectionTitle: string;
+    sectionDescription: string;
+    headerImage?: string;
+    headerImageAlt?: string;
+  };
 }
 
 export default async function ONas({ params: { locale } }: Props) {
@@ -23,12 +37,17 @@ export default async function ONas({ params: { locale } }: Props) {
   setRequestLocale(locale);
 
   // Fetch localized content from Sanity using locale from params
-  // const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
+  const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
+
+  const { aboutHeaderSection } = content;
 
   return (
-    <main className="container mx-auto min-h-screen max-w-3xl p-8">
-      <h1 className="mb-8 text-4xl font-bold">ONas</h1>
-      <p>ONas</p>
-    </main>
+    <PageHeaderSection
+      sectionLabel={aboutHeaderSection.sectionLabel}
+      sectionTitle={aboutHeaderSection.sectionTitle}
+      sectionDescription={aboutHeaderSection.sectionDescription}
+      headerImage={aboutHeaderSection.headerImage}
+      headerImageAlt={aboutHeaderSection.headerImageAlt}
+    />
   );
 }
