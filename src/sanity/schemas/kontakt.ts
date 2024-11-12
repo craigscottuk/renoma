@@ -17,21 +17,6 @@ export const kontakt = defineType({
   ],
 });
 
-// Contact page header section TEST
-export const kontaktHeaderSectionTest = defineType({
-  name: "kontaktHeaderSectionTest",
-  title: "Nagłówek strony kontaktowej",
-  type: "document",
-  options: { singleton: true },
-  fields: [
-    defineField({
-      name: "headerSection",
-      title: "Nagłówek Strony",
-      type: "headerSection", // Reference the reusable object type here
-    }),
-  ],
-});
-
 // Contact page header section
 export const kontaktHeaderSection = defineType({
   name: "kontaktHeaderSection",
@@ -50,6 +35,10 @@ export const kontaktHeaderSection = defineType({
     {
       name: "opisSekcji",
       title: "Opis sekcji",
+    },
+    {
+      name: "obrazSekcji",
+      title: "Obraz sekcji",
     },
   ],
   fields: [
@@ -84,6 +73,7 @@ export const kontaktHeaderSection = defineType({
       options: {
         hotspot: true,
       },
+      group: "obrazSekcji",
     }),
     defineField({
       name: "headerImageAlt",
@@ -91,6 +81,7 @@ export const kontaktHeaderSection = defineType({
       description:
         "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie przedstawiające biuro firmy'.",
       type: "internationalizedArrayString",
+      group: "obrazSekcji",
     }),
   ],
 });
@@ -232,3 +223,18 @@ export const contactDetailsSection = defineType({
     }),
   ],
 });
+
+// // Contact page header section TEST
+// export const kontaktHeaderSectionTest = defineType({
+//   name: "kontaktHeaderSectionTest",
+//   title: "Nagłówek strony kontaktowej",
+//   type: "document",
+//   options: { singleton: true },
+//   fields: [
+//     defineField({
+//       name: "headerSection",
+//       title: "Nagłówek Strony",
+//       type: "headerSection", // Reference the reusable object type here
+//     }),
+//   ],
+// });
