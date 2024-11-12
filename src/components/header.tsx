@@ -1,7 +1,7 @@
-import LocaleSwitcher from "./locale-switcher";
-import MainNavigation from "./main-navigation";
+import LocaleSwitcher from "./navigation/locale-switcher";
+import MainNavigation from "./navigation/main-navigation";
 import MaxWidthWrapper from "./max-width-wrapper";
-import SideNavigation from "./side-navigation";
+import SideNavigation from "./navigation/side-navigation";
 import { Link } from "@/i18n/routing";
 
 export default function Header() {
