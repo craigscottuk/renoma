@@ -223,18 +223,3 @@ export const contactDetailsSection = defineType({
     }),
   ],
 });
-
-// // Contact page header section TEST
-// export const kontaktHeaderSectionTest = defineType({
-//   name: "kontaktHeaderSectionTest",
-//   title: "Nagłówek strony kontaktowej",
-//   type: "document",
-//   options: { singleton: true },
-//   fields: [
-//     defineField({
-//       name: "headerSection",
-//       title: "Nagłówek Strony",
-//       type: "headerSection", // Reference the reusable object type here
-//     }),
-//   ],
-// });
