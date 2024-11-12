@@ -9,3 +9,11 @@ TO DO!
 - we need to get portable text installed and the document
 - do something with this: "const OPTIONS = { next: { revalidate: 30 } };"
   c
+
+servicesHeaderSection
+aboutHeaderSection
+privacyHeaderSection
+workWithUsHeaderSection
+businessCasesHeaderSection
+renomaLabHeaderSection
+learnWithUsHeaderSection
