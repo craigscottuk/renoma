@@ -3,6 +3,7 @@ import MaxWidthWrapper from "@/components/max-width-wrapper";
 import CustomButton from "@/components/ui/custom-button";
 import SectionTitle from "@/components/section-title";
 import clsx from "clsx";
+import SectionDescription from "../section-description";
 
 interface SectionUslugiHomeProps {
   sectionLabel: string;
@@ -34,14 +35,18 @@ export default function SectionUslugiHome({
           />
 
           {/* Right Column */}
-          <div className="max-w-lg md:text-left">
-            <p className="max-w-md text-base leading-relaxed">
-              {sectionDescription}
-            </p>
-            <div>
-              <CustomButton variant="dark" href="/uslugi">
-                {sectionCTA}
-              </CustomButton>
+          <div className="flex flex-col items-end">
+            <div className="md:max-w-[38rem]">
+              <SectionDescription
+                description={sectionDescription}
+                textAlign="left"
+                textColor="white"
+              />
+              <div className="w-full text-left">
+                <CustomButton variant="dark" href="/uslugi">
+                  {sectionCTA}
+                </CustomButton>
+              </div>
             </div>
           </div>
         </div>
