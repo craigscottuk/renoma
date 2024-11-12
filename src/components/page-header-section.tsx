@@ -41,7 +41,10 @@ export default function PageHeaderSection({
             motionPreset="blur-left"
             textColor="black"
           />
-          <SectionDescription description={sectionDescription} />
+          <SectionDescription
+            description={sectionDescription}
+            marginTop={true}
+          />
         </div>
 
         {headerImageUrl && (
