@@ -1,15 +1,8 @@
 // cSpell:disable
-
-import { Mail, MapPin, Phone, FileText } from "lucide-react";
+import SectionContactFormDetails from "@/components/sections-contact/section-contact-form-details";
 import { setRequestLocale } from "next-intl/server";
 import PageHeaderSection from "@/components/page-header-section";
-import ContactForm from "@/components/sections-contact/contact-form";
 import { client } from "@/sanity/client";
-import Link from "next/link";
-import clsx from "clsx";
-import MaxWidthWrapper from "@/components/max-width-wrapper";
-import { useTranslations } from "next-intl";
-import SectionContactFormDetails from "@/components/sections-contact/section-contact-form-details";
 
 const QUERY = `
 {
@@ -27,12 +20,13 @@ const QUERY = `
     "numerTelefonu": coalesce(numerTelefonu, "Brak tłumaczenia"),
     "adresEmail": coalesce(adresEmail, "Brak tłumaczenia"),
     "adresBiuraLineOne": coalesce(adresBiuraLineOne[_key == $locale][0].value, "Brak tłumaczenia"),
-    "adresBiuraLineTwo": coalesce(adresBiuraLineTwo[_key == $locale][0].value, "Brak tłumaczenia"),
+    "adresBiuraLineTwo": coalesce(adresBiuraLineTwo, "Brak tłumaczenia"),
     "nazwaFirmy": coalesce(nazwaFirmy, "Brak tłumaczenia"),
     "adresFakturLineOne": coalesce(adresFakturLineOne[_key == $locale][0].value, "Brak tłumaczenia"),
-    "adresFakturLineTwo": coalesce(adresFakturLineTwo[_key == $locale][0].value, "Brak tłumaczenia"),
+    "adresFakturLineTwo": coalesce(adresFakturLineTwo, "Brak tłumaczenia"),
+    
     "numerNip": coalesce(numerNip[_key == $locale][0].value, "Brak tłumaczenia"),
-    "numerRegon": coalesce(numerRegon[_key == $locale][0].value, "Brak tłumaczenia")
+    "numerRegon": coalesce(numerRegon, "Brak tłumaczenia")
   }
 }
 `;
@@ -44,8 +38,6 @@ type Props = {
 };
 
 interface Content {
-  powitanie: string;
-  wiadomosc: string;
   kontaktHeaderSection: {
     sectionLabel: string;
     sectionTitle: string;
