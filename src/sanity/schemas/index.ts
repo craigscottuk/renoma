@@ -16,7 +16,6 @@ import {
   contactDetailsSection,
 } from "./kontakt";
 import { ustawienia } from "./ustawienia";
-import { headerSection } from "./objects/headerSection";
 import { privacy, privacyHeaderSection } from "./privacy";
 
 // Export schema configuration
@@ -58,9 +57,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     contactDetailsSection,
 
     ustawienia,
-
-    //Objects
-    headerSection,
 
     privacy,
     privacyHeaderSection,
