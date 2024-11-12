@@ -4,7 +4,7 @@ import clsx from "clsx";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { useTranslations } from "next-intl";
 import ContactForm from "@/components/sections-contact/contact-form";
-import ExternalLink from "@/components/external-link";
+import ExternalLink from "@/components/navigation/external-link";
 
 type ContactDetailsSectionProps = {
   contactDetailsSection: {
