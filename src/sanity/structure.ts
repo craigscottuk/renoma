@@ -9,6 +9,7 @@ import {
   Info,
   Briefcase,
   FolderOpen,
+  FileText,
   Beaker,
   GraduationCap,
   Users,
@@ -66,6 +67,7 @@ export const structure: StructureResolver = (S, context) =>
               }),
             ]),
         ),
+
       S.listItem()
         .title("Usługi")
         .icon(Briefcase)
@@ -82,7 +84,28 @@ export const structure: StructureResolver = (S, context) =>
               }),
             ]),
         ),
-      S.documentTypeListItem("realizacje").title("Realizacje").icon(FolderOpen),
+
+      S.listItem()
+        .title("Realizacje")
+        .icon(FolderOpen)
+        .child(
+          S.list()
+            .title("Sekcje strony realizacje")
+            .items([
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "realizacjeHeaderSection",
+                title: "Sekcja 1: Nagłówek",
+                id: "singletonProjectsHeaderSection",
+              }),
+            ]),
+        ),
+
+      S.documentTypeListItem("wpisRealizacji")
+        .title("Wpis Realizacji")
+        .icon(FileText),
+
       S.listItem()
         .title("Renoma LAB")
         .icon(Beaker)
@@ -141,13 +164,6 @@ export const structure: StructureResolver = (S, context) =>
               singletonDocumentListItem({
                 S,
                 context,
-                type: "kontaktHeaderSectionTest",
-                title: "Sekcja 1: Nagłówek Test",
-                id: "singletonKontaktHeaderSectionTest",
-              }),
-              singletonDocumentListItem({
-                S,
-                context,
                 type: "kontaktHeaderSection",
                 title: "Sekcja 1: Nagłówek",
                 id: "singletonKontaktHeaderSection",
@@ -178,6 +194,6 @@ export const structure: StructureResolver = (S, context) =>
         id: "singletonUstawienia",
       }),
       ...filteredDocumentListItems({ S, context }).filter(
-        (item) => item.getId() !== "realizacje",
+        (item) => item.getId() !== "wpisRealizacji",
       ),
     ]);
