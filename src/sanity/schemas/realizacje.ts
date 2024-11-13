@@ -1,68 +1,89 @@
-// cSpell:disable
 import { defineType, defineField } from "sanity";
 
 export const realizacje = defineType({
   name: "realizacje",
   title: "Realizacje",
   type: "document",
+  options: {
+    singleton: true,
+  },
+  fields: [
+    {
+      name: "placeholder",
+      title: "Zastępczy tekst",
+      type: "string",
+    },
+  ],
+});
+
+// Realizacje page header section
+export const realizacjeHeaderSection = defineType({
+  name: "realizacjeHeaderSection",
+  title: "Nagłówek strony Realizacje",
+  type: "document",
+  options: { singleton: true },
+  groups: [
+    {
+      name: "etykietaSekcji",
+      title: "Etykieta sekcji",
+    },
+    {
+      name: "tytulSekcji",
+      title: "Tytuł sekcji",
+    },
+    {
+      name: "opisSekcji",
+      title: "Opis sekcji",
+    },
+    {
+      name: "obrazSekcji",
+      title: "Obraz sekcji",
+    },
+  ],
   fields: [
     defineField({
-      name: "title",
-      type: "string",
-      validation: (rule) => rule.required(),
+      name: "sectionLabel",
+      title: "Etykieta sekcji",
+      description: "Krótki tekst nad tytułem, np. 'Nasze Projekty'.",
+      type: "internationalizedArrayString",
+      group: "etykietaSekcji",
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "slug",
-      type: "slug",
+      name: "sectionTitle",
+      title: "Tytuł sekcji",
+      description:
+        "Główny tytuł sekcji na stronie Realizacje, np. 'Zrealizowane Projekty'.",
+      type: "internationalizedArrayString",
+      group: "tytulSekcji",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "sectionDescription",
+      title: "Opis sekcji",
+      description:
+        "Krótki opis prezentujący zakończone projekty firmy w branży budowlanej, np. 'Przegląd naszych zrealizowanych projektów budowlanych, które odzwierciedlają naszą wiedzę i jakość wykonania.'",
+      type: "internationalizedArrayText",
+      group: "opisSekcji",
+    }),
+    defineField({
+      name: "headerImage",
+      title: "Obraz nagłówka",
+      description:
+        "Obraz wyświetlany w nagłówku strony Realizacje, przedstawiający zakończone projekty lub procesy budowlane.",
+      type: "image",
       options: {
-        source: "title",
+        hotspot: true,
       },
-      validation: (rule) =>
-        rule
-          .required()
-          .error("A slug is required to generate a page on the website"),
+      group: "obrazSekcji",
     }),
     defineField({
-      name: "summary",
-      type: "text",
-      rows: 3,
-      validation: (rule) =>
-        rule.max(200).warning("Summary should be less than 200 characters"),
-    }),
-    defineField({
-      name: "content",
-      type: "array",
-      title: "Content",
-      of: [
-        {
-          type: "block",
-        },
-        {
-          type: "image",
-        },
-      ],
-    }),
-
-    defineField({
-      name: "language",
-      type: "string",
-      readOnly: true,
+      name: "headerImageAlt",
+      title: "Alternatywny tekst obrazu nagłówka",
+      description:
+        "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie ukończonego budynku zaprojektowanego i zrealizowanego przez firmę.'",
+      type: "internationalizedArrayString",
+      group: "obrazSekcji",
     }),
   ],
-  preview: {
-    select: {
-      title: "title",
-      language: "language",
-      media: "image",
-    },
-    prepare(select) {
-      const { title, language, media } = select;
-
-      return {
-        title,
-        subtitle: language.toUpperCase(),
-        media,
-      };
-    },
-  },
 });
