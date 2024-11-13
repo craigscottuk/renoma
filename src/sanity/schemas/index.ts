@@ -5,7 +5,8 @@ import { type SchemaTypeDefinition } from "sanity";
 import { dom, heroSection, aboutSectionHome, servicesSectionHome } from "./dom";
 import { oNas, aboutHeaderSection } from "./oNas";
 import { servicesHeaderSection, uslugi } from "./uslugi";
-import { realizacje } from "./realizacje";
+import { wpisRealizacji } from "./wpisRealizacji";
+import { realizacje, realizacjeHeaderSection } from "./realizacje";
 import { renomaLab, renomaLabHeaderSection } from "./renomaLab";
 import { learnWithUsHeaderSection, uczSieZNami } from "./uczSieZNami";
 import { pracujZNami, workWithUsHeaderSection } from "./pracujZNami";
@@ -38,6 +39,10 @@ export const schema: { types: SchemaTypeDefinition[] } = {
 
     // Realizacje
     realizacje,
+    realizacjeHeaderSection,
+
+    // Wpis realizacji
+    wpisRealizacji,
 
     // Renoma Lab
     renomaLab,
