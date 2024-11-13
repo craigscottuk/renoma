@@ -30,11 +30,11 @@ export default defineConfig({
     documentInternationalization({
       // Required configuration
       supportedLanguages: [
-        { id: "pl", title: "Polish" },
-        { id: "en", title: "English" },
-        { id: "de", title: "German" },
+        { id: "pl", title: "PL" },
+        { id: "en", title: "EN" },
+        { id: "de", title: "DE" },
       ],
-      schemaTypes: ["realizacje"],
+      schemaTypes: ["wpisRealizacji"],
     }),
 
     internationalizedArray({
