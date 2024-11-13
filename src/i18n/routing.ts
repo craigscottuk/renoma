@@ -48,6 +48,11 @@ export const routing = defineRouting({
       de: "/datenschutzrichtlinie",
       pl: "/polityka-prywatnosci",
     },
+    "/realizacje/[slug]": {
+      en: "/projects/[slug]",
+      de: "/projekte/[slug]",
+      pl: "/realizacje/[slug]",
+    },
   },
 });
 
