@@ -87,3 +87,26 @@ export const workWithUsHeaderSection = defineType({
     }),
   ],
 });
+
+// FAQ section
+export const jobOfferSection = defineType({
+  name: "jobOfferSection",
+  title: "Sekcja FAQ",
+  type: "document",
+  options: { singleton: true },
+  groups: [
+    {
+      name: "tytulSekcji",
+      title: "Tytuł Sekcji",
+    },
+  ],
+  fields: [
+    defineField({
+      name: "sectionTitle",
+      title: "Tytuł Sekcji",
+      type: "internationalizedArrayString",
+      group: "tytulSekcji",
+      validation: (Rule) => Rule.required(),
+    }),
+  ],
+});
