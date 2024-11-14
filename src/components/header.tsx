@@ -22,7 +22,7 @@ export default function Header() {
           </Link>
 
           {/* Nav Items */}
-          <div className="ml-auto flex items-end">
+          <div className="ml-auto mt-7 flex items-end">
             <MainNavigation />
             {/* Locale Switcher */}
             <LocaleSwitcher className="hidden xl:flex" />
