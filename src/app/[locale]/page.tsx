@@ -3,8 +3,9 @@
 import { setRequestLocale } from "next-intl/server";
 import { client } from "@/sanity/client";
 import HeroSection from "@/components/sections-home/section-hero";
-import SectionAbout from "@/components/sections-home/section-about";
+import SectionAbout from "@/components/sections-home/section-about-home";
 import SectionUslugiHome from "@/components/sections-home/section-uslugi-home";
+import SectionFaqHome from "@/components/sections-home/section-faq-home";
 
 const QUERY = `
 {
@@ -21,6 +22,13 @@ const QUERY = `
   },
 
   "servicesSection": *[_type == "servicesSection"][0]{
+    "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Brak tłumaczenia"),
+    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
+    "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Brak tłumaczenia"),
+    "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia")
+  },
+
+  "faqSectionHome": *[_type == "faqSectionHome"][0]{
     "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Brak tłumaczenia"),
     "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
     "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -47,6 +55,12 @@ interface Content {
     sectionCTA: string;
   };
   servicesSection: {
+    sectionLabel: string;
+    sectionTitle: string;
+    sectionDescription: string;
+    sectionCTA: string;
+  };
+  faqSectionHome: {
     sectionLabel: string;
     sectionTitle: string;
     sectionDescription: string;
@@ -89,6 +103,16 @@ export default async function HomePage({ params: { locale } }: Props) {
           sectionTitle={content.servicesSection.sectionTitle}
           sectionDescription={content.servicesSection.sectionDescription}
           sectionCTA={content.servicesSection.sectionCTA}
+        />
+      )}
+
+      {/* FAQ Section */}
+      {content.faqSectionHome && (
+        <SectionFaqHome
+          sectionLabel={content.faqSectionHome.sectionLabel}
+          sectionTitle={content.faqSectionHome.sectionTitle}
+          sectionDescription={content.faqSectionHome.sectionDescription}
+          sectionCTA={content.faqSectionHome.sectionCTA}
         />
       )}
     </>
