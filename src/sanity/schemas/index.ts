@@ -2,14 +2,24 @@
 import { type SchemaTypeDefinition } from "sanity";
 
 // Import each schema file
-import { dom, heroSection, aboutSectionHome, servicesSectionHome } from "./dom";
+import {
+  dom,
+  heroSection,
+  aboutSectionHome,
+  servicesSectionHome,
+  faqSectionHome,
+} from "./dom";
 import { oNas, aboutHeaderSection } from "./oNas";
 import { servicesHeaderSection, uslugi } from "./uslugi";
 import { wpisRealizacji } from "./wpisRealizacji";
 import { realizacje, realizacjeHeaderSection } from "./realizacje";
 import { renomaLab, renomaLabHeaderSection } from "./renomaLab";
 import { learnWithUsHeaderSection, uczSieZNami } from "./uczSieZNami";
-import { pracujZNami, workWithUsHeaderSection } from "./pracujZNami";
+import {
+  jobOfferSection,
+  pracujZNami,
+  workWithUsHeaderSection,
+} from "./pracujZNami";
 import {
   kontakt,
   kontaktHeaderSection,
@@ -28,6 +38,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     heroSection,
     aboutSectionHome,
     servicesSectionHome,
+    faqSectionHome,
 
     // O nas
     oNas,
@@ -55,6 +66,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     // Pracuj z nami
     pracujZNami,
     workWithUsHeaderSection,
+    jobOfferSection,
 
     // Kontakt
     kontakt,
