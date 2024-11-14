@@ -2,6 +2,7 @@
 import { setRequestLocale } from "next-intl/server";
 import PageHeaderSection from "@/components/page-header-section";
 import { client } from "@/sanity/client";
+import SectionJobOffer from "@/components/sections-work-with-us/section-job-offer";
 
 const QUERY = `
 {
@@ -12,6 +13,11 @@ const QUERY = `
     "headerImage": headerImage, // Fetch full image object with asset._ref
     "headerImageAlt": coalesce(headerImage.alt[_key == $locale][0].value, "Brak tłumaczenia")
   },
+  "jobOfferSection": *[_type == "jobOfferSection"][0]{
+    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
+    
+  },
+
 }
 
 `;
@@ -30,6 +36,9 @@ interface Content {
     headerImage?: string;
     headerImageAlt?: string;
   };
+  jobOfferSection: {
+    sectionTitle: string;
+  };
 }
 
 export default async function PracujZNami({ params: { locale } }: Props) {
@@ -39,15 +48,23 @@ export default async function PracujZNami({ params: { locale } }: Props) {
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
-  const { workWithUsHeaderSection } = content;
+  const { workWithUsHeaderSection, jobOfferSection } = content;
 
   return (
-    <PageHeaderSection
-      sectionLabel={workWithUsHeaderSection.sectionLabel}
-      sectionTitle={workWithUsHeaderSection.sectionTitle}
-      sectionDescription={workWithUsHeaderSection.sectionDescription}
-      headerImage={workWithUsHeaderSection.headerImage}
-      headerImageAlt={workWithUsHeaderSection.headerImageAlt}
-    />
+    <>
+      {/* Header Section */}
+      <PageHeaderSection
+        sectionLabel={workWithUsHeaderSection.sectionLabel}
+        sectionTitle={workWithUsHeaderSection.sectionTitle}
+        sectionDescription={workWithUsHeaderSection.sectionDescription}
+        headerImage={workWithUsHeaderSection.headerImage}
+        headerImageAlt={workWithUsHeaderSection.headerImageAlt}
+      />
+
+      {/* FAQ Section */}
+      {/* {content.faqSectionHome && ( */}
+      <SectionJobOffer sectionTitle={jobOfferSection.sectionTitle} />
+      {/* )} */}
+    </>
   );
 }
