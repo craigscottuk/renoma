@@ -2,6 +2,7 @@
 import { setRequestLocale } from "next-intl/server";
 import PageHeaderSection from "@/components/page-header-section";
 import { client } from "@/sanity/client";
+import Timeline from "@/components/sections-about/timeline";
 
 const QUERY = `
 {
@@ -42,12 +43,18 @@ export default async function ONas({ params: { locale } }: Props) {
   const { aboutHeaderSection } = content;
 
   return (
-    <PageHeaderSection
-      sectionLabel={aboutHeaderSection.sectionLabel}
-      sectionTitle={aboutHeaderSection.sectionTitle}
-      sectionDescription={aboutHeaderSection.sectionDescription}
-      headerImage={aboutHeaderSection.headerImage}
-      headerImageAlt={aboutHeaderSection.headerImageAlt}
-    />
+    <>
+      <PageHeaderSection
+        sectionLabel={aboutHeaderSection.sectionLabel}
+        sectionTitle={aboutHeaderSection.sectionTitle}
+        sectionDescription={aboutHeaderSection.sectionDescription}
+        headerImage={aboutHeaderSection.headerImage}
+        headerImageAlt={aboutHeaderSection.headerImageAlt}
+      />
+
+      <section>
+        <Timeline />
+      </section>
+    </>
   );
 }
