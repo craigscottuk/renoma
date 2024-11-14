@@ -49,6 +49,13 @@ export const structure: StructureResolver = (S, context) =>
                 title: "Sekcja 3: Usługi",
                 id: "singletonServicesSectionHome",
               }),
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "faqSectionHome",
+                title: "Sekcja 4: FAQ",
+                id: "singletonFaqSectionHome",
+              }),
             ]),
         ),
       S.listItem()
@@ -151,6 +158,13 @@ export const structure: StructureResolver = (S, context) =>
                 type: "workWithUsHeaderSection",
                 title: "Sekcja 1: Nagłówek",
                 id: "singletonWorkWithUsHeaderSection",
+              }),
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "jobOfferSection",
+                title: "Sekcja 2: Oferty Pracy",
+                id: "singletonJobOfferSection",
               }),
             ]),
         ),
