@@ -46,8 +46,10 @@ export default function SectionFaqHome({
             </div>
           </div>
         </div>
+      </MaxWidthWrapper>
 
-        <div className="mt-24 bg-black">
+      <MaxWidthWrapper>
+        <div className="mt-20 bg-black px-2 py-12 md:px-24">
           <FaqAccordion />
 
           <div className="w-full text-left">
