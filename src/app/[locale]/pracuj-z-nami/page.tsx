@@ -15,11 +15,8 @@ const QUERY = `
   },
   "jobOfferSection": *[_type == "jobOfferSection"][0]{
     "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
-    
   },
-
 }
-
 `;
 
 const OPTIONS = { next: { revalidate: 30 } };
