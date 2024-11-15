@@ -2,7 +2,6 @@ import { clsx } from "clsx";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { ReactNode } from "react";
-import Navigation from "@/components/navigation/main-navigation";
 import Footer from "@/components/footer";
 import localFont from "next/font/local";
 import Header from "./header";
@@ -12,32 +11,47 @@ const helveticaNeueLight = localFont({
   variable: "--font-helvetica-neue-light",
 });
 
+const helveticaNeueRegular = localFont({
+  src: "./fonts/HelveticaNeueRegular.otf",
+  variable: "--font-helvetica-neue-regular",
+});
+
+const helveticaNeueMedium = localFont({
+  src: "./fonts/HelveticaNeueMedium.otf",
+  variable: "--font-helvetica-neue-medium",
+});
+
 type Props = {
   children: ReactNode;
   locale: string;
 };
 
 export default async function BaseLayout({ children, locale }: Props) {
-  // Providing all messages to the client
-  // side is the easiest way to get started
-  const messages = await getMessages();
+  let messages = {};
+  try {
+    messages = await getMessages();
+  } catch (error) {
+    console.error("Error loading messages:", error);
+  }
 
   return (
     <html className="h-full" lang={locale}>
       <head>
-        {/* Meta tag for responsive layout on mobile devices */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {/* Add charset or description meta tags here if needed */}
       </head>
       <body
         className={clsx(
           helveticaNeueLight.variable,
+          helveticaNeueRegular.variable,
+          helveticaNeueMedium.variable,
           "h-full font-sans antialiased",
         )}
       >
         <NextIntlClientProvider messages={messages}>
           <div className="flex min-h-screen flex-col">
             <Header />
-            <main className="flex-1 grow">{children}</main>
+            <main className="flex-1">{children}</main>
             <Footer />
           </div>
         </NextIntlClientProvider>
