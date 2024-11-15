@@ -32,7 +32,11 @@ const QUERY = `
     "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Brak tłumaczenia"),
     "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
     "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia")
+    "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia"),
+    "faqItems": faqItems[]{
+      "question": coalesce(question[_key == $locale][0].value, "Brak tłumaczenia"),
+      "answer": coalesce(answer[_key == $locale][0].value, "Brak tłumaczenia")
+    }
   }
 }
 `;
@@ -65,6 +69,10 @@ interface Content {
     sectionTitle: string;
     sectionDescription: string;
     sectionCTA: string;
+    faqItems: {
+      question: string;
+      answer: string;
+    }[];
   };
 }
 
@@ -113,6 +121,7 @@ export default async function HomePage({ params: { locale } }: Props) {
           sectionTitle={content.faqSectionHome.sectionTitle}
           sectionDescription={content.faqSectionHome.sectionDescription}
           sectionCTA={content.faqSectionHome.sectionCTA}
+          faqItems={content.faqSectionHome.faqItems}
         />
       )}
     </>

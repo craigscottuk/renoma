@@ -12,6 +12,10 @@ interface SectionFaqHomeProps {
   sectionDescription: string;
   sectionCTA: string;
   paddingY?: string;
+  faqItems: {
+    question: string;
+    answer: string;
+  }[];
 }
 
 export default function SectionFaqHome({
@@ -20,6 +24,7 @@ export default function SectionFaqHome({
   sectionDescription,
   sectionCTA,
   paddingY = "py-16 md:py-44", // Default padding values
+  faqItems,
 }: SectionFaqHomeProps) {
   return (
     <section className={clsx("mx-auto bg-white", paddingY)}>
@@ -50,7 +55,7 @@ export default function SectionFaqHome({
 
       <MaxWidthWrapper>
         <div className="mt-20 bg-black px-2 py-12 md:px-24">
-          <FaqAccordion />
+          <FaqAccordion faqItems={faqItems} />
 
           <div className="w-full text-left">
             <CustomButton variant="dark" href="/uslugi">
