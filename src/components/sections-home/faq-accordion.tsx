@@ -53,8 +53,7 @@ export default function FaqAccordion() {
   ];
 
   return (
-    <div className="mx-auto w-full max-w-3xl bg-background p-6 text-foreground">
-      <h2 className="mb-6 text-2xl font-bold">Często Zadawane Pytania</h2>
+    <div className="mx-auto w-full bg-black p-6 text-white">
       <Accordion type="single" collapsible className="w-full">
         {faqItems.map((item, index) => (
           <AccordionItem key={index} value={`item-${index}`}>
