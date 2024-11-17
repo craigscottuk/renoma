@@ -12,6 +12,10 @@ body {
   }
 }
 
+.list-square > li::marker {
+  font-size: 1.3em; /* Increase the bullet size */
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
