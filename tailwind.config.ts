@@ -15,6 +15,10 @@ const config: Config = {
         bolder: ["var(--font-helvetica-neue-medium)", "sans-serif"],
       },
 
+      listStyleType: {
+        square: "square",
+      },
+
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
