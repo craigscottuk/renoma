@@ -3,6 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import PageHeaderSection from "@/components/page-header-section";
 import { client } from "@/sanity/client";
 import SectionServices from "@/components/sections-services/section-services";
+import { PortableTextBlock } from "@portabletext/types";
 
 const QUERY = `
 {
@@ -13,8 +14,11 @@ const QUERY = `
     "headerImage": headerImage, // Fetch full image object with asset._ref
     "headerImageAlt": coalesce(headerImage.alt[_key == $locale][0].value, "Brak tłumaczenia")
   },
+  "services": *[_type == "exploreServicesSection"]{
+    title,
+    description
+  }
 }
-
 `;
 
 const OPTIONS = { next: { revalidate: 30 } };
@@ -31,6 +35,10 @@ interface Content {
     headerImage?: string;
     headerImageAlt?: string;
   };
+  services: {
+    title: string;
+    description: PortableTextBlock[];
+  }[];
 }
 
 export default async function ONas({ params: { locale } }: Props) {
@@ -40,7 +48,7 @@ export default async function ONas({ params: { locale } }: Props) {
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
-  const { servicesHeaderSection } = content;
+  const { servicesHeaderSection, services } = content;
 
   return (
     <>
@@ -54,7 +62,7 @@ export default async function ONas({ params: { locale } }: Props) {
       />
 
       {/* Black/White Contact Form Section */}
-      <SectionServices />
+      <SectionServices services={services} />
     </>
   );
 }
