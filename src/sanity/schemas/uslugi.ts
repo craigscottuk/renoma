@@ -87,3 +87,44 @@ export const servicesHeaderSection = defineType({
     }),
   ],
 });
+
+// Explore service section
+export const exploreServicesSection = defineType({
+  name: "exploreServicesSection",
+  title: "Nagłówek strony usług",
+  type: "document",
+  options: { singleton: true },
+  fields: [
+    defineField({
+      name: "services",
+      title: "Services",
+      type: "array",
+      of: [
+        defineField({
+          name: "service",
+          title: "Service",
+          type: "object",
+          fields: [
+            // Title field using internationalizedArrayString
+            defineField({
+              name: "title",
+              title: "Service Title",
+              type: "internationalizedArrayString",
+            }),
+            // Description field with fixed language-specific keys
+            defineField({
+              name: "description",
+              title: "Description",
+              type: "object",
+              fields: [
+                { name: "pl", title: "Polish Description", type: "basicText" },
+                { name: "en", title: "English Description", type: "basicText" },
+                { name: "de", title: "German Description", type: "basicText" },
+              ],
+            }),
+          ],
+        }),
+      ],
+    }),
+  ],
+});
