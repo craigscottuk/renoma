@@ -10,7 +10,11 @@ import {
   faqSectionHome,
 } from "./dom";
 import { oNas, aboutHeaderSection } from "./oNas";
-import { servicesHeaderSection, uslugi } from "./uslugi";
+import {
+  exploreServicesSection,
+  servicesHeaderSection,
+  uslugi,
+} from "./uslugi";
 import { wpisRealizacji } from "./wpisRealizacji";
 import { realizacje, realizacjeHeaderSection } from "./realizacje";
 import { renomaLab, renomaLabHeaderSection } from "./renomaLab";
@@ -28,7 +32,7 @@ import {
 } from "./kontakt";
 import { ustawienia } from "./ustawienia";
 import { privacy, privacyHeaderSection } from "./privacy";
-import { portableText } from "./portableText";
+import { basicText, portableTextWithImage } from "./portableText";
 
 // Export schema configuration
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -47,6 +51,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     // Usługi
     uslugi,
     servicesHeaderSection,
+    exploreServicesSection,
 
     // Realizacje
     realizacje,
@@ -78,6 +83,9 @@ export const schema: { types: SchemaTypeDefinition[] } = {
 
     privacy,
     privacyHeaderSection,
-    portableText,
+
+    // Portable Text
+    basicText,
+    portableTextWithImage,
   ],
 };
