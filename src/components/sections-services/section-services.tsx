@@ -1,5 +1,5 @@
 "use client";
-
+// cSpell:disable
 import { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -11,93 +11,56 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { PortableText, PortableTextComponents } from "@portabletext/react";
 
 // Define types
 interface Service {
   title: string;
-  description: string;
-  details: string[];
+  description: any;
 }
 
-const services: Service[] = [
-  {
-    title: "Conservation Research & Expertise",
-    description:
-      "Comprehensive research to support historical monument preservation.",
-    details: [
-      "Monument Condition Assessment",
-      "Material Analysis",
-      "Historical Research",
-    ],
-  },
-  {
-    title: "Conservation Work Programs",
-    description:
-      "Preservation and aesthetic restoration of historical objects.",
-    details: [
-      "Development of Conservation Plans",
-      "Project Execution Planning",
-      "Risk Assessment and Monitoring",
-    ],
-  },
-  {
-    title: "Conservation Supervision & Consultancy",
-    description:
-      "Expert supervision to ensure high-standard conservation work.",
-    details: [
-      "On-Site Supervision",
-      "Compliance with Conservation Plans",
-      "Consultation & Problem Solving",
-    ],
-  },
-  {
-    title: "Conservation & Restoration Work",
-    description:
-      "Halting degradation and restoring aesthetic beauty of historic objects.",
-    details: ["Architectural Monuments", "Movable Monuments", "Artistic Craft"],
-  },
-  {
-    title: "Construction Work on Historical Buildings",
-    description: "Specialized construction services for historical structures.",
-    details: [
-      "Structural Reinforcement",
-      "Period-Appropriate Renovations",
-      "Integration of Modern Systems",
-    ],
-  },
-  {
-    title: "Administrative Support & Grant Acquisition",
-    description:
-      "Assistance with project management and funding opportunities.",
-    details: [
-      "Grant Writing and Application",
-      "Budget Management",
-      "Regulatory Compliance",
-    ],
-  },
-  {
-    title: "RenomaLAB",
-    description:
-      "Innovative research and development in conservation techniques.",
-    details: [
-      "New Material Testing",
-      "Conservation Technology Development",
-      "Collaborative Research Projects",
-    ],
-  },
-  {
-    title: "Revitalization of Historical Buildings",
-    description:
-      "Breathing new life into historical structures for modern use.",
-    details: [
-      "Adaptive Reuse Planning",
-      "Sustainable Modernization",
-      "Cultural Heritage Integration",
-    ],
-  },
-];
+interface SectionServicesProps {
+  services: Service[];
+}
 
-export default function EnhancedServiceCarousel() {
+const portableTextComponents: PortableTextComponents = {
+  block: {
+    // Handle default text blocks (e.g., paragraphs)
+    normal: ({ children }) => <p className="mb-4 text-[1.1rem]">{children}</p>,
+    h3: ({ children }) => <h3 className="text-xl font-bold">{children}</h3>,
+  },
+  list: {
+    bullet: ({ children }) => <ul className="list-square pl-4">{children}</ul>, // Use list-square for square bullets
+    number: ({ children }) => <ol className="list-decimal pl-4">{children}</ol>,
+  },
+  listItem: {
+    bullet: ({ children }) => <li className="mb-2">{children}</li>,
+    number: ({ children }) => <li className="mb-2">{children}</li>,
+  },
+  marks: {
+    strong: ({ children }) => (
+      <strong className="font-bolder">{children}</strong>
+    ),
+    em: ({ children }) => <em className="italic">{children}</em>,
+    link: ({ value, children }) => {
+      const target = value?.href?.startsWith("http") ? "_blank" : "_self";
+      return (
+        <a
+          href={value?.href}
+          target={target}
+          rel={target === "_blank" ? "noopener noreferrer" : undefined}
+          className="text-blue-600 underline"
+        >
+          {children}
+        </a>
+      );
+    },
+  },
+};
+
+export default function EnhancedServiceCarousel({
+  services,
+}: SectionServicesProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [contentHeight, setContentHeight] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -161,18 +124,14 @@ export default function EnhancedServiceCarousel() {
               >
                 <div>
                   <h3 className="mb-2 text-xl font-semibold">
-                    {services[currentIndex].title}
+                    {services[currentIndex]?.title}
                   </h3>
-                  <p className="mb-4 text-muted-foreground">
-                    {services[currentIndex].description}
-                  </p>
-                  <ul className="mb-4 list-disc space-y-1 pl-5">
-                    {services[currentIndex].details.map((detail, index) => (
-                      <li key={index} className="text-sm">
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="mb-4 whitespace-pre-line text-muted-foreground">
+                    <PortableText
+                      value={services[currentIndex]?.description}
+                      components={portableTextComponents}
+                    />
+                  </div>
                 </div>
                 <div className="mt-4 flex justify-between">
                   <Button variant="outline" onClick={prevService}>
