@@ -89,6 +89,14 @@ export const structure: StructureResolver = (S, context) =>
                 title: "Sekcja 1: Nagłówek",
                 id: "singletonServicesHeaderSection",
               }),
+
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "exploreServicesSection",
+                title: "Sekcja 2: Usługi",
+                id: "singletonExploreServicesSection",
+              }),
             ]),
         ),
 
