@@ -10,11 +10,7 @@ import {
   faqSectionHome,
 } from "./dom";
 import { oNas, aboutHeaderSection } from "./oNas";
-import {
-  exploreServicesSection,
-  servicesHeaderSection,
-  uslugi,
-} from "./uslugi";
+import { servicesListSection, servicesHeaderSection, uslugi } from "./uslugi";
 import { wpisRealizacji } from "./wpisRealizacji";
 import { realizacje, realizacjeHeaderSection } from "./realizacje";
 import { renomaLab, renomaLabHeaderSection } from "./renomaLab";
@@ -51,7 +47,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     // Usługi
     uslugi,
     servicesHeaderSection,
-    exploreServicesSection,
+    servicesListSection,
 
     // Realizacje
     realizacje,
