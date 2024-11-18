@@ -14,9 +14,11 @@ const QUERY = `
     "headerImage": headerImage, // Fetch full image object with asset._ref
     "headerImageAlt": coalesce(headerImage.alt[_key == $locale][0].value, "Brak tłumaczenia")
   },
-  "services": *[_type == "exploreServicesSection"]{
-    title,
-    description
+  "servicesListSection": *[_type == "servicesListSection"][0]{
+    "services": services[]{
+      "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+      "description": coalesce(description[$locale], "Brak tłumaczenia")
+    }
   }
 }
 `;
@@ -39,6 +41,12 @@ interface Content {
     title: string;
     description: PortableTextBlock[];
   }[];
+  servicesListSection: {
+    services: {
+      title: string;
+      description: PortableTextBlock[];
+    }[];
+  };
 }
 
 export default async function ONas({ params: { locale } }: Props) {
@@ -48,7 +56,7 @@ export default async function ONas({ params: { locale } }: Props) {
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
-  const { servicesHeaderSection, services } = content;
+  const { servicesHeaderSection, servicesListSection } = content;
 
   return (
     <>
@@ -61,8 +69,8 @@ export default async function ONas({ params: { locale } }: Props) {
         headerImageAlt={servicesHeaderSection.headerImageAlt}
       />
 
-      {/* Black/White Contact Form Section */}
-      <SectionServices services={services} />
+      {/* Explore Services Section */}
+      <SectionServices services={servicesListSection.services} />
     </>
   );
 }
