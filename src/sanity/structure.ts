@@ -26,7 +26,7 @@ export const structure: StructureResolver = (S, context) =>
         .icon(Home)
         .child(
           S.list()
-            .title("Sekcje strony głównej")
+            .title("Sekcje strony „Dom”")
             .items([
               singletonDocumentListItem({
                 S,
@@ -63,7 +63,7 @@ export const structure: StructureResolver = (S, context) =>
         .icon(Info)
         .child(
           S.list()
-            .title("Sekcje strony O nas")
+            .title("Sekcje strony „O nas”")
             .items([
               singletonDocumentListItem({
                 S,
@@ -72,6 +72,13 @@ export const structure: StructureResolver = (S, context) =>
                 title: "Sekcja 1: Nagłówek",
                 id: "singletonAboutHeaderSection",
               }),
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "timelineSection",
+                title: "Sekcja 2: Oś czasu",
+                id: "singletonTimelineSection",
+              }),
             ]),
         ),
       S.listItem()
@@ -79,7 +86,7 @@ export const structure: StructureResolver = (S, context) =>
         .icon(Briefcase)
         .child(
           S.list()
-            .title("Sekcje strony Usługi")
+            .title("Sekcje strony „Usługi”")
             .items([
               singletonDocumentListItem({
                 S,
@@ -102,7 +109,7 @@ export const structure: StructureResolver = (S, context) =>
         .icon(FolderOpen)
         .child(
           S.list()
-            .title("Sekcje strony Realizacje")
+            .title("Sekcje strony „Realizacje”")
             .items([
               singletonDocumentListItem({
                 S,
@@ -121,7 +128,7 @@ export const structure: StructureResolver = (S, context) =>
         .icon(Beaker)
         .child(
           S.list()
-            .title("Sekcje strony Renoma LAB")
+            .title("Sekcje strony „Renoma LAB”")
             .items([
               singletonDocumentListItem({
                 S,
@@ -137,7 +144,7 @@ export const structure: StructureResolver = (S, context) =>
         .icon(GraduationCap)
         .child(
           S.list()
-            .title("Sekcje strony Ucz się z nami")
+            .title("Sekcje strony „Ucz się z nami”")
             .items([
               singletonDocumentListItem({
                 S,
@@ -153,7 +160,7 @@ export const structure: StructureResolver = (S, context) =>
         .icon(Users)
         .child(
           S.list()
-            .title("Sekcje strony Pracuj z nami")
+            .title("Sekcje strony „Pracuj z nami”")
             .items([
               singletonDocumentListItem({
                 S,
@@ -176,7 +183,7 @@ export const structure: StructureResolver = (S, context) =>
         .icon(Mail)
         .child(
           S.list()
-            .title("Sekcje strony kontaktowej")
+            .title("Sekcje strony „Kontakt”")
             .items([
               singletonDocumentListItem({
                 S,
