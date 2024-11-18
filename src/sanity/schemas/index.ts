@@ -9,7 +9,7 @@ import {
   servicesSectionHome,
   faqSectionHome,
 } from "./dom";
-import { oNas, aboutHeaderSection } from "./oNas";
+import { oNas, aboutHeaderSection, timelineSection } from "./oNas";
 import { servicesListSection, servicesHeaderSection, uslugi } from "./uslugi";
 import { wpisRealizacji } from "./wpisRealizacji";
 import { realizacje, realizacjeHeaderSection } from "./realizacje";
@@ -29,6 +29,7 @@ import {
 import { ustawienia } from "./ustawienia";
 import { privacy, privacyHeaderSection } from "./privacy";
 import { basicText, portableTextWithImage } from "./portableText";
+import { time } from "console";
 
 // Export schema configuration
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -43,6 +44,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     // O nas
     oNas,
     aboutHeaderSection,
+    timelineSection,
 
     // Usługi
     uslugi,
