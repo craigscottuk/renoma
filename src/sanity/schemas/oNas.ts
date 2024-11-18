@@ -86,3 +86,109 @@ export const aboutHeaderSection = defineType({
     }),
   ],
 });
+
+// List of Services section
+export const timelineSection = defineType({
+  name: "timelineSection",
+  title: "Sekcja osi czasu",
+  type: "document",
+  options: { singleton: true },
+  description:
+    "Sekcja osi czasu przedstawia najważniejsze wydarzenia lub osiągnięcia w porządku chronologicznym.",
+  fields: [
+    defineField({
+      name: "timeline",
+      title: "Oś czasu",
+      type: "array",
+      description:
+        "Dodaj kluczowe wydarzenia na osi czasu, aby przedstawić historię lub osiągnięcia w logicznym porządku.",
+      of: [
+        defineField({
+          name: "timelineItem",
+          title: "Element osi czasu",
+          type: "object",
+          fields: [
+            defineField({
+              name: "year",
+              title: "Rok",
+              type: "number",
+              description: "Dodaj rok dla tego wydarzenia.",
+              validation: (Rule) =>
+                Rule.required()
+                  .min(1900)
+                  .max(new Date().getFullYear())
+                  .integer()
+                  .error(
+                    "Rok musi być w formacie YYYY i pomiędzy 1900 a bieżącym rokiem.",
+                  ),
+            }),
+            defineField({
+              name: "content",
+              title: "Treść",
+              type: "object",
+              description: "Dodaj treść wydarzenia w wybranych językach.",
+              fields: [
+                { name: "pl", title: "PL", type: "basicText" },
+                { name: "en", title: "EN", type: "basicText" },
+                { name: "de", title: "DE", type: "basicText" },
+              ],
+            }),
+            defineField({
+              name: "images",
+              title: "Obrazy",
+              type: "array",
+              description:
+                "Dodaj obrazy ilustrujące wydarzenie wraz z podpisami.",
+              of: [
+                defineField({
+                  name: "imageItem",
+                  title: "Obraz z podpisem",
+                  type: "object",
+                  fields: [
+                    defineField({
+                      name: "src",
+                      title: "Źródło obrazu",
+                      type: "image",
+                      description: "Dodaj obraz ilustrujący to wydarzenie.",
+                      options: {
+                        hotspot: true,
+                      },
+                    }),
+                    defineField({
+                      name: "caption",
+                      title: "Podpis",
+                      type: "string",
+                      description: "Dodaj podpis do obrazu.",
+                    }),
+                  ],
+                  preview: {
+                    select: {
+                      title: "caption",
+                      media: "src",
+                    },
+                    prepare({ title, media }) {
+                      return {
+                        title: title || "Brak podpisu",
+                        media,
+                      };
+                    },
+                  },
+                }),
+              ],
+            }),
+          ],
+          preview: {
+            select: {
+              title: "year",
+            },
+            prepare({ title }) {
+              return {
+                title: title || "Brak tytułu",
+              };
+            },
+          },
+        }),
+      ],
+    }),
+  ],
+});
