@@ -13,8 +13,13 @@ const QUERY = `
     "headerImage": headerImage, // Fetch full image object with asset._ref
     "headerImageAlt": coalesce(headerImage.alt[_key == $locale][0].value, "Brak tłumaczenia")
   },
+  "timelineSection": *[_type == "timelineSection"][0]{
+    "timeline": timeline[]{
+      "year": year,
+      "content": coalesce(content[$locale], "Brak tłumaczenia")
+    }
+  }
 }
-
 `;
 
 const OPTIONS = { next: { revalidate: 30 } };
