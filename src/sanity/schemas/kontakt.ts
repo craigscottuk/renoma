@@ -126,7 +126,7 @@ export const contactFormSection = defineType({
           ],
           preview: {
             select: {
-              title: "label.0.value", // Shows the first language entry as a preview
+              title: "label.0.value",
             },
             prepare({ title }) {
               return {
