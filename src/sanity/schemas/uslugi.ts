@@ -88,41 +88,54 @@ export const servicesHeaderSection = defineType({
   ],
 });
 
-// Explore service section
-export const exploreServicesSection = defineType({
-  name: "exploreServicesSection",
-  title: "Nagłówek strony usług",
+// List of Services section
+export const servicesListSection = defineType({
+  name: "servicesListSection", // Updated name
+  title: "Lista usług", // Updated title
   type: "document",
   options: { singleton: true },
+  description:
+    "W tej sekcji możesz dodawać i edytować usługi dostępne na stronie.", // Retained description
   fields: [
     defineField({
       name: "services",
-      title: "Services",
+      title: "Usługi",
       type: "array",
+      description: "Lista usług, które można dodać, edytować lub usunąć.", // Retained description for this field
       of: [
         defineField({
           name: "service",
-          title: "Service",
+          title: "Usługa",
           type: "object",
           fields: [
-            // Title field using internationalizedArrayString
             defineField({
               name: "title",
-              title: "Service Title",
+              title: "Tytuł usługi",
               type: "internationalizedArrayString",
+              description: "Dodaj tytuł usługi w wybranych językach.", // Retained description
             }),
-            // Description field with fixed language-specific keys
             defineField({
               name: "description",
-              title: "Description",
+              title: "Opis",
               type: "object",
+              description: "Dodaj opis usługi w językach PL, EN lub DE.",
               fields: [
-                { name: "pl", title: "Polish Description", type: "basicText" },
-                { name: "en", title: "English Description", type: "basicText" },
-                { name: "de", title: "German Description", type: "basicText" },
+                { name: "pl", title: "PL", type: "basicText" },
+                { name: "en", title: "EN", type: "basicText" },
+                { name: "de", title: "DE", type: "basicText" },
               ],
             }),
           ],
+          preview: {
+            select: {
+              title: "title.0.value", // Shows the first language entry as a preview
+            },
+            prepare({ title }) {
+              return {
+                title: title || "Brak tytułu", // Default if no title is set
+              };
+            },
+          },
         }),
       ],
     }),
