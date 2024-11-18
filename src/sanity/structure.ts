@@ -39,7 +39,7 @@ export const structure: StructureResolver = (S, context) =>
                 S,
                 context,
                 type: "aboutSectionHome",
-                title: "Sekcja 2: O Nas",
+                title: "Sekcja 2: O nas",
                 id: "singletonAboutSectionHome",
               }),
               singletonDocumentListItem({
@@ -59,11 +59,11 @@ export const structure: StructureResolver = (S, context) =>
             ]),
         ),
       S.listItem()
-        .title("O Nas")
+        .title("O nas")
         .icon(Info)
         .child(
           S.list()
-            .title("Sekcje strony o nas")
+            .title("Sekcje strony O nas")
             .items([
               singletonDocumentListItem({
                 S,
@@ -74,13 +74,12 @@ export const structure: StructureResolver = (S, context) =>
               }),
             ]),
         ),
-
       S.listItem()
         .title("Usługi")
         .icon(Briefcase)
         .child(
           S.list()
-            .title("Sekcje strony usług")
+            .title("Sekcje strony Usługi")
             .items([
               singletonDocumentListItem({
                 S,
@@ -89,23 +88,21 @@ export const structure: StructureResolver = (S, context) =>
                 title: "Sekcja 1: Nagłówek",
                 id: "singletonServicesHeaderSection",
               }),
-
               singletonDocumentListItem({
                 S,
                 context,
-                type: "exploreServicesSection",
-                title: "Sekcja 2: Usługi",
-                id: "singletonExploreServicesSection",
+                type: "servicesListSection",
+                title: "Sekcja 2: Lista usług",
+                id: "singletonServicesListSection",
               }),
             ]),
         ),
-
       S.listItem()
         .title("Realizacje")
         .icon(FolderOpen)
         .child(
           S.list()
-            .title("Sekcje strony realizacje")
+            .title("Sekcje strony Realizacje")
             .items([
               singletonDocumentListItem({
                 S,
@@ -116,11 +113,9 @@ export const structure: StructureResolver = (S, context) =>
               }),
             ]),
         ),
-
       S.documentTypeListItem("wpisRealizacji")
-        .title("Wpis Realizacji")
+        .title("Wpis realizacji")
         .icon(FileText),
-
       S.listItem()
         .title("Renoma LAB")
         .icon(Beaker)
@@ -138,7 +133,7 @@ export const structure: StructureResolver = (S, context) =>
             ]),
         ),
       S.listItem()
-        .title("Ucz Się z Nami")
+        .title("Ucz się z nami")
         .icon(GraduationCap)
         .child(
           S.list()
@@ -154,7 +149,7 @@ export const structure: StructureResolver = (S, context) =>
             ]),
         ),
       S.listItem()
-        .title("Pracuj z Nami")
+        .title("Pracuj z nami")
         .icon(Users)
         .child(
           S.list()
@@ -171,7 +166,7 @@ export const structure: StructureResolver = (S, context) =>
                 S,
                 context,
                 type: "jobOfferSection",
-                title: "Sekcja 2: Oferty Pracy",
+                title: "Sekcja 2: Oferty pracy",
                 id: "singletonJobOfferSection",
               }),
             ]),
@@ -194,14 +189,14 @@ export const structure: StructureResolver = (S, context) =>
                 S,
                 context,
                 type: "contactFormSection",
-                title: "Sekcja 2: Formularz Kontaktowy",
+                title: "Sekcja 2: Formularz kontaktowy",
                 id: "singletonContactFormSection",
               }),
               singletonDocumentListItem({
                 S,
                 context,
                 type: "contactDetailsSection",
-                title: "Sekcja 3: Dane Kontaktowe",
+                title: "Sekcja 3: Dane kontaktowe",
                 id: "singletonContactDetailsSection",
               }),
             ]),
