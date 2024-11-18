@@ -90,18 +90,18 @@ export const servicesHeaderSection = defineType({
 
 // List of Services section
 export const servicesListSection = defineType({
-  name: "servicesListSection", // Updated name
-  title: "Lista usług", // Updated title
+  name: "servicesListSection",
+  title: "Lista usług",
   type: "document",
   options: { singleton: true },
   description:
-    "W tej sekcji możesz dodawać i edytować usługi dostępne na stronie.", // Retained description
+    "W tej sekcji możesz dodawać i edytować usługi dostępne na stronie.",
   fields: [
     defineField({
       name: "services",
       title: "Usługi",
       type: "array",
-      description: "Lista usług, które można dodać, edytować lub usunąć.", // Retained description for this field
+      description: "Lista usług, które można dodać, edytować lub usunąć.",
       of: [
         defineField({
           name: "service",
@@ -112,7 +112,7 @@ export const servicesListSection = defineType({
               name: "title",
               title: "Tytuł usługi",
               type: "internationalizedArrayString",
-              description: "Dodaj tytuł usługi w wybranych językach.", // Retained description
+              description: "Dodaj tytuł usługi w wybranych językach.",
             }),
             defineField({
               name: "description",
