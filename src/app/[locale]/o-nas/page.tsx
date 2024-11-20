@@ -1,22 +1,30 @@
-// cSpell:disable
 import { setRequestLocale } from "next-intl/server";
 import PageHeaderSection from "@/components/page-header-section";
 import { client } from "@/sanity/client";
 import Timeline from "@/components/sections-about/timeline";
-
+import { PortableTextBlock } from "next-sanity";
+import SectionTitle from "@/components/section-title";
+import MaxWidthWrapper from "@/components/max-width-wrapper";
+import TimelineTwo from "@/components/sections-about/timelineTwo";
 const QUERY = `
 {
-  "aboutHeaderSection": *[_type == "aboutHeaderSection"][0]{
+ "aboutHeaderSection": *[_type == "aboutHeaderSection"][0]{
     "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Brak tłumaczenia"),
     "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
     "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Brak tłumaczenia"),
-    "headerImage": headerImage, // Fetch full image object with asset._ref
+    "headerImage": headerImage,
     "headerImageAlt": coalesce(headerImage.alt[_key == $locale][0].value, "Brak tłumaczenia")
   },
-  "timelineSection": *[_type == "timelineSection"][0]{
-    "timeline": timeline[]{
-      "year": year,
-      "content": coalesce(content[$locale], "Brak tłumaczenia")
+
+  "timeline": *[_type == "timelineSection"][0].timeline[]{
+    "year": year,
+    "content": select(
+      defined(content[$locale]) => content[$locale],
+      "Brak tłumaczenia"
+    ),
+    "images": images[]{
+      "src": src.asset->url,
+      "caption": caption
     }
   }
 }
@@ -36,6 +44,18 @@ interface Content {
     headerImage?: string;
     headerImageAlt?: string;
   };
+  timeline: TimelineItem[];
+}
+
+interface TimelineItem {
+  year: number;
+  content: PortableTextBlock[];
+  images?: TimelineImage[];
+}
+
+interface TimelineImage {
+  src: string;
+  caption: string;
 }
 
 export default async function ONas({ params: { locale } }: Props) {
@@ -45,7 +65,9 @@ export default async function ONas({ params: { locale } }: Props) {
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
-  const { aboutHeaderSection } = content;
+  const { aboutHeaderSection, timeline } = content;
+
+  console.log(content);
 
   return (
     <>
@@ -58,7 +80,28 @@ export default async function ONas({ params: { locale } }: Props) {
       />
 
       <section>
-        <Timeline />
+        <MaxWidthWrapper>
+          <SectionTitle
+            title="Nasza historia i doświadczenie"
+            as="h2"
+            motionPreset="blur-left"
+            textColor="black"
+            textAlign="left"
+          />
+          <Timeline timeline={timeline} />
+        </MaxWidthWrapper>
+      </section>
+      <section>
+        <MaxWidthWrapper>
+          <SectionTitle
+            title="Nasza historia i doświadczenie"
+            as="h2"
+            motionPreset="blur-left"
+            textColor="black"
+            textAlign="left"
+          />
+          <TimelineTwo />
+        </MaxWidthWrapper>
       </section>
     </>
   );
