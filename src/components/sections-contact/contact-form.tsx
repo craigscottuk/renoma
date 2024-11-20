@@ -252,7 +252,7 @@ export default function ContactForm({
                     {t.rich("contact-form.privacy", {
                       policy: (chunks) => (
                         <Link
-                          href={"/polityka-prywatnosci" as RoutePaths}
+                          href="/polityka-prywatnosci"
                           target="_blank"
                           className="underline"
                         >
