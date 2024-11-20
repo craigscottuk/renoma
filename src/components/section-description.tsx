@@ -1,3 +1,5 @@
+import clsx from "clsx";
+
 interface SectionDescriptionProps {
   description: string;
   className?: string;
@@ -5,6 +7,7 @@ interface SectionDescriptionProps {
   textColor?: "black" | "white";
   textAlign?: "left" | "right";
   marginTop?: boolean;
+  textStyle?: "text-wrap" | "text-balance" | "text-normal";
 }
 
 export default function SectionDescription({
@@ -14,14 +17,22 @@ export default function SectionDescription({
   textColor = "black",
   textAlign = "left",
   marginTop = false,
+  textStyle = "text-balance",
 }: SectionDescriptionProps) {
   const textColorClass =
     textColor === "black" ? "text-black/90" : "text-white/90";
 
   return (
-    <div className={`${marginTop ? "mt-10" : ""}`}>
+    <div className={clsx(marginTop && "mt-10")}>
       <p
-        className={`max-w-sm text-balance text-[1.1rem] leading-relaxed ${textColorClass} ${textAlign} ${className} md:max-w-[30rem]`}
+        className={clsx(
+          "max-w-sm text-[1.1rem] leading-relaxed",
+          textColorClass,
+          textAlign,
+          textStyle,
+          className,
+          "md:max-w-[30rem]",
+        )}
       >
         {description}
       </p>
