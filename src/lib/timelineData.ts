@@ -1,3 +1,4 @@
+// cSpell:disable
 export type TimelineItem = {
   year: number;
   content: string[];
