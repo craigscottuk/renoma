@@ -9,4 +9,4 @@ export type RoutePaths =
   | "/pracuj-z-nami"
   | "/kontakt"
   | "/polityka-prywatnosci"
-  | "/realizacje/${string}";
+  | `/realizacje/${string}`;
