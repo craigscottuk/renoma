@@ -9,4 +9,15 @@ export type RoutePaths =
   | "/pracuj-z-nami"
   | "/kontakt"
   | "/polityka-prywatnosci"
-  | `/realizacje/${string}`;
+  | `/realizacje/${string}`; // Keep this for dynamic paths
+
+export type StaticRoutePaths =
+  | "/"
+  | "/o-nas"
+  | "/uslugi"
+  | "/realizacje"
+  | "/renoma-lab"
+  | "/ucz-sie-z-nami"
+  | "/pracuj-z-nami"
+  | "/kontakt"
+  | "/polityka-prywatnosci";
