@@ -13,7 +13,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/">
             <img
-              className="h-[50px] md:h-[65px]"
+              className="motion-preset-blur-up-sm h-[50px] md:h-[65px]"
               src="/renoma-logo.svg"
               alt="Renoma PKZ"
             />
@@ -23,7 +23,7 @@ export default function Header() {
           <div className="ml-auto flex h-full items-center pt-2.5 md:pt-5">
             <MainNavigation />
             {/* Locale Switcher */}
-            <LocaleSwitcher className="hidden xl:flex" />
+            <LocaleSwitcher className="motion-preset-blur-up-sm hidden xl:flex" />
             {/* Side Navigation */}
             <SideNavigation />
           </div>
