@@ -23,9 +23,9 @@ export default function SectionAbout({
   return (
     <section className={clsx("mx-auto bg-white", paddingY)}>
       <MaxWidthWrapper>
-        <div className="grid gap-12 md:grid-cols-2 md:gap-24">
+        <div className="grid gap-0 md:grid-cols-2 md:gap-24">
           {/* Right Column (Heading and Title) for Mobile, Hidden on Desktop */}
-          <div className="md:hidden">
+          <div className="mb-6 md:hidden">
             <SectionTitle
               label={sectionLabel}
               title={sectionTitle}

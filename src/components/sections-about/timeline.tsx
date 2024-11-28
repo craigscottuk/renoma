@@ -1,187 +1,172 @@
 "use client";
 // cSpell:disable
-import * as React from "react";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { useState, useRef, useEffect } from "react";
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { PortableTextBlock } from "@portabletext/types";
+  ChevronDown,
+  ChevronUp,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
+import Image from "next/image";
 import { PortableText } from "@portabletext/react";
-import { portableTextComponents } from "@/lib/portableTextComponents";
+import { portableTextComponents } from "../../lib/portableTextComponents";
 
-interface TimelineImage {
-  src: string;
-  caption: string;
-}
-
-interface TimelineItem {
+interface TimelineEvent {
   year: number;
-  content: PortableTextBlock[];
-  images?: TimelineImage[];
+  content: string[];
+  images?: string[];
 }
 
 interface TimelineProps {
-  timeline: TimelineItem[];
+  events: TimelineEvent[];
 }
 
-export default function Timeline({ timeline }: TimelineProps) {
-  const [activeYear, setActiveYear] = React.useState(
-    timeline[timeline.length - 1]?.year || 0,
-  );
-  const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
-  const activeItem = timeline.find((item) => item.year === activeYear);
+function ImageCarousel({ images }: { images: string[] }) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handlePrevYear = () => {
-    const currentIndex = timeline.findIndex((t) => t.year === activeYear);
-    if (currentIndex > 0) {
-      setActiveYear(timeline[currentIndex - 1].year);
-      setCurrentImageIndex(0);
-    }
+  const scrollPrev = () => {
+    if (emblaApi) emblaApi.scrollPrev();
   };
 
-  const handleNextYear = () => {
-    const currentIndex = timeline.findIndex((t) => t.year === activeYear);
-    if (currentIndex < timeline.length - 1) {
-      setActiveYear(timeline[currentIndex + 1].year);
-      setCurrentImageIndex(0);
-    }
+  const scrollNext = () => {
+    if (emblaApi) emblaApi.scrollNext();
   };
+
+  useEffect(() => {
+    if (emblaApi) {
+      emblaApi.on("select", () => {
+        setCurrentIndex(emblaApi.selectedScrollSnap());
+      });
+    }
+  }, [emblaApi]);
 
   return (
-    <div className="mx-auto w-full max-w-7xl px-4 py-12">
-      {/* Timeline Navigation */}
-      <div className="relative mb-16">
-        <div className="absolute left-0 right-0 top-1/2 h-0.5 -translate-y-1/2 transform bg-muted" />
-        <div className="relative flex justify-between">
-          {timeline.map((item, index) => (
-            <button
-              key={item.year}
-              onClick={() => setActiveYear(item.year)}
-              className={cn(
-                "relative z-10 flex flex-col items-center",
-                activeYear === item.year
-                  ? "text-primary"
-                  : "text-muted-foreground",
-                index % 2 === 0 ? "translate-y-4" : "-translate-y-4",
-              )}
-              aria-label={`View events from ${item.year}`}
-            >
-              <div
-                className={cn(
-                  "mb-1 h-4 w-4",
-                  activeYear === item.year
-                    ? "bg-primary"
-                    : "bg-muted-foreground",
-                )}
-              />
-              <span className="text-sm font-medium">{item.year}</span>
-            </button>
+    <div className="relative">
+      <div className="embla overflow-hidden rounded-lg" ref={emblaRef}>
+        <div className="embla__container flex">
+          {images.map((src, index) => (
+            <div key={index} className="embla__slide flex-[0_0_100%]">
+              <div className="embla__slide__inner relative aspect-video">
+                <Image
+                  src={typeof src === "string" ? src : src.src}
+                  alt={`Timeline image ${index + 1}`}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
           ))}
         </div>
       </div>
+      {images.length > 1 && (
+        <>
+          <button
+            className="absolute left-2 top-1/2 hidden -translate-y-1/2 transform rounded-full bg-white/80 p-2 hover:bg-white/90 lg:block"
+            onClick={scrollPrev}
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+          <button
+            className="absolute right-2 top-1/2 hidden -translate-y-1/2 transform rounded-full bg-white/80 p-2 hover:bg-white/90 lg:block"
+            onClick={scrollNext}
+          >
+            <ChevronRight className="h-6 w-6" />
+          </button>
+        </>
+      )}
+    </div>
+  );
+}
 
-      {/* Content Section */}
-      <div className="grid gap-8 lg:grid-cols-2">
-        <div className="space-y-6">
-          <div className="min-h-[200px]">
-            <h2 className="mb-2 text-4xl font-bold">{activeYear}</h2>
-            <div className="space-y-4">
-              {activeItem?.content?.length ? (
-                <PortableText
-                  value={activeItem.content}
-                  components={portableTextComponents}
-                />
-              ) : (
-                <p className="text-muted-foreground">
-                  No content available for this event.
-                </p>
-              )}
-            </div>
-          </div>
-          <div className="flex justify-between">
-            {activeYear !== timeline[0].year && (
-              <Button
-                variant="outline"
-                onClick={handlePrevYear}
-                aria-label={`View events from ${
-                  timeline[timeline.findIndex((t) => t.year === activeYear) - 1]
-                    .year
-                }`}
-              >
-                <ChevronLeft className="mr-2 h-4 w-4" />
-                {
-                  timeline[timeline.findIndex((t) => t.year === activeYear) - 1]
-                    .year
-                }
-              </Button>
-            )}
-            {activeYear !== timeline[timeline.length - 1].year && (
-              <Button
-                onClick={handleNextYear}
-                aria-label={`View events from ${
-                  timeline[timeline.findIndex((t) => t.year === activeYear) + 1]
-                    .year
-                }`}
-              >
-                {
-                  timeline[timeline.findIndex((t) => t.year === activeYear) + 1]
-                    .year
-                }
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Button>
-            )}
-          </div>
-        </div>
+export default function Timeline({ events }: TimelineProps) {
+  const [expandedIndexes, setExpandedIndexes] = useState<number[]>([
+    events.length - 1,
+  ]);
+  const eventRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-        {activeItem?.images?.length ? (
-          <Card className="overflow-hidden">
-            <Carousel className="w-full">
-              <CarouselContent
-                selectedIndex={currentImageIndex}
-                setSelectedIndex={setCurrentImageIndex}
+  const toggleExpand = (index: number) => {
+    setExpandedIndexes((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index],
+    );
+  };
+
+  return (
+    <div className="relative mx-auto">
+      {/* Timeline line */}
+      <div className="absolute left-[9px] top-0 h-full w-0.5 bg-gray-300 lg:left-1/2" />
+
+      <div className="relative">
+        {events.map((event, index) => {
+          const isEven = index % 2 === 0;
+          const isExpanded = expandedIndexes.includes(index);
+
+          return (
+            <div
+              key={index}
+              ref={(el) => (eventRefs.current[index] = el)}
+              className="mb-12 transition-opacity duration-1000"
+            >
+              <div
+                className={`relative flex flex-col ${
+                  isEven ? "lg:flex-row" : "lg:flex-row-reverse"
+                } lg:gap-24`}
               >
-                {activeItem.images.map((image, i) => (
-                  <CarouselItem key={i}>
-                    <CardContent className="p-0">
-                      <div className="relative aspect-[3/2] w-full">
-                        <Image
-                          src={image.src}
-                          alt={image.caption}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <div className="flex items-center justify-between p-4">
-                        <p className="text-sm text-muted-foreground">
-                          {image.caption}
-                        </p>
-                        <span className="text-sm text-muted-foreground">
-                          {i + 1} / {activeItem.images?.length}
-                        </span>
-                      </div>
-                    </CardContent>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <div className="hidden lg:block">
-                <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2" />
-                <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2" />
+                {/* Year marker */}
+                <div className="absolute left-0 flex items-center lg:left-1/2 lg:-translate-x-1/2">
+                  <div className="h-[18px] w-[18px] rounded-full border-4 border-white bg-[#765911] md:h-7 md:w-7" />
+                </div>
+
+                {/* Year button */}
+                <div
+                  className={`hidden text-3xl font-semibold text-[#765911] lg:block ${
+                    isEven ? "lg:pr-8 lg:text-right" : "lg:pl-8 lg:text-left"
+                  } lg:w-1/2`}
+                >
+                  <button
+                    onClick={() => toggleExpand(index)}
+                    className="flex items-center justify-end text-xl font-semibold text-[#765911] hover:text-blue-800"
+                    aria-expanded={isExpanded}
+                    aria-controls={`content-${index}`}
+                  >
+                    {event.year}
+                    {isExpanded ? (
+                      <ChevronUp className="ml-2 h-6 w-6" />
+                    ) : (
+                      <ChevronDown className="ml-2 h-6 w-6" />
+                    )}
+                  </button>
+                </div>
+
+                {/* Content container */}
+                <div
+                  id={`content-${index}`}
+                  className={`ml-8 transition-all duration-500 lg:ml-0 lg:w-1/2 ${
+                    isExpanded
+                      ? "max-h-[2000px] opacity-100"
+                      : "max-h-0 overflow-hidden opacity-0 lg:max-h-none lg:overflow-visible lg:opacity-100"
+                  }`}
+                >
+                  {/* Images */}
+                  {event.images && event.images.length > 0 && (
+                    <div className="mb-6 mt-4">
+                      <ImageCarousel images={event.images} />
+                    </div>
+                  )}
+
+                  {/* Portable Text content */}
+                  <div className="space-y-3 text-gray-700">
+                    <PortableText
+                      value={event.content}
+                      components={portableTextComponents}
+                    />
+                  </div>
+                </div>
               </div>
-            </Carousel>
-          </Card>
-        ) : (
-          <div className="p-4 text-center text-muted-foreground">
-            <p>No images available for this event.</p>
-          </div>
-        )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

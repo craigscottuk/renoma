@@ -29,7 +29,7 @@ export default function SectionFaqHome({
   return (
     <section className={clsx("mx-auto bg-white", paddingY)}>
       <MaxWidthWrapper>
-        <div className="grid items-center gap-12 md:grid-cols-2 md:gap-24">
+        <div className="grid items-center gap-6 md:grid-cols-2 md:gap-24">
           {/* Left Column */}
           <SectionTitle
             label={sectionLabel}
@@ -51,12 +51,8 @@ export default function SectionFaqHome({
             </div>
           </div>
         </div>
-      </MaxWidthWrapper>
-
-      <MaxWidthWrapper>
-        <div className="mt-20 bg-black px-2 py-12 md:px-24">
+        <div className="mt-7 bg-black p-8 md:mt-12 md:p-16">
           <FaqAccordion faqItems={faqItems} />
-
           <div className="w-full text-left">
             <CustomButton variant="dark" href="/uslugi">
               {sectionCTA}

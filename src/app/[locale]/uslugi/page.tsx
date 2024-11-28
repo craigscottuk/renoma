@@ -4,6 +4,10 @@ import PageHeaderSection from "@/components/page-header-section";
 import { client } from "@/sanity/client";
 import SectionServices from "@/components/sections-services/section-services";
 import { PortableTextBlock } from "@portabletext/types";
+import ConservationServices from "@/components/sections-services/service-ideas";
+import ConservationPage from "@/components/conservation-page";
+import ConservationPageDesktop from "@/components/conservation-page-desktop";
+import ConservationCIcons from "@/components/sections-case/icons";
 
 const QUERY = `
 {
@@ -68,9 +72,12 @@ export default async function ONas({ params: { locale } }: Props) {
         headerImage={servicesHeaderSection.headerImage}
         headerImageAlt={servicesHeaderSection.headerImageAlt}
       />
-
       {/* Explore Services Section */}
-      <SectionServices services={servicesListSection.services} />
+      {/* <SectionServices services={servicesListSection.services} />
+      <ConservationServices /> */}
+      <ConservationPageDesktop />
+      {/* <ConservationPage /> */}
+      <ConservationCIcons />
     </>
   );
 }

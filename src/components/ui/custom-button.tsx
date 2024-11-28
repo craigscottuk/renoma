@@ -1,7 +1,7 @@
 import { ChevronRight } from "lucide-react";
 import clsx from "clsx";
 import { Link } from "@/i18n/routing";
-import { RoutePaths } from "@/lib/types";
+import { RoutePaths } from "@/lib/routes";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -29,7 +29,7 @@ export default function CustomButton({
     <div className="mt-16 flex w-full">
       <span
         className={clsx(
-          "relative mr-4 flex items-center uppercase tracking-[0.045em] group-hover:text-current",
+          "relative mr-3 flex items-center uppercase tracking-[0.045em] group-hover:text-current md:mr-4",
         )}
         style={{ userSelect: "none" }}
       >

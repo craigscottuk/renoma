@@ -14,7 +14,7 @@ export default function HeroSection({
   sectionCTA,
 }: HeroSectionProps) {
   return (
-    <div className="relative mt-24 min-h-[calc(100vh-96px)]">
+    <div className="relative mt-20 min-h-[calc(100vh-96px)] md:mt-24">
       {/* Background Image */}
       <Image
         src="/cover-img.png"

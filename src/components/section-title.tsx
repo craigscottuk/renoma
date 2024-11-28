@@ -7,7 +7,7 @@ interface SectionTitleProps {
   className?: string;
   motionPreset?: "blur-right" | "blur-left";
   textColor?: "black" | "white";
-  textAlign?: "left" | "right";
+  textAlign?: "left" | "right" | "center";
   label?: string;
 }
 
@@ -23,12 +23,21 @@ export default function HeroTitle({
   const LabelTag = Tag === "h1" ? "h2" : "p";
 
   return (
-    <div className="max-w-[22rem] sm:max-w-[33rem] md:max-w-[43rem]">
+    <div
+      className={clsx(
+        "max-w-[22rem] sm:max-w-[33rem] md:max-w-[43rem]",
+        textAlign === "center" && "mx-auto",
+      )}
+    >
       {label && (
         <LabelTag
           className={clsx(
             "mb-6 text-sm uppercase tracking-wide",
-            textAlign === "left" ? "text-left" : "text-right",
+            textAlign === "left"
+              ? "text-left"
+              : textAlign === "right"
+                ? "text-right"
+                : "text-center",
           )}
         >
           {label}
@@ -40,7 +49,11 @@ export default function HeroTitle({
           "text-balance text-5xl font-light leading-[1.06] md:text-6xl md:leading-[1.06]",
           className,
           textColor === "black" ? "text-black" : "text-white",
-          textAlign === "left" ? "text-left" : "text-right",
+          textAlign === "left"
+            ? "text-left"
+            : textAlign === "right"
+              ? "text-right"
+              : "text-center",
         )}
       >
         {title}

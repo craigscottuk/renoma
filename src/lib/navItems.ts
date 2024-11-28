@@ -1,6 +1,6 @@
 // cSpell:disable
 import { useTranslations } from "next-intl";
-import { RoutePaths } from "@/lib/types";
+import { RoutePaths } from "@/lib/routes";
 
 type NavItem = {
   label: string;

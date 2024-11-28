@@ -76,5 +76,10 @@
       "messageMin": "Message must be at least 10 characters",
       "messageMax": "Message cannot exceed 1500 characters"
     }
+  },
+  "footer": {
+    "copyright": "© {year} PKZ Renoma. All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "scrollToTop": "Scroll to top"
   }
 }

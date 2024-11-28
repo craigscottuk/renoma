@@ -76,5 +76,10 @@
       "messageMin": "Wiadomość musi mieć co najmniej 10 znaków",
       "messageMax": "Wiadomość nie może przekraczać 1500 znaków"
     }
+  },
+  "footer": {
+    "copyright": "© {year} PKZ Renoma. Wszelkie prawa zastrzeżone.",
+    "privacyPolicy": "Polityka Prywatności",
+    "scrollToTop": "Powrót do góry"
   }
 }

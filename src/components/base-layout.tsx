@@ -2,7 +2,7 @@ import { clsx } from "clsx";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { ReactNode } from "react";
-import Footer from "@/components/footer";
+import Footer from "@/components/sections-footer/footer";
 import localFont from "next/font/local";
 import Header from "./header";
 

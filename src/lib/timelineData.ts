@@ -95,3 +95,49 @@ const timelineData: TimelineItem[] = [
 ];
 
 export default timelineData;
+
+// data 2 latest
+
+const timelineEvents = [
+  {
+    year: "2012",
+    content: [
+      "Założenie firmy konserwatorskiej",
+      "Specjalizacja w konserwacji elementów ruchomych kościołów",
+      "Rozwój umiejętności rękodzielniczych",
+      "Pierwsze zlecenia w branży",
+    ],
+    images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
+  },
+  {
+    year: "2015",
+    content: [
+      "Otwarcie pracowni konserwatorskiej",
+      "Zakup nowoczesnego sprzętu",
+      "Rozszerzenie zakresu usług",
+    ],
+    images: ["/placeholder.svg", "/placeholder.svg"],
+  },
+  {
+    year: "2016",
+    content: [
+      "Renowacja ołtarza w Biskupcu Pomorskim",
+      "Konserwacja rzeźb i polichromii",
+      "Zachowanie wartości historycznych",
+    ],
+  },
+  {
+    year: "2017",
+    content: [
+      "Rozwój działu elewacji",
+      "Prace w kościele w Żydowie",
+      "Odsłonięcie historycznych polichromii",
+    ],
+    images: [
+      "/placeholder.svg",
+      "/placeholder.svg",
+      "/placeholder.svg",
+      "/placeholder.svg",
+    ],
+  },
+];

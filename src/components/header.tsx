@@ -20,7 +20,7 @@ export default function Header() {
           </Link>
 
           {/* Nav Items */}
-          <div className="ml-auto flex h-full items-center">
+          <div className="ml-auto flex h-full items-center pt-2.5 md:pt-5">
             <MainNavigation />
             {/* Locale Switcher */}
             <LocaleSwitcher className="hidden xl:flex" />

@@ -5,7 +5,7 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { RoutePaths } from "@/lib/types";
+import { RoutePaths } from "@/lib/routes";
 import { Link } from "@/i18n/routing";
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
