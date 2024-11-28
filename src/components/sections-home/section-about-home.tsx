@@ -32,6 +32,8 @@ export default function SectionAbout({
               as="h2"
               motionPreset="blur-left"
               textColor="black"
+              animateOnView={true}
+              animationDirection="left"
             />
           </div>
 
@@ -50,18 +52,31 @@ export default function SectionAbout({
               label={sectionLabel}
               title={sectionTitle}
               as="h2"
-              motionPreset="blur-left"
+              motionPreset="blur-right"
               textColor="black"
               textAlign="right"
+              animateOnView={true}
+              animationDirection="right"
+              delay={2}
             />
-            <CustomButton variant="light" href="/o-nas">
+            <CustomButton
+              variant="light"
+              animateOnView={true}
+              animationDirection="right"
+              href="/o-nas"
+            >
               {sectionCTA}
             </CustomButton>
           </div>
 
           {/* Button for Mobile, Hidden on Desktop */}
           <div className="text-left md:hidden">
-            <CustomButton variant="light" href="/o-nas">
+            <CustomButton
+              variant="light"
+              animateOnView={true}
+              animationDirection="left"
+              href="/o-nas"
+            >
               {sectionCTA}
             </CustomButton>
           </div>
