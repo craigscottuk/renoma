@@ -1,5 +1,5 @@
 "use client";
-
+// cSpell:disable
 import { useState, useRef, useEffect } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { PortableText } from "@portabletext/react";
