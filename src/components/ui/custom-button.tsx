@@ -1,7 +1,10 @@
+"use client";
 import { ChevronRight } from "lucide-react";
 import clsx from "clsx";
 import { Link } from "@/i18n/routing";
-import { RoutePaths } from "@/lib/routes";
+import { StaticRoutePaths } from "@/lib/routes"; // Import StaticRoutePaths
+import { useEffect, useRef } from "react";
+import { motion, useAnimation, Variants } from "framer-motion";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -9,7 +12,10 @@ interface ButtonProps {
   className?: string;
   ariaLabel?: string;
   variant?: "light" | "dark";
-  href?: RoutePaths;
+  href?: StaticRoutePaths; // Use StaticRoutePaths for href
+  animateOnView?: boolean;
+  animationDirection?: "left" | "right" | "up";
+  delay?: number;
 }
 
 export default function CustomButton({
@@ -19,14 +25,70 @@ export default function CustomButton({
   ariaLabel,
   variant = "light",
   href,
+  animateOnView = false,
+  animationDirection = "right",
+  delay = 0.2,
 }: ButtonProps) {
+  const controls = useAnimation();
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!animateOnView) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          controls.start("visible");
+        }
+      },
+      { threshold: 1.0 },
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [animateOnView, controls]);
+
   const defaultClasses =
     "group inline-flex items-center text-base transition-opacity";
   const lightClasses = "text-black border-black hover:text-black";
   const darkClasses = "text-white border-white hover:text-white";
 
+  const motionVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      filter: "blur(3px)",
+      x:
+        animationDirection === "right"
+          ? 5
+          : animationDirection === "left"
+            ? -5
+            : 0,
+      y: animationDirection === "up" ? 5 : 0,
+    },
+    visible: {
+      opacity: 1,
+      filter: "blur(0px)",
+      x: 0,
+      y: 0,
+      transition: { duration: 0.5, delay }, // Use delay prop here
+    },
+  };
+
   const buttonContent = (
-    <div className="mt-16 flex w-full">
+    <motion.div
+      ref={ref}
+      initial={animateOnView ? "hidden" : "visible"}
+      animate={controls}
+      variants={motionVariants} // Use the local variants
+      className="mt-16 flex w-full"
+    >
       <span
         className={clsx(
           "relative mr-3 flex items-center uppercase tracking-[0.045em] group-hover:text-current md:mr-4",
@@ -49,12 +111,12 @@ export default function CustomButton({
       >
         <ChevronRight className="transform transition-transform" />
       </div>
-    </div>
+    </motion.div>
   );
 
   return href ? (
     <Link
-      href={href}
+      href={href} // Ensure href is typed correctly for Link component
       className={clsx(
         defaultClasses,
         variant === "light" ? lightClasses : darkClasses,
