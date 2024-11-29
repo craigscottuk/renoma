@@ -85,7 +85,7 @@ export default async function ONas({ params: { locale } }: Props) {
       <section className="mt-24">
         <MaxWidthWrapper>
           <SectionTitle
-            title="Nasza historia i doświadczenie"
+            title="Nasza historia"
             as="h2"
             motionPreset="blur-left"
             textColor="black"
