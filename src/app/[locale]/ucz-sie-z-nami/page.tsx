@@ -2,6 +2,7 @@
 import { setRequestLocale } from "next-intl/server";
 import PageHeaderSection from "@/components/page-header-section";
 import { client } from "@/sanity/client";
+import CaseContentOne from "@/components/sections-case/case-concept-one";
 
 const QUERY = `
 {
@@ -41,12 +42,16 @@ export default async function UczSieZNami({ params: { locale } }: Props) {
   const { learnWithUsHeaderSection } = content;
 
   return (
-    <PageHeaderSection
-      sectionLabel={learnWithUsHeaderSection.sectionLabel}
-      sectionTitle={learnWithUsHeaderSection.sectionTitle}
-      sectionDescription={learnWithUsHeaderSection.sectionDescription}
-      headerImage={learnWithUsHeaderSection.headerImage}
-      headerImageAlt={learnWithUsHeaderSection.headerImageAlt}
-    />
+    <>
+      {/* <PageHeaderSection
+        sectionLabel={learnWithUsHeaderSection.sectionLabel}
+        sectionTitle={learnWithUsHeaderSection.sectionTitle}
+        sectionDescription={learnWithUsHeaderSection.sectionDescription}
+        headerImage={learnWithUsHeaderSection.headerImage}
+        headerImageAlt={learnWithUsHeaderSection.headerImageAlt}
+      /> */}
+
+      <CaseContentOne />
+    </>
   );
 }
