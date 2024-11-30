@@ -291,16 +291,19 @@ export default function Timeline({ events }: TimelineProps) {
                     }`
               } relative`}
             >
-              <div
-                className={`relative flex flex-col ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"} lg:gap-8`}
-              >
-                <div className="mb-4 flex items-center lg:mb-0 lg:w-1/2 lg:items-start">
+              <div className={`relative flex flex-col lg:gap-8`}>
+                {/* Title Section - Alternates left/right on desktop */}
+                <div
+                  className={`mb-4 flex items-center lg:mb-0 lg:w-1/2 lg:items-start ${
+                    !isMobile && isEven ? "lg:ml-auto" : ""
+                  }`}
+                >
                   <div className="absolute left-0 lg:left-1/2 lg:-translate-x-1/2">
                     <div className="h-[18px] w-[18px] rounded-full border-4 border-white bg-blue-500" />
                   </div>
                   <button
                     onClick={() => toggleExpand(actualIndex)}
-                    className={`ml-8 flex items-center text-xl font-semibold text-blue-600 hover:text-blue-800 ${isEven ? "lg:ml-auto" : ""}`}
+                    className={`ml-8 flex items-center text-xl font-semibold text-blue-600 hover:text-blue-800`}
                     aria-expanded={isExpanded}
                     aria-controls={`content-${actualIndex}`}
                   >
@@ -313,13 +316,14 @@ export default function Timeline({ events }: TimelineProps) {
                   </button>
                 </div>
 
+                {/* Content Section - Always appears under its title */}
                 <div
                   id={`content-${actualIndex}`}
-                  className={`ml-8 overflow-hidden transition-all duration-500 lg:ml-0 lg:w-1/2 ${
+                  className={`ml-8 overflow-hidden transition-all duration-500 lg:ml-0 ${
                     isExpanded
                       ? "max-h-[2000px] opacity-100"
                       : "max-h-0 opacity-0"
-                  }`}
+                  } ${!isMobile && isEven ? "lg:ml-auto lg:pr-8" : "lg:pl-8"} lg:w-1/2`}
                 >
                   {event.images && event.images.length > 0 && (
                     <div className="mb-6 mt-4">
