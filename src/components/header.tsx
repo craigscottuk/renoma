@@ -7,7 +7,7 @@ import { Link } from "@/i18n/routing";
 
 export default function Header() {
   return (
-    <header className="fixed left-0 z-30 h-20 w-[100vw] bg-white md:h-24">
+    <header className="fixed left-0 z-30 h-20 w-[100vw] bg-white sm:bg-slate-200 md:h-24 md:bg-slate-400 lg:bg-slate-600">
       <MaxWidthWrapper className="h-full">
         <div className="flex h-full w-full items-center">
           {/* Logo */}
