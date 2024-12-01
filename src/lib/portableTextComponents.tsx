@@ -12,7 +12,9 @@ const portableTextComponents: PortableTextComponents = {
     number: ({ children }) => <ol className="list-decimal pl-4">{children}</ol>,
   },
   listItem: {
-    bullet: ({ children }) => <li className="mb-0">{children}</li>,
+    bullet: ({ children }) => (
+      <li className="mb-0 text-[1.1rem]">{children}</li>
+    ),
     number: ({ children }) => <li className="mb-0">{children}</li>,
   },
   marks: {
