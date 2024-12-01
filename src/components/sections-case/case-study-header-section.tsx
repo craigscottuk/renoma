@@ -14,6 +14,7 @@ interface CaseStudyHeaderSectionProps {
   headerImage?: SanityImageSource | string;
   headerImageAlt?: string;
   headerFullWidth?: boolean;
+  className?: string; // Add className prop
 }
 
 export default function CaseStudyHeaderSection({
@@ -23,6 +24,7 @@ export default function CaseStudyHeaderSection({
   headerImage,
   headerImageAlt,
   headerFullWidth = true, // Default to full-width image
+  className, // Add className prop
 }: CaseStudyHeaderSectionProps) {
   // Generate the URL for the header image from Sanity or use the provided string URL
   const headerImageUrl =
@@ -49,7 +51,9 @@ export default function CaseStudyHeaderSection({
         </div>
       )}
 
-      <section className="relative mx-auto bg-white py-12 lg:py-24">
+      <section
+        className={`relative mx-auto bg-white py-12 lg:py-24 ${className}`}
+      >
         {/* Main content layout */}
         <MaxWidthWrapper
           className={`flex flex-col ${
@@ -110,10 +114,6 @@ export default function CaseStudyHeaderSection({
               />
             </div>
           )}
-        </MaxWidthWrapper>
-
-        <MaxWidthWrapper>
-          <Separator />
         </MaxWidthWrapper>
       </section>
     </>
