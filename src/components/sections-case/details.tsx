@@ -6,7 +6,11 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import MaxWidthWrapper from "../max-width-wrapper";
 
-export default function ProjectDetailsSection() {
+export default function ProjectDetailsSection({
+  className,
+}: {
+  className?: string;
+}) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const details = [
@@ -51,36 +55,43 @@ export default function ProjectDetailsSection() {
   const visibleDetails = isExpanded ? details : details.slice(0, 4);
 
   return (
-    <section className="relative mx-auto bg-white py-12 lg:py-24">
+    <section className={`relative mx-auto bg-white py-12 ${className}`}>
+      <MaxWidthWrapper>
+        <Separator className="mb-12" />
+      </MaxWidthWrapper>
+
       <MaxWidthWrapper className={`flex flex-col lg:flex-row lg:gap-8`}>
         {/* Empty column */}
-        <div className="flex-1"></div>
+        <div className="flex-1 lg:w-1/2"></div>
         {/* Details column */}
-        <div className="flex flex-col md:max-w-[29rem] lg:items-end">
+        <div className="flex flex-col lg:w-1/2 lg:items-start">
           <p className="mb-6 text-sm font-medium text-muted-foreground">
             ⊙ Szczegóły projektu
           </p>
           <div className="grid grid-cols-1 gap-6">
             {visibleDetails.map((detail, index) => (
-              <div key={index} className="grid grid-cols-[200px_1fr] gap-6">
-                <div className="text-sm font-medium">{detail.label}</div>
-                <div className="text-sm">
-                  {Array.isArray(detail.value) ? (
-                    <ul className="list-none space-y-1">
-                      {detail.value.map((item, i) => (
-                        <li key={i}>{item}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    detail.value
-                  )}
+              <div>
+                <div key={index} className="grid grid-cols-2 gap-12">
+                  <div className="font-bolder text-sm">{detail.label}</div>
+                  <div className="text-sm">
+                    {Array.isArray(detail.value) ? (
+                      <ul className="list-none space-y-1">
+                        {detail.value.map((item, i) => (
+                          <li key={i}>{item}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      detail.value
+                    )}
+                  </div>
                 </div>
+                <Separator className="my-3" />
               </div>
             ))}
           </div>
           <Button
-            variant="ghost"
-            className="mt-6 text-sm font-medium"
+            variant="link"
+            className="px-0 font-bolder text-sm"
             onClick={() => setIsExpanded(!isExpanded)}
           >
             {isExpanded ? (
@@ -96,6 +107,9 @@ export default function ProjectDetailsSection() {
             )}
           </Button>
         </div>
+      </MaxWidthWrapper>
+      <MaxWidthWrapper>
+        <Separator className="mt-12" />
       </MaxWidthWrapper>
     </section>
   );
