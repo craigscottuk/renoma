@@ -157,13 +157,13 @@ export const timelineSection = defineType({
                     defineField({
                       name: "caption",
                       title: "Podpis",
-                      type: "string",
+                      type: "internationalizedArrayString",
                       description: "Dodaj podpis do obrazu.",
                     }),
                   ],
                   preview: {
                     select: {
-                      title: "caption",
+                      title: "caption.0.value",
                       media: "src",
                     },
                     prepare({ title, media }) {
