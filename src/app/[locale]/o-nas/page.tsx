@@ -25,7 +25,7 @@ const QUERY = `
     
     "images": images[]{
       "src": src.asset->url,
-      "caption": caption
+      "caption": coalesce(caption[_key == $locale][0].value, "Brak tłumaczenia")
     }
   }
 }
@@ -49,7 +49,7 @@ interface Content {
 }
 
 interface TimelineItem {
-  year: number;
+  year: string; // Change from number to string
   content: PortableTextBlock[];
   images?: TimelineImage[];
 }
