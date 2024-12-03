@@ -28,7 +28,12 @@ import {
 } from "./kontakt";
 import { ustawienia } from "./ustawienia";
 import { privacy, privacyHeaderSection } from "./privacy";
-import { basicText, portableTextWithImage } from "./portableText";
+import {
+  basicText,
+  portableTextWithHeadings,
+  portableTextWithImage,
+} from "./portableText";
+import { sectionContent } from "./sectionContent";
 import { time } from "console";
 
 // Export schema configuration
@@ -85,5 +90,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     // Portable Text
     basicText,
     portableTextWithImage,
+    portableTextWithHeadings,
+
+    sectionContent,
   ],
 };
