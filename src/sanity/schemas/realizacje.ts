@@ -1,3 +1,4 @@
+// cSpell:disable
 import { defineType, defineField } from "sanity";
 
 export const realizacje = defineType({
