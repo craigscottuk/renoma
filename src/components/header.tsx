@@ -6,8 +6,10 @@ import SideNavigation from "./navigation/side-navigation";
 import { Link } from "@/i18n/routing";
 
 export default function Header() {
+  // test classes: sm:bg-slate-200 md:h-24 md:bg-slate-400 lg:bg-slate-600
+
   return (
-    <header className="fixed left-0 z-30 h-20 w-[100vw] bg-white sm:bg-slate-200 md:h-24 md:bg-slate-400 lg:bg-slate-600">
+    <header className="fixed left-0 z-30 h-20 w-[100vw] bg-white">
       <MaxWidthWrapper className="h-full">
         <div className="flex h-full w-full items-center">
           {/* Logo */}
