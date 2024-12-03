@@ -2,17 +2,40 @@
 // app/[locale]/realizacje/[slug]/page.tsx
 import { client } from "@/sanity/client";
 import { setRequestLocale } from "next-intl/server";
-import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { redirect } from "@/i18n/routing";
 import NoTranslationMessage from "@/components/NoTranslationMessage";
+import CaseStudyHeaderSection from "@/components/sections-case/case-study-header-section";
+import ContentSection from "@/components/sections-case/content-section";
+import ProjectDetailsSection from "@/components/sections-case/details";
 
 //TD: coalesce all values
 
 const QUERY = `
 *[_type == "wpisRealizacji" && slug.current == $slug][0]{
+  language,
   title,
   slug,
-  language,
+  summary,
+  headerImage {
+    image,
+    imageAlt
+  },
+  details {
+    lokalizacja,
+    status,
+    czasTrwania,
+    typObiektu,
+    rola,
+    zakresPrac
+  },
+  sectionOne {
+    sectionOneTitle,
+    sectionOneContent
+  },
+  sectionTwo {
+    sectionTwoTitle,
+    sectionTwoContent
+  },
   "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{
     title,
     slug,
@@ -21,17 +44,39 @@ const QUERY = `
 }
 `;
 
+type Project = {
+  label: string;
+  title: string;
+  slug: { current: string };
+  language: string;
+  summary: string;
+  headerImage: {
+    image: string;
+    imageAlt: string;
+  };
+  details: {
+    lokalizacja: string;
+    status: string;
+    czasTrwania: string;
+    typObiektu: string;
+    rola: string[];
+    zakresPrac: string[];
+  };
+  sectionOne: {
+    sectionOneTitle: string;
+    sectionOneContent: string;
+  };
+  sectionTwo: {
+    sectionTwoTitle: string;
+    sectionTwoContent: string;
+  };
+  _translations: Translation[];
+};
+
 type Translation = {
   title: string;
   slug: { current: string };
   language: string;
-};
-
-type Project = {
-  title: string;
-  slug: { current: string };
-  language: string;
-  _translations: Translation[];
 };
 
 type Props = {
@@ -65,11 +110,47 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
   return (
     <>
       {translation ? (
-        <section className="mt-48">
-          <MaxWidthWrapper>
-            <h2>{translation.title}</h2>
-          </MaxWidthWrapper>
-        </section>
+        <>
+          <CaseStudyHeaderSection
+            label={
+              locale === "en"
+                ? "Case Study"
+                : locale === "pl"
+                  ? "Realizacja"
+                  : locale === "de"
+                    ? "Fallstudie"
+                    : "Case Study"
+            }
+            title={project.title ?? "Default Title"} // Add optional chaining with default value
+            summary={project.summary ?? "Default Summary"} // Add optional chaining with default value
+            image={project.headerImage?.image} // Add optional chaining
+            imageAlt={project.headerImage?.imageAlt} // Add optional chaining
+          />
+          <ProjectDetailsSection
+            details={
+              project.details
+                ? [
+                    {
+                      label: "Lokalizacja",
+                      value: project.details.lokalizacja,
+                    },
+                    { label: "Status", value: project.details.status },
+                    {
+                      label: "Czas trwania",
+                      value: project.details.czasTrwania,
+                    },
+                    { label: "Typ obiektu", value: project.details.typObiektu },
+                    { label: "Rola", value: project.details.rola },
+                    { label: "Zakres prac", value: project.details.zakresPrac },
+                  ]
+                : []
+            }
+          />
+          <ContentSection
+            sectionOne={project.sectionOne}
+            sectionTwo={project.sectionTwo}
+          />
+        </>
       ) : (
         <NoTranslationMessage
           locale={locale}
