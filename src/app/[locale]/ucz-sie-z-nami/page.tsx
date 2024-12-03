@@ -13,6 +13,8 @@ const QUERY = `
     "headerImage": headerImage, // Fetch full image object with asset._ref
     "headerImageAlt": coalesce(headerImage.alt[_key == $locale][0].value, "Brak tłumaczenia")
   },
+
+  "wpisRealizacji": *[_type == "wpisRealizacji" && slug == 'konserwacja-baszty-ferbera']{title,}
 }
 `;
 
