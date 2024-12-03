@@ -5,112 +5,107 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import SectionTitle from "@/components/section-title";
 import SectionDescription from "@/components/section-description";
 import MaxWidthWrapper from "./../max-width-wrapper";
-import { Separator } from "@/components/ui/separator";
+import clsx from "clsx";
+import { useLocale } from "next-intl";
 
 interface CaseStudyHeaderSectionProps {
-  sectionLabel: string;
-  sectionTitle: string;
-  sectionDescription: string;
-  headerImage?: SanityImageSource | string;
-  headerImageAlt?: string;
+  label?: string;
+  title?: string;
+  summary?: string;
+  image?: SanityImageSource | string;
+  imageAlt?: string;
   headerFullWidth?: boolean;
-  className?: string; // Add className prop
+  className?: string;
 }
 
 export default function CaseStudyHeaderSection({
-  sectionLabel,
-  sectionTitle,
-  sectionDescription,
-  headerImage,
-  headerImageAlt,
-  headerFullWidth = true, // Default to full-width image
-  className, // Add className prop
+  label,
+  title = "Domyślny Tytuł",
+  summary = "Domyślne Podsumowanie",
+  image,
+  imageAlt,
+  headerFullWidth = true,
+  className,
 }: CaseStudyHeaderSectionProps) {
+  // Get the locale
+  const locale = useLocale();
+
+  // Function to determine label based on locale
+  const getLabel = (locale: string) => {
+    switch (locale) {
+      case "en":
+        return "Case Study";
+      case "pl":
+        return "Realizacje";
+      case "de":
+        return "Fallstudie";
+    }
+  };
+
   // Generate the URL for the header image from Sanity or use the provided string URL
-  const headerImageUrl =
-    typeof headerImage === "string"
-      ? headerImage
-      : headerImage
-        ? urlFor(headerImage, 1200)
-        : undefined;
+  const imageUrl =
+    typeof image === "string" ? image : image ? urlFor(image, 1200) : undefined;
 
   return (
     <>
       {/* Render the header image if available and full-width is enabled */}
-      {headerImageUrl && headerFullWidth && (
+      {headerFullWidth && (
         <div className="relative mt-24 h-80 w-full">
           <Image
-            src={headerImageUrl}
-            alt={headerImageAlt || "Case study header image"}
+            src={imageUrl || "/fallback-image.svg"}
+            alt={imageAlt || "Obraz nagłówka studium przypadku"}
             fill
             style={{
               objectFit: "cover",
               objectPosition: "center",
             }}
+            loading="lazy"
           />
         </div>
       )}
 
       <section
-        className={`relative mx-auto bg-white py-12 lg:py-24 ${className}`}
+        className={clsx("relative mx-auto bg-white py-12 lg:py-24", className)}
       >
         {/* Main content layout */}
         <MaxWidthWrapper
-          className={`flex flex-col ${
-            headerImageUrl && !headerFullWidth
+          className={clsx(
+            "flex flex-col",
+            imageUrl && !headerFullWidth
               ? "lg:flex-row lg:items-start"
-              : "lg:flex-row lg:gap-8"
-          }`}
-        >
-          {headerImageUrl && !headerFullWidth ? (
-            // Stacked layout for title and description without a full-width header image on large screens
-            <div className="flex-1">
-              <SectionTitle
-                label={sectionLabel}
-                title={sectionTitle}
-                as="h1"
-                motionPreset="blur-left"
-                textColor="black"
-              />
-              <SectionDescription
-                description={sectionDescription}
-                marginTop={true}
-                textStyle="text-balance"
-              />
-            </div>
-          ) : (
-            // Two-column layout for large screens, with or without a full-width header image
-            <>
-              <div className="flex-1">
-                <SectionTitle
-                  label={sectionLabel}
-                  title={sectionTitle}
-                  as="h1"
-                  motionPreset="blur-left"
-                  textColor="black"
-                />
-              </div>
-              <div className="flex flex-col md:max-w-[29rem] lg:items-end">
-                <SectionDescription
-                  description={sectionDescription}
-                  marginTop={true}
-                  textStyle="text-balance"
-                />
-              </div>
-            </>
+              : "lg:flex-row lg:gap-8",
           )}
+        >
+          {/* Render the title and description */}
+          <div className="flex-1">
+            <SectionTitle
+              label={label || getLabel(locale)} // Use dynamic label if not provided
+              title={title}
+              as="h1"
+              motionPreset="blur-left"
+              textColor="black"
+            />
+          </div>
+          <div className="flex flex-col md:max-w-[29rem] lg:items-end">
+            <SectionDescription
+              description={summary}
+              marginTop
+              textStyle="text-balance"
+            />
+          </div>
 
           {/* Render the image on the right side for large screens if not full-width */}
-          {headerImageUrl && !headerFullWidth && (
+          {imageUrl && !headerFullWidth && (
             <div className="relative hidden lg:-mb-80 lg:-mt-12 lg:ml-auto lg:block lg:h-[620px] lg:w-[520px]">
               <Image
-                src={headerImageUrl}
-                alt={headerImageAlt || "Header image"}
+                src={imageUrl || "/fallback-image.svg"}
+                alt={imageAlt || "Obraz nagłówka"}
                 fill
                 style={{
-                  objectFit: "cover", // Maintain image proportions
-                  objectPosition: "center", // Center the image content
+                  objectFit: "cover",
+                  objectPosition: "center",
                 }}
+                loading="lazy"
               />
             </div>
           )}
