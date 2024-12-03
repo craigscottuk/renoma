@@ -39,9 +39,13 @@ interface Projects {
 export default async function Realizacje({ params: { locale } }: Props) {
   setRequestLocale(locale);
 
-  const { projects, realizacjeHeaderSection } = await client.fetch(QUERY, {
-    locale,
-  });
+  const { projects, realizacjeHeaderSection } = await client.fetch(
+    QUERY,
+    {
+      locale,
+    },
+    OPTIONS,
+  );
 
   console.log(projects);
 
