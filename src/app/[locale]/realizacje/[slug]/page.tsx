@@ -7,8 +7,7 @@ import NoTranslationMessage from "@/components/NoTranslationMessage";
 import CaseStudyHeaderSection from "@/components/sections-case/case-study-header-section";
 import ContentSection from "@/components/sections-case/content-section";
 import ProjectDetailsSection from "@/components/sections-case/details";
-
-//TD: coalesce all values
+import { CaseStudySectionContent } from "@/types";
 
 const QUERY = `
 *[_type == "wpisRealizacji" && slug.current == $slug][0]{
@@ -29,13 +28,14 @@ const QUERY = `
     zakresPrac
   },
   sectionOne {
-    sectionOneTitle,
-    sectionOneContent
+    title,
+    content
   },
   sectionTwo {
-    sectionTwoTitle,
-    sectionTwoContent
+    title,
+    content
   },
+  
   "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{
     title,
     slug,
@@ -43,6 +43,12 @@ const QUERY = `
   }
 }
 `;
+
+type Translation = {
+  title: string;
+  slug: { current: string };
+  language: string;
+};
 
 type Project = {
   label: string;
@@ -63,20 +69,14 @@ type Project = {
     zakresPrac: string[];
   };
   sectionOne: {
-    sectionOneTitle: string;
-    sectionOneContent: string;
+    title: string;
+    content: CaseStudySectionContent[];
   };
   sectionTwo: {
-    sectionTwoTitle: string;
-    sectionTwoContent: string;
+    title: string;
+    content: CaseStudySectionContent[];
   };
   _translations: Translation[];
-};
-
-type Translation = {
-  title: string;
-  slug: { current: string };
-  language: string;
 };
 
 type Props = {
@@ -84,16 +84,25 @@ type Props = {
 };
 
 export default async function ProjectPage({ params: { slug, locale } }: Props) {
-  // Set the locale for the page rendering
   setRequestLocale(locale);
 
   // Define options for ISR revalidation
   const OPTIONS = { next: { revalidate: 30 } };
 
-  // Fetch the project data with the revalidate option
-  const project: Project = await client.fetch(QUERY, { slug }, OPTIONS);
+  // Error handling for fetching data
+  let project: Project | null = null;
+  try {
+    project = await client.fetch(QUERY, { slug }, OPTIONS);
+  } catch (error) {
+    console.error("Error fetching project data:", error);
+    return <div>Error loading project. Please try again later.</div>;
+  }
 
-  // Determine the translation for the selected locale or fallback to the original language if unavailable
+  if (!project) {
+    return <div>Project not found.</div>; // Optionally, redirect to a 404 page
+  }
+
+  // Determine the translation for the selected locale
   const translation = project._translations.find((t) => t.language === locale);
 
   // If the URL slug does not match the translation's slug, redirect
@@ -107,24 +116,25 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
     });
   }
 
+  const {
+    headerImage,
+    details,
+    sectionOne,
+    sectionTwo,
+    summary,
+    title,
+    _translations,
+  } = project;
+
   return (
     <>
       {translation ? (
         <>
           <CaseStudyHeaderSection
-            label={
-              locale === "en"
-                ? "Case Study"
-                : locale === "pl"
-                  ? "Realizacja"
-                  : locale === "de"
-                    ? "Fallstudie"
-                    : "Case Study"
-            }
-            title={project.title ?? "Default Title"} // Add optional chaining with default value
-            summary={project.summary ?? "Default Summary"} // Add optional chaining with default value
-            image={project.headerImage?.image} // Add optional chaining
-            imageAlt={project.headerImage?.imageAlt} // Add optional chaining
+            title={title}
+            summary={summary}
+            image={headerImage?.image}
+            imageAlt={headerImage?.imageAlt}
           />
           <ProjectDetailsSection
             details={
@@ -142,20 +152,17 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
                     { label: "Typ obiektu", value: project.details.typObiektu },
                     { label: "Rola", value: project.details.rola },
                     { label: "Zakres prac", value: project.details.zakresPrac },
-                  ]
+                  ].filter((detail) => detail.value !== null)
                 : []
             }
           />
-          <ContentSection
-            sectionOne={project.sectionOne}
-            sectionTwo={project.sectionTwo}
-          />
+          {/* 01. Rys Historyczny (lub inny) */}
+          <ContentSection sectionContent={sectionOne.content} />
+          {/* 02. Stan zachowania (lub inny) */}
+          <ContentSection sectionContent={sectionTwo.content} />
         </>
       ) : (
-        <NoTranslationMessage
-          locale={locale}
-          translations={project._translations}
-        />
+        <NoTranslationMessage locale={locale} translations={_translations} />
       )}
     </>
   );
