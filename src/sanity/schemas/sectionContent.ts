@@ -34,14 +34,8 @@ export const sectionContent = defineType({
                   name: "caption",
                   type: "string",
                   title: "Opis",
-                  fieldset: "captionFieldset",
-                },
-              ],
-              fieldsets: [
-                {
-                  name: "captionFieldset",
-                  title: "Opis",
-                  options: { collapsible: true, collapsed: true },
+                  description:
+                    "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i zwiększyć słowa kluczowe SEO.",
                 },
               ],
             },
@@ -153,14 +147,8 @@ export const sectionContent = defineType({
                   name: "caption",
                   type: "string",
                   title: "Opis",
-                  fieldset: "captionFieldset",
-                },
-              ],
-              fieldsets: [
-                {
-                  name: "captionFieldset",
-                  title: "Opis",
-                  options: { collapsible: true, collapsed: true },
+                  description:
+                    "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i zwiększyć słowa kluczowe SEO.",
                 },
               ],
             },
@@ -194,14 +182,8 @@ export const sectionContent = defineType({
                   name: "caption",
                   type: "string",
                   title: "Opis",
-                  fieldset: "captionFieldset",
-                },
-              ],
-              fieldsets: [
-                {
-                  name: "captionFieldset",
-                  title: "Opis",
-                  options: { collapsible: true, collapsed: true },
+                  description:
+                    "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i zwiększyć słowa kluczowe SEO.",
                 },
               ],
             },
@@ -257,14 +239,8 @@ export const sectionContent = defineType({
               name: "caption",
               type: "string",
               title: "Opis",
-              fieldset: "captionFieldset",
-            },
-          ],
-          fieldsets: [
-            {
-              name: "captionFieldset",
-              title: "Opis",
-              options: { collapsible: true, collapsed: true },
+              description:
+                "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i zwiększyć słowa kluczowe SEO.",
             },
           ],
         },
@@ -302,14 +278,8 @@ export const sectionContent = defineType({
               name: "caption",
               type: "string",
               title: "Opis",
-              fieldset: "captionFieldset",
-            },
-          ],
-          fieldsets: [
-            {
-              name: "captionFieldset",
-              title: "Opis",
-              options: { collapsible: true, collapsed: true },
+              description:
+                "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i zwiększyć słowa kluczowe SEO.",
             },
           ],
         },
