@@ -160,13 +160,13 @@ export const wpisRealizacji = defineType({
       group: "contentSection",
       fields: [
         {
-          name: "sectionOneTitle",
+          name: "title",
           title: "Tytuł Sekcji",
           type: "string",
           initialValue: "Rys historyczny",
         },
         {
-          name: "sectionTwoContent",
+          name: "content",
           title: "Treść Sekcji",
           type: "sectionContent",
         },
@@ -184,13 +184,13 @@ export const wpisRealizacji = defineType({
       group: "contentSection",
       fields: [
         {
-          name: "sectionTwoTitle",
+          name: "title",
           title: "Tytuł Sekcji",
           type: "string",
           initialValue: "Stan zachowania",
         },
         {
-          name: "sectionTwoContent",
+          name: "content",
           title: "Treść Sekcji",
           type: "sectionContent",
         },
