@@ -5,11 +5,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import MaxWidthWrapper from "../max-width-wrapper";
-
-type Detail = {
-  label: string;
-  value: string | string[];
-};
+import { Detail } from "@/types";
 
 export default function ProjectDetailsSection({
   className,
@@ -20,7 +16,7 @@ export default function ProjectDetailsSection({
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const nonNullDetails = details.filter((detail) => detail.value);
+  const nonNullDetails = details.filter((detail) => detail.value !== null);
   const visibleDetails = isExpanded
     ? nonNullDetails
     : nonNullDetails.slice(0, 4);
@@ -40,15 +36,15 @@ export default function ProjectDetailsSection({
         <div className="flex-1 lg:w-1/2"></div>
         {/* Details column */}
         <div className="flex flex-col lg:w-1/2 lg:items-start">
-          <p className="mb-6 text-sm font-medium text-muted-foreground">
+          <p className="mb-6 font-medium text-[base] text-muted-foreground">
             ⊙ Szczegóły projektu
           </p>
           <div className="grid w-full grid-cols-1 gap-6">
             {visibleDetails.map((detail, index) => (
               <div key={index}>
                 <div className="grid grid-cols-2 gap-12">
-                  <div className="font-bolder text-sm">{detail.label}</div>
-                  <div className="text-sm">
+                  <div className="font-bolder text-[base]">{detail.label}</div>
+                  <div className="text-[base]">
                     {Array.isArray(detail.value) ? (
                       detail.value.length > 1 ? (
                         <ul className="list-disc space-y-1">
@@ -71,7 +67,7 @@ export default function ProjectDetailsSection({
           {nonNullDetails.length > 4 && (
             <Button
               variant="link"
-              className="px-0 font-bolder text-sm"
+              className="px-0 font-bolder text-[base]"
               onClick={() => setIsExpanded(!isExpanded)}
             >
               {isExpanded ? (
