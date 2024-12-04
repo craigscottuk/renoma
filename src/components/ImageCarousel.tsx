@@ -1,20 +1,48 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { ArrowUp, Plus, Minus } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ArrowLeft, ArrowRight, ArrowUp, Plus, Minus } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 
 interface ImageCarouselProps {
   images: Array<{ src: string; caption?: string }>;
+  aspectRatio?: "none" | "landscape" | "portrait" | "square";
 }
 
-export default function ImageCarousel({ images }: ImageCarouselProps) {
+export default function ImageCarousel({
+  images,
+  aspectRatio = "landscape",
+}: ImageCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showCaptions, setShowCaptions] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+
+  const aspectRatioClass =
+    {
+      none: "aspect-auto",
+      landscape: "aspect-w-16 aspect-h-9",
+      portrait: "aspect-[4/3]",
+      square: "aspect-square",
+    }[aspectRatio] || "aspect-video";
+
+  const sizeClass =
+    {
+      none: "h-64 w-full",
+      landscape: "h-[500px] w-full",
+      portrait: "h-96 w-64",
+      square: "h-96 w-96",
+    }[aspectRatio] || "h-64 w-full";
+
+  const objectPositionClass =
+    {
+      none: "object-center",
+      landscape: "object-center",
+      portrait: "object-top",
+      square: "object-center",
+    }[aspectRatio] || "object-center";
 
   useEffect(() => {
     const checkMobile = () => {
@@ -39,22 +67,26 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
     setShowCaptions((prev) => !prev);
   };
 
+  const scrollPrev = () => emblaApi?.scrollPrev();
+  const scrollNext = () => emblaApi?.scrollNext();
+
   const currentCaption = images[currentIndex]?.caption;
   const hasCurrentCaption = Boolean(currentCaption);
 
   if (images.length === 1) {
     return (
-      <div className="relative">
-        <div className="relative aspect-video">
+      <div className={`relative ${sizeClass} mb-16`}>
+        {/* Ensure spacing around the carousel */}
+        <div className="relative h-full w-full">
           <Image
             src={images[0].src}
-            alt={images[0].caption || "Timeline image"}
+            alt={images[0].caption || "Image"}
             fill
-            className="rounded-[4px] object-cover"
+            className={`rounded-[4px] object-cover ${objectPositionClass}`}
           />
         </div>
         {hasCurrentCaption && (
-          <div className="rounded-b-lg bg-gray-50 px-4 py-3 text-sm text-gray-600">
+          <div className="relative z-10 bg-gray-50 px-4 py-3 text-sm text-gray-600">
             <div className="flex items-start gap-2">
               <ArrowUp className="mt-1 h-4 w-4 flex-shrink-0" />
               <span>{currentCaption}</span>
@@ -66,30 +98,53 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
   }
 
   return (
-    <div className="relative">
-      <div className="relative">
+    <div className={`relative ${sizeClass} mb-16`}>
+      {/* Added bottom margin to prevent overlap */}
+      <div className="relative h-full w-full">
         <div
-          className="embla overflow-hidden rounded-lg rounded-t-lg"
+          className="embla h-full w-full overflow-hidden rounded-lg"
           ref={emblaRef}
         >
-          <div className="embla__container flex">
+          <div className="embla__container flex h-full w-full">
             {images.map((image, index) => (
-              <div key={index} className="embla__slide flex-[0_0_100%]">
-                <div className="embla__slide__inner relative">
-                  <div className="relative aspect-video">
-                    <Image
-                      src={image.src}
-                      alt={image.caption || `Timeline image ${index + 1}`}
-                      fill
-                      className="rounded-[4px] object-cover"
-                    />
-                  </div>
+              <div
+                key={index}
+                className="embla__slide h-full w-full flex-[0_0_100%]"
+              >
+                <div className="embla__slide__inner relative h-full w-full">
+                  <Image
+                    src={image.src}
+                    alt={image.caption || `Image ${index + 1}`}
+                    fill
+                    className={`rounded-[4px] object-cover ${objectPositionClass}`}
+                  />
                 </div>
               </div>
             ))}
           </div>
         </div>
 
+        {/* Next/Prev Buttons */}
+        {!isMobile && (
+          <>
+            <button
+              onClick={scrollPrev}
+              className="absolute left-4 top-1/2 z-10 -translate-y-1/2 transform rounded-full bg-black/50 p-2 text-white hover:bg-black"
+              aria-label="Previous image"
+            >
+              <ArrowLeft className="h-6 w-6" />
+            </button>
+            <button
+              onClick={scrollNext}
+              className="absolute right-4 top-1/2 z-10 -translate-y-1/2 transform rounded-full bg-black/50 p-2 text-white hover:bg-black"
+              aria-label="Next image"
+            >
+              <ArrowRight className="h-6 w-6" />
+            </button>
+          </>
+        )}
+
+        {/* Caption Toggle for Mobile */}
         {isMobile && hasCurrentCaption && (
           <Button
             variant="outline"
@@ -106,21 +161,11 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
             )}
           </Button>
         )}
-
-        <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 transform space-x-2">
-          {images.map((_, index) => (
-            <div
-              key={index}
-              className={`h-2 w-2 rounded-full ${
-                index === currentIndex ? "bg-white" : "bg-white/50"
-              }`}
-            />
-          ))}
-        </div>
       </div>
 
+      {/* Caption Section */}
       {isMobile && showCaptions && currentCaption && (
-        <div className="rounded-b-lg bg-gray-50 px-4 py-3 text-sm text-gray-600">
+        <div className="relative z-10 bg-gray-50 px-4 py-3 text-sm text-gray-600">
           <div className="flex items-start gap-2">
             <ArrowUp className="mt-1 h-4 w-4 flex-shrink-0" />
             <span>{currentCaption}</span>
@@ -129,7 +174,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
       )}
 
       {!isMobile && currentCaption && (
-        <div className="rounded-b-lg bg-gray-50 px-4 py-3 text-sm text-gray-600">
+        <div className="relative z-10 bg-gray-50 px-4 py-3 text-sm text-gray-600">
           <div className="flex items-start gap-2">
             <ArrowUp className="mt-1 h-4 w-4 flex-shrink-0" />
             <span>{currentCaption}</span>
