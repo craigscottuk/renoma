@@ -101,20 +101,12 @@ export default function ContentSection({
             return (
               <MaxWidthWrapper
                 key={index}
-                className={`flex flex-col lg:flex-row lg:gap-24`}
+                className={`columns-1 gap-8 lg:columns-2`}
               >
-                <div className="flex-1 lg:w-1/2">
-                  <PortableText
-                    value={section.text1 || []}
-                    components={portableTextComponents}
-                  />
-                </div>
-                <div className="flex flex-col lg:w-1/2 lg:items-start">
-                  <PortableText
-                    value={section.text2 || []}
-                    components={portableTextComponents}
-                  />
-                </div>
+                <PortableText
+                  value={section.text || []}
+                  components={portableTextComponents}
+                />
               </MaxWidthWrapper>
             );
           case "imageGalleryAndImageGallery":
