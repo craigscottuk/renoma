@@ -29,13 +29,22 @@ const QUERY = `
   },
   sectionOne {
     title,
-    content
+    content[]{
+      ...,
+      _type == "textAndImageGallery" => {
+        layout
+      }
+    }
   },
   sectionTwo {
     title,
-    content
+    content[]{
+      ...,
+      _type == "textAndImageGallery" => {
+        layout
+      }
+    }
   },
-  
   "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{
     title,
     slug,
@@ -152,14 +161,21 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
                     { label: "Typ obiektu", value: project.details.typObiektu },
                     { label: "Rola", value: project.details.rola },
                     { label: "Zakres prac", value: project.details.zakresPrac },
-                  ].filter((detail) => detail.value !== null)
+                  ]
                 : []
             }
           />
           {/* 01. Rys Historyczny (lub inny) */}
-          <ContentSection sectionContent={sectionOne.content} />
+          <ContentSection
+            title={sectionOne.title}
+            content={sectionOne.content}
+          />
+
           {/* 02. Stan zachowania (lub inny) */}
-          <ContentSection sectionContent={sectionTwo.content} />
+          <ContentSection
+            title={sectionTwo.title}
+            content={sectionTwo.content}
+          />
         </>
       ) : (
         <NoTranslationMessage locale={locale} translations={_translations} />
