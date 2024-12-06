@@ -64,17 +64,17 @@ export const sectionContent = defineType({
           options: {
             list: [
               {
-                title: "Obraz po lewej, tekst po prawej",
-                value: "imageLeftTextRight",
-              },
-              {
                 title: "Tekst po lewej, obraz po prawej",
                 value: "textLeftImageRight",
+              },
+              {
+                title: "Obraz po lewej, tekst po prawej",
+                value: "imageLeftTextRight",
               },
             ],
             layout: "radio",
           },
-          initialValue: "imageLeftTextRight",
+          initialValue: "textLeftImageRight",
           description: "Wybierz układ dla tej sekcji.",
         },
       ],
