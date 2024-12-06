@@ -7,6 +7,7 @@ import SectionDescription from "@/components/section-description";
 import MaxWidthWrapper from "./../max-width-wrapper";
 import clsx from "clsx";
 import { useLocale } from "next-intl";
+import { Separator } from "@/components/ui/separator";
 
 interface CaseStudyHeaderSectionProps {
   label?: string;
@@ -50,7 +51,7 @@ export default function CaseStudyHeaderSection({
     <>
       {/* Render the header image if available and full-width is enabled */}
       {headerFullWidth && (
-        <div className="relative mt-24 h-80 w-full">
+        <div className="relative mb-12 mt-24 h-80 w-full">
           <Image
             src={imageUrl || "/fallback-image.svg"}
             alt={imageAlt || "Obraz nagłówka studium przypadku"}
@@ -65,7 +66,7 @@ export default function CaseStudyHeaderSection({
       )}
 
       <section
-        className={clsx("relative mx-auto bg-white py-12 lg:py-24", className)}
+        className={clsx("relative mx-auto bg-white py-12 lg:py-12", className)}
       >
         {/* Main content layout */}
         <MaxWidthWrapper
@@ -109,6 +110,9 @@ export default function CaseStudyHeaderSection({
               />
             </div>
           )}
+        </MaxWidthWrapper>
+        <MaxWidthWrapper>
+          <Separator className="mt-12" />
         </MaxWidthWrapper>
       </section>
     </>
