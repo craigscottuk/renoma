@@ -4,8 +4,13 @@ import { PortableTextComponents } from "@portabletext/react";
 const portableTextComponents: PortableTextComponents = {
   block: {
     // Handle default text blocks (e.g., paragraphs)
-    normal: ({ children }) => <p className="text-[1.1rem]">{children}</p>,
-    h3: ({ children }) => <h3 className="text-xl font-bold">{children}</h3>,
+    normal: ({ children }) => <p className="mb-6 text-[1.1rem]">{children}</p>,
+    h3: ({ children }) => (
+      <h3 className="mb-8 font-bolder text-2xl text-[#81724D]">{children}</h3>
+    ),
+    h4: ({ children }) => (
+      <h3 className="mb-6 font-bolder text-[1.1rem] text-black">{children}</h3>
+    ),
   },
   list: {
     bullet: ({ children }) => <ul className="list-square pl-6">{children}</ul>, // Use list-square for square bullets
