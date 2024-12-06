@@ -15,6 +15,10 @@ export default function ImageCarousel({
   images,
   aspectRatio = "landscape",
 }: ImageCarouselProps) {
+  if (!images || images.length === 0) {
+    return null;
+  }
+
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showCaptions, setShowCaptions] = useState(false);
