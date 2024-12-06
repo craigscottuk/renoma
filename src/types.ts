@@ -13,4 +13,8 @@ export type CaseStudySectionContent = {
   aspectRatio?: "none" | "landscape" | "portrait" | "square";
   aspectRatio1?: "none" | "landscape" | "portrait" | "square";
   aspectRatio2?: "none" | "landscape" | "portrait" | "square";
+  text3?: PortableTextBlock[];
+  images3?: Array<{ asset: SanityImageSource | string; caption: string }>;
+  aspectRatio3?: "none" | "landscape" | "portrait" | "square";
+  layout?: "textLeftImageRight" | "imageLeftTextRight" | "textTopImageBottom";
 };
