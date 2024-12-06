@@ -8,7 +8,7 @@ export const sectionContent = defineType({
   of: [
     {
       name: "textAndImageGallery",
-      title: "Tekst i Galeria Obrazów",
+      title: "Tekst i Obraz/Galeria Obrazów",
       type: "object",
       fields: [
         {
@@ -25,6 +25,8 @@ export const sectionContent = defineType({
         {
           name: "images",
           title: "Galeria Obrazów",
+          description:
+            "Wybór więcej niż jednego obrazu wyświetli karuzelę obrazów.",
           type: "array",
           of: [
             {
@@ -35,7 +37,7 @@ export const sectionContent = defineType({
                   type: "string",
                   title: "Opis",
                   description:
-                    "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i zwiększyć słowa kluczowe SEO.",
+                    "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i poprawić SEO.",
                 },
               ],
             },
@@ -93,7 +95,7 @@ export const sectionContent = defineType({
     },
     {
       name: "textAndText",
-      title: "Tekst i Tekst",
+      title: "Tekst",
       type: "object",
       fields: [
         {
@@ -103,13 +105,10 @@ export const sectionContent = defineType({
           description: "Opcjonalna nazwa sekcji do odniesienia.",
         },
         {
-          name: "text1",
-          title: "Tekst 1",
-          type: "portableTextWithHeadings",
-        },
-        {
-          name: "text2",
-          title: "Tekst 2",
+          name: "text",
+          description:
+            "Tekst zostanie rozłożony na 2 kolumny na dużych urządzeniach.",
+          title: "Tekst",
           type: "portableTextWithHeadings",
         },
       ],
@@ -148,7 +147,7 @@ export const sectionContent = defineType({
                   type: "string",
                   title: "Opis",
                   description:
-                    "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i zwiększyć słowa kluczowe SEO.",
+                    "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i poprawić SEO.",
                 },
               ],
             },
@@ -183,7 +182,7 @@ export const sectionContent = defineType({
                   type: "string",
                   title: "Opis",
                   description:
-                    "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i zwiększyć słowa kluczowe SEO.",
+                    "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i poprawić SEO.",
                 },
               ],
             },
@@ -240,7 +239,7 @@ export const sectionContent = defineType({
               type: "string",
               title: "Opis",
               description:
-                "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i zwiększyć słowa kluczowe SEO.",
+                "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i poprawić SEO.",
             },
           ],
         },
@@ -279,7 +278,7 @@ export const sectionContent = defineType({
               type: "string",
               title: "Opis",
               description:
-                "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i zwiększyć słowa kluczowe SEO.",
+                "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i poprawić SEO.",
             },
           ],
         },
