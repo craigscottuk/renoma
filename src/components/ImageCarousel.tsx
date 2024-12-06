@@ -86,6 +86,7 @@ export default function ImageCarousel({
             src={images[0].src}
             alt={images[0].caption || "Image"}
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
             className={`rounded-[4px] object-cover ${objectPositionClass}`}
           />
         </div>
@@ -120,6 +121,7 @@ export default function ImageCarousel({
                     src={image.src}
                     alt={image.caption || `Image ${index + 1}`}
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className={`rounded-[4px] object-cover ${objectPositionClass}`}
                   />
                 </div>
