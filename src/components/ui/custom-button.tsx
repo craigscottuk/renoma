@@ -1,10 +1,11 @@
 "use client";
+
 import { ChevronRight } from "lucide-react";
 import clsx from "clsx";
 import { Link } from "@/i18n/routing";
-import { StaticRoutePaths } from "@/lib/routes"; // Import StaticRoutePaths
-import { useEffect, useRef } from "react";
-import { motion, useAnimation, Variants } from "framer-motion";
+import { StaticRoutePaths } from "@/lib/routes";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { motion, Variants } from "framer-motion";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -12,7 +13,7 @@ interface ButtonProps {
   className?: string;
   ariaLabel?: string;
   variant?: "light" | "dark";
-  href?: StaticRoutePaths; // Use StaticRoutePaths for href
+  href?: StaticRoutePaths;
   animateOnView?: boolean;
   animationDirection?: "left" | "right" | "up";
   delay?: number;
@@ -29,31 +30,11 @@ export default function CustomButton({
   animationDirection = "right",
   delay = 0.2,
 }: ButtonProps) {
-  const controls = useAnimation();
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!animateOnView) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          controls.start("visible");
-        }
-      },
-      { threshold: 1.0 },
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, [animateOnView, controls]);
+  const { ref, controls } = useIntersectionObserver({
+    animateOnView,
+    threshold: 0.6, // Consistent threshold
+    once: true, // Animate only once
+  });
 
   const defaultClasses =
     "group inline-flex items-center text-base transition-opacity";
@@ -77,7 +58,7 @@ export default function CustomButton({
       filter: "blur(0px)",
       x: 0,
       y: 0,
-      transition: { duration: 0.5, delay }, // Use delay prop here
+      transition: { duration: 0.5, delay },
     },
   };
 
@@ -86,7 +67,7 @@ export default function CustomButton({
       ref={ref}
       initial={animateOnView ? "hidden" : "visible"}
       animate={controls}
-      variants={motionVariants} // Use the local variants
+      variants={motionVariants}
       className="mt-16 flex w-full"
     >
       <span
@@ -116,14 +97,14 @@ export default function CustomButton({
 
   return href ? (
     <Link
-      href={href} // Ensure href is typed correctly for Link component
+      href={href}
       className={clsx(
         defaultClasses,
         variant === "light" ? lightClasses : darkClasses,
         className,
       )}
       style={{ userSelect: "none" }}
-      aria-label={ariaLabel}
+      aria-label={ariaLabel || `Navigate to ${href}`}
     >
       {buttonContent}
     </Link>
@@ -137,7 +118,7 @@ export default function CustomButton({
         className,
       )}
       style={{ userSelect: "none" }}
-      aria-label={ariaLabel}
+      aria-label={ariaLabel || "Custom Button"}
     >
       {buttonContent}
     </button>
