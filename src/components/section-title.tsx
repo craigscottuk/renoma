@@ -1,13 +1,15 @@
 "use client";
-import { ElementType, useEffect, useRef } from "react";
-import { motion, useAnimation, Variants } from "framer-motion";
+
+import { ElementType } from "react";
+import { motion, Variants } from "framer-motion";
 import clsx from "clsx";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 interface SectionTitleProps {
   title: string;
   as?: ElementType;
   className?: string;
-  motionPreset?: "blur-right" | "blur-left";
+  motionPreset?: "blur-right" | "blur-left"; // Consider dynamic usage or remove
   textColor?: "black" | "white";
   textAlign?: "left" | "right" | "center";
   label?: string;
@@ -20,7 +22,7 @@ export default function SectionTitle({
   title,
   as: Tag = "h2",
   className,
-  motionPreset = "blur-right",
+  motionPreset = "blur-right", // Optional dynamic implementation
   textColor = "black",
   textAlign = "left",
   label,
@@ -28,35 +30,13 @@ export default function SectionTitle({
   animationDirection = "right",
   delay = 0.2,
 }: SectionTitleProps) {
-  const controls = useAnimation();
-  const ref = useRef<HTMLDivElement>(null);
+  const { ref, controls } = useIntersectionObserver({
+    animateOnView,
+    threshold: 0.6, // Ensure consistency
+    once: true, // Animate only once
+  });
 
-  useEffect(() => {
-    if (!animateOnView) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          controls.start("visible");
-        }
-      },
-      { threshold: 1.0 },
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, [animateOnView, controls]);
-
-  const LabelTag = Tag === "h1" ? "h2" : "p";
-
-  const labelMotionVariants: Variants = {
+  const createMotionVariants = (additionalDelay = 0): Variants => ({
     hidden: {
       opacity: 0,
       filter: "blur(3px)",
@@ -73,30 +53,12 @@ export default function SectionTitle({
       filter: "blur(0px)",
       x: 0,
       y: 0,
-      transition: { duration: 0.5, delay: delay > 0.2 ? delay - 0.2 : 0 }, // Label appears first
+      transition: { duration: 0.5, delay: delay + additionalDelay },
     },
-  };
+  });
 
-  const titleMotionVariants: Variants = {
-    hidden: {
-      opacity: 0,
-      filter: "blur(3px)",
-      x:
-        animationDirection === "right"
-          ? 5
-          : animationDirection === "left"
-            ? -5
-            : 0,
-      y: animationDirection === "up" ? 5 : 0,
-    },
-    visible: {
-      opacity: 1,
-      filter: "blur(0px)",
-      x: 0,
-      y: 0,
-      transition: { duration: 0.5, delay }, // Use delay prop here
-    },
-  };
+  const labelVariants = createMotionVariants(-0.2); // Label appears earlier
+  const titleVariants = createMotionVariants();
 
   return (
     <div
@@ -105,14 +67,15 @@ export default function SectionTitle({
         "max-w-[22rem] sm:max-w-[33rem] md:max-w-[43rem]",
         textAlign === "center" && "mx-auto",
       )}
+      aria-label={label || title} // Accessibility improvement
     >
       {label && (
         <motion.div
           initial={animateOnView ? "hidden" : "visible"}
           animate={controls}
-          variants={labelMotionVariants}
+          variants={labelVariants}
         >
-          <LabelTag
+          <p
             className={clsx(
               "mb-6 text-sm uppercase tracking-wide",
               textAlign === "left"
@@ -123,17 +86,17 @@ export default function SectionTitle({
             )}
           >
             {label}
-          </LabelTag>
+          </p>
         </motion.div>
       )}
       <motion.div
         initial={animateOnView ? "hidden" : "visible"}
         animate={controls}
-        variants={titleMotionVariants}
+        variants={titleVariants}
       >
         <Tag
           className={clsx(
-            `motion-preset-${motionPreset}`,
+            `motion-preset-${motionPreset}`, // Keep for dynamic styling
             "text-balance text-5xl font-light leading-[1.06] md:text-6xl md:leading-[1.06]",
             className,
             textColor === "black" ? "text-black" : "text-white",
