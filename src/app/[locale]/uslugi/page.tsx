@@ -2,12 +2,7 @@
 import { setRequestLocale } from "next-intl/server";
 import PageHeaderSection from "@/components/page-header-section";
 import { client } from "@/sanity/client";
-import SectionServices from "@/components/sections-services/section-services";
-import { PortableTextBlock } from "@portabletext/types";
-import ConservationServices from "@/components/sections-services/service-ideas";
-import ConservationPage from "@/components/conservation-page";
-import ConservationPageDesktop from "@/components/conservation-page-desktop";
-import ConservationCIcons from "@/components/sections-case/icons";
+import ServicesListed from "@/components/sections-services/services-listed";
 
 const QUERY = `
 {
@@ -21,7 +16,12 @@ const QUERY = `
   "servicesListSection": *[_type == "servicesListSection"][0]{
     "services": services[]{
       "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
-      "description": coalesce(description[$locale], "Brak tłumaczenia")
+      "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+      "actions": actions[]{
+        "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+        "content": coalesce(content[_key == $locale][0].value, "Brak tłumaczenia")
+      },
+      "images": images
     }
   }
 }
@@ -41,14 +41,18 @@ interface Content {
     headerImage?: string;
     headerImageAlt?: string;
   };
-  services: {
-    title: string;
-    description: PortableTextBlock[];
-  }[];
   servicesListSection: {
     services: {
       title: string;
-      description: PortableTextBlock[];
+      description: string;
+      actions: {
+        title: string;
+        content: string;
+      }[];
+      images?: {
+        asset: string;
+        caption?: string;
+      }[];
     }[];
   };
 }
@@ -61,6 +65,12 @@ export default async function ONas({ params: { locale } }: Props) {
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
   const { servicesHeaderSection, servicesListSection } = content;
+  // Log the fetched content to check if image data is being fetched
+  console.log("Fetched content:", servicesListSection);
+  // Log the images inside the servicesListSection
+  servicesListSection.services.forEach((service) => {
+    console.log("Service images:", service.images);
+  });
 
   return (
     <>
@@ -72,12 +82,8 @@ export default async function ONas({ params: { locale } }: Props) {
         headerImage={servicesHeaderSection.headerImage}
         headerImageAlt={servicesHeaderSection.headerImageAlt}
       />
-      {/* Explore Services Section */}
-      {/* <SectionServices services={servicesListSection.services} />
-      <ConservationServices /> */}
-      <ConservationPageDesktop />
-      {/* <ConservationPage /> */}
-      <ConservationCIcons />
+      {/* Services Listed Section */}
+      <ServicesListed services={servicesListSection.services} />
     </>
   );
 }
