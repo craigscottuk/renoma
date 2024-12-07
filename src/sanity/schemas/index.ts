@@ -14,7 +14,12 @@ import { servicesListSection, servicesHeaderSection, uslugi } from "./uslugi";
 import { wpisRealizacji } from "./wpisRealizacji";
 import { realizacje, realizacjeHeaderSection } from "./realizacje";
 import { renomaLab, renomaLabHeaderSection } from "./renomaLab";
-import { learnWithUsHeaderSection, uczSieZNami } from "./uczSieZNami";
+import {
+  learnWithUsHeaderSection,
+  uczSieZNami,
+  whatWeOfferSection,
+  whoWeAreLookingForSection,
+} from "./uczSieZNami";
 import {
   jobOfferSection,
   pracujZNami,
@@ -35,6 +40,7 @@ import {
 } from "./portableText";
 import { sectionContent } from "./sectionContent";
 import { time } from "console";
+import WhatWeOffer from "@/components/sections-learn-with-us/what-we-offer";
 
 // Export schema configuration
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -70,6 +76,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     // Ucz się z nami
     uczSieZNami,
     learnWithUsHeaderSection,
+    whatWeOfferSection,
+    whoWeAreLookingForSection,
 
     // Pracuj z nami
     pracujZNami,
