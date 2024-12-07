@@ -9,7 +9,7 @@ interface SectionTitleProps {
   title: string;
   as?: ElementType;
   className?: string;
-  motionPreset?: "blur-right" | "blur-left"; // Consider dynamic usage or remove
+  motionPreset?: "blur-right" | "blur-left";
   textColor?: "black" | "white";
   textAlign?: "left" | "right" | "center";
   label?: string;
