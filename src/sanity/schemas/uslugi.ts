@@ -92,6 +92,7 @@ export const servicesListSection = defineType({
   name: "servicesListSection",
   title: "Lista usług",
   type: "document",
+  options: { singleton: true },
   description:
     "Lista wszystkich usług, które znajdują się w ramach tego wpisu. Te usługi będą również wyświetlane na stronie głównej oraz w stopce.",
   fields: [
