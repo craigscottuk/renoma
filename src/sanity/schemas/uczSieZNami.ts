@@ -88,3 +88,110 @@ export const learnWithUsHeaderSection = defineType({
     }),
   ],
 });
+
+// What We Offer section
+export const whatWeOfferSection = defineType({
+  name: "whatWeOfferSection",
+  title: "Co oferujemy?",
+  type: "document",
+  options: { singleton: true },
+  fields: [
+    defineField({
+      name: "sectionTitle",
+      title: "Tytuł sekcji",
+      description: "Główny tytuł sekcji, np. 'Co oferujemy?'",
+      type: "internationalizedArrayString",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "offers",
+      title: "Lista ofert",
+      description: "Dodaj punkty oferty z tytułem i opisem.",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "title",
+              title: "Tytuł",
+              description:
+                "Krótki tytuł oferty, np. 'Praktyczne doświadczenie'.",
+              type: "internationalizedArrayString",
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: "description",
+              title: "Opis",
+              description:
+                "Opis oferty, np. 'Uczestnicy będą mieli możliwość...'",
+              type: "internationalizedArrayText",
+            },
+          ],
+          preview: {
+            select: {
+              title: "title.0.value",
+            },
+            prepare({ title }) {
+              return {
+                title: title || "Brak tytułu",
+              };
+            },
+          },
+        },
+      ],
+    }),
+  ],
+});
+
+// Who We Are Looking For section
+export const whoWeAreLookingForSection = defineType({
+  name: "whoWeAreLookingForSection",
+  title: "Kogo szukamy?",
+  type: "document",
+  options: { singleton: true },
+  fields: [
+    defineField({
+      name: "sectionTitle",
+      title: "Tytuł sekcji",
+      description: "Główny tytuł sekcji, np. 'Kogo szukamy?'.",
+      type: "internationalizedArrayString",
+      validation: (Rule) => Rule.required(),
+    }),
+
+    defineField({
+      name: "criteria",
+      title: "Profil i Kryteria",
+      type: "object",
+      description:
+        "Tekst opisujący profil poszukiwanych osób oraz listę wymagań lub cech, które powinny one spełniać.",
+      fields: [
+        { name: "pl", title: "PL", type: "portableTextWithHeadings" },
+        { name: "en", title: "EN", type: "portableTextWithHeadings" },
+        { name: "de", title: "DE", type: "portableTextWithHeadings" },
+      ],
+    }),
+
+    defineField({
+      name: "image",
+      title: "Obraz",
+      description:
+        "Obrazek reprezentujący sekcję, np. zdjęcie osoby na budowie.",
+      type: "image",
+      options: { hotspot: true },
+    }),
+    defineField({
+      name: "imageAlt",
+      title: "Alternatywny tekst obrazu",
+      description: "Alternatywny tekst dla obrazu sekcji.",
+      type: "internationalizedArrayString",
+    }),
+    defineField({
+      name: "applyButtonText",
+      title: "Tekst przycisku aplikacji",
+      description:
+        "Tekst na przycisku zachęcającym do aplikowania, np. 'Aplikuj teraz'.",
+      type: "internationalizedArrayString",
+    }),
+  ],
+});
