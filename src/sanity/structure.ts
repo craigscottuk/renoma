@@ -153,6 +153,22 @@ export const structure: StructureResolver = (S, context) =>
                 title: "Sekcja 1: Nagłówek",
                 id: "singletonLearnWithUsHeaderSection",
               }),
+
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "whatWeOfferSection",
+                title: "Sekcja 2: Co oferujemy?",
+                id: "singletonWhatWeOfferSection",
+              }),
+
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "whoWeAreLookingForSection",
+                title: "Sekcja 3: Kogo szukamy?",
+                id: "singletonWhoWeAreLookingForSection",
+              }),
             ]),
         ),
       S.listItem()
