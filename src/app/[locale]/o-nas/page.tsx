@@ -4,7 +4,7 @@ import { client } from "@/sanity/client";
 import { PortableTextBlock } from "next-sanity";
 import SectionTitle from "@/components/section-title";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
-import Timeline from "@/components/sections-about/timeline3";
+import Timeline from "@/components/sections-about/timeline";
 
 const QUERY = `
 {
