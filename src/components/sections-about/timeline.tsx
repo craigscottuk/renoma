@@ -1,90 +1,73 @@
 "use client";
-// cSpell:disable
+
 import { useState, useRef, useEffect } from "react";
-import {
-  ChevronDown,
-  ChevronUp,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
-import useEmblaCarousel from "embla-carousel-react";
-import Image from "next/image";
-import { PortableText } from "@portabletext/react";
+import { ChevronUp } from "lucide-react";
+import ImageCarousel from "../ImageCarousel";
+import { PortableText, PortableTextBlock } from "@portabletext/react";
 import { portableTextComponents } from "../../lib/portableTextComponents";
+import { Separator } from "../ui/separator";
 
 interface TimelineEvent {
-  year: number;
-  content: string[];
-  images?: string[];
+  year: string;
+  content: PortableTextBlock[];
+  images?: Array<{
+    src: string;
+    caption?: string;
+  }>;
 }
 
 interface TimelineProps {
   events: TimelineEvent[];
 }
 
-function ImageCarousel({ images }: { images: string[] }) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const scrollPrev = () => {
-    if (emblaApi) emblaApi.scrollPrev();
-  };
-
-  const scrollNext = () => {
-    if (emblaApi) emblaApi.scrollNext();
-  };
+export default function Timeline({ events }: TimelineProps) {
+  const [visibleIndexes, setVisibleIndexes] = useState<number[]>([]);
+  const [expandedIndexes, setExpandedIndexes] = useState<number[]>([]);
+  const [visibleEventCount, setVisibleEventCount] = useState(2);
+  const [isMobile, setIsMobile] = useState(false);
+  const eventRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    if (emblaApi) {
-      emblaApi.on("select", () => {
-        setCurrentIndex(emblaApi.selectedScrollSnap());
-      });
-    }
-  }, [emblaApi]);
+    const mobile = window.innerWidth < 768;
+    setIsMobile(mobile);
+    setVisibleEventCount(mobile ? 2 : events.length);
+  }, [events.length]);
 
-  return (
-    <div className="relative">
-      <div className="embla overflow-hidden rounded-lg" ref={emblaRef}>
-        <div className="embla__container flex">
-          {images.map((src, index) => (
-            <div key={index} className="embla__slide flex-[0_0_100%]">
-              <div className="embla__slide__inner relative aspect-video">
-                <Image
-                  src={typeof src === "string" ? src : src.src}
-                  alt={`Timeline image ${index + 1}`}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      {images.length > 1 && (
-        <>
-          <button
-            className="absolute left-2 top-1/2 hidden -translate-y-1/2 transform rounded-full bg-white/80 p-2 hover:bg-white/90 lg:block"
-            onClick={scrollPrev}
-          >
-            <ChevronLeft className="h-6 w-6" />
-          </button>
-          <button
-            className="absolute right-2 top-1/2 hidden -translate-y-1/2 transform rounded-full bg-white/80 p-2 hover:bg-white/90 lg:block"
-            onClick={scrollNext}
-          >
-            <ChevronRight className="h-6 w-6" />
-          </button>
-        </>
-      )}
-    </div>
+  const sortedEvents = [...events].sort(
+    (a, b) => parseInt(a.year) - parseInt(b.year),
   );
-}
 
-export default function Timeline({ events }: TimelineProps) {
-  const [expandedIndexes, setExpandedIndexes] = useState<number[]>([
-    events.length - 1,
-  ]);
-  const eventRefs = useRef<(HTMLDivElement | null)[]>([]);
+  // Handle resize logic with debouncing
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      setVisibleEventCount(mobile ? 2 : sortedEvents.length);
+      setExpandedIndexes([]); // Reset expanded state
+    };
+
+    const debouncedResize = debounce(handleResize, 100);
+    window.addEventListener("resize", debouncedResize);
+    return () => window.removeEventListener("resize", debouncedResize);
+  }, [sortedEvents.length]);
+
+  useEffect(() => {
+    eventRefs.current.forEach((el, index) => {
+      if (el) {
+        const observer = new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) {
+            setVisibleIndexes((prev) => [...new Set([...prev, index])]);
+            observer.unobserve(entry.target); // Animate only once
+          } else {
+            setVisibleIndexes((prev) => prev.filter((i) => i !== index));
+          }
+        });
+
+        observer.observe(el);
+        return () => observer.disconnect();
+      }
+    });
+  }, [sortedEvents.length]);
 
   const toggleExpand = (index: number) => {
     setExpandedIndexes((prev) =>
@@ -92,71 +75,98 @@ export default function Timeline({ events }: TimelineProps) {
     );
   };
 
+  const showEarlierEvents = () => {
+    setVisibleEventCount((prev) => Math.min(prev + 2, sortedEvents.length));
+  };
+
+  const visibleEvents = isMobile
+    ? sortedEvents.slice(sortedEvents.length - visibleEventCount)
+    : sortedEvents;
+
   return (
     <div className="relative mx-auto">
-      {/* Timeline line */}
-      <div className="absolute left-[9px] top-0 h-full w-0.5 bg-gray-300 lg:left-1/2" />
+      {/* Timeline Line */}
+      <div className="absolute left-[8px] top-0 h-full w-0.5 bg-gray-400 lg:left-1/2" />
+      <div className="relative lg:pl-8 lg:pr-8">
+        {isMobile && visibleEventCount < sortedEvents.length && (
+          <div className="relative mb-12">
+            <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform">
+              <button
+                onClick={showEarlierEvents}
+                className="inline-flex items-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-[#AC8400] focus:ring-offset-2"
+              >
+                <ChevronUp className="mr-2 h-4 w-4" />
+                Show Earlier Events
+              </button>
+            </div>
+          </div>
+        )}
 
-      <div className="relative">
-        {events.map((event, index) => {
+        {visibleEvents.map((event, index) => {
           const isEven = index % 2 === 0;
+          const isVisible = isMobile || visibleIndexes.includes(index);
           const isExpanded = expandedIndexes.includes(index);
 
           return (
             <div
-              key={index}
-              ref={(el) => (eventRefs.current[index] = el)}
-              className="mb-12 transition-opacity duration-1000"
+              key={event.year}
+              ref={(el) => {
+                eventRefs.current[index] = el;
+              }}
+              className={`mb-12 ${
+                isMobile
+                  ? "opacity-100"
+                  : `transition-all duration-500 ${
+                      isVisible
+                        ? "translate-y-0 opacity-100"
+                        : "translate-y-4 opacity-0"
+                    }`
+              } relative`}
             >
-              <div
-                className={`relative flex flex-col ${
-                  isEven ? "lg:flex-row" : "lg:flex-row-reverse"
-                } lg:gap-24`}
-              >
-                {/* Year marker */}
-                <div className="absolute left-0 flex items-center lg:left-1/2 lg:-translate-x-1/2">
-                  <div className="h-[18px] w-[18px] rounded-full border-4 border-white bg-[#765911] md:h-7 md:w-7" />
-                </div>
-
-                {/* Year button */}
+              <div className="relative flex flex-col lg:gap-4">
                 <div
-                  className={`hidden text-3xl font-semibold text-[#765911] lg:block ${
-                    isEven ? "lg:pr-8 lg:text-right" : "lg:pl-8 lg:text-left"
-                  } lg:w-1/2`}
+                  className={`group mb-4 flex items-center lg:mb-0 lg:w-1/2 lg:items-start ${
+                    !isMobile && isEven
+                      ? "lg:ml-auto lg:pl-8"
+                      : "lg:mr-auto lg:justify-end lg:pr-8"
+                  }`}
                 >
+                  <div
+                    onClick={() => toggleExpand(index)}
+                    className="absolute left-0 h-[24px] w-[24px] cursor-pointer rounded-full border-4 border-white bg-[#AC8400] group-hover:bg-[#B88D00] lg:left-1/2 lg:-translate-x-1/2 lg:pt-2 xl:pt-2"
+                  />
                   <button
                     onClick={() => toggleExpand(index)}
-                    className="flex items-center justify-end text-xl font-semibold text-[#765911] hover:text-blue-800"
+                    className="ml-8 flex items-center font-bolder text-3xl text-[#A37D00] group-hover:text-[#B88D00]"
                     aria-expanded={isExpanded}
                     aria-controls={`content-${index}`}
                   >
-                    {event.year}
-                    {isExpanded ? (
-                      <ChevronUp className="ml-2 h-6 w-6" />
-                    ) : (
-                      <ChevronDown className="ml-2 h-6 w-6" />
-                    )}
+                    <span>{event.year}</span>
                   </button>
                 </div>
-
-                {/* Content container */}
                 <div
                   id={`content-${index}`}
-                  className={`ml-8 transition-all duration-500 lg:ml-0 lg:w-1/2 ${
+                  className={`ml-8 overflow-hidden rounded-sm transition-all duration-500 lg:ml-0 ${
                     isExpanded
                       ? "max-h-[2000px] opacity-100"
-                      : "max-h-0 overflow-hidden opacity-0 lg:max-h-none lg:overflow-visible lg:opacity-100"
-                  }`}
+                      : "max-h-0 opacity-0"
+                  } ${
+                    !isMobile && isEven
+                      ? "lg:ml-auto lg:px-8"
+                      : "lg:mr-auto lg:px-8"
+                  } lg:w-1/2`}
                 >
-                  {/* Images */}
                   {event.images && event.images.length > 0 && (
                     <div className="mb-6 mt-4">
                       <ImageCarousel images={event.images} />
                     </div>
                   )}
-
-                  {/* Portable Text content */}
-                  <div className="space-y-3 text-gray-700">
+                  <div
+                    className={`space-y-3 text-pretty lg:max-w-[38rem] ${
+                      !isMobile && !isEven ? "lg:ml-auto" : ""
+                    }`}
+                  >
+                    <Separator />
                     <PortableText
                       value={event.content}
                       components={portableTextComponents}
@@ -170,4 +180,12 @@ export default function Timeline({ events }: TimelineProps) {
       </div>
     </div>
   );
+}
+
+function debounce(func: (...args: any[]) => void, wait: number) {
+  let timeout: NodeJS.Timeout;
+  return (...args: any[]) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
 }
