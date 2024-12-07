@@ -150,6 +150,20 @@ export default function ImageCarousel({
           </>
         )}
 
+        {/* Indicator Circles */}
+        <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 transform space-x-2">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => emblaApi?.scrollTo(index)}
+              className={`h-2 w-2 rounded-full ${
+                currentIndex === index ? "bg-white" : "bg-gray-400"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+
         {/* Caption Toggle for Mobile */}
         {isMobile && hasCurrentCaption && (
           <Button
@@ -179,7 +193,32 @@ export default function ImageCarousel({
         </div>
       )}
 
-      {!isMobile && currentCaption && (
+      {!isMobile && currentCaption && images.length > 1 && (
+        <div className="relative z-10 flex justify-between bg-gray-50 px-4 py-3 text-sm text-gray-600">
+          <div className="flex items-start gap-2">
+            <ArrowUp className="mt-1 h-4 w-4 flex-shrink-0" />
+            <span>{currentCaption}</span>
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={scrollPrev}
+              className="rounded-[4px] border border-gray-300 bg-white px-3 py-1 text-gray-600 hover:bg-gray-100"
+              aria-label="Previous image"
+            >
+              PREV
+            </button>
+            <button
+              onClick={scrollNext}
+              className="rounded-[4px] border border-gray-300 bg-white px-3 py-1 text-gray-600 hover:bg-gray-100"
+              aria-label="Next image"
+            >
+              NEXT
+            </button>
+          </div>
+        </div>
+      )}
+
+      {!isMobile && currentCaption && images.length <= 1 && (
         <div className="relative z-10 bg-gray-50 px-4 py-3 text-sm text-gray-600">
           <div className="flex items-start gap-2">
             <ArrowUp className="mt-1 h-4 w-4 flex-shrink-0" />
