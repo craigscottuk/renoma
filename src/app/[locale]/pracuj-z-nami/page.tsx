@@ -3,18 +3,39 @@ import { setRequestLocale } from "next-intl/server";
 import PageHeaderSection from "@/components/page-header-section";
 import { client } from "@/sanity/client";
 import SectionJobOffer from "@/components/sections-work-with-us/section-job-offer";
+import { PortableTextBlock } from "next-sanity";
+import JobOffer from "@/components/sections-work-with-us/job-offer";
+import JobOfferSection from "@/components/sections-work-with-us/job-offer";
 
 const QUERY = `
 {
   "workWithUsHeaderSection": *[_type == "workWithUsHeaderSection"][0]{
-    "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Brak tłumaczenia"),
-    "headerImage": headerImage, // Fetch full image object with asset._ref
-    "headerImageAlt": coalesce(headerImage.alt[_key == $locale][0].value, "Brak tłumaczenia")
+    "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+    "image": image,
+    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia")
   },
   "jobOfferSection": *[_type == "jobOfferSection"][0]{
-    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "jobOffers": jobOffers[]{
+      "jobTitle": coalesce(jobTitle[_key == $locale][0].value, "Brak tłumaczenia"),
+      "jobDescription": coalesce(jobDescription[_key == $locale][0].value, "Brak tłumaczenia"),
+      "jobLocation": coalesce(jobLocation[_key == $locale][0].value, "Brak tłumaczenia"),
+      "jobType": coalesce(jobType[_key == $locale][0].value, "Brak tłumaczenia"),
+    "responsibilities": select(
+      defined(responsibilities[$locale]) => responsibilities[$locale],
+      "Brak tłumaczenia"
+    ),
+      "requirements": select(
+      defined(requirements[$locale]) => requirements[$locale],
+      "Brak tłumaczenia"
+    ),
+      "benefits": select(
+      defined(benefits[$locale]) => benefits[$locale],
+      "Brak tłumaczenia"
+    ),
+    }
   },
 }
 `;
@@ -27,14 +48,23 @@ type Props = {
 
 interface Content {
   workWithUsHeaderSection: {
-    sectionLabel: string;
-    sectionTitle: string;
-    sectionDescription: string;
-    headerImage?: string;
-    headerImageAlt?: string;
+    label: string;
+    title: string;
+    description: string;
+    image?: string;
+    imageAlt?: string;
   };
   jobOfferSection: {
-    sectionTitle: string;
+    title: string;
+    jobOffers: {
+      jobTitle: string;
+      jobDescription: string;
+      jobLocation: string;
+      jobType: string;
+      responsibilities: PortableTextBlock[];
+      requirements: PortableTextBlock[];
+      benefits: PortableTextBlock[];
+    }[];
   };
 }
 
@@ -51,17 +81,18 @@ export default async function PracujZNami({ params: { locale } }: Props) {
     <>
       {/* Header Section */}
       <PageHeaderSection
-        sectionLabel={workWithUsHeaderSection.sectionLabel}
-        sectionTitle={workWithUsHeaderSection.sectionTitle}
-        sectionDescription={workWithUsHeaderSection.sectionDescription}
-        headerImage={workWithUsHeaderSection.headerImage}
-        headerImageAlt={workWithUsHeaderSection.headerImageAlt}
+        label={workWithUsHeaderSection.label}
+        title={workWithUsHeaderSection.title}
+        description={workWithUsHeaderSection.description}
+        image={workWithUsHeaderSection.image}
+        imageAlt={workWithUsHeaderSection.imageAlt}
       />
 
-      {/* FAQ Section */}
-      {/* {content.faqSectionHome && ( */}
-      <SectionJobOffer sectionTitle={jobOfferSection.sectionTitle} />
-      {/* )} */}
+      {/* Job Offer Section */}
+      <JobOfferSection
+        title={jobOfferSection.title}
+        jobOffers={jobOfferSection.jobOffers}
+      />
     </>
   );
 }
