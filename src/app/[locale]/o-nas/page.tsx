@@ -9,11 +9,11 @@ import Timeline from "@/components/sections-about/timeline";
 const QUERY = `
 {
  "aboutHeaderSection": *[_type == "aboutHeaderSection"][0]{
-    "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Brak tłumaczenia"),
-    "headerImage": headerImage,
-    "headerImageAlt": coalesce(headerImage.alt[_key == $locale][0].value, "Brak tłumaczenia")
+    "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+    "image": image,
+    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia")
   },
 
   "timeline": *[_type == "timelineSection"][0].timeline[]{
@@ -39,11 +39,11 @@ type Props = {
 
 interface Content {
   aboutHeaderSection: {
-    sectionLabel: string;
-    sectionTitle: string;
-    sectionDescription: string;
-    headerImage?: string;
-    headerImageAlt?: string;
+    label: string;
+    title: string;
+    description: string;
+    image?: string;
+    imageAlt?: string;
   };
   timeline: TimelineItem[];
 }
@@ -73,11 +73,11 @@ export default async function ONas({ params: { locale } }: Props) {
   return (
     <>
       <PageHeaderSection
-        sectionLabel={aboutHeaderSection.sectionLabel}
-        sectionTitle={aboutHeaderSection.sectionTitle}
-        sectionDescription={aboutHeaderSection.sectionDescription}
-        headerImage={aboutHeaderSection.headerImage}
-        headerImageAlt={aboutHeaderSection.headerImageAlt}
+        label={aboutHeaderSection.label}
+        title={aboutHeaderSection.title}
+        description={aboutHeaderSection.description}
+        image={aboutHeaderSection.image}
+        imageAlt={aboutHeaderSection.imageAlt}
       />
 
       <AboutSection />
