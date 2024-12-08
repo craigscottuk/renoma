@@ -43,7 +43,7 @@ export const privacyHeaderSection = defineType({
   ],
   fields: [
     defineField({
-      name: "sectionLabel",
+      name: "label",
       title: "Etykieta sekcji",
       description: "Krótki tekst nad tytułem, np. 'POLITYKA PRYWATNOŚCI'.",
       type: "internationalizedArrayString",
@@ -51,7 +51,7 @@ export const privacyHeaderSection = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "sectionTitle",
+      name: "title",
       title: "Tytuł sekcji",
       description:
         "Główny tytuł sekcji na stronie polityki prywatności, np. 'Polityka prywatności'.",
@@ -60,7 +60,7 @@ export const privacyHeaderSection = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "sectionDescription",
+      name: "description",
       title: "Opis sekcji",
       description:
         "Tekst wprowadzający do strony polityki prywatności, zawierający ogólne informacje na temat ochrony danych.",
@@ -68,7 +68,7 @@ export const privacyHeaderSection = defineType({
       group: "opisSekcji",
     }),
     defineField({
-      name: "headerImage",
+      name: "image",
       title: "Obraz nagłówka",
       description: "Obraz wyświetlany w nagłówku strony polityki prywatności.",
       type: "image",
@@ -78,7 +78,7 @@ export const privacyHeaderSection = defineType({
       group: "obrazSekcji",
     }),
     defineField({
-      name: "headerImageAlt",
+      name: "imageAlt",
       title: "Alternatywny tekst obrazu nagłówka",
       description:
         "Tekst alternatywny dla obrazu nagłówka, np. 'Ilustracja symbolizująca ochronę prywatności'.",
