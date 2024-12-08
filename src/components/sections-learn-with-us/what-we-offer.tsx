@@ -6,7 +6,7 @@ import clsx from "clsx";
 
 // Define the type for our feature items
 interface WhatWeOfferProps {
-  sectionTitle: string;
+  title: string;
   offers: { title: string; description: string }[];
 }
 
@@ -15,18 +15,14 @@ interface WhatWeOfferComponentProps {
 }
 
 export default function WhatWeOffer({
-  sectionTitle,
+  title,
   offers,
   paddingY,
 }: WhatWeOfferProps & WhatWeOfferComponentProps) {
   return (
     <section className={clsx("mx-auto bg-black text-white/90", paddingY)}>
       <MaxWidthWrapper>
-        <SectionTitle
-          title={sectionTitle}
-          className="mb-20"
-          textColor="white"
-        />
+        <SectionTitle title={title} className="mb-20" textColor="white" />
       </MaxWidthWrapper>
       <MaxWidthWrapper>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
