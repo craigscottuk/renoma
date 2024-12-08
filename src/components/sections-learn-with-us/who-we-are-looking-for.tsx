@@ -12,7 +12,7 @@ import CustomButton from "../ui/custom-button";
 import MaxWidthWrapper from "../max-width-wrapper";
 
 interface WhoWeAreLookingForProps {
-  sectionTitle: string;
+  title: string;
   criteria: PortableTextBlock[];
   image: SanityImageSource | string;
   imageAlt: string;
@@ -21,7 +21,7 @@ interface WhoWeAreLookingForProps {
 }
 
 export default function WhoWeAreLookingFor({
-  sectionTitle,
+  title,
   criteria,
   image,
   imageAlt,
@@ -40,7 +40,7 @@ export default function WhoWeAreLookingFor({
             <div className="grid gap-8 lg:grid-cols-2">
               <div className="p-8 lg:p-12">
                 <SectionTitle
-                  title={sectionTitle}
+                  title={title}
                   textColor="black"
                   as="h2"
                   className="mb-20"
