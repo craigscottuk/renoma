@@ -16,17 +16,17 @@ import { services } from "@/lib/serviceCardData";
 import AnimatedLink from "../animated-link";
 
 interface SectionUslugiHomeProps {
-  sectionLabel: string;
-  sectionTitle: string;
-  sectionDescription: string;
+  label: string;
+  title: string;
+  description: string;
   sectionCTA: string;
   paddingY?: string;
 }
 
 export default function SectionUslugiHome({
-  sectionLabel,
-  sectionTitle,
-  sectionDescription,
+  label,
+  title,
+  description,
   sectionCTA,
   paddingY = "py-16 md:py-44", // Default padding values
 }: SectionUslugiHomeProps) {
@@ -40,8 +40,8 @@ export default function SectionUslugiHome({
         <div className="relative grid items-center gap-6 md:grid-cols-2 md:gap-24">
           {/* Left Column */}
           <SectionTitle
-            label={sectionLabel}
-            title={sectionTitle}
+            label={label}
+            title={title}
             as="h2"
             motionPreset="blur-left"
             textColor="white"
@@ -52,7 +52,7 @@ export default function SectionUslugiHome({
           <div className="flex flex-col md:items-end">
             <div className="md:max-w-[38rem]">
               <SectionDescription
-                description={sectionDescription}
+                description={description}
                 textAlign="left"
                 textColor="white"
               />
