@@ -56,7 +56,7 @@ export const wpisUslugi = defineType({
     }),
 
     defineField({
-      name: "headerImage",
+      name: "image",
       title: "Nagłówek",
       type: "object",
       group: "caseStudyHeader",
