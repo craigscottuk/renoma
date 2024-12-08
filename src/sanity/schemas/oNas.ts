@@ -43,7 +43,7 @@ export const aboutHeaderSection = defineType({
   ],
   fields: [
     defineField({
-      name: "sectionLabel",
+      name: "label",
       title: "Etykieta sekcji",
       description: "Krótki tekst nad tytułem, np. 'O NAS'.",
       type: "internationalizedArrayString",
@@ -51,7 +51,7 @@ export const aboutHeaderSection = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "sectionTitle",
+      name: "title",
       title: "Tytuł sekcji",
       description: "Główny tytuł sekcji na stronie o nas, np. 'Poznaj nas'.",
       type: "internationalizedArrayString",
@@ -59,7 +59,7 @@ export const aboutHeaderSection = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "sectionDescription",
+      name: "description",
       title: "Opis sekcji",
       description:
         "Tekst opisujący firmę lub zespół, umieszczony na stronie o nas.",
@@ -67,7 +67,7 @@ export const aboutHeaderSection = defineType({
       group: "opisSekcji",
     }),
     defineField({
-      name: "headerImage",
+      name: "image",
       title: "Obraz nagłówka",
       description: "Obraz wyświetlany w nagłówku strony o nas.",
       type: "image",
@@ -77,7 +77,7 @@ export const aboutHeaderSection = defineType({
       group: "obrazSekcji",
     }),
     defineField({
-      name: "headerImageAlt",
+      name: "imageAlt",
       title: "Alternatywny tekst obrazu nagłówka",
       description:
         "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie przedstawiające zespół firmy'.",
