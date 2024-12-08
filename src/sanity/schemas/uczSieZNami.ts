@@ -43,7 +43,7 @@ export const learnWithUsHeaderSection = defineType({
   ],
   fields: [
     defineField({
-      name: "sectionLabel",
+      name: "label",
       title: "Etykieta sekcji",
       description: "Krótki tekst nad tytułem, np. 'PROGRAM ABSOLWENCKI'.",
       type: "internationalizedArrayString",
@@ -51,7 +51,7 @@ export const learnWithUsHeaderSection = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "sectionTitle",
+      name: "title",
       title: "Tytuł sekcji",
       description:
         "Główny tytuł sekcji na stronie programu absolwenckiego, np. 'Dołącz do naszego programu absolwenckiego'.",
@@ -60,7 +60,7 @@ export const learnWithUsHeaderSection = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "sectionDescription",
+      name: "description",
       title: "Opis sekcji",
       description:
         "Tekst wprowadzający do programu absolwenckiego, który zachęca do zgłoszenia się do programu firmy.",
@@ -68,7 +68,7 @@ export const learnWithUsHeaderSection = defineType({
       group: "opisSekcji",
     }),
     defineField({
-      name: "headerImage",
+      name: "image",
       title: "Obraz nagłówka",
       description:
         "Obraz wyświetlany w nagłówku strony programu absolwenckiego, przedstawiający np. młodych profesjonalistów w trakcie pracy.",
@@ -79,7 +79,7 @@ export const learnWithUsHeaderSection = defineType({
       group: "obrazSekcji",
     }),
     defineField({
-      name: "headerImageAlt",
+      name: "imageAlt",
       title: "Alternatywny tekst obrazu nagłówka",
       description:
         "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie młodych profesjonalistów współpracujących przy projekcie'.",
@@ -97,7 +97,7 @@ export const whatWeOfferSection = defineType({
   options: { singleton: true },
   fields: [
     defineField({
-      name: "sectionTitle",
+      name: "title",
       title: "Tytuł sekcji",
       description: "Główny tytuł sekcji, np. 'Co oferujemy?'",
       type: "internationalizedArrayString",
@@ -152,7 +152,7 @@ export const whoWeAreLookingForSection = defineType({
   options: { singleton: true },
   fields: [
     defineField({
-      name: "sectionTitle",
+      name: "title",
       title: "Tytuł sekcji",
       description: "Główny tytuł sekcji, np. 'Kogo szukamy?'.",
       type: "internationalizedArrayString",
