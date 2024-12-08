@@ -6,11 +6,11 @@ import { client } from "@/sanity/client";
 const QUERY = `
 {
   "privacyHeaderSection": *[_type == "privacyHeaderSection"][0]{
-    "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Brak tłumaczenia"),
-    "headerImage": headerImage, // Fetch full image object with asset._ref
-    "headerImageAlt": coalesce(headerImage.alt[_key == $locale][0].value, "Brak tłumaczenia")
+    "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+    "image": image, 
+    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia")
   },
 }
 
@@ -24,11 +24,11 @@ type Props = {
 
 interface Content {
   privacyHeaderSection: {
-    sectionLabel: string;
-    sectionTitle: string;
-    sectionDescription: string;
-    headerImage?: string;
-    headerImageAlt?: string;
+    label: string;
+    title: string;
+    description: string;
+    image?: string;
+    imageAlt?: string;
   };
 }
 
@@ -45,11 +45,11 @@ export default async function PolitykaPrywatnosci({
 
   return (
     <PageHeaderSection
-      sectionLabel={privacyHeaderSection.sectionLabel}
-      sectionTitle={privacyHeaderSection.sectionTitle}
-      sectionDescription={privacyHeaderSection.sectionDescription}
-      headerImage={privacyHeaderSection.headerImage}
-      headerImageAlt={privacyHeaderSection.headerImageAlt}
+      label={privacyHeaderSection.label}
+      title={privacyHeaderSection.title}
+      description={privacyHeaderSection.description}
+      image={privacyHeaderSection.image}
+      imageAlt={privacyHeaderSection.imageAlt}
     />
   );
 }
