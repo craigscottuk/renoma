@@ -14,11 +14,11 @@ const QUERY = `
     language,
 },
   "realizacjeHeaderSection": *[_type == "realizacjeHeaderSection"][0]{
-    "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Brak tłumaczenia"),
-    "headerImage": headerImage,
-    "headerImageAlt": coalesce(headerImage.alt[_key == $locale][0].value, "Brak tłumaczenia")
+    "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+    "image": image,
+    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia")
   }
 }
 `;
@@ -53,11 +53,11 @@ export default async function Realizacje({ params: { locale } }: Props) {
     <>
       {/* Page Header Section */}
       <PageHeaderSection
-        sectionLabel={realizacjeHeaderSection.sectionLabel}
-        sectionTitle={realizacjeHeaderSection.sectionTitle}
-        sectionDescription={realizacjeHeaderSection.sectionDescription}
-        headerImage={realizacjeHeaderSection.headerImage}
-        headerImageAlt={realizacjeHeaderSection.headerImageAlt}
+        label={realizacjeHeaderSection.label}
+        title={realizacjeHeaderSection.title}
+        description={realizacjeHeaderSection.description}
+        image={realizacjeHeaderSection.image}
+        imageAlt={realizacjeHeaderSection.imageAlt}
       />
 
       <section className="py-12 md:py-24">
