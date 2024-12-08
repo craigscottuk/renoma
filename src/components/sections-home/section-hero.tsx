@@ -5,14 +5,11 @@ import CustomButton from "@/components/ui/custom-button";
 import SectionTitle from "@/components/section-title";
 
 interface HeroSectionProps {
-  sectionTitle: string;
+  title: string;
   sectionCTA: string;
 }
 
-export default function HeroSection({
-  sectionTitle,
-  sectionCTA,
-}: HeroSectionProps) {
+export default function HeroSection({ title, sectionCTA }: HeroSectionProps) {
   return (
     <div className="relative mt-20 min-h-[calc(100vh-96px)] md:mt-24">
       {/* Background Image */}
@@ -34,7 +31,7 @@ export default function HeroSection({
         <MaxWidthWrapper>
           {/* Hero Title */}
           <SectionTitle
-            title={sectionTitle}
+            title={title}
             as="h1"
             className="custom-class"
             motionPreset="blur-right"
