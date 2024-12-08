@@ -43,7 +43,7 @@ export const realizacjeHeaderSection = defineType({
   ],
   fields: [
     defineField({
-      name: "sectionLabel",
+      name: "label",
       title: "Etykieta sekcji",
       description: "Krótki tekst nad tytułem, np. 'Nasze Projekty'.",
       type: "internationalizedArrayString",
@@ -51,7 +51,7 @@ export const realizacjeHeaderSection = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "sectionTitle",
+      name: "title",
       title: "Tytuł sekcji",
       description:
         "Główny tytuł sekcji na stronie Realizacje, np. 'Zrealizowane Projekty'.",
@@ -60,7 +60,7 @@ export const realizacjeHeaderSection = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "sectionDescription",
+      name: "description",
       title: "Opis sekcji",
       description:
         "Krótki opis prezentujący zakończone projekty firmy w branży budowlanej, np. 'Przegląd naszych zrealizowanych projektów budowlanych, które odzwierciedlają naszą wiedzę i jakość wykonania.'",
@@ -68,7 +68,7 @@ export const realizacjeHeaderSection = defineType({
       group: "opisSekcji",
     }),
     defineField({
-      name: "headerImage",
+      name: "image",
       title: "Obraz nagłówka",
       description:
         "Obraz wyświetlany w nagłówku strony Realizacje, przedstawiający zakończone projekty lub procesy budowlane.",
@@ -79,7 +79,7 @@ export const realizacjeHeaderSection = defineType({
       group: "obrazSekcji",
     }),
     defineField({
-      name: "headerImageAlt",
+      name: "imageAlt",
       title: "Alternatywny tekst obrazu nagłówka",
       description:
         "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie ukończonego budynku zaprojektowanego i zrealizowanego przez firmę.'",
