@@ -7,9 +7,9 @@ import SectionDescription from "@/components/section-description";
 import FaqAccordion from "@/components/sections-home/faq-accordion";
 
 interface SectionFaqHomeProps {
-  sectionLabel: string;
-  sectionTitle: string;
-  sectionDescription: string;
+  label: string;
+  title: string;
+  description: string;
   sectionCTA: string;
   paddingY?: string;
   faqItems: {
@@ -19,9 +19,9 @@ interface SectionFaqHomeProps {
 }
 
 export default function SectionFaqHome({
-  sectionLabel,
-  sectionTitle,
-  sectionDescription,
+  label,
+  title,
+  description,
   sectionCTA,
   paddingY = "py-16 md:py-44", // Default padding values
   faqItems,
@@ -32,8 +32,8 @@ export default function SectionFaqHome({
         <div className="grid items-center gap-6 md:grid-cols-2 md:gap-24">
           {/* Left Column */}
           <SectionTitle
-            label={sectionLabel}
-            title={sectionTitle}
+            label={label}
+            title={title}
             as="h2"
             motionPreset="blur-left"
             textColor="black"
@@ -44,7 +44,7 @@ export default function SectionFaqHome({
           <div className="flex flex-col items-end">
             <div className="md:max-w-[38rem]">
               <SectionDescription
-                description={sectionDescription}
+                description={description}
                 textAlign="left"
                 textColor="black"
               />
