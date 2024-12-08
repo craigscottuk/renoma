@@ -5,12 +5,12 @@ import clsx from "clsx";
 import JobOffer from "./job-offer";
 
 interface SectionJobOfferProps {
-  sectionTitle: string;
+  title: string;
   paddingY?: string;
 }
 
 export default function SectionJobOffer({
-  sectionTitle,
+  title,
   paddingY = "py-16 md:py-44", // Default padding values
 }: SectionJobOfferProps) {
   return (
@@ -19,7 +19,7 @@ export default function SectionJobOffer({
         <div className="grid items-center gap-12 md:grid-cols-2 md:gap-24">
           {/* Left Column */}
           <SectionTitle
-            title={sectionTitle}
+            title={title}
             as="h2"
             motionPreset="blur-left"
             textColor="black"
