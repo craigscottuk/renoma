@@ -15,7 +15,7 @@ const QUERY = `
   title,
   slug,
   summary,
-  headerImage {
+  image {
     image,
     imageAlt
   },
@@ -65,7 +65,7 @@ type Project = {
   slug: { current: string };
   language: string;
   summary: string;
-  headerImage: {
+  image: {
     image: string;
     imageAlt: string;
   };
@@ -126,7 +126,7 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
   }
 
   const {
-    headerImage,
+    image,
     details,
     sectionOne,
     sectionTwo,
@@ -142,8 +142,8 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
           <CaseStudyHeaderSection
             title={title}
             summary={summary}
-            image={headerImage?.image}
-            imageAlt={headerImage?.imageAlt}
+            image={image?.image}
+            imageAlt={image?.imageAlt}
           />
           <ProjectDetailsSection
             details={
