@@ -72,7 +72,7 @@ export const wpisRealizacji = defineType({
     }),
 
     defineField({
-      name: "headerImage",
+      name: "image",
       title: "Nagłówek",
       type: "object",
       group: "caseStudyHeader",
