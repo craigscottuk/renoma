@@ -7,11 +7,11 @@ import ServicesListed from "@/components/sections-services/services-listed";
 const QUERY = `
 {
   "servicesHeaderSection": *[_type == "servicesHeaderSection"][0]{
-    "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Brak tłumaczenia"),
-    "headerImage": headerImage, // Fetch full image object with asset._ref
-    "headerImageAlt": coalesce(headerImage.alt[_key == $locale][0].value, "Brak tłumaczenia")
+    "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+    "image": image, 
+    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia")
   },
   "servicesListSection": *[_type == "servicesListSection"][0]{
     "services": services[]{
@@ -35,11 +35,11 @@ type Props = {
 
 interface Content {
   servicesHeaderSection: {
-    sectionLabel: string;
-    sectionTitle: string;
-    sectionDescription: string;
-    headerImage?: string;
-    headerImageAlt?: string;
+    label: string;
+    title: string;
+    description: string;
+    image?: string;
+    imageAlt?: string;
   };
   servicesListSection: {
     services: {
@@ -76,11 +76,11 @@ export default async function ONas({ params: { locale } }: Props) {
     <>
       {/* Page Header Section */}
       <PageHeaderSection
-        sectionLabel={servicesHeaderSection.sectionLabel}
-        sectionTitle={servicesHeaderSection.sectionTitle}
-        sectionDescription={servicesHeaderSection.sectionDescription}
-        headerImage={servicesHeaderSection.headerImage}
-        headerImageAlt={servicesHeaderSection.headerImageAlt}
+        label={servicesHeaderSection.label}
+        title={servicesHeaderSection.title}
+        description={servicesHeaderSection.description}
+        image={servicesHeaderSection.image}
+        imageAlt={servicesHeaderSection.imageAlt}
       />
       {/* Services Listed Section */}
       <ServicesListed services={servicesListSection.services} />
