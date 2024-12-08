@@ -43,7 +43,7 @@ export const kontaktHeaderSection = defineType({
   ],
   fields: [
     defineField({
-      name: "sectionLabel",
+      name: "label",
       title: "Etykieta sekcji",
       description: "Krótki tekst nad tytułem, np. 'KONTAKT'.",
       type: "internationalizedArrayString",
@@ -51,7 +51,7 @@ export const kontaktHeaderSection = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "sectionTitle",
+      name: "title",
       title: "Tytuł sekcji",
       description: "Główny tytuł sekcji, np. 'Skontaktuj się z nami'.",
       type: "internationalizedArrayString",
@@ -59,14 +59,15 @@ export const kontaktHeaderSection = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "sectionDescription",
+      name: "description",
       title: "Opis sekcji",
       description: "Tekst zachęcający do kontaktu.",
       type: "internationalizedArrayText",
+      options: { rows: 3 },
       group: "opisSekcji",
     }),
     defineField({
-      name: "headerImage",
+      name: "image",
       title: "Obraz nagłówka",
       description: "Obraz wyświetlany w nagłówku strony kontaktowej.",
       type: "image",
@@ -76,7 +77,7 @@ export const kontaktHeaderSection = defineType({
       group: "obrazSekcji",
     }),
     defineField({
-      name: "headerImageAlt",
+      name: "imageAlt",
       title: "Alternatywny tekst obrazu nagłówka",
       description:
         "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie przedstawiające biuro firmy'.",
