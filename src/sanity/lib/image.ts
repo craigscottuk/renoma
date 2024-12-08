@@ -43,7 +43,7 @@ export function resolveOpenGraphImage(
 // import Head from "next/head";
 // import { resolveOpenGraphImage } from "@/sanity/lib/image";
 
-// const ogImage = resolveOpenGraphImage(headerImage); // Pass your OG image source here
+// const ogImage = resolveOpenGraphImage(image); // Pass your OG image source here
 
 // <Head>
 //   <meta property="og:image" content={ogImage?.url} />
