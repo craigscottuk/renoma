@@ -35,7 +35,7 @@ export const heroSection = defineType({
   ],
   fields: [
     defineField({
-      name: "sectionTitle",
+      name: "title",
       title: "Tytuł Sekcji",
       type: "internationalizedArrayString",
       group: "tytulSekcji",
@@ -77,21 +77,21 @@ export const aboutSectionHome = defineType({
   ],
   fields: [
     defineField({
-      name: "sectionLabel",
+      name: "label",
       title: "Etykieta Sekcji",
       type: "internationalizedArrayString",
       group: "etykietaSekcji",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "sectionTitle",
+      name: "title",
       title: "Tytuł Sekcji",
       type: "internationalizedArrayString",
       group: "tytulSekcji",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "sectionDescription",
+      name: "description",
       title: "Opis Sekcji",
       type: "internationalizedArrayText",
       group: "opisSekcji",
@@ -132,21 +132,21 @@ export const servicesSectionHome = defineType({
   ],
   fields: [
     defineField({
-      name: "sectionLabel",
+      name: "label",
       title: "Etykieta Sekcji",
       type: "internationalizedArrayString",
       group: "etykietaSekcji",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "sectionTitle",
+      name: "title",
       title: "Tytuł Sekcji",
       type: "internationalizedArrayString",
       group: "tytulSekcji",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "sectionDescription",
+      name: "description",
       title: "Opis Sekcji",
       type: "internationalizedArrayText",
       group: "opisSekcji",
@@ -177,21 +177,21 @@ export const faqSectionHome = defineType({
   ],
   fields: [
     defineField({
-      name: "sectionLabel",
+      name: "label",
       title: "Etykieta Sekcji",
       type: "internationalizedArrayString",
       group: "etykietaSekcji",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "sectionTitle",
+      name: "title",
       title: "Tytuł Sekcji",
       type: "internationalizedArrayString",
       group: "tytulSekcji",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "sectionDescription",
+      name: "description",
       title: "Opis Sekcji",
       type: "internationalizedArrayText",
       group: "opisSekcji",
