@@ -43,7 +43,7 @@ export const servicesHeaderSection = defineType({
   ],
   fields: [
     defineField({
-      name: "sectionLabel",
+      name: "label",
       title: "Etykieta sekcji",
       description: "Krótki tekst nad tytułem, np. 'USŁUGI'.",
       type: "internationalizedArrayString",
@@ -51,7 +51,7 @@ export const servicesHeaderSection = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "sectionTitle",
+      name: "title",
       title: "Tytuł sekcji",
       description: "Główny tytuł sekcji na stronie usług, np. 'Nasze Usługi'.",
       type: "internationalizedArrayString",
@@ -59,7 +59,7 @@ export const servicesHeaderSection = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "sectionDescription",
+      name: "description",
       title: "Opis sekcji",
       description:
         "Tekst opisujący główne usługi firmy, przedstawiony na stronie usług.",
@@ -67,7 +67,7 @@ export const servicesHeaderSection = defineType({
       group: "opisSekcji",
     }),
     defineField({
-      name: "headerImage",
+      name: "image",
       title: "Obraz nagłówka",
       description:
         "Obraz wyświetlany w nagłówku strony usług, przedstawiający np. procesy konserwatorskie lub sprzęt budowlany.",
@@ -78,7 +78,7 @@ export const servicesHeaderSection = defineType({
       group: "obrazSekcji",
     }),
     defineField({
-      name: "headerImageAlt",
+      name: "imageAlt",
       title: "Alternatywny tekst obrazu nagłówka",
       description:
         "Tekst alternatywny dla obrazu nagłówka, np. 'Sprzęt budowlany używany podczas prac konserwatorskich'.",
