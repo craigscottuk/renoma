@@ -7,11 +7,11 @@ import { client } from "@/sanity/client";
 const QUERY = `
 {
   "kontaktHeaderSection": *[_type == "kontaktHeaderSection"][0]{
-    "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Brak tłumaczenia"),
-    "headerImage": headerImage, // Fetch full image object with asset._ref
-    "headerImageAlt": coalesce(headerImage.alt[_key == $locale][0].value, "Brak tłumaczenia")
+    "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+    "image": image, 
+    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia")
   },
   "contactFormSection": *[_type == "contactFormSection"][0]{
     "contactFormSubjects": contactFormSubjects[].label[_key == $locale][0].value
@@ -39,11 +39,11 @@ type Props = {
 
 interface Content {
   kontaktHeaderSection: {
-    sectionLabel: string;
-    sectionTitle: string;
-    sectionDescription: string;
-    headerImage?: string;
-    headerImageAlt?: string;
+    label: string;
+    title: string;
+    description: string;
+    image?: string;
+    imageAlt?: string;
   };
   contactFormSection: {
     contactFormSubjects: string[];
@@ -75,11 +75,11 @@ export default async function Kontakt({ params: { locale } }: Props) {
     <>
       {/* Page Header Section */}
       <PageHeaderSection
-        sectionLabel={kontaktHeaderSection.sectionLabel}
-        sectionTitle={kontaktHeaderSection.sectionTitle}
-        sectionDescription={kontaktHeaderSection.sectionDescription}
-        headerImage={kontaktHeaderSection.headerImage}
-        headerImageAlt={kontaktHeaderSection.headerImageAlt}
+        label={kontaktHeaderSection.label}
+        title={kontaktHeaderSection.title}
+        description={kontaktHeaderSection.description}
+        image={kontaktHeaderSection.image}
+        imageAlt={kontaktHeaderSection.imageAlt}
       />
 
       {/* Black/White Contact Form Section */}
