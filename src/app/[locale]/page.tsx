@@ -10,28 +10,28 @@ import SectionFaqHome from "@/components/sections-home/section-faq-home";
 const QUERY = `
 {
   "heroSection": *[_type == "heroSection"][0]{
-    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia")
   },
 
   "aboutSection": *[_type == "aboutSection"][0]{
-    "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Brak tłumaczenia"),
+    "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia")
   },
 
   "servicesSection": *[_type == "servicesSection"][0]{
-    "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Brak tłumaczenia"),
+    "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia")
   },
 
   "faqSectionHome": *[_type == "faqSectionHome"][0]{
-    "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Brak tłumaczenia"),
+    "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia"),
     "faqItems": faqItems[]{
       "question": coalesce(question[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -49,25 +49,25 @@ type Props = {
 
 interface Content {
   heroSection: {
-    sectionTitle: string;
+    title: string;
     sectionCTA: string;
   };
   aboutSection: {
-    sectionLabel: string;
-    sectionTitle: string;
-    sectionDescription: string;
+    label: string;
+    title: string;
+    description: string;
     sectionCTA: string;
   };
   servicesSection: {
-    sectionLabel: string;
-    sectionTitle: string;
-    sectionDescription: string;
+    label: string;
+    title: string;
+    description: string;
     sectionCTA: string;
   };
   faqSectionHome: {
-    sectionLabel: string;
-    sectionTitle: string;
-    sectionDescription: string;
+    label: string;
+    title: string;
+    description: string;
     sectionCTA: string;
     faqItems: {
       question: string;
@@ -88,7 +88,7 @@ export default async function HomePage({ params: { locale } }: Props) {
       {/* About Section */}
       {content.heroSection && (
         <HeroSection
-          sectionTitle={content.heroSection.sectionTitle}
+          title={content.heroSection.title}
           sectionCTA={content.heroSection.sectionCTA}
         />
       )}
@@ -96,9 +96,9 @@ export default async function HomePage({ params: { locale } }: Props) {
       {/* About Section */}
       {content.aboutSection && (
         <SectionAbout
-          sectionLabel={content.aboutSection.sectionLabel}
-          sectionTitle={content.aboutSection.sectionTitle}
-          sectionDescription={content.aboutSection.sectionDescription}
+          label={content.aboutSection.label}
+          title={content.aboutSection.title}
+          description={content.aboutSection.description}
           sectionCTA={content.aboutSection.sectionCTA}
           paddingY="py-20 md:py-48"
         />
@@ -107,9 +107,9 @@ export default async function HomePage({ params: { locale } }: Props) {
       {/* Services Section */}
       {content.servicesSection && (
         <SectionUslugiHome
-          sectionLabel={content.servicesSection.sectionLabel}
-          sectionTitle={content.servicesSection.sectionTitle}
-          sectionDescription={content.servicesSection.sectionDescription}
+          label={content.servicesSection.label}
+          title={content.servicesSection.title}
+          description={content.servicesSection.description}
           sectionCTA={content.servicesSection.sectionCTA}
         />
       )}
@@ -117,9 +117,9 @@ export default async function HomePage({ params: { locale } }: Props) {
       {/* FAQ Section */}
       {content.faqSectionHome && (
         <SectionFaqHome
-          sectionLabel={content.faqSectionHome.sectionLabel}
-          sectionTitle={content.faqSectionHome.sectionTitle}
-          sectionDescription={content.faqSectionHome.sectionDescription}
+          label={content.faqSectionHome.label}
+          title={content.faqSectionHome.title}
+          description={content.faqSectionHome.description}
           sectionCTA={content.faqSectionHome.sectionCTA}
           faqItems={content.faqSectionHome.faqItems}
         />
