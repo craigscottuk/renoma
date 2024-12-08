@@ -6,11 +6,11 @@ import { client } from "@/sanity/client";
 const QUERY = `
 {
   "renomaLabHeaderSection": *[_type == "renomaLabHeaderSection"][0]{
-    "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Brak tłumaczenia"),
-    "headerImage": headerImage, // Fetch full image object with asset._ref
-    "headerImageAlt": coalesce(headerImage.alt[_key == $locale][0].value, "Brak tłumaczenia")
+    "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+    "image": image, 
+    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia")
   },
 }
 
@@ -24,11 +24,11 @@ type Props = {
 
 interface Content {
   renomaLabHeaderSection: {
-    sectionLabel: string;
-    sectionTitle: string;
-    sectionDescription: string;
-    headerImage?: string;
-    headerImageAlt?: string;
+    label: string;
+    title: string;
+    description: string;
+    image?: string;
+    imageAlt?: string;
   };
 }
 
@@ -43,11 +43,11 @@ export default async function RenomaLab({ params: { locale } }: Props) {
 
   return (
     <PageHeaderSection
-      sectionLabel={renomaLabHeaderSection.sectionLabel}
-      sectionTitle={renomaLabHeaderSection.sectionTitle}
-      sectionDescription={renomaLabHeaderSection.sectionDescription}
-      headerImage={renomaLabHeaderSection.headerImage}
-      headerImageAlt={renomaLabHeaderSection.headerImageAlt}
+      label={renomaLabHeaderSection.label}
+      title={renomaLabHeaderSection.title}
+      description={renomaLabHeaderSection.description}
+      image={renomaLabHeaderSection.image}
+      imageAlt={renomaLabHeaderSection.imageAlt}
     />
   );
 }
