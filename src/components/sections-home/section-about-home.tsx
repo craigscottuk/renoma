@@ -6,17 +6,17 @@ import clsx from "clsx";
 import SectionDescription from "@/components/section-description";
 
 interface SectionAboutProps {
-  sectionLabel: string;
-  sectionTitle: string;
-  sectionDescription: string;
+  label: string;
+  title: string;
+  description: string;
   sectionCTA: string;
   paddingY?: string;
 }
 
 export default function SectionAbout({
-  sectionLabel,
-  sectionTitle,
-  sectionDescription,
+  label,
+  title,
+  description,
   sectionCTA,
   paddingY = "py-16 md:py-44", // Default padding values
 }: SectionAboutProps) {
@@ -27,8 +27,8 @@ export default function SectionAbout({
           {/* Right Column (Heading and Title) for Mobile, Hidden on Desktop */}
           <div className="mb-6 md:hidden">
             <SectionTitle
-              label={sectionLabel}
-              title={sectionTitle}
+              label={label}
+              title={title}
               as="h2"
               motionPreset="blur-left"
               textColor="black"
@@ -40,7 +40,7 @@ export default function SectionAbout({
           {/* Left Column (Text Content) */}
           <div className="flex h-full flex-col justify-center space-y-6">
             <SectionDescription
-              description={sectionDescription}
+              description={description}
               textAlign="left"
               textColor="black"
             />
@@ -49,8 +49,8 @@ export default function SectionAbout({
           {/* Right Column (Heading, Title, and Button) for Desktop */}
           <div className="hidden md:flex md:flex-col md:items-end">
             <SectionTitle
-              label={sectionLabel}
-              title={sectionTitle}
+              label={label}
+              title={title}
               as="h2"
               motionPreset="blur-right"
               textColor="black"
