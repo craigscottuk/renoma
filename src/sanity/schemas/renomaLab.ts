@@ -42,7 +42,7 @@ export const renomaLabHeaderSection = defineType({
   ],
   fields: [
     defineField({
-      name: "sectionLabel",
+      name: "label",
       title: "Etykieta sekcji",
       description: "Krótki tekst nad tytułem, np. 'RENOMA LAB'.",
       type: "internationalizedArrayString",
@@ -50,7 +50,7 @@ export const renomaLabHeaderSection = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "sectionTitle",
+      name: "title",
       title: "Tytuł sekcji",
       description:
         "Główny tytuł sekcji na stronie Renoma LAB, np. 'Laboratorium badań materiałów budowlanych'.",
@@ -59,7 +59,7 @@ export const renomaLabHeaderSection = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "sectionDescription",
+      name: "description",
       title: "Opis sekcji",
       description:
         "Tekst opisujący działalność laboratorium Renoma LAB, specjalizującego się w testach materiałów budowlanych i badaniach konserwatorskich.",
@@ -67,7 +67,7 @@ export const renomaLabHeaderSection = defineType({
       group: "opisSekcji",
     }),
     defineField({
-      name: "headerImage",
+      name: "image",
       title: "Obraz nagłówka",
       description:
         "Obraz wyświetlany w nagłówku strony Renoma LAB, przedstawiający laboratorium lub sprzęt badawczy.",
@@ -78,7 +78,7 @@ export const renomaLabHeaderSection = defineType({
       group: "obrazSekcji",
     }),
     defineField({
-      name: "headerImageAlt",
+      name: "imageAlt",
       title: "Alternatywny tekst obrazu nagłówka",
       description:
         "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie sprzętu laboratoryjnego do badań materiałów budowlanych'.",
