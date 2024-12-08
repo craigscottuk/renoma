@@ -9,21 +9,21 @@ import { PortableTextBlock } from "next-sanity";
 const QUERY = `
 {
   "learnWithUsHeaderSection": *[_type == "learnWithUsHeaderSection"][0]{
-    "sectionLabel": coalesce(sectionLabel[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionDescription": coalesce(sectionDescription[_key == $locale][0].value, "Brak tłumaczenia"),
-    "headerImage": headerImage, // Fetch full image object with asset._ref
-    "headerImageAlt": coalesce(headerImage.alt[_key == $locale][0].value, "Brak tłumaczenia")
+    "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+    "image": image, 
+    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia")
   },
   "whatWeOfferSection": *[_type == "whatWeOfferSection"][0]{
-    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "offers": offers[]{
       "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
       "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia")
     }
   },
   "whoWeAreLookingForSection": *[_type == "whoWeAreLookingForSection"][0]{
-    "sectionTitle": coalesce(sectionTitle[_key == $locale][0].value, "Brak tłumaczenia"),
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "criteria": select(
       defined(criteria[$locale]) => criteria[$locale],
       "Brak tłumaczenia"
@@ -43,18 +43,18 @@ type Props = {
 
 interface Content {
   learnWithUsHeaderSection: {
-    sectionLabel: string;
-    sectionTitle: string;
-    sectionDescription: string;
-    headerImage?: string;
-    headerImageAlt?: string;
+    label: string;
+    title: string;
+    description: string;
+    image?: string;
+    imageAlt?: string;
   };
   whatWeOfferSection: {
-    sectionTitle: string;
+    title: string;
     offers: { title: string; description: string }[];
   };
   whoWeAreLookingForSection: {
-    sectionTitle: string;
+    title: string;
     criteria: PortableTextBlock[];
     image: string;
     imageAlt: string;
@@ -78,23 +78,23 @@ export default async function UczSieZNami({ params: { locale } }: Props) {
   return (
     <>
       <PageHeaderSection
-        sectionLabel={learnWithUsHeaderSection.sectionLabel}
-        sectionTitle={learnWithUsHeaderSection.sectionTitle}
-        sectionDescription={learnWithUsHeaderSection.sectionDescription}
-        headerImage={learnWithUsHeaderSection.headerImage}
-        headerImageAlt={learnWithUsHeaderSection.headerImageAlt}
+        label={learnWithUsHeaderSection.label}
+        title={learnWithUsHeaderSection.title}
+        description={learnWithUsHeaderSection.description}
+        image={learnWithUsHeaderSection.image}
+        imageAlt={learnWithUsHeaderSection.imageAlt}
       />
 
       {/* What we offer */}
       <WhatWeOffer
-        sectionTitle={whatWeOfferSection.sectionTitle}
+        title={whatWeOfferSection.title}
         offers={whatWeOfferSection.offers}
         paddingY="py-20 md:py-48"
       />
 
       {/* Who we are looking for */}
       <WhoWeAreLookingFor
-        sectionTitle={whoWeAreLookingForSection.sectionTitle}
+        title={whoWeAreLookingForSection.title}
         criteria={whoWeAreLookingForSection.criteria}
         image={whoWeAreLookingForSection.image}
         imageAlt={whoWeAreLookingForSection.imageAlt}
