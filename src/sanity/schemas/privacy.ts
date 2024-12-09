@@ -18,8 +18,8 @@ export const privacy = defineType({
 });
 
 // Privacy Policy page header section
-export const privacyHeaderSection = defineType({
-  name: "privacyHeaderSection",
+export const privacyHeader = defineType({
+  name: "privacyHeader",
   title: "Nagłówek strony polityki prywatności",
   type: "document",
   options: { singleton: true },
