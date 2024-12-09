@@ -34,7 +34,7 @@ export default defineConfig({
         { id: "en", title: "EN" },
         { id: "de", title: "DE" },
       ],
-      schemaTypes: ["wpisRealizacji"],
+      schemaTypes: ["caseStudyEntry"],
     }),
 
     internationalizedArray({
