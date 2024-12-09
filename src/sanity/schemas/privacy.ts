@@ -12,6 +12,7 @@ export const privacy = defineType({
     {
       name: "placeholder",
       title: "Zastępczy tekst",
+      description: "Tekst zastępczy używany jako wypełnienie.",
       type: "string",
     },
   ],
@@ -84,6 +85,29 @@ export const privacyHeader = defineType({
         "Tekst alternatywny dla obrazu nagłówka, np. 'Ilustracja symbolizująca ochronę prywatności'.",
       type: "internationalizedArrayString",
       group: "obrazSekcji",
+    }),
+  ],
+});
+
+// Privacy Policy text section
+export const privacyText = defineType({
+  name: "privacyText",
+  title: "Treść strony polityki prywatności",
+  type: "document",
+  options: { singleton: true },
+  fields: [
+    defineField({
+      name: "content",
+      title: "Treść polityki prywatności",
+      type: "object",
+      description:
+        "Treść tekstowa strony polityki prywatności w wielu językach.",
+      validation: (Rule) => Rule.required(),
+      fields: [
+        { name: "pl", title: "PL", type: "portableTextWithHeadings" },
+        { name: "en", title: "EN", type: "portableTextWithHeadings" },
+        { name: "de", title: "DE", type: "portableTextWithHeadings" },
+      ],
     }),
   ],
 });
