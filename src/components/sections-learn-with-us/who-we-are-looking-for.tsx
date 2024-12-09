@@ -1,7 +1,6 @@
-import { Button } from "@/components/ui/button";
+// cSpell:disable
 import { Card, CardContent } from "@/components/ui/card";
 import clsx from "clsx";
-import { ArrowRight } from "lucide-react";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
 import { portableTextComponents } from "../../lib/portableTextComponents";
 import SectionTitle from "../section-title";
