@@ -1,22 +1,22 @@
 // cSpell:disable
 import SectionContactFormDetails from "@/components/sections-contact/section-contact-form-details";
 import { setRequestLocale } from "next-intl/server";
-import PageHeaderSection from "@/components/page-header-section";
+import PageHeader from "@/components/page-header-section";
 import { client } from "@/sanity/client";
 
 const QUERY = `
 {
-  "kontaktHeaderSection": *[_type == "kontaktHeaderSection"][0]{
+  "contactHeader": *[_type == "contactHeader"][0]{
     "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "image": image, 
     "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia")
   },
-  "contactFormSection": *[_type == "contactFormSection"][0]{
+  "contactForm": *[_type == "contactForm"][0]{
     "contactFormSubjects": contactFormSubjects[].label[_key == $locale][0].value
   },
-  "contactDetailsSection": *[_type == "contactDetailsSection"][0]{
+  "contactDetails": *[_type == "contactDetails"][0]{
     "numerTelefonu": coalesce(numerTelefonu, "Brak tłumaczenia"),
     "adresEmail": coalesce(adresEmail, "Brak tłumaczenia"),
     "adresBiuraLineOne": coalesce(adresBiuraLineOne[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -38,17 +38,17 @@ type Props = {
 };
 
 interface Content {
-  kontaktHeaderSection: {
+  contactHeader: {
     label: string;
     title: string;
     description: string;
     image?: string;
     imageAlt?: string;
   };
-  contactFormSection: {
+  contactForm: {
     contactFormSubjects: string[];
   };
-  contactDetailsSection: {
+  contactDetails: {
     numerTelefonu: string;
     adresEmail: string;
     adresBiuraLineOne: string;
@@ -68,24 +68,23 @@ export default async function Kontakt({ params: { locale } }: Props) {
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
-  const { kontaktHeaderSection, contactDetailsSection, contactFormSection } =
-    content;
+  const { contactHeader, contactDetails, contactForm } = content;
 
   return (
     <>
       {/* Page Header Section */}
-      <PageHeaderSection
-        label={kontaktHeaderSection.label}
-        title={kontaktHeaderSection.title}
-        description={kontaktHeaderSection.description}
-        image={kontaktHeaderSection.image}
-        imageAlt={kontaktHeaderSection.imageAlt}
+      <PageHeader
+        label={contactHeader.label}
+        title={contactHeader.title}
+        description={contactHeader.description}
+        image={contactHeader.image}
+        imageAlt={contactHeader.imageAlt}
       />
 
       {/* Black/White Contact Form Section */}
       <SectionContactFormDetails
-        contactFormSection={contactFormSection}
-        contactDetailsSection={contactDetailsSection}
+        contactForm={contactForm}
+        contactDetails={contactDetails}
       />
     </>
   );
