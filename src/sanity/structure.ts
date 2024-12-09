@@ -68,16 +68,23 @@ export const structure: StructureResolver = (S, context) =>
               singletonDocumentListItem({
                 S,
                 context,
-                type: "aboutHeaderSection",
+                type: "aboutUsHeader",
                 title: "Sekcja 1: Nagłówek",
-                id: "singletonAboutHeaderSection",
+                id: "singletonAboutUsHeader",
+              }),
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "aboutUs",
+                title: "Sekcja 2: O nas",
+                id: "singletonAboutUs",
               }),
               singletonDocumentListItem({
                 S,
                 context,
                 type: "timelineSection",
-                title: "Sekcja 2: Oś czasu",
-                id: "singletonTimelineSection",
+                title: "Sekcja 3: Oś czasu",
+                id: "singletonTimeline",
               }),
             ]),
         ),
@@ -91,16 +98,16 @@ export const structure: StructureResolver = (S, context) =>
               singletonDocumentListItem({
                 S,
                 context,
-                type: "servicesHeaderSection",
+                type: "servicesHeader",
                 title: "Sekcja 1: Nagłówek",
-                id: "singletonServicesHeaderSection",
+                id: "singletonServicesHeader",
               }),
               singletonDocumentListItem({
                 S,
                 context,
-                type: "servicesListSection",
+                type: "servicesList",
                 title: "Sekcja 2: Lista usług",
-                id: "singletonServicesListSection",
+                id: "singletonServicesList",
               }),
             ]),
         ),
@@ -114,13 +121,13 @@ export const structure: StructureResolver = (S, context) =>
               singletonDocumentListItem({
                 S,
                 context,
-                type: "realizacjeHeaderSection",
+                type: "caseStudyHeader",
                 title: "Sekcja 1: Nagłówek",
                 id: "singletonProjectsHeaderSection",
               }),
             ]),
         ),
-      S.documentTypeListItem("wpisRealizacji")
+      S.documentTypeListItem("caseStudyEntry")
         .title("Wpis realizacji")
         .icon(FileText),
       S.listItem()
@@ -133,7 +140,7 @@ export const structure: StructureResolver = (S, context) =>
               singletonDocumentListItem({
                 S,
                 context,
-                type: "renomaLabHeaderSection",
+                type: "renomaLabHeader",
                 title: "Sekcja 1: Nagłówek",
                 id: "singletonRenomaLabHeaderSection",
               }),
@@ -149,7 +156,7 @@ export const structure: StructureResolver = (S, context) =>
               singletonDocumentListItem({
                 S,
                 context,
-                type: "learnWithUsHeaderSection",
+                type: "learnWithUsHeader",
                 title: "Sekcja 1: Nagłówek",
                 id: "singletonLearnWithUsHeaderSection",
               }),
@@ -157,7 +164,7 @@ export const structure: StructureResolver = (S, context) =>
               singletonDocumentListItem({
                 S,
                 context,
-                type: "whatWeOfferSection",
+                type: "whatWeOffer",
                 title: "Sekcja 2: Co oferujemy?",
                 id: "singletonWhatWeOfferSection",
               }),
@@ -165,7 +172,7 @@ export const structure: StructureResolver = (S, context) =>
               singletonDocumentListItem({
                 S,
                 context,
-                type: "whoWeAreLookingForSection",
+                type: "whoWeAreLookingFor",
                 title: "Sekcja 3: Kogo szukamy?",
                 id: "singletonWhoWeAreLookingForSection",
               }),
@@ -181,14 +188,14 @@ export const structure: StructureResolver = (S, context) =>
               singletonDocumentListItem({
                 S,
                 context,
-                type: "workWithUsHeaderSection",
+                type: "workWithUsHeader",
                 title: "Sekcja 1: Nagłówek",
                 id: "singletonWorkWithUsHeaderSection",
               }),
               singletonDocumentListItem({
                 S,
                 context,
-                type: "jobOfferSection",
+                type: "jobOffers",
                 title: "Sekcja 2: Oferty pracy",
                 id: "singletonJobOfferSection",
               }),
@@ -204,21 +211,21 @@ export const structure: StructureResolver = (S, context) =>
               singletonDocumentListItem({
                 S,
                 context,
-                type: "kontaktHeaderSection",
+                type: "contactHeader",
                 title: "Sekcja 1: Nagłówek",
                 id: "singletonKontaktHeaderSection",
               }),
               singletonDocumentListItem({
                 S,
                 context,
-                type: "contactFormSection",
+                type: "contactForm",
                 title: "Sekcja 2: Formularz kontaktowy",
                 id: "singletonContactFormSection",
               }),
               singletonDocumentListItem({
                 S,
                 context,
-                type: "contactDetailsSection",
+                type: "contactDetails",
                 title: "Sekcja 3: Dane kontaktowe",
                 id: "singletonContactDetailsSection",
               }),
@@ -234,6 +241,6 @@ export const structure: StructureResolver = (S, context) =>
         id: "singletonUstawienia",
       }),
       ...filteredDocumentListItems({ S, context }).filter(
-        (item) => item.getId() !== "wpisRealizacji",
+        (item) => item.getId() !== "caseStudyEntry",
       ),
     ]);
