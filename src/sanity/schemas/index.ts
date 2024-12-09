@@ -3,36 +3,32 @@ import { type SchemaTypeDefinition } from "sanity";
 
 // Import each schema file
 import {
-  dom,
+  home,
   heroSection,
   aboutSectionHome,
   servicesSectionHome,
   faqSectionHome,
-} from "./dom";
-import { oNas, aboutHeaderSection, timelineSection } from "./oNas";
-import { servicesListSection, servicesHeaderSection, uslugi } from "./uslugi";
-import { wpisRealizacji } from "./wpisRealizacji";
-import { realizacje, realizacjeHeaderSection } from "./realizacje";
-import { renomaLab, renomaLabHeaderSection } from "./renomaLab";
+} from "./home";
+import { about, aboutUsHeader, timelineSection, aboutUs } from "./about";
+import { servicesList, servicesHeader, uslugi } from "./uslugi";
+import { caseStudyEntry } from "./case-study-entry";
+import { realizacje, caseStudyHeader } from "./case-studies";
+import { renomaLab, renomaLabHeader } from "./renomaLab";
 import {
-  learnWithUsHeaderSection,
-  uczSieZNami,
-  whatWeOfferSection,
-  whoWeAreLookingForSection,
-} from "./uczSieZNami";
+  learnWithUsHeader,
+  learnWithUs,
+  whatWeOffer,
+  whoWeAreLookingFor,
+} from "./learn-with-us";
+import { jobOffers, workWithUs, workWithUsHeader } from "./work-with-us";
 import {
-  jobOfferSection,
-  pracujZNami,
-  workWithUsHeaderSection,
-} from "./pracujZNami";
-import {
-  kontakt,
-  kontaktHeaderSection,
-  contactFormSection,
-  contactDetailsSection,
-} from "./kontakt";
+  contact,
+  contactHeaderSection,
+  contactForm,
+  contactDetails,
+} from "./contact";
 import { ustawienia } from "./ustawienia";
-import { privacy, privacyHeaderSection } from "./privacy";
+import { privacy, privacyHeader } from "./privacy";
 import {
   basicText,
   portableTextWithHeadings,
@@ -45,55 +41,56 @@ import WhatWeOffer from "@/components/sections-learn-with-us/what-we-offer";
 // Export schema configuration
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
-    // dom
-    dom,
+    // home
+    home,
     heroSection,
     aboutSectionHome,
     servicesSectionHome,
     faqSectionHome,
 
     // O nas
-    oNas,
-    aboutHeaderSection,
+    about,
+    aboutUsHeader,
+    aboutUs,
     timelineSection,
 
     // Usługi
     uslugi,
-    servicesHeaderSection,
-    servicesListSection,
+    servicesHeader,
+    servicesList,
 
     // Realizacje
     realizacje,
-    realizacjeHeaderSection,
+    caseStudyHeader,
 
     // Wpis realizacji
-    wpisRealizacji,
+    caseStudyEntry,
 
     // Renoma Lab
     renomaLab,
-    renomaLabHeaderSection,
+    renomaLabHeader,
 
     // Ucz się z nami
-    uczSieZNami,
-    learnWithUsHeaderSection,
-    whatWeOfferSection,
-    whoWeAreLookingForSection,
+    learnWithUs,
+    learnWithUsHeader,
+    whatWeOffer,
+    whoWeAreLookingFor,
 
     // Pracuj z nami
-    pracujZNami,
-    workWithUsHeaderSection,
-    jobOfferSection,
+    workWithUs,
+    workWithUsHeader,
+    jobOffers,
 
     // Kontakt
-    kontakt,
-    kontaktHeaderSection,
-    contactFormSection,
-    contactDetailsSection,
+    contact,
+    contactHeaderSection,
+    contactForm,
+    contactDetails,
 
     ustawienia,
 
     privacy,
-    privacyHeaderSection,
+    privacyHeader,
 
     // Portable Text
     basicText,
