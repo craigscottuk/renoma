@@ -10,7 +10,7 @@ import ProjectDetailsSection from "@/components/sections-case/details";
 import { CaseStudySectionContent } from "@/types";
 
 const QUERY = `
-*[_type == "wpisRealizacji" && slug.current == $slug][0]{
+*[_type == "caseStudyEntry" && slug.current == $slug][0]{
   language,
   title,
   slug,
