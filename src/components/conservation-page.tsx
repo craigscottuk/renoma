@@ -93,7 +93,7 @@ function ImageCarousel({
         <div className="flex">
           {images.map((image, index) => (
             <div
-              className="relative aspect-video min-w-0 flex-[0_0_100%]"
+              className="aspect-video relative min-w-0 flex-[0_0_100%]"
               key={index}
             >
               <Image
@@ -275,6 +275,7 @@ export default function ConservationPage() {
           {sections.map((section) => (
             <section
               key={section.id}
+              // @ts-expect-error
               ref={(el) => (sectionRefs.current[section.id] = el)}
               className="mb-12"
             >
