@@ -17,8 +17,8 @@ export const renomaLab = defineType({
 });
 
 // Renoma Lab page header section
-export const renomaLabHeaderSection = defineType({
-  name: "renomaLabHeaderSection",
+export const renomaLabHeader = defineType({
+  name: "renomaLabHeader",
   title: "Nagłówek strony Renoma LAB",
   type: "document",
   options: { singleton: true },
