@@ -4,16 +4,16 @@ import { setRequestLocale } from "next-intl/server";
 import { client } from "@/sanity/client";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { Link } from "@/i18n/routing";
-import PageHeaderSection from "@/components/page-header-section";
+import PageHeader from "@/components/page-header-section";
 
 const QUERY = `
 {
-  "projects": *[_type == "wpisRealizacji" && language == $locale]{
+  "projects": *[_type == "caseStudyEntry" && language == $locale]{
     title,
     slug,
     language,
 },
-  "realizacjeHeaderSection": *[_type == "realizacjeHeaderSection"][0]{
+  "caseStudyHeader": *[_type == "caseStudyHeader"][0]{
     "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -39,7 +39,7 @@ interface Projects {
 export default async function Realizacje({ params: { locale } }: Props) {
   setRequestLocale(locale);
 
-  const { projects, realizacjeHeaderSection } = await client.fetch(
+  const { projects, caseStudyHeader } = await client.fetch(
     QUERY,
     {
       locale,
@@ -52,12 +52,12 @@ export default async function Realizacje({ params: { locale } }: Props) {
   return (
     <>
       {/* Page Header Section */}
-      <PageHeaderSection
-        label={realizacjeHeaderSection.label}
-        title={realizacjeHeaderSection.title}
-        description={realizacjeHeaderSection.description}
-        image={realizacjeHeaderSection.image}
-        imageAlt={realizacjeHeaderSection.imageAlt}
+      <PageHeader
+        label={caseStudyHeader.label}
+        title={caseStudyHeader.title}
+        description={caseStudyHeader.description}
+        image={caseStudyHeader.image}
+        imageAlt={caseStudyHeader.imageAlt}
       />
 
       <section className="py-12 md:py-24">
