@@ -1,8 +1,8 @@
 // cSpell:disable
 import { defineType, defineField } from "sanity";
 
-export const realizacje = defineType({
-  name: "realizacje",
+export const caseStudies = defineType({
+  name: "caseStudies",
   title: "Realizacje",
   type: "document",
   options: {
