@@ -7,7 +7,7 @@ import SectionDescription from "@/components/section-description";
 import MaxWidthWrapper from "./max-width-wrapper";
 import clsx from "clsx";
 
-interface PageHeaderSectionProps {
+interface PageHeaderProps {
   label: string;
   title: string;
   description: string;
@@ -17,7 +17,7 @@ interface PageHeaderSectionProps {
   headerFullWidth?: boolean;
 }
 
-export default function PageHeaderSection({
+export default function PageHeader({
   label,
   title,
   description,
@@ -25,7 +25,7 @@ export default function PageHeaderSection({
   image,
   imageAlt,
   headerFullWidth = true,
-}: PageHeaderSectionProps) {
+}: PageHeaderProps) {
   // Generate the header image URL from Sanity or use the raw string URL
   const imageUrl =
     typeof image === "string"
