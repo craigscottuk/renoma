@@ -18,8 +18,8 @@ export const uslugi = defineType({
 });
 
 // Services page header section
-export const servicesHeaderSection = defineType({
-  name: "servicesHeaderSection",
+export const servicesHeader = defineType({
+  name: "servicesHeader",
   title: "Nagłówek strony usług",
   type: "document",
   options: { singleton: true },
@@ -88,8 +88,8 @@ export const servicesHeaderSection = defineType({
   ],
 });
 
-export const servicesListSection = defineType({
-  name: "servicesListSection",
+export const servicesList = defineType({
+  name: "servicesList",
   title: "Lista usług",
   type: "document",
   options: { singleton: true },
@@ -228,8 +228,8 @@ export const servicesListSection = defineType({
 // ==========================================================
 
 // // List of Services section
-// export const servicesListSection = defineType({
-//   name: "servicesListSection",
+// export const servicesList = defineType({
+//   name: "servicesList",
 //   title: "Lista usług",
 //   type: "document",
 //   options: { singleton: true },
