@@ -7,7 +7,7 @@ import { PortableText, PortableTextBlock } from "@portabletext/react";
 import { portableTextComponents } from "../../lib/portableTextComponents";
 import { Separator } from "../ui/separator";
 
-interface TimelineEvent {
+export interface TimelineEvent {
   year: string;
   content: PortableTextBlock[];
   images?: Array<{
