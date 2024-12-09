@@ -1,19 +1,20 @@
 // cSpell:disable
 import { setRequestLocale } from "next-intl/server";
-import PageHeaderSection from "@/components/page-header-section";
+import PageHeader from "@/components/page-header-section";
 import { client } from "@/sanity/client";
-import ServicesListed from "@/components/sections-services/services-listed";
+import ServicesList from "@/components/sections-services/services-list";
 
 const QUERY = `
 {
-  "servicesHeaderSection": *[_type == "servicesHeaderSection"][0]{
+  "servicesHeader": *[_type == "servicesHeader"][0]{
     "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "image": image, 
     "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia")
   },
-  "servicesListSection": *[_type == "servicesListSection"][0]{
+  
+  "servicesList": *[_type == "servicesList"][0]{
     "services": services[]{
       "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
       "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -34,14 +35,14 @@ type Props = {
 };
 
 interface Content {
-  servicesHeaderSection: {
+  servicesHeader: {
     label: string;
     title: string;
     description: string;
     image?: string;
     imageAlt?: string;
   };
-  servicesListSection: {
+  servicesList: {
     services: {
       title: string;
       description: string;
@@ -64,26 +65,20 @@ export default async function ONas({ params: { locale } }: Props) {
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
-  const { servicesHeaderSection, servicesListSection } = content;
-  // Log the fetched content to check if image data is being fetched
-  console.log("Fetched content:", servicesListSection);
-  // Log the images inside the servicesListSection
-  servicesListSection.services.forEach((service) => {
-    console.log("Service images:", service.images);
-  });
+  const { servicesHeader, servicesList } = content;
 
   return (
     <>
       {/* Page Header Section */}
-      <PageHeaderSection
-        label={servicesHeaderSection.label}
-        title={servicesHeaderSection.title}
-        description={servicesHeaderSection.description}
-        image={servicesHeaderSection.image}
-        imageAlt={servicesHeaderSection.imageAlt}
+      <PageHeader
+        label={servicesHeader.label}
+        title={servicesHeader.title}
+        description={servicesHeader.description}
+        image={servicesHeader.image}
+        imageAlt={servicesHeader.imageAlt}
       />
       {/* Services Listed Section */}
-      <ServicesListed services={servicesListSection.services} />
+      <ServicesList services={servicesList.services} />
     </>
   );
 }
