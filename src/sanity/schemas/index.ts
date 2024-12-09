@@ -1,7 +1,6 @@
 // cSpell:disable
 import { type SchemaTypeDefinition } from "sanity";
-
-// Import each schema file
+// Import schema types
 import {
   home,
   heroSection,
@@ -9,10 +8,10 @@ import {
   servicesSectionHome,
   faqSectionHome,
 } from "./home";
-import { about, aboutUsHeader, timelineSection, aboutUs } from "./about";
-import { servicesList, servicesHeader, uslugi } from "./uslugi";
+import { about, aboutUsHeader, ourHistory, aboutUs } from "./about";
+import { servicesList, servicesHeader, services } from "./services";
 import { caseStudyEntry } from "./case-study-entry";
-import { realizacje, caseStudyHeader } from "./case-studies";
+import { caseStudyHeader, caseStudies } from "./case-studies";
 import { renomaLab, renomaLabHeader } from "./renomaLab";
 import {
   learnWithUsHeader,
@@ -27,16 +26,14 @@ import {
   contactForm,
   contactDetails,
 } from "./contact";
-import { ustawienia } from "./ustawienia";
-import { privacy, privacyHeader } from "./privacy";
+import { settings } from "./settings";
+import { privacy, privacyHeader, privacyText } from "./privacy";
 import {
   basicText,
   portableTextWithHeadings,
   portableTextWithImage,
 } from "./portableText";
 import { sectionContent } from "./sectionContent";
-import { time } from "console";
-import WhatWeOffer from "@/components/sections-learn-with-us/what-we-offer";
 
 // Export schema configuration
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -52,15 +49,15 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     about,
     aboutUsHeader,
     aboutUs,
-    timelineSection,
+    ourHistory,
 
     // Usługi
-    uslugi,
+    services,
     servicesHeader,
     servicesList,
 
     // Realizacje
-    realizacje,
+    caseStudies,
     caseStudyHeader,
 
     // Wpis realizacji
@@ -87,16 +84,18 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     contactForm,
     contactDetails,
 
-    ustawienia,
-
     privacy,
     privacyHeader,
+    privacyText,
+
+    settings,
 
     // Portable Text
     basicText,
     portableTextWithImage,
     portableTextWithHeadings,
 
+    // Objects
     sectionContent,
   ],
 };
