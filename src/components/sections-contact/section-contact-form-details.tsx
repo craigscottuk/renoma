@@ -7,7 +7,7 @@ import ContactForm from "@/components/sections-contact/contact-form";
 import ExternalLink from "@/components/navigation/external-link";
 
 type ContactDetailsSectionProps = {
-  contactDetailsSection: {
+  contactDetails: {
     numerTelefonu: string;
     adresEmail: string;
     adresBiuraLineOne: string;
@@ -18,14 +18,14 @@ type ContactDetailsSectionProps = {
     numerNip: string;
     numerRegon: string;
   };
-  contactFormSection: {
+  contactForm: {
     contactFormSubjects: string[];
   };
 };
 
 export default function SectionContactFormDetails({
-  contactDetailsSection,
-  contactFormSection,
+  contactDetails,
+  contactForm,
 }: ContactDetailsSectionProps) {
   const t = useTranslations("kontakt-page");
 
@@ -46,7 +46,7 @@ export default function SectionContactFormDetails({
           <div className="max-w-xl">
             <ContactForm
               color={color}
-              contactFormSubjects={contactFormSection.contactFormSubjects.map(
+              contactFormSubjects={contactForm.contactFormSubjects.map(
                 (subject) => ({ label: subject }),
               )}
             />
@@ -59,7 +59,7 @@ export default function SectionContactFormDetails({
               <Phone className="h-6 w-6" aria-hidden="true" />
               <div>
                 <h3 className="font-semibold">{t("phone")}</h3>
-                <p>{contactDetailsSection.numerTelefonu}</p>
+                <p>{contactDetails.numerTelefonu}</p>
               </div>
             </div>
 
@@ -68,7 +68,7 @@ export default function SectionContactFormDetails({
               <Mail className="h-6 w-6" aria-hidden="true" />
               <div>
                 <h3 className="font-semibold">{t("email")}</h3>
-                <p>{contactDetailsSection.adresEmail}</p>
+                <p>{contactDetails.adresEmail}</p>
               </div>
             </div>
 
@@ -77,8 +77,8 @@ export default function SectionContactFormDetails({
               <MapPin className="h-7 w-7" aria-hidden="true" />
               <div>
                 <h3 className="font-semibold">{t("office")}</h3>
-                <p>{contactDetailsSection.adresBiuraLineOne}</p>
-                <p>{contactDetailsSection.adresBiuraLineTwo}</p>
+                <p>{contactDetails.adresBiuraLineOne}</p>
+                <p>{contactDetails.adresBiuraLineTwo}</p>
                 <ExternalLink
                   href="https://maps.app.goo.gl/SjucgxZNh6JacWfr7"
                   title="Zobacz na mapie"
@@ -91,11 +91,11 @@ export default function SectionContactFormDetails({
               <FileText className="max-h-10 max-w-10" aria-hidden="true" />
               <div>
                 <h3 className="font-semibold">{t("invoice-info")}</h3>
-                <p>{contactDetailsSection.nazwaFirmy}</p>
-                <p>{contactDetailsSection.adresFakturLineOne}</p>
-                <p>{contactDetailsSection.adresFakturLineTwo}</p>
-                <p>{contactDetailsSection.numerNip}</p>
-                <p>{contactDetailsSection.numerRegon}</p>
+                <p>{contactDetails.nazwaFirmy}</p>
+                <p>{contactDetails.adresFakturLineOne}</p>
+                <p>{contactDetails.adresFakturLineTwo}</p>
+                <p>{contactDetails.numerNip}</p>
+                <p>{contactDetails.numerRegon}</p>
               </div>
             </div>
           </div>
