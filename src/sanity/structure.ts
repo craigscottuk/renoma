@@ -15,6 +15,7 @@ import {
   Users,
   Mail,
   Settings,
+  Cookie,
 } from "lucide-react";
 
 export const structure: StructureResolver = (S, context) =>
@@ -82,7 +83,7 @@ export const structure: StructureResolver = (S, context) =>
               singletonDocumentListItem({
                 S,
                 context,
-                type: "timelineSection",
+                type: "ourHistory",
                 title: "Sekcja 3: Oś czasu",
                 id: "singletonTimeline",
               }),
@@ -123,7 +124,7 @@ export const structure: StructureResolver = (S, context) =>
                 context,
                 type: "caseStudyHeader",
                 title: "Sekcja 1: Nagłówek",
-                id: "singletonProjectsHeaderSection",
+                id: "singletonProjectsHeader",
               }),
             ]),
         ),
@@ -142,7 +143,7 @@ export const structure: StructureResolver = (S, context) =>
                 context,
                 type: "renomaLabHeader",
                 title: "Sekcja 1: Nagłówek",
-                id: "singletonRenomaLabHeaderSection",
+                id: "singletonRenomaLabHeader",
               }),
             ]),
         ),
@@ -158,7 +159,7 @@ export const structure: StructureResolver = (S, context) =>
                 context,
                 type: "learnWithUsHeader",
                 title: "Sekcja 1: Nagłówek",
-                id: "singletonLearnWithUsHeaderSection",
+                id: "singletonLearnWithUsHeader",
               }),
 
               singletonDocumentListItem({
@@ -166,7 +167,7 @@ export const structure: StructureResolver = (S, context) =>
                 context,
                 type: "whatWeOffer",
                 title: "Sekcja 2: Co oferujemy?",
-                id: "singletonWhatWeOfferSection",
+                id: "singletonWhatWeOffer",
               }),
 
               singletonDocumentListItem({
@@ -174,7 +175,7 @@ export const structure: StructureResolver = (S, context) =>
                 context,
                 type: "whoWeAreLookingFor",
                 title: "Sekcja 3: Kogo szukamy?",
-                id: "singletonWhoWeAreLookingForSection",
+                id: "singletonWhoWeAreLookingFor",
               }),
             ]),
         ),
@@ -190,14 +191,14 @@ export const structure: StructureResolver = (S, context) =>
                 context,
                 type: "workWithUsHeader",
                 title: "Sekcja 1: Nagłówek",
-                id: "singletonWorkWithUsHeaderSection",
+                id: "singletonWorkWithUsHeader",
               }),
               singletonDocumentListItem({
                 S,
                 context,
                 type: "jobOffers",
                 title: "Sekcja 2: Oferty pracy",
-                id: "singletonJobOfferSection",
+                id: "singletonJobOffer",
               }),
             ]),
         ),
@@ -213,21 +214,45 @@ export const structure: StructureResolver = (S, context) =>
                 context,
                 type: "contactHeader",
                 title: "Sekcja 1: Nagłówek",
-                id: "singletonKontaktHeaderSection",
+                id: "singletonContaktHeader",
               }),
               singletonDocumentListItem({
                 S,
                 context,
                 type: "contactForm",
                 title: "Sekcja 2: Formularz kontaktowy",
-                id: "singletonContactFormSection",
+                id: "singletonContactForm",
               }),
               singletonDocumentListItem({
                 S,
                 context,
                 type: "contactDetails",
                 title: "Sekcja 3: Dane kontaktowe",
-                id: "singletonContactDetailsSection",
+                id: "singletonContactDetails",
+              }),
+            ]),
+        ),
+      S.divider(),
+      S.listItem()
+        .title("Polityka Prywatności")
+        .icon(Cookie)
+        .child(
+          S.list()
+            .title("Sekcje strony „Polityka Prywatności”")
+            .items([
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "privacyHeader",
+                title: "Sekcja 1: Nagłówek",
+                id: "singletonPrivacyHeader",
+              }),
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "privacyText",
+                title: "Sekcja 2: Treść",
+                id: "singletonPrivacyText",
               }),
             ]),
         ),
@@ -235,11 +260,12 @@ export const structure: StructureResolver = (S, context) =>
       singletonDocumentListItem({
         S,
         context,
-        type: "ustawienia",
+        type: "settings",
         title: "Ustawienia",
         icon: Settings,
-        id: "singletonUstawienia",
+        id: "singletonSettings",
       }),
+      S.divider(),
       ...filteredDocumentListItems({ S, context }).filter(
         (item) => item.getId() !== "caseStudyEntry",
       ),
