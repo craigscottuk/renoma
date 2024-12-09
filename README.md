@@ -35,7 +35,7 @@ import { redirect } from "@/i18n/routing";
 //TD: coalesce all values
 
 const QUERY = `
-*[_type == "wpisRealizacji" && slug.current == $slug][0]{
+*[_type == "caseStudyEntry" && slug.current == $slug][0]{
   title,
   slug,
   language,
