@@ -87,6 +87,7 @@ export const portableTextWithImage = defineType({
     }),
   ],
 });
+
 export const portableTextWithHeadings = defineType({
   name: "portableTextWithHeadings",
   title: "Portable Text with Image",
