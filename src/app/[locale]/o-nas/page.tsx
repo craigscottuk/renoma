@@ -1,11 +1,10 @@
+// cSpell:disable
 import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header-section";
 import { client } from "@/sanity/client";
 import { PortableTextBlock } from "next-sanity";
-import SectionTitle from "@/components/section-title";
-import MaxWidthWrapper from "@/components/max-width-wrapper";
-import Timeline from "@/components/sections-about/timeline";
 import { AboutUs } from "@/components/sections-about/about-us";
+import OurHistory from "@/components/sections-about/our-history";
 
 const QUERY = `
 {
@@ -25,15 +24,18 @@ const QUERY = `
     )
   },
 
-  "timeline": *[_type == "timelineSection"][0].timeline[]{
-    "year": year,
-    "content": select(
-      defined(content[$locale]) => content[$locale],
-      "Brak tłumaczenia"
-    ),
-    "images": images[]{
-      "src": src.asset->url,
-      "caption": coalesce(caption[_key == $locale][0].value, "Brak tłumaczenia")
+  "ourHistory": *[_type == "ourHistory"][0]{
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "timeline": timeline[]{
+      "year": year,
+      "content": select(
+        defined(content[$locale]) => content[$locale],
+        "Brak tłumaczenia"
+      ),
+      "images": images[]{
+        "src": src.asset->url,
+        "caption": coalesce(caption[_key == $locale][0].value, "Brak tłumaczenia")
+      }
     }
   }
 }
@@ -57,10 +59,14 @@ interface Content {
     title: string;
     text: PortableTextBlock[];
   };
-  timeline: TimelineItem[];
+  ourHistory: {
+    title: string;
+    timeline: TimelineItem[];
+  };
 }
 
 interface TimelineItem {
+  title: string;
   year: string;
   content: PortableTextBlock[];
   images?: TimelineImage[];
@@ -71,14 +77,14 @@ interface TimelineImage {
   caption: string;
 }
 
-export default async function ONas({ params: { locale } }: Props) {
+export default async function About({ params: { locale } }: Props) {
   // Set the locale for static generation
   setRequestLocale(locale);
 
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
-  const { aboutUsHeader, aboutUs, timeline } = content;
+  const { aboutUsHeader, aboutUs, ourHistory } = content;
 
   console.log(" content", aboutUsHeader);
 
@@ -98,21 +104,11 @@ export default async function ONas({ params: { locale } }: Props) {
         paddingY="py-20 md:py-48"
       />
 
-      <section className="mt-24">
-        <MaxWidthWrapper>
-          <SectionTitle
-            title="Nasza historia"
-            as="h2"
-            motionPreset="blur-left"
-            textColor="black"
-            textAlign="center"
-          />
-
-          <div className="mt-10 px-4 py-20">
-            <Timeline events={timeline} />
-          </div>
-        </MaxWidthWrapper>
-      </section>
+      <OurHistory
+        title={ourHistory.title}
+        events={ourHistory.timeline}
+        paddingY="py-20 md:py-48"
+      />
     </>
   );
 }
