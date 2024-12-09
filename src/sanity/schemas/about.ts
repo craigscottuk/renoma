@@ -92,7 +92,9 @@ export const aboutUs = defineType({
   name: "aboutUs",
   title: "Sekcja 'O nas'",
   type: "document",
-
+  options: {
+    singleton: true,
+  },
   fields: [
     defineField({
       name: "title",
@@ -117,15 +119,23 @@ export const aboutUs = defineType({
   ],
 });
 
-// List of Services section
-export const timelineSection = defineType({
-  name: "timelineSection",
+// Our History section
+export const ourHistory = defineType({
+  name: "ourHistory",
   title: "Sekcja osi czasu",
   type: "document",
   options: { singleton: true },
   description:
     "Sekcja osi czasu przedstawia najważniejsze wydarzenia lub osiągnięcia w porządku chronologicznym.",
   fields: [
+    defineField({
+      name: "title",
+      title: "Tytuł sekcji",
+      description: "Tytuł sekcji, np. 'Nasza historia'.",
+      type: "internationalizedArrayString",
+      validation: (Rule) => Rule.required(),
+    }),
+
     defineField({
       name: "timeline",
       title: "Oś czasu",
