@@ -1,6 +1,6 @@
 // cSpell:disable
 import { setRequestLocale } from "next-intl/server";
-import PageHeaderSection from "@/components/page-header-section";
+import PageHeader from "@/components/page-header-section";
 import { client } from "@/sanity/client";
 import SectionJobOffer from "@/components/sections-work-with-us/section-job-offer";
 import { PortableTextBlock } from "next-sanity";
@@ -9,14 +9,14 @@ import JobOfferSection from "@/components/sections-work-with-us/job-offer";
 
 const QUERY = `
 {
-  "workWithUsHeaderSection": *[_type == "workWithUsHeaderSection"][0]{
+  "workWithUsHeader": *[_type == "workWithUsHeader"][0]{
     "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "image": image,
     "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia")
   },
-  "jobOfferSection": *[_type == "jobOfferSection"][0]{
+  "jobOffers": *[_type == "jobOffers"][0]{
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "jobOffers": jobOffers[]{
       "jobTitle": coalesce(jobTitle[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -47,14 +47,14 @@ type Props = {
 };
 
 interface Content {
-  workWithUsHeaderSection: {
+  workWithUsHeader: {
     label: string;
     title: string;
     description: string;
     image?: string;
     imageAlt?: string;
   };
-  jobOfferSection: {
+  jobOffers: {
     title: string;
     jobOffers: {
       jobTitle: string;
@@ -75,23 +75,23 @@ export default async function PracujZNami({ params: { locale } }: Props) {
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
-  const { workWithUsHeaderSection, jobOfferSection } = content;
+  const { workWithUsHeader, jobOffers } = content;
 
   return (
     <>
       {/* Header Section */}
-      <PageHeaderSection
-        label={workWithUsHeaderSection.label}
-        title={workWithUsHeaderSection.title}
-        description={workWithUsHeaderSection.description}
-        image={workWithUsHeaderSection.image}
-        imageAlt={workWithUsHeaderSection.imageAlt}
+      <PageHeader
+        label={workWithUsHeader.label}
+        title={workWithUsHeader.title}
+        description={workWithUsHeader.description}
+        image={workWithUsHeader.image}
+        imageAlt={workWithUsHeader.imageAlt}
       />
 
       {/* Job Offer Section */}
       <JobOfferSection
-        title={jobOfferSection.title}
-        jobOffers={jobOfferSection.jobOffers}
+        title={jobOffers.title}
+        jobOffers={jobOffers.jobOffers}
       />
     </>
   );
