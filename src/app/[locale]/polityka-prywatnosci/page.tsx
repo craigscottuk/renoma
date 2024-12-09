@@ -1,11 +1,11 @@
 // cSpell:disable
 import { setRequestLocale } from "next-intl/server";
-import PageHeaderSection from "@/components/page-header-section";
+import PageHeader from "@/components/page-header-section";
 import { client } from "@/sanity/client";
 
 const QUERY = `
 {
-  "privacyHeaderSection": *[_type == "privacyHeaderSection"][0]{
+  "privacyHeader": *[_type == "privacyHeader"][0]{
     "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -23,7 +23,7 @@ type Props = {
 };
 
 interface Content {
-  privacyHeaderSection: {
+  privacyHeader: {
     label: string;
     title: string;
     description: string;
@@ -41,15 +41,15 @@ export default async function PolitykaPrywatnosci({
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
-  const { privacyHeaderSection } = content;
+  const { privacyHeader } = content;
 
   return (
-    <PageHeaderSection
-      label={privacyHeaderSection.label}
-      title={privacyHeaderSection.title}
-      description={privacyHeaderSection.description}
-      image={privacyHeaderSection.image}
-      imageAlt={privacyHeaderSection.imageAlt}
+    <PageHeader
+      label={privacyHeader.label}
+      title={privacyHeader.title}
+      description={privacyHeader.description}
+      image={privacyHeader.image}
+      imageAlt={privacyHeader.imageAlt}
     />
   );
 }
