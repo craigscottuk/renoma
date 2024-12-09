@@ -1,11 +1,11 @@
 // cSpell:disable
 import { setRequestLocale } from "next-intl/server";
-import PageHeaderSection from "@/components/page-header-section";
+import PageHeader from "@/components/page-header-section";
 import { client } from "@/sanity/client";
 
 const QUERY = `
 {
-  "renomaLabHeaderSection": *[_type == "renomaLabHeaderSection"][0]{
+  "renomaLabHeader": *[_type == "renomaLabHeader"][0]{
     "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -23,7 +23,7 @@ type Props = {
 };
 
 interface Content {
-  renomaLabHeaderSection: {
+  renomaLabHeader: {
     label: string;
     title: string;
     description: string;
@@ -39,15 +39,15 @@ export default async function RenomaLab({ params: { locale } }: Props) {
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
-  const { renomaLabHeaderSection } = content;
+  const { renomaLabHeader } = content;
 
   return (
-    <PageHeaderSection
-      label={renomaLabHeaderSection.label}
-      title={renomaLabHeaderSection.title}
-      description={renomaLabHeaderSection.description}
-      image={renomaLabHeaderSection.image}
-      imageAlt={renomaLabHeaderSection.imageAlt}
+    <PageHeader
+      label={renomaLabHeader.label}
+      title={renomaLabHeader.title}
+      description={renomaLabHeader.description}
+      image={renomaLabHeader.image}
+      imageAlt={renomaLabHeader.imageAlt}
     />
   );
 }
