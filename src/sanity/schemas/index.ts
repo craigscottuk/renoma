@@ -20,12 +20,7 @@ import {
   whoWeAreLookingFor,
 } from "./learn-with-us";
 import { jobOffers, workWithUs, workWithUsHeader } from "./work-with-us";
-import {
-  contact,
-  contactHeaderSection,
-  contactForm,
-  contactDetails,
-} from "./contact";
+import { contact, contactHeader, contactForm, contactDetails } from "./contact";
 import { settings } from "./settings";
 import { privacy, privacyHeader, privacyText } from "./privacy";
 import {
@@ -80,7 +75,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
 
     // Kontakt
     contact,
-    contactHeaderSection,
+    contactHeader,
     contactForm,
     contactDetails,
 
