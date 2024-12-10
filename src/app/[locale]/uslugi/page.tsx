@@ -2,7 +2,7 @@
 import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header-section";
 import { client } from "@/sanity/client";
-import ServicesList from "@/components/sections-services/services-list";
+import ServicesList from "@/app/[locale]/uslugi/services-list";
 
 const QUERY = `
 {
@@ -69,16 +69,23 @@ export default async function ONas({ params: { locale } }: Props) {
 
   return (
     <>
-      {/* Page Header Section */}
-      <PageHeader
-        label={servicesHeader.label}
-        title={servicesHeader.title}
-        description={servicesHeader.description}
-        image={servicesHeader.image}
-        imageAlt={servicesHeader.imageAlt}
-      />
-      {/* Services Listed Section */}
-      <ServicesList services={servicesList.services} />
+      {/* Conditionally render Page Header Section */}
+      {servicesHeader && (
+        <PageHeader
+          label={servicesHeader.label}
+          title={servicesHeader.title}
+          description={servicesHeader.description}
+          image={servicesHeader.image}
+          imageAlt={servicesHeader.imageAlt}
+        />
+      )}
+      {/* Conditionally render Services Listed Section */}
+      {servicesList?.services?.length > 0 && (
+        <ServicesList
+          services={servicesList.services}
+          paddingY="py-20 md:py-48"
+        />
+      )}
     </>
   );
 }
