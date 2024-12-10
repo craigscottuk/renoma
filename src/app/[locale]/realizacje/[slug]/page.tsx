@@ -137,7 +137,7 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
 
   return (
     <>
-      {translation ? (
+      {translation || project.slug.current === slug ? (
         <>
           <CaseStudyHeaderSection
             title={title}
@@ -151,16 +151,16 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
                 ? [
                     {
                       label: "Lokalizacja",
-                      value: project.details.lokalizacja,
+                      value: details.lokalizacja,
                     },
-                    { label: "Status", value: project.details.status },
+                    { label: "Status", value: details.status },
                     {
                       label: "Czas trwania",
-                      value: project.details.czasTrwania,
+                      value: details.czasTrwania,
                     },
-                    { label: "Typ obiektu", value: project.details.typObiektu },
-                    { label: "Rola", value: project.details.rola },
-                    { label: "Zakres prac", value: project.details.zakresPrac },
+                    { label: "Typ obiektu", value: details.typObiektu },
+                    { label: "Rola", value: details.rola },
+                    { label: "Zakres prac", value: details.zakresPrac },
                   ]
                 : []
             }
