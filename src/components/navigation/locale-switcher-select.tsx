@@ -1,8 +1,5 @@
 "use client";
-
 import * as React from "react";
-import { Check, ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,6 +7,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useParams } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Check, ChevronDown } from "lucide-react";
 import { ChangeEvent, ReactNode, useTransition } from "react";
 import { Locale, usePathname, useRouter } from "@/i18n/routing";
 
@@ -30,11 +29,10 @@ type Props = {
 export default function LocaleSwitcherSelect({
   children,
   defaultValue,
-  label,
   className,
 }: Props) {
   const router = useRouter();
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition(); // Remove 'isPending'
   const pathname = usePathname();
   const params = useParams();
   const [language, setLanguage] = React.useState<keyof typeof localeMap>(
