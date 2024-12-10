@@ -15,22 +15,18 @@ export default function ImageCarousel({
   images,
   aspectRatio = "landscape",
 }: ImageCarouselProps) {
-  if (!images || images.length === 0) {
-    return null;
-  }
-
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showCaptions, setShowCaptions] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  const aspectRatioClass =
-    {
-      none: "aspect-auto",
-      landscape: "aspect-w-16 aspect-h-9",
-      portrait: "aspect-[4/3]",
-      square: "aspect-square",
-    }[aspectRatio] || "aspect-video";
+  // const aspectRatioClass =
+  //   {
+  //     none: "aspect-auto",
+  //     landscape: "aspect-w-16 aspect-h-9",
+  //     portrait: "aspect-[4/3]",
+  //     square: "aspect-square",
+  //   }[aspectRatio] || "aspect-video";
 
   const sizeClass =
     {
@@ -76,6 +72,10 @@ export default function ImageCarousel({
 
   const currentCaption = images[currentIndex]?.caption;
   const hasCurrentCaption = Boolean(currentCaption);
+
+  if (!images || images.length === 0) {
+    return null;
+  }
 
   if (images.length === 1) {
     return (
