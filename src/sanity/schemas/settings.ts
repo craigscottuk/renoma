@@ -89,14 +89,7 @@ export const settings = defineType({
           description: "Important for accessibility and SEO.",
           title: "Alternative text",
           type: "string",
-          validation: (rule) => {
-            return rule.custom((alt, context) => {
-              if ((context.document?.ogImage as any)?.asset?._ref && !alt) {
-                return "Required";
-              }
-              return true;
-            });
-          },
+          validation: (rule) => rule.required(),
         }),
       ],
     }),
