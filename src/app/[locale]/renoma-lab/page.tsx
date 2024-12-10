@@ -42,12 +42,17 @@ export default async function RenomaLab({ params: { locale } }: Props) {
   const { renomaLabHeader } = content;
 
   return (
-    <PageHeader
-      label={renomaLabHeader.label}
-      title={renomaLabHeader.title}
-      description={renomaLabHeader.description}
-      image={renomaLabHeader.image}
-      imageAlt={renomaLabHeader.imageAlt}
-    />
+    <>
+      {/* Page Header */}
+      {renomaLabHeader && (
+        <PageHeader
+          label={renomaLabHeader.label}
+          title={renomaLabHeader.title}
+          description={renomaLabHeader.description}
+          image={renomaLabHeader.image}
+          imageAlt={renomaLabHeader.imageAlt}
+        />
+      )}
+    </>
   );
 }
