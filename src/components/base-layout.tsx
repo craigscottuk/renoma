@@ -1,10 +1,11 @@
 import { clsx } from "clsx";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
-import { ReactNode } from "react";
-import Footer from "@/components/sections-footer/footer";
-import localFont from "next/font/local";
+import Head from "next/head";
 import Header from "./header";
+import { ReactNode } from "react";
+import localFont from "next/font/local";
+import { getMessages } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
+import Footer from "@/components/sections-footer/footer";
 
 const helveticaNeueLight = localFont({
   src: "./fonts/HelveticaNeueLight.otf",
@@ -36,10 +37,10 @@ export default async function BaseLayout({ children, locale }: Props) {
 
   return (
     <html className="h-full" lang={locale}>
-      <head>
+      <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         {/* Add charset or description meta tags here if needed */}
-      </head>
+      </Head>
       <body
         className={clsx(
           helveticaNeueLight.variable,
