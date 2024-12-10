@@ -33,7 +33,14 @@ export function resolveOpenGraphImage(
     .url();
 
   return url
-    ? { url, alt: (image as any)?.alt || "Open Graph Image", width, height }
+    ? {
+        url,
+        alt:
+          (image as SanityImageSource & { alt?: string })?.alt ||
+          "Open Graph Image",
+        width,
+        height,
+      }
     : undefined;
 }
 
