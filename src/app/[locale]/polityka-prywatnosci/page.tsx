@@ -3,7 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header-section";
 import { client } from "@/sanity/client";
 import { PortableTextBlock } from "next-sanity";
-import Privacy from "@/components/sections-privacy/privacy";
+import Privacy from "@/app/[locale]/polityka-prywatnosci/privacy";
 
 const QUERY = `
 {
@@ -57,14 +57,19 @@ export default async function PolitykaPrywatnosci({
 
   return (
     <>
-      <PageHeader
-        label={privacyHeader.label}
-        title={privacyHeader.title}
-        description={privacyHeader.description}
-        image={privacyHeader.image}
-        imageAlt={privacyHeader.imageAlt}
-      />
-      <Privacy content={privacyText.content} />
+      {/* Page Header */}
+      {privacyHeader && (
+        <PageHeader
+          label={privacyHeader.label}
+          title={privacyHeader.title}
+          description={privacyHeader.description}
+          image={privacyHeader.image}
+          imageAlt={privacyHeader.imageAlt}
+        />
+      )}
+
+      {/* Privacy Policy text content */}
+      {privacyText && <Privacy content={privacyText.content} />}
     </>
   );
 }
