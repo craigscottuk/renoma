@@ -1,8 +1,8 @@
-import { notFound } from 'next/navigation';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { ReactNode } from 'react';
-import BaseLayout from '@/components/base-layout';
-import { routing } from '@/i18n/routing';
+import { notFound } from "next/navigation";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { ReactNode } from "react";
+import BaseLayout from "@/components/base-layout";
+import { routing } from "@/i18n/routing";
 
 type Props = {
   children: ReactNode;
@@ -15,11 +15,11 @@ export function generateStaticParams() {
 
 export async function generateMetadata({
   params: { locale },
-}: Omit<Props, 'children'>) {
-  const t = await getTranslations({ locale, namespace: 'locale-layout' });
+}: Omit<Props, "children">) {
+  const t = await getTranslations({ locale, namespace: "locale-layout" });
 
   return {
-    title: t('title'),
+    title: t("title"),
   };
 }
 
@@ -28,7 +28,7 @@ export default async function LocaleLayout({
   params: { locale },
 }: Props) {
   // Ensure that the incoming `locale` is valid
-  if (!routing.locales.includes(locale as any)) {
+  if (!routing.locales.includes(locale as "pl" | "en" | "de")) {
     notFound();
   }
 
