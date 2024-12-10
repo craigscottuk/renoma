@@ -78,6 +78,23 @@ export const workWithUsHeader = defineType({
       },
       group: "obrazSekcji",
     }),
+
+    defineField({
+      name: "imageLayout",
+      title: "Układ obrazu na dużych urządzeniach",
+      description:
+        "Wybierz między pełną szerokością obrazu a portretem po prawej stronie.",
+      type: "string",
+      options: {
+        list: [
+          { title: "Pełna szerokość", value: "fullWidth" },
+          { title: "Portret po prawej", value: "portraitRight" },
+        ],
+        layout: "radio",
+      },
+      group: "obrazSekcji",
+    }),
+
     defineField({
       name: "imageAlt",
       title: "Alternatywny tekst obrazu nagłówka",
@@ -92,7 +109,7 @@ export const workWithUsHeader = defineType({
 // Job offer section
 export const jobOffers = defineType({
   name: "jobOffers",
-  title: "Sekcja FAQ",
+  title: "Oferty Pracy",
   type: "document",
   options: { singleton: true },
   groups: [
@@ -110,7 +127,7 @@ export const jobOffers = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "jobOffers",
+      name: "jobOffer",
       title: "Oferty Pracy",
       type: "array",
       of: [
