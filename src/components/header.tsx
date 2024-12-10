@@ -1,9 +1,8 @@
-import Image from "next/image";
+import { Link } from "@/i18n/routing";
+import MaxWidthWrapper from "./max-width-wrapper";
 import LocaleSwitcher from "./navigation/locale-switcher";
 import MainNavigation from "./navigation/main-navigation";
-import MaxWidthWrapper from "./max-width-wrapper";
 import SideNavigation from "./navigation/side-navigation";
-import { Link } from "@/i18n/routing";
 
 export default function Header() {
   // test classes: sm:bg-slate-200 md:h-24 md:bg-slate-400 lg:bg-slate-600
