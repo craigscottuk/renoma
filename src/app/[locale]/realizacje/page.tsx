@@ -2,9 +2,8 @@
 // app/[locale]/realizacje/page.tsx
 import { setRequestLocale } from "next-intl/server";
 import { client } from "@/sanity/client";
-import MaxWidthWrapper from "@/components/max-width-wrapper";
-import { Link } from "@/i18n/routing";
 import PageHeader from "@/components/page-header-section";
+import ProjectsList from "./projects-list";
 
 const QUERY = `
 {
@@ -29,57 +28,34 @@ type Props = {
   params: { locale: string };
 };
 
-interface Projects {
-  title: string;
-  slug: {
-    current: string;
-  };
-}
-
 export default async function Realizacje({ params: { locale } }: Props) {
+  // Set the locale for static generation
   setRequestLocale(locale);
 
+  // Fetch localized content from Sanity using locale from params
   const { projects, caseStudyHeader } = await client.fetch(
     QUERY,
-    {
-      locale,
-    },
+    { locale },
     OPTIONS,
   );
-
-  console.log(projects);
 
   return (
     <>
       {/* Page Header Section */}
-      <PageHeader
-        label={caseStudyHeader.label}
-        title={caseStudyHeader.title}
-        description={caseStudyHeader.description}
-        image={caseStudyHeader.image}
-        imageAlt={caseStudyHeader.imageAlt}
-      />
+      {caseStudyHeader && (
+        <PageHeader
+          label={caseStudyHeader.label}
+          title={caseStudyHeader.title}
+          description={caseStudyHeader.description}
+          image={caseStudyHeader.image}
+          imageAlt={caseStudyHeader.imageAlt}
+        />
+      )}
 
-      <section className="py-12 md:py-24">
-        <MaxWidthWrapper>
-          <h1 className="mb-8 text-4xl">Projects</h1>
-          <ul className="flex flex-col gap-y-4">
-            {/* use slug or id instead of index */}
-            {projects.map((project: Projects, index: number) => (
-              <li className="hover:underline" key={index}>
-                <Link
-                  href={{
-                    pathname: "/realizacje/[slug]",
-                    params: { slug: project.slug.current },
-                  }}
-                >
-                  <h2 className="text-xl">{project.title}</h2>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </MaxWidthWrapper>
-      </section>
+      {/* List of Projects / Case Studies */}
+      {projects && projects.length > 0 && (
+        <ProjectsList projects={projects} paddingY="py-20 md:py-48" />
+      )}
     </>
   );
 }
