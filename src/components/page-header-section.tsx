@@ -6,6 +6,7 @@ import SectionTitle from "@/components/section-title";
 import SectionDescription from "@/components/section-description";
 import MaxWidthWrapper from "./max-width-wrapper";
 import clsx from "clsx";
+import CustomButton from "./ui/custom-button";
 
 interface PageHeaderProps {
   label: string;
@@ -96,6 +97,11 @@ export default function PageHeader({
                 marginTop={true}
                 textStyle="text-balance"
               />
+              {sectionButton && (
+                <CustomButton animateOnView={false}>
+                  {sectionButton}
+                </CustomButton>
+              )}
             </div>
           ) : (
             // Two-column layout for large screens without an image
