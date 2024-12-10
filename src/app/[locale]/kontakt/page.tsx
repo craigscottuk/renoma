@@ -1,8 +1,8 @@
 // cSpell:disable
-import SectionContactFormDetails from "@/components/sections-contact/section-contact-form-details";
+import { client } from "@/sanity/client";
 import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header-section";
-import { client } from "@/sanity/client";
+import ContactFormAndDetails from "./contact-form-and-details";
 
 const QUERY = `
 {
@@ -73,19 +73,23 @@ export default async function Kontakt({ params: { locale } }: Props) {
   return (
     <>
       {/* Page Header Section */}
-      <PageHeader
-        label={contactHeader.label}
-        title={contactHeader.title}
-        description={contactHeader.description}
-        image={contactHeader.image}
-        imageAlt={contactHeader.imageAlt}
-      />
+      {contactHeader && (
+        <PageHeader
+          label={contactHeader.label}
+          title={contactHeader.title}
+          description={contactHeader.description}
+          image={contactHeader.image}
+          imageAlt={contactHeader.imageAlt}
+        />
+      )}
 
       {/* Black/White Contact Form Section */}
-      <SectionContactFormDetails
-        contactForm={contactForm}
-        contactDetails={contactDetails}
-      />
+      {contactForm && contactDetails && (
+        <ContactFormAndDetails
+          contactForm={contactForm}
+          contactDetails={contactDetails}
+        />
+      )}
     </>
   );
 }
