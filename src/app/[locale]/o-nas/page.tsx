@@ -3,8 +3,8 @@ import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header-section";
 import { client } from "@/sanity/client";
 import { PortableTextBlock } from "next-sanity";
-import { AboutUs } from "@/components/sections-about/about-us";
-import OurHistory from "@/components/sections-about/our-history";
+import { AboutUs } from "./about-us";
+import OurHistory from "./our-history";
 
 const QUERY = `
 {
@@ -90,25 +90,34 @@ export default async function About({ params: { locale } }: Props) {
 
   return (
     <>
-      <PageHeader
-        label={aboutUsHeader.label}
-        title={aboutUsHeader.title}
-        description={aboutUsHeader.description}
-        image={aboutUsHeader.image}
-        imageAlt={aboutUsHeader.imageAlt}
-      />
+      {/* Page Header for About Us */}
+      {aboutUsHeader && (
+        <PageHeader
+          label={aboutUsHeader.label}
+          title={aboutUsHeader.title}
+          description={aboutUsHeader.description}
+          image={aboutUsHeader.image}
+          imageAlt={aboutUsHeader.imageAlt}
+        />
+      )}
 
-      <AboutUs
-        title={aboutUs.title}
-        text={aboutUs.text}
-        paddingY="py-20 md:py-48"
-      />
+      {/* About Us, Our Values section */}
+      {aboutUs && (
+        <AboutUs
+          title={aboutUs.title}
+          text={aboutUs.text}
+          paddingY="py-20 md:py-48"
+        />
+      )}
 
-      <OurHistory
-        title={ourHistory.title}
-        events={ourHistory.timeline}
-        paddingY="py-20 md:py-48"
-      />
+      {/* Interactive Timeline component */}
+      {ourHistory && (
+        <OurHistory
+          title={ourHistory.title}
+          events={ourHistory.timeline}
+          paddingY="py-20 md:py-48"
+        />
+      )}
     </>
   );
 }
