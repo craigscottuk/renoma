@@ -275,7 +275,7 @@ export default function ConservationPage() {
           {sections.map((section) => (
             <section
               key={section.id}
-              // @ts-expect-error
+              // @ts-expect-error: TypeScript does not recognize the ref assignment correctly
               ref={(el) => (sectionRefs.current[section.id] = el)}
               className="mb-12"
             >
