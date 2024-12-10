@@ -150,13 +150,10 @@ const Carousel = React.forwardRef<
 );
 Carousel.displayName = "Carousel";
 
-type CarouselContentProps = React.HTMLAttributes<HTMLDivElement> & {
-  selectedIndex: number;
-  setSelectedIndex: React.Dispatch<React.SetStateAction<number>>;
-};
+type CarouselContentProps = React.HTMLAttributes<HTMLDivElement>;
 
 const CarouselContent = React.forwardRef<HTMLDivElement, CarouselContentProps>(
-  ({ className, selectedIndex, setSelectedIndex, ...props }, ref) => {
+  ({ className, ...props }, ref) => {
     const { carouselRef, orientation } = useCarousel();
 
     return (
