@@ -22,7 +22,7 @@ export default function SectionTitle({
   title,
   as: Tag = "h2",
   className,
-  motionPreset = "blur-right", // Optional dynamic implementation
+  motionPreset = "blur-right",
   textColor = "black",
   textAlign = "left",
   label,
@@ -96,7 +96,7 @@ export default function SectionTitle({
       >
         <Tag
           className={clsx(
-            `motion-preset-${motionPreset}`, // Keep for dynamic styling
+            `motion-preset-${motionPreset}`,
             "text-balance text-5xl font-light leading-[1.06] md:text-6xl md:leading-[1.06]",
             className,
             textColor === "black" ? "text-black" : "text-white",
