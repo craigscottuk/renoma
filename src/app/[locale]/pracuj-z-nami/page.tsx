@@ -2,10 +2,8 @@
 import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header-section";
 import { client } from "@/sanity/client";
-import SectionJobOffer from "@/components/sections-work-with-us/section-job-offer";
 import { PortableTextBlock } from "next-sanity";
-import JobOffer from "@/components/sections-work-with-us/job-offer";
-import JobOfferSection from "@/components/sections-work-with-us/job-offer";
+import SectionJobOffer from "./section-job-offer";
 
 const QUERY = `
 {
@@ -18,7 +16,7 @@ const QUERY = `
   },
   "jobOffers": *[_type == "jobOffers"][0]{
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
-    "jobOffers": jobOffers[]{
+    "jobOffer": jobOffer[]{
       "jobTitle": coalesce(jobTitle[_key == $locale][0].value, "Brak tłumaczenia"),
       "jobDescription": coalesce(jobDescription[_key == $locale][0].value, "Brak tłumaczenia"),
       "jobLocation": coalesce(jobLocation[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -56,7 +54,7 @@ interface Content {
   };
   jobOffers: {
     title: string;
-    jobOffers: {
+    jobOffer: {
       jobTitle: string;
       jobDescription: string;
       jobLocation: string;
@@ -80,19 +78,24 @@ export default async function PracujZNami({ params: { locale } }: Props) {
   return (
     <>
       {/* Header Section */}
-      <PageHeader
-        label={workWithUsHeader.label}
-        title={workWithUsHeader.title}
-        description={workWithUsHeader.description}
-        image={workWithUsHeader.image}
-        imageAlt={workWithUsHeader.imageAlt}
-      />
+      {workWithUsHeader && (
+        <PageHeader
+          label={workWithUsHeader.label}
+          title={workWithUsHeader.title}
+          description={workWithUsHeader.description}
+          image={workWithUsHeader.image}
+          imageAlt={workWithUsHeader.imageAlt}
+        />
+      )}
 
       {/* Job Offer Section */}
-      <JobOfferSection
-        title={jobOffers.title}
-        jobOffers={jobOffers.jobOffers}
-      />
+      {jobOffers && (
+        <SectionJobOffer
+          title={jobOffers.title}
+          jobOffers={jobOffers.jobOffer}
+          paddingY="py-20 md:py-48"
+        />
+      )}
     </>
   );
 }
