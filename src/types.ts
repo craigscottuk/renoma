@@ -4,17 +4,33 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 export type CaseStudySectionContent = {
   _type: string;
   text?: PortableTextBlock[];
-  images?: Array<{ asset: SanityImageSource | string; caption: string }>;
+  images?: Array<{
+    asset: SanityImageSource | string;
+    caption: string;
+    alt: string;
+  }>;
   text1?: PortableTextBlock[];
   text2?: PortableTextBlock[];
-  images1?: Array<{ asset: SanityImageSource | string; caption: string }>;
-  images2?: Array<{ asset: SanityImageSource | string; caption: string }>;
-  image?: { asset: SanityImageSource | string; caption: string };
+  images1?: Array<{
+    asset: SanityImageSource | string;
+    caption: string;
+    alt: string;
+  }>;
+  images2?: Array<{
+    asset: SanityImageSource | string;
+    caption: string;
+    alt: string;
+  }>;
+  image?: { asset: SanityImageSource | string; caption: string; alt: string };
   aspectRatio?: "none" | "landscape" | "portrait" | "square";
   aspectRatio1?: "none" | "landscape" | "portrait" | "square";
   aspectRatio2?: "none" | "landscape" | "portrait" | "square";
   text3?: PortableTextBlock[];
-  images3?: Array<{ asset: SanityImageSource | string; caption: string }>;
+  images3?: Array<{
+    asset: SanityImageSource | string;
+    caption: string;
+    alt: string;
+  }>;
   aspectRatio3?: "none" | "landscape" | "portrait" | "square";
   layout?: "textLeftImageRight" | "imageLeftTextRight" | "textTopImageBottom";
 };
