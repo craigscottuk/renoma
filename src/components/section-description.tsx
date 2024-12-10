@@ -13,7 +13,7 @@ interface SectionDescriptionProps {
 export default function SectionDescription({
   description,
   className,
-  motionPreset,
+  motionPreset = "blur-right",
   textColor = "black",
   textAlign = "left",
   marginTop = false,
@@ -23,7 +23,9 @@ export default function SectionDescription({
     textColor === "black" ? "text-black/90" : "text-white/90";
 
   return (
-    <div className={clsx(marginTop && "mt-10")}>
+    <div
+      className={clsx(marginTop && "mt-10", `motion-preset-${motionPreset}`)}
+    >
       <p
         className={clsx(
           "max-w-sm text-[1.1rem] leading-relaxed",
