@@ -2,8 +2,8 @@
 import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header-section";
 import { client } from "@/sanity/client";
-import WhatWeOffer from "@/components/sections-learn-with-us/what-we-offer";
-import WhoWeAreLookingFor from "@/components/sections-learn-with-us/who-we-are-looking-for";
+import WhatWeOffer from "./what-we-offer";
+import WhoWeAreLookingFor from "./who-we-are-looking-for";
 import { PortableTextBlock } from "next-sanity";
 
 const QUERY = `
@@ -73,30 +73,37 @@ export default async function UczSieZNami({ params: { locale } }: Props) {
 
   return (
     <>
-      <PageHeader
-        label={learnWithUsHeader.label}
-        title={learnWithUsHeader.title}
-        description={learnWithUsHeader.description}
-        image={learnWithUsHeader.image}
-        imageAlt={learnWithUsHeader.imageAlt}
-      />
+      {/* Page Header */}
+      {learnWithUsHeader && (
+        <PageHeader
+          label={learnWithUsHeader.label}
+          title={learnWithUsHeader.title}
+          description={learnWithUsHeader.description}
+          image={learnWithUsHeader.image}
+          imageAlt={learnWithUsHeader.imageAlt}
+        />
+      )}
 
       {/* What we offer */}
-      <WhatWeOffer
-        title={whatWeOffer.title}
-        offers={whatWeOffer.offers}
-        paddingY="py-20 md:py-48"
-      />
+      {whatWeOffer && (
+        <WhatWeOffer
+          title={whatWeOffer.title}
+          offers={whatWeOffer.offers}
+          paddingY="py-20 md:py-48"
+        />
+      )}
 
       {/* Who we are looking for */}
-      <WhoWeAreLookingFor
-        title={whoWeAreLookingFor.title}
-        criteria={whoWeAreLookingFor.criteria}
-        image={whoWeAreLookingFor.image}
-        imageAlt={whoWeAreLookingFor.imageAlt}
-        applyButtonText={whoWeAreLookingFor.applyButtonText}
-        paddingY="py-20 md:py-48"
-      />
+      {whoWeAreLookingFor && (
+        <WhoWeAreLookingFor
+          title={whoWeAreLookingFor.title}
+          criteria={whoWeAreLookingFor.criteria}
+          image={whoWeAreLookingFor.image}
+          imageAlt={whoWeAreLookingFor.imageAlt}
+          applyButtonText={whoWeAreLookingFor.applyButtonText}
+          paddingY="py-20 md:py-48"
+        />
+      )}
     </>
   );
 }
