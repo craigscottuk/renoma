@@ -91,6 +91,7 @@ export const contactHeader = defineType({
         layout: "radio",
       },
       group: "obrazSekcji",
+      initialValue: "fullWidth",
     }),
 
     defineField({
