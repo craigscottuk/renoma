@@ -2,6 +2,7 @@
 import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header-section";
 import { client } from "@/sanity/client";
+import LabOffer from "./offer";
 
 const QUERY = `
 {
@@ -53,6 +54,9 @@ export default async function RenomaLab({ params: { locale } }: Props) {
           imageAlt={renomaLabHeader.imageAlt}
         />
       )}
+
+      {/* Lab Offer */}
+      {renomaLabHeader && <LabOffer />}
     </>
   );
 }
