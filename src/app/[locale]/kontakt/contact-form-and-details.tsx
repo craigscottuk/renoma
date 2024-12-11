@@ -20,11 +20,13 @@ type ContactDetailsSectionProps = {
   contactForm: {
     contactFormSubjects: string[];
   };
+  paddingY?: string;
 };
 
 export default function ContactFormAndDetails({
   contactDetails,
   contactForm,
+  paddingY = "py-16 md:py-44",
 }: ContactDetailsSectionProps) {
   const t = useTranslations("kontakt-page");
 
@@ -34,10 +36,14 @@ export default function ContactFormAndDetails({
 
   return (
     <section
-      className={clsx("py-12 text-[1.1rem] leading-relaxed lg:pb-24 lg:pt-24", {
-        "bg-black text-white/90": color === "dark",
-        "bg-white text-black/90": color !== "dark",
-      })}
+      className={clsx(
+        "text-[1.1rem] leading-relaxed",
+        {
+          "bg-black text-white/90": color === "dark",
+          "bg-white text-black/90": color !== "dark",
+        },
+        paddingY,
+      )}
     >
       <MaxWidthWrapper>
         <div className="grid gap-36 lg:grid-cols-2">
