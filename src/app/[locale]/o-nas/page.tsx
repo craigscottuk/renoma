@@ -13,7 +13,8 @@ const QUERY = `
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "image": image,
-    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia")
+    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
+    "imageLayout": imageLayout
   },
 
   "aboutUs": *[_type == "aboutUs"][0]{
@@ -54,6 +55,7 @@ interface Content {
     description: string;
     image?: string;
     imageAlt?: string;
+    imageLayout?: "fullWidth" | "portraitRight";
   };
   aboutUs: {
     title: string;
@@ -98,6 +100,7 @@ export default async function About({ params: { locale } }: Props) {
           description={aboutUsHeader.description}
           image={aboutUsHeader.image}
           imageAlt={aboutUsHeader.imageAlt}
+          imageLayout={aboutUsHeader.imageLayout}
         />
       )}
 
