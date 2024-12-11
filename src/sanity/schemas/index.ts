@@ -9,7 +9,12 @@ import {
   faqSectionHome,
 } from "./home";
 import { about, aboutUsHeader, ourHistory, aboutUs } from "./about";
-import { servicesList, servicesHeader, services } from "./services";
+import {
+  servicesList,
+  servicesHeader,
+  services,
+  servicesGroup,
+} from "./services";
 import { caseStudyEntry } from "./case-study-entry";
 import { caseStudyHeader, caseStudies } from "./case-studies";
 import { renomaLab, renomaLabHeader } from "./renomaLab";
@@ -49,6 +54,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     // Usługi
     services,
     servicesHeader,
+    servicesGroup,
     servicesList,
 
     // Realizacje
