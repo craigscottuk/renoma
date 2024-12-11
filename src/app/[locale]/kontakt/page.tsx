@@ -11,7 +11,8 @@ const QUERY = `
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "image": image, 
-    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia")
+    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
+    "imageLayout": imageLayout
   },
   "contactForm": *[_type == "contactForm"][0]{
     "contactFormSubjects": contactFormSubjects[].label[_key == $locale][0].value
@@ -44,6 +45,7 @@ interface Content {
     description: string;
     image?: string;
     imageAlt?: string;
+    imageLayout?: "fullWidth" | "portraitRight";
   };
   contactForm: {
     contactFormSubjects: string[];
@@ -80,6 +82,7 @@ export default async function Kontakt({ params: { locale } }: Props) {
           description={contactHeader.description}
           image={contactHeader.image}
           imageAlt={contactHeader.imageAlt}
+          imageLayout={contactHeader.imageLayout}
         />
       )}
 
@@ -88,6 +91,7 @@ export default async function Kontakt({ params: { locale } }: Props) {
         <ContactFormAndDetails
           contactForm={contactForm}
           contactDetails={contactDetails}
+          paddingY="py-16 md:py-44"
         />
       )}
     </>
