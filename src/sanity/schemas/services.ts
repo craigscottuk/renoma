@@ -92,6 +92,7 @@ export const servicesHeader = defineType({
         layout: "radio",
       },
       group: "obrazSekcji",
+      initialValue: "fullWidth",
     }),
 
     defineField({
