@@ -11,7 +11,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { services } from "@/lib/serviceCardData";
 import AnimatedLink from "@/components/animated-link";
 
 interface SectionUslugiHomeProps {
@@ -20,6 +19,32 @@ interface SectionUslugiHomeProps {
   description: string;
   sectionCTA: string;
   paddingY?: string;
+  servicesGroup: {
+    serviceGroupOne: {
+      title: string;
+      services: {
+        title: string;
+        shortDescription: string;
+        images: any[];
+      }[];
+    };
+    serviceGroupTwo: {
+      title: string;
+      services: {
+        title: string;
+        shortDescription: string;
+        images: any[];
+      }[];
+    };
+    serviceGroupThree: {
+      title: string;
+      services: {
+        title: string;
+        shortDescription: string;
+        images: any[];
+      }[];
+    };
+  };
 }
 
 export default function SectionUslugiHome({
@@ -28,12 +53,9 @@ export default function SectionUslugiHome({
   description,
   sectionCTA,
   paddingY = "py-16 md:py-44", // Default padding values
+  servicesGroup,
 }: SectionUslugiHomeProps) {
   return (
-    // <section
-    //   className={clsx("relative mx-auto bg-black text-white", paddingY)}
-    //   style={{ backgroundImage: 'url("/path/to/your/image.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }}
-    // >
     <section className={clsx("mx-auto bg-black text-white", paddingY)}>
       <MaxWidthWrapper>
         <div className="relative grid items-center gap-6 md:grid-cols-2 md:gap-24">
@@ -64,25 +86,35 @@ export default function SectionUslugiHome({
           </div>
         </div>
 
-        <ServicesCards />
+        <ServicesCards servicesGroup={servicesGroup} />
       </MaxWidthWrapper>
     </section>
   );
 }
 
-function ServicesCards() {
+function ServicesCards({
+  servicesGroup,
+}: {
+  servicesGroup: SectionUslugiHomeProps["servicesGroup"];
+}) {
+  const serviceGroups = [
+    servicesGroup.serviceGroupOne,
+    servicesGroup.serviceGroupTwo,
+    servicesGroup.serviceGroupThree,
+  ];
+
   return (
     <div className="mt-14 grid grid-cols-1 gap-6 md:mt-20 md:grid-cols-3">
-      {services.map((service, index) => (
+      {serviceGroups.map((group, index) => (
         <Card key={index} className="border border-white/40 bg-black">
           <CardHeader className="bg-black text-white">
             <CardTitle className="font-regular text-[1.6rem] text-white/95 md:text-[1.8rem]">
-              {service.title}
+              {group.title}
             </CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col space-y-4 bg-black text-white/80">
             <Accordion type="multiple" className="w-full">
-              {service.items.map((item, itemIndex) => (
+              {group.services.map((item, itemIndex) => (
                 <AccordionItem
                   className="border-white/60"
                   key={itemIndex}
@@ -92,14 +124,12 @@ function ServicesCards() {
                     {item.title}
                   </AccordionTrigger>
                   <AccordionContent className="text-balance text-[1.1rem]">
-                    <p className="mb-10">{item.content}</p>
-
+                    <p className="mb-10">{item.shortDescription}</p>
                     <AnimatedLink
-                      className="mb-3 text-sm"
+                      href={`/uslugi#${item.title.toLowerCase().replace(/\s+/g, "-")}`}
                       variant="dark"
-                      href={item.href}
                     >
-                      Dowiedz się więcej
+                      Więcej szczegółów
                     </AnimatedLink>
                   </AccordionContent>
                 </AccordionItem>
