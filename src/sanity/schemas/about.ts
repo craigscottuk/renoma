@@ -91,6 +91,7 @@ export const aboutUsHeader = defineType({
         layout: "radio",
       },
       group: "obrazSekcji",
+      initialValue: "fullWidth",
     }),
 
     defineField({
