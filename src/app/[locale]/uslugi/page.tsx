@@ -11,7 +11,8 @@ const QUERY = `
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "image": image, 
-    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia")
+    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
+    "imageLayout": imageLayout
   },
   
   "servicesList": *[_type == "servicesList"][0]{
@@ -41,6 +42,7 @@ interface Content {
     description: string;
     image?: string;
     imageAlt?: string;
+    imageLayout?: "fullWidth" | "portraitRight";
   };
   servicesList: {
     services: {
@@ -77,6 +79,7 @@ export default async function ONas({ params: { locale } }: Props) {
           description={servicesHeader.description}
           image={servicesHeader.image}
           imageAlt={servicesHeader.imageAlt}
+          imageLayout={servicesHeader.imageLayout}
         />
       )}
       {/* Conditionally render Services Listed Section */}
