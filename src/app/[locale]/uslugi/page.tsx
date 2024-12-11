@@ -15,15 +15,42 @@ const QUERY = `
     "imageLayout": imageLayout
   },
   
-  "servicesList": *[_type == "servicesList"][0]{
-    "services": services[]{
-      "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
-      "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
-      "actions": actions[]{
+  "servicesGroup": *[_type == "servicesGroup"][0]{
+    "serviceGroupOne": {
+      "title": coalesce(serviceGroupOne.title, "Brak tłumaczenia"),
+      "services": serviceGroupOne.services[]{
         "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
-        "content": coalesce(content[_key == $locale][0].value, "Brak tłumaczenia")
-      },
-      "images": images
+        "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+        "actions": actions[]{
+          "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+          "content": coalesce(content[_key == $locale][0].value, "Brak tłumaczenia")
+        },
+        "images": images
+      }
+    },
+    "serviceGroupTwo": {
+      "title": coalesce(serviceGroupTwo.title, "Brak tłumaczenia"),
+      "services": serviceGroupTwo.services[]{
+        "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+        "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+        "actions": actions[]{
+          "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+          "content": coalesce(content[_key == $locale][0].value, "Brak tłumaczenia")
+        },
+        "images": images
+      }
+    },
+    "serviceGroupThree": {
+      "title": coalesce(serviceGroupThree.title, "Brak tłumaczenia"),
+      "services": serviceGroupThree.services[]{
+        "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+        "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+        "actions": actions[]{
+          "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+          "content": coalesce(content[_key == $locale][0].value, "Brak tłumaczenia")
+        },
+        "images": images
+      }
     }
   }
 }
@@ -44,19 +71,52 @@ interface Content {
     imageAlt?: string;
     imageLayout?: "fullWidth" | "portraitRight";
   };
-  servicesList: {
-    services: {
+  servicesGroup: {
+    serviceGroupOne: {
       title: string;
-      description: string;
-      actions: {
+      services: {
         title: string;
-        content: string;
+        description: string;
+        actions: {
+          title: string;
+          content: string;
+        }[];
+        images?: {
+          asset: string;
+          caption?: string;
+        }[];
       }[];
-      images?: {
-        asset: string;
-        caption?: string;
+    };
+    serviceGroupTwo: {
+      title: string;
+      services: {
+        title: string;
+        description: string;
+        actions: {
+          title: string;
+          content: string;
+        }[];
+        images?: {
+          asset: string;
+          caption?: string;
+        }[];
       }[];
-    }[];
+    };
+    serviceGroupThree: {
+      title: string;
+      services: {
+        title: string;
+        description: string;
+        actions: {
+          title: string;
+          content: string;
+        }[];
+        images?: {
+          asset: string;
+          caption?: string;
+        }[];
+      }[];
+    };
   };
 }
 
@@ -67,7 +127,12 @@ export default async function ONas({ params: { locale } }: Props) {
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
-  const { servicesHeader, servicesList } = content;
+  console.log("Fetched content:", content);
+
+  const { servicesHeader, servicesGroup } = content;
+
+  console.log("Services Header:", servicesHeader);
+  console.log("Services Group:", servicesGroup);
 
   return (
     <>
@@ -82,10 +147,14 @@ export default async function ONas({ params: { locale } }: Props) {
           imageLayout={servicesHeader.imageLayout}
         />
       )}
-      {/* Conditionally render Services Listed Section */}
-      {servicesList?.services?.length > 0 && (
+      {/* Conditionally render Services Group Sections */}
+      {servicesGroup && (
         <ServicesList
-          services={servicesList.services}
+          serviceGroups={[
+            servicesGroup.serviceGroupOne,
+            servicesGroup.serviceGroupTwo,
+            servicesGroup.serviceGroupThree,
+          ]}
           paddingY="py-20 md:py-48"
         />
       )}
