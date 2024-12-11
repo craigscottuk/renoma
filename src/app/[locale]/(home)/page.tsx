@@ -27,6 +27,33 @@ const QUERY = `
     "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia")
   },
 
+  "servicesGroup": *[_type == "servicesGroup"][0]{
+    "serviceGroupOne": {
+      "title": coalesce(serviceGroupOne.title, "Brak tłumaczenia"),
+      "services": serviceGroupOne.services[]{
+        "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+        "shortDescription": coalesce(shortDescription[_key == $locale][0].value, "Brak tłumaczenia"),
+        "images": images
+      }
+    },
+    "serviceGroupTwo": {
+      "title": coalesce(serviceGroupTwo.title, "Brak tłumaczenia"),
+      "services": serviceGroupTwo.services[]{
+        "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+        "shortDescription": coalesce(shortDescription[_key == $locale][0].value, "Brak tłumaczenia"),
+        "images": images
+      }
+    },
+    "serviceGroupThree": {
+      "title": coalesce(serviceGroupThree.title, "Brak tłumaczenia"),
+      "services": serviceGroupThree.services[]{
+        "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+        "shortDescription": coalesce(shortDescription[_key == $locale][0].value, "Brak tłumaczenia"),
+        "images": images
+      }
+    }
+  },
+
   "faqSectionHome": *[_type == "faqSectionHome"][0]{
     "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -73,6 +100,32 @@ interface Content {
       answer: string;
     }[];
   };
+  servicesGroup: {
+    serviceGroupOne: {
+      title: string;
+      services: {
+        title: string;
+        shortDescription: string;
+        images: any[];
+      }[];
+    };
+    serviceGroupTwo: {
+      title: string;
+      services: {
+        title: string;
+        shortDescription: string;
+        images: any[];
+      }[];
+    };
+    serviceGroupThree: {
+      title: string;
+      services: {
+        title: string;
+        shortDescription: string;
+        images: any[];
+      }[];
+    };
+  };
 }
 
 export default async function HomePage({ params: { locale } }: Props) {
@@ -82,8 +135,13 @@ export default async function HomePage({ params: { locale } }: Props) {
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, options);
 
-  const { heroSection, aboutSectionHome, servicesSectionHome, faqSectionHome } =
-    content;
+  const {
+    heroSection,
+    aboutSectionHome,
+    servicesSectionHome,
+    faqSectionHome,
+    servicesGroup,
+  } = content;
 
   console.log(" content", aboutSectionHome);
 
@@ -116,6 +174,7 @@ export default async function HomePage({ params: { locale } }: Props) {
           description={servicesSectionHome.description}
           sectionCTA={servicesSectionHome.sectionCTA}
           paddingY="py-20 md:py-48"
+          servicesGroup={servicesGroup}
         />
       )}
 
