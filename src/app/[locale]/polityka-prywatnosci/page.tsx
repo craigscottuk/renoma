@@ -12,7 +12,8 @@ const QUERY = `
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "image": image, 
-    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia")
+    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
+    "imageLayout": imageLayout
   },
 
   "privacyText": *[_type == "privacyText"][0]
@@ -38,6 +39,7 @@ interface Content {
     description: string;
     image?: string;
     imageAlt?: string;
+    imageLayout?: "fullWidth" | "portraitRight";
   };
   privacyText: {
     content: PortableTextBlock[];
@@ -65,11 +67,14 @@ export default async function PolitykaPrywatnosci({
           description={privacyHeader.description}
           image={privacyHeader.image}
           imageAlt={privacyHeader.imageAlt}
+          imageLayout={privacyHeader.imageLayout}
         />
       )}
 
       {/* Privacy Policy text content */}
-      {privacyText && <Privacy content={privacyText.content} />}
+      {privacyText && (
+        <Privacy content={privacyText.content} paddingY="py-20 md:py-48" />
+      )}
     </>
   );
 }
