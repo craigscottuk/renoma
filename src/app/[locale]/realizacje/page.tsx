@@ -7,18 +7,19 @@ import ProjectsList from "./projects-list";
 
 const QUERY = `
 {
-  "projects": *[_type == "caseStudyEntry" && language == $locale]{
-    title,
-    slug,
-    language,
-},
   "caseStudyHeader": *[_type == "caseStudyHeader"][0]{
     "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "image": image,
-    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia")
-  }
+    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
+    "imageLayout": imageLayout
+  },
+  "projects": *[_type == "caseStudyEntry" && language == $locale]{
+    title,
+    slug,
+    language,
+}
 }
 `;
 
@@ -49,6 +50,7 @@ export default async function Realizacje({ params: { locale } }: Props) {
           description={caseStudyHeader.description}
           image={caseStudyHeader.image}
           imageAlt={caseStudyHeader.imageAlt}
+          imageLayout={caseStudyHeader.imageLayout}
         />
       )}
 
