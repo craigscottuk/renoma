@@ -106,135 +106,214 @@ export const servicesHeader = defineType({
   ],
 });
 
+// ================================
+// Services List Entries
+// ================================
+
 export const servicesList = defineType({
   name: "servicesList",
   title: "Lista usług",
-  type: "document",
-  options: { singleton: true },
+
   description:
     "Lista wszystkich usług, które znajdują się w ramach tego wpisu. Te usługi będą również wyświetlane na stronie głównej oraz w stopce.",
-  fields: [
+  type: "array",
+  of: [
     defineField({
-      name: "services",
-      title: "Lista Usług",
-      type: "array",
-      validation: (Rule) =>
-        Rule.required().min(1).error("Dodaj przynajmniej jedną usługę."),
-      of: [
+      name: "service",
+      type: "object",
+      title: "Usługa",
+      fields: [
         defineField({
-          name: "service",
-          type: "object",
-          title: "Usługa",
-          fields: [
+          name: "title",
+          title: "Tytuł Usługi",
+          type: "internationalizedArrayString",
+          description:
+            "Tytuł indywidualnej usługi, np. 'Badania konserwatorskie i ekspertyzy'.",
+          validation: (Rule) =>
+            Rule.required().error("Pole tytułu usługi jest wymagane."),
+        }),
+        defineField({
+          name: "description",
+          title: "Opis Usługi",
+          type: "internationalizedArrayText",
+          description:
+            "Krótki opis wprowadzający dla danej usługi, np. 'Prowadzimy kompleksowe badania konserwatorskie wspierające ochronę zabytków.'.",
+          validation: (Rule) =>
+            Rule.required().error("Pole opisu usługi jest wymagane."),
+        }),
+
+        defineField({
+          name: "actions",
+          title: "Działania",
+          description:
+            "Lista działań realizowanych w ramach danej usługi, np. 'Ocena stanu zabytku', 'Analiza materiałowa', 'Badania historyczne'.",
+          type: "array",
+          validation: (Rule) =>
+            Rule.required().min(1).error("Dodaj przynajmniej jedno działanie."),
+          of: [
             defineField({
-              name: "title",
-              title: "Tytuł Usługi",
-              type: "internationalizedArrayString",
-              description:
-                "Tytuł indywidualnej usługi, np. 'Badania Konserwatorskie i Ekspertyzy'.",
-              validation: (Rule) =>
-                Rule.required().error("Pole tytułu usługi jest wymagane."),
-            }),
-            defineField({
-              name: "description",
-              title: "Opis Usługi",
-              type: "internationalizedArrayText",
-              description:
-                "Krótki opis wprowadzający dla danej usługi, np. 'Prowadzimy kompleksowe badania konserwatorskie wspierające ochronę zabytków.'.",
-              validation: (Rule) =>
-                Rule.required().error("Pole opisu usługi jest wymagane."),
-            }),
-            defineField({
-              name: "actions",
-              title: "Działania",
-              description:
-                "Lista działań realizowanych w ramach danej usługi, np. 'Ocena stanu zabytku', 'Analiza materiałowa', 'Badania historyczne'.",
-              type: "array",
-              validation: (Rule) =>
-                Rule.required()
-                  .min(1)
-                  .error("Dodaj przynajmniej jedno działanie."),
-              of: [
+              name: "action",
+              type: "object",
+              title: "Akcja",
+              fields: [
                 defineField({
-                  name: "action",
-                  type: "object",
-                  title: "Akcja",
-                  fields: [
-                    defineField({
-                      name: "title",
-                      title: "Tytuł Akcji",
-                      type: "internationalizedArrayString",
-                      description:
-                        "Tytuł działania, np. 'Ocena stanu zabytku'.",
-                      validation: (Rule) =>
-                        Rule.required().error(
-                          "Pole tytułu akcji jest wymagane.",
-                        ),
-                    }),
-                    defineField({
-                      name: "content",
-                      title: "Treść Akcji",
-                      type: "internationalizedArrayText",
-                      description:
-                        "Treść lub szczegóły działania, np. 'Badania in situ w celu oceny stopnia zniszczenia...'.",
-                      validation: (Rule) =>
-                        Rule.required().error(
-                          "Pole treści akcji jest wymagane.",
-                        ),
-                    }),
-                  ],
-                  preview: {
-                    select: {
-                      title: "title.0.value",
-                    },
-                    prepare({ title }) {
-                      return {
-                        title: title || "Brak tytułu",
-                      };
-                    },
-                  },
+                  name: "title",
+                  title: "Tytuł Akcji",
+                  type: "internationalizedArrayString",
+                  description: "Tytuł działania, np. 'Ocena stanu zabytku'.",
+                  validation: (Rule) =>
+                    Rule.required().error("Pole tytułu akcji jest wymagane."),
+                }),
+                defineField({
+                  name: "content",
+                  title: "Treść Akcji",
+                  type: "internationalizedArrayText",
+                  description:
+                    "Treść lub szczegóły działania, np. 'Badania in situ w celu oceny stopnia zniszczenia...'.",
+                  validation: (Rule) =>
+                    Rule.required().error("Pole treści akcji jest wymagane."),
                 }),
               ],
-            }),
-            defineField({
-              name: "images",
-              title: "Obrazy Usługi",
-              type: "array",
-              of: [
-                defineField({
-                  name: "image",
-                  type: "image",
-                  title: "Obraz",
-                  fields: [
-                    defineField({
-                      name: "caption",
-                      type: "string",
-                      title: "Podpis Obrazu",
-                      description:
-                        "Opcjonalny podpis do obrazu, np. 'Widok przed konserwacją'.",
-                    }),
-                  ],
-                  options: {
-                    hotspot: true,
-                  },
-                }),
-              ],
-              description:
-                "Dodaj obrazy związane z tą usługą. Jeśli dodasz więcej niż jeden obraz, zostanie utworzony komponent karuzeli obrazów lub galerii.",
+              preview: {
+                select: {
+                  title: "title.0.value",
+                },
+                prepare({ title }) {
+                  return {
+                    title: title || "Brak tytułu",
+                  };
+                },
+              },
             }),
           ],
-          preview: {
-            select: {
-              title: "title.0.value", // Assumes the first localized title is accessible
-              media: "images.0", // Uses the first image as a preview thumbnail
-            },
-            prepare({ title, media }) {
-              return {
-                title: title || "Brak tytułu", // Fallback if no title exists
-                media, // Displays the first image in the preview
-              };
-            },
-          },
+        }),
+
+        defineField({
+          name: "shortDescription",
+          title: "Krótki Opis Usługi na stronie głównej",
+          type: "internationalizedArrayText",
+          description:
+            "Krótki opis usługi wyświetlany w sekcji usług na stronie głównej.",
+          validation: (Rule) =>
+            Rule.required().error("Pole krótkiego opisu usługi jest wymagane."),
+        }),
+
+        defineField({
+          name: "images",
+          title: "Obrazy Usługi",
+          type: "array",
+          of: [
+            defineField({
+              name: "image",
+              type: "image",
+              title: "Obraz",
+              fields: [
+                defineField({
+                  name: "caption",
+                  type: "string",
+                  title: "Podpis Obrazu",
+                  description:
+                    "Opcjonalny podpis do obrazu, np. 'Widok przed konserwacją'.",
+                }),
+              ],
+              options: {
+                hotspot: true,
+              },
+            }),
+          ],
+          description:
+            "Dodaj obrazy związane z tą usługą. Jeśli dodasz więcej niż jeden obraz, zostanie utworzony komponent karuzeli obrazów lub galerii.",
+        }),
+      ],
+      preview: {
+        select: {
+          title: "title.0.value",
+          media: "images.0",
+        },
+        prepare({ title, media }) {
+          return {
+            title: title || "Brak tytułu",
+            media,
+          };
+        },
+      },
+    }),
+  ],
+});
+
+// ================================
+// 01. Badania, Planowanie i Ekspertyzy
+// ================================
+
+export const servicesGroup = defineType({
+  name: "servicesGroup",
+  title: "Grupa usług",
+  type: "document",
+  options: { singleton: true },
+  description: "Zarządzaj grupami usług, np. sekcjami na stronie głównej.",
+  fields: [
+    // Group 1
+    defineField({
+      name: "serviceGroupOne",
+      title: "01. Badania, Planowanie i Ekspertyzy",
+      type: "object",
+      fields: [
+        defineField({
+          name: "title",
+          title: "Tytuł Sekcji",
+          type: "string",
+          initialValue: "Badania, Planowanie i Ekspertyzy",
+        }),
+        defineField({
+          name: "services",
+          title: "Lista Usług",
+          type: "servicesList",
+        }),
+      ],
+    }),
+
+    // ================================
+    // 02. Realizacja i Nadzór
+    // ================================
+
+    defineField({
+      name: "serviceGroupTwo",
+      title: "02. Realizacja i Nadzór",
+      type: "object",
+      fields: [
+        defineField({
+          name: "title",
+          title: "Tytuł Sekcji",
+          type: "string",
+          initialValue: "Realizacja i Nadzór",
+        }),
+        defineField({
+          name: "services",
+          title: "Lista Usług",
+          type: "servicesList",
+        }),
+      ],
+    }),
+
+    // ================================
+    // 03. Rewaloryzacja i Wsparcie
+    // ================================
+
+    defineField({
+      name: "serviceGroupThree",
+      title: "Rewaloryzacja i Wsparcie",
+      type: "object",
+      fields: [
+        defineField({
+          name: "title",
+          title: "Tytuł Sekcji",
+          type: "string",
+          initialValue: "Rewaloryzacja i Wsparcie",
+        }),
+        defineField({
+          name: "services",
+          title: "Lista Usług",
+          type: "servicesList",
         }),
       ],
     }),
