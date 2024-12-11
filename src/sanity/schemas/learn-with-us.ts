@@ -93,6 +93,7 @@ export const learnWithUsHeader = defineType({
         layout: "radio",
       },
       group: "obrazSekcji",
+      initialValue: "fullWidth",
     }),
 
     defineField({
