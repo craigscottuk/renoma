@@ -93,6 +93,7 @@ export const workWithUsHeader = defineType({
         layout: "radio",
       },
       group: "obrazSekcji",
+      initialValue: "fullWidth",
     }),
 
     defineField({
