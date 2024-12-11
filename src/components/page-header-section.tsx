@@ -1,12 +1,12 @@
 // cSpell:disable
+import clsx from "clsx";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import CustomButton from "./ui/custom-button";
+import MaxWidthWrapper from "./max-width-wrapper";
 import SectionTitle from "@/components/section-title";
 import SectionDescription from "@/components/section-description";
-import MaxWidthWrapper from "./max-width-wrapper";
-import clsx from "clsx";
-import CustomButton from "./ui/custom-button";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 interface PageHeaderProps {
   label: string;
@@ -15,7 +15,7 @@ interface PageHeaderProps {
   sectionButton?: string;
   image?: SanityImageSource | string;
   imageAlt?: string;
-  headerFullWidth?: boolean;
+  imageLayout?: "fullWidth" | "portraitRight";
 }
 
 export default function PageHeader({
@@ -25,7 +25,7 @@ export default function PageHeader({
   sectionButton,
   image,
   imageAlt,
-  headerFullWidth = true,
+  imageLayout = "fullWidth",
 }: PageHeaderProps) {
   // Generate the header image URL from Sanity or use the raw string URL
   const imageUrl =
@@ -34,6 +34,8 @@ export default function PageHeader({
       : image
         ? urlFor(image, 1200)
         : "/fallback-image.svg";
+
+  const headerFullWidth = imageLayout === "fullWidth";
 
   return (
     <>
