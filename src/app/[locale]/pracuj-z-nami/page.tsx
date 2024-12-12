@@ -1,6 +1,6 @@
 // cSpell:disable
 import { setRequestLocale } from "next-intl/server";
-import PageHeader from "@/components/page-header-section";
+import PageHeader from "@/components/page-header";
 import { client } from "@/sanity/client";
 import { PortableTextBlock } from "next-sanity";
 import SectionJobOffer from "./section-job-offer";
