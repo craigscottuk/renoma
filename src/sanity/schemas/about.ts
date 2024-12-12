@@ -155,6 +155,15 @@ export const ourHistory = defineType({
     }),
 
     defineField({
+      name: "text",
+      title: "Tekst sekcji",
+      description:
+        "Tekst sekcji, np. 'Nasza historia to lata wyzwań i sukcesów....'.",
+      type: "internationalizedArrayText",
+      validation: (Rule) => Rule.required(),
+    }),
+
+    defineField({
       name: "timeline",
       title: "Oś czasu",
       type: "array",
