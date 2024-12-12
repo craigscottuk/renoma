@@ -5,6 +5,8 @@ import SectionAbout from "./about";
 import SectionUslugiHome from "./uslugi";
 import { client } from "@/sanity/client";
 import { setRequestLocale } from "next-intl/server";
+import LogoShowcase from "./logos";
+import CTA from "../../../components/cta";
 
 const QUERY = `
 {
@@ -143,8 +145,6 @@ export default async function HomePage({ params: { locale } }: Props) {
     servicesGroup,
   } = content;
 
-  console.log(" content", aboutSectionHome);
-
   return (
     <>
       {/* Hero Section */}
@@ -178,6 +178,8 @@ export default async function HomePage({ params: { locale } }: Props) {
         />
       )}
 
+      <LogoShowcase />
+
       {/* FAQ Section */}
       {faqSectionHome && (
         <SectionFaqHome
@@ -189,6 +191,8 @@ export default async function HomePage({ params: { locale } }: Props) {
           paddingY="py-20 md:py-48"
         />
       )}
+
+      <CTA />
     </>
   );
 }
