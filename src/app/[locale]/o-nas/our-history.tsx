@@ -16,7 +16,7 @@ export default function OurHistory({
   paddingY,
 }: OurHistoryProps) {
   return (
-    <section className={clsx("mx-auto bg-black text-white/90", paddingY)}>
+    <section className={clsx("mx-auto bg-white text-black/90", paddingY)}>
       <MaxWidthWrapper>
         <SectionTitle
           title={title}
