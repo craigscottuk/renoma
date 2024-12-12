@@ -1,6 +1,6 @@
 // cSpell:disable
 import { setRequestLocale } from "next-intl/server";
-import PageHeader from "@/components/page-header-section";
+import PageHeader from "@/components/page-header";
 import { client } from "@/sanity/client";
 import WhatWeOffer from "./what-we-offer";
 import WhoWeAreLookingFor from "./who-we-are-looking-for";
