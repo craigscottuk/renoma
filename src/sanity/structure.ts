@@ -16,6 +16,7 @@ import {
   Mail,
   Settings,
   Cookie,
+  MousePointerClick,
 } from "lucide-react";
 
 export const structure: StructureResolver = (S, context) =>
@@ -53,8 +54,15 @@ export const structure: StructureResolver = (S, context) =>
               singletonDocumentListItem({
                 S,
                 context,
+                type: "logoSectionHome",
+                title: "Sekcja 4: Zaufali nam",
+                id: "singletonLogoSectionHome",
+              }),
+              singletonDocumentListItem({
+                S,
+                context,
                 type: "faqSectionHome",
-                title: "Sekcja 4: FAQ",
+                title: "Sekcja 5: FAQ",
                 id: "singletonFaqSectionHome",
               }),
             ]),
@@ -229,6 +237,23 @@ export const structure: StructureResolver = (S, context) =>
                 type: "contactDetails",
                 title: "Sekcja 3: Dane kontaktowe",
                 id: "singletonContactDetails",
+              }),
+            ]),
+        ),
+      S.divider(),
+      S.listItem()
+        .title("CTA")
+        .icon(MousePointerClick)
+        .child(
+          S.list()
+            .title("CTA")
+            .items([
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "ctaContent",
+                title: "CTA",
+                id: "singletonCtaContent",
               }),
             ]),
         ),
