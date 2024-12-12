@@ -2,7 +2,7 @@
 // app/[locale]/realizacje/page.tsx
 import { setRequestLocale } from "next-intl/server";
 import { client } from "@/sanity/client";
-import PageHeader from "@/components/page-header-section";
+import PageHeader from "@/components/page-header";
 import ProjectsList from "./projects-list";
 
 const QUERY = `
