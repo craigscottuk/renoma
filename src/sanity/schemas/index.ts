@@ -7,6 +7,7 @@ import {
   aboutSectionHome,
   servicesSectionHome,
   faqSectionHome,
+  logoSectionHome,
 } from "./home";
 import { about, aboutUsHeader, ourHistory, aboutUs } from "./about";
 import {
@@ -34,6 +35,7 @@ import {
   portableTextWithImage,
 } from "./portableText";
 import { sectionContent } from "./sectionContent";
+import { cta, ctaContent } from "./cta";
 
 // Export schema configuration
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -43,6 +45,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     heroSection,
     aboutSectionHome,
     servicesSectionHome,
+    logoSectionHome,
     faqSectionHome,
 
     // O nas
@@ -85,10 +88,17 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     contactForm,
     contactDetails,
 
+    // CTA
+
+    cta,
+    ctaContent,
+
+    // Polityka prywatności
     privacy,
     privacyHeader,
     privacyText,
 
+    // Ustawienia
     settings,
 
     // Portable Text
