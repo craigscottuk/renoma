@@ -1,7 +1,7 @@
 // cSpell:disable
 import { client } from "@/sanity/client";
 import { setRequestLocale } from "next-intl/server";
-import PageHeader from "@/components/page-header-section";
+import PageHeader from "@/components/page-header";
 import ContactFormAndDetails from "./contact-form-and-details";
 
 const QUERY = `
