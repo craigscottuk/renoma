@@ -52,7 +52,7 @@ export default function SectionUslugiHome({
   title,
   description,
   sectionCTA,
-  paddingY = "py-16 md:py-44", // Default padding values
+  paddingY = "py-16 md:py-44",
   servicesGroup,
 }: SectionUslugiHomeProps) {
   return (
@@ -106,13 +106,13 @@ function ServicesCards({
   return (
     <div className="mt-14 grid grid-cols-1 gap-6 md:mt-20 md:grid-cols-3">
       {serviceGroups.map((group, index) => (
-        <Card key={index} className="border border-white/40 bg-black">
-          <CardHeader className="bg-black text-white">
+        <Card key={index} className="border border-white/40 bg-[#09090B]">
+          <CardHeader className="text-white">
             <CardTitle className="font-regular text-[1.6rem] text-white/95 md:text-[1.8rem]">
               {group.title}
             </CardTitle>
           </CardHeader>
-          <CardContent className="flex flex-col space-y-4 bg-black text-white/80">
+          <CardContent className="flex flex-col space-y-4 text-white/80">
             <Accordion type="multiple" className="w-full">
               {group.services.map((item, itemIndex) => (
                 <AccordionItem
