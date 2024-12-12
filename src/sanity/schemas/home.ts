@@ -135,33 +135,107 @@ export const servicesSectionHome = defineType({
       name: "label",
       title: "Etykieta Sekcji",
       type: "internationalizedArrayString",
-      group: "etykietaSekcji",
+
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "title",
       title: "Tytuł Sekcji",
       type: "internationalizedArrayString",
-      group: "tytulSekcji",
+
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "description",
       title: "Opis Sekcji",
       type: "internationalizedArrayText",
-      group: "opisSekcji",
     }),
     defineField({
       name: "sectionCTA",
       title: "Przycisk Sekcji",
       type: "internationalizedArrayString",
-      group: "przyciskSekcji",
+
       validation: (Rule) => Rule.required(),
     }),
   ],
 });
 
 // FAQ section
+export const logoSectionHome = defineType({
+  name: "logoSectionHome",
+  title: "Sekcja Zaufali nam",
+  type: "document",
+  options: { singleton: true },
+
+  fields: [
+    defineField({
+      name: "label",
+      title: "Etykieta Sekcji",
+      type: "internationalizedArrayString",
+
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "title",
+      title: "Tytuł Sekcji",
+      type: "internationalizedArrayString",
+
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "description",
+      title: "Opis Sekcji",
+      type: "internationalizedArrayText",
+    }),
+
+    defineField({
+      name: "logos",
+      title: "Loga",
+      type: "array",
+      description: "Dodaj loga firm, które nam zaufały.",
+      of: [
+        defineField({
+          name: "logoItem",
+          title: "Logo",
+          type: "object",
+          fields: [
+            defineField({
+              name: "company",
+              title: "Nazwa firmy",
+              type: "string",
+              description: "Dodaj nazwę firmy, która nam zaufała.",
+            }),
+            defineField({
+              name: "src",
+              title: "Źródło logo",
+              type: "image",
+              description: "Dodaj logo firmy, która nam zaufała.",
+            }),
+            defineField({
+              name: "link",
+              title: "Link",
+              type: "string",
+              description: "Dodaj link do strony firmy, która nam zaufała.",
+            }),
+          ],
+          preview: {
+            select: {
+              title: "company",
+              media: "src",
+            },
+            prepare({ title, media }) {
+              return {
+                title: title || "Brak nazwy firmy",
+                media,
+              };
+            },
+          },
+        }),
+      ],
+    }),
+  ],
+});
+
 // FAQ section
 export const faqSectionHome = defineType({
   name: "faqSectionHome",
