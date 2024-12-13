@@ -67,3 +67,19 @@ body {
 .animate-scroll {
   animation: scroll 50s linear infinite;
 }
+
+/* Faster scroll on small devices */
+@media (max-width: 640px) {
+  .animate-scroll {
+    animation-duration: 21;
+  }
+}
+
+::selection {
+  background-color: #765911;
+  color: #ffffff; /* Optional: Change text color for better contrast */
+}
+
+/* dull-gold: 81724d */
+/* gold: D0A031 */
+/* gold: #765911 */
