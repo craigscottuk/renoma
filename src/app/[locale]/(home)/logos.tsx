@@ -1,10 +1,31 @@
 "use client";
 
+import MaxWidthWrapper from "@/components/max-width-wrapper";
+import SectionTitle from "@/components/section-title";
+import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
-export default function LogoShowcase() {
+interface Logo {
+  company: string;
+  src: string;
+  link: string;
+}
+
+interface LogoShowcaseProps {
+  label: string;
+  title: string;
+  logos: Logo[];
+  paddingY: string;
+}
+
+export default function LogoShowcase({
+  label,
+  title,
+  logos,
+  paddingY = "py-20 md:py-48",
+}: LogoShowcaseProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -19,72 +40,42 @@ export default function LogoShowcase() {
   }, []);
 
   return (
-    <section className="w-full overflow-hidden bg-white py-12 md:py-16 lg:py-20">
-      <div className="container px-4 md:px-6">
-        <h2 className="mb-12 text-right text-3xl font-medium tracking-tight text-zinc-900 md:text-4xl">
-          Zaufali nam
-        </h2>
-        <div ref={scrollRef} className="relative flex w-full overflow-hidden">
-          <div className="animate-scroll scroll-content flex min-w-full shrink-0 items-center justify-around gap-8">
-            <Link
-              href="https://www.mostostal.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-16 w-40 items-center justify-center"
-            >
-              <Image
-                src="/placeholder.svg"
-                alt="Mostostal Logo"
-                className="h-auto w-full object-contain"
-                width={160}
-                height={64}
-              />
-            </Link>
-            <Link
-              href="https://www.zdz.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-16 w-40 items-center justify-center"
-            >
-              <Image
-                src="/placeholder.svg"
-                alt="ZDZ Logo"
-                className="h-auto w-full object-contain"
-                width={160}
-                height={64}
-              />
-            </Link>
-            <Link
-              href="https://www.ebud.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-16 w-40 items-center justify-center"
-            >
-              <Image
-                src="/placeholder.svg"
-                alt="EBUD Logo"
-                className="h-auto w-full object-contain"
-                width={160}
-                height={64}
-              />
-            </Link>
-            <Link
-              href="https://www.frombork-cathedral.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-16 w-40 items-center justify-center"
-            >
-              <Image
-                src="/placeholder.svg"
-                alt="Frombork Cathedral Logo"
-                className="h-auto w-full object-contain"
-                width={160}
-                height={64}
-              />
-            </Link>
+    <section className={clsx("mx-auto bg-white", paddingY)}>
+      <MaxWidthWrapper>
+        <div className="mb-20">
+          <div className="hidden md:flex md:flex-col md:items-end">
+            <SectionTitle label={label} title={title} textAlign="right" />
+          </div>
+          <div className="md:hidden">
+            <SectionTitle
+              label="NASI KLIENCI"
+              title="Zaufali nam"
+              textAlign="left"
+            />
           </div>
         </div>
-      </div>
+        <div ref={scrollRef} className="relative flex w-full overflow-hidden">
+          <div className="scroll-content flex min-w-full shrink-0 animate-scroll items-center justify-around gap-8">
+            {logos.map((logo: Logo, index: number) => (
+              <Link
+                key={index}
+                href={logo.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-auto w-auto items-center justify-center"
+              >
+                <Image
+                  src={logo.src}
+                  alt={logo.company}
+                  className="h-[130px] w-full object-contain"
+                  width={240}
+                  height={112}
+                />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </MaxWidthWrapper>
     </section>
   );
 }
