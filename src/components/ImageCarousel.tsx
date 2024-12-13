@@ -31,7 +31,7 @@ export default function ImageCarousel({
   const sizeClass =
     {
       none: "h-64 w-full",
-      landscape: "h-[500px] w-full",
+      landscape: "h-64 md:h-80 aspect-video",
       portrait: "h-96 w-64",
       square: "h-96 w-96",
     }[aspectRatio] || "h-64 w-full";
@@ -39,7 +39,7 @@ export default function ImageCarousel({
   const objectPositionClass =
     {
       none: "object-center",
-      landscape: "object-center",
+      landscape: "object-center", // Adjusted for landscape
       portrait: "object-top",
       square: "object-center",
     }[aspectRatio] || "object-center";
