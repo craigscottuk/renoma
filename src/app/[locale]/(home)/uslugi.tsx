@@ -56,7 +56,7 @@ export default function SectionUslugiHome({
   servicesGroup,
 }: SectionUslugiHomeProps) {
   return (
-    <section className={clsx("mx-auto bg-black text-white", paddingY)}>
+    <section className={clsx("mx-auto bg-zinc-900 text-white", paddingY)}>
       <MaxWidthWrapper>
         <div className="relative grid items-center gap-6 md:grid-cols-2 md:gap-24">
           {/* Left Column */}
