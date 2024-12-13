@@ -17,6 +17,9 @@ import ImageCarousel from "@/components/ImageCarousel";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
+import { Separator } from "@/components/ui/separator";
+import MaxWidthWrapper from "@/components/max-width-wrapper";
+
 type ImageType = {
   asset: SanityImageSource | string;
   caption?: string;
@@ -116,7 +119,7 @@ export default function ServicesList({
   };
 
   return (
-    <section className={clsx("mx-auto mt-24")}>
+    <section className={clsx("mx-auto")}>
       {/* Secondary Navigation */}
       <div
         className="fixed left-0 right-0 top-20 z-40 overflow-hidden bg-black/90 text-white transition-[height] duration-300 ease-in-out lg:hidden"
@@ -161,52 +164,69 @@ export default function ServicesList({
       </div>
 
       {/* Main Content */}
-      <main className="pt-16 lg:pt-24">
-        <div className="container mx-auto px-4">
+      <div>
+        <MaxWidthWrapper>
           {serviceGroups?.map((group, index) => (
             <section
               key={group.title}
               // @ts-expect-error: TypeScript cannot infer the type of the ref correctly
               ref={(el) => (sectionRefs.current[group.title] = el)}
               data-title={group.title}
-              className={clsx("mb-24", paddingY)}
+              className={clsx("", paddingY)}
             >
-              <SectionTitle
-                title={group.title}
-                textColor="black"
-                className="mt-10"
-              />
+              <div className="flex-between flex">
+                <div className="w-1/2">
+                  <SectionTitle
+                    title={group.title}
+                    textColor="black"
+                    className="mb-16"
+                  />
+                </div>
+
+                <div className="w-1/2">
+                  <SectionTitle
+                    title={`${index + 1}`}
+                    textColor="black"
+                    className="mb-16"
+                    textAlign="right"
+                  />
+                </div>
+              </div>
+
+              <Separator className="mb-16" />
 
               {group.services.map((service, serviceIndex) => (
                 <div
                   key={service.title}
                   className={cn(
-                    "lg:flex lg:items-center lg:gap-12",
+                    "mb-24 lg:flex lg:items-start lg:gap-36",
                     serviceIndex % 2 === 1 && "flex-row-reverse",
                   )}
                 >
                   <FadeInSection className="lg:w-1/2">
                     <h3
                       id={service.title.toLowerCase().replace(/\s+/g, "-")}
-                      className="mb-6 font-bolder text-2xl"
+                      className="mb-6 font-bolder text-[2rem] leading-tight tracking-[-0.015em]"
                     >
                       {service.title}
                     </h3>
-                    <p className="mb-8 text-xl text-gray-700">
+                    <p className="mb-8 text-[1.1rem] text-gray-700">
                       {service.description}
                     </p>
                     <Accordion type="single" collapsible className="w-full">
                       {service.actions.map((action) => (
                         <AccordionItem key={action.title} value={action.title}>
-                          <AccordionTrigger>{action.title}</AccordionTrigger>
-                          <AccordionContent>
+                          <AccordionTrigger className="text-[1.3rem] leading-none">
+                            {action.title}
+                          </AccordionTrigger>
+                          <AccordionContent className="mb-4">
                             <p className="text-gray-700">{action.content}</p>
                           </AccordionContent>
                         </AccordionItem>
                       ))}
                     </Accordion>
                   </FadeInSection>
-                  <FadeInSection className="mt-8 lg:mt-0 lg:w-1/2">
+                  <FadeInSection className="mt-8 pt-5 lg:mt-0 lg:w-1/2">
                     <ImageCarousel
                       images={
                         service.images?.map((img) => ({
@@ -226,8 +246,8 @@ export default function ServicesList({
               ))}
             </section>
           ))}
-        </div>
-      </main>
+        </MaxWidthWrapper>
+      </div>
     </section>
   );
 }
