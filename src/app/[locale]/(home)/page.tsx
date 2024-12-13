@@ -65,6 +65,15 @@ const QUERY = `
       "question": coalesce(question[_key == $locale][0].value, "Brak tłumaczenia"),
       "answer": coalesce(answer[_key == $locale][0].value, "Brak tłumaczenia")
     }
+  },
+  "logoSectionHome": *[_type == "logoSectionHome"][0]{
+  "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
+  "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    logos[]{
+      company,
+      "src": src.asset->url,
+      link
+    }
   }
 }
 `;
@@ -128,6 +137,15 @@ interface Content {
       }[];
     };
   };
+  logoSectionHome: {
+    label: string;
+    title: string;
+    logos: {
+      company: string;
+      src: string;
+      link: string;
+    }[];
+  };
 }
 
 export default async function HomePage({ params: { locale } }: Props) {
@@ -143,6 +161,7 @@ export default async function HomePage({ params: { locale } }: Props) {
     servicesSectionHome,
     faqSectionHome,
     servicesGroup,
+    logoSectionHome,
   } = content;
 
   return (
@@ -178,7 +197,14 @@ export default async function HomePage({ params: { locale } }: Props) {
         />
       )}
 
-      <LogoShowcase />
+      {logoSectionHome && (
+        <LogoShowcase
+          label={logoSectionHome.label}
+          title={logoSectionHome.title}
+          logos={logoSectionHome.logos}
+          paddingY="py-20 md:py-48"
+        />
+      )}
 
       {/* FAQ Section */}
       {faqSectionHome && (
