@@ -1,8 +1,8 @@
 // cSpell:disable
-import MaxWidthWrapper from "@/components/max-width-wrapper";
-import CustomButton from "@/components/ui/custom-button";
-import SectionTitle from "@/components/section-title";
 import clsx from "clsx";
+import SectionTitle from "@/components/section-title";
+import CustomButton from "@/components/ui/custom-button";
+import MaxWidthWrapper from "@/components/max-width-wrapper";
 import SectionDescription from "@/components/section-description";
 
 interface SectionAboutProps {
@@ -30,10 +30,10 @@ export default function SectionAbout({
               label={label}
               title={title}
               as="h2"
-              motionPreset="blur-left"
+              motionPreset="fade-in"
               textColor="black"
               animateOnView={true}
-              animationDirection="left"
+              animationDirection="up"
             />
           </div>
 
