@@ -9,7 +9,7 @@ interface SectionTitleProps {
   title: string;
   as?: ElementType;
   className?: string;
-  motionPreset?: "blur-right" | "blur-left";
+  motionPreset?: "blur-right" | "blur-left" | "fade-in";
   textColor?: "black" | "white";
   textAlign?: "left" | "right" | "center";
   label?: string;
@@ -39,14 +39,14 @@ export default function SectionTitle({
   const createMotionVariants = (additionalDelay = 0): Variants => ({
     hidden: {
       opacity: 0,
-      filter: "blur(3px)",
+      filter: motionPreset === "fade-in" ? "blur(2px)" : "blur(2px)",
       x:
         animationDirection === "right"
-          ? 5
+          ? 3
           : animationDirection === "left"
-            ? -5
+            ? -3
             : 0,
-      y: animationDirection === "up" ? 5 : 0,
+      y: animationDirection === "up" ? 3 : 0,
     },
     visible: {
       opacity: 1,
@@ -57,7 +57,7 @@ export default function SectionTitle({
     },
   });
 
-  const labelVariants = createMotionVariants(-0.2); // Label appears earlier
+  const labelVariants = createMotionVariants(-0.1); // Label appears earlier
   const titleVariants = createMotionVariants();
 
   return (
@@ -77,7 +77,7 @@ export default function SectionTitle({
         >
           <p
             className={clsx(
-              "mb-6 text-sm uppercase tracking-wide",
+              "mb-4 text-sm uppercase tracking-wide md:mb-6",
               textAlign === "left"
                 ? "text-left"
                 : textAlign === "right"
