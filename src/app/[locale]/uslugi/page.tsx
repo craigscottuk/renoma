@@ -155,7 +155,7 @@ export default async function ONas({ params: { locale } }: Props) {
             servicesGroup.serviceGroupTwo,
             servicesGroup.serviceGroupThree,
           ]}
-          paddingY="py-20 md:py-48"
+          paddingY="pb-20 "
         />
       )}
     </>
