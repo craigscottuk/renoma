@@ -24,6 +24,7 @@ export default function Timeline({ events }: TimelineProps) {
   const [expandedIndexes, setExpandedIndexes] = useState<number[]>([]);
   const [visibleEventCount, setVisibleEventCount] = useState(2);
   const [isMobile, setIsMobile] = useState(false);
+  const [captionHeight, setCaptionHeight] = useState(0);
   const eventRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
@@ -82,10 +83,10 @@ export default function Timeline({ events }: TimelineProps) {
     : sortedEvents;
 
   return (
-    <div className="relative mx-auto">
+    <div className="relative mx-auto" style={{ marginBottom: captionHeight }}>
       {/* Timeline Line */}
-      <div className="absolute left-[8px] top-0 h-full w-0.5 bg-gray-400 lg:left-1/2" />
-      <div className="relative lg:pl-8 lg:pr-8">
+      <div className="absolute left-[8px] top-0 h-full w-0.5 bg-black/20 md:left-1/2" />
+      <div className="relative">
         {isMobile && visibleEventCount < sortedEvents.length && (
           <div className="relative mb-12">
             <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform">
@@ -121,54 +122,70 @@ export default function Timeline({ events }: TimelineProps) {
                     }`
               } relative`}
             >
-              <div className="relative flex flex-col lg:gap-4">
+              <div className="relative flex flex-col md:gap-5">
+                {/* Year event for Desktop */}
                 <div
-                  className={`group mb-4 flex items-center lg:mb-0 lg:w-1/2 lg:items-start ${
+                  className={`group mb-4 flex items-center md:mb-0 md:w-1/2 md:items-center ${
                     !isMobile && isEven
-                      ? "lg:ml-auto lg:pl-8"
-                      : "lg:mr-auto lg:justify-end lg:pr-8"
+                      ? "md:ml-auto md:pl-10"
+                      : "md:mr-auto md:justify-end md:pr-10"
                   }`}
                 >
+                  {/* Year event marker */}
                   <div
                     onClick={() => toggleExpand(index)}
-                    className="absolute left-0 h-[24px] w-[24px] cursor-pointer rounded-full border-4 border-white bg-[#AC8400] group-hover:bg-[#B88D00] lg:left-1/2 lg:-translate-x-1/2 lg:pt-2 xl:pt-2"
+                    className="absolute left-0 h-[24px] w-[24px] cursor-pointer rounded-full border-4 border-white bg-[#8f7d43] group-hover:bg-[#B88D00] md:left-1/2 md:-translate-x-1/2 md:pt-2 xl:pt-2"
                   />
+                  {/* Year event title */}
                   <button
                     onClick={() => toggleExpand(index)}
-                    className="ml-8 flex items-center font-bolder text-3xl text-[#A37D00] group-hover:text-[#B88D00]"
+                    className="flex items-center font-bolder text-4xl text-[#8f7d43] group-hover:text-[#B88D00]"
                     aria-expanded={isExpanded}
                     aria-controls={`content-${index}`}
                   >
                     <span>{event.year}</span>
                   </button>
                 </div>
+
                 <div
                   id={`content-${index}`}
-                  className={`ml-8 overflow-hidden rounded-sm transition-all duration-500 lg:ml-0 ${
+                  className={`ml-8 overflow-hidden rounded-sm transition-all duration-500 md:ml-0 ${
                     isExpanded
                       ? "max-h-[2000px] opacity-100"
                       : "max-h-0 opacity-0"
                   } ${
                     !isMobile && isEven
-                      ? "lg:ml-auto lg:px-8"
-                      : "lg:mr-auto lg:px-8"
-                  } lg:w-1/2`}
+                      ? "md:ml-auto md:pl-10"
+                      : "md:mr-auto md:pr-10"
+                  } md:w-1/2`}
                 >
-                  {event.images && event.images.length > 0 && (
-                    <div className="mb-6 mt-4">
-                      <ImageCarousel images={event.images} />
+                  {/* Affects the whole div. Could add bg-color */}
+                  <div className="border-b border-t border-black/20 bg-white px-5 pt-6">
+                    {event.images && event.images.length > 0 && (
+                      <div className="mb-5">
+                        {/* <Separator className="mb-5" /> */}
+                        <ImageCarousel
+                          images={event.images}
+                          aspectRatio="landscape"
+                          onCaptionHeightChange={setCaptionHeight}
+                        />
+                      </div>
+                    )}
+                    <div
+                      className={`md:max-w-[38rem] ${
+                        !isMobile && !isEven ? "md:ml-auto" : ""
+                      }`}
+                      style={{ marginTop: 0 }}
+                    >
+                      <div className="pt-5">
+                        <PortableText
+                          value={event.content}
+                          components={portableTextComponents}
+                        />
+                      </div>
+
+                      {/* <Separator /> */}
                     </div>
-                  )}
-                  <div
-                    className={`space-y-3 text-pretty lg:max-w-[38rem] ${
-                      !isMobile && !isEven ? "lg:ml-auto" : ""
-                    }`}
-                  >
-                    <Separator />
-                    <PortableText
-                      value={event.content}
-                      components={portableTextComponents}
-                    />
                   </div>
                 </div>
               </div>
