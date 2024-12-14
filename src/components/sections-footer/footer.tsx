@@ -1,17 +1,17 @@
 // cSpell:disable
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import NextLink from "next/link";
 import { ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import MaxWidthWrapper from "../max-width-wrapper";
 import { FacebookIcon, InstagramIcon, LinkedInIcon } from "./socials";
 import { footerLinks } from "@/lib/footerLinks";
-import AnimatedLink from "@/components/animated-link";
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
-import { RoutePaths } from "@/lib/routes";
+import { StaticRoutePaths } from "@/lib/routes";
 
 interface FooterProps {
   variant?: "light" | "dark";
@@ -24,7 +24,7 @@ export default function Footer({ variant = "dark" }: FooterProps) {
   };
 
   const currentYear = new Date().getFullYear();
-  const darkClasses = "text-white bg-black";
+  const darkClasses = "text-white bg-zinc-950";
   const lightClasses = "text-black bg-white";
 
   return (
@@ -43,14 +43,12 @@ export default function Footer({ variant = "dark" }: FooterProps) {
                 <ul className="space-y-2">
                   {section.links.map((link, index) => (
                     <li key={index}>
-                      <AnimatedLink
-                        variant={variant}
-                        showArrow={false}
-                        href={link.href}
-                        className="text-base"
+                      <Link
+                        href={link.href as StaticRoutePaths}
+                        className="text-base text-zinc-50 decoration-white/80 decoration-1 underline-offset-8 hover:underline"
                       >
                         {link.label}
-                      </AnimatedLink>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -75,39 +73,37 @@ export default function Footer({ variant = "dark" }: FooterProps) {
               </p>
             </div>
             <div className="flex items-center space-x-8">
-              <AnimatedLink
-                variant={variant}
-                showArrow={false}
-                href={"/polityka-prywatnosci" as RoutePaths}
-                className="text-sm"
+              <Link
+                href={"/polityka-prywatnosci" as StaticRoutePaths}
+                className="text-sm text-white/90 decoration-white/80 decoration-1 underline-offset-8 hover:underline"
               >
                 {t("privacyPolicy")}
-              </AnimatedLink>
+              </Link>
               <div className="flex space-x-4">
-                <Link href="https://linkedin.com" aria-label="LinkedIn">
+                <NextLink href="https://linkedin.com" aria-label="LinkedIn">
                   <LinkedInIcon
                     className={clsx(
                       "h-5 w-5 fill-white",
                       variant === "light" ? "fill-black" : "fill-white",
                     )}
                   />
-                </Link>
-                <Link href="https://facebook.com" aria-label="Facebook">
+                </NextLink>
+                <NextLink href="https://facebook.com" aria-label="Facebook">
                   <FacebookIcon
                     className={clsx(
                       "h-5 w-5 fill-white",
                       variant === "light" ? "fill-black" : "fill-white",
                     )}
                   />
-                </Link>
-                <Link href="https://instagram.com" aria-label="Instagram">
+                </NextLink>
+                <NextLink href="https://instagram.com" aria-label="Instagram">
                   <InstagramIcon
                     className={clsx(
                       "h-5 w-5 fill-white",
                       variant === "light" ? "fill-black" : "fill-white",
                     )}
                   />
-                </Link>
+                </NextLink>
               </div>
 
               <Button
