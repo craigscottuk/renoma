@@ -10,6 +10,9 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  .text-gold {
+    color: var(--text-gold);
+  }
 }
 
 .list-square > li::marker {
@@ -43,6 +46,10 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0rem;
+
+    --gold: 43 75% 26%;
+    /* --text-gold: #745811; */
+    --text-gold: #745811;
   }
 }
 
@@ -76,8 +83,9 @@ body {
 }
 
 ::selection {
-  background-color: #765911;
-  color: #ffffff; /* Optional: Change text color for better contrast */
+  /* background-color: #debd7b; */
+  background-color: #eae3d7;
+  color: #000000; /* Optional: Change text color for better contrast */
 }
 
 /* dull-gold: 81724d */
