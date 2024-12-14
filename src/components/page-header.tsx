@@ -59,7 +59,7 @@ export default function PageHeader({
       <section
         className={clsx(
           "relative mx-auto mt-24 bg-white py-12 lg:py-16",
-          headerFullWidth ? "lg:mt-0 lg:pt-10" : "",
+          headerFullWidth ? "lg:mt-0 lg:pt-10" : "min-h-[500px]",
         )}
       >
         {/* Small-screen header image strip */}
@@ -129,11 +129,12 @@ export default function PageHeader({
 
           {/* Large-screen layout with image on the right */}
           {imageUrl && !headerFullWidth && (
-            <div className="relative hidden lg:-mb-80 lg:-mt-16 lg:ml-auto lg:block lg:h-[580px] lg:w-[500px]">
+            <div className="relative hidden lg:-mb-80 lg:-mt-12 lg:ml-auto lg:block lg:h-[530px] lg:w-[450px]">
               <Image
                 src={imageUrl}
                 alt={imageAlt || "Obraz nagłówka"}
                 fill
+                unoptimized
                 style={{
                   objectFit: "cover",
                   objectPosition: "center",
