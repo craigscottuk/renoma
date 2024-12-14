@@ -164,22 +164,27 @@ export default function ServicesList({
       </div>
 
       {/* Main Content */}
-      <div>
-        <MaxWidthWrapper>
-          {serviceGroups?.map((group, index) => (
-            <section
-              key={group.title}
-              // @ts-expect-error: TypeScript cannot infer the type of the ref correctly
-              ref={(el) => (sectionRefs.current[group.title] = el)}
-              data-title={group.title}
-              className={clsx("", paddingY)}
-            >
+      {/* Main Content */}
+      {/* Main Content */}
+      <div className="">
+        {serviceGroups?.map((group, index) => (
+          <section
+            key={group.title}
+            // @ts-expect-error: TypeScript cannot infer the type of the ref correctly
+            ref={(el) => (sectionRefs.current[group.title] = el)}
+            data-title={group.title}
+            className={clsx(
+              index % 2 === 0 ? "bg-gray-50" : "bg-gray-100",
+              "pt-20",
+            )}
+          >
+            <MaxWidthWrapper>
               <div className="flex-between flex">
-                <div className="w-1/2">
+                <div className="mb-10 w-1/2">
                   <SectionTitle
                     title={group.title}
                     textColor="black"
-                    className="mb-16"
+                    className=""
                   />
                 </div>
 
@@ -187,7 +192,7 @@ export default function ServicesList({
                   <SectionTitle
                     title={`${index + 1}`}
                     textColor="black"
-                    className="mb-16"
+                    className=""
                     textAlign="right"
                   />
                 </div>
@@ -199,7 +204,7 @@ export default function ServicesList({
                 <div
                   key={service.title}
                   className={cn(
-                    "mb-24 lg:flex lg:items-start lg:gap-36",
+                    "mb-16 lg:flex lg:items-start lg:gap-36",
                     serviceIndex % 2 === 1 && "flex-row-reverse",
                   )}
                 >
@@ -244,9 +249,9 @@ export default function ServicesList({
                   </FadeInSection>
                 </div>
               ))}
-            </section>
-          ))}
-        </MaxWidthWrapper>
+            </MaxWidthWrapper>
+          </section>
+        ))}
       </div>
     </section>
   );
