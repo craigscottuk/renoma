@@ -26,7 +26,7 @@ export default function OurHistory({
           textAlign="center"
         />
 
-        <div className="mt-10 px-4 py-20">
+        <div className="">
           <Timeline events={events} />
         </div>
       </MaxWidthWrapper>
