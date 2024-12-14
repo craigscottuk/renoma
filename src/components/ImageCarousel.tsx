@@ -1,24 +1,30 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ArrowLeft, ArrowRight, ArrowUp, Plus, Minus } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { Button } from "./ui/button";
+import { useLocale } from "next-intl";
+import AnimatedLink from "./animated-link";
 
 interface ImageCarouselProps {
   images: Array<{ src: string; caption?: string }>;
   aspectRatio?: "none" | "landscape" | "portrait" | "square";
+  onCaptionHeightChange?: (height: number) => void;
 }
 
 export default function ImageCarousel({
   images,
   aspectRatio = "landscape",
+  onCaptionHeightChange,
 }: ImageCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showCaptions, setShowCaptions] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [captionHeight, setCaptionHeight] = useState(0);
+  const captionRef = useRef<HTMLDivElement>(null);
 
   // const aspectRatioClass =
   //   {
@@ -30,10 +36,10 @@ export default function ImageCarousel({
 
   const sizeClass =
     {
-      none: "h-64 w-full",
+      none: "h-auto w-auto",
       landscape: "h-64 md:h-80 aspect-video",
       portrait: "h-96 w-64",
-      square: "h-96 w-96",
+      square: "h-64 md:h-80 aspect-square",
     }[aspectRatio] || "h-64 w-full";
 
   const objectPositionClass =
@@ -47,7 +53,7 @@ export default function ImageCarousel({
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
-      setShowCaptions(window.innerWidth >= 768);
+      setShowCaptions(window.innerWidth >= 768); // Always show captions on mobile
     };
 
     checkMobile();
@@ -63,8 +69,28 @@ export default function ImageCarousel({
     }
   }, [emblaApi]);
 
+  useEffect(() => {
+    if (captionRef.current) {
+      const height = showCaptions ? captionRef.current.clientHeight : 0;
+      setCaptionHeight(height);
+      if (onCaptionHeightChange) {
+        onCaptionHeightChange(height);
+      }
+    }
+  }, [currentIndex, showCaptions, isMobile]);
+
   const toggleCaptions = () => {
-    setShowCaptions((prev) => !prev);
+    setShowCaptions((prev) => {
+      const newShowCaptions = !prev;
+      if (captionRef.current) {
+        const height = newShowCaptions ? captionRef.current.clientHeight : 0;
+        setCaptionHeight(height);
+        if (onCaptionHeightChange) {
+          onCaptionHeightChange(height);
+        }
+      }
+      return newShowCaptions;
+    });
   };
 
   const scrollPrev = () => emblaApi?.scrollPrev();
@@ -103,7 +129,10 @@ export default function ImageCarousel({
   }
 
   return (
-    <div className={`relative ${sizeClass} mb-16`}>
+    <div
+      className={`relative ${sizeClass} mb-16`}
+      style={{ marginBottom: captionHeight }}
+    >
       {/* Added bottom margin to prevent overlap */}
       <div className="relative h-full w-full">
         <div
@@ -133,7 +162,7 @@ export default function ImageCarousel({
         {/* Next/Prev Buttons */}
         {!isMobile && (
           <>
-            <button
+            {/* <button
               onClick={scrollPrev}
               className="absolute left-4 top-1/2 z-10 -translate-y-1/2 transform rounded-full bg-black/50 p-2 text-white hover:bg-black"
               aria-label="Previous image"
@@ -146,7 +175,7 @@ export default function ImageCarousel({
               aria-label="Next image"
             >
               <ArrowRight className="h-6 w-6" />
-            </button>
+            </button> */}
           </>
         )}
 
@@ -184,36 +213,80 @@ export default function ImageCarousel({
       </div>
 
       {/* Caption Section */}
-      {isMobile && showCaptions && currentCaption && (
-        <div className="relative z-10 bg-gray-50 px-4 py-3 text-sm text-gray-600">
-          <div className="flex items-start gap-2">
-            <ArrowUp className="mt-1 h-4 w-4 flex-shrink-0" />
-            <span>{currentCaption}</span>
-          </div>
+      {isMobile && (
+        <div
+          ref={captionRef}
+          className={`relative z-10 bg-gray-50 px-4 py-3 text-sm text-zinc-900 ${
+            showCaptions ? "block" : "hidden"
+          }`}
+        >
+          {showCaptions && currentCaption && (
+            <div className="flex items-start gap-2">
+              <ArrowUp className="mt-1 h-4 w-4 flex-shrink-0" />
+              <span>{currentCaption}</span>
+            </div>
+          )}
         </div>
       )}
 
       {!isMobile && currentCaption && images.length > 1 && (
-        <div className="relative z-10 flex justify-between bg-gray-50 px-4 py-3 text-sm text-gray-600">
-          <div className="flex items-start gap-2">
-            <ArrowUp className="mt-1 h-4 w-4 flex-shrink-0" />
+        <div
+          ref={captionRef}
+          className="relative z-10 flex justify-between bg-gray-50 px-3 py-3 text-sm text-red-500"
+        >
+          <div className="flex items-start gap-2 text-pretty">
+            <ArrowUp className="mr-1 mt-1 h-4 w-4 flex-shrink-0" />
             <span>{currentCaption}</span>
-          </div>
-          <div className="flex gap-2">
-            <button
+
+            <div className="flex items-start gap-2">
+              {/* <Button
+              variant={"link"}
               onClick={scrollPrev}
-              className="rounded-[4px] border border-gray-300 bg-white px-3 py-1 text-gray-600 hover:bg-gray-100"
+              className="items-start py-0 pr-1.5 text-sm text-zinc-900 underline hover:bg-none"
               aria-label="Previous image"
             >
-              PREV
-            </button>
-            <button
-              onClick={scrollNext}
-              className="rounded-[4px] border border-gray-300 bg-white px-3 py-1 text-gray-600 hover:bg-gray-100"
+              {useLocale() === "en"
+                ? "PREV"
+                : useLocale() === "pl"
+                  ? "POP"
+                  : "VOR"}
+            </Button> */}
+              {/* <Button
+              variant={"link"}
+              ={scrollNext}
+              className="items-start py-0 text-sm text-zinc-900 underline hover:bg-none"
               aria-label="Next image"
             >
-              NEXT
-            </button>
+              {useLocale() === "en"
+                ? "NEXT"
+                : useLocale() === "pl"
+                  ? "DALEJ"
+                  : "WEITER"}
+            </Button> */}
+
+              <AnimatedLink
+                className="hover:text-gold text-sm"
+                onClick={scrollNext}
+                showArrow={false}
+              >
+                {useLocale() === "en"
+                  ? "PREV"
+                  : useLocale() === "pl"
+                    ? "POP"
+                    : "VOR"}
+              </AnimatedLink>
+              <AnimatedLink
+                className="hover:text-gold text-sm"
+                onClick={scrollNext}
+                showArrow={false}
+              >
+                {useLocale() === "en"
+                  ? "NEXT"
+                  : useLocale() === "pl"
+                    ? "DALEJ"
+                    : "WEITER"}
+              </AnimatedLink>
+            </div>
           </div>
         </div>
       )}
