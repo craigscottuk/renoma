@@ -92,7 +92,7 @@ export default async function UczSieZNami({ params: { locale } }: Props) {
         <WhatWeOffer
           title={whatWeOffer.title}
           offers={whatWeOffer.offers}
-          paddingY="py-20 md:py-48"
+          paddingY="py-20 md:py-24"
         />
       )}
 
@@ -104,7 +104,7 @@ export default async function UczSieZNami({ params: { locale } }: Props) {
           image={whoWeAreLookingFor.image}
           imageAlt={whoWeAreLookingFor.imageAlt}
           applyButtonText={whoWeAreLookingFor.applyButtonText}
-          paddingY="py-20 md:py-48"
+          paddingY="py-20 md:py-16"
         />
       )}
     </>
