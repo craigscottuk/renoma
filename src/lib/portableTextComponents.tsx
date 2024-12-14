@@ -1,10 +1,11 @@
 // cSpell:disable
+import AnimatedLink from "@/components/animated-link";
 import { PortableTextComponents } from "@portabletext/react";
 
 const portableTextComponents: PortableTextComponents = {
   block: {
     // Handle default text blocks (e.g., paragraphs)
-    normal: ({ children }) => <p className="mb-6 text-[1.1rem]">{children}</p>,
+    normal: ({ children }) => <p className="mb-4 text-[1.1rem]">{children}</p>,
     h3: ({ children }) => (
       <h3 className="mb-8 font-bolder text-2xl text-[#81724D]">{children}</h3>
     ),
@@ -13,12 +14,14 @@ const portableTextComponents: PortableTextComponents = {
     ),
   },
   list: {
-    bullet: ({ children }) => <ul className="list-square pl-6">{children}</ul>, // Use list-square for square bullets
+    bullet: ({ children }) => (
+      <ul className="list-disc pb-4 pl-6">{children}</ul>
+    ), // Add text-lg for larger bullets
     number: ({ children }) => <ol className="list-decimal pl-4">{children}</ol>,
   },
   listItem: {
     bullet: ({ children }) => (
-      <li className="mb-0 text-[1.1rem]">{children}</li>
+      <li className="mb-2 text-[1.1rem]">{children}</li>
     ),
     number: ({ children }) => <li className="mb-0">{children}</li>,
   },
@@ -30,14 +33,21 @@ const portableTextComponents: PortableTextComponents = {
     link: ({ value, children }) => {
       const target = value?.href?.startsWith("http") ? "_blank" : "_self";
       return (
-        <a
+        // <a
+        //   href={value?.href}
+        //   target={target}
+        //   rel={target === "_blank" ? "noopener noreferrer" : undefined}
+        //   className="text-blue-600 underline"
+        // >
+        //   {children}
+        // </a>
+        <AnimatedLink
           href={value?.href}
-          target={target}
-          rel={target === "_blank" ? "noopener noreferrer" : undefined}
-          className="text-blue-600 underline"
+          showArrow={false}
+          className="text-gold underline"
         >
           {children}
-        </a>
+        </AnimatedLink>
       );
     },
   },
