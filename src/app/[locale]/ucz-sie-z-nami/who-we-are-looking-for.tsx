@@ -34,8 +34,8 @@ export default function WhoWeAreLookingFor({
   return (
     <section className={clsx("mx-auto bg-white text-black/90", paddingY)}>
       <MaxWidthWrapper>
-        <Card className="border-none bg-gray-100">
-          <CardContent className="p-0">
+        <Card className="border-none bg-zinc-100">
+          <CardContent className="p-10">
             <div className="grid gap-8 lg:grid-cols-2">
               <div className="p-8 lg:p-12">
                 <SectionTitle
@@ -45,8 +45,7 @@ export default function WhoWeAreLookingFor({
                   className="mb-20"
                 />
 
-                <div className="space-y-6">
-                  {/* <p className="mb-6 text-lg text-muted-foreground">
+                {/* <p className="mb-6 text-lg text-muted-foreground">
                   Poszukujemy osób:
                 </p>
                 <ul className="space-y-4">
@@ -60,17 +59,16 @@ export default function WhoWeAreLookingFor({
                     </li>
                   ))}
                 </ul> */}
-                  <PortableText
-                    value={criteria}
-                    components={portableTextComponents}
-                  />
+                <PortableText
+                  value={criteria}
+                  components={portableTextComponents}
+                />
 
-                  <CustomButton animateOnView={false}>
-                    {applyButtonText}
-                  </CustomButton>
-                </div>
+                <CustomButton animateOnView={false}>
+                  {applyButtonText}
+                </CustomButton>
               </div>
-              <div className="relative m-6 h-[400px] lg:h-auto">
+              <div className="relative m-6 h-[400px] lg:max-h-[600px] lg:min-h-full">
                 <Image
                   src={imageUrl}
                   alt={imageAlt || "Header image"}
