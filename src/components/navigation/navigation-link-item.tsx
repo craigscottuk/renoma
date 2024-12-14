@@ -28,9 +28,9 @@ export default function NavigationLink({
         "group motion-preset-blur-up inline-block py-0.5 uppercase leading-none tracking-[0.04em] antialiased transition-colors duration-300 ease-in-out",
         className,
         isActive
-          ? "text-[#765911] underline decoration-[#765911] decoration-1 underline-offset-8"
+          ? "text-gold decoration-gold underline decoration-1 underline-offset-8"
           : isHovered
-            ? "text-black"
+            ? "text-gold"
             : isAnyHovered
               ? "text-neutral-400"
               : "text-black hover:text-black",
