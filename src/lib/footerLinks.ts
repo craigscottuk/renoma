@@ -34,7 +34,7 @@ export const footerLinks = [
     ],
   },
   {
-    title: "Badania, Planowanie i Ekspertyzy",
+    title: "Rewaloryzacja i Wsparcie",
     links: [
       {
         href: "/services/rewaloryzacja",
