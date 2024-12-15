@@ -15,8 +15,8 @@ interface PageHeaderProps {
   sectionButton?: string;
   image?: SanityImageSource | string;
   imageAlt?: string;
-  imageLayout?: "fullWidth" | "portraitRight";
-  backgroundColor?: "white" | "black"; // Add this line
+  imageLayout?: "fullWidthAbove" | "fullWidthBelow" | "portraitRight"; // Update this line
+  backgroundColor?: "white" | "black";
 }
 
 export default function PageHeader({
@@ -26,8 +26,8 @@ export default function PageHeader({
   sectionButton,
   image,
   imageAlt,
-  imageLayout = "fullWidth",
-  backgroundColor = "black", // Add this line
+  imageLayout = "fullWidthAbove", // Update this line
+  backgroundColor = "black",
 }: PageHeaderProps) {
   // Generate the header image URL from Sanity or use the raw string URL
   const imageUrl =
@@ -37,13 +37,14 @@ export default function PageHeader({
         ? urlFor(image, 1200)
         : "/fallback-image.svg";
 
-  const headerFullWidth = imageLayout === "fullWidth";
-  const textColor = backgroundColor === "black" ? "white" : "black"; // Add this line
+  const headerFullWidth = imageLayout.startsWith("fullWidth");
+  const imagePosition = imageLayout === "fullWidthBelow" ? "below" : "above"; // Add this line
+  const textColor = backgroundColor === "black" ? "white" : "black";
 
   return (
     <>
       {/* Full-width header image */}
-      {headerFullWidth && imageUrl && (
+      {headerFullWidth && imageUrl && imagePosition === "above" && (
         <div className="relative mt-24 h-80 w-full">
           <Image
             src={imageUrl || "/fallback-image.svg"}
@@ -61,9 +62,11 @@ export default function PageHeader({
       {/* Text - Section title and description */}
       <section
         className={clsx(
-          "relative mx-auto mt-24 py-12 lg:py-16",
-          headerFullWidth ? "lg:mt-0 lg:pt-10" : "min-h-[500px]",
-          backgroundColor === "black" ? "bg-black" : "bg-white", // Add this line
+          "relative mx-auto py-12 lg:py-20",
+          headerFullWidth && imagePosition === "above" ? "mt-24 lg:mt-0" : "",
+          headerFullWidth && imagePosition === "below" ? "mt-24" : "",
+          imageLayout === "portraitRight" ? "mt-24" : "",
+          backgroundColor === "black" ? "bg-zinc-950" : "bg-white",
         )}
       >
         {/* Small-screen header image strip */}
@@ -96,13 +99,13 @@ export default function PageHeader({
                 title={title}
                 as="h1"
                 motionPreset="blur-left"
-                textColor={textColor} // Modify this line
+                textColor={textColor}
               />
               <SectionDescription
                 description={description}
                 marginTop={true}
                 textStyle="text-balance"
-                textColor={textColor} // Add this line
+                textColor={textColor}
               />
               {sectionButton && (
                 <CustomButton animateOnView={false}>
@@ -119,7 +122,7 @@ export default function PageHeader({
                   title={title}
                   as="h1"
                   motionPreset="blur-left"
-                  textColor={textColor} // Modify this line
+                  textColor={textColor}
                 />
               </div>
               <div className="flex flex-col items-end md:max-w-[29rem]">
@@ -127,7 +130,7 @@ export default function PageHeader({
                   description={description}
                   marginTop={true}
                   textStyle="text-balance"
-                  textColor={textColor} // Add this line
+                  textColor={textColor}
                 />
               </div>
             </>
@@ -135,7 +138,12 @@ export default function PageHeader({
 
           {/* Large-screen layout with image on the right */}
           {imageUrl && !headerFullWidth && (
-            <div className="relative hidden lg:-mb-80 lg:-mt-12 lg:ml-auto lg:block lg:h-[530px] lg:w-[450px]">
+            <div
+              className={clsx(
+                "relative hidden lg:-mb-80 lg:-mt-12 lg:ml-auto lg:block lg:h-[530px] lg:w-[450px]",
+                imageLayout === "portraitRight" ? "mt-24" : "", // Add this line
+              )}
+            >
               <Image
                 src={imageUrl}
                 alt={imageAlt || "Obraz nagłówka"}
@@ -150,6 +158,22 @@ export default function PageHeader({
           )}
         </MaxWidthWrapper>
       </section>
+
+      {/* Full-width header image below content */}
+      {headerFullWidth && imageUrl && imagePosition === "below" && (
+        <div className="relative h-80 w-full">
+          <Image
+            src={imageUrl || "/fallback-image.svg"}
+            alt={imageAlt || "Obraz nagłówka"}
+            fill
+            style={{
+              objectFit: "cover",
+              objectPosition: "center",
+            }}
+            loading="lazy"
+          />
+        </div>
+      )}
     </>
   );
 }
