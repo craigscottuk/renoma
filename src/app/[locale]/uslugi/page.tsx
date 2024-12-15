@@ -12,7 +12,8 @@ const QUERY = `
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "image": image, 
     "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
-    "imageLayout": imageLayout
+    "imageLayout": imageLayout,
+    "backgroundColor": backgroundColor
   },
   
   "servicesGroup": *[_type == "servicesGroup"][0]{
@@ -70,6 +71,7 @@ interface Content {
     image?: string;
     imageAlt?: string;
     imageLayout?: "fullWidth" | "portraitRight";
+    backgroundColor?: "black" | "white";
   };
   servicesGroup: {
     serviceGroupOne: {
@@ -145,6 +147,7 @@ export default async function ONas({ params: { locale } }: Props) {
           image={servicesHeader.image}
           imageAlt={servicesHeader.imageAlt}
           imageLayout={servicesHeader.imageLayout}
+          backgroundColor={servicesHeader.backgroundColor}
         />
       )}
       {/* Conditionally render Services Group Sections */}
