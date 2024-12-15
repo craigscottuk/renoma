@@ -83,7 +83,9 @@ body {
 }
 
 ::selection {
-  /* background-color: #debd7b; */
+  /* tint gold */
+  /* background-color: #fdf8e8; */
+  /* custom gold */
   background-color: #eae3d7;
   color: #000000; /* Optional: Change text color for better contrast */
 }
