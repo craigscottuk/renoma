@@ -79,6 +79,15 @@ export const renomaLabHeader = defineType({
     }),
 
     defineField({
+      name: "imageAlt",
+      title: "Alternatywny tekst obrazu nagłówka",
+      description:
+        "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie sprzętu laboratoryjnego do badań materiałów budowlanych'.",
+      type: "internationalizedArrayString",
+      group: "obrazSekcji",
+    }),
+
+    defineField({
       name: "imageLayout",
       title: "Układ obrazu na dużych urządzeniach",
       description:
@@ -96,12 +105,20 @@ export const renomaLabHeader = defineType({
     }),
 
     defineField({
-      name: "imageAlt",
-      title: "Alternatywny tekst obrazu nagłówka",
+      name: "backgroundColor",
+      title: "Kolor tła",
       description:
-        "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie sprzętu laboratoryjnego do badań materiałów budowlanych'.",
-      type: "internationalizedArrayString",
+        "Wybierz kolor tła dla nagłówka strony. Jeśli wybierzesz biały, tekst będzie czarny, a jeśli wybierzesz czarny, tekst będzie biały.",
+      type: "string",
+      options: {
+        list: [
+          { title: "Biały", value: "white" },
+          { title: "Czarny", value: "black" },
+        ],
+        layout: "radio",
+      },
       group: "obrazSekcji",
+      initialValue: "white",
     }),
   ],
 });
