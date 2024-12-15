@@ -12,7 +12,8 @@ const QUERY = `
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "image": image, 
     "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
-    "imageLayout": imageLayout
+    "imageLayout": imageLayout,
+    "backgroundColor": backgroundColor
   },
 }
 
@@ -32,6 +33,7 @@ interface Content {
     image?: string;
     imageAlt?: string;
     imageLayout?: "fullWidth" | "portraitRight";
+    backgroundColor?: "white" | "black";
   };
 }
 
@@ -55,6 +57,7 @@ export default async function RenomaLab({ params: { locale } }: Props) {
           image={renomaLabHeader.image}
           imageAlt={renomaLabHeader.imageAlt}
           imageLayout={renomaLabHeader.imageLayout}
+          backgroundColor={renomaLabHeader.backgroundColor}
         />
       )}
 
