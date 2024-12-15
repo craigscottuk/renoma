@@ -16,6 +16,7 @@ interface PageHeaderProps {
   image?: SanityImageSource | string;
   imageAlt?: string;
   imageLayout?: "fullWidth" | "portraitRight";
+  backgroundColor?: "white" | "black"; // Add this line
 }
 
 export default function PageHeader({
@@ -26,6 +27,7 @@ export default function PageHeader({
   image,
   imageAlt,
   imageLayout = "fullWidth",
+  backgroundColor = "black", // Add this line
 }: PageHeaderProps) {
   // Generate the header image URL from Sanity or use the raw string URL
   const imageUrl =
@@ -36,6 +38,7 @@ export default function PageHeader({
         : "/fallback-image.svg";
 
   const headerFullWidth = imageLayout === "fullWidth";
+  const textColor = backgroundColor === "black" ? "white" : "black"; // Add this line
 
   return (
     <>
@@ -58,8 +61,9 @@ export default function PageHeader({
       {/* Text - Section title and description */}
       <section
         className={clsx(
-          "relative mx-auto mt-24 bg-white py-12 lg:py-16",
+          "relative mx-auto mt-24 py-12 lg:py-16",
           headerFullWidth ? "lg:mt-0 lg:pt-10" : "min-h-[500px]",
+          backgroundColor === "black" ? "bg-black" : "bg-white", // Add this line
         )}
       >
         {/* Small-screen header image strip */}
@@ -92,12 +96,13 @@ export default function PageHeader({
                 title={title}
                 as="h1"
                 motionPreset="blur-left"
-                textColor="black"
+                textColor={textColor} // Modify this line
               />
               <SectionDescription
                 description={description}
                 marginTop={true}
                 textStyle="text-balance"
+                textColor={textColor} // Add this line
               />
               {sectionButton && (
                 <CustomButton animateOnView={false}>
@@ -114,7 +119,7 @@ export default function PageHeader({
                   title={title}
                   as="h1"
                   motionPreset="blur-left"
-                  textColor="black"
+                  textColor={textColor} // Modify this line
                 />
               </div>
               <div className="flex flex-col items-end md:max-w-[29rem]">
@@ -122,6 +127,7 @@ export default function PageHeader({
                   description={description}
                   marginTop={true}
                   textStyle="text-balance"
+                  textColor={textColor} // Add this line
                 />
               </div>
             </>
