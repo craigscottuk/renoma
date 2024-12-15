@@ -91,17 +91,18 @@ export const renomaLabHeader = defineType({
       name: "imageLayout",
       title: "Układ obrazu na dużych urządzeniach",
       description:
-        "Wybierz między pełną szerokością obrazu a portretem po prawej stronie.",
+        "Wybierz między pełną szerokością obrazu a portretem po prawej stronie. Dla pełnej szerokości wybierz pozycję obrazu względem treści.",
       type: "string",
       options: {
         list: [
-          { title: "Pełna szerokość", value: "fullWidth" },
+          { title: "Pełna szerokość powyżej", value: "fullWidthAbove" },
+          { title: "Pełna szerokość poniżej", value: "fullWidthBelow" },
           { title: "Portret po prawej", value: "portraitRight" },
         ],
         layout: "radio",
       },
       group: "obrazSekcji",
-      initialValue: "fullWidth",
+      initialValue: "fullWidthAbove",
     }),
 
     defineField({
@@ -119,6 +120,121 @@ export const renomaLabHeader = defineType({
       },
       group: "obrazSekcji",
       initialValue: "white",
+    }),
+  ],
+});
+
+// About RenomaLab section
+export const aboutLab = defineType({
+  name: "aboutLab",
+  title: "Sekcja 'O RenomaLAB'",
+  type: "document",
+  options: {
+    singleton: true,
+  },
+  fields: [
+    defineField({
+      name: "title",
+      title: "Tytuł sekcji",
+      description: "Tytuł sekcji, np. 'O RenomaLAB'.",
+      type: "internationalizedArrayString",
+      validation: (Rule) => Rule.required(),
+    }),
+
+    defineField({
+      name: "text",
+      title: "Tekst sekcji",
+      type: "object",
+      description: "Treść opisująca RenomaLAB.",
+      validation: (Rule) => Rule.required(),
+      fields: [
+        { name: "pl", title: "PL", type: "portableTextWithHeadings" },
+        { name: "en", title: "EN", type: "portableTextWithHeadings" },
+        { name: "de", title: "DE", type: "portableTextWithHeadings" },
+      ],
+    }),
+  ],
+});
+
+export const labOffer = defineType({
+  name: "labOffer",
+  title: "Oferta Renoma LAB",
+  type: "document",
+  options: {
+    singleton: true,
+  },
+  fields: [
+    defineField({
+      name: "title",
+      title: "Tytuł sekcji",
+      description: "Tytuł sekcji, np. 'Oferta'.",
+      type: "internationalizedArrayString",
+      validation: (Rule) => Rule.required(),
+    }),
+
+    defineField({
+      name: "offers",
+      title: "Lista Ofert",
+      type: "array",
+      of: [
+        defineField({
+          name: "offer",
+          title: "Oferta",
+          type: "object",
+          fields: [
+            defineField({
+              name: "icon",
+              title: "Ikona",
+              type: "string",
+              options: {
+                list: [
+                  { title: "Microscope", value: "Microscope" },
+                  { title: "SwatchBook", value: "SwatchBook" },
+                  { title: "Flask", value: "Flask" },
+                  { title: "Droplets", value: "Droplets" },
+                ],
+                layout: "dropdown",
+              },
+            }),
+            defineField({
+              name: "title",
+              title: "Tytuł",
+              type: "internationalizedArrayString",
+              validation: (Rule) => Rule.required(),
+            }),
+
+            defineField({
+              name: "content",
+              title: "Zawartość",
+              type: "object",
+              description: "Opis zawartości oferty",
+              validation: (Rule) => Rule.required(),
+              fields: [
+                { name: "pl", title: "PL", type: "portableTextWithHeadings" },
+                { name: "en", title: "EN", type: "portableTextWithHeadings" },
+                { name: "de", title: "DE", type: "portableTextWithHeadings" },
+              ],
+            }),
+          ],
+          preview: {
+            select: {
+              title: "title.0.value",
+            },
+            prepare({ title }) {
+              return {
+                title: title || "Brak tytułu",
+              };
+            },
+          },
+        }),
+      ],
+    }),
+    defineField({
+      name: "collaborationDescription",
+      title: "Opis współpracy",
+      description:
+        "Opis współpracy z zewnętrznymi specjalistami przeprowadzającymi badania instrumentalne.",
+      type: "internationalizedArrayText",
     }),
   ],
 });
