@@ -13,7 +13,8 @@ const QUERY = `
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "image": image,
     "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
-    "imageLayout": imageLayout
+    "imageLayout": imageLayout,
+    "backgroundColor": backgroundColor
   },
   "projects": *[_type == "caseStudyEntry" && language == $locale]{
     title,
@@ -51,6 +52,7 @@ export default async function Realizacje({ params: { locale } }: Props) {
           image={caseStudyHeader.image}
           imageAlt={caseStudyHeader.imageAlt}
           imageLayout={caseStudyHeader.imageLayout}
+          backgroundColor={caseStudyHeader.backgroundColor}
         />
       )}
 
