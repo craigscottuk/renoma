@@ -20,7 +20,7 @@ export default function WhatWeOffer({
   paddingY,
 }: WhatWeOfferProps & WhatWeOfferComponentProps) {
   return (
-    <section className={clsx("mx-auto bg-zinc-950 text-white/90", paddingY)}>
+    <section className={clsx("mx-auto bg-zinc-950 text-zinc-50", paddingY)}>
       <MaxWidthWrapper>
         <SectionTitle title={title} className="mb-20" textColor="white" />
       </MaxWidthWrapper>
@@ -33,8 +33,8 @@ export default function WhatWeOffer({
             >
               <CardHeader>
                 <div className="flex flex-col items-start">
-                  <div className="mb-4 rounded-full border border-amber-500 bg-transparent p-2">
-                    <Check className="h-4 w-4 text-amber-500" />
+                  <div className="border-gold-800 mb-4 rounded-full border bg-transparent p-2">
+                    <Check className="text-gold-800 h-4 w-4" />
                   </div>
                   <CardTitle className="font-regular text-[1.7rem] leading-tight tracking-[-0.015em]">
                     {feature.title}
