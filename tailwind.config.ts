@@ -62,6 +62,20 @@ const config: Config = {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+        // Gold color palette
+        gold: {
+          50: "#fefcf3",
+          100: "#fdf8e8",
+          200: "#f5ecc2",
+          300: "#ebdd79",
+          400: "#dac74c",
+          500: "#c5a42f",
+          600: "#b0901e",
+          700: "#9b7d18",
+          800: "#876b14",
+          900: "#745811",
+          950: "#482e06",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
