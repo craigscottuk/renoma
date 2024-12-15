@@ -22,6 +22,7 @@ interface LabOfferProps {
   }[];
   collaborationDescription: string;
   paddingY: string;
+  colorScheme: keyof typeof cardColorSchemes;
 }
 
 const iconComponents: Record<string, React.ComponentType<any>> = {
@@ -31,29 +32,72 @@ const iconComponents: Record<string, React.ComponentType<any>> = {
   Droplets,
 };
 
+const cardColorSchemes: Record<
+  string,
+  {
+    section: string;
+    card: string;
+    cardContent: string;
+    sectionTitle: "white" | "black";
+  }
+> = {
+  zincDark: {
+    section: "bg-zinc-950 text-zinc-50",
+    card: "border-zinc-700 bg-zinc-900 text-zinc-50",
+    cardContent: "text-zinc-100",
+    sectionTitle: "white",
+  },
+  zincLight: {
+    section: "text-zinc-950 bg-zinc-200",
+    card: "border-zinc-300 bg-zinc-100",
+    cardContent: "text-zinc-700",
+    sectionTitle: "black",
+  },
+  goldDark: {
+    section: "bg-gold-950 text-gold-50",
+    card: "border-gold-700 bg-gold-900 text-gold-50",
+    cardContent: "text-gold-200",
+    sectionTitle: "white",
+  },
+};
+
 export default function LabOffer({
   title,
   offers,
   collaborationDescription,
   paddingY,
+  colorScheme = "zincLight",
 }: LabOfferProps) {
+  const selectedColorScheme =
+    cardColorSchemes[colorScheme] || cardColorSchemes.zincDark;
+
   return (
-    <section className={clsx("bg-zinc-100", paddingY)}>
+    <section className={clsx("", selectedColorScheme.section, paddingY)}>
       <MaxWidthWrapper>
-        <div className="space-y-10 bg-zinc-100 p-8">
-          <SectionTitle title={title} textColor="black" />
+        <div className="space-y-10 p-8">
+          <SectionTitle
+            title={title}
+            textColor={selectedColorScheme.sectionTitle}
+          />
           <div className="grid gap-6 md:grid-cols-2">
             {offers.map((offer, index) => {
               const IconComponent = iconComponents[offer.icon] || Microscope;
               return (
-                <Card className="bg-zinc-50" key={index}>
+                <Card className={selectedColorScheme.card} key={index}>
                   <CardHeader>
                     <div className="flex items-center space-x-2">
-                      <IconComponent className="h-6 w-6" />
-                      <CardTitle>{offer.title}</CardTitle>
+                      <IconComponent className="text-gold-800 h-6 w-6" />
+                      <CardTitle className="font-regular text-[1.7rem] leading-tight tracking-[-0.015em]">
+                        {offer.title}
+                      </CardTitle>
                     </div>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent
+                    className={clsx(
+                      "text-[1.1rem]",
+                      selectedColorScheme.cardContent,
+                    )}
+                  >
                     <PortableText
                       value={offer.content}
                       components={portableTextComponents}
