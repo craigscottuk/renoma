@@ -83,6 +83,7 @@ export default function SectionTitle({
                 : textAlign === "right"
                   ? "text-right"
                   : "text-center",
+              textColor === "black" ? "text-zinc-950/90" : "text-white/90",
             )}
           >
             {label}
@@ -99,7 +100,7 @@ export default function SectionTitle({
             `motion-preset-${motionPreset}`,
             "text-balance text-5xl font-light leading-[1.06] md:text-6xl md:leading-[1.06]",
             className,
-            textColor === "black" ? "text-black" : "text-white",
+            textColor === "black" ? "text-zinc-950" : "text-white",
             textAlign === "left"
               ? "text-left"
               : textAlign === "right"
