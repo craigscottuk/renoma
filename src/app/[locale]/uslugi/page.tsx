@@ -70,7 +70,7 @@ interface Content {
     description: string;
     image?: string;
     imageAlt?: string;
-    imageLayout?: "fullWidth" | "portraitRight";
+    imageLayout?: "fullWidthAbove" | "fullWidthBelow" | "portraitRight";
     backgroundColor?: "black" | "white";
   };
   servicesGroup: {
