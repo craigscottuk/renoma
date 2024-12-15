@@ -81,19 +81,36 @@ export const aboutUsHeader = defineType({
       name: "imageLayout",
       title: "Układ obrazu na dużych urządzeniach",
       description:
-        "Wybierz między pełną szerokością obrazu a portretem po prawej stronie.",
+        "Wybierz między pełną szerokością obrazu a portretem po prawej stronie. Dla pełnej szerokości wybierz pozycję obrazu względem treści.",
       type: "string",
       options: {
         list: [
-          { title: "Pełna szerokość", value: "fullWidth" },
+          { title: "Pełna szerokość powyżej", value: "fullWidthAbove" },
+          { title: "Pełna szerokość poniżej", value: "fullWidthBelow" },
           { title: "Portret po prawej", value: "portraitRight" },
         ],
         layout: "radio",
       },
       group: "obrazSekcji",
-      initialValue: "fullWidth",
+      initialValue: "fullWidthAbove",
     }),
 
+    defineField({
+      name: "backgroundColor",
+      title: "Kolor tła",
+      description:
+        "Wybierz kolor tła dla nagłówka strony. Jeśli wybierzesz biały, tekst będzie czarny, a jeśli wybierzesz czarny, tekst będzie biały.",
+      type: "string",
+      options: {
+        list: [
+          { title: "Biały", value: "white" },
+          { title: "Czarny", value: "black" },
+        ],
+        layout: "radio",
+      },
+      group: "obrazSekcji",
+      initialValue: "white",
+    }),
     defineField({
       name: "imageAlt",
       title: "Alternatywny tekst obrazu nagłówka",
@@ -105,7 +122,7 @@ export const aboutUsHeader = defineType({
   ],
 });
 
-// About page header section
+// About Us / Our Valuessection
 export const aboutUs = defineType({
   name: "aboutUs",
   title: "Sekcja 'O nas i nasza wartości'",
