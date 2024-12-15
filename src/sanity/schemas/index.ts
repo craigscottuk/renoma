@@ -18,7 +18,7 @@ import {
 } from "./services";
 import { caseStudyEntry } from "./case-study-entry";
 import { caseStudyHeader, caseStudies } from "./case-studies";
-import { renomaLab, renomaLabHeader } from "./renomaLab";
+import { aboutLab, labOffer, renomaLab, renomaLabHeader } from "./renomaLab";
 import {
   learnWithUsHeader,
   learnWithUs,
@@ -70,6 +70,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     // Renoma Lab
     renomaLab,
     renomaLabHeader,
+    aboutLab,
+    labOffer,
 
     // Ucz się z nami
     learnWithUs,
