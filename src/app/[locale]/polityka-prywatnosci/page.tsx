@@ -13,7 +13,8 @@ const QUERY = `
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "image": image, 
     "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
-    "imageLayout": imageLayout
+    "imageLayout": imageLayout,
+    "backgroundColor": backgroundColor
   },
 
   "privacyText": *[_type == "privacyText"][0]
@@ -40,6 +41,7 @@ interface Content {
     image?: string;
     imageAlt?: string;
     imageLayout?: "fullWidth" | "portraitRight";
+    backgroundColor?: "black" | "white";
   };
   privacyText: {
     content: PortableTextBlock[];
@@ -68,6 +70,7 @@ export default async function PolitykaPrywatnosci({
           image={privacyHeader.image}
           imageAlt={privacyHeader.imageAlt}
           imageLayout={privacyHeader.imageLayout}
+          backgroundColor={privacyHeader.backgroundColor}
         />
       )}
 
