@@ -14,6 +14,7 @@ const nextConfig = {
         pathname: "/**", // Match all paths on this domain
       },
     ],
+    unoptimized: true, // Disable image optimization
   },
 
   async redirects() {
