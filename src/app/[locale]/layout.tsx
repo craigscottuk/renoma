@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
+// import { getTranslations } from "next-intl/server";
 import { ReactNode } from "react";
 import BaseLayout from "@/components/base-layout";
 import { routing } from "@/i18n/routing";
@@ -13,15 +14,15 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({
-  params: { locale },
-}: Omit<Props, "children">) {
-  const t = await getTranslations({ locale, namespace: "locale-layout" });
+// export async function generateMetadata({
+//   params: { locale },
+// }: Omit<Props, "children">) {
+//   const t = await getTranslations({ locale, namespace: "locale-layout" });
 
-  return {
-    title: t("title"),
-  };
-}
+//   return {
+//     title: t("title"),
+//   };
+// }
 
 export default async function LocaleLayout({
   children,
