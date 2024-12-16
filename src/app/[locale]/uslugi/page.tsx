@@ -129,12 +129,12 @@ export default async function ONas({ params: { locale } }: Props) {
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
-  console.log("Fetched content:", content);
+  // console.log("Fetched content:", content);
 
   const { servicesHeader, servicesGroup } = content;
 
-  console.log("Services Header:", servicesHeader);
-  console.log("Services Group:", servicesGroup);
+  // console.log("Services Header:", servicesHeader);
+  // console.log("Services Group:", servicesGroup);
 
   return (
     <>
