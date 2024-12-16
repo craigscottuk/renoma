@@ -1,5 +1,5 @@
 import { clsx } from "clsx";
-import Head from "next/head";
+
 import Header from "./header";
 import { ReactNode } from "react";
 import localFont from "next/font/local";
@@ -37,10 +37,6 @@ export default async function BaseLayout({ children, locale }: Props) {
 
   return (
     <html className="h-full" lang={locale}>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        {/* Add charset or description meta tags here if needed */}
-      </Head>
       <body
         className={clsx(
           helveticaNeueLight.variable,
