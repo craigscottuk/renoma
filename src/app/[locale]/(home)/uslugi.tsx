@@ -25,7 +25,6 @@ interface SectionUslugiHomeProps {
       services: {
         title: string;
         shortDescription: string;
-        images: any[];
       }[];
     };
     serviceGroupTwo: {
@@ -33,7 +32,6 @@ interface SectionUslugiHomeProps {
       services: {
         title: string;
         shortDescription: string;
-        images: any[];
       }[];
     };
     serviceGroupThree: {
@@ -41,7 +39,6 @@ interface SectionUslugiHomeProps {
       services: {
         title: string;
         shortDescription: string;
-        images: any[];
       }[];
     };
   };
