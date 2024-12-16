@@ -63,7 +63,7 @@
     "phone": "Numer telefonu",
     "topic": "Wybierz temat",
     "message": "Wiadomość",
-    "privacy": "Podając swoje dane osobowe, akceptujesz naszą politykę RODO i sposób przetwarzania Twoich danych opisany w <policy>Polityką Prywatności</policy>.",
+    "privacy": "Podając swoje dane osobowe, akceptujesz naszą politykę RODO i sposób przetwarzania Twoich danych opisany w.",
     "submit": "WYŚLIJ",
     "sending": "Wysyłanie...",
     "success": "Dziękujemy za kontakt!",
@@ -74,7 +74,8 @@
       "phone": "Nieprawidłowy numer telefonu",
       "topic": "Wybierz temat",
       "messageMin": "Wiadomość musi mieć co najmniej 10 znaków",
-      "messageMax": "Wiadomość nie może przekraczać 1500 znaków"
+      "messageMax": "Wiadomość nie może przekraczać 1500 znaków",
+      "privacy": "Musisz zaakceptować politykę prywatności"
     }
   },
   "footer": {
