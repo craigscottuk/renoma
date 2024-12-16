@@ -5,7 +5,6 @@ import {
   SwatchBook,
   Droplets,
   FlaskRoundIcon as Flask,
-  Ruler,
 } from "lucide-react";
 import clsx from "clsx";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
@@ -25,7 +24,10 @@ interface LabOfferProps {
   colorScheme: keyof typeof cardColorSchemes;
 }
 
-const iconComponents: Record<string, React.ComponentType<any>> = {
+const iconComponents: Record<
+  string,
+  React.ComponentType<React.SVGProps<SVGSVGElement>>
+> = {
   Microscope,
   SwatchBook,
   Flask,
@@ -86,7 +88,7 @@ export default function LabOffer({
                 <Card className={selectedColorScheme.card} key={index}>
                   <CardHeader>
                     <div className="flex items-center space-x-2">
-                      <IconComponent className="text-gold-800 h-6 w-6" />
+                      <IconComponent className="h-6 w-6 text-gold-800" />
                       <CardTitle className="font-regular text-[1.7rem] leading-tight tracking-[-0.015em]">
                         {offer.title}
                       </CardTitle>
