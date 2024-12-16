@@ -24,15 +24,12 @@ const QUERY = `
       "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia")
     }
   },
-  "whoWeAreLookingFor": *[_type == "whoWeAreLookingFor"][0]{
-    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
-    "criteria": select(
-      defined(criteria[$locale]) => criteria[$locale],
-      "Brak tłumaczenia"
-    ),
+   "whoWeAreLookingFor": *[_type == "whoWeAreLookingFor"][0]{
+    "title": coalesce(title[_key == $locale][0].value, "No translation available"),
+    "criteria": coalesce(criteria[$locale], []),
     "image": image,
-    "imageAlt": coalesce(imageAlt[_key == $locale][0].value, "Brak tłumaczenia"),
-    "applyButtonText": coalesce(applyButtonText[_key == $locale][0].value, "Brak tłumaczenia")
+    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "No translation available"),
+    "applyButtonText": coalesce(applyButtonText[_key == $locale][0].value, "No translation available")
   }
 }
 `;
