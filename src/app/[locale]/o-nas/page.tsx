@@ -20,20 +20,14 @@ const QUERY = `
 
   "aboutUs": *[_type == "aboutUs"][0]{
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
-    "text": select(
-      defined(text[$locale]) => text[$locale],
-      "Brak tłumaczenia"
-    )
+     "text": coalesce(text[$locale], []),
   },
 
   "ourHistory": *[_type == "ourHistory"][0]{
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "timeline": timeline[]{
       "year": year,
-      "content": select(
-        defined(content[$locale]) => content[$locale],
-        "Brak tłumaczenia"
-      ),
+      "content": coalesce(content[$locale], []),
       "images": images[]{
         "src": src.asset->url,
         "caption": coalesce(caption[_key == $locale][0].value, "Brak tłumaczenia")
@@ -90,7 +84,7 @@ export default async function About({ params: { locale } }: Props) {
 
   const { aboutUsHeader, aboutUs, ourHistory } = content;
 
-  console.log(" content", aboutUsHeader);
+  // console.log(" content", aboutUsHeader);
 
   return (
     <>
