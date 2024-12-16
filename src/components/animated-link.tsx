@@ -11,6 +11,7 @@ interface AnimatedLinkProps {
   variant?: "light" | "dark";
   showArrow?: boolean;
   target?: "_self" | "_blank";
+  rel?: string; // Add this line
 }
 
 export default function AnimatedLink({
