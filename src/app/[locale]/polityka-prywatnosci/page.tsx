@@ -16,13 +16,6 @@ const QUERY = `
     "imageLayout": imageLayout,
     "backgroundColor": backgroundColor
   },
-
-  "privacyText": *[_type == "privacyText"][0]
-  {
-    "content": select(
-      defined(content[$locale]) => content[$locale],
-      "Brak tłumaczenia"
-)}
 }
 
 `;
