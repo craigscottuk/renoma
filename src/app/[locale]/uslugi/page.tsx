@@ -158,7 +158,6 @@ export default async function ONas({ params: { locale } }: Props) {
             servicesGroup.serviceGroupTwo,
             servicesGroup.serviceGroupThree,
           ]}
-          paddingY="pb-20 "
         />
       )}
     </>
