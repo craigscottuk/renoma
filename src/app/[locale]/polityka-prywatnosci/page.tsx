@@ -4,6 +4,7 @@ import PageHeader from "@/components/page-header";
 import { client } from "@/sanity/client";
 import { PortableTextBlock } from "next-sanity";
 import Privacy from "@/app/[locale]/polityka-prywatnosci/privacy";
+// import { type SanityDocument } from "next-sanity";
 
 const QUERY = `
 {
@@ -20,7 +21,9 @@ const QUERY = `
 
 `;
 
-const OPTIONS = { next: { revalidate: false } };
+// const OPTIONS = { next: { revalidate: false } };
+// const OPTIONS = { cache: "force-cache" };
+const OPTIONS = { next: { revalidate: 86400 } }; // Persistent caching
 
 type Props = {
   params: { locale: string };
