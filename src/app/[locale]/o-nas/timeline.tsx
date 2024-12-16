@@ -1,7 +1,6 @@
 "use client";
 import { ChevronUp } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
-import { Separator } from "@/components/ui/separator";
 import ImageCarousel from "@/components/ImageCarousel";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
 import { portableTextComponents } from "@/lib/portableTextComponents";
