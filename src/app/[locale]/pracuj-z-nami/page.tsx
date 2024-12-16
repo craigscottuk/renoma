@@ -23,18 +23,9 @@ const QUERY = `
       "jobDescription": coalesce(jobDescription[_key == $locale][0].value, "Brak tłumaczenia"),
       "jobLocation": coalesce(jobLocation[_key == $locale][0].value, "Brak tłumaczenia"),
       "jobType": coalesce(jobType[_key == $locale][0].value, "Brak tłumaczenia"),
-    "responsibilities": select(
-      defined(responsibilities[$locale]) => responsibilities[$locale],
-      "Brak tłumaczenia"
-    ),
-      "requirements": select(
-      defined(requirements[$locale]) => requirements[$locale],
-      "Brak tłumaczenia"
-    ),
-      "benefits": select(
-      defined(benefits[$locale]) => benefits[$locale],
-      "Brak tłumaczenia"
-    ),
+    "responsibilities": coalesce(responsibilities[$locale], []),
+    "requirements": coalesce(requirements[$locale], []),
+    "benefits": coalesce(benefits[$locale], []),
     }
   },
 }
