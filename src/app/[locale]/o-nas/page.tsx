@@ -5,6 +5,7 @@ import { client } from "@/sanity/client";
 import { PortableTextBlock } from "next-sanity";
 import { AboutUs } from "./about-us";
 import OurHistory from "./our-history";
+import { type SanityDocument } from "next-sanity";
 
 const QUERY = `
 {
@@ -37,50 +38,58 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: false } };
+// const OPTIONS = { next: { revalidate: false } };
+// const OPTIONS = { cache: "force-cache" };
+// const OPTIONS = { next: { revalidate: 86400 } };
+
+//86400
 
 type Props = {
   params: { locale: string };
 };
 
-interface Content {
-  aboutUsHeader: {
-    label: string;
-    title: string;
-    description: string;
-    image?: string;
-    imageAlt?: string;
-    imageLayout?: "fullWidthAbove" | "fullWidthBelow" | "portraitRight";
-    backgroundColor?: "black" | "white";
-  };
-  aboutUs: {
-    title: string;
-    text: PortableTextBlock[];
-  };
-  ourHistory: {
-    title: string;
-    timeline: TimelineItem[];
-  };
-}
+// interface Content {
+//   aboutUsHeader: {
+//     label: string;
+//     title: string;
+//     description: string;
+//     image?: string;
+//     imageAlt?: string;
+//     imageLayout?: "fullWidthAbove" | "fullWidthBelow" | "portraitRight";
+//     backgroundColor?: "black" | "white";
+//   };
+//   aboutUs: {
+//     title: string;
+//     text: PortableTextBlock[];
+//   };
+//   ourHistory: {
+//     title: string;
+//     timeline: TimelineItem[];
+//   };
+// }
 
-interface TimelineItem {
-  title: string;
-  year: string;
-  content: PortableTextBlock[];
-  images?: TimelineImage[];
-}
+// interface TimelineItem {
+//   title: string;
+//   year: string;
+//   content: PortableTextBlock[];
+//   images?: TimelineImage[];
+// }
 
-interface TimelineImage {
-  src: string;
-  caption: string;
-}
+// interface TimelineImage {
+//   src: string;
+//   caption: string;
+// }
 
 export default async function About({ params: { locale } }: Props) {
   // Set the locale for static generation
   setRequestLocale(locale);
 
   // Fetch localized content from Sanity using locale from params
-  const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
+  const content = await client.fetch<SanityDocument[]>(
+    QUERY,
+    { locale },
+    OPTIONS,
+  );
 
   const { aboutUsHeader, aboutUs, ourHistory } = content;
 
