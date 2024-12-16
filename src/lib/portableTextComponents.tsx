@@ -33,18 +33,11 @@ const portableTextComponents: PortableTextComponents = {
     link: ({ value, children }) => {
       const target = value?.href?.startsWith("http") ? "_blank" : "_self";
       return (
-        // <a
-        //   href={value?.href}
-        //   target={target}
-        //   rel={target === "_blank" ? "noopener noreferrer" : undefined}
-        //   className="text-blue-600 underline"
-        // >
-        //   {children}
-        // </a>
         <AnimatedLink
           href={value?.href}
           showArrow={false}
           className="text-gold underline"
+          target={target}
         >
           {children}
         </AnimatedLink>
