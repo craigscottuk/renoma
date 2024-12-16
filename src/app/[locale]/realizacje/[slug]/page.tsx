@@ -96,7 +96,7 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
   setRequestLocale(locale);
 
   // Define options for ISR revalidation
-  const OPTIONS = { next: { revalidate: 30 } };
+  const OPTIONS = { next: { revalidate: false } };
 
   // Error handling for fetching data
   let project: Project | null = null;
