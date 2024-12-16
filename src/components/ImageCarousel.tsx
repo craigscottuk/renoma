@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { ArrowLeft, ArrowRight, ArrowUp, Plus, Minus } from "lucide-react";
+import { ArrowUp, Plus, Minus } from "lucide-react";
+// import { ArrowLeft, ArrowRigh } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { Button } from "./ui/button";
@@ -19,6 +20,8 @@ export default function ImageCarousel({
   aspectRatio = "landscape",
   onCaptionHeightChange,
 }: ImageCarouselProps) {
+  const locale = useLocale();
+
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showCaptions, setShowCaptions] = useState(false);
@@ -245,44 +248,40 @@ export default function ImageCarousel({
               className="items-start py-0 pr-1.5 text-sm text-zinc-900 underline hover:bg-none"
               aria-label="Previous image"
             >
-              {useLocale() === "en"
+              {locale === "en"
                 ? "PREV"
-                : useLocale() === "pl"
+                : locale === "pl"
                   ? "POP"
                   : "VOR"}
             </Button> */}
               {/* <Button
               variant={"link"}
-              ={scrollNext}
+              onClick={scrollNext}
               className="items-start py-0 text-sm text-zinc-900 underline hover:bg-none"
               aria-label="Next image"
             >
-              {useLocale() === "en"
+              {locale === "en"
                 ? "NEXT"
-                : useLocale() === "pl"
+                : locale === "pl"
                   ? "DALEJ"
                   : "WEITER"}
             </Button> */}
 
               <AnimatedLink
                 className="hover:text-gold text-sm"
-                onClick={scrollNext}
+                onClick={scrollPrev}
                 showArrow={false}
               >
-                {useLocale() === "en"
-                  ? "PREV"
-                  : useLocale() === "pl"
-                    ? "POP"
-                    : "VOR"}
+                {locale === "en" ? "PREV" : locale === "pl" ? "POP" : "VOR"}
               </AnimatedLink>
               <AnimatedLink
                 className="hover:text-gold text-sm"
                 onClick={scrollNext}
                 showArrow={false}
               >
-                {useLocale() === "en"
+                {locale === "en"
                   ? "NEXT"
-                  : useLocale() === "pl"
+                  : locale === "pl"
                     ? "DALEJ"
                     : "WEITER"}
               </AnimatedLink>
