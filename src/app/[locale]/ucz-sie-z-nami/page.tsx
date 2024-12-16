@@ -34,7 +34,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 30 } };
+const OPTIONS = { next: { revalidate: false } };
 
 type Props = {
   params: { locale: string };
