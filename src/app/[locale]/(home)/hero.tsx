@@ -14,7 +14,7 @@ export default function HeroSection({ title, sectionCTA }: HeroSectionProps) {
     <div className="relative mt-20 min-h-[calc(100vh-96px)] md:mt-24">
       {/* Background Image */}
       <Image
-        src="/cover-img.png"
+        src="/cover-img.webp"
         alt="Cover Image"
         fill
         style={{
