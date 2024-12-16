@@ -35,7 +35,7 @@ const QUERY = `
       "services": serviceGroupOne.services[]{
         "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
         "shortDescription": coalesce(shortDescription[_key == $locale][0].value, "Brak tłumaczenia"),
-        "images": images
+        
       }
     },
     "serviceGroupTwo": {
@@ -43,7 +43,7 @@ const QUERY = `
       "services": serviceGroupTwo.services[]{
         "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
         "shortDescription": coalesce(shortDescription[_key == $locale][0].value, "Brak tłumaczenia"),
-        "images": images
+        
       }
     },
     "serviceGroupThree": {
@@ -51,7 +51,7 @@ const QUERY = `
       "services": serviceGroupThree.services[]{
         "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
         "shortDescription": coalesce(shortDescription[_key == $locale][0].value, "Brak tłumaczenia"),
-        "images": images
+        
       }
     }
   },
@@ -117,7 +117,6 @@ interface Content {
       services: {
         title: string;
         shortDescription: string;
-        images: any[];
       }[];
     };
     serviceGroupTwo: {
@@ -125,7 +124,6 @@ interface Content {
       services: {
         title: string;
         shortDescription: string;
-        images: any[];
       }[];
     };
     serviceGroupThree: {
@@ -133,7 +131,6 @@ interface Content {
       services: {
         title: string;
         shortDescription: string;
-        images: any[];
       }[];
     };
   };
