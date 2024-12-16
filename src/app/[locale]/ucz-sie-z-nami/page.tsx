@@ -5,7 +5,6 @@ import { client } from "@/sanity/client";
 import WhatWeOffer from "./what-we-offer";
 import WhoWeAreLookingFor from "./who-we-are-looking-for";
 import { PortableTextBlock } from "next-sanity";
-// import { type SanityDocument } from "next-sanity";
 
 const QUERY = `
 {
@@ -35,8 +34,6 @@ const QUERY = `
 }
 `;
 
-// const OPTIONS = { next: { revalidate: false } };
-// const OPTIONS = { cache: "force-cache" };
 const OPTIONS = { next: { revalidate: 86400 } }; // Persistent caching
 
 type Props = {
