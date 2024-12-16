@@ -80,7 +80,7 @@ export default function ImageCarousel({
         onCaptionHeightChange(height);
       }
     }
-  }, [currentIndex, showCaptions, isMobile]);
+  }, [currentIndex, showCaptions, isMobile, onCaptionHeightChange]);
 
   const toggleCaptions = () => {
     setShowCaptions((prev) => {
