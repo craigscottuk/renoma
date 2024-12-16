@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import * as z from "zod";
 import { useState } from "react";
-import { Link } from "@/i18n/routing";
+// import { Link } from "@/i18n/routing";
 import { useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
@@ -247,7 +247,7 @@ export default function ContactForm({
                 </FormControl>
                 <div className="space-y-1 leading-none">
                   <FormLabel className="text-balance text-[1.1rem] leading-relaxed md:text-[1.1rem]">
-                    {t.rich("contact-form.privacy", {
+                    {/* {t.rich("contact-form.privacy", {
                       policy: (chunks) => (
                         <Link
                           href="/polityka-prywatnosci"
@@ -257,7 +257,7 @@ export default function ContactForm({
                           {chunks}
                         </Link>
                       ),
-                    })}
+                    })} */}
                   </FormLabel>
                   <FormMessage aria-live="assertive" />
                 </div>
