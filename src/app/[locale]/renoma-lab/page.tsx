@@ -18,20 +18,14 @@ const QUERY = `
   },
   "aboutLab": *[_type == "aboutLab"][0]{
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
-    "text": select(
-      defined(text[$locale]) => text[$locale],
-      "Brak tłumaczenia"
-    )
+    "text": coalesce(text[$locale], []),
   },
   "labOffer": *[_type == "labOffer"][0]{
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "offers": offers[]{
       "icon": icon,
       "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
-      "content": select(
-        defined(content[$locale]) => content[$locale],
-        "Brak tłumaczenia"
-      )
+      "content": coalesce(content[$locale], []),
     },
     "collaborationDescription": coalesce(collaborationDescription[_key == $locale][0].value, "Brak tłumaczenia")
   }
