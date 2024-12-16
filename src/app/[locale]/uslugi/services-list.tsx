@@ -68,7 +68,6 @@ function FadeInSection({
 
 export default function ServicesList({
   serviceGroups,
-  paddingY = "py-16 md:py-44",
 }: {
   serviceGroups: ServiceGroup[];
   paddingY?: string;
