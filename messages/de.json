@@ -63,7 +63,7 @@
     "phone": "Telefonnummer",
     "topic": "Thema",
     "message": "Nachricht",
-    "privacy": "Durch die Angabe Ihrer persönlichen Daten akzeptieren Sie unsere DSGVO-Richtlinie und die Art und Weise, wie Ihre Daten in unserer <policy>Datenschutzrichtlinie</policy> beschrieben werden.",
+    "privacy": "Durch die Angabe Ihrer persönlichen Daten akzeptieren Sie unsere DSGVO-Richtlinie und die Art und Weise, wie Ihre Daten in unserer beschrieben werden.",
     "submit": "SENDEN",
     "sending": "Senden...",
     "success": "Danke für Ihre Kontaktaufnahme!",
@@ -74,7 +74,8 @@
       "phone": "Ungültige Telefonnummer",
       "topic": "Wählen Sie ein Thema",
       "messageMin": "Die Nachricht muss mindestens 10 Zeichen lang sein",
-      "messageMax": "Die Nachricht darf 1500 Zeichen nicht überschreiten"
+      "messageMax": "Die Nachricht darf 1500 Zeichen nicht überschreiten",
+      "privacy": "Sie müssen die Datenschutzrichtlinie akzeptieren"
     }
   },
   "footer": {
