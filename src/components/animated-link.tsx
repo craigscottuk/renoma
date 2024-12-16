@@ -10,6 +10,7 @@ interface AnimatedLinkProps {
   className?: string;
   variant?: "light" | "dark";
   showArrow?: boolean;
+  target?: "_self" | "_blank";
 }
 
 export default function AnimatedLink({
@@ -19,6 +20,7 @@ export default function AnimatedLink({
   className = "",
   variant = "light",
   showArrow = true,
+  target = "_self",
 }: AnimatedLinkProps) {
   const lightClasses = "text-black";
   const darkClasses = "text-white";
@@ -42,7 +44,11 @@ export default function AnimatedLink({
   }
 
   return (
-    <Link href={href as StaticRoutePaths} className={commonClasses}>
+    <Link
+      href={href as StaticRoutePaths}
+      className={commonClasses}
+      target={target}
+    >
       <span className="relative">
         {children}
         <span className="absolute inset-x-0 bottom-0 h-px w-0 bg-current transition-all group-hover:w-full" />
