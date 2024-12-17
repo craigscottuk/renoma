@@ -5,6 +5,7 @@ import { client } from "@/sanity/client";
 import WhatWeOffer from "./what-we-offer";
 import WhoWeAreLookingFor from "./who-we-are-looking-for";
 import { PortableTextBlock } from "next-sanity";
+import { getTranslations } from "next-intl/server";
 
 const QUERY = `
 {
@@ -34,7 +35,8 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } }; // Persistent caching
+const OPTIONS = { next: { revalidate: 86400 } };
+// 86400
 
 type Props = {
   params: { locale: string };
@@ -60,6 +62,23 @@ interface Content {
     image: string;
     imageAlt: string;
     applyButtonText: string;
+  };
+}
+
+export async function generateMetadata({ params: { locale } }: Props) {
+  const t = await getTranslations({ locale, namespace: "metadata" });
+
+  return {
+    title: t("learn-with-us.title"),
+    description: t("learn-with-us.description"),
+    openGraph: {
+      title: t("learn-with-us.title"),
+      description: t("learn-with-us.description"),
+    },
+    twitter: {
+      title: t("learn-with-us.title"),
+      description: t("learn-with-us.description"),
+    },
   };
 }
 
