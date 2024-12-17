@@ -112,7 +112,11 @@ export default function ServicesList({
   }, [isExpanded]);
 
   const scrollToSection = (title: string) => {
-    sectionRefs.current[title]?.scrollIntoView({ behavior: "smooth" });
+    const id = title.toLowerCase().replace(/\s+/g, "-");
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
     setIsExpanded(false);
     setExpandedHeight(0);
   };
@@ -121,7 +125,7 @@ export default function ServicesList({
     <section className={clsx("mx-auto")}>
       {/* Secondary Navigation */}
       <div
-        className="fixed left-0 right-0 top-20 z-40 overflow-hidden bg-black/90 text-white transition-[height] duration-300 ease-in-out lg:hidden"
+        className="fixed left-0 right-0 top-20 z-40 overflow-hidden bg-zinc-950/90 text-white transition-[height] duration-300 ease-in-out lg:hidden"
         style={{ height: `${48 + expandedHeight}px` }}
       >
         <div
@@ -162,8 +166,6 @@ export default function ServicesList({
         </div>
       </div>
 
-      {/* Main Content */}
-      {/* Main Content */}
       {/* Main Content */}
       <div className="">
         {serviceGroups?.map((group, index) => (
@@ -208,12 +210,17 @@ export default function ServicesList({
                   )}
                 >
                   <FadeInSection className="lg:w-1/2">
-                    <h3
-                      id={service.title.toLowerCase().replace(/\s+/g, "-")}
-                      className="mb-6 font-bolder text-[2rem] leading-tight tracking-[-0.015em]"
+                    <button
+                      onClick={() => scrollToSection(service.title)}
+                      className="mb-6 cursor-pointer border-none bg-transparent p-0 text-left font-bolder text-[2rem] leading-tight tracking-[-0.015em]"
                     >
-                      {service.title}
-                    </h3>
+                      <h3
+                        className="scroll-mt-40"
+                        id={service.title.toLowerCase().replace(/\s+/g, "-")}
+                      >
+                        {service.title}
+                      </h3>
+                    </button>
                     <p className="mb-8 text-[1.1rem] text-gray-700">
                       {service.description}
                     </p>
