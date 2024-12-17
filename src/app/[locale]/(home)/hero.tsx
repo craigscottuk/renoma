@@ -1,5 +1,4 @@
 // cSpell:disable
-import Image from "next/image";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import CustomButton from "@/components/ui/custom-button";
 import SectionTitle from "@/components/section-title";
@@ -11,20 +10,20 @@ interface HeroSectionProps {
 
 export default function HeroSection({ title, sectionCTA }: HeroSectionProps) {
   return (
-    <div className="relative mt-20 min-h-[calc(100vh-96px)] md:mt-24">
-      {/* Background Image */}
-      <Image
-        src="/cover-img.webp"
-        alt="Cover Image"
-        fill
-        style={{
-          objectFit: "cover",
-          objectPosition: "center",
-        }}
-      />
+    <div className="relative mt-20 min-h-svh md:mt-24 md:min-h-[calc(100vh-96px)]">
+      {/* Background Video */}
+      {/* <MuxPlayer
+        streamType="on-demand"
+        playbackId="4W02Db7nBRvUHNxB6qsJZroV9900uPi2gm5c3qoiZFJ38"
+        metadataVideoTitle="Renoma"
+        metadataViewerUserId="Renoma"
+        loop={true}
+        muted={true}
+        autoPlay={true}
+      /> */}
 
       {/* Overlay for better readability */}
-      <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+      <div className="absolute inset-0 bg-zinc-950 bg-opacity-50"></div>
 
       {/* Hero Content */}
       <div className="absolute inset-0 flex items-center">
