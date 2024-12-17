@@ -67,6 +67,21 @@ export default function Timeline({ events }: TimelineProps) {
     });
   }, [sortedEvents.length]);
 
+  useEffect(() => {
+    const handleHashChange = () => {
+      const { hash } = window.location;
+      if (hash) {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+
   const toggleExpand = (index: number) => {
     setExpandedIndexes((prev) =>
       prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index],
@@ -77,6 +92,16 @@ export default function Timeline({ events }: TimelineProps) {
     setVisibleEventCount((prev) => Math.min(prev + 2, sortedEvents.length));
   };
 
+  const scrollToEvent = (index: number, year: string) => {
+    if (!expandedIndexes.includes(index)) {
+      const id = year.toString().toLowerCase().replace(/\s+/g, "-");
+      const event = document.getElementById(id);
+      if (event) {
+        event.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   const visibleEvents = isMobile
     ? sortedEvents.slice(sortedEvents.length - visibleEventCount)
     : sortedEvents;
@@ -84,7 +109,7 @@ export default function Timeline({ events }: TimelineProps) {
   return (
     <div className="relative mx-auto" style={{ marginBottom: captionHeight }}>
       {/* Timeline Line */}
-      <div className="absolute left-[8px] top-0 h-full w-0.5 bg-black/20 md:left-1/2" />
+      <div className="absolute left-[8px] top-0 h-full w-0.5 bg-zinc-950/20 md:left-1/2" />
       <div className="relative">
         {isMobile && visibleEventCount < sortedEvents.length && (
           <div className="relative mb-12">
@@ -111,7 +136,8 @@ export default function Timeline({ events }: TimelineProps) {
               ref={(el) => {
                 eventRefs.current[index] = el;
               }}
-              className={`mb-12 ${
+              id={event.year.toString().toLowerCase().replace(/\s+/g, "-")}
+              className={`mb-12 scroll-mt-24 ${
                 isMobile
                   ? "opacity-100"
                   : `transition-all duration-500 ${
@@ -132,17 +158,23 @@ export default function Timeline({ events }: TimelineProps) {
                 >
                   {/* Year event marker */}
                   <div
-                    onClick={() => toggleExpand(index)}
-                    className="absolute left-0 h-[24px] w-[24px] cursor-pointer rounded-full border-4 border-white bg-[#8f7d43] group-hover:bg-[#B88D00] md:left-1/2 md:-translate-x-1/2 md:pt-2 xl:pt-2"
+                    onClick={() => {
+                      toggleExpand(index);
+                      scrollToEvent(index, event.year);
+                    }}
+                    className="absolute left-0 h-[24px] w-[24px] cursor-pointer scroll-mt-40 rounded-full border-4 border-white bg-[#8f7d43] group-hover:bg-[#B88D00] md:left-1/2 md:-translate-x-1/2 md:pt-2 xl:pt-2"
                   />
                   {/* Year event title */}
                   <button
-                    onClick={() => toggleExpand(index)}
+                    onClick={() => {
+                      toggleExpand(index);
+                      scrollToEvent(index, event.year);
+                    }}
                     className="flex items-center font-bolder text-4xl text-[#8f7d43] group-hover:text-[#B88D00]"
                     aria-expanded={isExpanded}
                     aria-controls={`content-${index}`}
                   >
-                    <span>{event.year}</span>
+                    <h3 className="">{event.year}</h3>
                   </button>
                 </div>
 
@@ -176,7 +208,7 @@ export default function Timeline({ events }: TimelineProps) {
                       }`}
                       style={{ marginTop: 0 }}
                     >
-                      <div className="pt-5">
+                      <div className="text-pretty pt-5">
                         <PortableText
                           value={event.content}
                           components={portableTextComponents}
