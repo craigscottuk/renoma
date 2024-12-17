@@ -20,7 +20,8 @@ const QUERY = `
 
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } }; // Persistent caching
+const OPTIONS = { next: { revalidate: 86400 } };
+// 86400
 
 type Props = {
   params: { locale: string };
