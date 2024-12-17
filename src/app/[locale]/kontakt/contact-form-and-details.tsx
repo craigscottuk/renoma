@@ -39,7 +39,7 @@ export default function ContactFormAndDetails({
       className={clsx(
         "text-[1.1rem] leading-relaxed",
         {
-          "bg-black text-white/90": color === "dark",
+          "bg-zinc-950 text-white/90": color === "dark",
           "bg-white text-black/90": color !== "dark",
         },
         paddingY,
