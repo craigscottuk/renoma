@@ -3,15 +3,15 @@ export const footerLinks = [
     title: "Badania, Planowanie i Ekspertyzy",
     links: [
       {
-        href: "/services/badania-konserwatorskie",
+        href: "/uslugi#badania-konserwatorskie",
         label: "Badania konserwatorskie i ekspertyzy",
       },
       {
-        href: "/services/programy-prac",
+        href: "/uslugi#programy-prac",
         label: "Programy prac konserwatorskich",
       },
       {
-        href: "/services/renomalab",
+        href: "/uslugi#renomalab",
         label: "RenomaLAB – laboratorium konserwatorskie",
       },
     ],
@@ -20,15 +20,15 @@ export const footerLinks = [
     title: "Realizacja i Nadzór",
     links: [
       {
-        href: "/services/nadzor-konserwatorski",
+        href: "/uslugi#nadzor-konserwatorski",
         label: "Nadzór konserwatorski, doradztwo i konsultacje",
       },
       {
-        href: "/services/prace-konserwatorskie",
+        href: "/uslugi#prace-konserwatorskie",
         label: "Prace konserwatorskie i restauratorskie",
       },
       {
-        href: "/services/prace-budowlane",
+        href: "/uslugi#prace-budowlane",
         label: "Prace budowlane w obiektach zabytkowych",
       },
     ],
@@ -37,11 +37,11 @@ export const footerLinks = [
     title: "Rewaloryzacja i Wsparcie",
     links: [
       {
-        href: "/services/rewaloryzacja",
+        href: "/uslugi#rewaloryzacja",
         label: "Rewaloryzacja obiektów zabytkowych",
       },
       {
-        href: "/services/wsparcie-administracyjne",
+        href: "/uslugi#wsparcie-administracyjne",
         label: "Wsparcie administracyjne i pozyskiwanie dotacji",
       },
     ],
