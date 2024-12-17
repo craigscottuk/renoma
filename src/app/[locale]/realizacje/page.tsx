@@ -4,6 +4,7 @@ import { setRequestLocale } from "next-intl/server";
 import { client } from "@/sanity/client";
 import PageHeader from "@/components/page-header";
 import ProjectsList from "./projects-list";
+import { getTranslations } from "next-intl/server";
 
 const QUERY = `
 {
@@ -24,11 +25,29 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } }; // Persistent caching
+const OPTIONS = { next: { revalidate: 86400 } };
+// 86400
 
 type Props = {
   params: { locale: string };
 };
+
+export async function generateMetadata({ params: { locale } }: Props) {
+  const t = await getTranslations({ locale, namespace: "metadata" });
+
+  return {
+    title: t("projects.title"),
+    description: t("projects.description"),
+    openGraph: {
+      title: t("projects.title"),
+      description: t("projects.description"),
+    },
+    twitter: {
+      title: t("projects.title"),
+      description: t("projects.description"),
+    },
+  };
+}
 
 export default async function Realizacje({ params: { locale } }: Props) {
   // Set the locale for static generation
