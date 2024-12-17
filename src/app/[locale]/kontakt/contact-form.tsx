@@ -41,7 +41,7 @@ export default function ContactForm({
   const darkSelectContentClassNames =
     "border-zinc-800 bg-zinc-800 text-white/90";
   const darkCheckboxClassNames = "border-white";
-  const darkButtonClassNames = " bg-black hover:text-black px-6 py-5";
+  const darkButtonClassNames = " bg-zinc-950 hover:text-black px-6 py-5";
 
   const t = useTranslations();
 
