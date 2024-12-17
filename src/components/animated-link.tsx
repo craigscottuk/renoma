@@ -11,7 +11,8 @@ interface AnimatedLinkProps {
   variant?: "light" | "dark";
   showArrow?: boolean;
   target?: "_self" | "_blank";
-  rel?: string; // Add this line
+  rel?: string;
+  underline?: boolean;
 }
 
 export default function AnimatedLink({
@@ -22,6 +23,7 @@ export default function AnimatedLink({
   variant = "light",
   showArrow = true,
   target = "_self",
+  underline = true,
 }: AnimatedLinkProps) {
   const lightClasses = "text-black";
   const darkClasses = "text-white";
@@ -37,7 +39,9 @@ export default function AnimatedLink({
       <button onClick={onClick} className={commonClasses}>
         <span className="relative">
           {children}
-          <span className="absolute inset-x-0 bottom-0 h-px w-0 bg-current transition-all group-hover:w-full" />
+          {underline && (
+            <span className="absolute inset-x-0 bottom-0 h-px w-0 bg-current transition-all group-hover:w-full" />
+          )}
         </span>
         {showArrow && <ArrowRight className="h-4 w-4" />}
       </button>
@@ -52,7 +56,9 @@ export default function AnimatedLink({
     >
       <span className="relative">
         {children}
-        <span className="absolute inset-x-0 bottom-0 h-px w-0 bg-current transition-all group-hover:w-full" />
+        {underline && (
+          <span className="absolute inset-x-0 bottom-0 h-px w-0 bg-current transition-all group-hover:w-full" />
+        )}
       </span>
       {showArrow && <ArrowRight className="h-4 w-4" />}
     </Link>
