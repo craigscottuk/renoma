@@ -5,6 +5,7 @@ import { client } from "@/sanity/client";
 import { PortableTextBlock } from "next-sanity";
 import { AboutUs } from "./about-us";
 import OurHistory from "./our-history";
+import { getTranslations } from "next-intl/server";
 
 const QUERY = `
 {
@@ -38,7 +39,6 @@ const QUERY = `
 `;
 
 const OPTIONS = { next: { revalidate: 86400 } };
-
 //86400
 
 type Props = {
@@ -75,6 +75,23 @@ interface TimelineItem {
 interface TimelineImage {
   src: string;
   caption: string;
+}
+
+export async function generateMetadata({ params: { locale } }: Props) {
+  const t = await getTranslations({ locale, namespace: "metadata" });
+
+  return {
+    title: t("about.title"),
+    description: t("about.description"),
+    openGraph: {
+      title: t("about.title"),
+      description: t("about.description"),
+    },
+    twitter: {
+      title: t("about.title"),
+      description: t("about.description"),
+    },
+  };
 }
 
 export default async function About({ params: { locale } }: Props) {
