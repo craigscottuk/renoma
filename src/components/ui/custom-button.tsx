@@ -86,7 +86,7 @@ export default function CustomButton({
         className={clsx(
           "flex h-10 w-8 items-center justify-center border border-current p-2 transition-colors delay-200 duration-200 group-hover:delay-0",
           variant === "light"
-            ? "group-hover:bg-black group-hover:text-white"
+            ? "group-hover:bg-zinc-950 group-hover:text-white"
             : "group-hover:bg-white group-hover:text-black",
         )}
       >
