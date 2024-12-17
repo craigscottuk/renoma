@@ -4,6 +4,7 @@ import PageHeader from "@/components/page-header";
 import { client } from "@/sanity/client";
 import { PortableTextBlock } from "next-sanity";
 import SectionJobOffer from "./section-job-offer";
+import { getTranslations } from "next-intl/server";
 
 const QUERY = `
 {
@@ -31,7 +32,8 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } }; // Persistent caching
+const OPTIONS = { next: { revalidate: 86400 } };
+// 86400
 
 type Props = {
   params: { locale: string };
@@ -58,6 +60,23 @@ interface Content {
       requirements: PortableTextBlock[];
       benefits: PortableTextBlock[];
     }[];
+  };
+}
+
+export async function generateMetadata({ params: { locale } }: Props) {
+  const t = await getTranslations({ locale, namespace: "metadata" });
+
+  return {
+    title: t("work-with-us.title"),
+    description: t("work-with-us.description"),
+    openGraph: {
+      title: t("work-with-us.title"),
+      description: t("work-with-us.description"),
+    },
+    twitter: {
+      title: t("work-with-us.title"),
+      description: t("work-with-us.description"),
+    },
   };
 }
 
