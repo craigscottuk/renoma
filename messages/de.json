@@ -2,6 +2,42 @@
   "locale-layout": {
     "title": "Dies ist der Titel!"
   },
+
+  "metadata": {
+    "homepage": {
+      "title": "Renoma – Konservierung und Erhaltung von Kulturerbe",
+      "description": "Renoma ist ein Unternehmen, das sich auf die Konservierung und Restaurierung historischer Denkmäler spezialisiert hat. Wir vereinen Fachwissen, Qualität und Termintreue, um Kulturerbe zu schützen und historischen Objekten ihren ursprünglichen Glanz zurückzugeben."
+    },
+    "about": {
+      "title": "Über uns – Renoma: Geschichte, Mission und Werte",
+      "description": "Erfahren Sie mehr über die Geschichte von Renoma seit 2012, unsere Mission und unsere Werte. Entdecken Sie, wie wir das kulturelle Erbe bewahren."
+    },
+    "services": {
+      "title": "Leistungen – Renoma: Konservierung, Restaurierung und Forschung",
+      "description": "Renoma bietet umfassende Leistungen: Konservierungsuntersuchungen, Restaurierungsprogramme, Bauleitung, Denkmalpflege sowie Bauarbeiten an historischen Gebäuden."
+    },
+    "work-with-us": {
+      "title": "Zusammenarbeit – Renoma: Werden Sie Teil unseres Teams und unserer Partner",
+      "description": "Möchten Sie mit Renoma zusammenarbeiten? Entdecken Sie Partnerschaftsmöglichkeiten und schließen Sie sich einem Team von Experten an, die sich für den Schutz des kulturellen Erbes engagieren."
+    },
+    "projects": {
+      "title": "Fallstudien – Renoma: Beispiele erfolgreicher Konservierungen und Restaurierungen",
+      "description": "Lernen Sie unsere Fallstudien kennen, die abgeschlossene Projekte der Denkmalpflege zeigen. Entdecken Sie effektive Strategien, moderne Techniken und langjährige Erfahrung, um historischen Objekten ihren authentischen Charakter zurückzugeben."
+    },
+    "contact": {
+      "title": "Kontakt – Renoma: Kontaktieren Sie uns",
+      "description": "Benötigen Sie eine Beratung oder möchten Sie ein Konservierungsprojekt beginnen? Kontaktieren Sie Renoma. Wir bieten fachkundige Unterstützung und einen individuellen Ansatz."
+    },
+    "renomaLab": {
+      "title": "RenomaLAB – Konservierungslabor",
+      "description": "RenomaLAB ist auf Konservierungsuntersuchungen spezialisiert: Materialanalysen, Untersuchung von Farbschichten sowie Feuchtigkeits- und Salzmessungen, um eine professionelle Denkmalpflege zu gewährleisten."
+    },
+    "learn-with-us": {
+      "title": "Lernen Sie mit uns – Praktika und Volontariate bei Renoma",
+      "description": "Nehmen Sie an unserem Praktikums- und Volontariatsprogramm bei Renoma teil. Sammeln Sie praktische Erfahrungen in der Denkmalpflege, entwickeln Sie Ihre Fähigkeiten unter fachkundiger Anleitung und lernen Sie moderne Techniken zum Schutz des kulturellen Erbes kennen."
+    }
+  },
+
   "not-found-page": {
     "title": "Seite nicht gefunden",
     "description": "Entschuldigung, die Seite, die Sie suchen, existiert nicht.",
@@ -81,6 +117,9 @@
   "footer": {
     "copyright": "© {year} PKZ Renoma. Alle Rechte vorbehalten.",
     "privacyPolicy": "Datenschutzrichtlinie",
-    "scrollToTop": "Nach oben scrollen"
+    "scrollToTop": "Nach oben scrollen",
+    "contactLink": "/kontakt",
+    "contact": "Kontakt",
+    "contactUs": "Kontaktieren Sie uns"
   }
 }
