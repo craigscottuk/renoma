@@ -98,7 +98,8 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
   // Define options for ISR revalidation
   // const OPTIONS = { next: { revalidate: false } };
   // const OPTIONS = { cache: "force-cache" };
-  const OPTIONS = { next: { revalidate: 86400 } }; // Persistent caching
+  const OPTIONS = { next: { revalidate: 86400 } };
+  // 86400
 
   // Error handling for fetching data
   let project: Project | null = null;
