@@ -3,6 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header";
 import { client } from "@/sanity/client";
 import ServicesList from "@/app/[locale]/uslugi/services-list";
+import { getTranslations } from "next-intl/server";
 
 const QUERY = `
 {
@@ -57,7 +58,8 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } }; // Persistent caching
+const OPTIONS = { next: { revalidate: 86400 } };
+// 86400
 
 type Props = {
   params: { locale: string };
@@ -119,6 +121,24 @@ interface Content {
         }[];
       }[];
     };
+  };
+}
+
+// Metadata from translations and generateMetadata function
+export async function generateMetadata({ params: { locale } }: Props) {
+  const t = await getTranslations({ locale, namespace: "metadata" });
+
+  return {
+    title: t("services.title"),
+    description: t("services.description"),
+    openGraph: {
+      title: t("services.title"),
+      description: t("services.description"),
+    },
+    twitter: {
+      title: t("services.title"),
+      description: t("services.description"),
+    },
   };
 }
 
