@@ -8,20 +8,67 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import MaxWidthWrapper from "../max-width-wrapper";
 import { FacebookIcon, InstagramIcon, LinkedInIcon } from "./socials";
-import { footerLinks } from "@/lib/footerLinks";
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
 import { StaticRoutePaths } from "@/lib/routes";
+import { useEffect, useState } from "react";
+import { client } from "@/sanity/client";
+import AnimatedLink from "@/components/animated-link";
 
 interface FooterProps {
   variant?: "light" | "dark";
+  locale: string;
 }
 
-export default function Footer({ variant = "dark" }: FooterProps) {
+interface ServiceGroup {
+  title: string;
+  services: { title: string }[];
+}
+
+const QUERY = `
+{
+  "serviceGroups": *[_type == "servicesGroup"][0]{
+    "serviceGroupOne": {
+      "title": coalesce(serviceGroupOne.title, "Brak tłumaczenia"),
+      "services": serviceGroupOne.services[]{
+        "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia")
+      }
+    },
+    "serviceGroupTwo": {
+      "title": coalesce(serviceGroupTwo.title, "Brak tłumaczenia"),
+      "services": serviceGroupTwo.services[]{
+        "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia")
+      }
+    },
+    "serviceGroupThree": {
+      "title": coalesce(serviceGroupThree.title, "Brak tłumaczenia"),
+      "services": serviceGroupThree.services[]{
+        "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia")
+      }
+    }
+  }
+}
+`;
+
+export default function Footer({ variant = "dark", locale }: FooterProps) {
   const t = useTranslations("footer");
+  const [serviceGroups, setServiceGroups] = useState<ServiceGroup[]>([]);
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await client.fetch(QUERY, { locale });
+      setServiceGroups([
+        data.serviceGroups.serviceGroupOne,
+        data.serviceGroups.serviceGroupTwo,
+        data.serviceGroups.serviceGroupThree,
+      ]);
+    };
+
+    fetchData();
+  }, [locale]);
 
   const currentYear = new Date().getFullYear();
   const darkClasses = "text-white bg-zinc-950";
@@ -37,28 +84,45 @@ export default function Footer({ variant = "dark" }: FooterProps) {
       <MaxWidthWrapper>
         <div className="py-16 pt-20">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {footerLinks.map((section, index) => (
+            {serviceGroups.map((group, index) => (
               <div key={index} className="space-y-4">
-                <h4 className="font-bolder text-xl">{section.title}</h4>
+                <h4 className="font-bolder text-xl">{group.title}</h4>
                 <ul className="space-y-2">
-                  {section.links.map((link, index) => (
+                  {group.services.map((service, index) => (
                     <li key={index}>
-                      <Link
-                        href={link.href as StaticRoutePaths}
+                      <AnimatedLink
+                        showArrow={false}
+                        underline={false}
+                        href={`/uslugi#${service.title.toLowerCase().replace(/\s+/g, "-")}`}
                         className="text-base text-zinc-50 decoration-white/80 decoration-1 underline-offset-8 hover:underline"
                       >
-                        {link.label}
-                      </Link>
+                        {service.title}
+                      </AnimatedLink>
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
+            <div className="space-y-4">
+              <h4 className="font-bolder text-xl">{t("contact")}</h4>
+              <ul className="space-y-2">
+                <li>
+                  <AnimatedLink
+                    showArrow={false}
+                    underline={false}
+                    href={t("contactLink")}
+                    className="text-base text-zinc-50 decoration-white/80 decoration-1 underline-offset-8 hover:underline"
+                  >
+                    {t("contactUs")}
+                  </AnimatedLink>
+                </li>
+              </ul>
+            </div>
           </div>
           <Separator
             className={clsx(
               "mb-6 mt-12 md:mt-24",
-              variant === "light" ? "bg-black/40" : "bg-white/40",
+              variant === "light" ? "bg-zinc-950/40" : "bg-white/40",
             )}
           />
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-4">
