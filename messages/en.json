@@ -1,6 +1,41 @@
 {
+  "metadata": {
+    "homepage": {
+      "title": "Renoma – Conservation and Heritage Preservation",
+      "description": "Renoma is a company specializing in the conservation and restoration of historic monuments. We combine expertise, quality, and punctuality to protect cultural heritage and restore historical objects to their former glory."
+    },
+    "about": {
+      "title": "About Us – Renoma: History, Mission, and Values",
+      "description": "Discover Renoma’s history since 2012, our mission, and our values. Learn how we preserve cultural heritage."
+    },
+    "services": {
+      "title": "Services – Renoma: Conservation, Restoration, and Research",
+      "description": "Renoma offers comprehensive services: conservation research, restoration programs, supervision, monument conservation, and construction work in historic buildings."
+    },
+    "work-with-us": {
+      "title": "Work with Us – Renoma: Join Our Team and Partners",
+      "description": "Interested in collaborating with Renoma? Explore partnership opportunities and join a team of professionals dedicated to protecting cultural heritage."
+    },
+    "projects": {
+      "title": "Case Studies – Renoma: Successful Conservation and Restoration Examples",
+      "description": "Explore our case studies showcasing completed monument conservation projects. Discover effective strategies, modern techniques, and extensive experience that restore historical objects to their authentic character."
+    },
+    "contact": {
+      "title": "Contact – Renoma: Get in Touch",
+      "description": "Need consultation or want to start a conservation project? Contact Renoma. We offer expert support and an individualized approach."
+    },
+    "renomaLab": {
+      "title": "RenomaLAB – Conservation Laboratory",
+      "description": "RenomaLAB specializes in conservation research: material analysis, paint layer studies, and assessments of moisture and salinity, all to support professional monument protection."
+    },
+    "learn-with-us": {
+      "title": "Learn with Us – Internships and Apprenticeships at Renoma",
+      "description": "Join Renoma’s internship and apprenticeship program. Gain hands-on experience in monument conservation, develop your skills under expert guidance, and discover modern heritage protection techniques."
+    }
+  },
+
   "locale-layout": {
-    "title": "This is the title!"
+    "title": ""
   },
   "not-found-page": {
     "title": "Page Not Found",
@@ -81,6 +116,9 @@
   "footer": {
     "copyright": "© {year} PKZ Renoma. All rights reserved.",
     "privacyPolicy": "Privacy Policy",
-    "scrollToTop": "Scroll to top"
+    "scrollToTop": "Scroll to top",
+    "contactLink": "/contact",
+    "contact": "Contact",
+    "contactUs": "Contact Us"
   }
 }
