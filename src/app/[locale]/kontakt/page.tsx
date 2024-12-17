@@ -3,6 +3,7 @@ import { client } from "@/sanity/client";
 import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header";
 import ContactFormAndDetails from "./contact-form-and-details";
+import { getTranslations } from "next-intl/server";
 
 const QUERY = `
 {
@@ -33,7 +34,8 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } }; // Persistent caching
+const OPTIONS = { next: { revalidate: 86400 } };
+// 86400
 
 type Props = {
   params: { locale: string };
@@ -62,6 +64,23 @@ interface Content {
     adresFakturLineTwo: string;
     numerNip: string;
     numerRegon: string;
+  };
+}
+
+export async function generateMetadata({ params: { locale } }: Props) {
+  const t = await getTranslations({ locale, namespace: "metadata" });
+
+  return {
+    title: t("contact.title"),
+    description: t("contact.description"),
+    openGraph: {
+      title: t("contact.title"),
+      description: t("contact.description"),
+    },
+    twitter: {
+      title: t("contact.title"),
+      description: t("contact.description"),
+    },
   };
 }
 
