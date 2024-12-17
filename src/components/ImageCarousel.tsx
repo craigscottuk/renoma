@@ -167,14 +167,14 @@ export default function ImageCarousel({
           <>
             {/* <button
               onClick={scrollPrev}
-              className="absolute left-4 top-1/2 z-10 -translate-y-1/2 transform rounded-full bg-black/50 p-2 text-white hover:bg-black"
+              className="absolute left-4 top-1/2 z-10 -translate-y-1/2 transform rounded-full bg-zinc-950/50 p-2 text-white hover:bg-zinc-950"
               aria-label="Previous image"
             >
               <ArrowLeft className="h-6 w-6" />
             </button>
             <button
               onClick={scrollNext}
-              className="absolute right-4 top-1/2 z-10 -translate-y-1/2 transform rounded-full bg-black/50 p-2 text-white hover:bg-black"
+              className="absolute right-4 top-1/2 z-10 -translate-y-1/2 transform rounded-full bg-zinc-950/50 p-2 text-white hover:bg-zinc-950"
               aria-label="Next image"
             >
               <ArrowRight className="h-6 w-6" />
@@ -201,7 +201,7 @@ export default function ImageCarousel({
           <Button
             variant="outline"
             onClick={toggleCaptions}
-            className="absolute bottom-4 right-4 z-10 rounded-[4px] border border-white/50 bg-black/50 p-2 text-white"
+            className="absolute bottom-4 right-4 z-10 rounded-[4px] border border-white/50 bg-zinc-950/50 p-2 text-white"
             aria-label={
               showCaptions ? "Hide image caption" : "Show image caption"
             }
