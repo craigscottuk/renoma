@@ -5,6 +5,7 @@ import { client } from "@/sanity/client";
 import LabOffer from "./offer";
 import { AboutLab } from "./about-lab";
 import { PortableTextBlock } from "next-sanity";
+import { getTranslations } from "next-intl/server";
 
 const QUERY = `
 {
@@ -33,7 +34,8 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } }; // Persistent caching
+const OPTIONS = { next: { revalidate: 86400 } };
+// 86400
 
 type Props = {
   params: { locale: string };
@@ -61,6 +63,24 @@ interface Content {
       content: PortableTextBlock[];
     }[];
     collaborationDescription: string;
+  };
+}
+
+// Metadata from translations and generateMetadata function
+export async function generateMetadata({ params: { locale } }: Props) {
+  const t = await getTranslations({ locale, namespace: "metadata" });
+
+  return {
+    title: t("renomaLab.title"),
+    description: t("renomaLab.description"),
+    openGraph: {
+      title: t("renomaLab.title"),
+      description: t("renomaLab.description"),
+    },
+    twitter: {
+      title: t("renomaLab.title"),
+      description: t("renomaLab.description"),
+    },
   };
 }
 
