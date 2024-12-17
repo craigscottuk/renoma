@@ -66,7 +66,7 @@ export default function SectionFaqHome({
             </div>
           </div>
         </div>
-        <div className="mt-7 bg-black p-8 md:mt-12 md:p-16">
+        <div className="mt-7 bg-zinc-950 p-8 md:mt-12 md:p-16">
           <FaqAccordion faqItems={faqItems} />
           <div className="w-full text-left">
             <CustomButton variant="dark" href="/uslugi">
@@ -85,7 +85,7 @@ export default function SectionFaqHome({
 
 function FaqAccordion({ faqItems }: FaqAccordionProps) {
   return (
-    <div className="mx-auto w-full bg-black text-white">
+    <div className="mx-auto w-full bg-zinc-950 text-white">
       <Accordion type="single" collapsible className="w-full">
         {faqItems.map((item, index) => (
           <AccordionItem
