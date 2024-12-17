@@ -1,7 +1,43 @@
 {
+  "metadata": {
+    "homepage": {
+      "title": "Renoma – Konserwacja i Ochrona Zabytków",
+      "description": "Renoma to firma specjalizująca się w konserwacji i restauracji zabytków. Łączymy wiedzę, jakość i terminowość, aby chronić dziedzictwo kulturowe i przywracać historycznym obiektom ich dawny blask."
+    },
+    "about": {
+      "title": "O nas – Renoma: Historia, Misja i Wartości",
+      "description": "Poznaj historię firmy Renoma od 2012 roku, naszą misję i wartości. Dowiedz się, jak dbamy o zachowanie dziedzictwa kulturowego."
+    },
+    "services": {
+      "title": "Usługi – Renoma: Konserwacja, Restauracja i Badania",
+      "description": "Renoma oferuje kompleksowe usługi: badania konserwatorskie, programy prac, nadzór, konserwację zabytków oraz prace budowlane w obiektach historycznych."
+    },
+    "work-with-us": {
+      "title": "Współpraca – Renoma: Dołącz do Zespołu i Partnerów",
+      "description": "Chcesz współpracować z Renomą? Poznaj możliwości partnerstwa i dołącz do zespołu specjalistów, którzy z pasją chronią dziedzictwo kulturowe."
+    },
+    "projects": {
+      "title": "Studia przypadków – Renoma: Przykłady Skutecznych Konserwacji i Restauracji",
+      "description": "Zapoznaj się z naszymi studiami przypadków przedstawiającymi zrealizowane projekty konserwacji zabytków. Poznaj skuteczne strategie, nowoczesne techniki i wieloletnie doświadczenie, dzięki którym przywracamy obiektom ich historyczny charakter."
+    },
+    "contact": {
+      "title": "Kontakt – Renoma: Skontaktuj się z Nami",
+      "description": "Potrzebujesz konsultacji lub chcesz rozpocząć projekt konserwatorski? Skontaktuj się z Renomą. Oferujemy wsparcie ekspertów i indywidualne podejście."
+    },
+    "renomaLab": {
+      "title": "RenomaLAB – Laboratorium Konserwatorskie",
+      "description": "RenomaLAB specjalizuje się w badaniach konserwatorskich: analiza materiałowa, badania warstw barwnych, wilgotności i zasolenia, wspierając fachową ochronę zabytków."
+    },
+    "learn-with-us": {
+      "title": "Ucz się z nami – Program Staży i Praktyk w Renoma",
+      "description": "Dołącz do programu staży i praktyk w Renoma. Zdobądź praktyczne doświadczenie w konserwacji zabytków, rozwijaj swoje umiejętności pod okiem ekspertów i odkryj nowoczesne techniki ochrony dziedzictwa kulturowego."
+    }
+  },
+
   "locale-layout": {
     "title": "To jest tytuł!"
   },
+
   "not-found-page": {
     "title": "Strona nie znaleziona",
     "description": "Przepraszamy, strona, której szukasz, nie istnieje.",
@@ -81,6 +117,9 @@
   "footer": {
     "copyright": "© {year} PKZ Renoma. Wszelkie prawa zastrzeżone.",
     "privacyPolicy": "Polityka Prywatności",
-    "scrollToTop": "Powrót do góry"
+    "scrollToTop": "Powrót do góry",
+    "contactLink": "/kontakt",
+    "contact": "Kontakt",
+    "contactUs": "Skontaktuj się z nami"
   }
 }
