@@ -6,6 +6,7 @@ import localFont from "next/font/local";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import Footer from "@/components/sections-footer/footer";
+import { Analytics } from "@vercel/analytics/react";
 
 const helveticaNeueLight = localFont({
   src: "./fonts/HelveticaNeueLight.otf",
@@ -42,16 +43,17 @@ export default async function BaseLayout({ children, locale }: Props) {
           helveticaNeueLight.variable,
           helveticaNeueRegular.variable,
           helveticaNeueMedium.variable,
-          "h-full font-sans antialiased",
+          "smooth-scroll h-full font-sans antialiased",
         )}
       >
         <NextIntlClientProvider messages={messages}>
           <div className="flex min-h-screen flex-col">
             <Header />
             <main className="flex-1">{children}</main>
-            <Footer />
+            <Footer locale={locale} />
           </div>
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
