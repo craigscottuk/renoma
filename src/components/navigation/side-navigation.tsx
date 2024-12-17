@@ -45,7 +45,7 @@ export default function SideNavigation() {
       <SheetTrigger asChild>
         <Button
           variant="outline"
-          className="z-50 mt-1 flex h-9 w-8 items-center justify-center border-black text-black hover:bg-black hover:text-white xl:hidden"
+          className="z-50 mt-1 flex h-9 w-8 items-center justify-center border-black text-black hover:bg-zinc-950 hover:text-white xl:hidden"
         >
           <Menu className="min-h-5 min-w-5" />
           <span className="sr-only">Toggle navigation menu</span>
