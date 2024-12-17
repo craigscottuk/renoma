@@ -109,7 +109,7 @@ function ImageCarousel({
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 20 }}
-                    className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-2 text-sm text-white"
+                    className="absolute bottom-0 left-0 right-0 bg-zinc-950 bg-opacity-50 p-2 text-sm text-white"
                   >
                     {image.caption}
                   </motion.div>
@@ -221,7 +221,7 @@ export default function ConservationPage() {
 
       {/* Secondary Navigation */}
       <div
-        className="fixed left-0 right-0 top-14 z-40 overflow-hidden bg-black text-white transition-[height] duration-300 ease-in-out"
+        className="fixed left-0 right-0 top-14 z-40 overflow-hidden bg-zinc-950 text-white transition-[height] duration-300 ease-in-out"
         style={{ height: `${48 + expandedHeight}px` }}
       >
         <div
@@ -280,10 +280,10 @@ export default function ConservationPage() {
               className="mb-12"
             >
               <div className="mb-4 flex gap-4">
-                <div className="rounded-full bg-black p-2">
+                <div className="rounded-full bg-zinc-950 p-2">
                   <FileText className="h-6 w-6 text-white" />
                 </div>
-                <div className="rounded-full bg-black p-2">
+                <div className="rounded-full bg-zinc-950 p-2">
                   <Calendar className="h-6 w-6 text-white" />
                 </div>
               </div>
