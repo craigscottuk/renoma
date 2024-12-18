@@ -109,7 +109,7 @@ function ImageCarousel({
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 20 }}
-                    className="absolute bottom-0 left-0 right-0 bg-zinc-950 bg-opacity-50 p-2 text-sm text-white"
+                    className="absolute bottom-0 left-0 right-0 bg-zinc-900 bg-opacity-50 p-2 text-sm text-zinc-100"
                   >
                     {image.caption}
                   </motion.div>
@@ -221,7 +221,7 @@ export default function ConservationPage() {
 
       {/* Secondary Navigation */}
       <div
-        className="fixed left-0 right-0 top-14 z-40 overflow-hidden bg-zinc-950 text-white transition-[height] duration-300 ease-in-out"
+        className="fixed left-0 right-0 top-14 z-40 overflow-hidden bg-zinc-900 text-zinc-100 transition-[height] duration-300 ease-in-out"
         style={{ height: `${48 + expandedHeight}px` }}
       >
         <div
@@ -229,7 +229,7 @@ export default function ConservationPage() {
           onClick={() => setIsExpanded(!isExpanded)}
         >
           <div className="flex items-center">
-            <Button variant="link" className="h-auto p-0 text-white">
+            <Button variant="link" className="h-auto p-0 text-zinc-100">
               Usługi
             </Button>
             <span className="mx-2">›</span>
@@ -280,11 +280,11 @@ export default function ConservationPage() {
               className="mb-12"
             >
               <div className="mb-4 flex gap-4">
-                <div className="rounded-full bg-zinc-950 p-2">
-                  <FileText className="h-6 w-6 text-white" />
+                <div className="rounded-full bg-zinc-900 p-2">
+                  <FileText className="h-6 w-6 text-zinc-100" />
                 </div>
-                <div className="rounded-full bg-zinc-950 p-2">
-                  <Calendar className="h-6 w-6 text-white" />
+                <div className="rounded-full bg-zinc-900 p-2">
+                  <Calendar className="h-6 w-6 text-zinc-100" />
                 </div>
               </div>
               <h1 className="mb-4 text-3xl font-bold">{section.title}</h1>
