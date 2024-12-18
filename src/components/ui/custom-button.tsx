@@ -38,8 +38,8 @@ export default function CustomButton({
 
   const defaultClasses =
     "group inline-flex items-center text-base transition-opacity";
-  const lightClasses = "text-black border-black hover:text-black";
-  const darkClasses = "text-white border-white hover:text-white";
+  const lightClasses = "text-zinc-950 border-black hover:text-zinc-950";
+  const darkClasses = "text-zinc-100 border-white hover:text-zinc-100";
 
   const motionVariants: Variants = {
     hidden: {
@@ -86,8 +86,8 @@ export default function CustomButton({
         className={clsx(
           "flex h-10 w-8 items-center justify-center border border-current p-2 transition-colors delay-200 duration-200 group-hover:delay-0",
           variant === "light"
-            ? "group-hover:bg-zinc-950 group-hover:text-white"
-            : "group-hover:bg-white group-hover:text-black",
+            ? "group-hover:bg-zinc-900 group-hover:text-zinc-100"
+            : "group-hover:border-white group-hover:bg-white group-hover:text-zinc-950",
         )}
       >
         <ChevronRight className="transform transition-transform" />
