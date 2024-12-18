@@ -28,12 +28,12 @@ export default function NavigationLink({
         "group motion-preset-blur-up inline-block py-0.5 uppercase leading-none tracking-[0.04em] antialiased transition-colors duration-300 ease-in-out",
         className,
         isActive
-          ? "text-gold-800 decoration-gold-800 underline decoration-1 underline-offset-8"
+          ? "text-gold-800 underline decoration-gold-800 decoration-1 underline-offset-8"
           : isHovered
             ? "text-gold-800"
             : isAnyHovered
               ? "text-zinc-400"
-              : "text-zinc-950 hover:text-black",
+              : "text-zinc-950 hover:text-zinc-950",
       )}
       href={href}
       onMouseEnter={() => onHover(true)}
