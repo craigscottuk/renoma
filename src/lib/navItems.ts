@@ -21,11 +21,13 @@ export function useNavItems(): NavItem[] {
     },
     {
       label: t("realizacje.label"),
-      link: "/realizacje",
+      // link: "/realizacje",
+      link: "/",
     },
     {
       label: t("renomaLab.label"),
-      link: "/renoma-lab",
+      link: "/",
+      // link: "/renoma-lab",
     },
     {
       label: t("uczSieZNami.label"),
@@ -33,11 +35,13 @@ export function useNavItems(): NavItem[] {
     },
     {
       label: t("pracujZNami.label"),
-      link: "/pracuj-z-nami",
+      // link: "/pracuj-z-nami",
+      link: "/",
     },
     {
       label: t("kontakt.label"),
-      link: "/kontakt",
+      link: "/",
+      // link: "/kontakt",
     },
   ];
 }
