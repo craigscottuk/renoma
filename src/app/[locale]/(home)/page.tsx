@@ -8,6 +8,7 @@ import { setRequestLocale } from "next-intl/server";
 import LogoShowcase from "./logos";
 import CTA from "../../../components/cta";
 import { getTranslations } from "next-intl/server";
+import DiscoverProjects from "./projects";
 
 const QUERY = `
 {
@@ -206,14 +207,7 @@ export default async function HomePage({ params: { locale } }: Props) {
         />
       )}
 
-      {logoSectionHome && (
-        <LogoShowcase
-          label={logoSectionHome.label}
-          title={logoSectionHome.title}
-          logos={logoSectionHome.logos}
-          paddingY="py-20 md:py-48"
-        />
-      )}
+      <DiscoverProjects paddingY="py-20 md:py-48" />
 
       {/* FAQ Section */}
       {faqSectionHome && (
@@ -223,6 +217,15 @@ export default async function HomePage({ params: { locale } }: Props) {
           description={faqSectionHome.description}
           sectionCTA={faqSectionHome.sectionCTA}
           faqItems={faqSectionHome.faqItems}
+          paddingY="py-20 md:py-48"
+        />
+      )}
+
+      {logoSectionHome && (
+        <LogoShowcase
+          label={logoSectionHome.label}
+          title={logoSectionHome.title}
+          logos={logoSectionHome.logos}
           paddingY="py-20 md:py-48"
         />
       )}
