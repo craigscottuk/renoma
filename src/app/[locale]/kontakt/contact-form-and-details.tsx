@@ -39,8 +39,8 @@ export default function ContactFormAndDetails({
       className={clsx(
         "text-[1.1rem] leading-relaxed",
         {
-          "bg-zinc-950 text-white/90": color === "dark",
-          "bg-white text-black/90": color !== "dark",
+          "bg-zinc-900 text-zinc-100/90": color === "dark",
+          "bg-white text-zinc-950/90": color !== "dark",
         },
         paddingY,
       )}
