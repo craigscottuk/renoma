@@ -6,6 +6,8 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 interface Logo {
   company: string;
@@ -18,6 +20,35 @@ interface LogoShowcaseProps {
   title: string;
   logos: Logo[];
   paddingY: string;
+}
+
+function FadeInSection({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  const { ref, controls } = useIntersectionObserver({
+    animateOnView: true,
+    threshold: 0.3,
+    once: true, // Animate only once
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={{
+        hidden: { opacity: 0, y: 50 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+      }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
 }
 
 export default function LogoShowcase({
@@ -44,37 +75,47 @@ export default function LogoShowcase({
       <MaxWidthWrapper>
         <div className="mb-20">
           <div className="hidden md:flex md:flex-col md:items-end">
-            <SectionTitle label={label} title={title} textAlign="right" />
+            <SectionTitle
+              animateOnView={true}
+              animationDirection="right"
+              label={label}
+              title={title}
+              textAlign="right"
+            />
           </div>
           <div className="md:hidden">
             <SectionTitle
               label="NASI KLIENCI"
               title="Zaufali nam"
               textAlign="left"
+              animateOnView={true}
+              animationDirection="left"
             />
           </div>
         </div>
-        <div ref={scrollRef} className="relative flex w-full overflow-hidden">
-          <div className="scroll-content flex min-w-full shrink-0 animate-scroll items-center justify-around gap-8">
-            {logos.map((logo: Logo, index: number) => (
-              <Link
-                key={index}
-                href={logo.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-auto w-auto items-center justify-center"
-              >
-                <Image
-                  src={logo.src}
-                  alt={logo.company}
-                  className="h-[130px] w-full object-contain"
-                  width={240}
-                  height={112}
-                />
-              </Link>
-            ))}
+        <FadeInSection>
+          <div ref={scrollRef} className="relative flex w-full overflow-hidden">
+            <div className="scroll-content flex min-w-full shrink-0 animate-scroll items-center justify-around gap-8 bg-white grayscale">
+              {logos.map((logo: Logo, index: number) => (
+                <Link
+                  key={index}
+                  href={logo.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-auto w-auto items-center justify-center"
+                >
+                  <Image
+                    src={logo.src}
+                    alt={logo.company}
+                    className="h-[130px] w-full object-contain"
+                    width={240}
+                    height={112}
+                  />
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
+        </FadeInSection>
       </MaxWidthWrapper>
     </section>
   );
