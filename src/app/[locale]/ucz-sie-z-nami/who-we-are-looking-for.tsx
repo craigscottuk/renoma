@@ -32,7 +32,7 @@ export default function WhoWeAreLookingFor({
     typeof image === "string" ? image : image ? urlFor(image, 1200) : "";
 
   return (
-    <section className={clsx("mx-auto bg-white text-black/90", paddingY)}>
+    <section className={clsx("mx-auto bg-white text-zinc-950/90", paddingY)}>
       <MaxWidthWrapper>
         <Card className="border-none bg-zinc-100">
           <CardContent className="p-10">
