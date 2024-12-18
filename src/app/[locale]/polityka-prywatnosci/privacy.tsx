@@ -10,7 +10,7 @@ interface PrivacyProps {
 
 export default function Privacy({ content, paddingY }: PrivacyProps) {
   return (
-    <section className={clsx("mx-auto bg-white text-black/90", paddingY)}>
+    <section className={clsx("mx-auto bg-white text-zinc-950/90", paddingY)}>
       <MaxWidthWrapper>
         <PortableText value={content} components={portableTextComponents} />
       </MaxWidthWrapper>
