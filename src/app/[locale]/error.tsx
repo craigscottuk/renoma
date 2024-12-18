@@ -19,13 +19,13 @@ export default function Error({ error, reset }: Props) {
   return (
     <MaxWidthWrapper>
       <div className="mt-40 min-h-[50Vh] text-center">
-        <h1 className="text-4xl font-bold text-black">{t("title")}</h1>
+        <h1 className="text-4xl font-bold text-zinc-950">{t("title")}</h1>
         <div className="mt-8">
           {t.rich("description", {
             p: (chunks) => <p className="mt-4 text-lg">{chunks}</p>,
             retry: (chunks) => (
               <a
-                className="mt-6 cursor-pointer text-black underline underline-offset-2"
+                className="mt-6 cursor-pointer text-zinc-950 underline underline-offset-2"
                 onClick={reset}
               >
                 {chunks}
