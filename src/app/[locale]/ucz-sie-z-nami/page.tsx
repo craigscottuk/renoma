@@ -26,11 +26,11 @@ const QUERY = `
     }
   },
    "whoWeAreLookingFor": *[_type == "whoWeAreLookingFor"][0]{
-    "title": coalesce(title[_key == $locale][0].value, "No translation available"),
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "criteria": coalesce(criteria[$locale], []),
     "image": image,
-    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "No translation available"),
-    "applyButtonText": coalesce(applyButtonText[_key == $locale][0].value, "No translation available")
+    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
+    "applyButtonText": coalesce(applyButtonText[_key == $locale][0].value, "Brak tłumaczenia")
   }
 }
 `;
