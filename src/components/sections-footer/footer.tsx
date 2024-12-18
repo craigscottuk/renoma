@@ -50,6 +50,9 @@ const QUERY = `
 }
 `;
 
+const linkClasses =
+  "text-base text-zinc-300 decoration-zinc-200 decoration-1 underline-offset-8 hover:text-zinc-50 hover:underline";
+
 export default function Footer({ variant = "dark", locale }: FooterProps) {
   const t = useTranslations("footer");
   const [serviceGroups, setServiceGroups] = useState<ServiceGroup[]>([]);
@@ -71,18 +74,15 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
   }, [locale]);
 
   const currentYear = new Date().getFullYear();
-  const darkClasses = "text-white bg-zinc-950";
-  const lightClasses = "text-black bg-white";
+  const darkClasses = "text-zinc-100 bg-zinc-900";
+  const lightClasses = "text-zinc-950 bg-white";
 
   return (
     <footer
-      className={clsx(
-        "mt-10",
-        variant === "light" ? lightClasses : darkClasses,
-      )}
+      className={clsx("", variant === "light" ? lightClasses : darkClasses)}
     >
       <MaxWidthWrapper>
-        <div className="py-16 pt-20">
+        <div className="py-16 pt-24">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {serviceGroups.map((group, index) => (
               <div key={index} className="space-y-4">
@@ -94,7 +94,7 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
                         showArrow={false}
                         underline={false}
                         href={`/uslugi#${service.title.toLowerCase().replace(/\s+/g, "-")}`}
-                        className="text-base text-zinc-50 decoration-white/80 decoration-1 underline-offset-8 hover:underline"
+                        className={linkClasses}
                       >
                         {service.title}
                       </AnimatedLink>
@@ -111,7 +111,7 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
                     showArrow={false}
                     underline={false}
                     href={t("contactLink")}
-                    className="text-base text-zinc-50 decoration-white/80 decoration-1 underline-offset-8 hover:underline"
+                    className={linkClasses}
                   >
                     {t("contactUs")}
                   </AnimatedLink>
@@ -122,7 +122,7 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
           <Separator
             className={clsx(
               "mb-6 mt-12 md:mt-24",
-              variant === "light" ? "bg-zinc-950/40" : "bg-white/40",
+              variant === "light" ? "bg-zinc-900/40" : "bg-zinc-200/40",
             )}
           />
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-4">
@@ -132,14 +132,14 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
                 variant === "light" ? lightClasses : darkClasses,
               )}
             >
-              <p className="text-center text-sm">
+              <p className="text-center text-sm text-zinc-200">
                 {t("copyright", { year: currentYear })}
               </p>
             </div>
             <div className="flex items-center space-x-8">
               <Link
                 href={"/polityka-prywatnosci" as StaticRoutePaths}
-                className="text-sm text-white/90 decoration-white/80 decoration-1 underline-offset-8 hover:underline"
+                className={linkClasses}
               >
                 {t("privacyPolicy")}
               </Link>
@@ -147,24 +147,24 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
                 <NextLink href="https://linkedin.com" aria-label="LinkedIn">
                   <LinkedInIcon
                     className={clsx(
-                      "h-5 w-5 fill-white",
-                      variant === "light" ? "fill-black" : "fill-white",
+                      "h-5 w-5 fill-zinc-200",
+                      variant === "light" ? "fill-zinc-950" : "fill-zinc-200",
                     )}
                   />
                 </NextLink>
                 <NextLink href="https://facebook.com" aria-label="Facebook">
                   <FacebookIcon
                     className={clsx(
-                      "h-5 w-5 fill-white",
-                      variant === "light" ? "fill-black" : "fill-white",
+                      "h-5 w-5 fill-zinc-200",
+                      variant === "light" ? "fill-zinc-950" : "fill-zinc-200",
                     )}
                   />
                 </NextLink>
                 <NextLink href="https://instagram.com" aria-label="Instagram">
                   <InstagramIcon
                     className={clsx(
-                      "h-5 w-5 fill-white",
-                      variant === "light" ? "fill-black" : "fill-white",
+                      "h-5 w-5 fill-zinc-200",
+                      variant === "light" ? "fill-zinc-950" : "fill-zinc-200",
                     )}
                   />
                 </NextLink>
