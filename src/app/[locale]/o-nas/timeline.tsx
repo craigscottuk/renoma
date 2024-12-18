@@ -11,6 +11,7 @@ export interface TimelineEvent {
   images?: Array<{
     src: string;
     caption?: string;
+    aspectRatio?: "none" | "landscape" | "portrait" | "square"; // Ensure aspectRatio is of the correct type
   }>;
 }
 
@@ -109,14 +110,14 @@ export default function Timeline({ events }: TimelineProps) {
   return (
     <div className="relative mx-auto" style={{ marginBottom: captionHeight }}>
       {/* Timeline Line */}
-      <div className="absolute left-[8px] top-0 h-full w-0.5 bg-zinc-950/20 md:left-1/2" />
+      <div className="absolute left-[8px] top-0 h-full w-0.5 bg-zinc-900/20 md:left-1/2" />
       <div className="relative">
         {isMobile && visibleEventCount < sortedEvents.length && (
           <div className="relative mb-12">
             <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform">
               <button
                 onClick={showEarlierEvents}
-                className="inline-flex items-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-[#AC8400] focus:ring-offset-2"
+                className="inline-flex items-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-zinc-100 shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-[#AC8400] focus:ring-offset-2"
               >
                 <ChevronUp className="mr-2 h-4 w-4" />
                 Show Earlier Events
@@ -137,7 +138,7 @@ export default function Timeline({ events }: TimelineProps) {
                 eventRefs.current[index] = el;
               }}
               id={event.year.toString().toLowerCase().replace(/\s+/g, "-")}
-              className={`mb-12 scroll-mt-24 ${
+              className={`mb-12 scroll-mt-28 ${
                 isMobile
                   ? "opacity-100"
                   : `transition-all duration-500 ${
@@ -147,7 +148,7 @@ export default function Timeline({ events }: TimelineProps) {
                     }`
               } relative`}
             >
-              <div className="relative flex flex-col md:gap-5">
+              <div className="relative flex flex-col md:gap-0">
                 {/* Year event for Desktop */}
                 <div
                   className={`group mb-4 flex items-center md:mb-0 md:w-1/2 md:items-center ${
@@ -162,7 +163,7 @@ export default function Timeline({ events }: TimelineProps) {
                       toggleExpand(index);
                       scrollToEvent(index, event.year);
                     }}
-                    className="absolute left-0 h-[24px] w-[24px] cursor-pointer scroll-mt-40 rounded-full border-4 border-white bg-[#8f7d43] group-hover:bg-[#B88D00] md:left-1/2 md:-translate-x-1/2 md:pt-2 xl:pt-2"
+                    className="absolute left-0 h-[24px] w-[24px] cursor-pointer scroll-mt-40 rounded-full border-4 border-white bg-zinc-700 group-hover:bg-gold-800 md:left-1/2 md:-translate-x-1/2 md:pt-2 xl:pt-2"
                   />
                   {/* Year event title */}
                   <button
@@ -170,7 +171,7 @@ export default function Timeline({ events }: TimelineProps) {
                       toggleExpand(index);
                       scrollToEvent(index, event.year);
                     }}
-                    className="flex items-center font-bolder text-4xl text-[#8f7d43] group-hover:text-[#B88D00]"
+                    className="flex items-center font-bolder text-4xl text-zinc-700 group-hover:text-gold-800"
                     aria-expanded={isExpanded}
                     aria-controls={`content-${index}`}
                   >
@@ -191,13 +192,11 @@ export default function Timeline({ events }: TimelineProps) {
                   } md:w-1/2`}
                 >
                   {/* Affects the whole div. Could add bg-color */}
-                  <div className="border-b border-t border-black/20 bg-white px-5 pt-6">
+                  <div className="px-5 pt-6">
                     {event.images && event.images.length > 0 && (
-                      <div className="mb-5">
-                        {/* <Separator className="mb-5" /> */}
+                      <div className="mb-0">
                         <ImageCarousel
                           images={event.images}
-                          aspectRatio="landscape"
                           onCaptionHeightChange={setCaptionHeight}
                         />
                       </div>
@@ -208,7 +207,7 @@ export default function Timeline({ events }: TimelineProps) {
                       }`}
                       style={{ marginTop: 0 }}
                     >
-                      <div className="text-pretty pt-5">
+                      <div className="-mt-16 text-pretty">
                         <PortableText
                           value={event.content}
                           components={portableTextComponents}
