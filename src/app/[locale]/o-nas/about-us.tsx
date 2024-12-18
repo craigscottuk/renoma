@@ -12,7 +12,7 @@ interface AboutUsProps {
 
 export function AboutUs({ title, text, paddingY }: AboutUsProps) {
   return (
-    <section className={clsx("mx-auto bg-zinc-950 text-white/90", paddingY)}>
+    <section className={clsx("mx-auto bg-zinc-900 text-zinc-100/90", paddingY)}>
       <MaxWidthWrapper>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-24">
           <SectionTitle title={title} textColor="white" />
