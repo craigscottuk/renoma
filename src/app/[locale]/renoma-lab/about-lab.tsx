@@ -12,7 +12,7 @@ interface AboutLabProps {
 
 export function AboutLab({ title, text, paddingY }: AboutLabProps) {
   return (
-    <section className={clsx("mx-auto bg-white text-black/90", paddingY)}>
+    <section className={clsx("mx-auto bg-white text-zinc-950/90", paddingY)}>
       <MaxWidthWrapper>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-24">
           <SectionTitle title={title} textColor="black" />
