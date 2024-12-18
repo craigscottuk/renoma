@@ -43,6 +43,8 @@ export default function SectionAbout({
               description={description}
               textAlign="left"
               textColor="black"
+              animateOnView={true}
+              animationDirection="left"
             />
           </div>
 
@@ -57,12 +59,11 @@ export default function SectionAbout({
               textAlign="right"
               animateOnView={true}
               animationDirection="right"
-              delay={2}
             />
             <CustomButton
               variant="light"
               animateOnView={true}
-              animationDirection="right"
+              animationDirection="left"
               href="/o-nas"
             >
               {sectionCTA}
