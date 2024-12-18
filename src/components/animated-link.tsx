@@ -26,7 +26,7 @@ export default function AnimatedLink({
   underline = true,
 }: AnimatedLinkProps) {
   const lightClasses = "text-black";
-  const darkClasses = "text-white";
+  const darkClasses = "text-zinc-100";
 
   const commonClasses = clsx(
     "group inline-flex items-center gap-2 text-[1.1rem]",
