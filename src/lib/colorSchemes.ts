@@ -1,6 +1,6 @@
 export const cardColorSchemes = {
   zincDark: {
-    section: "bg-zinc-950 text-zinc-50",
+    section: "bg-zinc-900 text-zinc-50",
     card: "border-zinc-700 bg-zinc-900",
     cardContent: "text-red-500",
   },
