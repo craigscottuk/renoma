@@ -125,7 +125,7 @@ export default function ServicesList({
     <section className={clsx("mx-auto")}>
       {/* Secondary Navigation */}
       <div
-        className="fixed left-0 right-0 top-20 z-40 overflow-hidden bg-zinc-950/90 text-white transition-[height] duration-300 ease-in-out lg:hidden"
+        className="fixed left-0 right-0 top-20 z-40 overflow-hidden bg-zinc-900 text-zinc-100 transition-[height] duration-300 ease-in-out lg:hidden"
         style={{ height: `${48 + expandedHeight}px` }}
       >
         <div
@@ -133,7 +133,7 @@ export default function ServicesList({
           onClick={() => setIsExpanded(!isExpanded)}
         >
           <div className="flex items-center">
-            <Button variant="link" className="h-auto p-0 text-white">
+            <Button variant="link" className="h-auto p-0 text-zinc-100">
               Usługi
             </Button>
             <span className="mx-2">›</span>
@@ -174,18 +174,19 @@ export default function ServicesList({
             // @ts-expect-error: TypeScript cannot infer the type of the ref correctly
             ref={(el) => (sectionRefs.current[group.title] = el)}
             data-title={group.title}
-            className={clsx(
-              index % 2 === 0 ? "bg-gray-50" : "bg-gray-100",
-              "pt-20",
-            )}
+            // className={clsx(
+            //   index % 2 === 0 ? "bg-zinc-100" : "bg-zinc-50",
+            //   "mt-10 py-10",
+            // )}
           >
             <MaxWidthWrapper>
-              <div className="flex-between flex">
-                <div className="mb-10 w-1/2">
+              <div className="flex-between mb-10 mt-16 flex items-center">
+                <div className="w-1/2">
                   <SectionTitle
                     title={group.title}
                     textColor="black"
                     className=""
+                    label="Usługi"
                   />
                 </div>
 
@@ -198,64 +199,75 @@ export default function ServicesList({
                   />
                 </div>
               </div>
-
               <Separator className="mb-16" />
-
-              {group.services.map((service, serviceIndex) => (
-                <div
-                  key={service.title}
-                  className={cn(
-                    "mb-16 lg:flex lg:items-start lg:gap-36",
-                    serviceIndex % 2 === 1 && "flex-row-reverse",
-                  )}
-                >
-                  <FadeInSection className="lg:w-1/2">
-                    <button
-                      onClick={() => scrollToSection(service.title)}
-                      className="mb-6 cursor-pointer border-none bg-transparent p-0 text-left font-bolder text-[2rem] leading-tight tracking-[-0.015em]"
-                    >
-                      <h3
-                        className="scroll-mt-40"
-                        id={service.title.toLowerCase().replace(/\s+/g, "-")}
-                      >
-                        {service.title}
-                      </h3>
-                    </button>
-                    <p className="mb-8 text-[1.1rem] text-gray-700">
-                      {service.description}
-                    </p>
-                    <Accordion type="single" collapsible className="w-full">
-                      {service.actions.map((action) => (
-                        <AccordionItem key={action.title} value={action.title}>
-                          <AccordionTrigger className="text-[1.3rem] leading-none">
-                            {action.title}
-                          </AccordionTrigger>
-                          <AccordionContent className="mb-4">
-                            <p className="text-gray-700">{action.content}</p>
-                          </AccordionContent>
-                        </AccordionItem>
-                      ))}
-                    </Accordion>
-                  </FadeInSection>
-                  <FadeInSection className="mt-8 pt-5 lg:mt-0 lg:w-1/2">
-                    <ImageCarousel
-                      images={
-                        service.images?.map((img) => ({
-                          src:
-                            typeof img.asset === "string"
-                              ? urlFor(img.asset)
-                              : img.asset
-                                ? urlFor(img.asset)
-                                : "",
-                          caption: img.caption || "",
-                        })) || []
-                      }
-                      aspectRatio="landscape"
-                    />
-                  </FadeInSection>
-                </div>
-              ))}
             </MaxWidthWrapper>
+            {group.services.map((service, serviceIndex) => (
+              <div
+                key={service.title}
+                className={cn(
+                  serviceIndex % 2 === 0 ? "bg-zinc-100" : "bg-zinc-50",
+                  "py-16",
+                )}
+              >
+                <MaxWidthWrapper>
+                  <div
+                    key={service.title}
+                    className={cn(
+                      "lg:flex lg:items-start lg:gap-36",
+                      serviceIndex % 2 === 1 && "flex-row-reverse",
+                    )}
+                  >
+                    <FadeInSection className="lg:w-1/2">
+                      <button
+                        onClick={() => scrollToSection(service.title)}
+                        className="mb-6 cursor-pointer border-none bg-transparent p-0 text-left font-bolder text-[2rem] leading-tight tracking-[-0.015em]"
+                      >
+                        <h3
+                          className="scroll-mt-40"
+                          id={service.title.toLowerCase().replace(/\s+/g, "-")}
+                        >
+                          {service.title}
+                        </h3>
+                      </button>
+                      <p className="mb-8 text-[1.1rem] text-gray-700">
+                        {service.description}
+                      </p>
+                      <Accordion type="single" collapsible className="w-full">
+                        {service.actions.map((action) => (
+                          <AccordionItem
+                            key={action.title}
+                            value={action.title}
+                          >
+                            <AccordionTrigger className="text-[1.3rem] leading-none">
+                              {action.title}
+                            </AccordionTrigger>
+                            <AccordionContent className="mb-4">
+                              <p className="text-gray-700">{action.content}</p>
+                            </AccordionContent>
+                          </AccordionItem>
+                        ))}
+                      </Accordion>
+                    </FadeInSection>
+                    <FadeInSection className="mt-8 pt-5 lg:mt-0 lg:w-1/2">
+                      <ImageCarousel
+                        images={
+                          service.images?.map((img) => ({
+                            src:
+                              typeof img.asset === "string"
+                                ? urlFor(img.asset)
+                                : img.asset
+                                  ? urlFor(img.asset)
+                                  : "",
+                            caption: img.caption || "",
+                          })) || []
+                        }
+                        // aspectRatio="landscape"
+                      />
+                    </FadeInSection>
+                  </div>
+                </MaxWidthWrapper>
+              </div>
+            ))}
           </section>
         ))}
       </div>
