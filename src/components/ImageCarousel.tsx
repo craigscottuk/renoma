@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import { ArrowUp, Plus, Minus } from "lucide-react";
-// import { ArrowLeft, ArrowRigh } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { Button } from "./ui/button";
@@ -10,17 +9,22 @@ import { useLocale } from "next-intl";
 import AnimatedLink from "./animated-link";
 
 interface ImageCarouselProps {
-  images: Array<{ src: string; caption?: string }>;
-  aspectRatio?: "none" | "landscape" | "portrait" | "square";
+  images: Array<{
+    src: string;
+    caption?: string;
+    aspectRatio?: "none" | "landscape" | "portrait" | "square";
+  }>;
   onCaptionHeightChange?: (height: number) => void;
 }
 
 export default function ImageCarousel({
   images,
-  aspectRatio = "landscape",
   onCaptionHeightChange,
 }: ImageCarouselProps) {
   const locale = useLocale();
+
+  // Log the aspectRatio data
+  // console.log("ImageCarousel images", images);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -28,30 +32,6 @@ export default function ImageCarousel({
   const [isMobile, setIsMobile] = useState(false);
   const [captionHeight, setCaptionHeight] = useState(0);
   const captionRef = useRef<HTMLDivElement>(null);
-
-  // const aspectRatioClass =
-  //   {
-  //     none: "aspect-auto",
-  //     landscape: "aspect-w-16 aspect-h-9",
-  //     portrait: "aspect-[4/3]",
-  //     square: "aspect-square",
-  //   }[aspectRatio] || "aspect-video";
-
-  const sizeClass =
-    {
-      none: "h-auto w-auto",
-      landscape: "h-64 md:h-80 aspect-video",
-      portrait: "h-96 w-64",
-      square: "h-64 md:h-80 aspect-square",
-    }[aspectRatio] || "h-64 w-full";
-
-  const objectPositionClass =
-    {
-      none: "object-center",
-      landscape: "object-center", // Adjusted for landscape
-      portrait: "object-top",
-      square: "object-center",
-    }[aspectRatio] || "object-center";
 
   useEffect(() => {
     const checkMobile = () => {
@@ -107,13 +87,29 @@ export default function ImageCarousel({
   }
 
   if (images.length === 1) {
+    const image = images[0];
+    // const sizeClass =
+    //   {
+    //     none: "h-auto w-auto",
+    //     landscape: "h-64 md:h-80 aspect-video",
+    //     portrait: "h-64 md:h-80 aspect-[4/3]",
+    //     square: "h-64 md:h-80 aspect-square",
+    //   }[image.aspectRatio || "landscape"] || "h-64 w-full";
+    const objectPositionClass =
+      {
+        none: "object-center",
+        landscape: "object-center",
+        portrait: "object-top",
+        square: "object-center",
+      }[image.aspectRatio || "landscape"] || "object-center";
+
     return (
-      <div className={`relative ${sizeClass} mb-16`}>
+      <div className={`aspect-square relative h-96`}>
         {/* Ensure spacing around the carousel */}
         <div className="relative h-full w-full">
           <Image
-            src={images[0].src}
-            alt={images[0].caption || "Image"}
+            src={image.src}
+            alt={image.caption || "Image"}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             className={`rounded-[4px] object-cover ${objectPositionClass}`}
@@ -132,10 +128,7 @@ export default function ImageCarousel({
   }
 
   return (
-    <div
-      className={`relative ${sizeClass} mb-16`}
-      style={{ marginBottom: captionHeight }}
-    >
+    <div className="relative" style={{ marginBottom: captionHeight }}>
       {/* Added bottom margin to prevent overlap */}
       <div className="relative h-full w-full">
         <div
@@ -143,22 +136,39 @@ export default function ImageCarousel({
           ref={emblaRef}
         >
           <div className="embla__container flex h-full w-full">
-            {images.map((image, index) => (
-              <div
-                key={index}
-                className="embla__slide h-full w-full flex-[0_0_100%]"
-              >
-                <div className="embla__slide__inner relative h-full w-full">
-                  <Image
-                    src={image.src}
-                    alt={image.caption || `Image ${index + 1}`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className={`rounded-[4px] object-cover ${objectPositionClass}`}
-                  />
+            {images.map((image, index) => {
+              // const sizeClass =
+              //   {
+              //     none: "h-auto w-auto",
+              //     landscape: "h-64 md:h-80 aspect-video",
+              //     portrait: "h-64 md:h-80 aspect-[4/3]",
+              //     square: "h-64 md:h-80 aspect-square",
+              //   }[image.aspectRatio || "landscape"] || "h-64 w-full";
+              const objectPositionClass =
+                {
+                  none: "object-center",
+                  landscape: "object-center",
+                  portrait: "object-top",
+                  square: "object-center",
+                }[image.aspectRatio || "landscape"] || "object-center";
+
+              return (
+                <div
+                  key={index}
+                  className={`embla__slide aspect-square relative h-96 flex-[0_0_100%]`}
+                >
+                  <div className="embla__slide__inner relative h-full w-full">
+                    <Image
+                      src={image.src}
+                      alt={image.caption || `Image ${index + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className={`rounded-[4px] object-cover ${objectPositionClass}`}
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
@@ -167,14 +177,14 @@ export default function ImageCarousel({
           <>
             {/* <button
               onClick={scrollPrev}
-              className="absolute left-4 top-1/2 z-10 -translate-y-1/2 transform rounded-full bg-zinc-950/50 p-2 text-white hover:bg-zinc-950"
+              className="absolute left-4 top-1/2 z-10 -translate-y-1/2 transform rounded-full bg-zinc-900/50 p-2 text-zinc-100 hover:bg-zinc-900"
               aria-label="Previous image"
             >
               <ArrowLeft className="h-6 w-6" />
             </button>
             <button
               onClick={scrollNext}
-              className="absolute right-4 top-1/2 z-10 -translate-y-1/2 transform rounded-full bg-zinc-950/50 p-2 text-white hover:bg-zinc-950"
+              className="absolute right-4 top-1/2 z-10 -translate-y-1/2 transform rounded-full bg-zinc-900/50 p-2 text-zinc-100 hover:bg-zinc-900"
               aria-label="Next image"
             >
               <ArrowRight className="h-6 w-6" />
@@ -201,7 +211,7 @@ export default function ImageCarousel({
           <Button
             variant="outline"
             onClick={toggleCaptions}
-            className="absolute bottom-4 right-4 z-10 rounded-[4px] border border-white/50 bg-zinc-950/50 p-2 text-white"
+            className="absolute bottom-4 right-4 z-10 rounded-[4px] border border-white/50 bg-zinc-900/50 p-2 text-zinc-100"
             aria-label={
               showCaptions ? "Hide image caption" : "Show image caption"
             }
@@ -219,7 +229,7 @@ export default function ImageCarousel({
       {isMobile && (
         <div
           ref={captionRef}
-          className={`relative z-10 bg-gray-50 px-4 py-3 text-sm text-zinc-900 ${
+          className={`relative z-10 bg-gray-50 px-4 py-3 text-sm text-zinc-950 ${
             showCaptions ? "block" : "hidden"
           }`}
         >
@@ -235,38 +245,13 @@ export default function ImageCarousel({
       {!isMobile && currentCaption && images.length > 1 && (
         <div
           ref={captionRef}
-          className="relative z-10 flex justify-between bg-gray-50 px-3 py-3 text-sm text-red-500"
+          className="text-zin-950 relative z-10 flex justify-between bg-gray-50 px-3 py-3 text-sm"
         >
           <div className="flex items-start gap-2 text-pretty">
             <ArrowUp className="mr-1 mt-1 h-4 w-4 flex-shrink-0" />
             <span>{currentCaption}</span>
 
             <div className="flex items-start gap-2">
-              {/* <Button
-              variant={"link"}
-              onClick={scrollPrev}
-              className="items-start py-0 pr-1.5 text-sm text-zinc-900 underline hover:bg-none"
-              aria-label="Previous image"
-            >
-              {locale === "en"
-                ? "PREV"
-                : locale === "pl"
-                  ? "POP"
-                  : "VOR"}
-            </Button> */}
-              {/* <Button
-              variant={"link"}
-              onClick={scrollNext}
-              className="items-start py-0 text-sm text-zinc-900 underline hover:bg-none"
-              aria-label="Next image"
-            >
-              {locale === "en"
-                ? "NEXT"
-                : locale === "pl"
-                  ? "DALEJ"
-                  : "WEITER"}
-            </Button> */}
-
               <AnimatedLink
                 className="hover:text-gold text-sm"
                 onClick={scrollPrev}
