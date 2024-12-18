@@ -54,7 +54,7 @@ export default function LocaleSwitcherSelect({
       <DropdownMenuTrigger asChild className={`h-[20px] py-0 ${className}`}>
         <Button
           variant="ghost"
-          className="w-fit justify-between border-0 text-black hover:bg-white focus-visible:ring-[none]"
+          className="w-fit justify-between border-0 text-zinc-950 hover:bg-white focus-visible:ring-[none]"
         >
           <span className="flex items-center text-base tracking-wide">
             <span className="mr-2 text-base">{localeMap[language].flag}</span>
