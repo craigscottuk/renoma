@@ -244,6 +244,22 @@ export const ourHistory = defineType({
                       type: "internationalizedArrayString",
                       description: "Dodaj podpis do obrazu.",
                     }),
+                    defineField({
+                      name: "aspectRatio",
+                      title: "Proporcje Obrazu",
+                      type: "string",
+                      options: {
+                        list: [
+                          { title: "Brak", value: "none" },
+                          { title: "Krajobraz", value: "landscape" },
+                          { title: "Portret", value: "portrait" },
+                          { title: "Kwadrat", value: "square" },
+                        ],
+                        layout: "radio",
+                      },
+                      initialValue: "none",
+                      description: "Wybierz proporcje obrazów w tej galerii.",
+                    }),
                   ],
                   preview: {
                     select: {
