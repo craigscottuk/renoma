@@ -37,11 +37,11 @@ export default function ContactForm({
   contactFormSubjects,
 }: ContactFormProps) {
   const darkInputClassNames =
-    "border-none bg-zinc-800 text-white ring-offset-black focus-visible:ring-white";
+    "border-none bg-zinc-800 text-zinc-100 ring-offset-black focus-visible:ring-white";
   const darkSelectContentClassNames =
-    "border-zinc-800 bg-zinc-800 text-white/90";
+    "border-zinc-800 bg-zinc-800 text-zinc-100/90";
   const darkCheckboxClassNames = "border-white";
-  const darkButtonClassNames = " bg-zinc-950 hover:text-black px-6 py-5";
+  const darkButtonClassNames = " bg-zinc-900 hover:text-zinc-950 px-6 py-5";
 
   const t = useTranslations();
 
