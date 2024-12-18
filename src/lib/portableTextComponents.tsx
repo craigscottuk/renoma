@@ -12,7 +12,7 @@ const portableTextComponents: PortableTextComponents = {
       <h3 className="mb-8 text-2xl font-bold text-[#81724D]">{children}</h3>
     ),
     h4: ({ children }) => (
-      <h4 className="mb-6 text-[1.1rem] font-bold text-black">{children}</h4>
+      <h4 className="mb-6 text-[1.1rem] font-bold text-zinc-950">{children}</h4>
     ),
     // Fallback for unsupported block styles
     default: ({ children, value }) => (
