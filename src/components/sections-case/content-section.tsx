@@ -21,7 +21,7 @@ export default function ContentSection({
       <MaxWidthWrapper>
         <Separator className="mb-16" />
 
-        <h2 className="mb-12 w-full font-bolder text-4xl text-black">
+        <h2 className="mb-12 w-full font-bolder text-4xl text-zinc-950">
           {title}
         </h2>
       </MaxWidthWrapper>
@@ -59,7 +59,7 @@ export default function ContentSection({
                               }),
                             ) || []
                           }
-                          aspectRatio={section.aspectRatio}
+                          // aspectRatio={section.aspectRatio}
                         />
                       </div>
                     </div>
@@ -83,7 +83,7 @@ export default function ContentSection({
                               }),
                             ) || []
                           }
-                          aspectRatio={section.aspectRatio}
+                          // aspectRatio={section.aspectRatio}
                         />
                       </div>
                     </div>
@@ -131,7 +131,7 @@ export default function ContentSection({
                         }),
                       ) || []
                     }
-                    aspectRatio={section.aspectRatio1}
+                    // aspectRatio={section.aspectRatio1}
                   />
                 </div>
                 <div className="flex flex-col lg:w-1/2 lg:items-start">
@@ -150,7 +150,7 @@ export default function ContentSection({
                         }),
                       ) || []
                     }
-                    aspectRatio={section.aspectRatio2}
+                    // aspectRatio={section.aspectRatio2}
                   />
                 </div>
               </MaxWidthWrapper>
