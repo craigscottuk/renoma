@@ -45,7 +45,7 @@ export default function PageHeader({
     <>
       {/* Full-width header image */}
       {headerFullWidth && imageUrl && imagePosition === "above" && (
-        <div className="relative mt-24 h-80 w-full">
+        <div className="relative mt-24 h-96 w-full">
           <Image
             src={imageUrl || "/fallback-image.svg"}
             alt={imageAlt || "Obraz nagłówka"}
@@ -66,7 +66,7 @@ export default function PageHeader({
           headerFullWidth && imagePosition === "above" ? "mt-24 lg:mt-0" : "",
           headerFullWidth && imagePosition === "below" ? "mt-24" : "",
           imageLayout === "portraitRight" ? "mt-24" : "",
-          backgroundColor === "black" ? "bg-zinc-950" : "bg-white",
+          backgroundColor === "black" ? "bg-zinc-900" : "bg-white",
         )}
       >
         {/* Small-screen header image strip */}
