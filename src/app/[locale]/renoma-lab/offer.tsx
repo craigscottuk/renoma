@@ -74,47 +74,59 @@ export default function LabOffer({
     cardColorSchemes[colorScheme] || cardColorSchemes.zincDark;
 
   return (
-    <section className={clsx("", selectedColorScheme.section, paddingY)}>
-      <MaxWidthWrapper>
-        <div className="space-y-10 p-8">
-          <SectionTitle
-            title={title}
-            textColor={selectedColorScheme.sectionTitle}
-          />
-          <div className="grid gap-6 md:grid-cols-2">
-            {offers.map((offer, index) => {
-              const IconComponent = iconComponents[offer.icon] || Microscope;
-              return (
-                <Card className={selectedColorScheme.card} key={index}>
-                  <CardHeader>
-                    <div className="flex items-center space-x-2">
-                      <IconComponent className="h-6 w-6 text-gold-800" />
-                      <CardTitle className="font-regular text-[1.7rem] leading-tight tracking-[-0.015em]">
-                        {offer.title}
-                      </CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent
-                    className={clsx(
-                      "text-[1.1rem]",
-                      selectedColorScheme.cardContent,
-                    )}
-                  >
-                    <PortableText
-                      value={offer.content}
-                      components={portableTextComponents}
-                    />
-                  </CardContent>
-                </Card>
-              );
-            })}
+    <>
+      <section className={clsx("", selectedColorScheme.section, paddingY)}>
+        <MaxWidthWrapper>
+          <div className="space-y-10">
+            <div className="justify-left flex">
+              <SectionTitle
+                title={title}
+                textColor={selectedColorScheme.sectionTitle}
+                textAlign="right"
+              />
+            </div>
+            <div className="grid gap-6 md:grid-cols-2">
+              {offers.map((offer, index) => {
+                const IconComponent = iconComponents[offer.icon] || Microscope;
+                return (
+                  <Card className={selectedColorScheme.card} key={index}>
+                    <CardHeader>
+                      <div className="flex items-center space-x-2">
+                        <IconComponent className="h-6 w-6 text-gold-800" />
+                        <CardTitle className="font-regular text-[1.7rem] leading-tight tracking-[-0.015em]">
+                          {offer.title}
+                        </CardTitle>
+                      </div>
+                    </CardHeader>
+                    <CardContent
+                      className={clsx(
+                        "text-[1.1rem]",
+                        selectedColorScheme.cardContent,
+                      )}
+                    >
+                      <PortableText
+                        value={offer.content}
+                        components={portableTextComponents}
+                      />
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+            <p className="mx-auto mt-8 px-5 py-10 text-center text-[1.1rem] text-zinc-900 md:max-w-[60rem]">
+              {collaborationDescription}
+            </p>
           </div>
+        </MaxWidthWrapper>
+      </section>
 
-          <p className="mt-8 text-left text-muted-foreground">
+      {/* <div className="bg-white">
+        <MaxWidthWrapper>
+          <p className="mt-8 py-10 text-left text-zinc-900">
             {collaborationDescription}
           </p>
-        </div>
-      </MaxWidthWrapper>
-    </section>
+        </MaxWidthWrapper>
+      </div> */}
+    </>
   );
 }
