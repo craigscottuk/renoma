@@ -26,8 +26,8 @@ export function useNavItems(): NavItem[] {
     },
     {
       label: t("renomaLab.label"),
-      link: "/",
-      // link: "/renoma-lab",
+      // link: "/",
+      link: "/renoma-lab",
     },
     {
       label: t("uczSieZNami.label"),
