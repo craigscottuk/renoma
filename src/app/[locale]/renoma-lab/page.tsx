@@ -16,7 +16,8 @@ const QUERY = `
     "image": image, 
     "imageAlt": coalesce(imageAlt[_key == $locale][0].value, "Brak tłumaczenia"),
     "imageLayout": imageLayout,
-    "backgroundColor": backgroundColor
+    "backgroundColor": backgroundColor,
+    "descriptionTwoColumns": coalesce(descriptionTwoColumns[$locale], []),
   },
   "aboutLab": *[_type == "aboutLab"][0]{
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -50,6 +51,7 @@ interface Content {
     imageAlt?: string;
     imageLayout?: "fullWidthAbove" | "fullWidthBelow" | "portraitRight";
     backgroundColor?: "white" | "black";
+    descriptionTwoColumns: PortableTextBlock[];
   };
   aboutLab: {
     title: string;
@@ -105,11 +107,13 @@ export default async function RenomaLab({ params: { locale } }: Props) {
           imageAlt={renomaLabHeader.imageAlt}
           imageLayout={renomaLabHeader.imageLayout}
           backgroundColor={renomaLabHeader.backgroundColor}
+          twoColumnText={true}
+          portableTextBlock={renomaLabHeader.descriptionTwoColumns}
         />
       )}
 
       {/* About Lab */}
-      {aboutLab && (
+      {!renomaLabHeader.descriptionTwoColumns && (
         <AboutLab
           title={aboutLab.title}
           text={aboutLab.text}
@@ -123,7 +127,7 @@ export default async function RenomaLab({ params: { locale } }: Props) {
           title={labOffer.title}
           offers={labOffer.offers}
           collaborationDescription={labOffer.collaborationDescription}
-          paddingY="py-12"
+          paddingY="py-36"
           colorScheme="zincLight" // Add this line
         />
       )}
