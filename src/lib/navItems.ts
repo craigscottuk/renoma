@@ -21,8 +21,8 @@ export function useNavItems(): NavItem[] {
     },
     {
       label: t("realizacje.label"),
-      // link: "/realizacje",
-      link: "/",
+      link: "/realizacje",
+      // link: "/",
     },
     {
       label: t("renomaLab.label"),
