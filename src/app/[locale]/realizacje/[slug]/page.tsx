@@ -95,9 +95,6 @@ type Props = {
 export default async function ProjectPage({ params: { slug, locale } }: Props) {
   setRequestLocale(locale);
 
-  // Define options for ISR revalidation
-  // const OPTIONS = { next: { revalidate: false } };
-  // const OPTIONS = { cache: "force-cache" };
   const OPTIONS = { next: { revalidate: 86400 } };
   // 86400
 
