@@ -66,6 +66,21 @@ export const renomaLabHeader = defineType({
       type: "internationalizedArrayText",
       group: "opisSekcji",
     }),
+
+    defineField({
+      name: "descriptionTwoColumns",
+      title: "Opis sekcji w dwóch kolumnach",
+      type: "object",
+      description:
+        "Tekst opisujący działalność laboratorium Renoma LAB w dwóch kolumnach.",
+      validation: (Rule) => Rule.required(),
+      fields: [
+        { name: "pl", title: "PL", type: "portableTextWithHeadings" },
+        { name: "en", title: "EN", type: "portableTextWithHeadings" },
+        { name: "de", title: "DE", type: "portableTextWithHeadings" },
+      ],
+    }),
+
     defineField({
       name: "image",
       title: "Obraz nagłówka",
