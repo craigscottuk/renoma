@@ -1,11 +1,11 @@
 // cSpell:disable
-import { setRequestLocale } from "next-intl/server";
-import PageHeader from "@/components/page-header";
-import { client } from "@/sanity/client";
-import { PortableTextBlock } from "next-sanity";
 import { AboutUs } from "./about-us";
 import OurHistory from "./our-history";
+import { client } from "@/sanity/client";
+import { PortableTextBlock } from "next-sanity";
+import PageHeader from "@/components/page-header";
 import { getTranslations } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 
 const QUERY = `
 {
