@@ -13,6 +13,7 @@ export default function HeroSection({ title, sectionCTA }: HeroSectionProps) {
   return (
     <div className="relative mt-20 min-h-svh md:mt-24 md:min-h-[calc(100vh-96px)]">
       {/* Background Video */}
+
       <MuxPlayer
         streamType="on-demand"
         playbackId="4W02Db7nBRvUHNxB6qsJZroV9900uPi2gm5c3qoiZFJ38"
