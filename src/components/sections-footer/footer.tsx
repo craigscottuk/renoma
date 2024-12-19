@@ -139,7 +139,7 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
             <div className="flex items-center space-x-8">
               <Link
                 href={"/polityka-prywatnosci" as StaticRoutePaths}
-                className={linkClasses}
+                className={clsx(linkClasses, "text-sm")}
               >
                 {t("privacyPolicy")}
               </Link>
