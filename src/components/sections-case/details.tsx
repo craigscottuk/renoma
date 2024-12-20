@@ -41,8 +41,8 @@ export default function ProjectDetailsSection({
         <div className="flex flex-col lg:w-1/2 lg:items-start">
           <div className="grid w-full grid-cols-1 gap-6">
             {visibleDetails.map((detail: Detail, index: number) => (
-              <>
-                <div key={index}>
+              <div key={index}>
+                <div>
                   <div className="grid grid-cols-2 gap-12 text-[1.1rem]">
                     <div className="font-bolder">{detail.label}</div>
                     <div>
@@ -63,7 +63,7 @@ export default function ProjectDetailsSection({
                   </div>
                 </div>
                 <Separator className="my-0" />
-              </>
+              </div>
             ))}
           </div>
           {nonNullDetails.length > 4 && (
