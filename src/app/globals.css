@@ -48,6 +48,7 @@ body {
     --radius: 0rem;
 
     --gold: 43 75% 26%;
+    --dull-gold: 43 25% 30%;
     /* --text-gold: #745811; */
     --text-gold: #745811;
   }
@@ -58,7 +59,7 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background;
   }
 }
 
