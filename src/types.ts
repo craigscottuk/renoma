@@ -3,12 +3,15 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 export type CaseStudySectionContent = {
   _type: string;
+  heading3?: string;
   text?: PortableTextBlock[];
+
   images?: Array<{
     asset: SanityImageSource | string;
     caption: string;
     alt: string;
   }>;
+
   text1?: PortableTextBlock[];
   text2?: PortableTextBlock[];
   images1?: Array<{
