@@ -75,7 +75,9 @@ const config: Config = {
           800: "#81661A",
           900: "#6F5416",
           950: "#412C0D",
+          1000: "#81724D",
         },
+        dullGold: "#81724D",
       },
       borderRadius: {
         lg: "var(--radius)",
