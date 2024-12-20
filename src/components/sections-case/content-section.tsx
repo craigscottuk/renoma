@@ -30,83 +30,111 @@ export default function ContentSection({
           case "textAndImageGallery":
             const isTextLeft = section.layout !== "imageLeftTextRight";
             return (
-              <MaxWidthWrapper
-                key={index}
-                className={`flex flex-col lg:flex-row lg:gap-24`}
-              >
-                {isTextLeft ? (
-                  <>
-                    <div className="flex-1 lg:w-1/2">
-                      <PortableText
-                        value={section.text || []}
-                        components={portableTextComponents}
-                      />
-                    </div>
-                    <div className="flex flex-col lg:w-1/2 lg:items-start">
-                      <div className="w-full">
-                        <ImageCarousel
-                          images={
-                            section.images?.map(
-                              (img: {
-                                asset: SanityImageSource | string;
-                                caption: string;
-                              }) => ({
-                                src:
-                                  typeof img.asset === "string"
-                                    ? img.asset
-                                    : urlFor(img.asset),
-                                caption: img.caption,
-                              }),
-                            ) || []
-                          }
-                          // aspectRatio={section.aspectRatio}
+              <MaxWidthWrapper key={index}>
+                {/* h3 header */}
+                <h3 className="text-dullGold mb-8 block w-full font-bolder text-[1.4rem]">
+                  {section.heading3}
+                </h3>
+                <div className={`mb-20 flex flex-col lg:flex-row lg:gap-24`}>
+                  {isTextLeft ? (
+                    <>
+                      <div className="flex-1 lg:w-1/2">
+                        <PortableText
+                          value={section.text || []}
+                          components={portableTextComponents}
                         />
                       </div>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="flex flex-col lg:w-1/2 lg:items-start">
-                      <div className="w-full">
-                        <ImageCarousel
-                          images={
-                            section.images?.map(
-                              (img: {
-                                asset: SanityImageSource | string;
-                                caption: string;
-                              }) => ({
-                                src:
-                                  typeof img.asset === "string"
-                                    ? img.asset
-                                    : urlFor(img.asset),
-                                caption: img.caption,
-                              }),
-                            ) || []
-                          }
-                          // aspectRatio={section.aspectRatio}
+                      <div className="flex flex-col lg:w-1/2 lg:items-start">
+                        <div className="w-full">
+                          <ImageCarousel
+                            images={
+                              section.images?.map(
+                                (img: {
+                                  asset: SanityImageSource | string;
+                                  caption: string;
+                                }) => ({
+                                  src:
+                                    typeof img.asset === "string"
+                                      ? img.asset
+                                      : urlFor(img.asset),
+                                  caption: img.caption,
+                                }),
+                              ) || []
+                            }
+                            // aspectRatio={section.aspectRatio}
+                          />
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex flex-col lg:w-1/2 lg:items-start">
+                        <div className="w-full">
+                          <ImageCarousel
+                            images={
+                              section.images?.map(
+                                (img: {
+                                  asset: SanityImageSource | string;
+                                  caption: string;
+                                }) => ({
+                                  src:
+                                    typeof img.asset === "string"
+                                      ? img.asset
+                                      : urlFor(img.asset),
+                                  caption: img.caption,
+                                }),
+                              ) || []
+                            }
+                            // aspectRatio={section.aspectRatio}
+                          />
+                        </div>
+                      </div>
+                      <div className="flex-1 lg:w-1/2">
+                        <PortableText
+                          value={section.text || []}
+                          components={portableTextComponents}
                         />
                       </div>
-                    </div>
-                    <div className="flex-1 lg:w-1/2">
-                      <PortableText
-                        value={section.text || []}
-                        components={portableTextComponents}
-                      />
-                    </div>
-                  </>
-                )}
+                    </>
+                  )}
+                </div>
+              </MaxWidthWrapper>
+            );
+          case "textWrap":
+            return (
+              <MaxWidthWrapper key={index}>
+                <h3 className="text-dullGold mb-8 block w-full font-bolder text-[1.4rem]">
+                  {section.heading3}
+                </h3>
+
+                <div className={`mb-20 columns-1 gap-8 lg:columns-2`}>
+                  <PortableText
+                    value={section.text || []}
+                    components={portableTextComponents}
+                  />
+                </div>
               </MaxWidthWrapper>
             );
           case "textAndText":
             return (
-              <MaxWidthWrapper
-                key={index}
-                className={`columns-1 gap-8 lg:columns-2`}
-              >
-                <PortableText
-                  value={section.text || []}
-                  components={portableTextComponents}
-                />
+              <MaxWidthWrapper key={index}>
+                <h3 className="text-dullGold mb-8 block w-full font-bolder text-[1.4rem]">
+                  {section.heading3}
+                </h3>
+                <div className="mb-20 flex flex-col gap-8 lg:flex-row">
+                  <div className="flex-1">
+                    <PortableText
+                      value={section.text1 || []}
+                      components={portableTextComponents}
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <PortableText
+                      value={section.text2 || []}
+                      components={portableTextComponents}
+                    />
+                  </div>
+                </div>
               </MaxWidthWrapper>
             );
           case "imageGalleryAndImageGallery":
