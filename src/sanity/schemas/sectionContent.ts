@@ -12,10 +12,10 @@ export const sectionContent = defineType({
       type: "object",
       fields: [
         defineField({
-          name: "name",
-          title: "Nazwa Sekcji",
+          name: "heading3",
+          title: "Nagłówek H3",
           type: "string",
-          description: "Opcjonalna nazwa sekcji do odniesienia.",
+          description: "Opcjonalny nagłówek H3 dla tej sekcji.",
         }),
         defineField({
           name: "text",
@@ -82,27 +82,27 @@ export const sectionContent = defineType({
       ],
       preview: {
         select: {
-          title: "name",
+          title: "heading3",
           media: "images.0",
         },
         prepare({ title, media }) {
           return {
-            title: title || "Sekcja Bez Nazwy",
+            title: title || "Brak przypisanego nagłówka H3",
             media,
           };
         },
       },
     },
     {
-      name: "textAndText",
-      title: "Tekst",
+      name: "textWrap",
+      title: "Tekst Zawijany",
       type: "object",
       fields: [
         defineField({
-          name: "name",
-          title: "Nazwa Sekcji",
+          name: "heading3",
+          title: "Nagłówek H3",
           type: "string",
-          description: "Opcjonalna nazwa sekcji do odniesienia.",
+          description: "Opcjonalny nagłówek H3 dla tej sekcji.",
         }),
         defineField({
           name: "text",
@@ -114,7 +114,44 @@ export const sectionContent = defineType({
       ],
       preview: {
         select: {
-          title: "name",
+          title: "heading3",
+        },
+        prepare({ title }) {
+          return {
+            title: title || "Sekcja Bez Nazwy",
+          };
+        },
+      },
+    },
+    {
+      name: "textAndText",
+      title: "Tekst",
+      type: "object",
+      fields: [
+        defineField({
+          name: "heading3",
+          title: "Nagłówek H3",
+          type: "string",
+          description: "Opcjonalny nagłówek H3 dla tej sekcji.",
+        }),
+        defineField({
+          name: "text1",
+          title: "Tekst (Lewa Kolumna)",
+          description:
+            "Tekst w lewej kolumnie. Na dużych ekranach ten tekst będzie po lewej stronie.",
+          type: "portableTextWithHeadings",
+        }),
+        defineField({
+          name: "text2",
+          title: "Tekst (Prawa Kolumna)",
+          description:
+            "Tekst w prawej kolumnie. Na dużych ekranach ten tekst będzie po prawej stronie.",
+          type: "portableTextWithHeadings",
+        }),
+      ],
+      preview: {
+        select: {
+          title: "heading3",
         },
         prepare({ title }) {
           return {
@@ -129,10 +166,10 @@ export const sectionContent = defineType({
       type: "object",
       fields: [
         defineField({
-          name: "name",
-          title: "Nazwa Sekcji",
+          name: "heading3",
+          title: "Nagłówek H3",
           type: "string",
-          description: "Opcjonalna nazwa sekcji do odniesienia.",
+          description: "Opcjonalny nagłówek H3 dla tej sekcji.",
         }),
         defineField({
           name: "images1",
@@ -207,7 +244,7 @@ export const sectionContent = defineType({
       ],
       preview: {
         select: {
-          title: "name",
+          title: "heading3",
           media: "images1.0",
         },
         prepare({ title, media }) {
@@ -224,10 +261,10 @@ export const sectionContent = defineType({
       type: "object",
       fields: [
         defineField({
-          name: "name",
-          title: "Nazwa Sekcji",
+          name: "heading3",
+          title: "Nagłówek H3",
           type: "string",
-          description: "Opcjonalna nazwa sekcji do odniesienia.",
+          description: "Opcjonalny nagłówek H3 dla tej sekcji.",
         }),
         defineField({
           name: "image",
@@ -246,7 +283,7 @@ export const sectionContent = defineType({
       ],
       preview: {
         select: {
-          title: "name",
+          title: "heading3",
           media: "image",
         },
         prepare({ title, media }) {
@@ -263,10 +300,10 @@ export const sectionContent = defineType({
       type: "object",
       fields: [
         defineField({
-          name: "name",
-          title: "Nazwa Sekcji",
+          name: "heading3",
+          title: "Nagłówek H3",
           type: "string",
-          description: "Opcjonalna nazwa sekcji do odniesienia.",
+          description: "Opcjonalny nagłówek H3 dla tej sekcji.",
         }),
         defineField({
           name: "image",
@@ -285,7 +322,7 @@ export const sectionContent = defineType({
       ],
       preview: {
         select: {
-          title: "name",
+          title: "heading3",
           media: "image",
         },
         prepare({ title, media }) {
