@@ -17,7 +17,10 @@ export const services = defineType({
   ],
 });
 
+// ================================
 // Services page header section
+// ================================
+
 export const servicesHeader = defineType({
   name: "servicesHeader",
   title: "Nagłówek strony usług",
@@ -145,7 +148,7 @@ export const servicesList = defineType({
           title: "Tytuł Usługi",
           type: "internationalizedArrayString",
           description:
-            "Tytuł indywidualnej usługi, np. 'Badania konserwatorskie i ekspertyzy'.",
+            "Nazwa usługi, np. 'Badania konserwatorskie i ekspertyzy'.",
           validation: (Rule) =>
             Rule.required().error("Pole tytułu usługi jest wymagane."),
         }),
@@ -177,7 +180,7 @@ export const servicesList = defineType({
                   name: "title",
                   title: "Tytuł Akcji",
                   type: "internationalizedArrayString",
-                  description: "Tytuł działania, np. 'Ocena stanu zabytku'.",
+                  description: "Nazwa działania, np. 'Ocena stanu zabytku'.",
                   validation: (Rule) =>
                     Rule.required().error("Pole tytułu akcji jest wymagane."),
                 }),
@@ -186,7 +189,7 @@ export const servicesList = defineType({
                   title: "Treść Akcji",
                   type: "internationalizedArrayText",
                   description:
-                    "Treść lub szczegóły działania, np. 'Badania in situ w celu oceny stopnia zniszczenia...'.",
+                    "Szczegóły dotyczące działania, np. 'Badania in situ w celu oceny stopnia zniszczenia...'.",
                   validation: (Rule) =>
                     Rule.required().error("Pole treści akcji jest wymagane."),
                 }),
@@ -197,7 +200,7 @@ export const servicesList = defineType({
                 },
                 prepare({ title }) {
                   return {
-                    title: title || "Brak tytułu",
+                    title: title || "Brak tytułu akcji",
                   };
                 },
               },
@@ -210,7 +213,7 @@ export const servicesList = defineType({
           title: "Krótki Opis Usługi na stronie głównej",
           type: "internationalizedArrayText",
           description:
-            "Krótki opis usługi wyświetlany w sekcji usług na stronie głównej.",
+            "Skrócony opis usługi wyświetlany w sekcji usług na stronie głównej, np. 'Zapewniamy kompleksowe badania w celu ochrony zabytków.'.",
           validation: (Rule) =>
             Rule.required().error("Pole krótkiego opisu usługi jest wymagane."),
         }),
@@ -239,7 +242,7 @@ export const servicesList = defineType({
             }),
           ],
           description:
-            "Dodaj obrazy związane z tą usługą. Jeśli dodasz więcej niż jeden obraz, zostanie utworzony komponent karuzeli obrazów lub galerii.",
+            "Obrazy ilustrujące usługę. Dodanie więcej niż jednego obrazu utworzy galerię lub karuzelę obrazów.",
         }),
       ],
       preview: {
@@ -249,7 +252,7 @@ export const servicesList = defineType({
         },
         prepare({ title, media }) {
           return {
-            title: title || "Brak tytułu",
+            title: title || "Brak tytułu usługi",
             media,
           };
         },
