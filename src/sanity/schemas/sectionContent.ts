@@ -12,6 +12,12 @@ export const sectionContent = defineType({
       type: "object",
       fields: [
         defineField({
+          name: "contentBlock",
+          title: "Nazwa Bloku Treści",
+          type: "string",
+          description: "Opcjonalna nazwa bloku treści do odniesienia.",
+        }),
+        defineField({
           name: "heading3",
           title: "Nagłówek H3",
           type: "string",
@@ -35,11 +41,23 @@ export const sectionContent = defineType({
                 defineField({
                   name: "caption",
                   type: "string",
-                  title: "Opis",
+                  title: "Podpis Obrazu",
                   description:
-                    "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i poprawić SEO.",
+                    "Opcjonalny podpis dla obrazu. Ułatwia zrozumienie kontekstu obrazu i poprawia SEO.",
                 }),
               ],
+              preview: {
+                select: {
+                  title: "caption ",
+                  media: "image",
+                },
+                prepare({ title, media }) {
+                  return {
+                    title: title || "Brak podpisu pod obrazem",
+                    media,
+                  };
+                },
+              },
             },
           ],
         }),
@@ -82,22 +100,32 @@ export const sectionContent = defineType({
       ],
       preview: {
         select: {
-          title: "heading3",
+          title: "contentBlock",
           media: "images.0",
         },
         prepare({ title, media }) {
           return {
-            title: title || "Brak przypisanego nagłówka H3",
+            title: title || "Blok Treści Bez Nazwy",
             media,
           };
         },
       },
     },
+    // ================================
+    // textAndImageGallery
+    // ================================
+
     {
       name: "textWrap",
       title: "Tekst Zawijany",
       type: "object",
       fields: [
+        defineField({
+          name: "contentBlock",
+          title: "Nazwa Bloku Treści",
+          type: "string",
+          description: "Opcjonalna nazwa bloku treści do odniesienia.",
+        }),
         defineField({
           name: "heading3",
           title: "Nagłówek H3",
@@ -114,20 +142,31 @@ export const sectionContent = defineType({
       ],
       preview: {
         select: {
-          title: "heading3",
+          title: "contentBlock",
         },
         prepare({ title }) {
           return {
-            title: title || "Sekcja Bez Nazwy",
+            title: title || "Blok Treści Bez Nazwy",
           };
         },
       },
     },
+
+    // ================================
+    // textAndText
+    // ================================
+
     {
       name: "textAndText",
       title: "Tekst",
       type: "object",
       fields: [
+        defineField({
+          name: "contentBlock",
+          title: "Nazwa Bloku Treści",
+          type: "string",
+          description: "Opcjonalna nazwa bloku treści do odniesienia.",
+        }),
         defineField({
           name: "heading3",
           title: "Nagłówek H3",
@@ -151,20 +190,31 @@ export const sectionContent = defineType({
       ],
       preview: {
         select: {
-          title: "heading3",
+          title: "contentBlock",
         },
         prepare({ title }) {
           return {
-            title: title || "Sekcja Bez Nazwy",
+            title: title || "Blok Treści Bez Nazwy",
           };
         },
       },
     },
+
+    // ================================
+    // imageGalleryAndImageGallery
+    // ================================
+
     {
       name: "imageGalleryAndImageGallery",
       title: "Galeria Obrazów i Galeria Obrazów",
       type: "object",
       fields: [
+        defineField({
+          name: "contentBlock",
+          title: "Nazwa Bloku Treści",
+          type: "string",
+          description: "Opcjonalna nazwa bloku treści do odniesienia.",
+        }),
         defineField({
           name: "heading3",
           title: "Nagłówek H3",
@@ -182,11 +232,23 @@ export const sectionContent = defineType({
                 defineField({
                   name: "caption",
                   type: "string",
-                  title: "Opis",
+                  title: "Podpis Obrazu",
                   description:
-                    "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i poprawić SEO.",
+                    "Opcjonalny podpis dla obrazu. Ułatwia zrozumienie kontekstu obrazu i poprawia SEO.",
                 }),
               ],
+              preview: {
+                select: {
+                  title: "caption ",
+                  media: "image",
+                },
+                prepare({ title, media }) {
+                  return {
+                    title: title || "Brak podpisu pod obrazem",
+                    media,
+                  };
+                },
+              },
             },
           ],
         }),
@@ -217,11 +279,23 @@ export const sectionContent = defineType({
                 defineField({
                   name: "caption",
                   type: "string",
-                  title: "Opis",
+                  title: "Podpis Obrazu",
                   description:
-                    "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i poprawić SEO.",
+                    "Opcjonalny podpis dla obrazu. Ułatwia zrozumienie kontekstu obrazu i poprawia SEO.",
                 }),
               ],
+              preview: {
+                select: {
+                  title: "caption ",
+                  media: "image",
+                },
+                prepare({ title, media }) {
+                  return {
+                    title: title || "Brak podpisu pod obrazem",
+                    media,
+                  };
+                },
+              },
             },
           ],
         }),
@@ -244,23 +318,34 @@ export const sectionContent = defineType({
       ],
       preview: {
         select: {
-          title: "heading3",
+          title: "contentBlock",
           media: "images1.0",
         },
         prepare({ title, media }) {
           return {
-            title: title || "Sekcja Bez Nazwy",
+            title: title || "Blok Treści Bez Nazwy",
             media,
           };
         },
       },
     },
+
+    // ================================
+    // fullWidthImage
+    // ================================
+
     {
       name: "fullWidthImage",
       title: "Obraz Na Całą Szerokość",
       type: "object",
       fields: [
         defineField({
+          name: "contentBlock",
+          title: "Nazwa Bloku Treści",
+          type: "string",
+          description: "Opcjonalna nazwa bloku treści do odniesienia.",
+        }),
+        defineField({
           name: "heading3",
           title: "Nagłówek H3",
           type: "string",
@@ -274,32 +359,55 @@ export const sectionContent = defineType({
             defineField({
               name: "caption",
               type: "string",
-              title: "Opis",
+              title: "Podpis Obrazu",
               description:
                 "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i poprawić SEO.",
             }),
           ],
+          preview: {
+            select: {
+              title: "caption ",
+              media: "image",
+            },
+            prepare({ title, media }) {
+              return {
+                title: title || "Brak podpisu pod obrazem",
+                media,
+              };
+            },
+          },
         }),
       ],
       preview: {
         select: {
-          title: "heading3",
+          title: "contentBlock",
           media: "image",
         },
         prepare({ title, media }) {
           return {
-            title: title || "Sekcja Bez Nazwy",
+            title: title || "Blok Treści Bez Nazwy",
             media,
           };
         },
       },
     },
+
+    // ================================
+    // standardImage
+    // ================================
+
     {
       name: "standardImage",
       title: "Obraz Standardowy",
       type: "object",
       fields: [
         defineField({
+          name: "contentBlock",
+          title: "Nazwa Bloku Treści",
+          type: "string",
+          description: "Opcjonalna nazwa bloku treści do odniesienia.",
+        }),
+        defineField({
           name: "heading3",
           title: "Nagłówek H3",
           type: "string",
@@ -313,21 +421,33 @@ export const sectionContent = defineType({
             defineField({
               name: "caption",
               type: "string",
-              title: "Opis",
+              title: "Podpis Obrazu",
               description:
                 "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i poprawić SEO.",
             }),
           ],
+          preview: {
+            select: {
+              title: "caption ",
+              media: "image",
+            },
+            prepare({ title, media }) {
+              return {
+                title: title || "Brak podpisu pod obrazem",
+                media,
+              };
+            },
+          },
         }),
       ],
       preview: {
         select: {
-          title: "heading3",
+          title: "contentBlock ",
           media: "image",
         },
         prepare({ title, media }) {
           return {
-            title: title || "Sekcja Bez Nazwy",
+            title: title || "Blok Treści Bez Nazwy",
             media,
           };
         },
