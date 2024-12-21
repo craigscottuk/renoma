@@ -166,7 +166,7 @@ export const ourHistory = defineType({
     defineField({
       name: "title",
       title: "Tytuł sekcji",
-      description: "Tytuł sekcji, np. 'Nasza historia'.",
+      description: "Główny tytuł sekcji, np. 'Nasza historia'.",
       type: "internationalizedArrayString",
       validation: (Rule) => Rule.required(),
     }),
@@ -175,7 +175,7 @@ export const ourHistory = defineType({
       name: "text",
       title: "Tekst sekcji",
       description:
-        "Tekst sekcji, np. 'Nasza historia to lata wyzwań i sukcesów....'.",
+        "Treść wprowadzająca do sekcji, np. 'Nasza historia to lata wyzwań i sukcesów.'.",
       type: "internationalizedArrayText",
       validation: (Rule) => Rule.required(),
     }),
@@ -185,7 +185,7 @@ export const ourHistory = defineType({
       title: "Oś czasu",
       type: "array",
       description:
-        "Dodaj kluczowe wydarzenia na osi czasu, aby przedstawić historię lub osiągnięcia w logicznym porządku.",
+        "Lista kluczowych wydarzeń w kolejności chronologicznej, przedstawiająca historię lub osiągnięcia.",
       of: [
         defineField({
           name: "timelineItem",
@@ -196,25 +196,25 @@ export const ourHistory = defineType({
               name: "year",
               title: "Rok",
               type: "number",
-              description: "Dodaj rok dla tego wydarzenia.",
+              description: "Rok, w którym wydarzenie miało miejsce.",
               validation: (Rule) =>
                 Rule.required()
                   .min(1900)
                   .max(new Date().getFullYear())
                   .integer()
                   .error(
-                    "Rok musi być w formacie YYYY i pomiędzy 1900 a bieżącym rokiem.",
+                    "Rok musi być w formacie YYYY i znajdować się pomiędzy 1900 a bieżącym rokiem.",
                   ),
             }),
             defineField({
               name: "content",
-              title: "Treść",
+              title: "Treść wydarzenia",
               type: "object",
-              description: "Dodaj treść wydarzenia w wybranych językach.",
+              description: "Opis wydarzenia w dostępnych językach.",
               fields: [
-                { name: "pl", title: "PL", type: "basicText" },
-                { name: "en", title: "EN", type: "basicText" },
-                { name: "de", title: "DE", type: "basicText" },
+                { name: "pl", title: "Polski", type: "basicText" },
+                { name: "en", title: "Angielski", type: "basicText" },
+                { name: "de", title: "Niemiecki", type: "basicText" },
               ],
             }),
             defineField({
@@ -222,7 +222,7 @@ export const ourHistory = defineType({
               title: "Obrazy",
               type: "array",
               description:
-                "Dodaj obrazy ilustrujące wydarzenie wraz z podpisami.",
+                "Obrazy ilustrujące wydarzenie. Dodaj podpisy, aby uzupełnić kontekst.",
               of: [
                 defineField({
                   name: "imageItem",
@@ -231,22 +231,23 @@ export const ourHistory = defineType({
                   fields: [
                     defineField({
                       name: "src",
-                      title: "Źródło obrazu",
+                      title: "Obraz",
                       type: "image",
-                      description: "Dodaj obraz ilustrujący to wydarzenie.",
+                      description: "Obraz ilustrujący wydarzenie.",
                       options: {
                         hotspot: true,
                       },
                     }),
                     defineField({
                       name: "caption",
-                      title: "Podpis",
+                      title: "Podpis obrazu",
                       type: "internationalizedArrayString",
-                      description: "Dodaj podpis do obrazu.",
+                      description:
+                        "Krótki tekst opisujący obraz, aby uzupełnić kontekst i poprawić SEO.",
                     }),
                     defineField({
                       name: "aspectRatio",
-                      title: "Proporcje Obrazu",
+                      title: "Proporcje obrazu",
                       type: "string",
                       options: {
                         list: [
@@ -258,7 +259,7 @@ export const ourHistory = defineType({
                         layout: "radio",
                       },
                       initialValue: "none",
-                      description: "Wybierz proporcje obrazów w tej galerii.",
+                      description: "Określ proporcje obrazu w galerii.",
                     }),
                   ],
                   preview: {
@@ -268,7 +269,7 @@ export const ourHistory = defineType({
                     },
                     prepare({ title, media }) {
                       return {
-                        title: title || "Brak podpisu",
+                        title: title || "Brak podpisu obrazu",
                         media,
                       };
                     },
@@ -283,7 +284,7 @@ export const ourHistory = defineType({
             },
             prepare({ title }) {
               return {
-                title: title || "Brak tytułu",
+                title: title ? `Rok: ${title}` : "Brak roku",
               };
             },
           },
