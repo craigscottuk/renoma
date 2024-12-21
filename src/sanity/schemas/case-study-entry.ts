@@ -150,12 +150,12 @@ export const caseStudyEntry = defineType({
     }),
 
     // ================================
-    // 01. Rys Historyczny (lub inny)
+    // 01. Rys Historyczny
     // ================================
 
     defineField({
       name: "sectionOne",
-      title: "01. Rys Historyczny (lub inny)",
+      title: "01. Rys Historyczny (lub własny)",
       type: "object",
       group: "contentSection",
       fields: [
@@ -164,6 +164,7 @@ export const caseStudyEntry = defineType({
           title: "Tytuł Sekcji",
           type: "string",
           initialValue: "Rys historyczny",
+          description: "Domyślny tytuł sekcji, który można zmienić na własny.",
         },
         {
           name: "content",
@@ -174,12 +175,12 @@ export const caseStudyEntry = defineType({
     }),
 
     // ================================
-    // 02. Stan zachowania (lub inny)
+    // 02. Stan zachowania
     // ================================
 
     defineField({
       name: "sectionTwo",
-      title: "02. Stan zachowania (lub inny)",
+      title: "02. Stan zachowania (lub własny)",
       type: "object",
       group: "contentSection",
       fields: [
@@ -188,6 +189,108 @@ export const caseStudyEntry = defineType({
           title: "Tytuł Sekcji",
           type: "string",
           initialValue: "Stan zachowania",
+          description: "Domyślny tytuł sekcji, który można zmienić na własny.",
+        },
+        {
+          name: "content",
+          title: "Treść Sekcji",
+          type: "sectionContent",
+        },
+      ],
+    }),
+
+    // ================================
+    // 03. Założenia konserwatorskie
+    // ================================
+
+    defineField({
+      name: "sectionThree",
+      title: "03. Założenia konserwatorskie (lub własny)",
+      type: "object",
+      group: "contentSection",
+      fields: [
+        {
+          name: "title",
+          title: "Tytuł Sekcji",
+          type: "string",
+          initialValue: "Założenia konserwatorskie",
+          description: "Domyślny tytuł sekcji, który można zmienić na własny.",
+        },
+        {
+          name: "content",
+          title: "Treść Sekcji",
+          type: "sectionContent",
+        },
+      ],
+    }),
+
+    // ================================
+    // 04. Przebieg prac konserwatorskich i restauratorskich oraz budowlanych
+    // ================================
+
+    defineField({
+      name: "sectionFour",
+      title:
+        "04. Przebieg prac konserwatorskich i restauratorskich oraz budowlanych",
+      type: "object",
+      group: "contentSection",
+      fields: [
+        {
+          name: "title",
+          title: "Tytuł Sekcji",
+          type: "string",
+          initialValue:
+            "Przebieg prac konserwatorskich i restauratorskich oraz budowlanych",
+          description: "Domyślny tytuł sekcji, który można zmienić na własny.",
+        },
+        {
+          name: "content",
+          title: "Treść Sekcji",
+          type: "sectionContent",
+        },
+      ],
+    }),
+
+    // ================================
+    // 05. Efekty prac konserwatorskich i restauratorskich oraz budowlanych
+
+    // ================================
+
+    defineField({
+      name: "sectionFive",
+      title:
+        "05. Efekty prac konserwatorskich i restauratorskich oraz budowlanych",
+      type: "object",
+      group: "contentSection",
+      fields: [
+        {
+          name: "title",
+          title: "Tytuł Sekcji",
+          type: "string",
+          initialValue:
+            "Efekty prac konserwatorskich i restauratorskich oraz budowlanych",
+          description: "Domyślny tytuł sekcji, który można zmienić na własny.",
+        },
+        {
+          name: "content",
+          title: "Treść Sekcji",
+          type: "sectionContent",
+        },
+      ],
+    }),
+
+    defineField({
+      name: "sectionSix",
+      title: "06. Wybrana bibliografia",
+      type: "object",
+      group: "contentSection",
+      fields: [
+        {
+          name: "title",
+          title: "Tytuł Sekcji",
+          type: "string",
+          initialValue: "Wybrana bibliografia",
+          description: "Domyślny tytuł sekcji, który można zmienić na własny.",
         },
         {
           name: "content",
