@@ -34,7 +34,7 @@ const projectCardData = [
     timeframe: "Styczeń 2024 – Grudzień 2024",
     description:
       "Stabilizacja konstrukcji i usunięcie czynników powodujących destrukcję zabytkowej substancji. Prace obejmowały remont więźby dachowej, wymianę pokrycia oraz konserwację oryginalnego wątku ceglanego i detali kamiennych.",
-    imageUrl: "/placeholder.svg?height=300&width=400",
+    imageUrl: "/basteja.webp",
     slug: "konserwacja-baszty-ferbera",
   },
   {
@@ -44,7 +44,7 @@ const projectCardData = [
     timeframe: "Od stycznia 2024 r.",
     description:
       "Jeden z najważniejszych kościołów bezwieżowych na terenie dawnego państwa krzyżackiego. Prace koncentrują się głównie na usunięciu przyczyn zawilgocenia oraz konserwacji wątku ceglanego i detali kamiennych.",
-    imageUrl: "/placeholder.svg?height=300&width=400",
+    imageUrl: "/fallback-image.svg",
     slug: "konserwacja-kosciola-w-rogowie",
   },
   {
@@ -54,7 +54,7 @@ const projectCardData = [
     timeframe: "Od 2018 r.",
     description:
       "Jedna z najstarszych świątyń miasta. Prace obejmują renowację gotyckich malowideł wewnątrz i zabytkowej elewacji, z celem przywrócenia strukturalnej stabilności i historycznego wyglądu.",
-    imageUrl: "/placeholder.svg?height=300&width=400",
+    imageUrl: "/fallback-image.svg",
     slug: "konserwacja-kosciola-farnego-w-grudziadzu",
   },
 ];
@@ -114,7 +114,11 @@ export default async function Realizacje({ params: { locale } }: Props) {
       )} */}
 
       {/* List of Projects / Case Studies */}
-      <ProjectCard projectCardData={projectCardData} />
+      <ProjectCard
+        projectCardData={projectCardData}
+        paddingY="py-36"
+        colorScheme="zincLight"
+      />
     </>
   );
 }
