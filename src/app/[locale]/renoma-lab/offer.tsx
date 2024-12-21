@@ -93,7 +93,7 @@ export default function LabOffer({
                     <CardHeader>
                       <div className="flex items-center space-x-2">
                         <IconComponent className="h-6 w-6 text-gold-800" />
-                        <CardTitle className="font-regular text-[1.7rem] leading-tight tracking-[-0.015em]">
+                        <CardTitle className="text-[1.6rem] leading-tight tracking-[-0.015em]">
                           {offer.title}
                         </CardTitle>
                       </div>
