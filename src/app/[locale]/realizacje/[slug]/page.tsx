@@ -45,6 +45,42 @@ const QUERY = `
       }
     }
   },
+  sectionThree {
+    title,
+    content[]{
+      ...,
+      _type == "textAndImageGallery" => {
+        layout
+      }
+    }
+  },
+  sectionFour {
+    title,
+    content[]{
+      ...,
+      _type == "textAndImageGallery" => {
+        layout
+      }
+    }
+  },
+  sectionFive {
+    title,
+    content[]{
+      ...,
+      _type == "textAndImageGallery" => {
+        layout
+      }
+    }
+  },
+  sectionSix {
+    title,
+    content[]{
+      ...,
+      _type == "textAndImageGallery" => {
+        layout
+      }
+    }
+  },
   "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{
     title,
     slug,
@@ -82,6 +118,22 @@ type Project = {
     content: CaseStudySectionContent[];
   };
   sectionTwo: {
+    title: string;
+    content: CaseStudySectionContent[];
+  };
+  sectionThree: {
+    title: string;
+    content: CaseStudySectionContent[];
+  };
+  sectionFour: {
+    title: string;
+    content: CaseStudySectionContent[];
+  };
+  sectionFive: {
+    title: string;
+    content: CaseStudySectionContent[];
+  };
+  sectionSix: {
     title: string;
     content: CaseStudySectionContent[];
   };
@@ -130,6 +182,10 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
     details,
     sectionOne,
     sectionTwo,
+    sectionThree,
+    sectionFour,
+    sectionFive,
+    sectionSix,
     summary,
     title,
     _translations,
@@ -139,43 +195,72 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
     <>
       {translation || project.slug.current === slug ? (
         <>
-          <CaseStudyHeaderSection
-            title={title}
-            summary={summary}
-            image={image?.image}
-            imageAlt={image?.imageAlt}
-          />
-          <ProjectDetailsSection
-            details={
-              project.details
-                ? [
-                    {
-                      label: "Lokalizacja",
-                      value: details.lokalizacja,
-                    },
-                    { label: "Status", value: details.status },
-                    {
-                      label: "Czas trwania",
-                      value: details.czasTrwania,
-                    },
-                    { label: "Typ obiektu", value: details.typObiektu },
-                    { label: "Rola", value: details.rola },
-                    { label: "Zakres prac", value: details.zakresPrac },
-                  ]
-                : []
-            }
-          />
-          {/* 01. Rys Historyczny (lub inny) */}
-          <ContentSection
-            title={sectionOne.title}
-            content={sectionOne.content}
-          />
-
-          {/* 02. Stan zachowania (lub inny) */}
-          <ContentSection
-            title={sectionTwo.title}
-            content={sectionTwo.content}
-          />
+          {title && summary && image && (
+            <CaseStudyHeaderSection
+              title={title}
+              summary={summary}
+              image={image?.image}
+              imageAlt={image?.imageAlt}
+            />
+          )}
+          {details && (
+            <ProjectDetailsSection
+              details={
+                project.details
+                  ? [
+                      {
+                        label: "Lokalizacja",
+                        value: details.lokalizacja,
+                      },
+                      { label: "Status", value: details.status },
+                      {
+                        label: "Czas trwania",
+                        value: details.czasTrwania,
+                      },
+                      { label: "Typ obiektu", value: details.typObiektu },
+                      { label: "Rola", value: details.rola },
+                      { label: "Zakres prac", value: details.zakresPrac },
+                    ]
+                  : []
+              }
+            />
+          )}
+          {sectionOne?.content?.length > 0 && (
+            <ContentSection
+              title={sectionOne.title}
+              content={sectionOne.content}
+            />
+          )}
+          {sectionTwo?.content?.length > 0 && (
+            <ContentSection
+              title={sectionTwo.title}
+              content={sectionTwo.content}
+            />
+          )}
+          {sectionThree?.content?.length > 0 && (
+            <ContentSection
+              title={sectionThree.title}
+              content={sectionThree.content}
+            />
+          )}
+          {sectionFour?.content?.length > 0 && (
+            <ContentSection
+              title={sectionFour.title}
+              content={sectionFour.content}
+            />
+          )}
+          {sectionFive?.content?.length > 0 && (
+            <ContentSection
+              title={sectionFive.title}
+              content={sectionFive.content}
+            />
+          )}
+          {sectionSix?.content?.length > 0 && (
+            <ContentSection
+              title={sectionSix.title}
+              content={sectionSix.content}
+            />
+          )}
         </>
       ) : (
         <NoTranslationMessage locale={locale} translations={_translations} />
