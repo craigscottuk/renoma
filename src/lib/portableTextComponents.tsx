@@ -9,12 +9,14 @@ const portableTextComponents: PortableTextComponents = {
       <p className="mb-4 text-[1.1rem]">{children || "No content provided"}</p>
     ),
     h3: ({ children }) => (
-      <h3 className="text-dullGold mb-8 block font-bolder text-[1.4rem]">
+      <h3 className="mb-8 font-bolder text-[1.45rem] text-dullGold">
         {children}
       </h3>
     ),
     h4: ({ children }) => (
-      <h4 className="mb-6 text-[1.1rem] font-bold text-zinc-950">{children}</h4>
+      <h4 className="mb-3 mt-1 text-[1.1rem] font-bold text-zinc-950">
+        {children}
+      </h4>
     ),
     // Fallback for unsupported block styles
     default: ({ children, value }) => (
@@ -26,7 +28,7 @@ const portableTextComponents: PortableTextComponents = {
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="list-disc pb-4 pl-6">{children}</ul>
+      <ul className="mb-8 list-disc pl-6">{children}</ul>
     ),
     number: ({ children }) => <ol className="list-decimal pl-4">{children}</ol>,
     // Fallback for unsupported list types
