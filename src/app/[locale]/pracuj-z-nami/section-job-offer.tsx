@@ -25,7 +25,7 @@ export default function SectionJobOffer({
   jobOffers,
 }: SectionJobOfferProps) {
   return (
-    <section className={clsx("mx-auto bg-white", paddingY)}>
+    <section className={clsx("mx-auto bg-zinc-200", paddingY)}>
       <MaxWidthWrapper>
         <div className="grid items-center gap-12 md:grid-cols-2 md:gap-24">
           {/* Left Column */}
@@ -38,7 +38,7 @@ export default function SectionJobOffer({
           />
         </div>
 
-        <div className="container mx-auto px-4 py-8">
+        <div className="mx-auto px-4 py-8">
           {jobOffers.map((job, index) => (
             <JobOfferCard key={index} job={job} />
           ))}
