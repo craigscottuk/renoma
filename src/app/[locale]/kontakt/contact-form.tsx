@@ -26,6 +26,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import AnimatedLink from "@/components/animated-link";
+import { useLocale } from "next-intl";
 
 interface ContactFormProps {
   color?: "light" | "dark";
@@ -43,7 +45,16 @@ export default function ContactForm({
   const darkCheckboxClassNames = "border-white";
   const darkButtonClassNames = " bg-zinc-900 hover:text-zinc-950 px-6 py-5";
 
+  const lightInputClassNames =
+    "border-zinc-200 bg-zinc-100 text-zinc-800 ring-offset-zinc-200 focus-visible:ring-zinc-800 text-[1.1rem]";
+  const lightSelectContentClassNames =
+    "border-zinc-300 bg-zinc-100 text-zinc-800 text-[1.1rem]";
+  const lightButtonClassNames =
+    " bg-zinc-100 hover:text-zinc-950 px-6 py-5 text-[1.1rem]";
+  const lightCheckboxClassNames = "border-zinc-900 text-[1.1rem]";
+
   const t = useTranslations();
+  const locale = useLocale();
 
   // Define schema for form validation
   const formSchema = z.object({
@@ -82,12 +93,16 @@ export default function ContactForm({
     },
   });
 
-  const inputClassNames = color === "dark" ? darkInputClassNames : "";
+  const inputClassNames =
+    color === "dark" ? darkInputClassNames : lightInputClassNames;
   const selectContentClassNames =
-    color === "dark" ? darkSelectContentClassNames : "";
+    color === "dark"
+      ? darkSelectContentClassNames
+      : lightSelectContentClassNames;
   const checkboxContentClassNames =
-    color === "dark" ? darkCheckboxClassNames : "";
-  const buttonClassNames = color === "dark" ? darkButtonClassNames : "";
+    color === "dark" ? darkCheckboxClassNames : lightCheckboxClassNames;
+  const buttonClassNames =
+    color === "dark" ? darkButtonClassNames : lightButtonClassNames;
 
   async function onSubmit(values: FormData) {
     setIsLoading(true);
@@ -225,7 +240,7 @@ export default function ContactForm({
                   />
                 </FormControl>
                 <FormMessage aria-live="assertive" />
-                <p className="text-xs text-zinc-400">
+                <p className="text-xs text-zinc-600">
                   {t("contact-form.validation.messageMax")}
                 </p>
               </FormItem>
@@ -246,18 +261,53 @@ export default function ContactForm({
                   />
                 </FormControl>
                 <div className="space-y-1 leading-none">
-                  <FormLabel className="text-balance text-[1.1rem] leading-relaxed md:text-[1.1rem]">
-                    {/* {t.rich("contact-form.privacy", {
-                      policy: (chunks) => (
-                        <Link
+                  <FormLabel className="text-balance text-[1rem] leading-relaxed md:text-[1rem]">
+                    {locale === "de" ? (
+                      <>
+                        Durch die Angabe Ihrer persönlichen Daten akzeptieren
+                        Sie unsere DSGVO-Richtlinie und die Art und Weise, wie
+                        Ihre Daten in unserer{" "}
+                        <AnimatedLink
                           href="/polityka-prywatnosci"
                           target="_blank"
-                          className="underline"
+                          className="text-base"
+                          showArrow={false}
                         >
-                          {chunks}
-                        </Link>
-                      ),
-                    })} */}
+                          Datenschutzerklärung
+                        </AnimatedLink>{" "}
+                        verarbeitet werden.
+                      </>
+                    ) : locale === "en" ? (
+                      <>
+                        By providing your personal data, you accept our GDPR
+                        policy and the way your data is processed as described
+                        in our{" "}
+                        <AnimatedLink
+                          href="/polityka-prywatnosci"
+                          target="_blank"
+                          className="text-base"
+                          showArrow={false}
+                        >
+                          privacy policy
+                        </AnimatedLink>
+                        .
+                      </>
+                    ) : (
+                      <>
+                        Podając swoje dane osobowe, akceptujesz naszą politykę
+                        RODO oraz sposób przetwarzania Twoich danych opisany w
+                        naszej{" "}
+                        <AnimatedLink
+                          href="/polityka-prywatnosci"
+                          target="_blank"
+                          className="text-base"
+                          showArrow={false}
+                        >
+                          polityce prywatności
+                        </AnimatedLink>
+                        .
+                      </>
+                    )}
                   </FormLabel>
                   <FormMessage aria-live="assertive" />
                 </div>
