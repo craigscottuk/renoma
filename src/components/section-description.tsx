@@ -40,21 +40,19 @@ export default function SectionDescription({
   const createMotionVariants = (additionalDelay = 0): Variants => ({
     hidden: {
       opacity: 0,
-      filter:
-        motionPreset === "blur-right" || motionPreset === "blur-left"
-          ? "blur(2px)"
-          : "blur(2px)",
-      x:
-        animationDirection === "right"
+      filter: animateOnView ? "blur(2px)" : "none",
+      x: animateOnView
+        ? animationDirection === "right"
           ? 3
           : animationDirection === "left"
             ? -3
-            : 0,
-      y: animationDirection === "up" ? 3 : 0,
+            : 0
+        : 0,
+      y: animateOnView && animationDirection === "up" ? 3 : 0,
     },
     visible: {
       opacity: 1,
-      filter: "blur(0px)",
+      filter: animateOnView ? "blur(0px)" : "none",
       x: 0,
       y: 0,
       transition: { duration: 0.5, delay: delay + additionalDelay },
