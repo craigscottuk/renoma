@@ -23,6 +23,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { PortableText, PortableTextBlock } from "next-sanity";
 import { MapPin, Clock, ChevronDown, ChevronUp } from "lucide-react";
 import { portableTextComponents } from "@/lib/portableTextComponents";
+import clsx from "clsx";
 
 export interface JobOffer {
   jobTitle: string;
@@ -34,19 +35,55 @@ export interface JobOffer {
   benefits: PortableTextBlock[];
 }
 
+const cardColorSchemes: Record<
+  string,
+  {
+    section: string;
+    card: string;
+    cardContent: string;
+    sectionTitle: "white" | "black";
+  }
+> = {
+  zincDark: {
+    section: "bg-zinc-900 text-zinc-50",
+    card: "border-zinc-700 bg-zinc-900 text-zinc-50",
+    cardContent: "text-zinc-100",
+    sectionTitle: "white",
+  },
+  zincLight: {
+    section: "text-zinc-950 bg-zinc-200",
+    card: "border-zinc-300 bg-zinc-100",
+    cardContent: "text-zinc-700",
+    sectionTitle: "black",
+  },
+  goldDark: {
+    section: "bg-gold-950 text-gold-50",
+    card: "border-gold-700 bg-gold-900 text-gold-50",
+    cardContent: "text-gold-200",
+    sectionTitle: "white",
+  },
+};
+
 export default function JobOfferCard({ job }: { job: JobOffer }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const selectedColorScheme = cardColorSchemes.zincLight;
+
   return (
-    <Card className="mb-6">
+    <Card className={clsx("mb-6", selectedColorScheme.card)}>
       <CardHeader>
         <div className="flex items-start justify-between">
           <div>
-            <CardTitle className="mb-2 text-xl font-bold">
+            <CardTitle className="mb-2 text-[1.6rem] leading-tight tracking-[-0.015em]">
               {job.jobTitle}
             </CardTitle>
-            <CardDescription className="mb-2 text-sm text-gray-500">
+            <CardDescription
+              className={clsx(
+                "mb-2 text-[1.1rem]",
+                selectedColorScheme.cardContent,
+              )}
+            >
               {job.jobDescription}
             </CardDescription>
           </div>
@@ -54,7 +91,12 @@ export default function JobOfferCard({ job }: { job: JobOffer }) {
             {job.jobType}
           </Badge>
         </div>
-        <div className="flex space-x-4 text-sm text-gray-500">
+        <div
+          className={clsx(
+            "flex space-x-4 text-[1.1rem]",
+            selectedColorScheme.cardContent,
+          )}
+        >
           <div className="flex items-center">
             <MapPin className="mr-1 h-4 w-4" />
             {job.jobLocation}
