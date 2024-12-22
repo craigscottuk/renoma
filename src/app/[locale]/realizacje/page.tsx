@@ -3,7 +3,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { client } from "@/sanity/client";
 import PageHeader from "@/components/page-header";
-import ProjectsList from "./projects-list";
+
 import { getTranslations } from "next-intl/server";
 import ProjectCard from "./project-card";
 
@@ -44,7 +44,7 @@ const projectCardData = [
     timeframe: "Od stycznia 2024 r.",
     description:
       "Jeden z najważniejszych kościołów bezwieżowych na terenie dawnego państwa krzyżackiego. Prace koncentrują się głównie na usunięciu przyczyn zawilgocenia oraz konserwacji wątku ceglanego i detali kamiennych.",
-    imageUrl: "/fallback-image.svg",
+    imageUrl: "/rogowo.webp",
     slug: "konserwacja-kosciola-w-rogowie",
   },
   {
@@ -54,7 +54,7 @@ const projectCardData = [
     timeframe: "Od 2018 r.",
     description:
       "Jedna z najstarszych świątyń miasta. Prace obejmują renowację gotyckich malowideł wewnątrz i zabytkowej elewacji, z celem przywrócenia strukturalnej stabilności i historycznego wyglądu.",
-    imageUrl: "/fallback-image.svg",
+    imageUrl: "/farnego.webp",
     slug: "konserwacja-kosciola-farnego-w-grudziadzu",
   },
 ];
@@ -88,11 +88,7 @@ export default async function Realizacje({ params: { locale } }: Props) {
   setRequestLocale(locale);
 
   // Fetch localized content from Sanity using locale from params
-  const { projects, caseStudyHeader } = await client.fetch(
-    QUERY,
-    { locale },
-    OPTIONS,
-  );
+  const { caseStudyHeader } = await client.fetch(QUERY, { locale }, OPTIONS);
 
   return (
     <>
