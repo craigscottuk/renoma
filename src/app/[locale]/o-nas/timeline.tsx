@@ -163,7 +163,7 @@ export default function Timeline({ events }: TimelineProps) {
                       toggleExpand(index);
                       scrollToEvent(index, event.year);
                     }}
-                    className="absolute left-0 h-[24px] w-[24px] cursor-pointer scroll-mt-40 rounded-full border-4 border-white bg-zinc-700 group-hover:bg-gold-800 md:left-1/2 md:-translate-x-1/2 md:pt-2 xl:pt-2"
+                    className="absolute left-0 h-[24px] w-[24px] cursor-pointer scroll-mt-40 rounded-full border-4 border-zinc-100 bg-zinc-600 group-hover:bg-gold-800 md:left-1/2 md:-translate-x-1/2 md:pt-2 xl:pt-2"
                   />
                   {/* Year event title */}
                   <button
@@ -171,7 +171,7 @@ export default function Timeline({ events }: TimelineProps) {
                       toggleExpand(index);
                       scrollToEvent(index, event.year);
                     }}
-                    className="flex items-center font-bolder text-4xl text-zinc-700 group-hover:text-gold-800"
+                    className="flex items-center font-bolder text-2xl text-zinc-600 group-hover:text-gold-800"
                     aria-expanded={isExpanded}
                     aria-controls={`content-${index}`}
                   >
