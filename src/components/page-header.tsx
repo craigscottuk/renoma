@@ -81,6 +81,8 @@ export default function PageHeader({
                 as="h1"
                 motionPreset="blur-left"
                 textColor={textColor}
+                animateOnView={true}
+                animationDirection="left"
               />
               <div
                 className={clsx(
@@ -89,10 +91,12 @@ export default function PageHeader({
                 )}
               >
                 {portableTextBlock && (
-                  <PortableText
-                    value={portableTextBlock}
-                    components={portableTextComponents}
-                  />
+                  <div className="motion-preset-fade-md">
+                    <PortableText
+                      value={portableTextBlock}
+                      components={portableTextComponents}
+                    />
+                  </div>
                 )}
               </div>
             </div>
@@ -141,7 +145,7 @@ export default function PageHeader({
                     label={label}
                     title={title}
                     as="h1"
-                    motionPreset="blur-left"
+                    motionPreset="blur-up"
                     textColor={textColor}
                   />
                   <SectionDescription
@@ -149,6 +153,7 @@ export default function PageHeader({
                     marginTop={true}
                     textStyle="text-balance"
                     textColor={textColor}
+                    motionPreset="blur-right"
                   />
                   {sectionButton && (
                     <CustomButton animateOnView={false}>
@@ -164,7 +169,7 @@ export default function PageHeader({
                       label={label}
                       title={title}
                       as="h1"
-                      motionPreset="blur-left"
+                      motionPreset="blur-up"
                       textColor={textColor}
                     />
                   </div>
@@ -174,6 +179,7 @@ export default function PageHeader({
                       marginTop={true}
                       textStyle="text-balance"
                       textColor={textColor}
+                      motionPreset="blur-left"
                     />
                   </div>
                 </>
