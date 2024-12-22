@@ -1,5 +1,5 @@
 import { Link } from "@/i18n/routing";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import clsx from "clsx";
 import { StaticRoutePaths } from "@/lib/routes";
 
@@ -13,6 +13,7 @@ interface AnimatedLinkProps {
   target?: "_self" | "_blank";
   rel?: string;
   underline?: boolean;
+  external?: boolean; // New prop
 }
 
 export default function AnimatedLink({
@@ -24,6 +25,7 @@ export default function AnimatedLink({
   showArrow = true,
   target = "_self",
   underline = true,
+  external = false, // New prop default value
 }: AnimatedLinkProps) {
   const lightClasses = "text-black";
   const darkClasses = "text-zinc-100";
@@ -43,7 +45,12 @@ export default function AnimatedLink({
             <span className="absolute inset-x-0 bottom-0 h-px w-0 bg-current transition-all group-hover:w-full" />
           )}
         </span>
-        {showArrow && <ArrowRight className="h-4 w-4" />}
+        {showArrow &&
+          (external ? (
+            <ExternalLink className="h-4 w-4" />
+          ) : (
+            <ArrowRight className="h-4 w-4" />
+          ))}
       </button>
     );
   }
@@ -52,7 +59,8 @@ export default function AnimatedLink({
     <Link
       href={href as StaticRoutePaths}
       className={commonClasses}
-      target={target}
+      target={external ? "_blank" : target} // Set target to _blank for external links
+      rel={external ? "noopener noreferrer" : undefined} // Set rel for external links
     >
       <span className="relative">
         {children}
@@ -60,7 +68,12 @@ export default function AnimatedLink({
           <span className="absolute inset-x-0 bottom-0 h-px w-0 bg-current transition-all group-hover:w-full" />
         )}
       </span>
-      {showArrow && <ArrowRight className="h-4 w-4" />}
+      {showArrow &&
+        (external ? (
+          <ExternalLink className="h-4 w-4" />
+        ) : (
+          <ArrowRight className="h-4 w-4" />
+        ))}
     </Link>
   );
 }
