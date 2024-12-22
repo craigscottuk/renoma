@@ -80,11 +80,10 @@ function ServicesCards({
                   <AccordionContent className="text-balance text-[1.1rem]">
                     <p className="mb-6">{item.shortDescription}</p>
                     <AnimatedLink
-                      underline={false}
-                      showArrow={false}
+                      showArrow={true}
                       href={`/uslugi#${item.title.toLowerCase().replace(/\s+/g, "-")}`}
                       variant="dark"
-                      className="mb-2 text-base text-zinc-300 underline decoration-1 underline-offset-8 hover:text-zinc-50 hover:underline"
+                      className="text-base"
                     >
                       {locale === "pl"
                         ? "Więcej"
