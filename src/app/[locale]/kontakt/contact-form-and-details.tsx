@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { Mail, MapPin, Phone, FileText } from "lucide-react";
 import ContactForm from "@/app/[locale]/kontakt/contact-form";
-import ExternalLink from "@/components/navigation/external-link";
+import AnimatedLink from "@/components/animated-link";
 
 type ContactDetailsSectionProps = {
   contactDetails: {
@@ -23,6 +23,10 @@ type ContactDetailsSectionProps = {
   paddingY?: string;
 };
 
+const paragraphClass = "text-zinc-700 text-[1rem] leading-relaxed";
+const headingClass =
+  "mb-3 font-regular text-[1.5rem] leading-tight tracking-[-0.015em] text-zinc-800";
+
 export default function ContactFormAndDetails({
   contactDetails,
   contactForm,
@@ -30,41 +34,18 @@ export default function ContactFormAndDetails({
 }: ContactDetailsSectionProps) {
   const t = useTranslations("kontakt-page");
 
-  // Define contact form color scheme
-  // as either 'light' or 'dark'
-  const color = "dark";
-
   return (
-    <section
-      className={clsx(
-        "text-[1.1rem] leading-relaxed",
-        {
-          "bg-zinc-900 text-zinc-100/90": color === "dark",
-          "bg-white text-zinc-950/90": color !== "dark",
-        },
-        paddingY,
-      )}
-    >
+    <section className={clsx("bg-zinc-200", paddingY)}>
       <MaxWidthWrapper>
-        <div className="grid gap-36 lg:grid-cols-2">
-          {/* Contact Form */}
-          <div className="max-w-xl">
-            <ContactForm
-              color={color}
-              contactFormSubjects={contactForm.contactFormSubjects.map(
-                (subject) => ({ label: subject }),
-              )}
-            />
-          </div>
-
+        <div className="grid gap-24 lg:grid-cols-2">
           {/* Contact Information in 2x2 Grid */}
-          <div className="grid w-[520px] grid-cols-2 gap-8 xl:place-self-end">
+          <div className="grid grid-cols-2">
             {/* Phone Section */}
             <div className="flex max-w-60 items-start gap-4">
               <Phone className="h-6 w-6" aria-hidden="true" />
               <div>
-                <h3 className="font-semibold">{t("phone")}</h3>
-                <p>{contactDetails.numerTelefonu}</p>
+                <h3 className={headingClass}>{t("phone")}</h3>
+                <p className={paragraphClass}>{contactDetails.numerTelefonu}</p>
               </div>
             </div>
 
@@ -72,8 +53,8 @@ export default function ContactFormAndDetails({
             <div className="flex max-w-60 items-start gap-4">
               <Mail className="h-6 w-6" aria-hidden="true" />
               <div>
-                <h3 className="font-semibold">{t("email")}</h3>
-                <p>{contactDetails.adresEmail}</p>
+                <h3 className={headingClass}>{t("email")}</h3>
+                <p className={paragraphClass}>{contactDetails.adresEmail}</p>
               </div>
             </div>
 
@@ -81,13 +62,20 @@ export default function ContactFormAndDetails({
             <div className="flex max-w-60 items-start gap-4">
               <MapPin className="h-7 w-7" aria-hidden="true" />
               <div>
-                <h3 className="font-semibold">{t("office")}</h3>
-                <p>{contactDetails.adresBiuraLineOne}</p>
-                <p>{contactDetails.adresBiuraLineTwo}</p>
-                <ExternalLink
+                <h3 className={headingClass}>{t("office")}</h3>
+                <p className={paragraphClass}>
+                  {contactDetails.adresBiuraLineOne}
+                </p>
+                <p className={paragraphClass}>
+                  {contactDetails.adresBiuraLineTwo}
+                </p>
+                <AnimatedLink
                   href="https://maps.app.goo.gl/SjucgxZNh6JacWfr7"
-                  title="Zobacz na mapie"
-                />
+                  external={true}
+                  className="mt-4 text-base"
+                >
+                  Zobacz na mapie
+                </AnimatedLink>
               </div>
             </div>
 
@@ -95,14 +83,32 @@ export default function ContactFormAndDetails({
             <div className="flex max-w-60 items-start gap-4">
               <FileText className="max-h-10 max-w-10" aria-hidden="true" />
               <div>
-                <h3 className="font-semibold">{t("invoice-info")}</h3>
-                <p>{contactDetails.nazwaFirmy}</p>
-                <p>{contactDetails.adresFakturLineOne}</p>
-                <p>{contactDetails.adresFakturLineTwo}</p>
-                <p>{contactDetails.numerNip}</p>
-                <p>{contactDetails.numerRegon}</p>
+                <h3 className={headingClass}>{t("invoice-info")}</h3>
+                <p className={paragraphClass}>{contactDetails.nazwaFirmy}</p>
+                <p className={paragraphClass}>
+                  {contactDetails.adresFakturLineOne}
+                </p>
+                <p className={paragraphClass}>
+                  {contactDetails.adresFakturLineTwo}
+                </p>
+                <p className={paragraphClass}>
+                  <span>NIP:</span> {contactDetails.numerNip}
+                </p>
+                <p className={paragraphClass}>
+                  <span>REGON:</span> {contactDetails.numerRegon}
+                </p>
               </div>
             </div>
+          </div>
+
+          {/* Contact Form */}
+          <div className="max-w-xl">
+            <ContactForm
+              color={"light"}
+              contactFormSubjects={contactForm.contactFormSubjects.map(
+                (subject) => ({ label: subject }),
+              )}
+            />
           </div>
         </div>
       </MaxWidthWrapper>
