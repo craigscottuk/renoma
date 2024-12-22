@@ -71,7 +71,7 @@ export default function LabOffer({
   colorScheme = "zincLight",
 }: LabOfferProps) {
   const selectedColorScheme =
-    cardColorSchemes[colorScheme] || cardColorSchemes.zincDark;
+    cardColorSchemes[colorScheme] || cardColorSchemes.zincLight;
 
   return (
     <>
