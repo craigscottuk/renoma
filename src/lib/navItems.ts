@@ -22,11 +22,10 @@ export function useNavItems(): NavItem[] {
     {
       label: t("realizacje.label"),
       link: "/realizacje",
-      // link: "/",
     },
     {
       label: t("renomaLab.label"),
-      // link: "/",
+
       link: "/renoma-lab",
     },
     {
@@ -35,13 +34,11 @@ export function useNavItems(): NavItem[] {
     },
     {
       label: t("pracujZNami.label"),
-      // link: "/pracuj-z-nami",
-      link: "/",
+      link: "/pracuj-z-nami",
     },
     {
       label: t("kontakt.label"),
-      link: "/",
-      // link: "/kontakt",
+      link: "/kontakt",
     },
   ];
 }
