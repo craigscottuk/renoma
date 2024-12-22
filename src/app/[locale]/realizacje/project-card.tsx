@@ -1,6 +1,5 @@
 // cSpell:disable
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import {
   Card,
@@ -10,6 +9,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import clsx from "clsx";
+import { Separator } from "@/components/ui/separator";
+import AnimatedLink from "@/components/animated-link";
 
 interface ProjectCardProps {
   projectCardData: {
@@ -42,7 +43,7 @@ const cardColorSchemes: Record<
   zincLight: {
     section: "text-zinc-950 bg-zinc-200",
     card: "border-zinc-300 bg-zinc-100",
-    cardContent: "text-zinc-700",
+    cardContent: "text-zinc-800 leading-relaxed text-balance",
     sectionTitle: "black",
   },
   goldDark: {
@@ -66,7 +67,7 @@ export default function ProjectCard({
       className={clsx("bg-white", paddingY, selectedColorScheme.section)}
     >
       <MaxWidthWrapper>
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
           {projectCardData.map((project, index) => (
             <Card
               key={index}
@@ -75,20 +76,25 @@ export default function ProjectCard({
                 selectedColorScheme.card,
               )}
             >
-              <div className="relative h-48 lg:h-64">
+              <div className="relative h-64 md:h-80 lg:h-80">
                 <a href={`/realizacje/${project.slug}`}>
                   <Image
                     src={project.imageUrl}
                     alt={project.title}
                     layout="fill"
                     objectFit="cover"
+                    objectPosition="top"
                   />
                 </a>
               </div>
               <CardHeader>
                 <div className="flex items-center space-x-2">
-                  <CardTitle className="text-[1.6rem] leading-tight tracking-[-0.015em]">
-                    {project.title}
+                  <CardTitle className="font-regular text-[1.7rem] leading-tight tracking-[-0.015em] text-zinc-800">
+                    <h2>
+                      <a href={`/realizacje/${project.slug}`}>
+                        {project.title}
+                      </a>
+                    </h2>
                   </CardTitle>
                 </div>
               </CardHeader>
@@ -98,26 +104,25 @@ export default function ProjectCard({
                   selectedColorScheme.cardContent,
                 )}
               >
-                <div className="mb-4">
-                  <p className="text-sm text-muted-foreground">
+                <div className="mb-4 space-y-1">
+                  <h3 className="text-base text-zinc-600">
                     <strong>Lokalizacja:</strong> {project.location}
-                  </p>
-                  <p className="text-sm text-muted-foreground">
+                  </h3>
+                  <h3 className="text-base text-zinc-600">
                     <strong>Czas trwania:</strong> {project.timeframe}
-                  </p>
+                  </h3>
                 </div>
-                <p className="text-sm text-muted-foreground">
-                  {project.description}
-                </p>
+                <Separator className="mb-4" />
+
+                <p className="">{project.description}</p>
               </CardContent>
               <CardFooter>
-                <a
+                <AnimatedLink
+                  className="text-`zinc-900 text-base"
                   href={`/realizacje/${project.slug}`}
-                  className="inline-flex items-center text-primary transition-colors duration-200 hover:text-primary/80"
                 >
                   Czytaj więcej
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
+                </AnimatedLink>
               </CardFooter>
             </Card>
           ))}
