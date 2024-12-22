@@ -9,7 +9,7 @@ interface SectionTitleProps {
   title: string;
   as?: ElementType;
   className?: string;
-  motionPreset?: "blur-right" | "blur-left" | "fade-in";
+  motionPreset?: "blur-right" | "blur-left" | "blur-up";
   textColor?: "black" | "white";
   textAlign?: "left" | "right" | "center";
   label?: string;
@@ -22,13 +22,13 @@ export default function SectionTitle({
   title,
   as: Tag = "h2",
   className,
-  motionPreset = "blur-right",
+  motionPreset,
   textColor = "black",
   textAlign = "left",
   label,
   animateOnView = false,
   animationDirection = "right",
-  delay = 0.2,
+  delay = 0,
 }: SectionTitleProps) {
   const { ref, controls } = useIntersectionObserver({
     animateOnView,
@@ -39,18 +39,19 @@ export default function SectionTitle({
   const createMotionVariants = (additionalDelay = 0): Variants => ({
     hidden: {
       opacity: 0,
-      filter: motionPreset === "fade-in" ? "blur(2px)" : "blur(2px)",
-      x:
-        animationDirection === "right"
+      filter: animateOnView ? "blur(2px)" : "none",
+      x: animateOnView
+        ? animationDirection === "right"
           ? 3
           : animationDirection === "left"
             ? -3
-            : 0,
-      y: animationDirection === "up" ? 3 : 0,
+            : 0
+        : 0,
+      y: animateOnView && animationDirection === "up" ? 3 : 0,
     },
     visible: {
       opacity: 1,
-      filter: "blur(0px)",
+      filter: animateOnView ? "blur(0px)" : "none",
       x: 0,
       y: 0,
       transition: { duration: 0.5, delay: delay + additionalDelay },
@@ -98,6 +99,7 @@ export default function SectionTitle({
         <Tag
           className={clsx(
             `motion-preset-${motionPreset}`,
+            // `motion-preset-blur-right`,
             "text-balance text-5xl font-light leading-[1.06] md:text-6xl md:leading-[1.06]",
             className,
             textColor === "black" ? "text-zinc-950" : "text-zinc-100",
