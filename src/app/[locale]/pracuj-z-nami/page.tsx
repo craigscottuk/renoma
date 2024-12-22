@@ -24,15 +24,16 @@ const QUERY = `
       "jobDescription": coalesce(jobDescription[_key == $locale][0].value, "Brak tłumaczenia"),
       "jobLocation": coalesce(jobLocation[_key == $locale][0].value, "Brak tłumaczenia"),
       "jobType": coalesce(jobType[_key == $locale][0].value, "Brak tłumaczenia"),
-    "responsibilities": coalesce(responsibilities[$locale], []),
-    "requirements": coalesce(requirements[$locale], []),
-    "benefits": coalesce(benefits[$locale], []),
+      "responsibilities": coalesce(responsibilities[$locale], []),
+      "requirements": coalesce(requirements[$locale], []),
+      "benefits": coalesce(benefits[$locale], []),
+      "colorScheme": "zincLight" // Add this line
     }
   },
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } };
+const OPTIONS = { next: { revalidate: 10 } };
 // 86400
 
 type Props = {
@@ -109,7 +110,7 @@ export default async function PracujZNami({ params: { locale } }: Props) {
         <SectionJobOffer
           title={jobOffers.title}
           jobOffers={jobOffers.jobOffer}
-          paddingY="py-20 md:py-48"
+          paddingY="py-20 md:py-24"
         />
       )}
     </>
