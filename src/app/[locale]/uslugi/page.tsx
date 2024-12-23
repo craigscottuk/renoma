@@ -4,6 +4,8 @@ import PageHeader from "@/components/page-header";
 import { client } from "@/sanity/client";
 import ServicesList from "@/app/[locale]/uslugi/services-list";
 import { getTranslations } from "next-intl/server";
+import CTA from "@/components/cta";
+import { ctaContent } from "@/lib/ctaContent";
 
 const QUERY = `
 {
@@ -180,6 +182,11 @@ export default async function ONas({ params: { locale } }: Props) {
           ]}
         />
       )}
+      <CTA
+        title={ctaContent.title}
+        description={ctaContent.description}
+        buttonText={ctaContent.buttonText}
+      />
     </>
   );
 }
