@@ -48,6 +48,6 @@ export const footerLinks = [
   },
   {
     title: "Kontakt",
-    links: [{ href: "/contact", label: "Skontaktuj się z nami" }],
+    links: [{ href: "/kontakt", label: "Skontaktuj się z nami" }],
   },
 ];
