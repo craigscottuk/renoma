@@ -6,6 +6,8 @@ import WhatWeOffer from "./what-we-offer";
 import WhoWeAreLookingFor from "./who-we-are-looking-for";
 import { PortableTextBlock } from "next-sanity";
 import { getTranslations } from "next-intl/server";
+import CTA from "@/components/cta";
+import { ctaContent } from "@/lib/ctaContent";
 
 const QUERY = `
 {
@@ -126,6 +128,11 @@ export default async function UczSieZNami({ params: { locale } }: Props) {
           paddingY="py-20 md:py-16"
         />
       )}
+      <CTA
+        title={ctaContent.title}
+        description={ctaContent.description}
+        buttonText={ctaContent.buttonText}
+      />
     </>
   );
 }
