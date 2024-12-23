@@ -116,7 +116,7 @@ export default function ImageCarousel({
           />
         </div>
         {hasCurrentCaption && (
-          <div className="relative z-10 bg-gray-50 px-4 py-3 text-sm text-gray-600">
+          <div className="relative z-10 bg-zinc-50 px-4 py-3 text-sm text-zinc-600">
             <div className="flex items-start gap-2">
               <ArrowUp className="mt-1 h-4 w-4 flex-shrink-0" />
               <span>{currentCaption}</span>
@@ -199,7 +199,7 @@ export default function ImageCarousel({
               key={index}
               onClick={() => emblaApi?.scrollTo(index)}
               className={`h-2 w-2 rounded-full ${
-                currentIndex === index ? "bg-white" : "bg-gray-400"
+                currentIndex === index ? "bg-white" : "bg-zinc-400"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -229,7 +229,7 @@ export default function ImageCarousel({
       {isMobile && (
         <div
           ref={captionRef}
-          className={`relative z-10 bg-gray-50 px-4 py-3 text-sm text-zinc-950 ${
+          className={`relative z-10 bg-zinc-50 px-4 py-3 text-sm text-zinc-950 ${
             showCaptions ? "block" : "hidden"
           }`}
         >
@@ -245,7 +245,7 @@ export default function ImageCarousel({
       {!isMobile && currentCaption && images.length > 1 && (
         <div
           ref={captionRef}
-          className="text-zin-950 relative z-10 flex justify-between bg-gray-50 px-3 py-3 text-sm"
+          className="text-zin-950 relative z-10 flex justify-between bg-zinc-50 px-3 py-3 text-sm"
         >
           <div className="flex items-start gap-2 text-pretty">
             <ArrowUp className="mr-1 mt-1 h-4 w-4 flex-shrink-0" />
@@ -276,7 +276,7 @@ export default function ImageCarousel({
       )}
 
       {!isMobile && currentCaption && images.length <= 1 && (
-        <div className="relative z-10 bg-gray-50 px-4 py-3 text-sm text-gray-600">
+        <div className="relative z-10 bg-zinc-50 px-4 py-3 text-sm text-zinc-600">
           <div className="flex items-start gap-2">
             <ArrowUp className="mt-1 h-4 w-4 flex-shrink-0" />
             <span>{currentCaption}</span>
