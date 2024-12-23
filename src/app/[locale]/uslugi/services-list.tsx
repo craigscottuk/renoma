@@ -148,15 +148,15 @@ export default function ServicesList({
           )}
         </div>
         <div
-          className="overflow-hidden bg-gray-800 transition-[height] duration-300 ease-in-out"
+          className="overflow-hidden bg-zinc-800 transition-[height] duration-300 ease-in-out"
           ref={dropdownRef}
         >
           {serviceGroups?.map((group) => (
             <div
               key={group.title}
               className={cn(
-                "cursor-pointer px-4 py-2 hover:bg-gray-700",
-                currentSection === group.title && "bg-gray-700",
+                "cursor-pointer px-4 py-2 hover:bg-zinc-700",
+                currentSection === group.title && "bg-zinc-700",
               )}
               onClick={() => scrollToSection(group.title)}
             >
@@ -229,7 +229,7 @@ export default function ServicesList({
                           {service.title}
                         </h3>
                       </button>
-                      <p className="mb-8 text-[1.1rem] text-gray-700">
+                      <p className="mb-8 text-[1.1rem] text-zinc-700">
                         {service.description}
                       </p>
                       <Accordion type="single" collapsible className="w-full">
@@ -242,7 +242,7 @@ export default function ServicesList({
                               {action.title}
                             </AccordionTrigger>
                             <AccordionContent className="mb-4">
-                              <p className="text-gray-700">{action.content}</p>
+                              <p className="text-zinc-700">{action.content}</p>
                             </AccordionContent>
                           </AccordionItem>
                         ))}
