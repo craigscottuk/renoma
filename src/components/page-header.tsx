@@ -31,7 +31,7 @@ export default function PageHeader({
   image,
   imageAlt,
   imageLayout = "fullWidthAbove",
-  backgroundColor = "black",
+  backgroundColor = "white",
   twoColumnText = false,
   portableTextBlock,
 }: PageHeaderProps) {
@@ -212,7 +212,7 @@ export default function PageHeader({
 
       {/* Full-width header image below content */}
       {headerFullWidth && imageUrl && imagePosition === "below" && (
-        <div className="relative h-80 w-full">
+        <div className="relative h-96 w-full">
           <Image
             src={imageUrl || "/fallback-image.svg"}
             alt={imageAlt || "Obraz nagłówka"}
