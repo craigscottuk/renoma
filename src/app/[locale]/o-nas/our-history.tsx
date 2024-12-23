@@ -33,7 +33,7 @@ export default function OurHistory({
         </div>
       </MaxWidthWrapper>
 
-      <div className="mt-12 bg-zinc-100 p-16">
+      <div className="mt-12 bg-zinc-100 p-16 pb-48">
         <MaxWidthWrapper>
           <Timeline events={events} />
         </MaxWidthWrapper>
