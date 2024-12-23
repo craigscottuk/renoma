@@ -30,7 +30,7 @@ export default function SectionAbout({
               label={label}
               title={title}
               as="h2"
-              motionPreset="fade-in"
+              motionPreset="blur-up"
               textColor="black"
               animateOnView={true}
               animationDirection="up"
