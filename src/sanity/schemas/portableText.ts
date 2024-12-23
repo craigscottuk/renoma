@@ -52,7 +52,10 @@ export const portableTextWithImage = defineType({
         { title: "Numbered", value: "number" },
       ],
       marks: {
-        decorators: [{ title: "Bold", value: "strong" }],
+        decorators: [
+          { title: "Bold", value: "strong" },
+          { title: "Emphasis", value: "em" },
+        ],
         annotations: [
           defineField({
             name: "link",
