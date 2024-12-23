@@ -15,7 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Badge } from "@/components/ui/badge";
+
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -75,21 +75,18 @@ export default function JobOfferCard({ job }: { job: JobOffer }) {
       <CardHeader>
         <div className="flex items-start justify-between">
           <div>
-            <CardTitle className="mb-2 text-[1.6rem] leading-tight tracking-[-0.015em]">
+            <CardTitle className="mb-5 text-[1.6rem] tracking-[-0.015em] marker:leading-tight">
               {job.jobTitle}
             </CardTitle>
             <CardDescription
               className={clsx(
-                "mb-2 text-[1.1rem]",
+                "mb-5 max-w-[55rem] text-[1.1rem]",
                 selectedColorScheme.cardContent,
               )}
             >
               {job.jobDescription}
             </CardDescription>
           </div>
-          <Badge variant="secondary" className="px-2 py-1 text-xs">
-            {job.jobType}
-          </Badge>
         </div>
         <div
           className={clsx(
@@ -109,19 +106,19 @@ export default function JobOfferCard({ job }: { job: JobOffer }) {
       </CardHeader>
       <CardContent>
         <div
-          className={`overflow-hidden transition-all duration-300 ${isExpanded ? "max-h-[1000px]" : "max-h-0"}`}
+          className={`max-w-[52rem] overflow-hidden text-pretty transition-all duration-300 ${isExpanded ? "max-h-[1000px]" : "max-h-0"}`}
         >
-          <h3 className="mb-2 font-semibold">Obowiązki:</h3>
+          <h3 className="mb-2 text-lg font-semibold">Obowiązki:</h3>
           <PortableText
             value={job.responsibilities}
             components={portableTextComponents}
           />
-          <h3 className="mb-2 font-semibold">Wymagania:</h3>
+          <h3 className="mb-2 text-lg font-semibold">Wymagania:</h3>
           <PortableText
             value={job.requirements}
             components={portableTextComponents}
           />
-          <h3 className="mb-2 font-semibold">Oferujemy:</h3>
+          <h3 className="mb-2 text-lg font-semibold">Oferujemy:</h3>
           <PortableText
             value={job.benefits}
             components={portableTextComponents}
@@ -131,11 +128,18 @@ export default function JobOfferCard({ job }: { job: JobOffer }) {
       <CardFooter className="flex items-center justify-between">
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
           <DialogTrigger asChild>
-            <Button variant="outline">Aplikuj teraz</Button>
+            <Button
+              className="hover:bg-zinc-800 hover:text-zinc-100"
+              variant="outline"
+            >
+              Aplikuj teraz
+            </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-md">
+          <DialogContent className="max-w-2xl">
             <DialogHeader>
-              <DialogTitle>Aplikuj na stanowisko: {job.jobTitle}</DialogTitle>
+              <DialogTitle className="mb-5 text-[1.6rem] tracking-[-0.015em] marker:leading-tight">
+                Aplikuj na stanowisko: {job.jobTitle}
+              </DialogTitle>
             </DialogHeader>
             <ApplicationForm
               jobTitle={job.jobTitle}
@@ -145,7 +149,7 @@ export default function JobOfferCard({ job }: { job: JobOffer }) {
         </Dialog>
         <Button
           variant="link"
-          className="text-blue-600 hover:text-blue-800"
+          className="text-zinc-800 hover:text-zinc-900"
           onClick={() => setIsExpanded(!isExpanded)}
         >
           {isExpanded ? (
@@ -220,7 +224,7 @@ function ApplicationForm({
           onChange={handleFileChange}
           multiple
           accept=".pdf,.doc,.docx,.txt"
-          className="mb-2"
+          className="mb-2 h-16 md:text-sm"
         />
         {files.length > 0 && (
           <ul className="list-disc pl-6">
@@ -240,7 +244,12 @@ function ApplicationForm({
           </ul>
         )}
       </div>
-      <Button type="submit">Wyślij aplikację</Button>
+      <Button
+        className="bg-zinc-800 hover:bg-zinc-100 hover:text-zinc-800"
+        type="submit"
+      >
+        Wyślij aplikację
+      </Button>
     </form>
   );
 }
