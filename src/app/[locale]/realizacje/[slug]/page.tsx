@@ -4,10 +4,14 @@ import { client } from "@/sanity/client";
 import { setRequestLocale } from "next-intl/server";
 import { redirect } from "@/i18n/routing";
 import NoTranslationMessage from "@/components/NoTranslationMessage";
-import CaseStudyHeaderSection from "@/components/sections-case/case-study-header-section";
-import ContentSection from "@/components/sections-case/content-section";
-import ProjectDetailsSection from "@/components/sections-case/details";
+import ContentSection from "@/app/[locale]/realizacje/[slug]/content-section";
+import ProjectDetailsSection from "./details";
 import { CaseStudySectionContent } from "@/types";
+import PageHeader from "@/components/page-header";
+import ComparisonSection from "./comparison-section";
+import BibliographySection from "./bibliography-section";
+import CTA from "@/components/cta";
+import { ctaContent } from "@/lib/ctaContent";
 
 const QUERY = `
 *[_type == "caseStudyEntry" && slug.current == $slug][0]{
@@ -15,10 +19,11 @@ const QUERY = `
   title,
   slug,
   summary,
-  image {
-    image,
-    imageAlt
-  },
+  "image": image,
+  "imageAlt": imageAlt,
+  imageLayout,
+  backgroundColor,
+
   details {
     lokalizacja,
     status,
@@ -89,6 +94,27 @@ const QUERY = `
 }
 `;
 
+const comparisons = [
+  {
+    id: 1,
+    title: "Elewacja zewnętrzna",
+    imageBefore: "/fallback-image.svg",
+    imageAfter: "/fallback-image.svg",
+  },
+  {
+    id: 2,
+    title: "Wnętrze - Sala główna",
+    imageBefore: "/fallback-image.svg",
+    imageAfter: "/fallback-image.svg",
+  },
+  {
+    id: 3,
+    title: "Dach i zwieńczenie",
+    imageBefore: "/fallback-image.svg",
+    imageAfter: "/fallback-image.svg",
+  },
+];
+
 type Translation = {
   title: string;
   slug: { current: string };
@@ -101,10 +127,10 @@ type Project = {
   slug: { current: string };
   language: string;
   summary: string;
-  image: {
-    image: string;
-    imageAlt: string;
-  };
+  image?: string;
+  imageAlt?: string;
+  imageLayout?: "fullWidthAbove" | "fullWidthBelow" | "portraitRight";
+  backgroundColor?: "black" | "white";
   details: {
     lokalizacja: string;
     status: string;
@@ -177,93 +203,114 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
     });
   }
 
-  const {
-    image,
-    details,
-    sectionOne,
-    sectionTwo,
-    sectionThree,
-    sectionFour,
-    sectionFive,
-    sectionSix,
-    summary,
-    title,
-    _translations,
-  } = project;
-
   return (
     <>
       {translation || project.slug.current === slug ? (
         <>
-          {title && summary && image && (
-            <CaseStudyHeaderSection
-              title={title}
-              summary={summary}
-              image={image?.image}
-              imageAlt={image?.imageAlt}
+          {project.title && project.summary && project.image && (
+            <PageHeader
+              label={project.label}
+              title={project.title}
+              description={project.summary}
+              image={project.image}
+              imageAlt={project.imageAlt}
+              imageLayout={project.imageLayout}
+              backgroundColor={project.backgroundColor}
             />
           )}
-          {details && (
+          {project.details && (
             <ProjectDetailsSection
               details={
                 project.details
                   ? [
                       {
                         label: "Lokalizacja",
-                        value: details.lokalizacja,
+                        value: project.details.lokalizacja,
                       },
-                      { label: "Status", value: details.status },
+                      { label: "Status", value: project.details.status },
                       {
                         label: "Czas trwania",
-                        value: details.czasTrwania,
+                        value: project.details.czasTrwania,
                       },
-                      { label: "Typ obiektu", value: details.typObiektu },
-                      { label: "Rola", value: details.rola },
-                      { label: "Zakres prac", value: details.zakresPrac },
+                      {
+                        label: "Typ obiektu",
+                        value: project.details.typObiektu,
+                      },
+                      { label: "Rola", value: project.details.rola },
+                      {
+                        label: "Zakres prac",
+                        value: project.details.zakresPrac,
+                      },
                     ]
                   : []
               }
             />
           )}
-          {sectionOne?.content?.length > 0 && (
+          {/* 01. Rys Historyczny */}
+          {project.sectionOne?.content?.length > 0 && (
             <ContentSection
-              title={sectionOne.title}
-              content={sectionOne.content}
+              title={project.sectionOne.title}
+              content={project.sectionOne.content}
             />
           )}
-          {sectionTwo?.content?.length > 0 && (
+
+          {/* 02. Stan zachowania */}
+          {project.sectionTwo?.content?.length > 0 && (
             <ContentSection
-              title={sectionTwo.title}
-              content={sectionTwo.content}
+              title={project.sectionTwo.title}
+              content={project.sectionTwo.content}
             />
           )}
-          {sectionThree?.content?.length > 0 && (
+
+          {/* 03. Założenia konserwatorskie */}
+          {project.sectionThree?.content?.length > 0 && (
             <ContentSection
-              title={sectionThree.title}
-              content={sectionThree.content}
+              title={project.sectionThree.title}
+              content={project.sectionThree.content}
             />
           )}
-          {sectionFour?.content?.length > 0 && (
+
+          {/* 04. Przebieg prac konserwatorskich i restauratorskich oraz budowlanych */}
+          {project.sectionFour?.content?.length > 0 && (
             <ContentSection
-              title={sectionFour.title}
-              content={sectionFour.content}
+              title={project.sectionFour.title}
+              content={project.sectionFour.content}
             />
           )}
-          {sectionFive?.content?.length > 0 && (
-            <ContentSection
-              title={sectionFive.title}
-              content={sectionFive.content}
+
+          {/* 05. Efekty prac konserwatorskich i restauratorskich oraz budowlanych */}
+          {project.sectionFive?.content?.length > 0 && (
+            // <ContentSection
+            //   title={project.sectionFive.title}
+            //   content={project.sectionFive.content}
+            // />
+            <ComparisonSection
+              title="5. Efekty prac konserwatorskich i restauratorskich oraz budowlanych"
+              comparisons={comparisons}
             />
           )}
-          {sectionSix?.content?.length > 0 && (
-            <ContentSection
-              title={sectionSix.title}
-              content={sectionSix.content}
-            />
+
+          {/* 06. Bibliografia */}
+          {project.sectionSix?.content?.length > 0 && (
+            // <ContentSection
+            //   title={project.sectionSix.title}
+            //   content={project.sectionSix.content}
+            // />
+
+            <BibliographySection title="6. Wybrana bibliografia" />
           )}
+          <BibliographySection title="6. Wybrana bibliografia" />
+          <CTA
+            title={ctaContent.title}
+            description={ctaContent.description}
+            buttonText={ctaContent.buttonText}
+          />
         </>
       ) : (
-        <NoTranslationMessage locale={locale} translations={_translations} />
+        <NoTranslationMessage
+          locale={locale}
+          translations={project._translations}
+        />
       )}
     </>
   );
