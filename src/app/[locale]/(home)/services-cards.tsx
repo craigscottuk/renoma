@@ -1,4 +1,5 @@
 "use client";
+// cSpell:disable
 import clsx from "clsx";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -12,6 +13,17 @@ import { useLocale } from "next-intl";
 import { SectionUslugiHomeProps } from "./uslugi"; // Adjust the import path if necessary
 import { motion } from "framer-motion";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import {
+  FolderOpen,
+  ClipboardList,
+  Microscope,
+  HardHat,
+  BrickWall,
+  Brush,
+  Landmark,
+  // FileCheck,
+  HandCoins,
+} from "lucide-react";
 
 function FadeInSection({
   children,
@@ -55,11 +67,22 @@ function ServicesCards({
     servicesGroup.serviceGroupThree,
   ];
 
+  const icons = [
+    [FolderOpen, ClipboardList, Microscope],
+    [HardHat, BrickWall, Brush],
+    [Landmark, HandCoins],
+  ];
+
   return (
     <FadeInSection className="mt-14 grid grid-cols-1 gap-6 md:mt-20 md:grid-cols-3">
       {serviceGroups.map((group, index) => (
         <Card key={index} className="border-zinc-700 bg-zinc-800 text-zinc-100">
           <CardHeader>
+            <div className="mb-5 flex space-x-4">
+              {icons[index].map((Icon, iconIndex) => (
+                <Icon key={iconIndex} className="h-6 w-6 text-gold-900" />
+              ))}
+            </div>
             <CardTitle className="font-regular text-[1.7rem] leading-tight tracking-[-0.015em]">
               {group.title}
             </CardTitle>
