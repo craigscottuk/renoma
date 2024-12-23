@@ -39,9 +39,9 @@ export default function ContactFormAndDetails({
       <MaxWidthWrapper>
         <div className="grid gap-24 lg:grid-cols-2">
           {/* Contact Information in 2x2 Grid */}
-          <div className="grid grid-cols-2">
+          <div className="grid grid-cols-2 py-10">
             {/* Phone Section */}
-            <div className="flex max-w-60 items-start gap-4">
+            <div className="bg-zinc flex max-w-60 items-start gap-4">
               <Phone className="h-6 w-6" aria-hidden="true" />
               <div>
                 <h3 className={headingClass}>{t("phone")}</h3>
