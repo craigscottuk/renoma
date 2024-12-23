@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+import { CircleCheck } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import SectionTitle from "@/components/section-title";
@@ -33,9 +33,8 @@ export default function WhatWeOffer({
             >
               <CardHeader>
                 <div className="flex flex-col items-start">
-                  <div className="mb-4 rounded-full border border-gold-700 bg-transparent p-2">
-                    <Check className="h-4 w-4 text-gold-700" />
-                  </div>
+                  <CircleCheck className="mb-4 h-8 w-8 text-gold-900" />
+
                   <CardTitle className="font-regular text-[1.7rem] leading-tight tracking-[-0.015em]">
                     {feature.title}
                   </CardTitle>
