@@ -64,30 +64,52 @@ export const caseStudyEntry = defineType({
       type: "text",
       rows: 8,
       validation: (rule) =>
-        rule
-          .required()
-          .error(
-            "Podsumowanie jest wymagane i powinno mieć mniej niż 500 znaków.",
-          ),
+        rule.required().error("Podsumowanie jest wymagane."),
     }),
 
     defineField({
       name: "image",
-      title: "Nagłówek",
-      type: "object",
-      group: "caseStudyHeader",
-      fields: [
-        {
-          name: "image",
-          title: "Obraz nagłówka",
-          type: "image",
-        },
-        {
-          name: "imageAlt",
-          title: "Alternatywny tekst obrazu nagłówka",
-          type: "string",
-        },
-      ],
+      title: "Obraz nagłówka",
+      description: "Obraz wyświetlany w nagłówku strony kontaktowej.",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+    }),
+
+    defineField({
+      name: "imageLayout",
+      title: "Układ obrazu na dużych urządzeniach",
+      description:
+        "Wybierz między pełną szerokością obrazu a portretem po prawej stronie. Dla pełnej szerokości wybierz pozycję obrazu względem treści.",
+      type: "string",
+      options: {
+        list: [
+          { title: "Pełna szerokość powyżej", value: "fullWidthAbove" },
+          { title: "Pełna szerokość poniżej", value: "fullWidthBelow" },
+          { title: "Portret po prawej", value: "portraitRight" },
+        ],
+        layout: "radio",
+      },
+
+      initialValue: "fullWidthAbove",
+    }),
+
+    defineField({
+      name: "backgroundColor",
+      title: "Kolor tła",
+      description:
+        "Wybierz kolor tła dla nagłówka strony. Jeśli wybierzesz biały, tekst będzie czarny, a jeśli wybierzesz czarny, tekst będzie biały.",
+      type: "string",
+      options: {
+        list: [
+          { title: "Biały", value: "white" },
+          { title: "Czarny", value: "black" },
+        ],
+        layout: "radio",
+      },
+
+      initialValue: "white",
     }),
 
     // ================================
