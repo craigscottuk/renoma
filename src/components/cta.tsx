@@ -5,7 +5,13 @@ import SectionDescription from "./section-description";
 import SectionTitle from "./section-title";
 import CustomButton from "./ui/custom-button";
 
-export default function CTA() {
+interface CTAProps {
+  title: string;
+  description: string;
+  buttonText: string;
+}
+
+export default function CTA({ title, description, buttonText }: CTAProps) {
   return (
     <section
       className="relative flex min-h-[400px] items-center bg-cover bg-center px-8 py-28"
@@ -18,7 +24,7 @@ export default function CTA() {
         <div className="items-center lg:grid lg:grid-cols-2 lg:gap-8">
           <div className="flex-1">
             <SectionTitle
-              title="Skonsultuj Swój Projekt"
+              title={title}
               as="h2"
               motionPreset="blur-left"
               textColor="white"
@@ -27,10 +33,7 @@ export default function CTA() {
               animationDirection="left"
             />
             <SectionDescription
-              description="Nasza firma oferuje kompleksową konsultację dla projektów
-              renowacyjnych i konserwatorskich. Skontaktuj się z nami, aby
-              omówić swoje potrzeby i uzyskać spersonalizowane wsparcie na
-              każdym etapie realizacji projektu."
+              description={description}
               marginTop={true}
               textStyle="text-balance"
               textColor="white"
@@ -43,9 +46,9 @@ export default function CTA() {
               variant="dark"
               animateOnView={true}
               animationDirection="left"
-              href="/kontakt"
+              href={"/kontakt"}
             >
-              ZACZNIJ SWÓJ PROJEKT
+              {buttonText}
             </CustomButton>
           </div>
         </div>
