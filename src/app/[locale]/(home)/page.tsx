@@ -9,6 +9,8 @@ import LogoShowcase from "./logos";
 import CTA from "../../../components/cta";
 import { getTranslations } from "next-intl/server";
 import DiscoverProjects from "./projects";
+import projectCardData from "@/lib/projectCardData";
+import { ctaContent } from "@/lib/ctaContent";
 
 const QUERY = `
 {
@@ -207,7 +209,10 @@ export default async function HomePage({ params: { locale } }: Props) {
         />
       )}
 
-      <DiscoverProjects paddingY="py-20 md:py-48" />
+      <DiscoverProjects
+        projectCardData={projectCardData}
+        paddingY="py-20 md:py-32"
+      />
 
       {/* FAQ Section */}
       {faqSectionHome && (
@@ -230,7 +235,11 @@ export default async function HomePage({ params: { locale } }: Props) {
         />
       )}
 
-      <CTA />
+      <CTA
+        title={ctaContent.title}
+        description={ctaContent.description}
+        buttonText={ctaContent.buttonText}
+      />
     </>
   );
 }
