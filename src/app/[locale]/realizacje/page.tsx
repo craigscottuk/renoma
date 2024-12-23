@@ -3,9 +3,12 @@
 import { setRequestLocale } from "next-intl/server";
 import { client } from "@/sanity/client";
 import PageHeader from "@/components/page-header";
+import projectCardData from "@/lib/projectCardData";
 
 import { getTranslations } from "next-intl/server";
 import ProjectCard from "./project-card";
+import { ctaContent } from "@/lib/ctaContent";
+import CTA from "@/components/cta";
 
 const QUERY = `
 {
@@ -25,39 +28,6 @@ const QUERY = `
 }
 }
 `;
-
-const projectCardData = [
-  {
-    id: 1,
-    title: "Konserwacja Baszty Ferbera",
-    location: "Wzgórze Katedralne we Fromborku",
-    timeframe: "Styczeń 2024 – Grudzień 2024",
-    description:
-      "Stabilizacja konstrukcji i usunięcie czynników powodujących destrukcję zabytkowej substancji. Prace obejmowały remont więźby dachowej, wymianę pokrycia oraz konserwację oryginalnego wątku ceglanego i detali kamiennych.",
-    imageUrl: "/basteja.webp",
-    slug: "konserwacja-baszty-ferbera",
-  },
-  {
-    id: 2,
-    title: "Konserwacja Kościoła w Rogowie",
-    location: "Rogowo, gmina Lubicz",
-    timeframe: "Od stycznia 2024 r.",
-    description:
-      "Jeden z najważniejszych kościołów bezwieżowych na terenie dawnego państwa krzyżackiego. Prace koncentrują się głównie na usunięciu przyczyn zawilgocenia oraz konserwacji wątku ceglanego i detali kamiennych.",
-    imageUrl: "/rogowo.webp",
-    slug: "konserwacja-kosciola-w-rogowie",
-  },
-  {
-    id: 3,
-    title: "Konserwacja Kościoła Farnego w Grudziądzu",
-    location: "Grudziądz, Rynek Starego Miasta",
-    timeframe: "Od 2018 r.",
-    description:
-      "Jedna z najstarszych świątyń miasta. Prace obejmują renowację gotyckich malowideł wewnątrz i zabytkowej elewacji, z celem przywrócenia strukturalnej stabilności i historycznego wyglądu.",
-    imageUrl: "/farnego.webp",
-    slug: "konserwacja-kosciola-farnego-w-grudziadzu",
-  },
-];
 
 const OPTIONS = { next: { revalidate: 86400 } };
 // 86400
@@ -114,6 +84,11 @@ export default async function Realizacje({ params: { locale } }: Props) {
         projectCardData={projectCardData}
         paddingY="py-36"
         colorScheme="zincLight"
+      />
+      <CTA
+        title={ctaContent.title}
+        description={ctaContent.description}
+        buttonText={ctaContent.buttonText}
       />
     </>
   );
