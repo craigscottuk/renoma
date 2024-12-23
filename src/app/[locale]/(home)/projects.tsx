@@ -1,24 +1,21 @@
 "use client";
 // cSpell:disable
-import { Card, CardContent } from "@/components/ui/card";
 import clsx from "clsx";
 import { motion } from "framer-motion";
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
-// import { PortableText, PortableTextBlock } from "@portabletext/react";
-// import { portableTextComponents } from "@/lib/portableTextComponents";
+import ProjectCard from "../realizacje/project-card";
 import SectionTitle from "@/components/section-title";
-// import { urlFor } from "@/sanity/lib/image";
-// import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import Image from "next/image";
-import CustomButton from "@/components/ui/custom-button";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 interface DiscoverProjectsProps {
-  // title: string;
-  // criteria: PortableTextBlock[];
-  // image: SanityImageSource | string;
-  // imageAlt: string;
-  // applyButtonText: string;
+  projectCardData: {
+    title: string;
+    location: string;
+    timeframe: string;
+    description: string;
+    imageUrl: string;
+    slug: string;
+  }[];
   paddingY: string;
 }
 
@@ -51,27 +48,16 @@ function FadeInSection({
   );
 }
 
-export default function DiscoverProjects(
-  {
-    // title,
-    // criteria,
-    // image,
-    // imageAlt,
-    // applyButtonText,
-    // paddingY,
-  }: DiscoverProjectsProps,
-) {
+export default function DiscoverProjects({
+  projectCardData,
+  paddingY,
+}: DiscoverProjectsProps) {
   // Generate the header image URL from Sanity or use the raw string URL
   // const imageUrl =
   //   typeof image === "string" ? image : image ? urlFor(image, 1200) : "";
 
   return (
-    <section
-      className={clsx(
-        "mx-auto py-32",
-        //  paddingY
-      )}
-    >
+    <section className={clsx("mx-auto", paddingY)}>
       <MaxWidthWrapper>
         <div className="mb-16 grid gap-0 md:grid-cols-2 md:gap-24">
           {/* Right Column (Heading and Title) for Mobile, Hidden on Desktop */}
@@ -80,7 +66,7 @@ export default function DiscoverProjects(
               label={"WYBRANE REALIZACJE"}
               title={"Nasze realizacje"}
               as="h2"
-              motionPreset="fade-in"
+              motionPreset="blur-up"
               textColor="black"
               animateOnView={true}
               animationDirection="left"
@@ -107,70 +93,15 @@ export default function DiscoverProjects(
           {/* Button for Mobile, Hidden on Desktop */}
           <div className="text-left md:hidden"></div>
         </div>
-
-        <FadeInSection>
-          <Card className="border-none bg-zinc-100 px-6 pb-10 pt-16">
-            <CardContent className="">
-              <div className="grid gap-8 lg:grid-cols-2">
-                <div className="">
-                  {/* <SectionTitle
-                    label="WYBRANE REALIZACJE"
-                    title="Projekt Bastion Wschodni we Fromborku"
-                    textColor="black"
-                    as="h2"
-                    className="mb-10"
-                  /> */}
-                  <h3 className="mb-10 max-w-[24rem] text-pretty font-bolder text-[1.9rem] leading-tight tracking-[-0.015em]">
-                    Projekt Bastion Wschodni we Fromborku
-                  </h3>
-                  {/* <PortableText
-                    value={criteria}
-                    components={portableTextComponents}
-                  /> */}
-
-                  <div className="mb-4 max-w-[26rem] text-pretty text-[1.1rem]">
-                    Baszta Ferbera jest jednym z najbardziej oryginalnych
-                    elementów fortyfikacji Wzgórza Katedralnego we Fromborku.
-                    Nasz zespół podjął się zadania konserwacji budowli, której
-                    stan ze względu na destrukcję materiałów z których jest
-                    wzniesiona wykluczał jej użytkowanie. Przeprowadzone w 2024
-                    roku prace przywróciły walory estetyczne budynku oraz
-                    znacznie poprawiły jego stan techniczny, umożliwiając dalsze
-                    prace mające na celu ewentualną jego adaptację do nowych
-                    funkcji.
-                  </div>
-
-                  <CustomButton animateOnView={false}>
-                    ZOBACZ PROJEKT
-                  </CustomButton>
-                </div>
-                <div className="relative h-full w-full">
-                  {/* <Image
-                    src={imageUrl}
-                    alt={imageAlt || "Header image"}
-                    fill
-                    style={{
-                      objectFit: "cover", //
-                      objectPosition: "center",
-                    }}
-                  /> */}
-
-                  <Image
-                    src={"/basteja.webp"}
-                    alt={
-                      // imageAlt ||
-                      "Header image"
-                    }
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="center"
-                  />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </FadeInSection>
       </MaxWidthWrapper>
+
+      <FadeInSection>
+        <ProjectCard
+          projectCardData={projectCardData}
+          paddingY="py-36"
+          colorScheme="zincLight"
+        />
+      </FadeInSection>
     </section>
   );
 }
