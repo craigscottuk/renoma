@@ -6,6 +6,8 @@ import LabOffer from "./offer";
 import { AboutLab } from "./about-lab";
 import { PortableTextBlock } from "next-sanity";
 import { getTranslations } from "next-intl/server";
+import CTA from "@/components/cta";
+import { ctaContent } from "@/lib/ctaContent";
 
 const QUERY = `
 {
@@ -131,6 +133,11 @@ export default async function RenomaLab({ params: { locale } }: Props) {
           colorScheme="zincLight"
         />
       )}
+      <CTA
+        title={ctaContent.title}
+        description={ctaContent.description}
+        buttonText={ctaContent.buttonText}
+      />
     </>
   );
 }
