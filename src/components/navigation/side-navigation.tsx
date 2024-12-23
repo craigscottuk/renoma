@@ -29,7 +29,7 @@ const SideNavItem = ({ item, index }: { item: NavItem; index: number }) => {
     >
       <a
         href={item.link}
-        className="block transform px-6 py-4 text-lg font-medium text-gray-800 transition-all duration-200 ease-in-out hover:-translate-x-1 hover:bg-gray-100 hover:text-gray-500"
+        className="block transform px-6 py-4 text-lg font-medium text-zinc-800 transition-all duration-200 ease-in-out hover:-translate-x-1 hover:bg-zinc-100 hover:text-zinc-500"
       >
         {item.label}
       </a>
