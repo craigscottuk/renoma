@@ -5,6 +5,8 @@ import { client } from "@/sanity/client";
 import { PortableTextBlock } from "next-sanity";
 import SectionJobOffer from "./section-job-offer";
 import { getTranslations } from "next-intl/server";
+import { ctaContent } from "@/lib/ctaContent";
+import CTA from "@/components/cta";
 
 const QUERY = `
 {
@@ -33,7 +35,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 10 } };
+const OPTIONS = { next: { revalidate: 86400 } };
 // 86400
 
 type Props = {
@@ -113,6 +115,11 @@ export default async function PracujZNami({ params: { locale } }: Props) {
           paddingY="py-20 md:py-24"
         />
       )}
+      <CTA
+        title={ctaContent.title}
+        description={ctaContent.description}
+        buttonText={ctaContent.buttonText}
+      />
     </>
   );
 }
