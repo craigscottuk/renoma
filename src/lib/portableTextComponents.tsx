@@ -97,7 +97,7 @@ const portableTextComponents: PortableTextComponents = {
     },
     // Fallback for unsupported types
     default: ({ value }) => (
-      <div className="bg-gray-100 p-4 text-red-500">
+      <div className="bg-zinc-100 p-4 text-red-500">
         <strong>Unsupported content type:</strong> {value?._type || "Unknown"}
       </div>
     ),
