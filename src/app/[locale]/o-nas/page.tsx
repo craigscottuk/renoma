@@ -6,6 +6,8 @@ import { PortableTextBlock } from "next-sanity";
 import PageHeader from "@/components/page-header";
 import { getTranslations } from "next-intl/server";
 import { setRequestLocale } from "next-intl/server";
+import { ctaContent } from "@/lib/ctaContent";
+import CTA from "@/components/cta";
 
 const QUERY = `
 {
@@ -136,9 +138,14 @@ export default async function About({ params: { locale } }: Props) {
         <OurHistory
           title={ourHistory.title}
           events={ourHistory.timeline}
-          paddingY="py-20 md:py-48"
+          paddingY="pt-20 md:pt-48"
         />
       )}
+      <CTA
+        title={ctaContent.title}
+        description={ctaContent.description}
+        buttonText={ctaContent.buttonText}
+      />
     </>
   );
 }
