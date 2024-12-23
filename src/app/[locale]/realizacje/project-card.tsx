@@ -81,9 +81,8 @@ export default function ProjectCard({
                   <Image
                     src={project.imageUrl}
                     alt={project.title}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="top"
+                    fill
+                    style={{ objectFit: "cover", objectPosition: "top" }}
                   />
                 </a>
               </div>
