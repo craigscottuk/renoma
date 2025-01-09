@@ -22,7 +22,7 @@ export default defineConfig({
   schema,
   plugins: [
     // Polish Studio UI language
-    // plPLLocale(),
+    plPLLocale(),
     singletonTools(),
     structureTool({ structure }),
     visionTool({ defaultApiVersion: apiVersion }),
