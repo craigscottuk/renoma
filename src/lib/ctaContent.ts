@@ -4,5 +4,5 @@ export const ctaContent = {
                 renowacyjnych i konserwatorskich. Skontaktuj się z nami, aby
                 omówić swoje potrzeby i uzyskać spersonalizowane wsparcie na
                 każdym etapie realizacji projektu.`,
-  buttonText: "ZACZNIJ SWÓJ PROJEKT",
+  buttonText: "SKONSULTUJ",
 };
