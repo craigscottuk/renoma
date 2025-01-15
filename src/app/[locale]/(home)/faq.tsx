@@ -2,7 +2,7 @@
 // cSpell:disable
 import clsx from "clsx";
 import SectionTitle from "@/components/section-title";
-import CustomButton from "@/components/ui/custom-button";
+// import CustomButton from "@/components/ui/custom-button";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import SectionDescription from "@/components/section-description";
 import {
@@ -69,7 +69,7 @@ export default function SectionFaqHome({
   label,
   title,
   description,
-  sectionCTA,
+  // sectionCTA,
   paddingY = "py-16 md:py-44", // Default padding values
   faqItems,
 }: SectionFaqHomeProps) {
@@ -106,7 +106,7 @@ export default function SectionFaqHome({
           <FadeInSection>
             <FaqAccordion faqItems={faqItems} />
           </FadeInSection>
-          <div className="w-full text-left">
+          {/* <div className="w-full text-left">
             <CustomButton
               animateOnView={true}
               animationDirection="left"
@@ -115,7 +115,7 @@ export default function SectionFaqHome({
             >
               {sectionCTA}
             </CustomButton>
-          </div>
+          </div> */}
         </div>
       </MaxWidthWrapper>
     </section>
