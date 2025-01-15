@@ -51,22 +51,28 @@ export default function Timeline({ events }: TimelineProps) {
   }, [sortedEvents.length]);
 
   useEffect(() => {
-    eventRefs.current.forEach((el, index) => {
-      if (el) {
-        const observer = new IntersectionObserver(([entry]) => {
-          if (entry.isIntersecting) {
-            setVisibleIndexes((prev) => [...new Set([...prev, index])]);
-            observer.unobserve(entry.target); // Animate only once
-          } else {
-            setVisibleIndexes((prev) => prev.filter((i) => i !== index));
-          }
-        });
-
-        observer.observe(el);
-        return () => observer.disconnect();
-      }
-    });
-  }, [sortedEvents.length]);
+    if (!isMobile) {
+      eventRefs.current.forEach((el, index) => {
+        if (el) {
+          const observer = new IntersectionObserver(
+            ([entry]) => {
+              if (entry.isIntersecting) {
+                setVisibleIndexes((prev) => [...new Set([...prev, index])]);
+                setExpandedIndexes((prev) => [...new Set([...prev, index])]);
+                observer.unobserve(entry.target);
+              }
+            },
+            {
+              threshold: 1, // or 0.95, adjust as needed
+              rootMargin: "0px 0px -350px 0px", // optional
+            },
+          );
+          observer.observe(el);
+          return () => observer.disconnect();
+        }
+      });
+    }
+  }, [sortedEvents.length, isMobile]);
 
   useEffect(() => {
     const handleHashChange = () => {
