@@ -204,9 +204,11 @@ export const labOffer = defineType({
               options: {
                 list: [
                   { title: "Microscope", value: "Microscope" },
-                  { title: "SwatchBook", value: "SwatchBook" },
+                  { title: "Layers", value: "Layers" },
                   { title: "Flask", value: "Flask" },
                   { title: "Droplets", value: "Droplets" },
+                  { title: "Lightbulb", value: "Lightbulb" },
+                  { title: "Users", value: "Users" },
                 ],
                 layout: "dropdown",
               },
