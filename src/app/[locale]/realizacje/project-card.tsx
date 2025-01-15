@@ -120,7 +120,7 @@ export default function ProjectCard({
                   className="text-`zinc-900 text-base"
                   href={`/realizacje/${project.slug}`}
                 >
-                  Czytaj więcej
+                  Zobacz cały projekt
                 </AnimatedLink>
               </CardFooter>
             </Card>
