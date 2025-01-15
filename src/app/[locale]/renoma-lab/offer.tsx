@@ -2,9 +2,11 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Microscope,
-  SwatchBook,
+  Layers,
   Droplets,
   FlaskRoundIcon as Flask,
+  Lightbulb,
+  Users,
 } from "lucide-react";
 import clsx from "clsx";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
@@ -29,9 +31,11 @@ const iconComponents: Record<
   React.ComponentType<React.SVGProps<SVGSVGElement>>
 > = {
   Microscope,
-  SwatchBook,
+  Layers,
   Flask,
   Droplets,
+  Lightbulb,
+  Users,
 };
 
 const cardColorSchemes: Record<
