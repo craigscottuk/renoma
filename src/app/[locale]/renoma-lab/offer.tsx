@@ -117,9 +117,9 @@ export default function LabOffer({
                 );
               })}
             </div>
-            <p className="mx-auto mt-8 px-5 py-10 text-center text-[1.1rem] text-zinc-900 md:max-w-[60rem]">
+            {/* <p className="mx-auto mt-8 px-5 py-10 text-center text-[1.1rem] text-zinc-900 md:max-w-[60rem]">
               {collaborationDescription}
-            </p>
+            </p> */}
           </div>
         </MaxWidthWrapper>
       </section>
