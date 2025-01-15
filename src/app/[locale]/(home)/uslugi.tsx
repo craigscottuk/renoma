@@ -85,7 +85,7 @@ export default function SectionUslugiHome({
           </div>
         </div>
 
-        <ServicesCards servicesGroup={servicesGroup} />
+        {servicesGroup && <ServicesCards servicesGroup={servicesGroup} />}
       </MaxWidthWrapper>
     </section>
   );
