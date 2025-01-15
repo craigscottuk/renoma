@@ -6,6 +6,7 @@ import ServicesList from "@/app/[locale]/uslugi/services-list";
 import { getTranslations } from "next-intl/server";
 import CTA from "@/components/cta";
 import { ctaContent } from "@/lib/ctaContent";
+import SectionFaqHome from "../(home)/faq";
 
 const QUERY = `
 {
@@ -56,11 +57,22 @@ const QUERY = `
         "images": images
       }
     }
+  },
+
+  "faqSectionHome": *[_type == "faqSectionHome"][0]{
+    "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+    "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia"),
+    "faqItems": faqItems[]{
+      "question": coalesce(question[_key == $locale][0].value, "Brak tłumaczenia"),
+      "answer": coalesce(answer[_key == $locale][0].value, "Brak tłumaczenia")
+    }
   }
 }
 `;
 
-const OPTIONS = { next: { revalidate: 60 } };
+const OPTIONS = { next: { revalidate: 30 } };
 // 86400
 
 type Props = {
@@ -124,6 +136,16 @@ interface Content {
       }[];
     };
   };
+  faqSectionHome: {
+    label: string;
+    title: string;
+    description: string;
+    sectionCTA: string;
+    faqItems: {
+      question: string;
+      answer: string;
+    }[];
+  };
 }
 
 // Metadata from translations and generateMetadata function
@@ -153,7 +175,7 @@ export default async function ONas({ params: { locale } }: Props) {
 
   // console.log("Fetched content:", content);
 
-  const { servicesHeader, servicesGroup } = content;
+  const { servicesHeader, servicesGroup, faqSectionHome } = content;
 
   // console.log("Services Header:", servicesHeader);
   // console.log("Services Group:", servicesGroup);
@@ -182,6 +204,19 @@ export default async function ONas({ params: { locale } }: Props) {
           ]}
         />
       )}
+
+      {/* FAQ Section */}
+      {faqSectionHome && (
+        <SectionFaqHome
+          label={faqSectionHome.label}
+          title={faqSectionHome.title}
+          description={faqSectionHome.description}
+          sectionCTA={faqSectionHome.sectionCTA}
+          faqItems={faqSectionHome.faqItems}
+          paddingY="py-20 md:py-48"
+        />
+      )}
+
       <CTA
         title={ctaContent.title}
         description={ctaContent.description}
