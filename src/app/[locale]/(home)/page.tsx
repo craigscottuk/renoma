@@ -8,8 +8,8 @@ import { setRequestLocale } from "next-intl/server";
 import LogoShowcase from "./logos";
 import CTA from "../../../components/cta";
 import { getTranslations } from "next-intl/server";
-import DiscoverProjects from "./projects";
-import projectCardData from "@/lib/projectCardData";
+// import DiscoverProjects from "./projects";
+// import projectCardData from "@/lib/projectCardData";
 import { ctaContent } from "@/lib/ctaContent";
 
 const QUERY = `
@@ -18,51 +18,62 @@ const QUERY = `
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia")
   },
+
+
   "aboutSectionHome": *[_type == "aboutSectionHome"][0]{
     "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia")
   },
+
+
   "servicesSectionHome": *[_type == "servicesSectionHome"][0]{
     "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia")
   },
-  "servicesGroup": *[_type == "servicesGroup"][0]{
-    "serviceGroupOne": {
-      "title": coalesce(serviceGroupOne.title, "Brak tłumaczenia"),
-      "services": serviceGroupOne.services[]{
-        "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
-        "shortDescription": coalesce(shortDescription[_key == $locale][0].value, "Brak tłumaczenia")
-      }
-    },
-    "serviceGroupTwo": {
-      "title": coalesce(serviceGroupTwo.title, "Brak tłumaczenia"),
-      "services": serviceGroupTwo.services[]{
-        "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
-        "shortDescription": coalesce(shortDescription[_key == $locale][0].value, "Brak tłumaczenia")
-      }
-    },
-    "serviceGroupThree": {
-      "title": coalesce(serviceGroupThree.title, "Brak tłumaczenia"),
-      "services": serviceGroupThree.services[]{
-        "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
-        "shortDescription": coalesce(shortDescription[_key == $locale][0].value, "Brak tłumaczenia")
-      }
-    }
-  },
-  "faqSectionHome": *[_type == "faqSectionHome"][0]{
-    "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
-    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
-    "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
-    "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia"),
-    "faqItems": faqItems[]{
-      "question": coalesce(question[_key == $locale][0].value, "Brak tłumaczenia"),
-      "answer": coalesce(answer[_key == $locale][0].value, "Brak tłumaczenia")
-    }
-  },
+
+
+  // "servicesGroup": *[_type == "servicesGroup"][0]{
+  //   "serviceGroupOne": {
+  //     "title": coalesce(serviceGroupOne.title, "Brak tłumaczenia"),
+  //     "services": serviceGroupOne.services[]{
+  //       "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+  //       "shortDescription": coalesce(shortDescription[_key == $locale][0].value, "Brak tłumaczenia")
+  //     }
+  //   },
+  //   "serviceGroupTwo": {
+  //     "title": coalesce(serviceGroupTwo.title, "Brak tłumaczenia"),
+  //     "services": serviceGroupTwo.services[]{
+  //       "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+  //       "shortDescription": coalesce(shortDescription[_key == $locale][0].value, "Brak tłumaczenia")
+  //     }
+  //   },
+  //   "serviceGroupThree": {
+  //     "title": coalesce(serviceGroupThree.title, "Brak tłumaczenia"),
+  //     "services": serviceGroupThree.services[]{
+  //       "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+  //       "shortDescription": coalesce(shortDescription[_key == $locale][0].value, "Brak tłumaczenia")
+  //     }
+  //   }
+  // },
+
+  // "faqSectionHome": *[_type == "faqSectionHome"][0]{
+  //   "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
+  //   "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+  //   "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+  //   "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia"),
+  //   "faqItems": faqItems[]{
+  //     "question": coalesce(question[_key == $locale][0].value, "Brak tłumaczenia"),
+  //     "answer": coalesce(answer[_key == $locale][0].value, "Brak tłumaczenia")
+  //   }
+  // },
+
+
+
+
   "logoSectionHome": *[_type == "logoSectionHome"][0]{
     "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -75,7 +86,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 60 } };
+const OPTIONS = { next: { revalidate: 30 } };
 // 86400
 
 type Props = {
@@ -209,10 +220,12 @@ export default async function HomePage({ params: { locale } }: Props) {
         />
       )}
 
+      {/* Discover Projects Section
       <DiscoverProjects
         projectCardData={projectCardData}
         paddingY="py-20 md:py-32"
       />
+       */}
 
       {/* FAQ Section */}
       {faqSectionHome && (
