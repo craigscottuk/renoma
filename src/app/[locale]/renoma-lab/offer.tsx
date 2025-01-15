@@ -70,7 +70,7 @@ const cardColorSchemes: Record<
 export default function LabOffer({
   title,
   offers,
-  collaborationDescription,
+  // collaborationDescription,
   paddingY,
   colorScheme = "zincLight",
 }: LabOfferProps) {
