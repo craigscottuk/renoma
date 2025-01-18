@@ -1,3 +1,5 @@
+// version with mouse click untouched since Christmas 2024
+
 "use client";
 import { ChevronUp } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
@@ -26,6 +28,9 @@ export default function Timeline({ events }: TimelineProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [captionHeight, setCaptionHeight] = useState(0);
   const eventRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const mouseOverTimers = useRef<Map<number, ReturnType<typeof setTimeout>>>(
+    new Map(),
+  );
 
   useEffect(() => {
     const mobile = window.innerWidth < 768;
@@ -51,28 +56,22 @@ export default function Timeline({ events }: TimelineProps) {
   }, [sortedEvents.length]);
 
   useEffect(() => {
-    if (!isMobile) {
-      eventRefs.current.forEach((el, index) => {
-        if (el) {
-          const observer = new IntersectionObserver(
-            ([entry]) => {
-              if (entry.isIntersecting) {
-                setVisibleIndexes((prev) => [...new Set([...prev, index])]);
-                setExpandedIndexes((prev) => [...new Set([...prev, index])]);
-                observer.unobserve(entry.target);
-              }
-            },
-            {
-              threshold: 1, // or 0.95, adjust as needed
-              rootMargin: "0px 0px -350px 0px", // optional
-            },
-          );
-          observer.observe(el);
-          return () => observer.disconnect();
-        }
-      });
-    }
-  }, [sortedEvents.length, isMobile]);
+    eventRefs.current.forEach((el, index) => {
+      if (el) {
+        const observer = new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) {
+            setVisibleIndexes((prev) => [...new Set([...prev, index])]);
+            observer.unobserve(entry.target); // Animate only once
+          } else {
+            setVisibleIndexes((prev) => prev.filter((i) => i !== index));
+          }
+        });
+
+        observer.observe(el);
+        return () => observer.disconnect();
+      }
+    });
+  }, [sortedEvents.length]);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -108,6 +107,30 @@ export default function Timeline({ events }: TimelineProps) {
       }
     }
   };
+
+  function handleMouseEnter(index: number) {
+    if (!isMobile) {
+      const timer = setTimeout(() => {
+        setExpandedIndexes((prev) => {
+          if (!prev.includes(index)) {
+            return [...prev, index];
+          }
+          return prev;
+        });
+      }, 300);
+      mouseOverTimers.current.set(index, timer);
+    }
+  }
+
+  function handleMouseLeave(index: number) {
+    if (!isMobile) {
+      const timer = mouseOverTimers.current.get(index);
+      if (timer) {
+        clearTimeout(timer);
+        mouseOverTimers.current.delete(index);
+      }
+    }
+  }
 
   const visibleEvents = isMobile
     ? sortedEvents.slice(sortedEvents.length - visibleEventCount)
@@ -173,6 +196,8 @@ export default function Timeline({ events }: TimelineProps) {
                   />
                   {/* Year event title */}
                   <button
+                    onMouseEnter={() => handleMouseEnter(index)}
+                    onMouseLeave={() => handleMouseLeave(index)}
                     onClick={() => {
                       toggleExpand(index);
                       scrollToEvent(index, event.year);
@@ -187,7 +212,7 @@ export default function Timeline({ events }: TimelineProps) {
 
                 <div
                   id={`content-${index}`}
-                  className={`ml-8 overflow-hidden rounded-sm transition-all duration-500 md:ml-0 ${
+                  className={`ml-8 overflow-hidden rounded-sm transition-all transition-opacity duration-500 ${
                     isExpanded
                       ? "max-h-[2000px] opacity-100"
                       : "max-h-0 opacity-0"
