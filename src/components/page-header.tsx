@@ -17,7 +17,11 @@ interface PageHeaderProps {
   sectionButton?: string;
   image?: SanityImageSource | string;
   imageAlt?: string;
-  imageLayout?: "fullWidthAbove" | "fullWidthBelow" | "portraitRight";
+  imageLayout?:
+    | "fullWidthAbove"
+    | "fullWidthBelow"
+    | "portraitRight"
+    | "landscapeRight";
   backgroundColor?: "white" | "black";
   twoColumnText?: boolean;
   portableTextBlock?: PortableTextBlock[];
@@ -112,7 +116,10 @@ export default function PageHeader({
                 ? "mt-24 lg:mt-0"
                 : "",
               headerFullWidth && imagePosition === "below" ? "mt-24" : "",
-              imageLayout === "portraitRight" ? "mt-24" : "",
+              imageLayout === "portraitRight" ||
+                imageLayout === "landscapeRight"
+                ? "mt-24"
+                : "",
               backgroundColor === "black" ? "bg-zinc-900" : "bg-white",
             )}
           >
@@ -189,8 +196,13 @@ export default function PageHeader({
               {imageUrl && !headerFullWidth && (
                 <div
                   className={clsx(
-                    "relative hidden lg:-mb-80 lg:-mt-12 lg:ml-auto lg:block lg:h-[530px] lg:w-[450px]",
-                    imageLayout === "portraitRight" ? "mt-24" : "",
+                    "relative hidden lg:block",
+                    imageLayout === "portraitRight"
+                      ? "lg:-mb-80 lg:-mt-12 lg:ml-auto lg:h-[530px] lg:w-[450px]"
+                      : "",
+                    imageLayout === "landscapeRight"
+                      ? "lg:mx-auto lg:aspect-[16/10] lg:w-1/2 lg:self-center"
+                      : "",
                   )}
                 >
                   <Image
