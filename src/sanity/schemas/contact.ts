@@ -88,6 +88,7 @@ export const contactHeader = defineType({
           { title: "Pełna szerokość powyżej", value: "fullWidthAbove" },
           { title: "Pełna szerokość poniżej", value: "fullWidthBelow" },
           { title: "Portret po prawej", value: "portraitRight" },
+          { title: "Krajobraz po prawej", value: "landscapeRight" },
         ],
         layout: "radio",
       },
