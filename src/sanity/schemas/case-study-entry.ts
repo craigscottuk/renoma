@@ -297,7 +297,49 @@ export const caseStudyEntry = defineType({
         {
           name: "content",
           title: "Treść Sekcji",
-          type: "sectionContent",
+          type: "portableTextWithHeadings",
+        },
+        {
+          name: "comparisonContent",
+          title: "Treść porównania",
+          type: "text",
+          rows: 8,
+          description:
+            "Krótki opis porównania efektów prac konserwatorskich i restauratorskich oraz budowlanych.",
+        },
+        {
+          name: "comparisons",
+          title: "Porównania",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              fields: [
+                {
+                  name: "title",
+                  title: "Tytuł",
+                  type: "string",
+                  description: "Tytuł porównania, np. 'Elewacja zewnętrzna'.",
+                },
+                {
+                  name: "imageBefore",
+                  title: "Obraz przed",
+                  type: "image",
+                  options: {
+                    hotspot: true,
+                  },
+                },
+                {
+                  name: "imageAfter",
+                  title: "Obraz po",
+                  type: "image",
+                  options: {
+                    hotspot: true,
+                  },
+                },
+              ],
+            },
+          ],
         },
       ],
     }),

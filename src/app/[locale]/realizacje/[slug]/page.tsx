@@ -12,6 +12,7 @@ import ComparisonSection from "./comparison-section";
 import BibliographySection from "./bibliography-section";
 import CTA from "@/components/cta";
 import { ctaContent } from "@/lib/ctaContent";
+import { PortableTextBlock } from "@portabletext/react";
 
 const QUERY = `
 *[_type == "caseStudyEntry" && slug.current == $slug][0]{
@@ -70,11 +71,12 @@ const QUERY = `
   },
   sectionFive {
     title,
-    content[]{
-      ...,
-      _type == "textAndImageGallery" => {
-        layout
-      }
+    content,
+    comparisonContent,
+    comparisons[]{
+      title,
+      "imageBefore": imageBefore.asset->url,
+      "imageAfter": imageAfter.asset->url
     }
   },
   sectionSix {
@@ -93,27 +95,6 @@ const QUERY = `
   }
 }
 `;
-
-const comparisons = [
-  {
-    id: 1,
-    title: "Elewacja zewnętrzna",
-    imageBefore: "/fallback-image.svg",
-    imageAfter: "/fallback-image.svg",
-  },
-  {
-    id: 2,
-    title: "Wnętrze - Sala główna",
-    imageBefore: "/fallback-image.svg",
-    imageAfter: "/fallback-image.svg",
-  },
-  {
-    id: 3,
-    title: "Dach i zwieńczenie",
-    imageBefore: "/fallback-image.svg",
-    imageAfter: "/fallback-image.svg",
-  },
-];
 
 type Translation = {
   title: string;
@@ -157,7 +138,13 @@ type Project = {
   };
   sectionFive: {
     title: string;
-    content: CaseStudySectionContent[];
+    content: PortableTextBlock[];
+    comparisonContent: string;
+    comparisons: {
+      title: string;
+      imageBefore: string;
+      imageAfter: string;
+    }[];
   };
   sectionSix: {
     title: string;
@@ -280,26 +267,17 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
 
           {/* 05. Efekty prac konserwatorskich i restauratorskich oraz budowlanych */}
           {project.sectionFive?.content?.length > 0 && (
-            // <ContentSection
-            //   title={project.sectionFive.title}
-            //   content={project.sectionFive.content}
-            // />
             <ComparisonSection
-              title="5. Efekty prac konserwatorskich i restauratorskich oraz budowlanych"
-              comparisons={comparisons}
+              title={project.sectionFive.title}
+              content={project.sectionFive.content}
+              comparisons={project.sectionFive.comparisons}
             />
           )}
 
           {/* 06. Bibliografia */}
           {project.sectionSix?.content?.length > 0 && (
-            // <ContentSection
-            //   title={project.sectionSix.title}
-            //   content={project.sectionSix.content}
-            // />
-
             <BibliographySection title="6. Wybrana bibliografia" />
           )}
-          <BibliographySection title="6. Wybrana bibliografia" />
           <CTA
             title={ctaContent.title}
             description={ctaContent.description}

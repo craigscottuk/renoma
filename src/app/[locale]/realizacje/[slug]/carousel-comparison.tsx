@@ -8,7 +8,6 @@ import { ComparisonBeforeAfter } from "./comparison-before-after";
 
 interface CarouselComparisonProps {
   comparisons: {
-    id: number;
     title: string;
     imageBefore: string;
     imageAfter: string;
@@ -48,8 +47,8 @@ export function CarouselComparison({ comparisons }: CarouselComparisonProps) {
     <div className="relative">
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
-          {comparisons.map((comparison) => (
-            <div key={comparison.id} className="min-w-0 flex-[0_0_100%]">
+          {comparisons.map((comparison, index) => (
+            <div key={index} className="min-w-0 flex-[0_0_100%]">
               <h3 className="mb-8 font-bolder text-[1.45rem] text-dullGold">
                 {comparison.title}
               </h3>
