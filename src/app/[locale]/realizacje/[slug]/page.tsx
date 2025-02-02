@@ -72,7 +72,6 @@ const QUERY = `
   sectionFive {
     title,
     content,
-    comparisonContent,
     comparisons[]{
       title,
       "imageBefore": imageBefore.asset->url,
@@ -139,7 +138,6 @@ type Project = {
   sectionFive: {
     title: string;
     content: PortableTextBlock[];
-    comparisonContent: string;
     comparisons: {
       title: string;
       imageBefore: string;
