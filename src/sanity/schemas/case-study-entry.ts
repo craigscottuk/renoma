@@ -300,14 +300,6 @@ export const caseStudyEntry = defineType({
           type: "portableTextWithHeadings",
         },
         {
-          name: "comparisonContent",
-          title: "Treść porównania",
-          type: "text",
-          rows: 8,
-          description:
-            "Krótki opis porównania efektów prac konserwatorskich i restauratorskich oraz budowlanych.",
-        },
-        {
           name: "comparisons",
           title: "Porównania",
           type: "array",
