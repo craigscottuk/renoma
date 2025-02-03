@@ -1,5 +1,7 @@
 // cSpell:disable
+
 // app/[locale]/realizacje/[slug]/page.tsx
+
 import { client } from "@/sanity/client";
 import { setRequestLocale } from "next-intl/server";
 import { redirect } from "@/i18n/routing";
@@ -13,6 +15,9 @@ import BibliographySection from "./bibliography-section";
 import CTA from "@/components/cta";
 import { ctaContent } from "@/lib/ctaContent";
 import { PortableTextBlock } from "@portabletext/react";
+import { CaseStudyNavigation } from "./case-study-navigation";
+
+// we need to add to the query to handle the next and previous case study in the CaseStudyNavigation component
 
 const QUERY = `
 *[_type == "caseStudyEntry" && slug.current == $slug][0]{
@@ -80,17 +85,26 @@ const QUERY = `
   },
   sectionSix {
     title,
-    content[]{
-      ...,
-      _type == "textAndImageGallery" => {
-        layout
-      }
-    }
+    content
   },
   "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{
     title,
     slug,
     language
+  },
+  "previousCaseStudy": *[
+    _type == "caseStudyEntry" && ^.language == language && _createdAt < ^._createdAt
+  ]| order(_createdAt desc)[0]{
+    title,
+    "slug": slug.current,
+    "imageUrl": image.asset->url
+  },
+  "nextCaseStudy": *[
+    _type == "caseStudyEntry" && ^.language == language && _createdAt > ^._createdAt
+  ]| order(_createdAt asc)[0]{
+    title,
+    "slug": slug.current,
+    "imageUrl": image.asset->url
   }
 }
 `;
@@ -146,9 +160,19 @@ type Project = {
   };
   sectionSix: {
     title: string;
-    content: CaseStudySectionContent[];
+    content: PortableTextBlock[];
   };
   _translations: Translation[];
+  previousCaseStudy?: {
+    title: string;
+    slug: string;
+    imageUrl: string;
+  };
+  nextCaseStudy?: {
+    title: string;
+    slug: string;
+    imageUrl: string;
+  };
 };
 
 type Props = {
@@ -158,7 +182,7 @@ type Props = {
 export default async function ProjectPage({ params: { slug, locale } }: Props) {
   setRequestLocale(locale);
 
-  const OPTIONS = { next: { revalidate: 86400 } };
+  const OPTIONS = { next: { revalidate: 10 } };
   // 86400
 
   // Error handling for fetching data
@@ -264,7 +288,7 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
           )}
 
           {/* 05. Efekty prac konserwatorskich i restauratorskich oraz budowlanych */}
-          {project.sectionFive?.content?.length > 0 && (
+          {project.sectionFive && (
             <ComparisonSection
               title={project.sectionFive.title}
               content={project.sectionFive.content}
@@ -274,8 +298,17 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
 
           {/* 06. Bibliografia */}
           {project.sectionSix?.content?.length > 0 && (
-            <BibliographySection title="6. Wybrana bibliografia" />
+            <BibliographySection
+              title={project.sectionSix.title}
+              content={project.sectionSix.content}
+            />
           )}
+          {/* we need to add to the query to handle the next and previous case study in this comoponent */}
+          <CaseStudyNavigation
+            previousCaseStudy={project.previousCaseStudy}
+            nextCaseStudy={project.nextCaseStudy}
+          />
+
           <CTA
             title={ctaContent.title}
             description={ctaContent.description}
