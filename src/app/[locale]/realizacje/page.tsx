@@ -21,11 +21,12 @@ const QUERY = `
     "imageLayout": imageLayout,
     "backgroundColor": backgroundColor
   },
-  "projects": *[_type == "caseStudyEntry" && language == $locale]{
-    title,
-    slug,
-    language,
-}
+  "projects": *[_type == "caseStudyEntry" && language == $locale]
+    | order(_createdAt asc){
+      title,
+      slug,
+      language,
+    }
 }
 `;
 
