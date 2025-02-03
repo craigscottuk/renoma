@@ -19,18 +19,23 @@ export default function ComparisonSection({
   content,
   comparisons,
 }: ComparisonSectionProps) {
+  // Render nothing if both properties are missing
+  if (!(content?.length || comparisons?.length)) {
+    console.log("No content or comparisons to render.");
+    return null;
+  }
+
   return (
     <section className="mb-16">
       <MaxWidthWrapper>
         <Separator className="mb-16" />
-
         <h2 className="mb-8 w-full max-w-[43rem] font-bolder text-[2rem] text-zinc-800">
           {title}
         </h2>
       </MaxWidthWrapper>
 
       <MaxWidthWrapper>
-        <div className={`mb-20 flex flex-col lg:gap-24`}>
+        <div className="mb-20 flex flex-col lg:gap-24">
           {content?.length > 0 && (
             <div className="flex-1">
               <div className="text-pretty text-[1.1rem] leading-[1.75] lg:max-w-[30rem]">
