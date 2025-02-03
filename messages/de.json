@@ -121,5 +121,9 @@
     "contactLink": "/kontakt",
     "contact": "Kontakt",
     "contactUs": "Kontaktieren Sie uns"
+  },
+  "caseStudyNavigation": {
+    "previousCaseStudy": "Vorherige Fallstudie",
+    "nextCaseStudy": "Nächste Fallstudie"
   }
 }
