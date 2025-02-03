@@ -276,7 +276,6 @@ export const caseStudyEntry = defineType({
 
     // ================================
     // 05. Efekty prac konserwatorskich i restauratorskich oraz budowlanych
-
     // ================================
 
     defineField({
@@ -352,7 +351,7 @@ export const caseStudyEntry = defineType({
         {
           name: "content",
           title: "Treść Sekcji",
-          type: "sectionContent",
+          type: "basicText",
         },
       ],
     }),
