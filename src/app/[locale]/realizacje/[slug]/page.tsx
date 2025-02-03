@@ -15,9 +15,7 @@ import BibliographySection from "./bibliography-section";
 import CTA from "@/components/cta";
 import { ctaContent } from "@/lib/ctaContent";
 import { PortableTextBlock } from "@portabletext/react";
-import { CaseStudyNavigation } from "./case-study-navigation";
-
-// we need to add to the query to handle the next and previous case study in the CaseStudyNavigation component
+import { PrevNextCaseStudy } from "./prev-next-case-study";
 
 const QUERY = `
 *[_type == "caseStudyEntry" && slug.current == $slug][0]{
@@ -182,7 +180,7 @@ type Props = {
 export default async function ProjectPage({ params: { slug, locale } }: Props) {
   setRequestLocale(locale);
 
-  const OPTIONS = { next: { revalidate: 10 } };
+  const OPTIONS = { next: { revalidate: 86400 } };
   // 86400
 
   // Error handling for fetching data
@@ -303,8 +301,8 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
               content={project.sectionSix.content}
             />
           )}
-          {/* we need to add to the query to handle the next and previous case study in this comoponent */}
-          <CaseStudyNavigation
+
+          <PrevNextCaseStudy
             previousCaseStudy={project.previousCaseStudy}
             nextCaseStudy={project.nextCaseStudy}
           />
