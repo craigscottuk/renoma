@@ -1,3 +1,5 @@
+"use client";
+
 // cSpell:disable
 import { Card, CardContent } from "@/components/ui/card";
 import clsx from "clsx";
@@ -9,6 +11,7 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import Image from "next/image";
 import CustomButton from "@/components/ui/custom-button";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
+import { FadeInSection } from "@/components/fade-in-section";
 
 interface WhoWeAreLookingForProps {
   title: string;
@@ -34,54 +37,42 @@ export default function WhoWeAreLookingFor({
   return (
     <section className={clsx("mx-auto bg-white text-zinc-950/90", paddingY)}>
       <MaxWidthWrapper>
-        <Card className="border-none bg-zinc-100">
-          <CardContent className="p-10">
-            <div className="grid gap-8 lg:grid-cols-2">
-              <div className="p-8 lg:p-12">
-                <SectionTitle
-                  title={title}
-                  textColor="black"
-                  as="h2"
-                  className="mb-20"
-                />
+        <FadeInSection translateY>
+          <Card className="border-none bg-zinc-100">
+            <CardContent className="p-10">
+              <div className="grid gap-8 lg:grid-cols-2">
+                <div className="p-8 lg:p-12">
+                  <SectionTitle
+                    title={title}
+                    textColor="black"
+                    as="h2"
+                    className="mb-20"
+                  />
 
-                {/* <p className="mb-6 text-lg text-muted-foreground">
-                  Poszukujemy osób:
-                </p>
-                <ul className="space-y-4">
-                  {criteria.map((requirement, index) => (
-                    <li
-                      key={index}
-                      className="flex gap-2 text-muted-foreground"
-                    >
-                      <span className="text-primary">•</span>
-                      <span>{requirement.text}</span>
-                    </li>
-                  ))}
-                </ul> */}
-                <PortableText
-                  value={criteria}
-                  components={portableTextComponents}
-                />
+                  <PortableText
+                    value={criteria}
+                    components={portableTextComponents}
+                  />
 
-                <CustomButton animateOnView={false}>
-                  {applyButtonText}
-                </CustomButton>
+                  <CustomButton animateOnView={false}>
+                    {applyButtonText}
+                  </CustomButton>
+                </div>
+                <div className="relative m-6 h-[400px] lg:max-h-[600px] lg:min-h-full">
+                  <Image
+                    src={imageUrl}
+                    alt={imageAlt || "Header image"}
+                    fill
+                    style={{
+                      objectFit: "cover", //
+                      objectPosition: "center",
+                    }}
+                  />
+                </div>
               </div>
-              <div className="relative m-6 h-[400px] lg:max-h-[600px] lg:min-h-full">
-                <Image
-                  src={imageUrl}
-                  alt={imageAlt || "Header image"}
-                  fill
-                  style={{
-                    objectFit: "cover", //
-                    objectPosition: "center",
-                  }}
-                />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </FadeInSection>
       </MaxWidthWrapper>
     </section>
   );
