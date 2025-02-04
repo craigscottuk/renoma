@@ -3,7 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header";
 import { client } from "@/sanity/client";
 import LabOffer from "./offer";
-import { AboutLab } from "./about-lab";
+// import { AboutLab } from "./about-lab";
 import { PortableTextBlock } from "next-sanity";
 import { getTranslations } from "next-intl/server";
 import CTA from "@/components/cta";
@@ -95,7 +95,11 @@ export default async function RenomaLab({ params: { locale } }: Props) {
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
-  const { renomaLabHeader, aboutLab, labOffer } = content;
+  const {
+    renomaLabHeader,
+    // aboutLab,
+    labOffer,
+  } = content;
 
   return (
     <>
@@ -115,13 +119,13 @@ export default async function RenomaLab({ params: { locale } }: Props) {
       )}
 
       {/* About Lab */}
-      {!renomaLabHeader.descriptionTwoColumns && (
+      {/* {!renomaLabHeader.descriptionTwoColumns && (
         <AboutLab
           title={aboutLab.title}
           text={aboutLab.text}
           paddingY="py-36"
         />
-      )}
+      )} */}
 
       {/* Lab Offer */}
       {labOffer && (
