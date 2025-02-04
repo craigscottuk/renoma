@@ -104,7 +104,7 @@ export default function ContactFormAndDetails({
           </FadeInSection>
 
           {/* Contact Form */}
-          <FadeInSection className="max-w-xl" translateY>
+          <FadeInSection className="max-w-xl">
             <ContactForm
               color={"light"}
               contactFormSubjects={contactForm.contactFormSubjects.map(
