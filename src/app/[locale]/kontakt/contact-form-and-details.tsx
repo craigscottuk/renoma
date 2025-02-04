@@ -1,9 +1,11 @@
+"use client";
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { Mail, MapPin, Phone, FileText } from "lucide-react";
 import ContactForm from "@/app/[locale]/kontakt/contact-form";
 import AnimatedLink from "@/components/animated-link";
+import { FadeInSection } from "@/components/fade-in-section";
 
 type ContactDetailsSectionProps = {
   contactDetails: {
@@ -39,7 +41,7 @@ export default function ContactFormAndDetails({
       <MaxWidthWrapper>
         <div className="grid gap-24 lg:grid-cols-2">
           {/* Contact Information in 2x2 Grid */}
-          <div className="grid grid-cols-2 py-10">
+          <FadeInSection className="grid grid-cols-2 py-10">
             {/* Phone Section */}
             <div className="bg-zinc flex max-w-60 items-start gap-4">
               <Phone className="h-6 w-6" aria-hidden="true" />
@@ -99,17 +101,17 @@ export default function ContactFormAndDetails({
                 </p>
               </div>
             </div>
-          </div>
+          </FadeInSection>
 
           {/* Contact Form */}
-          <div className="max-w-xl">
+          <FadeInSection className="max-w-xl" translateY>
             <ContactForm
               color={"light"}
               contactFormSubjects={contactForm.contactFormSubjects.map(
                 (subject) => ({ label: subject }),
               )}
             />
-          </div>
+          </FadeInSection>
         </div>
       </MaxWidthWrapper>
     </section>
