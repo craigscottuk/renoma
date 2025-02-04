@@ -13,7 +13,7 @@ export interface TimelineEvent {
   images?: Array<{
     src: string;
     caption?: string;
-    aspectRatio?: "none" | "landscape" | "portrait" | "square"; // Ensure aspectRatio is of the correct type
+    aspectRatio?: "none" | "landscape" | "portrait" | "square";
   }>;
 }
 
@@ -171,30 +171,20 @@ export default function Timeline({ events }: TimelineProps) {
                     !isMobile && isEven
                       ? "md:ml-auto md:pl-10"
                       : "md:mr-auto md:justify-end md:pr-10"
-                  }`}
+                  } cursor-pointer`}
+                  onClick={() => {
+                    toggleExpand(index);
+                    scrollToEvent(index, event.year);
+                  }}
+                  onMouseEnter={() => handleMouseEnter(index)}
+                  onMouseLeave={() => handleMouseLeave(index)}
                 >
                   {/* Year event marker */}
-                  <div
-                    onClick={() => {
-                      toggleExpand(index);
-                      scrollToEvent(index, event.year);
-                    }}
-                    className="absolute left-0 h-[24px] w-[24px] cursor-pointer scroll-mt-40 rounded-full border-4 border-zinc-100 bg-zinc-600 group-hover:bg-gold-800 md:left-1/2 md:-translate-x-1/2 md:pt-2 xl:pt-2"
-                  />
+                  <div className="absolute left-0 h-[24px] w-[24px] scroll-mt-40 rounded-full border-4 border-zinc-100 bg-zinc-600 group-hover:bg-gold-800 md:left-1/2 md:-translate-x-1/2 md:pt-2 xl:pt-2" />
                   {/* Year event title */}
-                  <button
-                    onClick={() => {
-                      toggleExpand(index);
-                      scrollToEvent(index, event.year);
-                    }}
-                    onMouseEnter={() => handleMouseEnter(index)}
-                    onMouseLeave={() => handleMouseLeave(index)}
-                    className="flex items-center font-bolder text-2xl text-zinc-600 group-hover:text-gold-800"
-                    aria-expanded={isExpanded}
-                    aria-controls={`content-${index}`}
-                  >
-                    <h3 className="">{event.year}</h3>
-                  </button>
+                  <h3 className="flex items-center font-bolder text-2xl text-zinc-600 group-hover:text-gold-800">
+                    {event.year}
+                  </h3>
                 </div>
 
                 <div
