@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
+import { FadeInSection } from "@/components/fade-in-section";
 
 interface CaseStudy {
   title: string;
@@ -33,61 +34,65 @@ export function PrevNextCaseStudy({
   const t = useTranslations("PrevNextCaseStudy");
 
   return (
-    <div className="bg-zinc-200">
-      <MaxWidthWrapper className="container mx-auto px-4 py-12">
-        <Card className="border-none bg-zinc-200 shadow-none">
-          <CardContent className="flex flex-col items-center justify-between gap-4 p-6 sm:flex-row">
-            {previousCaseStudy ? (
-              <Link
-                href={{
-                  pathname: "/realizacje/[slug]",
-                  params: { slug: previousCaseStudy.slug },
-                }}
-                locale={locale}
-                className={containerClasses}
-              >
-                <Button variant="ghost" className={buttonClasses}>
-                  <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1.5" />
-                  <div className="flex flex-col items-start">
-                    <span className={subtitleClasses}>
-                      {t("previousCaseStudy")}
-                    </span>
-                    <span className={titleClasses}>
-                      {previousCaseStudy.title}
-                    </span>
-                  </div>
-                </Button>
-              </Link>
-            ) : (
-              <div className={containerClasses} />
-            )}
+    <FadeInSection translateY>
+      <div className="bg-zinc-200">
+        <MaxWidthWrapper className="container mx-auto px-4 py-12">
+          <Card className="border-none bg-zinc-200 shadow-none">
+            <CardContent className="flex flex-col items-center justify-between gap-4 p-6 sm:flex-row">
+              {previousCaseStudy ? (
+                <Link
+                  href={{
+                    pathname: "/realizacje/[slug]",
+                    params: { slug: previousCaseStudy.slug },
+                  }}
+                  locale={locale}
+                  className={containerClasses}
+                >
+                  <Button variant="ghost" className={buttonClasses}>
+                    <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1.5" />
+                    <div className="flex flex-col items-start">
+                      <span className={subtitleClasses}>
+                        {t("previousCaseStudy")}
+                      </span>
+                      <span className={titleClasses}>
+                        {previousCaseStudy.title}
+                      </span>
+                    </div>
+                  </Button>
+                </Link>
+              ) : (
+                <div className={containerClasses} />
+              )}
 
-            {nextCaseStudy ? (
-              <Link
-                href={{
-                  pathname: "/realizacje/[slug]",
-                  params: { slug: nextCaseStudy.slug },
-                }}
-                locale={locale}
-                className={containerClasses}
-              >
-                <Button variant="ghost" className={buttonClasses}>
-                  <div className="flex flex-col items-end">
-                    <span className={subtitleClasses}>
-                      {t("nextCaseStudy")}
-                    </span>
+              {nextCaseStudy ? (
+                <Link
+                  href={{
+                    pathname: "/realizacje/[slug]",
+                    params: { slug: nextCaseStudy.slug },
+                  }}
+                  locale={locale}
+                  className={containerClasses}
+                >
+                  <Button variant="ghost" className={buttonClasses}>
+                    <div className="flex flex-col items-end">
+                      <span className={subtitleClasses}>
+                        {t("nextCaseStudy")}
+                      </span>
 
-                    <span className={titleClasses}>{nextCaseStudy.title}</span>
-                  </div>
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1.5" />
-                </Button>
-              </Link>
-            ) : (
-              <div className={containerClasses} />
-            )}
-          </CardContent>
-        </Card>
-      </MaxWidthWrapper>
-    </div>
+                      <span className={titleClasses}>
+                        {nextCaseStudy.title}
+                      </span>
+                    </div>
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1.5" />
+                  </Button>
+                </Link>
+              ) : (
+                <div className={containerClasses} />
+              )}
+            </CardContent>
+          </Card>
+        </MaxWidthWrapper>
+      </div>
+    </FadeInSection>
   );
 }
