@@ -14,6 +14,7 @@ import { StaticRoutePaths } from "@/lib/routes";
 import { useEffect, useState } from "react";
 import { client } from "@/sanity/client";
 import AnimatedLink from "@/components/animated-link";
+import { FadeInSection } from "@/components/fade-in-section";
 
 interface FooterProps {
   variant?: "light" | "dark";
@@ -83,108 +84,112 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
     >
       <MaxWidthWrapper>
         <div className="py-16 pt-24">
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {serviceGroups.map((group, index) => (
-              <div key={index} className="space-y-4">
-                <h4 className="font-bolder text-xl">{group.title}</h4>
+          <FadeInSection>
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {serviceGroups.map((group, index) => (
+                <div key={index} className="space-y-4">
+                  <h4 className="font-bolder text-xl">{group.title}</h4>
+                  <ul className="space-y-2">
+                    {group.services.map((service, index) => (
+                      <li key={index}>
+                        <AnimatedLink
+                          showArrow={false}
+                          underline={false}
+                          href={`/uslugi#${service.title.toLowerCase().replace(/\s+/g, "-")}`}
+                          className={linkClasses}
+                        >
+                          {service.title}
+                        </AnimatedLink>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+              <div className="space-y-4">
+                <h4 className="font-bolder text-xl">{t("contact")}</h4>
                 <ul className="space-y-2">
-                  {group.services.map((service, index) => (
-                    <li key={index}>
-                      <AnimatedLink
-                        showArrow={false}
-                        underline={false}
-                        href={`/uslugi#${service.title.toLowerCase().replace(/\s+/g, "-")}`}
-                        className={linkClasses}
-                      >
-                        {service.title}
-                      </AnimatedLink>
-                    </li>
-                  ))}
+                  <li>
+                    <AnimatedLink
+                      showArrow={false}
+                      underline={false}
+                      href={t("contactLink")}
+                      className={linkClasses}
+                    >
+                      {t("contactUs")}
+                    </AnimatedLink>
+                  </li>
                 </ul>
               </div>
-            ))}
-            <div className="space-y-4">
-              <h4 className="font-bolder text-xl">{t("contact")}</h4>
-              <ul className="space-y-2">
-                <li>
-                  <AnimatedLink
-                    showArrow={false}
-                    underline={false}
-                    href={t("contactLink")}
-                    className={linkClasses}
-                  >
-                    {t("contactUs")}
-                  </AnimatedLink>
-                </li>
-              </ul>
             </div>
-          </div>
+          </FadeInSection>
           <Separator
             className={clsx(
               "mb-6 mt-12 md:mt-24",
               variant === "light" ? "bg-zinc-900/40" : "bg-zinc-200/40",
             )}
           />
-          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-4">
-            <div
-              className={clsx(
-                "flex flex-col items-center gap-4 sm:flex-row sm:gap-4",
-                variant === "light" ? lightClasses : darkClasses,
-              )}
-            >
-              <p className="text-center text-sm text-zinc-200">
-                {t("copyright", { year: currentYear })}
-              </p>
-            </div>
-            <div className="flex items-center space-x-8">
-              <Link
-                href={"/polityka-prywatnosci" as StaticRoutePaths}
-                className={clsx(linkClasses, "text-sm")}
-              >
-                {t("privacyPolicy")}
-              </Link>
-              <div className="flex space-x-4">
-                <NextLink href="https://linkedin.com" aria-label="LinkedIn">
-                  <LinkedInIcon
-                    className={clsx(
-                      "h-5 w-5 fill-zinc-200",
-                      variant === "light" ? "fill-zinc-950" : "fill-zinc-200",
-                    )}
-                  />
-                </NextLink>
-                <NextLink href="https://facebook.com" aria-label="Facebook">
-                  <FacebookIcon
-                    className={clsx(
-                      "h-5 w-5 fill-zinc-200",
-                      variant === "light" ? "fill-zinc-950" : "fill-zinc-200",
-                    )}
-                  />
-                </NextLink>
-                <NextLink href="https://instagram.com" aria-label="Instagram">
-                  <InstagramIcon
-                    className={clsx(
-                      "h-5 w-5 fill-zinc-200",
-                      variant === "light" ? "fill-zinc-950" : "fill-zinc-200",
-                    )}
-                  />
-                </NextLink>
-              </div>
-
-              <Button
-                variant="outline"
-                size="icon"
+          <FadeInSection>
+            <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-4">
+              <div
                 className={clsx(
-                  "ml-5",
-                  variant === "light" ? "fill-red-500" : "fill-blue-500",
+                  "flex flex-col items-center gap-4 sm:flex-row sm:gap-4",
                   variant === "light" ? lightClasses : darkClasses,
                 )}
-                onClick={scrollToTop}
-                aria-label={t("scrollToTop")}
               >
-                <ChevronUp className="h-4 w-4" />
-              </Button>
+                <p className="text-center text-sm text-zinc-200">
+                  {t("copyright", { year: currentYear })}
+                </p>
+              </div>
+              <div className="flex items-center space-x-8">
+                <Link
+                  href={"/polityka-prywatnosci" as StaticRoutePaths}
+                  className={clsx(linkClasses, "text-sm")}
+                >
+                  {t("privacyPolicy")}
+                </Link>
+                <div className="flex space-x-4">
+                  <NextLink href="https://linkedin.com" aria-label="LinkedIn">
+                    <LinkedInIcon
+                      className={clsx(
+                        "h-5 w-5 fill-zinc-200",
+                        variant === "light" ? "fill-zinc-950" : "fill-zinc-200",
+                      )}
+                    />
+                  </NextLink>
+                  <NextLink href="https://facebook.com" aria-label="Facebook">
+                    <FacebookIcon
+                      className={clsx(
+                        "h-5 w-5 fill-zinc-200",
+                        variant === "light" ? "fill-zinc-950" : "fill-zinc-200",
+                      )}
+                    />
+                  </NextLink>
+                  <NextLink href="https://instagram.com" aria-label="Instagram">
+                    <InstagramIcon
+                      className={clsx(
+                        "h-5 w-5 fill-zinc-200",
+                        variant === "light" ? "fill-zinc-950" : "fill-zinc-200",
+                      )}
+                    />
+                  </NextLink>
+                </div>
+
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className={clsx(
+                    "ml-5",
+                    variant === "light" ? "fill-red-500" : "fill-blue-500",
+                    variant === "light" ? lightClasses : darkClasses,
+                  )}
+                  onClick={scrollToTop}
+                  aria-label={t("scrollToTop")}
+                >
+                  <ChevronUp className="h-4 w-4" />
+                </Button>
+              </div>
             </div>
-          </div>
+          </FadeInSection>
         </div>
       </MaxWidthWrapper>
     </footer>
