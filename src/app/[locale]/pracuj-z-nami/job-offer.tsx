@@ -24,6 +24,7 @@ import { PortableText, PortableTextBlock } from "next-sanity";
 import { MapPin, Clock, ChevronDown, ChevronUp } from "lucide-react";
 import { portableTextComponents } from "@/lib/portableTextComponents";
 import clsx from "clsx";
+import { FadeInSection } from "@/components/fade-in-section";
 
 export interface JobOffer {
   jobTitle: string;
@@ -71,99 +72,109 @@ export default function JobOfferCard({ job }: { job: JobOffer }) {
   const selectedColorScheme = cardColorSchemes.zincLight;
 
   return (
-    <Card className={clsx("mb-6", selectedColorScheme.card)}>
-      <CardHeader>
-        <div className="flex items-start justify-between">
-          <div>
-            <CardTitle className="mb-5 text-[1.6rem] tracking-[-0.015em] marker:leading-tight">
-              {job.jobTitle}
-            </CardTitle>
-            <CardDescription
-              className={clsx(
-                "mb-5 max-w-[55rem] text-[1.1rem]",
-                selectedColorScheme.cardContent,
-              )}
-            >
-              {job.jobDescription}
-            </CardDescription>
+    <FadeInSection translateY>
+      <Card
+        className={clsx("mb-6 cursor-pointer", selectedColorScheme.card)}
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
+        <CardHeader>
+          <div className="flex items-start justify-between">
+            <div>
+              <CardTitle className="mb-5 text-[1.6rem] tracking-[-0.015em] marker:leading-tight">
+                {job.jobTitle}
+              </CardTitle>
+              <CardDescription
+                className={clsx(
+                  "mb-5 max-w-[55rem] text-[1.1rem]",
+                  selectedColorScheme.cardContent,
+                )}
+              >
+                {job.jobDescription}
+              </CardDescription>
+            </div>
           </div>
-        </div>
-        <div
-          className={clsx(
-            "flex space-x-4 text-[1.1rem]",
-            selectedColorScheme.cardContent,
-          )}
-        >
-          <div className="flex items-center">
-            <MapPin className="mr-1 h-4 w-4" />
-            {job.jobLocation}
+          <div
+            className={clsx(
+              "flex space-x-4 text-[1.1rem]",
+              selectedColorScheme.cardContent,
+            )}
+          >
+            <div className="flex items-center">
+              <MapPin className="mr-1 h-4 w-4" />
+              {job.jobLocation}
+            </div>
+            <div className="flex items-center">
+              <Clock className="mr-1 h-4 w-4" />
+              {job.jobType}
+            </div>
           </div>
-          <div className="flex items-center">
-            <Clock className="mr-1 h-4 w-4" />
-            {job.jobType}
-          </div>
-        </div>
-      </CardHeader>
-      <CardContent>
-        <div
-          className={`max-w-[52rem] overflow-hidden text-pretty transition-all duration-300 ${isExpanded ? "max-h-[1000px]" : "max-h-0"}`}
-        >
-          <h3 className="mb-2 text-lg font-semibold">Obowiązki:</h3>
-          <PortableText
-            value={job.responsibilities}
-            components={portableTextComponents}
-          />
-          <h3 className="mb-2 text-lg font-semibold">Wymagania:</h3>
-          <PortableText
-            value={job.requirements}
-            components={portableTextComponents}
-          />
-          <h3 className="mb-2 text-lg font-semibold">Oferujemy:</h3>
-          <PortableText
-            value={job.benefits}
-            components={portableTextComponents}
-          />
-        </div>
-      </CardContent>
-      <CardFooter className="flex items-center justify-between">
-        <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-          <DialogTrigger asChild>
-            <Button
-              className="hover:bg-zinc-800 hover:text-zinc-100"
-              variant="outline"
-            >
-              Aplikuj teraz
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-2xl">
-            <DialogHeader>
-              <DialogTitle className="mb-5 text-[1.6rem] tracking-[-0.015em] marker:leading-tight">
-                Aplikuj na stanowisko: {job.jobTitle}
-              </DialogTitle>
-            </DialogHeader>
-            <ApplicationForm
-              jobTitle={job.jobTitle}
-              onClose={() => setIsModalOpen(false)}
+        </CardHeader>
+        <CardContent>
+          <div
+            className={`max-w-[52rem] overflow-hidden text-pretty transition-all duration-300 ${isExpanded ? "max-h-[1000px]" : "max-h-0"}`}
+          >
+            <h3 className="mb-2 text-lg font-semibold">Obowiązki:</h3>
+            <PortableText
+              value={job.responsibilities}
+              components={portableTextComponents}
             />
-          </DialogContent>
-        </Dialog>
-        <Button
-          variant="link"
-          className="text-zinc-800 hover:text-zinc-900"
-          onClick={() => setIsExpanded(!isExpanded)}
-        >
-          {isExpanded ? (
-            <>
-              Mniej szczegółów <ChevronUp className="ml-1 inline h-4 w-4" />
-            </>
-          ) : (
-            <>
-              Więcej szczegółów <ChevronDown className="ml-1 inline h-4 w-4" />
-            </>
-          )}
-        </Button>
-      </CardFooter>
-    </Card>
+            <h3 className="mb-2 text-lg font-semibold">Wymagania:</h3>
+            <PortableText
+              value={job.requirements}
+              components={portableTextComponents}
+            />
+            <h3 className="mb-2 text-lg font-semibold">Oferujemy:</h3>
+            <PortableText
+              value={job.benefits}
+              components={portableTextComponents}
+            />
+          </div>
+        </CardContent>
+        <CardFooter className="flex items-center justify-between">
+          <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+            <DialogTrigger asChild>
+              <Button
+                className="hover:bg-zinc-800 hover:text-zinc-100"
+                variant="outline"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Aplikuj teraz
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-2xl">
+              <DialogHeader>
+                <DialogTitle className="mb-5 text-[1.6rem] tracking-[-0.015em] marker:leading-tight">
+                  Aplikuj na stanowisko: {job.jobTitle}
+                </DialogTitle>
+              </DialogHeader>
+              <ApplicationForm
+                jobTitle={job.jobTitle}
+                onClose={() => setIsModalOpen(false)}
+              />
+            </DialogContent>
+          </Dialog>
+          <Button
+            variant="link"
+            className="text-zinc-800 hover:text-zinc-900"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsExpanded(!isExpanded);
+            }}
+          >
+            {isExpanded ? (
+              <>
+                Mniej szczegółów <ChevronUp className="ml-1 inline h-4 w-4" />
+              </>
+            ) : (
+              <>
+                Więcej szczegółów{" "}
+                <ChevronDown className="ml-1 inline h-4 w-4" />
+              </>
+            )}
+          </Button>
+        </CardFooter>
+      </Card>
+    </FadeInSection>
   );
 }
 
