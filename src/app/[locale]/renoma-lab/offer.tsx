@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -13,6 +15,7 @@ import { PortableText, PortableTextBlock } from "@portabletext/react";
 import SectionTitle from "@/components/section-title";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { portableTextComponents } from "@/lib/portableTextComponents";
+import { FadeInSection } from "@/components/fade-in-section";
 
 interface LabOfferProps {
   title: string;
@@ -49,13 +52,13 @@ const cardColorSchemes: Record<
 > = {
   zincDark: {
     section: "bg-zinc-900 text-zinc-50",
-    card: "border-zinc-700 bg-zinc-900 text-zinc-50",
+    card: "border-zinc-700 bg-zinc-900 text-zinc-50 h-full",
     cardContent: "text-zinc-100",
     sectionTitle: "white",
   },
   zincLight: {
     section: "text-zinc-950 bg-zinc-200",
-    card: "border-zinc-300 bg-zinc-100",
+    card: "border-zinc-300 bg-zinc-100 h-full",
     cardContent: "text-zinc-700",
     sectionTitle: "black",
   },
@@ -83,37 +86,41 @@ export default function LabOffer({
         <MaxWidthWrapper>
           <div className="space-y-10">
             <div className="justify-left flex">
-              <SectionTitle
-                title={title}
-                textColor={selectedColorScheme.sectionTitle}
-                textAlign="right"
-              />
+              <FadeInSection translateY>
+                <SectionTitle
+                  title={title}
+                  textColor={selectedColorScheme.sectionTitle}
+                  textAlign="right"
+                />
+              </FadeInSection>
             </div>
             <div className="grid gap-6 md:grid-cols-2">
               {offers.map((offer, index) => {
                 const IconComponent = iconComponents[offer.icon] || Microscope;
                 return (
-                  <Card className={selectedColorScheme.card} key={index}>
-                    <CardHeader>
-                      <div className="flex items-center space-x-2">
-                        <IconComponent className="h-6 w-6 text-gold-800" />
-                        <CardTitle className="text-[1.6rem] leading-tight tracking-[-0.015em]">
-                          {offer.title}
-                        </CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent
-                      className={clsx(
-                        "text-[1.1rem]",
-                        selectedColorScheme.cardContent,
-                      )}
-                    >
-                      <PortableText
-                        value={offer.content}
-                        components={portableTextComponents}
-                      />
-                    </CardContent>
-                  </Card>
+                  <FadeInSection translateY key={index}>
+                    <Card className={selectedColorScheme.card}>
+                      <CardHeader>
+                        <div className="flex items-center space-x-2">
+                          <IconComponent className="h-6 w-6 text-gold-800" />
+                          <CardTitle className="text-[1.6rem] leading-tight tracking-[-0.015em]">
+                            {offer.title}
+                          </CardTitle>
+                        </div>
+                      </CardHeader>
+                      <CardContent
+                        className={clsx(
+                          "text-[1.1rem]",
+                          selectedColorScheme.cardContent,
+                        )}
+                      >
+                        <PortableText
+                          value={offer.content}
+                          components={portableTextComponents}
+                        />
+                      </CardContent>
+                    </Card>
+                  </FadeInSection>
                 );
               })}
             </div>
