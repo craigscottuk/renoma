@@ -7,7 +7,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { motion } from "framer-motion";
 import { urlFor } from "@/sanity/lib/image";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef } from "react";
@@ -15,7 +14,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import SectionTitle from "@/components/section-title";
 import ImageCarousel from "@/components/ImageCarousel";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { FadeInSection } from "@/components/fade-in-section";
 
 import { Separator } from "@/components/ui/separator";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
@@ -35,35 +34,6 @@ interface Service {
 interface ServiceGroup {
   title: string;
   services: Service[];
-}
-
-function FadeInSection({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  const { ref, controls } = useIntersectionObserver({
-    animateOnView: true,
-    threshold: 0.3,
-    once: true, // Animate only once
-  });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={controls}
-      variants={{
-        hidden: { opacity: 0, y: 50 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-      }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
 }
 
 export default function ServicesList({
@@ -217,7 +187,7 @@ export default function ServicesList({
                       serviceIndex % 2 === 1 && "flex-row-reverse",
                     )}
                   >
-                    <FadeInSection className="lg:w-1/2">
+                    <FadeInSection className="lg:w-1/2" translateY>
                       <button
                         onClick={() => scrollToSection(service.title)}
                         className="mb-6 cursor-pointer border-none bg-transparent p-0 text-left font-bolder text-[2rem] leading-tight tracking-[-0.015em]"
