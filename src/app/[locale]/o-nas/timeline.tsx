@@ -1,4 +1,4 @@
-// version with mouse click untouched since Christmas 2024
+// Expand year event on mouse hover
 
 "use client";
 import { ChevronUp } from "lucide-react";
@@ -28,9 +28,7 @@ export default function Timeline({ events }: TimelineProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [captionHeight, setCaptionHeight] = useState(0);
   const eventRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const mouseOverTimers = useRef<Map<number, ReturnType<typeof setTimeout>>>(
-    new Map(),
-  );
+  const hoverTimeouts = useRef<(ReturnType<typeof setTimeout> | null)[]>([]);
 
   useEffect(() => {
     const mobile = window.innerWidth < 768;
@@ -94,6 +92,19 @@ export default function Timeline({ events }: TimelineProps) {
     );
   };
 
+  const handleMouseEnter = (index: number) => {
+    if (isMobile || expandedIndexes.includes(index)) return;
+    hoverTimeouts.current[index] = setTimeout(() => {
+      setExpandedIndexes((prev) => [...prev, index]);
+    }, 500);
+  };
+
+  const handleMouseLeave = (index: number) => {
+    if (isMobile || !hoverTimeouts.current[index]) return;
+    clearTimeout(hoverTimeouts.current[index]!);
+    hoverTimeouts.current[index] = null;
+  };
+
   const showEarlierEvents = () => {
     setVisibleEventCount((prev) => Math.min(prev + 2, sortedEvents.length));
   };
@@ -107,30 +118,6 @@ export default function Timeline({ events }: TimelineProps) {
       }
     }
   };
-
-  function handleMouseEnter(index: number) {
-    if (!isMobile) {
-      const timer = setTimeout(() => {
-        setExpandedIndexes((prev) => {
-          if (!prev.includes(index)) {
-            return [...prev, index];
-          }
-          return prev;
-        });
-      }, 300);
-      mouseOverTimers.current.set(index, timer);
-    }
-  }
-
-  function handleMouseLeave(index: number) {
-    if (!isMobile) {
-      const timer = mouseOverTimers.current.get(index);
-      if (timer) {
-        clearTimeout(timer);
-        mouseOverTimers.current.delete(index);
-      }
-    }
-  }
 
   const visibleEvents = isMobile
     ? sortedEvents.slice(sortedEvents.length - visibleEventCount)
@@ -196,12 +183,12 @@ export default function Timeline({ events }: TimelineProps) {
                   />
                   {/* Year event title */}
                   <button
-                    onMouseEnter={() => handleMouseEnter(index)}
-                    onMouseLeave={() => handleMouseLeave(index)}
                     onClick={() => {
                       toggleExpand(index);
                       scrollToEvent(index, event.year);
                     }}
+                    onMouseEnter={() => handleMouseEnter(index)}
+                    onMouseLeave={() => handleMouseLeave(index)}
                     className="flex items-center font-bolder text-2xl text-zinc-600 group-hover:text-gold-800"
                     aria-expanded={isExpanded}
                     aria-controls={`content-${index}`}
@@ -212,7 +199,7 @@ export default function Timeline({ events }: TimelineProps) {
 
                 <div
                   id={`content-${index}`}
-                  className={`ml-8 overflow-hidden rounded-sm transition-all transition-opacity duration-500 ${
+                  className={`ml-8 overflow-hidden rounded-sm transition-all duration-500 md:ml-0 ${
                     isExpanded
                       ? "max-h-[2000px] opacity-100"
                       : "max-h-0 opacity-0"
