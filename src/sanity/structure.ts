@@ -17,6 +17,7 @@ import {
   Settings,
   Cookie,
   MousePointerClick,
+  Copyright,
 } from "lucide-react";
 
 export const structure: StructureResolver = (S, context) =>
@@ -93,6 +94,13 @@ export const structure: StructureResolver = (S, context) =>
                 context,
                 type: "ourHistory",
                 title: "Sekcja 3: Oś czasu",
+                id: "singletonTimeline",
+              }),
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "aboutPageMetadata",
+                title: "Metadane strony O nas",
                 id: "singletonTimeline",
               }),
             ]),
@@ -272,6 +280,29 @@ export const structure: StructureResolver = (S, context) =>
             ]),
         ),
       S.divider(),
+      S.listItem()
+        .title("Stopka")
+        .icon(Copyright)
+        .child(
+          S.list()
+            .title("Stopka")
+            .items([
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "footerLinks",
+                title: "Linki w stopce",
+                id: "singletonFooterLinks",
+              }),
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "socialMediaLinks",
+                title: "Linki do mediów społecznościowych",
+                id: "singletonSocialMediaLinks",
+              }),
+            ]),
+        ),
       S.listItem()
         .title("Polityka Prywatności")
         .icon(Cookie)
