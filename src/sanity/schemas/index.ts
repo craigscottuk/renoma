@@ -9,7 +9,13 @@ import {
   faqSectionHome,
   logoSectionHome,
 } from "./home";
-import { about, aboutUsHeader, ourHistory, aboutUs } from "./about";
+import {
+  about,
+  aboutUsHeader,
+  ourHistory,
+  aboutUs,
+  aboutPageMetadata,
+} from "./about";
 import {
   servicesList,
   servicesHeader,
@@ -36,6 +42,7 @@ import {
 } from "./portableText";
 import { sectionContent } from "./sectionContent";
 import { cta, ctaContent } from "./cta";
+import { footer, footerLinks, socialMediaLinks } from "./footer";
 
 // Export schema configuration
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -53,6 +60,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     aboutUsHeader,
     aboutUs,
     ourHistory,
+    aboutPageMetadata,
 
     // Usługi
     services,
@@ -102,6 +110,11 @@ export const schema: { types: SchemaTypeDefinition[] } = {
 
     // Ustawienia
     settings,
+
+    // Stopka
+    footer,
+    footerLinks,
+    socialMediaLinks,
 
     // Portable Text
     basicText,
