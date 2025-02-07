@@ -21,7 +21,8 @@ interface PageHeaderProps {
     | "fullWidthAbove"
     | "fullWidthBelow"
     | "portraitRight"
-    | "landscapeRight";
+    | "landscapeRight"
+    | "noImage";
   backgroundColor?: "white" | "black";
   twoColumnText?: boolean;
   portableTextBlock?: PortableTextBlock[];
@@ -50,24 +51,28 @@ export default function PageHeader({
   const headerFullWidth = twoColumnText || imageLayout.startsWith("fullWidth");
   const imagePosition = imageLayout === "fullWidthBelow" ? "below" : "above";
   const textColor = backgroundColor === "black" ? "white" : "black";
+  const showImage = imageLayout !== "noImage";
 
   return (
     <>
       {/* Full-width header image */}
-      {headerFullWidth && imageUrl && imagePosition === "above" && (
-        <div className="relative mt-24 h-96 w-full">
-          <Image
-            src={imageUrl || "/fallback-image.svg"}
-            alt={imageAlt || "Obraz nagłówka"}
-            fill
-            style={{
-              objectFit: "cover",
-              objectPosition: "center",
-            }}
-            loading="lazy"
-          />
-        </div>
-      )}
+      {headerFullWidth &&
+        imageUrl &&
+        imagePosition === "above" &&
+        showImage && (
+          <div className="relative mt-24 h-96 w-full">
+            <Image
+              src={imageUrl || "/fallback-image.svg"}
+              alt={imageAlt || "Obraz nagłówka"}
+              fill
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+              loading="lazy"
+            />
+          </div>
+        )}
 
       {/* Modified layout when twoColumnText is true */}
       {twoColumnText ? (
@@ -95,7 +100,7 @@ export default function PageHeader({
                 )}
               >
                 {portableTextBlock && (
-                  <div className="motion-preset-fade-md">
+                  <div className="motion-preset-fade-lg">
                     <PortableText
                       value={portableTextBlock}
                       components={portableTextComponents}
@@ -112,19 +117,22 @@ export default function PageHeader({
           <section
             className={clsx(
               "relative mx-auto py-12 lg:py-20",
-              headerFullWidth && imagePosition === "above"
+              headerFullWidth && imagePosition === "above" && showImage
                 ? "mt-24 lg:mt-0"
                 : "",
-              headerFullWidth && imagePosition === "below" ? "mt-24" : "",
+              headerFullWidth && imagePosition === "below" && showImage
+                ? "mt-24"
+                : "",
               imageLayout === "portraitRight" ||
                 imageLayout === "landscapeRight"
                 ? "mt-24"
                 : "",
+              imageLayout === "noImage" ? "lg:mt-24" : "",
               backgroundColor === "black" ? "bg-zinc-900" : "bg-white",
             )}
           >
             {/* Small-screen header image strip */}
-            {!headerFullWidth && imageUrl && (
+            {!headerFullWidth && imageUrl && showImage && (
               <MaxWidthWrapper className="relative -mt-12 mb-4 block h-44 w-full lg:hidden">
                 <Image
                   src={imageUrl}
@@ -145,7 +153,7 @@ export default function PageHeader({
                 "lg:flex-row lg:gap-8": !imageUrl || headerFullWidth,
               })}
             >
-              {imageUrl && !headerFullWidth ? (
+              {imageUrl && !headerFullWidth && showImage ? (
                 // Stacked layout for content with an image on the right on large screens
                 <div className="flex-1">
                   <SectionTitle
@@ -193,7 +201,7 @@ export default function PageHeader({
               )}
 
               {/* Large-screen layout with image on the right */}
-              {imageUrl && !headerFullWidth && (
+              {imageUrl && !headerFullWidth && showImage && (
                 <div
                   className={clsx(
                     "relative hidden lg:block",
@@ -223,20 +231,23 @@ export default function PageHeader({
       )}
 
       {/* Full-width header image below content */}
-      {headerFullWidth && imageUrl && imagePosition === "below" && (
-        <div className="relative h-96 w-full">
-          <Image
-            src={imageUrl || "/fallback-image.svg"}
-            alt={imageAlt || "Obraz nagłówka"}
-            fill
-            style={{
-              objectFit: "cover",
-              objectPosition: "center",
-            }}
-            loading="lazy"
-          />
-        </div>
-      )}
+      {headerFullWidth &&
+        imageUrl &&
+        imagePosition === "below" &&
+        showImage && (
+          <div className="relative h-96 w-full">
+            <Image
+              src={imageUrl || "/fallback-image.svg"}
+              alt={imageAlt || "Obraz nagłówka"}
+              fill
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+              loading="lazy"
+            />
+          </div>
+        )}
     </>
   );
 }
