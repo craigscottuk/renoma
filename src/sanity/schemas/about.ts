@@ -89,6 +89,7 @@ export const aboutUsHeader = defineType({
           { title: "Pełna szerokość poniżej", value: "fullWidthBelow" },
           { title: "Portret po prawej", value: "portraitRight" },
           { title: "Krajobraz po prawej", value: "landscapeRight" },
+          { title: "Brak obrazu", value: "noImage" },
         ],
         layout: "radio",
       },
