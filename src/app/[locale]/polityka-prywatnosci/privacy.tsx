@@ -12,7 +12,9 @@ export default function Privacy({ content, paddingY }: PrivacyProps) {
   return (
     <section className={clsx("mx-auto bg-white text-zinc-950/90", paddingY)}>
       <MaxWidthWrapper>
-        <PortableText value={content} components={portableTextComponents} />
+        <div className="mx-auto max-w-2xl text-pretty text-[1.1rem]">
+          <PortableText value={content} components={portableTextComponents} />
+        </div>
       </MaxWidthWrapper>
     </section>
   );
