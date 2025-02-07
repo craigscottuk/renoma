@@ -56,7 +56,14 @@ export default function ContactFormAndDetails({
               <Mail className="h-6 w-6" aria-hidden="true" />
               <div>
                 <h3 className={headingClass}>{t("email")}</h3>
-                <p className={paragraphClass}>{contactDetails.adresEmail}</p>
+                <p className={paragraphClass}>
+                  <a
+                    href={`mailto:${contactDetails.adresEmail}`}
+                    className="underline-offset-4 hover:underline"
+                  >
+                    {contactDetails.adresEmail}
+                  </a>
+                </p>
               </div>
             </div>
 
