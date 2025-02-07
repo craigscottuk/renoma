@@ -19,6 +19,7 @@ export default function HeroSection({ title, sectionCTA }: HeroSectionProps) {
         playbackId="4W02Db7nBRvUHNxB6qsJZroV9900uPi2gm5c3qoiZFJ38"
         metadataVideoTitle="Renoma"
         metadataViewerUserId="Renoma"
+        thumbnailTime={0}
         loop={true}
         muted={true}
         autoPlay={true}
