@@ -60,43 +60,6 @@ export const privacyHeader = defineType({
       group: "tytulSekcji",
       validation: (Rule) => Rule.required(),
     }),
-    defineField({
-      name: "description",
-      title: "Opis sekcji",
-      description:
-        "Tekst wprowadzający do strony polityki prywatności, zawierający ogólne informacje na temat ochrony danych.",
-      type: "internationalizedArrayText",
-      group: "opisSekcji",
-    }),
-    defineField({
-      name: "image",
-      title: "Obraz nagłówka",
-      description: "Obraz wyświetlany w nagłówku strony polityki prywatności.",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-      group: "obrazSekcji",
-    }),
-
-    defineField({
-      name: "imageLayout",
-      title: "Układ obrazu na dużych urządzeniach",
-      description:
-        "Wybierz między pełną szerokością obrazu a portretem po prawej stronie. Dla pełnej szerokości wybierz pozycję obrazu względem treści.",
-      type: "string",
-      options: {
-        list: [
-          { title: "Pełna szerokość powyżej", value: "fullWidthAbove" },
-          { title: "Pełna szerokość poniżej", value: "fullWidthBelow" },
-          { title: "Portret po prawej", value: "portraitRight" },
-          { title: "Krajobraz po prawej", value: "landscapeRight" },
-        ],
-        layout: "radio",
-      },
-      group: "obrazSekcji",
-      initialValue: "fullWidthAbove",
-    }),
 
     defineField({
       name: "backgroundColor",
@@ -113,14 +76,6 @@ export const privacyHeader = defineType({
       },
       group: "obrazSekcji",
       initialValue: "white",
-    }),
-    defineField({
-      name: "imageAlt",
-      title: "Alternatywny tekst obrazu nagłówka",
-      description:
-        "Tekst alternatywny dla obrazu nagłówka, np. 'Ilustracja symbolizująca ochronę prywatności'.",
-      type: "internationalizedArrayString",
-      group: "obrazSekcji",
     }),
   ],
 });
