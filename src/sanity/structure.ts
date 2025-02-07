@@ -17,7 +17,7 @@ import {
   Settings,
   Cookie,
   MousePointerClick,
-  Copyright,
+  ThumbsUp,
 } from "lucide-react";
 
 export const structure: StructureResolver = (S, context) =>
@@ -281,34 +281,27 @@ export const structure: StructureResolver = (S, context) =>
         ),
       S.divider(),
       S.listItem()
-        .title("Stopka")
-        .icon(Copyright)
+        .title("Media społecznościowe")
+        .icon(ThumbsUp)
         .child(
           S.list()
-            .title("Stopka")
+            .title("Media społecznościowe")
             .items([
               singletonDocumentListItem({
                 S,
                 context,
-                type: "footerLinks",
-                title: "Linki w stopce",
-                id: "singletonFooterLinks",
-              }),
-              singletonDocumentListItem({
-                S,
-                context,
                 type: "socialMediaLinks",
-                title: "Linki do mediów społecznościowych",
+                title: "Linki społecznościowe",
                 id: "singletonSocialMediaLinks",
               }),
             ]),
         ),
       S.listItem()
-        .title("Polityka Prywatności")
+        .title("Polityka prywatności")
         .icon(Cookie)
         .child(
           S.list()
-            .title("Sekcje strony „Polityka Prywatności”")
+            .title("Sekcje strony „Polityka prywatności”")
             .items([
               singletonDocumentListItem({
                 S,
