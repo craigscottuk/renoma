@@ -16,6 +16,11 @@ interface SectionDescriptionProps {
   delay?: number;
 }
 
+// Function to replace spaces after short words with a non-breaking space
+const fixWidows = (text: string) => {
+  return text.replace(/\b(w|i|na|o)\s/g, "$1\u00A0");
+};
+
 export default function SectionDescription({
   description,
   className,
@@ -79,7 +84,7 @@ export default function SectionDescription({
           "md:max-w-[30rem]",
         )}
       >
-        {description}
+        {fixWidows(description)}
       </motion.p>
     </div>
   );
