@@ -42,7 +42,7 @@ import {
 } from "./portableText";
 import { sectionContent } from "./sectionContent";
 import { cta, ctaContent } from "./cta";
-import { footer, footerLinks, socialMediaLinks } from "./footer";
+import { socialMedia, socialMediaLinks } from "./socialMedia";
 
 // Export schema configuration
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -111,9 +111,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     // Ustawienia
     settings,
 
-    // Stopka
-    footer,
-    footerLinks,
+    // Social Media
+    socialMedia,
     socialMediaLinks,
 
     // Portable Text
