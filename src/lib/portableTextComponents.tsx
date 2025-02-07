@@ -1,12 +1,16 @@
 // cSpell:disable
 import AnimatedLink from "@/components/animated-link";
 import { PortableTextComponents } from "@portabletext/react";
+import { Separator } from "@/components/ui/separator";
 
 const portableTextComponents: PortableTextComponents = {
   block: {
     // Handle default text blocks (e.g., paragraphs)
     normal: ({ children }) => (
       <p className="mb-4 text-[1.1rem]">{children || "No content provided"}</p>
+    ),
+    h2: ({ children }) => (
+      <h2 className="mb-8 font-bolder text-[2rem] text-zinc-800">{children}</h2>
     ),
     h3: ({ children }) => (
       <h3 className="mb-8 font-bolder text-[1.45rem] text-dullGold">
@@ -47,7 +51,11 @@ const portableTextComponents: PortableTextComponents = {
     default: ({ children }) => <li className="mb-2">{children}</li>,
   },
   marks: {
-    strong: ({ children }) => <strong className="font-bold">{children}</strong>,
+    strong: ({ children }) => (
+      <strong className="font-regular tracking-wide text-zinc-900">
+        {children}
+      </strong>
+    ),
     em: ({ children }) => <em className="italic">{children}</em>,
     link: ({ value, children }) => {
       if (!value?.href) {
@@ -95,6 +103,7 @@ const portableTextComponents: PortableTextComponents = {
         />
       );
     },
+    separator: () => <Separator className="mb-12 mt-12" />,
     // Fallback for unsupported types
     default: ({ value }) => (
       <div className="bg-zinc-100 p-4 text-red-500">
