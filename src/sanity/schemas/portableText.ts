@@ -48,6 +48,7 @@ export const portableTextWithImage = defineType({
       type: "block",
       styles: [
         { title: "Normal", value: "normal" },
+        { title: "Heading 2", value: "h2" },
         { title: "Heading 3", value: "h3" },
         { title: "Heading 4", value: "h4" },
       ],
@@ -105,6 +106,7 @@ export const portableTextWithHeadings = defineType({
       type: "block",
       styles: [
         { title: "Normal", value: "normal" },
+        { title: "Heading 2", value: "h2" },
         { title: "Heading 3", value: "h3" },
         { title: "Heading 4", value: "h4" },
       ],
@@ -113,7 +115,11 @@ export const portableTextWithHeadings = defineType({
         { title: "Numbered", value: "number" },
       ],
       marks: {
-        decorators: [{ title: "Bold", value: "strong" }],
+        decorators: [
+          { title: "Bold", value: "strong" },
+          { title: "Emphasis", value: "em" },
+        ],
+
         annotations: [
           defineField({
             name: "link",
@@ -129,6 +135,19 @@ export const portableTextWithHeadings = defineType({
           }),
         ],
       },
+    }),
+    defineField({
+      name: "separator",
+      type: "object",
+      title: "Separator",
+      fields: [
+        {
+          name: "label",
+          type: "string",
+          title: "Label",
+          initialValue: "Separator",
+        },
+      ],
     }),
   ],
 });
