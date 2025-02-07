@@ -1,4 +1,5 @@
 // cSpell:disable
+// src/app/[locale]/o-nas/page.tsx
 import { AboutUs } from "./about-us";
 import OurHistory from "./our-history";
 import { client } from "@/sanity/client";
