@@ -26,6 +26,12 @@ interface ServiceGroup {
   services: { title: string }[];
 }
 
+interface SocialMediaLinks {
+  facebook: string;
+  instagram: string;
+  linkedIn: string;
+}
+
 const QUERY = `
 {
   "serviceGroups": *[_type == "servicesGroup"][0]{
@@ -47,9 +53,16 @@ const QUERY = `
         "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia")
       }
     }
+  },
+  "socialMediaLinks": *[_type == "socialMediaLinks"][0]{
+    "facebook": coalesce(facebook, ""),
+    "instagram": coalesce(instagram, ""),
+    "linkedIn": coalesce(linkedIn, "")
   }
 }
 `;
+
+const OPTIONS = { next: { revalidate: 86400 } };
 
 const linkClasses =
   "text-base text-zinc-300 decoration-zinc-200 decoration-1 underline-offset-8 hover:text-zinc-50 hover:underline";
@@ -57,18 +70,24 @@ const linkClasses =
 export default function Footer({ variant = "dark", locale }: FooterProps) {
   const t = useTranslations("footer");
   const [serviceGroups, setServiceGroups] = useState<ServiceGroup[]>([]);
+  const [socialMediaLinks, setSocialMediaLinks] = useState<SocialMediaLinks>({
+    facebook: "",
+    instagram: "",
+    linkedIn: "",
+  });
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await client.fetch(QUERY, { locale });
+      const data = await client.fetch(QUERY, { locale }, OPTIONS);
       setServiceGroups([
         data.serviceGroups.serviceGroupOne,
         data.serviceGroups.serviceGroupTwo,
         data.serviceGroups.serviceGroupThree,
       ]);
+      setSocialMediaLinks(data.socialMediaLinks);
     };
 
     fetchData();
@@ -148,7 +167,10 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
                   {t("privacyPolicy")}
                 </Link>
                 <div className="flex space-x-4">
-                  <NextLink href="https://linkedin.com" aria-label="LinkedIn">
+                  <NextLink
+                    href={socialMediaLinks.linkedIn}
+                    aria-label="LinkedIn"
+                  >
                     <LinkedInIcon
                       className={clsx(
                         "h-5 w-5 fill-zinc-200",
@@ -156,7 +178,10 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
                       )}
                     />
                   </NextLink>
-                  <NextLink href="https://facebook.com" aria-label="Facebook">
+                  <NextLink
+                    href={socialMediaLinks.facebook}
+                    aria-label="Facebook"
+                  >
                     <FacebookIcon
                       className={clsx(
                         "h-5 w-5 fill-zinc-200",
@@ -164,7 +189,10 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
                       )}
                     />
                   </NextLink>
-                  <NextLink href="https://instagram.com" aria-label="Instagram">
+                  <NextLink
+                    href={socialMediaLinks.instagram}
+                    aria-label="Instagram"
+                  >
                     <InstagramIcon
                       className={clsx(
                         "h-5 w-5 fill-zinc-200",
