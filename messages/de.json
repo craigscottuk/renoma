@@ -103,6 +103,7 @@
     "submit": "SENDEN",
     "sending": "Senden...",
     "success": "Danke für Ihre Kontaktaufnahme!",
+    "attachment": "Anhang",
     "validation": {
       "firstName": "Der Vorname muss mindestens 2 Zeichen lang sein",
       "lastName": "Der Nachname muss mindestens 2 Zeichen lang sein",
