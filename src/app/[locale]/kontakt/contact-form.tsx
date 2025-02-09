@@ -1,9 +1,8 @@
+// src/app/[locale]/kontakt/contact-form.tsx
 "use client";
-// cSpell:disable
 import clsx from "clsx";
 import * as z from "zod";
 import { useState } from "react";
-// import { Link } from "@/i18n/routing";
 import { useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
@@ -38,25 +37,11 @@ export default function ContactForm({
   color = "light",
   contactFormSubjects,
 }: ContactFormProps) {
-  const darkInputClassNames =
-    "border-none bg-zinc-800 text-zinc-100 ring-offset-black focus-visible:ring-white";
-  const darkSelectContentClassNames =
-    "border-zinc-800 bg-zinc-800 text-zinc-100/90";
-  const darkCheckboxClassNames = "border-white";
-  const darkButtonClassNames = " bg-zinc-900 hover:text-zinc-950 px-6 py-5";
-
-  const lightInputClassNames =
-    "border-zinc-200 bg-zinc-100 text-zinc-800 ring-offset-zinc-200 focus-visible:ring-zinc-800 text-[1.1rem]";
-  const lightSelectContentClassNames =
-    "border-zinc-300 bg-zinc-100 text-zinc-800 text-[1.1rem]";
-  const lightButtonClassNames =
-    " bg-zinc-100 hover:text-zinc-950 px-6 py-5 text-[1.1rem]";
-  const lightCheckboxClassNames = "border-zinc-900 text-[1.1rem]";
-
   const t = useTranslations();
   const locale = useLocale();
 
-  // Define schema for form validation
+  // Same schema as before, but if you want to store the file in react-hook-form,
+  // you can define a Zod field for it. For simplicity, we'll skip Zod file validation:
   const formSchema = z.object({
     firstName: z.string().min(2, t("contact-form.validation.firstName")),
     lastName: z.string().min(2, t("contact-form.validation.lastName")),
@@ -72,9 +57,10 @@ export default function ContactForm({
     privacy: z
       .boolean()
       .refine((val) => val === true, t("contact-form.validation.privacy")),
+    // We'll just treat "attachment" as an optional field in our form data
+    attachment: z.any().optional(),
   });
 
-  // Define TypeScript type based on the schema
   type FormData = z.infer<typeof formSchema>;
 
   const [isLoading, setIsLoading] = useState(false);
@@ -90,8 +76,29 @@ export default function ContactForm({
       topic: "",
       message: "",
       privacy: false,
+      attachment: undefined,
     },
   });
+
+  // We'll store the File object separately.
+  // (Alternatively, you can let react-hook-form store it directly.)
+  const [files, setFiles] = useState<File[]>([]);
+
+  // Style classes for dark/light themes (unchanged).
+  const darkInputClassNames =
+    "border-none bg-zinc-800 text-zinc-100 ring-offset-black focus-visible:ring-white";
+  const darkSelectContentClassNames =
+    "border-zinc-800 bg-zinc-800 text-zinc-100/90";
+  const darkCheckboxClassNames = "border-white";
+  const darkButtonClassNames = " bg-zinc-900 hover:text-zinc-950 px-6 py-5";
+
+  const lightInputClassNames =
+    "border-zinc-200 bg-zinc-100 text-zinc-800 ring-offset-zinc-200 focus-visible:ring-zinc-800 text-[1.1rem]";
+  const lightSelectContentClassNames =
+    "border-zinc-300 bg-zinc-100 text-zinc-800 text-[1.1rem]";
+  const lightButtonClassNames =
+    " bg-zinc-100 hover:text-zinc-950 px-6 py-5 text-[1.1rem]";
+  const lightCheckboxClassNames = "border-zinc-900 text-[1.1rem]";
 
   const inputClassNames =
     color === "dark" ? darkInputClassNames : lightInputClassNames;
@@ -105,12 +112,54 @@ export default function ContactForm({
     color === "dark" ? darkButtonClassNames : lightButtonClassNames;
 
   async function onSubmit(values: FormData) {
+    const MAX_SIZE = 25 * 1024 * 1024;
+    let totalSize = 0;
+
+    for (const f of files) {
+      totalSize += f.size;
+    }
+
+    if (totalSize > MAX_SIZE) {
+      form.setError("attachment", {
+        message: t("contact-form.validation.fileSizeExceeded"),
+      });
+      return;
+    }
+
     setIsLoading(true);
-    console.log(values);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate API call
+      // We convert our validated text fields + the file into FormData.
+      const formData = new FormData();
+      formData.append("firstName", values.firstName);
+      formData.append("lastName", values.lastName);
+      formData.append("email", values.email);
+      formData.append("phone", values.phone);
+      formData.append("topic", values.topic);
+      formData.append("message", values.message);
+      formData.append("privacy", values.privacy.toString());
+
+      // If there are selected files, append them all:
+      if (files.length) {
+        for (const f of files) {
+          formData.append("attachment", f);
+        }
+      }
+
+      // Send FormData to our new /api/contact route
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit form");
+      }
+
       setIsSubmitted(true);
+    } catch (error) {
+      console.error(error);
+      // Handle error (show error message, etc.)
     } finally {
       setIsLoading(false);
     }
@@ -121,7 +170,12 @@ export default function ContactForm({
       {isSubmitted ? (
         <div className="text-green-600">{t("contact-form.success")}</div>
       ) : (
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        // Notice: we keep the same fields. We'll add a new file input below.
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-6"
+          encType="multipart/form-data"
+        >
           <div className="grid gap-4 md:grid-cols-2">
             <FormField
               control={form.control}
@@ -243,6 +297,31 @@ export default function ContactForm({
                 <p className="text-xs text-zinc-600">
                   {t("contact-form.validation.messageMax")}
                 </p>
+              </FormItem>
+            )}
+          />
+
+          {/* ADD A FILE INPUT FIELD */}
+          <FormField
+            control={form.control}
+            name="attachment"
+            render={() => (
+              <FormItem>
+                <FormLabel>{t("contact-form.attachment")}</FormLabel>
+                <FormControl>
+                  <Input
+                    type="file"
+                    multiple
+                    className={inputClassNames}
+                    onChange={(e) => {
+                      if (e.target.files) {
+                        setFiles(Array.from(e.target.files));
+                        form.clearErrors("attachment");
+                      }
+                    }}
+                  />
+                </FormControl>
+                <FormMessage aria-live="assertive" />
               </FormItem>
             )}
           />
