@@ -12,8 +12,7 @@ export const config = {
     // all requests that have a locale prefix
     "/(de|en|pl)/:path*",
 
-    // Enable redirects that add missing locales,
-    // but exclude the `/admin` path
-    "/((?!_next|_vercel|admin|.*\\..*).*)",
+    // Enable locale redirects for everything EXCEPT /api, /admin, /_next, /_vercel, or files
+    "/((?!api|_next|_vercel|admin|.*\\..*).*)",
   ],
 };
