@@ -102,6 +102,7 @@
     "submit": "SUBMIT",
     "sending": "Sending...",
     "success": "Thank you for contacting us!",
+    "attachment": "Attachment",
     "validation": {
       "firstName": "First name must be at least 2 characters",
       "lastName": "Last name must be at least 2 characters",
