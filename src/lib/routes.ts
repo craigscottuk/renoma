@@ -9,7 +9,8 @@ export type RoutePaths =
   | "/pracuj-z-nami"
   | "/kontakt"
   | "/polityka-prywatnosci"
-  | `/realizacje/${string}`; // Keep this for dynamic paths
+  | `/realizacje/${string}` // Keep this for dynamic paths
+  | "/faq";
 
 export type StaticRoutePaths =
   | "/"
@@ -20,4 +21,5 @@ export type StaticRoutePaths =
   | "/ucz-sie-z-nami"
   | "/pracuj-z-nami"
   | "/kontakt"
-  | "/polityka-prywatnosci";
+  | "/polityka-prywatnosci"
+  | "/faq";
