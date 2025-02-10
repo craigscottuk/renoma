@@ -16,6 +16,7 @@ import SectionTitle from "@/components/section-title";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { portableTextComponents } from "@/lib/portableTextComponents";
 import { FadeInSection } from "@/components/fade-in-section";
+import fixPolishOrphans from "@/utils/fixPolishOrphans";
 
 interface LabOfferProps {
   title: string;
@@ -80,6 +81,24 @@ export default function LabOffer({
   const selectedColorScheme =
     cardColorSchemes[colorScheme] || cardColorSchemes.zincLight;
 
+  const newOffers = offers.map((offer) => {
+    const newContent = offer.content.map((block) => {
+      if (block._type === "block") {
+        return {
+          ...block,
+          children: block.children?.map((child) => {
+            if (child._type === "span" && typeof child.text === "string") {
+              return { ...child, text: fixPolishOrphans(child.text) };
+            }
+            return child;
+          }),
+        };
+      }
+      return block;
+    });
+    return { ...offer, content: newContent };
+  });
+
   return (
     <>
       <section className={clsx("", selectedColorScheme.section, paddingY)}>
@@ -95,7 +114,7 @@ export default function LabOffer({
               </FadeInSection>
             </div>
             <div className="grid gap-6 md:grid-cols-2">
-              {offers.map((offer, index) => {
+              {newOffers.map((offer, index) => {
                 const IconComponent = iconComponents[offer.icon] || Microscope;
                 return (
                   <FadeInSection translateY key={index}>
