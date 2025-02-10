@@ -9,6 +9,7 @@ import SectionDescription from "@/components/section-description";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { portableTextComponents } from "@/lib/portableTextComponents";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
+import fixPolishOrphans from "@/utils/fixPolishOrphans";
 
 interface PageHeaderProps {
   label: string;
@@ -53,6 +54,24 @@ export default function PageHeader({
   const textColor = backgroundColor === "black" ? "white" : "black";
   const showImage = imageLayout !== "noImage";
 
+  // Apply fixPolishOrphans to portableTextBlock before rendering.
+  if (portableTextBlock) {
+    portableTextBlock = portableTextBlock.map((block) => {
+      if (block._type === "block") {
+        return {
+          ...block,
+          children: block.children?.map((child) => {
+            if (child._type === "span" && typeof child.text === "string") {
+              return { ...child, text: fixPolishOrphans(child.text) };
+            }
+            return child;
+          }),
+        };
+      }
+      return block;
+    });
+  }
+
   return (
     <>
       {/* Full-width header image */}
@@ -80,6 +99,9 @@ export default function PageHeader({
           className={clsx(
             "relative mx-auto py-12 lg:py-20",
             backgroundColor === "black" ? "bg-zinc-900" : "bg-white",
+            imageLayout === "noImage" || imageLayout === "fullWidthBelow"
+              ? "mt-24"
+              : "",
           )}
         >
           <MaxWidthWrapper>
@@ -95,17 +117,15 @@ export default function PageHeader({
               />
               <div
                 className={clsx(
-                  "lg:col-span-2 lg:col-start-2 lg:columns-2 lg:gap-8",
+                  "motion-preset-blur-up lg:col-span-2 lg:col-start-2 lg:columns-2 lg:gap-8",
                   textColor === "white" ? "text-white" : "text-black",
                 )}
               >
                 {portableTextBlock && (
-                  <div className="motion-preset-fade-lg">
-                    <PortableText
-                      value={portableTextBlock}
-                      components={portableTextComponents}
-                    />
-                  </div>
+                  <PortableText
+                    value={portableTextBlock}
+                    components={portableTextComponents}
+                  />
                 )}
               </div>
             </div>
@@ -194,7 +214,7 @@ export default function PageHeader({
                       marginTop={true}
                       textStyle="text-balance"
                       textColor={textColor}
-                      motionPreset="blur-left"
+                      motionPreset="blur-up"
                     />
                   </div>
                 </>
