@@ -6,7 +6,7 @@ import ServicesList from "@/app/[locale]/uslugi/services-list";
 import { getTranslations } from "next-intl/server";
 import CTA from "@/components/cta";
 import { ctaContent } from "@/lib/ctaContent";
-import SectionFaqHome from "../(home)/faq";
+// import SectionFaqHome from "../faq/faq";
 
 const QUERY = `
 {
@@ -72,7 +72,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } };
+const OPTIONS = { next: { revalidate: 10 } };
 // 86400
 
 type Props = {
@@ -86,7 +86,12 @@ interface Content {
     description: string;
     image?: string;
     imageAlt?: string;
-    imageLayout?: "fullWidthAbove" | "fullWidthBelow" | "portraitRight";
+    imageLayout?:
+      | "fullWidthAbove"
+      | "fullWidthBelow"
+      | "portraitRight"
+      | "landscapeRight"
+      | "noImage";
     backgroundColor?: "black" | "white";
   };
   servicesGroup: {
@@ -173,12 +178,11 @@ export default async function ONas({ params: { locale } }: Props) {
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
-  // console.log("Fetched content:", content);
-
-  const { servicesHeader, servicesGroup, faqSectionHome } = content;
-
-  // console.log("Services Header:", servicesHeader);
-  // console.log("Services Group:", servicesGroup);
+  const {
+    servicesHeader,
+    servicesGroup,
+    //  faqSectionHome
+  } = content;
 
   return (
     <>
@@ -206,7 +210,7 @@ export default async function ONas({ params: { locale } }: Props) {
       )}
 
       {/* FAQ Section */}
-      {faqSectionHome && (
+      {/* {faqSectionHome && (
         <SectionFaqHome
           label={faqSectionHome.label}
           title={faqSectionHome.title}
@@ -215,7 +219,7 @@ export default async function ONas({ params: { locale } }: Props) {
           faqItems={faqSectionHome.faqItems}
           paddingY="py-20 md:py-48"
         />
-      )}
+      )} */}
 
       <CTA
         title={ctaContent.title}
