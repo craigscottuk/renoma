@@ -29,12 +29,13 @@ const QUERY = `
 
   "ourHistory": *[_type == "ourHistory"][0]{
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+     "text": coalesce(text[_key == $locale][0].value, "Brak tłumaczenia"),
     "timeline": timeline[]{
       "year": year,
       "content": coalesce(content[$locale], []),
       "images": images[]{
         "src": src.asset->url,
-        "caption": coalesce(caption[_key == $locale][0].value, "Brak tłumaczenia"),
+        "caption": coalesce(caption[_key == $locale][0].value, ""),
         "aspectRatio": aspectRatio
       }
     }
@@ -42,7 +43,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } };
+const OPTIONS = { next: { revalidate: 10 } };
 //86400
 
 type Props = {
@@ -65,6 +66,7 @@ interface Content {
   };
   ourHistory: {
     title: string;
+    text: string;
     timeline: TimelineItem[];
   };
 }
@@ -138,6 +140,7 @@ export default async function About({ params: { locale } }: Props) {
       {ourHistory && (
         <OurHistory
           title={ourHistory.title}
+          text={ourHistory.text}
           events={ourHistory.timeline}
           paddingY="pt-20 md:pt-48"
         />
