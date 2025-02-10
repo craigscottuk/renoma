@@ -8,6 +8,7 @@ import { FadeInSection } from "@/components/fade-in-section";
 
 interface OurHistoryProps {
   title: string;
+  text: string;
   events: TimelineEvent[];
   paddingY: string;
 }
@@ -15,6 +16,7 @@ interface OurHistoryProps {
 export default function OurHistory({
   events,
   title,
+  text,
   paddingY,
 }: OurHistoryProps) {
   return (
@@ -29,10 +31,7 @@ export default function OurHistory({
             textAlign="center"
           />
           <div className="mx-auto mt-6 max-w-[46rem] text-center text-lg text-zinc-700">
-            Od skromnych początków do pozycji lidera w konserwacji zabytków –
-            nasza historia to lata wyzwań i sukcesów, które ukształtowały
-            Renomę. Zapraszamy do poznania kluczowych momentów, które zbudowały
-            nasze doświadczenie i zaufanie klientów.
+            {text}
           </div>
         </FadeInSection>
       </MaxWidthWrapper>
