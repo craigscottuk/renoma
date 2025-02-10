@@ -67,6 +67,7 @@ export default function LocaleSwitcherSelect({
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child)) {
             const { value } = child.props;
+            if (value === language) return null; // Hide current language
             return (
               <DropdownMenuItem
                 key={value}
