@@ -1,6 +1,5 @@
 // cSpell:disable
 import HeroSection from "./hero";
-import SectionFaqHome from "./faq";
 import SectionAbout from "./about";
 import SectionUslugiHome from "./uslugi";
 import { client } from "@/sanity/client";
@@ -8,8 +7,6 @@ import { setRequestLocale } from "next-intl/server";
 import LogoShowcase from "./logos";
 import CTA from "../../../components/cta";
 import { getTranslations } from "next-intl/server";
-// import DiscoverProjects from "./projects";
-// import projectCardData from "@/lib/projectCardData";
 import { ctaContent } from "@/lib/ctaContent";
 
 const QUERY = `
@@ -58,20 +55,6 @@ const QUERY = `
   //     }
   //   }
   // },
-
-  // "faqSectionHome": *[_type == "faqSectionHome"][0]{
-  //   "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
-  //   "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
-  //   "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
-  //   "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia"),
-  //   "faqItems": faqItems[]{
-  //     "question": coalesce(question[_key == $locale][0].value, "Brak tłumaczenia"),
-  //     "answer": coalesce(answer[_key == $locale][0].value, "Brak tłumaczenia")
-  //   }
-  // },
-
-
-
 
   "logoSectionHome": *[_type == "logoSectionHome"][0]{
     "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -219,25 +202,7 @@ export default async function HomePage({ params: { locale } }: Props) {
         />
       )}
 
-      {/* Discover Projects Section
-      <DiscoverProjects
-        projectCardData={projectCardData}
-        paddingY="py-20 md:py-32"
-      />
-       */}
-
-      {/* FAQ Section */}
-      {faqSectionHome && (
-        <SectionFaqHome
-          label={faqSectionHome.label}
-          title={faqSectionHome.title}
-          description={faqSectionHome.description}
-          sectionCTA={faqSectionHome.sectionCTA}
-          faqItems={faqSectionHome.faqItems}
-          paddingY="py-20 md:py-48"
-        />
-      )}
-
+      {/* Our Clients */}
       {logoSectionHome && (
         <LogoShowcase
           label={logoSectionHome.label}
