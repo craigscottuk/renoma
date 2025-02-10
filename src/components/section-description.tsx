@@ -2,11 +2,12 @@
 import clsx from "clsx";
 import { motion, Variants } from "framer-motion";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import fixPolishOrphans from "@/utils/fixPolishOrphans";
 
 interface SectionDescriptionProps {
   description: string;
   className?: string;
-  motionPreset?: "blur-right" | "blur-left";
+  motionPreset?: "blur-right" | "blur-left" | "blur-up";
   textColor?: "black" | "white";
   textAlign?: "left" | "right";
   marginTop?: boolean;
@@ -15,11 +16,6 @@ interface SectionDescriptionProps {
   animationDirection?: "left" | "right" | "up";
   delay?: number;
 }
-
-// Function to replace spaces after short words with a non-breaking space
-const fixWidows = (text: string) => {
-  return text.replace(/\b(w|i|na|o)\s/g, "$1\u00A0");
-};
 
 export default function SectionDescription({
   description,
@@ -42,29 +38,29 @@ export default function SectionDescription({
   const textColorClass =
     textColor === "black" ? "text-zinc-950/90" : "text-zinc-100/90";
 
-  const createMotionVariants = (additionalDelay = 0): Variants => ({
-    hidden: {
-      opacity: 0,
-      filter: animateOnView ? "blur(2px)" : "none",
-      x: animateOnView
-        ? animationDirection === "right"
-          ? 3
-          : animationDirection === "left"
-            ? -3
-            : 0
-        : 0,
-      y: animateOnView && animationDirection === "up" ? 3 : 0,
-    },
-    visible: {
-      opacity: 1,
-      filter: animateOnView ? "blur(0px)" : "none",
-      x: 0,
-      y: 0,
-      transition: { duration: 0.5, delay: delay + additionalDelay },
-    },
-  });
+  const createMotionVariants = (additionalDelay = 0): Variants => {
+    const presetDirection =
+      motionPreset === "blur-left" ? -3 : motionPreset === "blur-right" ? 3 : 0;
+    const presetVertical = motionPreset === "blur-up" ? -3 : 0;
+    return {
+      hidden: {
+        opacity: 0,
+        filter: animateOnView ? "blur(2px)" : "none",
+        x: animateOnView ? presetDirection : 0,
+        y: animateOnView ? presetVertical : 0,
+      },
+      visible: {
+        opacity: 1,
+        filter: animateOnView ? "blur(0px)" : "none",
+        x: 0,
+        y: 0,
+        transition: { duration: 0.5, delay: delay + additionalDelay },
+      },
+    };
+  };
 
   const descriptionVariants = createMotionVariants();
+  const finalDescription = fixPolishOrphans(description);
 
   return (
     <div
@@ -76,6 +72,7 @@ export default function SectionDescription({
         animate={controls}
         variants={descriptionVariants}
         className={clsx(
+          "text-pretty",
           "max-w-sm text-[1.1rem] leading-relaxed",
           textColorClass,
           textAlign,
@@ -84,7 +81,7 @@ export default function SectionDescription({
           "md:max-w-[30rem]",
         )}
       >
-        {fixWidows(description)}
+        {finalDescription}
       </motion.p>
     </div>
   );
