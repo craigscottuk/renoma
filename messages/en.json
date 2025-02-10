@@ -31,6 +31,10 @@
     "learn-with-us": {
       "title": "Learn with Us – Internships and Apprenticeships at Renoma",
       "description": "Join Renoma’s internship and apprenticeship program. Gain hands-on experience in monument conservation, develop your skills under expert guidance, and discover modern heritage protection techniques."
+    },
+    "faq": {
+      "title": "FAQ – Frequently Asked Questions",
+      "description": "Find answers to frequently asked questions about our services and company."
     }
   },
 
@@ -64,6 +68,9 @@
     },
     "pracujZNami": {
       "label": "Work with Us"
+    },
+    "faq": {
+      "label": "FAQ"
     },
     "kontakt": {
       "label": "Contact"
