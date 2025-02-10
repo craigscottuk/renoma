@@ -6,6 +6,7 @@ import { useState, useRef, useEffect } from "react";
 import ImageCarousel from "@/components/ImageCarousel";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
 import { portableTextComponents } from "@/lib/portableTextComponents";
+import fixPolishOrphans from "@/utils/fixPolishOrphans";
 
 export interface TimelineEvent {
   year: string;
@@ -36,9 +37,25 @@ export default function Timeline({ events }: TimelineProps) {
     setVisibleEventCount(mobile ? 2 : events.length);
   }, [events.length]);
 
-  const sortedEvents = [...events].sort(
-    (a, b) => parseInt(a.year) - parseInt(b.year),
-  );
+  const sortedEvents = events
+    .map((event) => {
+      const newContent = event.content.map((block) => {
+        if (block._type === "block") {
+          return {
+            ...block,
+            children: block.children?.map((child) => {
+              if (child._type === "span" && typeof child.text === "string") {
+                return { ...child, text: fixPolishOrphans(child.text) };
+              }
+              return child;
+            }),
+          };
+        }
+        return block;
+      });
+      return { ...event, content: newContent };
+    })
+    .sort((a, b) => parseInt(a.year) - parseInt(b.year));
 
   // Handle resize logic without debouncing
   useEffect(() => {
