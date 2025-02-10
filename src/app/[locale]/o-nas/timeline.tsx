@@ -204,7 +204,12 @@ export default function Timeline({ events }: TimelineProps) {
                     {event.images && event.images.length > 0 && (
                       <div className="mb-0">
                         <ImageCarousel
-                          images={event.images}
+                          images={event.images.map((image) => ({
+                            ...image,
+                            src: image?.src || "",
+                            caption: image?.caption || undefined, // Pass undefined if no caption
+                          }))}
+                          // Think about doing away with this
                           onCaptionHeightChange={setCaptionHeight}
                         />
                       </div>
@@ -215,7 +220,7 @@ export default function Timeline({ events }: TimelineProps) {
                       }`}
                       style={{ marginTop: 0 }}
                     >
-                      <div className="-mt-16 text-pretty">
+                      <div className="mt-4 text-pretty">
                         <PortableText
                           value={event.content}
                           components={portableTextComponents}
