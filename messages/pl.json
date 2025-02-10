@@ -31,6 +31,10 @@
     "learn-with-us": {
       "title": "Ucz się z nami – Program Staży i Praktyk w Renoma",
       "description": "Dołącz do programu staży i praktyk w Renoma. Zdobądź praktyczne doświadczenie w konserwacji zabytków, rozwijaj swoje umiejętności pod okiem ekspertów i odkryj nowoczesne techniki ochrony dziedzictwa kulturowego."
+    },
+    "faq": {
+      "title": "FAQ – Najczęściej zadawane pytania",
+      "description": "Znajdź odpowiedzi na najczęściej zadawane pytania dotyczące naszych usług i firmy."
     }
   },
 
@@ -65,6 +69,9 @@
     },
     "pracujZNami": {
       "label": "Pracuj z nami"
+    },
+    "faq": {
+      "label": "FAQ"
     },
     "kontakt": {
       "label": "Kontakt"
