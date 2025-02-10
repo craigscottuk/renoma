@@ -76,7 +76,7 @@ export default function ImageCarousel({
     });
   };
 
-  const scrollPrev = () => emblaApi?.scrollPrev();
+  // const scrollPrev = () => emblaApi?.scrollPrev();
   const scrollNext = () => emblaApi?.scrollNext();
 
   const currentCaption = images[currentIndex]?.caption;
@@ -250,28 +250,27 @@ export default function ImageCarousel({
           <div className="flex items-start gap-2 text-pretty">
             <ArrowUp className="mr-1 mt-1 h-4 w-4 flex-shrink-0" />
             <span>{currentCaption}</span>
-
-            <div className="flex items-start gap-2">
-              <AnimatedLink
-                className="hover:text-gold text-sm"
-                onClick={scrollPrev}
-                showArrow={false}
-              >
-                {locale === "en" ? "PREV" : locale === "pl" ? "POP" : "VOR"}
-              </AnimatedLink>
-              <AnimatedLink
-                className="hover:text-gold text-sm"
-                onClick={scrollNext}
-                showArrow={false}
-              >
-                {locale === "en"
-                  ? "NEXT"
-                  : locale === "pl"
-                    ? "DALEJ"
-                    : "WEITER"}
-              </AnimatedLink>
-            </div>
+            {/* Removed the animated PREV/NEXT links from here */}
           </div>
+        </div>
+      )}
+
+      {images.length > 1 && (
+        <div className="absolute bottom-0 right-0 z-10 flex items-center space-x-2 bg-white p-2">
+          {/* <AnimatedLink
+            className="hover:text-gold text-sm"
+            onClick={scrollPrev}
+            showArrow={false}
+          >
+            {locale === "en" ? "PREV" : locale === "pl" ? "POP" : "VOR"}
+          </AnimatedLink> */}
+          <AnimatedLink
+            className="text-sm hover:text-zinc-950"
+            onClick={scrollNext}
+            showArrow={false}
+          >
+            {locale === "en" ? "NEXT" : locale === "pl" ? "DALEJ" : "WEITER"}
+          </AnimatedLink>
         </div>
       )}
 
