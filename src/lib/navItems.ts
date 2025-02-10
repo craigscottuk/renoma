@@ -25,7 +25,6 @@ export function useNavItems(): NavItem[] {
     },
     {
       label: t("renomaLab.label"),
-
       link: "/renoma-lab",
     },
     {
@@ -35,6 +34,10 @@ export function useNavItems(): NavItem[] {
     {
       label: t("pracujZNami.label"),
       link: "/pracuj-z-nami",
+    },
+    {
+      label: t("faq.label"),
+      link: "/faq",
     },
     {
       label: t("kontakt.label"),
