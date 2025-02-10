@@ -35,6 +35,10 @@
     "learn-with-us": {
       "title": "Lernen Sie mit uns – Praktika und Volontariate bei Renoma",
       "description": "Nehmen Sie an unserem Praktikums- und Volontariatsprogramm bei Renoma teil. Sammeln Sie praktische Erfahrungen in der Denkmalpflege, entwickeln Sie Ihre Fähigkeiten unter fachkundiger Anleitung und lernen Sie moderne Techniken zum Schutz des kulturellen Erbes kennen."
+    },
+    "faq": {
+      "title": "FAQ – Häufig gestellte Fragen",
+      "description": "Hier finden Sie Antworten auf häufig gestellte Fragen zu unseren Dienstleistungen und unserem Unternehmen."
     }
   },
 
@@ -61,10 +65,13 @@
       "label": "Lab"
     },
     "uczSieZNami": {
-      "label": "Lernen Sie mit uns"
+      "label": "Praktika"
     },
     "pracujZNami": {
-      "label": "Arbeiten Sie mit uns"
+      "label": "Karriere"
+    },
+    "faq": {
+      "label": "FAQ"
     },
     "kontakt": {
       "label": "Kontakt"
