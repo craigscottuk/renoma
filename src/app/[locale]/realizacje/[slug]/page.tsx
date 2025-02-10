@@ -121,7 +121,12 @@ type Project = {
   summary: string;
   image?: string;
   imageAlt?: string;
-  imageLayout?: "fullWidthAbove" | "fullWidthBelow" | "portraitRight";
+  imageLayout?:
+    | "fullWidthAbove"
+    | "fullWidthBelow"
+    | "portraitRight"
+    | "landscapeRight"
+    | "noImage";
   backgroundColor?: "black" | "white";
   details: {
     lokalizacja: string;
@@ -180,7 +185,7 @@ type Props = {
 export default async function ProjectPage({ params: { slug, locale } }: Props) {
   setRequestLocale(locale);
 
-  const OPTIONS = { next: { revalidate: 86400 } };
+  const OPTIONS = { next: { revalidate: 10 } };
   // 86400
 
   // Error handling for fetching data
