@@ -24,12 +24,15 @@ const QUERY = `
     "adresEmail": coalesce(adresEmail, "Brak tłumaczenia"),
     "adresBiuraLineOne": coalesce(adresBiuraLineOne[_key == $locale][0].value, "Brak tłumaczenia"),
     "adresBiuraLineTwo": coalesce(adresBiuraLineTwo, "Brak tłumaczenia"),
-    "nazwaFirmy": coalesce(nazwaFirmy, "Brak tłumaczenia"),
+    "nazwaFirmyOne": coalesce(nazwaFirmyOne, "Brak tłumaczenia"),
+    "nazwaFirmyTwo": coalesce(nazwaFirmyTwo, "Brak tłumaczenia"),
     "adresFakturLineOne": coalesce(adresFakturLineOne[_key == $locale][0].value, "Brak tłumaczenia"),
     "adresFakturLineTwo": coalesce(adresFakturLineTwo, "Brak tłumaczenia"),
     
-    "numerNip": coalesce(numerNip[_key == $locale][0].value, "Brak tłumaczenia"),
-    "numerRegon": coalesce(numerRegon, "Brak tłumaczenia")
+    "numerNipOne": coalesce(numerNipOne[_key == $locale][0].value, "Brak tłumaczenia"),
+    "numerRegonOne": coalesce(numerRegonOne, "Brak tłumaczenia"),
+    "numerNipTwo": coalesce(numerNipTwo[_key == $locale][0].value, "Brak tłumaczenia"),
+    "numerRegonTwo": coalesce(numerRegonTwo, "Brak tłumaczenia")
   }
 }
 `;
@@ -48,7 +51,12 @@ interface Content {
     description: string;
     image?: string;
     imageAlt?: string;
-    imageLayout?: "fullWidthAbove" | "fullWidthBelow" | "portraitRight";
+    imageLayout?:
+      | "fullWidthAbove"
+      | "fullWidthBelow"
+      | "portraitRight"
+      | "landscapeRight"
+      | "noImage";
     backgroundColor?: "black" | "white";
   };
   contactForm: {
@@ -59,11 +67,14 @@ interface Content {
     adresEmail: string;
     adresBiuraLineOne: string;
     adresBiuraLineTwo: string;
-    nazwaFirmy: string;
+    nazwaFirmyOne: string;
+    nazwaFirmyTwo: string;
     adresFakturLineOne: string;
     adresFakturLineTwo: string;
-    numerNip: string;
-    numerRegon: string;
+    numerNipOne: string;
+    numerRegonOne: string;
+    numerNipTwo: string;
+    numerRegonTwo: string;
   };
 }
 
