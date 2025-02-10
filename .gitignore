@@ -42,5 +42,5 @@ videos/*
 !videos/*.ts
 public/_next-video
 
-# # archive
-# _archive/*
+# archive
+_archive/*
