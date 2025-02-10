@@ -19,7 +19,6 @@ const QUERY = `
     "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia")
   },
 
-
   "aboutSectionHome": *[_type == "aboutSectionHome"][0]{
     "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -86,7 +85,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } };
+const OPTIONS = { next: { revalidate: 10 } };
 // 86400
 
 type Props = {
