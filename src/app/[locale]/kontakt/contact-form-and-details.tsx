@@ -13,11 +13,14 @@ type ContactDetailsSectionProps = {
     adresEmail: string;
     adresBiuraLineOne: string;
     adresBiuraLineTwo: string;
-    nazwaFirmy: string;
+    nazwaFirmyOne: string;
+    nazwaFirmyTwo: string;
     adresFakturLineOne: string;
     adresFakturLineTwo: string;
-    numerNip: string;
-    numerRegon: string;
+    numerNipOne: string;
+    numerRegonOne: string;
+    numerNipTwo: string;
+    numerRegonTwo: string;
   };
   contactForm: {
     contactFormSubjects: string[];
@@ -25,7 +28,7 @@ type ContactDetailsSectionProps = {
   paddingY?: string;
 };
 
-const paragraphClass = "text-zinc-700 text-[1rem] leading-relaxed";
+const paragraphClass = "text-zinc-900 text-[1rem] leading-relaxed";
 const headingClass =
   "mb-3 font-regular text-[1.5rem] leading-tight tracking-[-0.015em] text-zinc-800";
 
@@ -79,7 +82,7 @@ export default function ContactFormAndDetails({
                   {contactDetails.adresBiuraLineTwo}
                 </p>
                 <AnimatedLink
-                  href="https://maps.app.goo.gl/SjucgxZNh6JacWfr7"
+                  href="https://maps.app.goo.gl/jeWnz8HYg3yHwUdE7"
                   external={true}
                   className="mt-4 text-base"
                 >
@@ -89,11 +92,13 @@ export default function ContactFormAndDetails({
             </div>
 
             {/* Invoice Information Section */}
-            <div className="flex max-w-60 items-start gap-4">
+            <div className="flex max-w-60 flex-col items-start gap-4">
               <FileText className="max-h-10 max-w-10" aria-hidden="true" />
               <div>
                 <h3 className={headingClass}>{t("invoice-info")}</h3>
-                <p className={paragraphClass}>{contactDetails.nazwaFirmy}</p>
+                <p className={paragraphClass}>
+                  <strong>{contactDetails.nazwaFirmyOne}</strong>
+                </p>
                 <p className={paragraphClass}>
                   {contactDetails.adresFakturLineOne}
                 </p>
@@ -101,10 +106,27 @@ export default function ContactFormAndDetails({
                   {contactDetails.adresFakturLineTwo}
                 </p>
                 <p className={paragraphClass}>
-                  <span>NIP:</span> {contactDetails.numerNip}
+                  <span>NIP:</span> {contactDetails.numerNipOne}
                 </p>
                 <p className={paragraphClass}>
-                  <span>REGON:</span> {contactDetails.numerRegon}
+                  <span>REGON:</span> {contactDetails.numerRegonOne}
+                </p>
+              </div>
+              <div className="mt-1">
+                <p className={paragraphClass}>
+                  <strong>{contactDetails.nazwaFirmyTwo}</strong>
+                </p>
+                <p className={paragraphClass}>
+                  {contactDetails.adresFakturLineOne}
+                </p>
+                <p className={paragraphClass}>
+                  {contactDetails.adresFakturLineTwo}
+                </p>
+                <p className={paragraphClass}>
+                  <span>NIP:</span> {contactDetails.numerNipTwo}
+                </p>
+                <p className={paragraphClass}>
+                  <span>REGON:</span> {contactDetails.numerRegonTwo}
                 </p>
               </div>
             </div>
