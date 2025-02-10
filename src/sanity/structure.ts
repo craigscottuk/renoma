@@ -18,6 +18,7 @@ import {
   Cookie,
   MousePointerClick,
   ThumbsUp,
+  MessageCircleQuestion,
 } from "lucide-react";
 
 export const structure: StructureResolver = (S, context) =>
@@ -58,13 +59,6 @@ export const structure: StructureResolver = (S, context) =>
                 type: "logoSectionHome",
                 title: "Sekcja 4: Zaufali nam",
                 id: "singletonLogoSectionHome",
-              }),
-              singletonDocumentListItem({
-                S,
-                context,
-                type: "faqSectionHome",
-                title: "Sekcja 5: FAQ",
-                id: "singletonFaqSectionHome",
               }),
             ]),
         ),
@@ -229,6 +223,29 @@ export const structure: StructureResolver = (S, context) =>
                 type: "jobOffers",
                 title: "Sekcja 2: Oferty pracy",
                 id: "singletonJobOffer",
+              }),
+            ]),
+        ),
+      S.listItem()
+        .title("FAQ")
+        .icon(MessageCircleQuestion)
+        .child(
+          S.list()
+            .title("Sekcje strony „FAQ”")
+            .items([
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "faqHeader",
+                title: "Sekcja 1: Nagłówek",
+                id: "singletonFaqHeader",
+              }),
+              singletonDocumentListItem({
+                S,
+                context,
+                type: "faqList",
+                title: "Sekcja 2: Usługi",
+                id: "singletonfaqList",
               }),
             ]),
         ),
