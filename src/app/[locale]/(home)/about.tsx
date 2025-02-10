@@ -45,6 +45,7 @@ export default function SectionAbout({
               textColor="black"
               animateOnView={true}
               animationDirection="left"
+              className="text-pretty"
             />
           </div>
 
