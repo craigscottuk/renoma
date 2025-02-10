@@ -6,7 +6,6 @@ import {
   heroSection,
   aboutSectionHome,
   servicesSectionHome,
-  faqSectionHome,
   logoSectionHome,
 } from "./home";
 import {
@@ -43,6 +42,7 @@ import {
 import { sectionContent } from "./sectionContent";
 import { cta, ctaContent } from "./cta";
 import { socialMedia, socialMediaLinks } from "./socialMedia";
+import { faq, faqHeader, faqList } from "./faq";
 
 // Export schema configuration
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -53,7 +53,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     aboutSectionHome,
     servicesSectionHome,
     logoSectionHome,
-    faqSectionHome,
 
     // O nas
     about,
@@ -91,6 +90,11 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     workWithUs,
     workWithUsHeader,
     jobOffers,
+
+    // FAQ
+    faq,
+    faqHeader,
+    faqList,
 
     // Kontakt
     contact,
