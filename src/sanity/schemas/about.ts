@@ -214,9 +214,9 @@ export const ourHistory = defineType({
               type: "object",
               description: "Opis wydarzenia w dostępnych językach.",
               fields: [
-                { name: "pl", title: "Polski", type: "basicText" },
-                { name: "en", title: "Angielski", type: "basicText" },
-                { name: "de", title: "Niemiecki", type: "basicText" },
+                { name: "pl", title: "PL", type: "basicText" },
+                { name: "en", title: "EN", type: "basicText" },
+                { name: "de", title: "DE", type: "basicText" },
               ],
             }),
             defineField({
