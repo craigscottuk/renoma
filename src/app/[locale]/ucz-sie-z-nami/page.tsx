@@ -37,7 +37,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } };
+const OPTIONS = { next: { revalidate: 10 } };
 // 86400
 
 type Props = {
@@ -51,7 +51,12 @@ interface Content {
     description: string;
     image?: string;
     imageAlt?: string;
-    imageLayout?: "fullWidthAbove" | "fullWidthBelow" | "portraitRight";
+    imageLayout?:
+      | "fullWidthAbove"
+      | "fullWidthBelow"
+      | "portraitRight"
+      | "landscapeRight"
+      | "noImage";
     backgroundColor?: "white" | "black";
   };
   whatWeOffer: {
