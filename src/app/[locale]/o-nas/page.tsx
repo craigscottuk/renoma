@@ -57,7 +57,12 @@ interface Content {
     description: string;
     image?: string;
     imageAlt?: string;
-    imageLayout?: "fullWidthAbove" | "fullWidthBelow" | "portraitRight";
+    imageLayout?:
+      | "fullWidthAbove"
+      | "fullWidthBelow"
+      | "portraitRight"
+      | "landscapeRight"
+      | "noImage";
     backgroundColor?: "black" | "white";
   };
   aboutUs: {
