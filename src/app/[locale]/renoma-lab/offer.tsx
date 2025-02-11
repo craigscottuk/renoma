@@ -16,7 +16,7 @@ import SectionTitle from "@/components/section-title";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { portableTextComponents } from "@/lib/portableTextComponents";
 import { FadeInSection } from "@/components/fade-in-section";
-import fixPolishOrphans from "@/utils/fixPolishOrphans";
+import { transformPortableTextBlocks } from "@/utils/transformPortableTextBlocks";
 
 interface LabOfferProps {
   title: string;
@@ -82,20 +82,8 @@ export default function LabOffer({
     cardColorSchemes[colorScheme] || cardColorSchemes.zincLight;
 
   const newOffers = offers.map((offer) => {
-    const newContent = offer.content.map((block) => {
-      if (block._type === "block") {
-        return {
-          ...block,
-          children: block.children?.map((child) => {
-            if (child._type === "span" && typeof child.text === "string") {
-              return { ...child, text: fixPolishOrphans(child.text) };
-            }
-            return child;
-          }),
-        };
-      }
-      return block;
-    });
+    // Apply transformPortableTextBlocks to portableTextBlock before rendering to fix Polish orphans on the end of each line.
+    const newContent = transformPortableTextBlocks(offer.content);
     return { ...offer, content: newContent };
   });
 
