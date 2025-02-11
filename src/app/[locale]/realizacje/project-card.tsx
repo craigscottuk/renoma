@@ -12,13 +12,14 @@ import clsx from "clsx";
 import { Separator } from "@/components/ui/separator";
 import AnimatedLink from "@/components/animated-link";
 import { FadeInSection } from "@/components/fade-in-section";
+import fixPolishOrphans from "@/utils/fixPolishOrphans";
 
 interface ProjectCardProps {
   projectCardData: {
     title: string;
     location: string;
     timeframe: string;
-    description: string;
+    cardDescription: string;
     imageUrl: string;
     slug: string;
   }[];
@@ -115,7 +116,9 @@ export default function ProjectCard({
                   </div>
                   <Separator className="mb-4" />
 
-                  <p className="">{project.description}</p>
+                  <p className="">
+                    {fixPolishOrphans(project.cardDescription)}
+                  </p>
                 </CardContent>
                 <CardFooter>
                   <AnimatedLink
