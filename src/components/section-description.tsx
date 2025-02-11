@@ -26,7 +26,6 @@ export default function SectionDescription({
   marginTop = false,
   textStyle = "text-balance",
   animateOnView = false,
-  animationDirection = "right",
   delay = 0.2,
 }: SectionDescriptionProps) {
   const { ref, controls } = useIntersectionObserver({
