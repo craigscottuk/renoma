@@ -26,7 +26,7 @@ export default function HeroSection({ title, sectionCTA }: HeroSectionProps) {
       />
 
       {/* Overlay for better readability */}
-      <div className="absolute inset-0 bg-zinc-900 bg-opacity-25"></div>
+      <div className="absolute inset-0 bg-zinc-900 bg-opacity-30"></div>
 
       {/* Hero Content */}
       <div className="absolute inset-0 flex items-center">
@@ -41,7 +41,7 @@ export default function HeroSection({ title, sectionCTA }: HeroSectionProps) {
           />
           {/* CTA Button */}
           <CustomButton
-            className="motion-preset-blur-right delay-300"
+            className="motion-preset-blur-right-lg motion-delay-2000"
             variant="dark"
             href="/uslugi"
           >
