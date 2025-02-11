@@ -246,6 +246,13 @@ export const servicesList = defineType({
           description:
             "Obrazy ilustrujące usługę. Dodanie więcej niż jednego obrazu utworzy galerię lub karuzelę obrazów.",
         }),
+        defineField({
+          name: "addLinkToRenomaLab",
+          title: "Dodaj link do RenomaLab",
+          type: "boolean",
+          description: "Czy dodać link do RenomaLab w tej sekcji usługi?",
+          initialValue: false,
+        }),
       ],
       preview: {
         select: {
