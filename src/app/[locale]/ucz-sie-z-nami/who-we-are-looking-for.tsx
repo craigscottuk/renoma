@@ -12,6 +12,7 @@ import Image from "next/image";
 import CustomButton from "@/components/ui/custom-button";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { FadeInSection } from "@/components/fade-in-section";
+import { transformPortableTextBlocks } from "@/utils/transformPortableTextBlocks";
 
 interface WhoWeAreLookingForProps {
   title: string;
@@ -34,6 +35,9 @@ export default function WhoWeAreLookingFor({
   const imageUrl =
     typeof image === "string" ? image : image ? urlFor(image, 1200) : "";
 
+  // Apply transformPortableTextBlocks to portableTextBlock before rendering to fix Polish orphans on the end of each line.
+  const newCriteria = transformPortableTextBlocks(criteria);
+
   return (
     <section className={clsx("mx-auto bg-white text-zinc-950/90", paddingY)}>
       <MaxWidthWrapper>
@@ -50,7 +54,7 @@ export default function WhoWeAreLookingFor({
                   />
 
                   <PortableText
-                    value={criteria}
+                    value={newCriteria}
                     components={portableTextComponents}
                   />
 
