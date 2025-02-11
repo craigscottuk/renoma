@@ -3,11 +3,9 @@
 import { setRequestLocale } from "next-intl/server";
 import { client } from "@/sanity/client";
 import PageHeader from "@/components/page-header";
-import projectCardData from "@/lib/projectCardData";
 
 import { getTranslations } from "next-intl/server";
 import ProjectCard from "./project-card";
-import { ctaContent } from "@/lib/ctaContent";
 import CTA from "@/components/cta";
 
 const QUERY = `
@@ -24,9 +22,17 @@ const QUERY = `
   "projects": *[_type == "caseStudyEntry" && language == $locale]
     | order(_createdAt asc){
       title,
-      slug,
-      language,
-    }
+      "location": details.lokalizacja,
+      "timeframe": details.czasTrwania,
+      cardDescription,
+      "imageUrl": image.asset->url,
+      "slug": slug.current
+    },
+  "ctaContent": *[_type == "ctaContent"][0]{
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+    "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
+  }
 }
 `;
 
@@ -59,7 +65,11 @@ export default async function Realizacje({ params: { locale } }: Props) {
   setRequestLocale(locale);
 
   // Fetch localized content from Sanity using locale from params
-  const { caseStudyHeader } = await client.fetch(QUERY, { locale }, OPTIONS);
+  const { caseStudyHeader, projects, ctaContent } = await client.fetch(
+    QUERY,
+    { locale },
+    OPTIONS,
+  );
 
   return (
     <>
@@ -82,15 +92,19 @@ export default async function Realizacje({ params: { locale } }: Props) {
 
       {/* List of Projects / Case Studies */}
       <ProjectCard
-        projectCardData={projectCardData}
+        projectCardData={projects}
         paddingY="py-36"
         colorScheme="zincLight"
       />
-      <CTA
-        title={ctaContent.title}
-        description={ctaContent.description}
-        buttonText={ctaContent.buttonText}
-      />
+
+      {/* CTA */}
+      {ctaContent && (
+        <CTA
+          title={ctaContent.title}
+          description={ctaContent.description}
+          buttonText={ctaContent.buttonText}
+        />
+      )}
     </>
   );
 }
