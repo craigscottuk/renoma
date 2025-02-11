@@ -4,7 +4,6 @@ import PageHeader from "@/components/page-header";
 import { client } from "@/sanity/client";
 import { getTranslations } from "next-intl/server";
 import CTA from "@/components/cta";
-import { ctaContent } from "@/lib/ctaContent";
 import FaqAccordion from "./faq";
 
 const QUERY = `
@@ -24,6 +23,12 @@ const QUERY = `
       "question": coalesce(question[_key == $locale][0].value, "Brak tłumaczenia"),
       "answer": coalesce(answer[_key == $locale][0].value, "Brak tłumaczenia")
     }
+  },
+
+  "ctaContent": *[_type == "ctaContent"][0]{
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+    "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
   }
 }
 `;
@@ -57,6 +62,12 @@ interface Content {
       answer: string;
     }[];
   };
+
+  ctaContent: {
+    title: string;
+    description: string;
+    buttonText: string;
+  };
 }
 
 // Metadata from translations and generateMetadata function
@@ -84,7 +95,7 @@ export default async function Faq({ params: { locale } }: Props) {
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
-  const { faqHeader, faqList } = content;
+  const { faqHeader, faqList, ctaContent } = content;
 
   return (
     <>
@@ -104,11 +115,14 @@ export default async function Faq({ params: { locale } }: Props) {
       {/* FAQ Section */}
       {faqList && <FaqAccordion faqItems={faqList.faqItems} />}
 
-      <CTA
-        title={ctaContent.title}
-        description={ctaContent.description}
-        buttonText={ctaContent.buttonText}
-      />
+      {/* CTA */}
+      {ctaContent && (
+        <CTA
+          title={ctaContent.title}
+          description={ctaContent.description}
+          buttonText={ctaContent.buttonText}
+        />
+      )}
     </>
   );
 }
