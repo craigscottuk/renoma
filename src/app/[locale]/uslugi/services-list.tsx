@@ -15,9 +15,11 @@ import SectionTitle from "@/components/section-title";
 import ImageCarousel from "@/components/ImageCarousel";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { FadeInSection } from "@/components/fade-in-section";
+import fixPolishOrphans from "@/utils/fixPolishOrphans";
 
 import { Separator } from "@/components/ui/separator";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
+import CustomButton from "@/components/ui/custom-button";
 
 type ImageType = {
   asset: SanityImageSource | string;
@@ -29,6 +31,7 @@ interface Service {
   description: string;
   actions: { title: string; content: string }[];
   images?: ImageType[];
+  addLinkToRenomaLab?: boolean;
 }
 
 interface ServiceGroup {
@@ -200,7 +203,7 @@ export default function ServicesList({
                         </h3>
                       </button>
                       <p className="mb-8 text-[1.1rem] text-zinc-700">
-                        {service.description}
+                        {fixPolishOrphans(service.description)}
                       </p>
                       <Accordion type="single" collapsible className="w-full">
                         {service.actions.map((action) => (
@@ -212,7 +215,9 @@ export default function ServicesList({
                               {action.title}
                             </AccordionTrigger>
                             <AccordionContent className="mb-4">
-                              <p className="text-zinc-700">{action.content}</p>
+                              <p className="text-zinc-700">
+                                {fixPolishOrphans(action.content)}
+                              </p>
                             </AccordionContent>
                           </AccordionItem>
                         ))}
@@ -235,6 +240,16 @@ export default function ServicesList({
                       />
                     </FadeInSection>
                   </div>
+                  {service.addLinkToRenomaLab && (
+                    <CustomButton
+                      animateOnView={true}
+                      animationDirection="up"
+                      href="/renoma-lab"
+                      className="-mt-12"
+                    >
+                      Odwiedź stronę Renoma LAB
+                    </CustomButton>
+                  )}
                 </MaxWidthWrapper>
               </div>
             ))}
