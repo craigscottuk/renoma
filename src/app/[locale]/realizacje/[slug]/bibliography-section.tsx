@@ -5,6 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
 import { portableTextComponents } from "@/lib/portableTextComponents";
 import { FadeInSection } from "@/components/fade-in-section";
+import { transformPortableTextBlocks } from "@/utils/transformPortableTextBlocks";
 
 interface BibliographySectionProps {
   title: string;
@@ -15,6 +16,9 @@ export default function BibliographySection({
   title,
   content,
 }: BibliographySectionProps) {
+  // Apply transformPortableTextBlocks to portableTextBlock before rendering to fix Polish orphans on the end of each line.
+  const newContent = transformPortableTextBlocks(content);
+
   return (
     <FadeInSection>
       <section className="mb-16">
@@ -29,7 +33,7 @@ export default function BibliographySection({
         <MaxWidthWrapper>
           <div className="flex flex-col lg:w-4/5 lg:items-start">
             <PortableText
-              value={content || []}
+              value={newContent}
               components={portableTextComponents}
             />
           </div>
