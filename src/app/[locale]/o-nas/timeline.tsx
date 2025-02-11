@@ -6,7 +6,7 @@ import { useState, useRef, useEffect } from "react";
 import ImageCarousel from "@/components/ImageCarousel";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
 import { portableTextComponents } from "@/lib/portableTextComponents";
-import fixPolishOrphans from "@/utils/fixPolishOrphans";
+import { transformPortableTextBlocks } from "@/utils/transformPortableTextBlocks";
 
 export interface TimelineEvent {
   year: string;
@@ -39,20 +39,8 @@ export default function Timeline({ events }: TimelineProps) {
 
   const sortedEvents = events
     .map((event) => {
-      const newContent = event.content.map((block) => {
-        if (block._type === "block") {
-          return {
-            ...block,
-            children: block.children?.map((child) => {
-              if (child._type === "span" && typeof child.text === "string") {
-                return { ...child, text: fixPolishOrphans(child.text) };
-              }
-              return child;
-            }),
-          };
-        }
-        return block;
-      });
+      // Apply transformPortableTextBlocks to portableTextBlock before rendering to fix Polish orphans on the end of each line.
+      const newContent = transformPortableTextBlocks(event.content);
       return { ...event, content: newContent };
     })
     .sort((a, b) => parseInt(a.year) - parseInt(b.year));
