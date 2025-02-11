@@ -9,7 +9,7 @@ import SectionDescription from "@/components/section-description";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { portableTextComponents } from "@/lib/portableTextComponents";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
-import fixPolishOrphans from "@/utils/fixPolishOrphans";
+import { transformPortableTextBlocks } from "@/utils/transformPortableTextBlocks";
 
 interface PageHeaderProps {
   label: string;
@@ -54,22 +54,9 @@ export default function PageHeader({
   const textColor = backgroundColor === "black" ? "white" : "black";
   const showImage = imageLayout !== "noImage";
 
-  // Apply fixPolishOrphans to portableTextBlock before rendering.
+  // Apply transformPortableTextBlocks to portableTextBlock before rendering to fix Polish orphans on the end of each line.
   if (portableTextBlock) {
-    portableTextBlock = portableTextBlock.map((block) => {
-      if (block._type === "block") {
-        return {
-          ...block,
-          children: block.children?.map((child) => {
-            if (child._type === "span" && typeof child.text === "string") {
-              return { ...child, text: fixPolishOrphans(child.text) };
-            }
-            return child;
-          }),
-        };
-      }
-      return block;
-    });
+    portableTextBlock = transformPortableTextBlocks(portableTextBlock);
   }
 
   return (
