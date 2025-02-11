@@ -1,10 +1,7 @@
 "use client";
 // cSpell:disable
 import clsx from "clsx";
-import SectionTitle from "@/components/section-title";
-// import CustomButton from "@/components/ui/custom-button";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
-import SectionDescription from "@/components/section-description";
 import {
   Accordion,
   AccordionContent,
@@ -13,6 +10,8 @@ import {
 } from "@/components/ui/accordion";
 import { motion } from "framer-motion";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import fixPolishOrphans from "@/utils/fixPolishOrphans";
+import AnimatedLink from "@/components/animated-link";
 
 interface FaqAccordionProps {
   faqItems: {
@@ -92,7 +91,13 @@ function FaqAccordion({ faqItems }: FaqAccordionProps) {
               {item.question}
             </AccordionTrigger>
             <AccordionContent className="max-w-[95%] text-pretty pb-6 text-[1.1rem] text-zinc-900">
-              {item.answer}
+              <div>{fixPolishOrphans(item.answer)}</div>
+              <AnimatedLink
+                className="text-`zinc-900 mt-5 text-base"
+                href={"/uslugi"}
+              >
+                Sprawdź nasze usługi
+              </AnimatedLink>
             </AccordionContent>
           </AccordionItem>
         ))}
