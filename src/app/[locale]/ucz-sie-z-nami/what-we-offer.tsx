@@ -6,6 +6,7 @@ import MaxWidthWrapper from "@/components/max-width-wrapper";
 import SectionTitle from "@/components/section-title";
 import clsx from "clsx";
 import { FadeInSection } from "@/components/fade-in-section";
+import fixPolishOrphans from "@/utils/fixPolishOrphans";
 
 // Define the type for our feature items
 interface WhatWeOfferProps {
@@ -44,7 +45,7 @@ export default function WhatWeOffer({
                 </CardHeader>
                 <CardContent>
                   <p className="text-[1.1rem] text-zinc-300">
-                    {feature.description}
+                    {fixPolishOrphans(feature.description)}
                   </p>
                 </CardContent>
               </Card>
