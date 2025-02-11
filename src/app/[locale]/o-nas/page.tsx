@@ -1,13 +1,12 @@
 // cSpell:disable
 // src/app/[locale]/o-nas/page.tsx
 import { AboutUs } from "./about-us";
-import OurHistory from "./our-history";
+// import OurHistory from "./our-history";
 import { client } from "@/sanity/client";
 import { PortableTextBlock } from "next-sanity";
 import PageHeader from "@/components/page-header";
 import { getTranslations } from "next-intl/server";
 import { setRequestLocale } from "next-intl/server";
-import { ctaContent } from "@/lib/ctaContent";
 import CTA from "@/components/cta";
 
 const QUERY = `
@@ -39,6 +38,12 @@ const QUERY = `
         "aspectRatio": aspectRatio
       }
     }
+  },
+
+  "ctaContent": *[_type == "ctaContent"][0]{
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+    "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
   }
 }
 `;
@@ -73,6 +78,11 @@ interface Content {
     title: string;
     text: string;
     timeline: TimelineItem[];
+  };
+  ctaContent: {
+    title: string;
+    description: string;
+    buttonText: string;
   };
 }
 
@@ -113,9 +123,12 @@ export default async function About({ params: { locale } }: Props) {
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
-  const { aboutUsHeader, aboutUs, ourHistory } = content;
-
-  // console.log(" content", aboutUsHeader);
+  const {
+    aboutUsHeader,
+    aboutUs,
+    //  ourHistory,
+    ctaContent,
+  } = content;
 
   return (
     <>
@@ -142,19 +155,23 @@ export default async function About({ params: { locale } }: Props) {
       )}
 
       {/* Interactive Timeline component */}
-      {ourHistory && (
+      {/* {ourHistory && (
         <OurHistory
           title={ourHistory.title}
           text={ourHistory.text}
           events={ourHistory.timeline}
           paddingY="pt-20 md:pt-48"
         />
+      )} */}
+
+      {/* CTA */}
+      {ctaContent && (
+        <CTA
+          title={ctaContent.title}
+          description={ctaContent.description}
+          buttonText={ctaContent.buttonText}
+        />
       )}
-      <CTA
-        title={ctaContent.title}
-        description={ctaContent.description}
-        buttonText={ctaContent.buttonText}
-      />
     </>
   );
 }
