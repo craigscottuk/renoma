@@ -57,10 +57,20 @@ export const caseStudyEntry = defineType({
     }),
 
     defineField({
+      name: "cardDescription",
+      title: "Opis karty",
+      description:
+        "Krótki opis wyświetlany na kartach dla każdego projektu na stronie www.pzkrenoma.com/pl/realizacje.",
+      type: "text",
+      rows: 8,
+      validation: (rule) => rule.required().error("Opis karty jest wymagany."),
+    }),
+
+    defineField({
       name: "summary",
       title: "Podsumowanie",
       description:
-        "Krótki opis projektu, maksymalnie 500 znaków. Używane jako wprowadzenie do studium przypadku w sekcji nagłówkowej strony.",
+        "Krótki opis projektu używany jako wprowadzenie do studium przypadku w sekcji nagłówkowej strony dla każdego indywidualnego studium przypadku.",
       type: "text",
       rows: 8,
       validation: (rule) =>
