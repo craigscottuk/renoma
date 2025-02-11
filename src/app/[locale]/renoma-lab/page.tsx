@@ -7,7 +7,6 @@ import LabOffer from "./offer";
 import { PortableTextBlock } from "next-sanity";
 import { getTranslations } from "next-intl/server";
 import CTA from "@/components/cta";
-import { ctaContent } from "@/lib/ctaContent";
 
 const QUERY = `
 {
@@ -33,6 +32,11 @@ const QUERY = `
       "content": coalesce(content[$locale], []),
     },
     "collaborationDescription": coalesce(collaborationDescription[_key == $locale][0].value, "Brak tłumaczenia")
+  },
+  "ctaContent": *[_type == "ctaContent"][0]{
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+    "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
   }
 }
 `;
@@ -73,6 +77,11 @@ interface Content {
     }[];
     collaborationDescription: string;
   };
+  ctaContent: {
+    title: string;
+    description: string;
+    buttonText: string;
+  };
 }
 
 // Metadata from translations and generateMetadata function
@@ -104,6 +113,7 @@ export default async function RenomaLab({ params: { locale } }: Props) {
     renomaLabHeader,
     // aboutLab,
     labOffer,
+    ctaContent,
   } = content;
 
   return (
@@ -142,11 +152,15 @@ export default async function RenomaLab({ params: { locale } }: Props) {
           colorScheme="zincLight"
         />
       )}
-      <CTA
-        title={ctaContent.title}
-        description={ctaContent.description}
-        buttonText={ctaContent.buttonText}
-      />
+
+      {/* CTA */}
+      {ctaContent && (
+        <CTA
+          title={ctaContent.title}
+          description={ctaContent.description}
+          buttonText={ctaContent.buttonText}
+        />
+      )}
     </>
   );
 }
