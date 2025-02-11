@@ -6,6 +6,7 @@ import { CarouselComparison } from "./carousel-comparison";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
 import { portableTextComponents } from "@/lib/portableTextComponents";
 import { FadeInSection } from "@/components/fade-in-section";
+import { transformPortableTextBlocks } from "@/utils/transformPortableTextBlocks";
 
 interface ComparisonSectionProps {
   title: string;
@@ -24,9 +25,12 @@ export default function ComparisonSection({
 }: ComparisonSectionProps) {
   // Render nothing if both properties are missing
   if (!(content?.length || comparisons?.length)) {
-    console.log("No content or comparisons to render.");
+    // console.log("No content or comparisons to render.");
     return null;
   }
+
+  // Apply transformPortableTextBlocks to portableTextBlock before rendering to fix Polish orphans on the end of each line.
+  const newContent = transformPortableTextBlocks(content);
 
   return (
     <FadeInSection>
@@ -44,7 +48,7 @@ export default function ComparisonSection({
               <div className="flex-1">
                 <div className="text-pretty text-[1.1rem] leading-[1.75] lg:max-w-[30rem]">
                   <PortableText
-                    value={content || []}
+                    value={newContent}
                     components={portableTextComponents}
                   />
                 </div>
