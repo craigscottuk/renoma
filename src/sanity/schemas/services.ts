@@ -210,15 +210,15 @@ export const servicesList = defineType({
           ],
         }),
 
-        defineField({
-          name: "shortDescription",
-          title: "Krótki Opis Usługi na stronie głównej",
-          type: "internationalizedArrayText",
-          description:
-            "Skrócony opis usługi wyświetlany w sekcji usług na stronie głównej, np. 'Zapewniamy kompleksowe badania w celu ochrony zabytków.'.",
-          validation: (Rule) =>
-            Rule.required().error("Pole krótkiego opisu usługi jest wymagane."),
-        }),
+        // defineField({
+        //   name: "shortDescription",
+        //   title: "Krótki Opis Usługi na stronie głównej",
+        //   type: "internationalizedArrayText",
+        //   description:
+        //     "Skrócony opis usługi wyświetlany w sekcji usług na stronie głównej, np. 'Zapewniamy kompleksowe badania w celu ochrony zabytków.'.",
+        //   validation: (Rule) =>
+        //     Rule.required().error("Pole krótkiego opisu usługi jest wymagane."),
+        // }),
 
         defineField({
           name: "images",
