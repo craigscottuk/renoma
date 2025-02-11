@@ -5,7 +5,6 @@ import { client } from "@/sanity/client";
 import { PortableTextBlock } from "next-sanity";
 import SectionJobOffer from "./section-job-offer";
 import { getTranslations } from "next-intl/server";
-import { ctaContent } from "@/lib/ctaContent";
 import CTA from "@/components/cta";
 
 const QUERY = `
@@ -32,6 +31,11 @@ const QUERY = `
       "colorScheme": "zincLight" // Add this line
     }
   },
+  "ctaContent": *[_type == "ctaContent"][0]{
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+    "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
+  }
 }
 `;
 
@@ -69,6 +73,11 @@ interface Content {
       benefits: PortableTextBlock[];
     }[];
   };
+  ctaContent: {
+    title: string;
+    description: string;
+    buttonText: string;
+  };
 }
 
 export async function generateMetadata({ params: { locale } }: Props) {
@@ -95,7 +104,7 @@ export default async function PracujZNami({ params: { locale } }: Props) {
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
-  const { workWithUsHeader, jobOffers } = content;
+  const { workWithUsHeader, jobOffers, ctaContent } = content;
 
   return (
     <>
@@ -120,11 +129,15 @@ export default async function PracujZNami({ params: { locale } }: Props) {
           paddingY="py-20 md:py-24"
         />
       )}
-      <CTA
-        title={ctaContent.title}
-        description={ctaContent.description}
-        buttonText={ctaContent.buttonText}
-      />
+
+      {/* CTA */}
+      {ctaContent && (
+        <CTA
+          title={ctaContent.title}
+          description={ctaContent.description}
+          buttonText={ctaContent.buttonText}
+        />
+      )}
     </>
   );
 }
