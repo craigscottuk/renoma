@@ -5,7 +5,7 @@ import { client } from "@/sanity/client";
 import ServicesList from "@/app/[locale]/uslugi/services-list";
 import { getTranslations } from "next-intl/server";
 import CTA from "@/components/cta";
-import { ctaContent } from "@/lib/ctaContent";
+
 // import SectionFaqHome from "../faq/faq";
 
 const QUERY = `
@@ -30,7 +30,8 @@ const QUERY = `
           "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
           "content": coalesce(content[_key == $locale][0].value, "Brak tłumaczenia")
         },
-        "images": images
+        "images": images,
+        "addLinkToRenomaLab": addLinkToRenomaLab
       }
     },
     "serviceGroupTwo": {
@@ -42,7 +43,8 @@ const QUERY = `
           "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
           "content": coalesce(content[_key == $locale][0].value, "Brak tłumaczenia")
         },
-        "images": images
+        "images": images,
+        "addLinkToRenomaLab": addLinkToRenomaLab
       }
     },
     "serviceGroupThree": {
@@ -54,7 +56,8 @@ const QUERY = `
           "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
           "content": coalesce(content[_key == $locale][0].value, "Brak tłumaczenia")
         },
-        "images": images
+        "images": images,
+        "addLinkToRenomaLab": addLinkToRenomaLab
       }
     }
   },
@@ -68,6 +71,11 @@ const QUERY = `
       "question": coalesce(question[_key == $locale][0].value, "Brak tłumaczenia"),
       "answer": coalesce(answer[_key == $locale][0].value, "Brak tłumaczenia")
     }
+  },
+  "ctaContent": *[_type == "ctaContent"][0]{
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+    "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
   }
 }
 `;
@@ -108,6 +116,7 @@ interface Content {
           asset: string;
           caption?: string;
         }[];
+        addLinkToRenomaLab?: boolean;
       }[];
     };
     serviceGroupTwo: {
@@ -123,6 +132,7 @@ interface Content {
           asset: string;
           caption?: string;
         }[];
+        addLinkToRenomaLab?: boolean;
       }[];
     };
     serviceGroupThree: {
@@ -138,6 +148,7 @@ interface Content {
           asset: string;
           caption?: string;
         }[];
+        addLinkToRenomaLab?: boolean;
       }[];
     };
   };
@@ -150,6 +161,11 @@ interface Content {
       question: string;
       answer: string;
     }[];
+  };
+  ctaContent: {
+    title: string;
+    description: string;
+    buttonText: string;
   };
 }
 
@@ -181,7 +197,8 @@ export default async function ONas({ params: { locale } }: Props) {
   const {
     servicesHeader,
     servicesGroup,
-    //  faqSectionHome
+    //  faqSectionHome,
+    ctaContent,
   } = content;
 
   return (
@@ -221,11 +238,14 @@ export default async function ONas({ params: { locale } }: Props) {
         />
       )} */}
 
-      <CTA
-        title={ctaContent.title}
-        description={ctaContent.description}
-        buttonText={ctaContent.buttonText}
-      />
+      {/* CTA */}
+      {ctaContent && (
+        <CTA
+          title={ctaContent.title}
+          description={ctaContent.description}
+          buttonText={ctaContent.buttonText}
+        />
+      )}
     </>
   );
 }
