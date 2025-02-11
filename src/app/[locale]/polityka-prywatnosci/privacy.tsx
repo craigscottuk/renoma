@@ -2,7 +2,7 @@ import clsx from "clsx";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
 import { portableTextComponents } from "@/lib/portableTextComponents";
-import fixPolishOrphans from "@/utils/fixPolishOrphans";
+import { transformPortableTextBlocks } from "@/utils/transformPortableTextBlocks";
 
 interface PrivacyProps {
   content: PortableTextBlock[];
@@ -10,20 +10,8 @@ interface PrivacyProps {
 }
 
 export default function Privacy({ content, paddingY }: PrivacyProps) {
-  const newContent = content.map((block) => {
-    if (block._type === "block") {
-      return {
-        ...block,
-        children: block.children?.map((child) => {
-          if (child._type === "span" && typeof child.text === "string") {
-            return { ...child, text: fixPolishOrphans(child.text) };
-          }
-          return child;
-        }),
-      };
-    }
-    return block;
-  });
+  // Apply transformPortableTextBlocks to portableTextBlock before rendering to fix Polish orphans on the end of each line.
+  const newContent = transformPortableTextBlocks(content);
 
   return (
     <section className={clsx("mx-auto bg-white text-zinc-950/90", paddingY)}>
