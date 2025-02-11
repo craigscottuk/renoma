@@ -7,7 +7,6 @@ import { setRequestLocale } from "next-intl/server";
 import LogoShowcase from "./logos";
 import CTA from "../../../components/cta";
 import { getTranslations } from "next-intl/server";
-import { ctaContent } from "@/lib/ctaContent";
 
 const QUERY = `
 {
@@ -64,6 +63,12 @@ const QUERY = `
       "src": src.asset->url,
       link
     }
+  },
+
+  "ctaContent": *[_type == "ctaContent"][0]{
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+    "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
   }
 }
 `;
@@ -134,6 +139,11 @@ interface Content {
       link: string;
     }[];
   };
+  ctaContent: {
+    title: string;
+    description: string;
+    buttonText: string;
+  };
 }
 
 // Metadata from translations and generateMetadata function
@@ -164,9 +174,9 @@ export default async function HomePage({ params: { locale } }: Props) {
     heroSection,
     aboutSectionHome,
     servicesSectionHome,
-    faqSectionHome,
     servicesGroup,
     logoSectionHome,
+    ctaContent,
   } = content;
 
   return (
@@ -212,11 +222,14 @@ export default async function HomePage({ params: { locale } }: Props) {
         />
       )}
 
-      <CTA
-        title={ctaContent.title}
-        description={ctaContent.description}
-        buttonText={ctaContent.buttonText}
-      />
+      {/* CTA */}
+      {ctaContent && (
+        <CTA
+          title={ctaContent.title}
+          description={ctaContent.description}
+          buttonText={ctaContent.buttonText}
+        />
+      )}
     </>
   );
 }
