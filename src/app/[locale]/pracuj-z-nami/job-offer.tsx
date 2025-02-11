@@ -25,6 +25,8 @@ import { MapPin, Clock, ChevronDown, ChevronUp } from "lucide-react";
 import { portableTextComponents } from "@/lib/portableTextComponents";
 import clsx from "clsx";
 import { FadeInSection } from "@/components/fade-in-section";
+import { transformPortableTextBlocks } from "@/utils/transformPortableTextBlocks";
+import fixPolishOrphans from "@/utils/fixPolishOrphans";
 
 export interface JobOffer {
   jobTitle: string;
@@ -71,6 +73,11 @@ export default function JobOfferCard({ job }: { job: JobOffer }) {
 
   const selectedColorScheme = cardColorSchemes.zincLight;
 
+  // Apply transformPortableTextBlocks to portableTextBlock before rendering to fix Polish orphans on the end of each line.
+  const newResponsibilities = transformPortableTextBlocks(job.responsibilities);
+  const newRequirements = transformPortableTextBlocks(job.requirements);
+  const newBenefits = transformPortableTextBlocks(job.benefits);
+
   return (
     <FadeInSection translateY>
       <Card
@@ -89,7 +96,7 @@ export default function JobOfferCard({ job }: { job: JobOffer }) {
                   selectedColorScheme.cardContent,
                 )}
               >
-                {job.jobDescription}
+                {fixPolishOrphans(job.jobDescription)}
               </CardDescription>
             </div>
           </div>
@@ -115,17 +122,17 @@ export default function JobOfferCard({ job }: { job: JobOffer }) {
           >
             <h3 className="mb-2 text-lg font-semibold">Obowiązki:</h3>
             <PortableText
-              value={job.responsibilities}
+              value={newResponsibilities}
               components={portableTextComponents}
             />
             <h3 className="mb-2 text-lg font-semibold">Wymagania:</h3>
             <PortableText
-              value={job.requirements}
+              value={newRequirements}
               components={portableTextComponents}
             />
             <h3 className="mb-2 text-lg font-semibold">Oferujemy:</h3>
             <PortableText
-              value={job.benefits}
+              value={newBenefits}
               components={portableTextComponents}
             />
           </div>
@@ -179,15 +186,13 @@ export default function JobOfferCard({ job }: { job: JobOffer }) {
 }
 
 function ApplicationForm({
-  jobTitle,
+  // jobTitle,
   onClose,
 }: {
   jobTitle: string;
   onClose: () => void;
 }) {
   const [files, setFiles] = useState<File[]>([]);
-
-  console.log("job title", jobTitle);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = Array.from(event.target.files || []);
