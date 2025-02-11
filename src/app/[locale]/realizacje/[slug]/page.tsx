@@ -1,5 +1,4 @@
 // cSpell:disable
-
 // app/[locale]/realizacje/[slug]/page.tsx
 
 import { client } from "@/sanity/client";
@@ -8,13 +7,10 @@ import { redirect } from "@/i18n/routing";
 import NoTranslationMessage from "@/components/NoTranslationMessage";
 import ContentSection from "@/app/[locale]/realizacje/[slug]/content-section";
 import ProjectDetailsSection from "./details";
-import { CaseStudySectionContent } from "@/types";
 import PageHeader from "@/components/page-header";
 import ComparisonSection from "./comparison-section";
 import BibliographySection from "./bibliography-section";
 import CTA from "@/components/cta";
-import { ctaContent } from "@/lib/ctaContent";
-import { PortableTextBlock } from "@portabletext/react";
 import { PrevNextCaseStudy } from "./prev-next-case-study";
 
 const QUERY = `
@@ -104,78 +100,24 @@ const QUERY = `
     "slug": slug.current,
     "imageUrl": image.asset->url
   }
+
+  
+
 }
+`;
+
+const CTA_QUERY = `
+  *[_type == "ctaContent"][0] {
+    title,
+    description,
+    buttonLabel
+  }
 `;
 
 type Translation = {
   title: string;
   slug: { current: string };
   language: string;
-};
-
-type Project = {
-  label: string;
-  title: string;
-  slug: { current: string };
-  language: string;
-  summary: string;
-  image?: string;
-  imageAlt?: string;
-  imageLayout?:
-    | "fullWidthAbove"
-    | "fullWidthBelow"
-    | "portraitRight"
-    | "landscapeRight"
-    | "noImage";
-  backgroundColor?: "black" | "white";
-  details: {
-    lokalizacja: string;
-    status: string;
-    czasTrwania: string;
-    typObiektu: string;
-    rola: string[];
-    zakresPrac: string[];
-  };
-  sectionOne: {
-    title: string;
-    content: CaseStudySectionContent[];
-  };
-  sectionTwo: {
-    title: string;
-    content: CaseStudySectionContent[];
-  };
-  sectionThree: {
-    title: string;
-    content: CaseStudySectionContent[];
-  };
-  sectionFour: {
-    title: string;
-    content: CaseStudySectionContent[];
-  };
-  sectionFive: {
-    title: string;
-    content: PortableTextBlock[];
-    comparisons: {
-      title: string;
-      imageBefore: string;
-      imageAfter: string;
-    }[];
-  };
-  sectionSix: {
-    title: string;
-    content: PortableTextBlock[];
-  };
-  _translations: Translation[];
-  previousCaseStudy?: {
-    title: string;
-    slug: string;
-    imageUrl: string;
-  };
-  nextCaseStudy?: {
-    title: string;
-    slug: string;
-    imageUrl: string;
-  };
 };
 
 type Props = {
@@ -189,20 +131,19 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
   // 86400
 
   // Error handling for fetching data
-  let project: Project | null = null;
-  try {
-    project = await client.fetch(QUERY, { slug }, OPTIONS);
-  } catch (error) {
-    console.error("Error fetching project data:", error);
-    return <div>Error loading project. Please try again later.</div>;
-  }
+  const [project, ctaContent] = await Promise.all([
+    client.fetch(QUERY, { slug }, OPTIONS),
+    client.fetch(CTA_QUERY, {}, OPTIONS),
+  ]);
 
   if (!project) {
     return <div>Project not found.</div>; // Optionally, redirect to a 404 page
   }
 
   // Determine the translation for the selected locale
-  const translation = project._translations.find((t) => t.language === locale);
+  const translation = project._translations.find(
+    (t: Translation) => t.language === locale,
+  );
 
   // If the URL slug does not match the translation's slug, redirect
   if (translation && translation.slug.current !== slug) {
@@ -214,6 +155,21 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
       locale,
     });
   }
+
+  const localizedCTA = {
+    title:
+      ctaContent?.title?.find(
+        (entry: { _key: string; value: string }) => entry._key === locale,
+      )?.value ?? "",
+    description:
+      ctaContent?.description?.find(
+        (entry: { _key: string; value: string }) => entry._key === locale,
+      )?.value ?? "",
+    buttonLabel:
+      ctaContent?.buttonLabel?.find(
+        (entry: { _key: string; value: string }) => entry._key === locale,
+      )?.value ?? "",
+  };
 
   return (
     <>
@@ -312,11 +268,14 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
             nextCaseStudy={project.nextCaseStudy}
           />
 
-          <CTA
-            title={ctaContent.title}
-            description={ctaContent.description}
-            buttonText={ctaContent.buttonText}
-          />
+          {/* CTA */}
+          {ctaContent && (
+            <CTA
+              title={localizedCTA.title}
+              description={localizedCTA.description}
+              buttonText={localizedCTA.buttonLabel}
+            />
+          )}
         </>
       ) : (
         <NoTranslationMessage
