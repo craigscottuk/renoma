@@ -1,14 +1,9 @@
 // cSpell:disable
-// src/app/[locale]/o-nas/page.tsx
-// import { AboutUs } from "./about-us";
-import OurHistory from "./our-history";
+import OurHistory from "@/app/[locale]/o-nas/our-history";
 import { client } from "@/sanity/client";
 import { PortableTextBlock } from "next-sanity";
-// import PageHeader from "@/components/page-header";
 import { getTranslations } from "next-intl/server";
 import { setRequestLocale } from "next-intl/server";
-// import { ctaContent } from "@/lib/ctaContent";
-// import CTA from "@/components/cta";
 
 const QUERY = `
 {
@@ -93,7 +88,7 @@ export async function generateMetadata({ params: { locale } }: Props) {
   const t = await getTranslations({ locale, namespace: "metadata" });
 
   return {
-    title: t("about.title"),
+    title: "Oś czasu",
     description: t("about.description"),
     openGraph: {
       title: t("about.title"),
@@ -118,8 +113,6 @@ export default async function OsCzasu({ params: { locale } }: Props) {
     //  aboutUs,
     ourHistory,
   } = content;
-
-  // console.log(" content", aboutUsHeader);
 
   return (
     <>
