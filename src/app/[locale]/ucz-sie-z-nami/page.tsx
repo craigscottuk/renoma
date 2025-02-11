@@ -7,7 +7,6 @@ import WhoWeAreLookingFor from "./who-we-are-looking-for";
 import { PortableTextBlock } from "next-sanity";
 import { getTranslations } from "next-intl/server";
 import CTA from "@/components/cta";
-import { ctaContent } from "@/lib/ctaContent";
 
 const QUERY = `
 {
@@ -33,6 +32,11 @@ const QUERY = `
     "image": image,
     "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
     "applyButtonText": coalesce(applyButtonText[_key == $locale][0].value, "Brak tłumaczenia")
+  },
+  "ctaContent": *[_type == "ctaContent"][0]{
+    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
+    "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
   }
 }
 `;
@@ -70,6 +74,11 @@ interface Content {
     imageAlt: string;
     applyButtonText: string;
   };
+  ctaContent: {
+    title: string;
+    description: string;
+    buttonText: string;
+  };
 }
 
 export async function generateMetadata({ params: { locale } }: Props) {
@@ -96,7 +105,8 @@ export default async function UczSieZNami({ params: { locale } }: Props) {
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
-  const { learnWithUsHeader, whatWeOffer, whoWeAreLookingFor } = content;
+  const { learnWithUsHeader, whatWeOffer, whoWeAreLookingFor, ctaContent } =
+    content;
 
   return (
     <>
@@ -133,11 +143,15 @@ export default async function UczSieZNami({ params: { locale } }: Props) {
           paddingY="py-20 md:py-16"
         />
       )}
-      <CTA
-        title={ctaContent.title}
-        description={ctaContent.description}
-        buttonText={ctaContent.buttonText}
-      />
+
+      {/* CTA */}
+      {ctaContent && (
+        <CTA
+          title={ctaContent.title}
+          description={ctaContent.description}
+          buttonText={ctaContent.buttonText}
+        />
+      )}
     </>
   );
 }
