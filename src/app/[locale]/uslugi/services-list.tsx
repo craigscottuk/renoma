@@ -240,6 +240,7 @@ export default function ServicesList({
                       />
                     </FadeInSection>
                   </div>
+                  {/* add locales here - translations for the button text */}
                   {service.addLinkToRenomaLab && (
                     <CustomButton
                       animateOnView={true}
