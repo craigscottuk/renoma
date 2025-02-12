@@ -22,14 +22,12 @@ const QUERY = `
     "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia")
   },
 
-
   "servicesSectionHome": *[_type == "servicesSectionHome"][0]{
     "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia")
   },
-
 
   // "servicesGroup": *[_type == "servicesGroup"][0]{
   //   "serviceGroupOne": {
