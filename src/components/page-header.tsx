@@ -46,7 +46,12 @@ export default function PageHeader({
     typeof image === "string"
       ? image
       : image
-        ? urlFor(image, 1200)
+        ? urlFor(
+            image,
+            imageLayout === "fullWidthAbove" || imageLayout === "fullWidthBelow"
+              ? 2500
+              : 1200,
+          )
         : "/fallback-image.svg";
 
   const headerFullWidth = twoColumnText || imageLayout.startsWith("fullWidth");
@@ -66,7 +71,7 @@ export default function PageHeader({
         imageUrl &&
         imagePosition === "above" &&
         showImage && (
-          <div className="relative mt-24 h-96 w-full">
+          <div className="relative mt-24 h-96 w-full lg:min-h-[22rem]">
             <Image
               src={imageUrl || "/fallback-image.svg"}
               alt={imageAlt || "Obraz nagłówka"}
@@ -134,7 +139,7 @@ export default function PageHeader({
                 imageLayout === "landscapeRight"
                 ? "mt-24"
                 : "",
-              imageLayout === "noImage" ? "lg:mt-24" : "",
+              imageLayout === "noImage" ? "lg:mt-24 lg:min-h-[22rem]" : "",
               backgroundColor === "black" ? "bg-zinc-900" : "bg-white",
             )}
           >
@@ -156,7 +161,8 @@ export default function PageHeader({
             {/* Section content */}
             <MaxWidthWrapper
               className={clsx("flex flex-col", {
-                "lg:flex-row lg:items-start": imageUrl && !headerFullWidth,
+                "space-x-8 lg:flex-row lg:items-start":
+                  imageUrl && !headerFullWidth,
                 "lg:flex-row lg:gap-8": !imageUrl || headerFullWidth,
               })}
             >
@@ -242,7 +248,7 @@ export default function PageHeader({
         imageUrl &&
         imagePosition === "below" &&
         showImage && (
-          <div className="relative h-96 w-full">
+          <div className="relative h-96 w-full lg:min-h-72">
             <Image
               src={imageUrl || "/fallback-image.svg"}
               alt={imageAlt || "Obraz nagłówka"}
