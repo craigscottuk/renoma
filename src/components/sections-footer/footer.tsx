@@ -170,6 +170,8 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
                   <NextLink
                     href={socialMediaLinks.linkedIn}
                     aria-label="LinkedIn"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <LinkedInIcon
                       className={clsx(
@@ -181,6 +183,8 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
                   <NextLink
                     href={socialMediaLinks.facebook}
                     aria-label="Facebook"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <FacebookIcon
                       className={clsx(
@@ -192,6 +196,8 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
                   <NextLink
                     href={socialMediaLinks.instagram}
                     aria-label="Instagram"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <InstagramIcon
                       className={clsx(
