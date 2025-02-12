@@ -16,7 +16,6 @@ import ImageCarousel from "@/components/ImageCarousel";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { FadeInSection } from "@/components/fade-in-section";
 import fixPolishOrphans from "@/utils/fixPolishOrphans";
-
 import { Separator } from "@/components/ui/separator";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import CustomButton from "@/components/ui/custom-button";
