@@ -41,7 +41,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } };
+const OPTIONS = { next: { revalidate: 30 } };
 // 86400
 
 type Props = {
@@ -127,7 +127,9 @@ export default async function RenomaLab({ params: { locale } }: Props) {
           image={renomaLabHeader.image}
           imageAlt={renomaLabHeader.imageAlt}
           imageLayout={renomaLabHeader.imageLayout}
+          // imageLayout={"landscapeRight"}
           backgroundColor={renomaLabHeader.backgroundColor}
+          // twoColumnText={false}
           twoColumnText={true}
           portableTextBlock={renomaLabHeader.descriptionTwoColumns}
         />
