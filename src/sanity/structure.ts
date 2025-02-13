@@ -244,7 +244,7 @@ export const structure: StructureResolver = (S, context) =>
                 S,
                 context,
                 type: "faqList",
-                title: "Sekcja 2: Usługi",
+                title: "Sekcja 2: FAQ",
                 id: "singletonfaqList",
               }),
             ]),
