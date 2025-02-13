@@ -127,7 +127,7 @@ type Props = {
 export default async function ProjectPage({ params: { slug, locale } }: Props) {
   setRequestLocale(locale);
 
-  const OPTIONS = { next: { revalidate: 30 } };
+  const OPTIONS = { next: { revalidate: 86400 } };
   // 86400
 
   // Error handling for fetching data
