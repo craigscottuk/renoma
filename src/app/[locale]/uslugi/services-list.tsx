@@ -140,7 +140,7 @@ export default function ServicesList({
 
       {/* Main Content */}
       <div className="">
-        {serviceGroups?.map((group, index) => (
+        {serviceGroups?.map((group) => (
           <section
             key={group.title}
             // @ts-expect-error: TypeScript cannot infer the type of the ref correctly
@@ -163,12 +163,12 @@ export default function ServicesList({
                 </div>
 
                 <div className="w-1/2">
-                  <SectionTitle
+                  {/* <SectionTitle
                     title={`${index + 1}`}
                     textColor="black"
                     className=""
                     textAlign="right"
-                  />
+                  /> */}
                 </div>
               </div>
               <Separator className="mb-16" />
@@ -198,7 +198,7 @@ export default function ServicesList({
                           className="scroll-mt-40"
                           id={service.title.toLowerCase().replace(/\s+/g, "-")}
                         >
-                          {service.title}
+                          {fixPolishOrphans(service.title)}
                         </h3>
                       </button>
                       <p className="mb-8 text-[1.1rem] text-zinc-700">
@@ -213,7 +213,7 @@ export default function ServicesList({
                             <AccordionTrigger className="text-[1.3rem] leading-none">
                               {action.title}
                             </AccordionTrigger>
-                            <AccordionContent className="mb-4">
+                            <AccordionContent className="mb-4 pr-5">
                               <p className="text-zinc-700">
                                 {fixPolishOrphans(action.content)}
                               </p>
