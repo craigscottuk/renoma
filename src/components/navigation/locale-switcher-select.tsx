@@ -1,3 +1,4 @@
+// src/components/navigation/locale-switcher-select.tsx
 "use client";
 import * as React from "react";
 import {
