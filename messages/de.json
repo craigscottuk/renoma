@@ -133,5 +133,40 @@
   "PrevNextCaseStudy": {
     "previousCaseStudy": "Vorherige Fallstudie",
     "nextCaseStudy": "Nächste Fallstudie"
+  },
+  "jobOfferForm": {
+    "applyNow": "Jetzt bewerben",
+    "applyPosition": "Bewerben für: {jobTitle}",
+    "responsibilitiesTitle": "Aufgaben:",
+    "requirementsTitle": "Anforderungen:",
+    "benefitsTitle": "Wir bieten:",
+    "lessDetails": "Weniger Details",
+    "moreDetails": "Mehr Details",
+    "fullNamePlaceholder": "Name und Nachname",
+    "emailPlaceholder": "E-Mail-Adresse",
+    "phonePlaceholder": "Telefonnummer",
+    "motivationLetterPlaceholder": "Kurzes Motivationsschreiben",
+    "motivationLetterMaxHint": "Bis zu 1500 Zeichen",
+    "submit": "Bewerbung senden",
+    "thankYouTitle": "Vielen Dank für Ihre Bewerbung!",
+    "thankYouBody": "Wir haben Ihre Bewerbung erhalten und melden uns bald.",
+    "closeButton": "Fenster schließen",
+    "errorTitle": "Fehler beim Senden Ihrer Bewerbung.",
+    "errorBody": "Bitte versuchen Sie es später noch einmal oder rufen Sie uns an.",
+    "tryAgain": "Erneut versuchen",
+    "alertInvalidFiletype": "Einige Dateien wurden abgelehnt. Zulässig: PDF, DOC, DOCX, JPG, PNG, ZIP, RAR.",
+    "alertTooManyFiles": "Maximal 5 Dateien sind erlaubt.",
+    "consentText": "Ich stimme der Verarbeitung meiner persönlichen Daten zu Rekrutierungszwecken zu.",
+    "uploadHint": "Dateien ziehen oder klicken, um hinzuzufügen",
+    "uploadFormatsHint": "Erlaubte Formate: PDF, DOC, DOCX, JPG, PNG, ZIP, RAR",
+    "whyUsPlaceholder": "Warum möchten Sie an unserem Praktikumsprogramm teilnehmen?",
+    "applyInternship": "Bewerben Sie sich für das Praktikumsprogramm",
+    "validation": {
+      "fullNameMin": "Name muss mindestens 2 Zeichen haben.",
+      "emailInvalid": "Ungültige E-Mail-Adresse.",
+      "phoneInvalid": "Ungültige Telefonnummer.",
+      "motivationLetterMax": "Das Anschreiben darf maximal 1500 Zeichen haben.",
+      "consentRequired": "Sie müssen der Verarbeitung personenbezogener Daten zustimmen."
+    }
   }
 }
