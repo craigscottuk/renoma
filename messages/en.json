@@ -132,5 +132,40 @@
   "PrevNextCaseStudy": {
     "previousCaseStudy": "Previous Case Study",
     "nextCaseStudy": "Next Case Study"
+  },
+  "jobOfferForm": {
+    "applyNow": "Apply now",
+    "applyPosition": "Apply for position: {jobTitle}",
+    "responsibilitiesTitle": "Responsibilities:",
+    "requirementsTitle": "Requirements:",
+    "benefitsTitle": "Our offer:",
+    "lessDetails": "Less details",
+    "moreDetails": "More details",
+    "fullNamePlaceholder": "Full Name",
+    "emailPlaceholder": "Email address",
+    "phonePlaceholder": "Phone number",
+    "motivationLetterPlaceholder": "Short motivation letter",
+    "motivationLetterMaxHint": "Up to 1500 characters",
+    "submit": "Send",
+    "thankYouTitle": "Thank you for your application!",
+    "thankYouBody": "We have received your submission and will contact you shortly.",
+    "closeButton": "Close window",
+    "errorTitle": "There was an error sending your application.",
+    "errorBody": "Please try again later or contact us by phone.",
+    "tryAgain": "Try again",
+    "alertInvalidFiletype": "Some files were rejected. Allowed formats: PDF, DOC, DOCX, JPG, PNG, ZIP, RAR.",
+    "alertTooManyFiles": "You can attach a maximum of 5 files.",
+    "consentText": "I consent to the processing of my personal data for recruitment purposes.",
+    "uploadHint": "Drag files or click to add",
+    "uploadFormatsHint": "Allowed formats: PDF, DOC, DOCX, JPG, PNG, ZIP, RAR",
+    "whyUsPlaceholder": "Why do you want to join our internship program?",
+    "applyInternship": "Apply for the internship program",
+    "validation": {
+      "fullNameMin": "Full Name must be at least 2 characters.",
+      "emailInvalid": "Invalid email address.",
+      "phoneInvalid": "Invalid phone number.",
+      "motivationLetterMax": "Motivation letter cannot exceed 1500 characters.",
+      "consentRequired": "You must consent to the processing of personal data."
+    }
   }
 }
