@@ -9,10 +9,13 @@ import SectionTitle from "@/components/section-title";
 import { urlFor } from "@/sanity/lib/image";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import Image from "next/image";
-import CustomButton from "@/components/ui/custom-button";
+// import CustomButton from "@/components/ui/custom-button";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { FadeInSection } from "@/components/fade-in-section";
 import { transformPortableTextBlocks } from "@/utils/transformPortableTextBlocks";
+import { useState } from "react";
+import { JobApplicationDialog } from "@/components/job-application-dialog";
+import { Button } from "@/components/ui/button";
 
 interface WhoWeAreLookingForProps {
   title: string;
@@ -38,6 +41,8 @@ export default function WhoWeAreLookingFor({
   // Apply transformPortableTextBlocks to portableTextBlock before rendering to fix Polish orphans on the end of each line.
   const newCriteria = transformPortableTextBlocks(criteria);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <section className={clsx("mx-auto bg-white text-zinc-950/90", paddingY)}>
       <MaxWidthWrapper>
@@ -58,9 +63,21 @@ export default function WhoWeAreLookingFor({
                     components={portableTextComponents}
                   />
 
-                  <CustomButton animateOnView={false}>
+                  {/* <CustomButton
+                    animateOnView={false}
+                    onClick={() => setIsModalOpen(true)}
+                  >
                     {applyButtonText}
-                  </CustomButton>
+                  </CustomButton> */}
+                  <Button
+                    className="hover:bg-zinc-800 hover:text-zinc-100"
+                    variant="outline"
+                    onClick={() => {
+                      setIsModalOpen(true);
+                    }}
+                  >
+                    {applyButtonText}
+                  </Button>
                 </div>
                 <div className="relative m-6 h-[400px] lg:max-h-[600px] lg:min-h-full">
                   <Image
@@ -78,6 +95,12 @@ export default function WhoWeAreLookingFor({
           </Card>
         </FadeInSection>
       </MaxWidthWrapper>
+      <JobApplicationDialog
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
+        jobTitle={"Generic Position"}
+        formSource="whoWeAre"
+      />
     </section>
   );
 }
