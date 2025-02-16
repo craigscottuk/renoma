@@ -1,5 +1,6 @@
 // cSpell:disable
 import { defineType, defineField } from "sanity";
+import { seoFields } from "../fields/seoFields";
 
 export const learnWithUs = defineType({
   name: "learnWithUs",
@@ -232,4 +233,12 @@ export const whoWeAreLookingFor = defineType({
       type: "internationalizedArrayString",
     }),
   ],
+});
+
+export const learnWithUsPageSeo = defineType({
+  name: "learnWithUsPageSeo",
+  title: "SEO & Ustawienia Meta – Ucz się z Nami",
+  type: "document",
+  options: { singleton: true },
+  fields: [...seoFields],
 });
