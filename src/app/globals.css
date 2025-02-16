@@ -15,6 +15,11 @@ body {
   }
 }
 
+.list-indented ul,
+.list-indented ol {
+  margin-left: 1.5rem !important;
+}
+
 .list-square > li::marker {
   font-size: 1.3em; /* Increase the bullet size */
 }
