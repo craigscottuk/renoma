@@ -108,7 +108,7 @@
     "privacy": "By providing your personal data, you accept our GDPR policy and the way your data is processed as described in our privacy policy.",
     "submit": "SUBMIT",
     "sending": "Sending...",
-    "success": "Thank you for contacting us!",
+    "success": "Thank you for contacting us! A copy has been sent to your inbox for reference.",
     "attachment": "Attachment",
     "validation": {
       "firstName": "First name must be at least 2 characters",
@@ -148,7 +148,7 @@
     "motivationLetterMaxHint": "Up to 1500 characters",
     "submit": "Send",
     "thankYouTitle": "Thank you for your application!",
-    "thankYouBody": "We have received your submission and will contact you shortly.",
+    "thankYouBody": "We have received your submission and also sent a copy to your email for reference. We will contact you soon.",
     "closeButton": "Close window",
     "errorTitle": "There was an error sending your application.",
     "errorBody": "Please try again later or contact us by phone.",
