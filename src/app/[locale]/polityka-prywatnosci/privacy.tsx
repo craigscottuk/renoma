@@ -16,7 +16,7 @@ export default function Privacy({ content, paddingY }: PrivacyProps) {
   return (
     <section className={clsx("mx-auto bg-white text-zinc-950/90", paddingY)}>
       <MaxWidthWrapper>
-        <div className="mx-auto max-w-2xl text-pretty text-[1.1rem]">
+        <div className="list-indented mx-auto max-w-2xl text-[1.1rem]">
           <PortableText
             value={newContent}
             components={portableTextComponents}
