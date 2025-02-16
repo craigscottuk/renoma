@@ -1,5 +1,6 @@
 // cSpell:disable
 import { defineType, defineField } from "sanity";
+import { seoFields } from "../fields/seoFields";
 
 export const home = defineType({
   name: "home",
@@ -234,4 +235,12 @@ export const logoSectionHome = defineType({
       ],
     }),
   ],
+});
+
+export const homePageSeo = defineType({
+  name: "homePageSeo",
+  title: "SEO & Ustawienia Meta – Strona Główna",
+  type: "document",
+  options: { singleton: true },
+  fields: [...seoFields],
 });
