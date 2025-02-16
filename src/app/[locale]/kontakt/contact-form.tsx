@@ -40,8 +40,7 @@ export default function ContactForm({
   const t = useTranslations();
   const locale = useLocale();
 
-  // Same schema as before, but if you want to store the file in react-hook-form,
-  // you can define a Zod field for it. For simplicity, we'll skip Zod file validation:
+  // Define the form schema using Zod for validation
   const formSchema = z.object({
     firstName: z.string().min(2, t("contact-form.validation.firstName")),
     lastName: z.string().min(2, t("contact-form.validation.lastName")),
@@ -57,8 +56,9 @@ export default function ContactForm({
     privacy: z
       .boolean()
       .refine((val) => val === true, t("contact-form.validation.privacy")),
-    // We'll just treat "attachment" as an optional field in our form data
-    attachment: z.any().optional(),
+
+    // Comment out attachment field
+    // attachment: z.any().optional(),
   });
 
   type FormData = z.infer<typeof formSchema>;
@@ -76,13 +76,12 @@ export default function ContactForm({
       topic: "",
       message: "",
       privacy: false,
-      attachment: undefined,
+      // attachment: undefined,
     },
   });
 
-  // We'll store the File object separately.
-  // (Alternatively, you can let react-hook-form store it directly.)
-  const [files, setFiles] = useState<File[]>([]);
+  // Comment out file state
+  // const [files, setFiles] = useState<File[]>([]);
 
   // Style classes for dark/light themes (unchanged).
   const darkInputClassNames =
@@ -112,6 +111,8 @@ export default function ContactForm({
     color === "dark" ? darkButtonClassNames : lightButtonClassNames;
 
   async function onSubmit(values: FormData) {
+    // File size validation
+    /*
     const MAX_SIZE = 25 * 1024 * 1024;
     let totalSize = 0;
 
@@ -125,11 +126,11 @@ export default function ContactForm({
       });
       return;
     }
+    */
 
     setIsLoading(true);
 
     try {
-      // We convert our validated text fields + the file into FormData.
       const formData = new FormData();
       formData.append("firstName", values.firstName);
       formData.append("lastName", values.lastName);
@@ -139,12 +140,14 @@ export default function ContactForm({
       formData.append("message", values.message);
       formData.append("privacy", values.privacy.toString());
 
-      // If there are selected files, append them all:
+      // File append
+      /*
       if (files.length) {
         for (const f of files) {
           formData.append("attachment", f);
         }
       }
+      */
 
       // Send FormData to our new /api/contact route
       const response = await fetch("/api/contact", {
@@ -174,7 +177,8 @@ export default function ContactForm({
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-6"
-          encType="multipart/form-data"
+          // Remove encType since we're not handling files
+          // encType="multipart/form-data"
         >
           <div className="grid gap-4 md:grid-cols-2">
             <FormField
@@ -301,7 +305,7 @@ export default function ContactForm({
             )}
           />
 
-          {/* ADD A FILE INPUT FIELD */}
+          {/* File input field
           <FormField
             control={form.control}
             name="attachment"
@@ -325,6 +329,7 @@ export default function ContactForm({
               </FormItem>
             )}
           />
+          */}
 
           <FormField
             control={form.control}
@@ -343,9 +348,10 @@ export default function ContactForm({
                   <FormLabel className="text-balance text-[1rem] leading-relaxed md:text-[1rem]">
                     {locale === "de" ? (
                       <>
-                        Durch die Angabe Ihrer persönlichen Daten akzeptieren
-                        Sie unsere DSGVO-Richtlinie und die Art und Weise, wie
-                        Ihre Daten in unserer{" "}
+                        Ich willige in die Verarbeitung meiner personenbezogenen
+                        Daten durch die Restaurierungswerkstatt RENOMA Hanna
+                        Rubnikowicz-Góźdź und RENOMA IGOR GÓŹDŹ zum Zwecke der
+                        Beantwortung meiner Anfrage gemäß der{" "}
                         <AnimatedLink
                           href="/polityka-prywatnosci"
                           target="_blank"
@@ -354,37 +360,37 @@ export default function ContactForm({
                         >
                           Datenschutzerklärung
                         </AnimatedLink>{" "}
-                        verarbeitet werden.
+                        ein.
                       </>
                     ) : locale === "en" ? (
                       <>
-                        By providing your personal data, you accept our GDPR
-                        policy and the way your data is processed as described
-                        in our{" "}
+                        “I consent to the processing of my personal data by the
+                        Workshop for Monument Conservation RENOMA Hanna
+                        Rubnikowicz-Góźdź and RENOMA IGOR GÓŹDŹ, for the purpose
+                        of responding to my inquiry, in accordance with the{" "}
                         <AnimatedLink
                           href="/polityka-prywatnosci"
                           target="_blank"
                           className="text-base"
                           showArrow={false}
                         >
-                          privacy policy
+                          Privacy Policy.
                         </AnimatedLink>
-                        .
                       </>
                     ) : (
                       <>
-                        Podając swoje dane osobowe, akceptujesz naszą politykę
-                        RODO oraz sposób przetwarzania Twoich danych opisany w
-                        naszej{" "}
+                        Wyrażam zgodę na przetwarzanie moich danych osobowych
+                        przez Pracownię Konserwacji Zabytków RENOMA Hanna
+                        Rubnikowicz-Góźdź oraz RENOMA IGOR GÓŹDŹ w celu
+                        udzielenia odpowiedzi na moje zapytanie, zgodnie z 
                         <AnimatedLink
                           href="/polityka-prywatnosci"
                           target="_blank"
                           className="text-base"
                           showArrow={false}
                         >
-                          polityce prywatności
+                          polityce prywatności.
                         </AnimatedLink>
-                        .
                       </>
                     )}
                   </FormLabel>
