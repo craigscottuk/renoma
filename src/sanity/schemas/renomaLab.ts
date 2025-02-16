@@ -1,4 +1,5 @@
 import { defineType, defineField } from "sanity";
+import { seoFields } from "../fields/seoFields";
 
 export const renomaLab = defineType({
   name: "renomaLab",
@@ -256,4 +257,12 @@ export const labOffer = defineType({
       type: "internationalizedArrayText",
     }),
   ],
+});
+
+export const renomaLabPageSeo = defineType({
+  name: "renomaLabPageSeo",
+  title: "SEO & Ustawienia Meta – Renoma LAB",
+  type: "document",
+  options: { singleton: true },
+  fields: [...seoFields],
 });
