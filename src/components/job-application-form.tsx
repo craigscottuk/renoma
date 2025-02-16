@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Upload } from "lucide-react";
 import {
   Form,
@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import AnimatedLink from "./animated-link";
 
 const MAX_FILE_SIZE = 25 * 1024 * 1024; // 25MB
 const ACCEPTED_FILE_TYPES = [
@@ -43,6 +44,7 @@ export function JobApplicationForm({
   formSource,
 }: JobApplicationFormProps) {
   const t = useTranslations("jobOfferForm");
+  const locale = useLocale();
 
   const [files, setFiles] = useState<File[]>([]);
 
@@ -112,6 +114,7 @@ export function JobApplicationForm({
       formData.append("phone", values.phone);
       formData.append("motivationLetter", values.motivationLetter);
       formData.append("consent", values.consent.toString());
+      formData.append("formSource", formSource);
 
       // Append files
       files.forEach((file) => {
@@ -281,7 +284,53 @@ export function JobApplicationForm({
               </FormControl>
               <div className="space-y-1 leading-none">
                 <FormLabel className="text-sm text-zinc-400">
-                  {t("consentText")}
+                  {locale === "de" ? (
+                    <>
+                      Ich willige in die Verarbeitung meiner personenbezogenen
+                      Daten zu Rekrutierungszwecken gemäß der{" "}
+                      <AnimatedLink
+                        href="/polityka-prywatnosci"
+                        target="_blank"
+                        className="text-sm"
+                        showArrow={false}
+                        variant="dark"
+                      >
+                        Datenschutzerklärung
+                      </AnimatedLink>{" "}
+                      ein. Ich verstehe, dass ich meine Einwilligung jederzeit
+                      widerrufen kann.
+                    </>
+                  ) : locale === "en" ? (
+                    <>
+                      I consent to the processing of my personal data for
+                      recruitment purposes, in accordance with the{" "}
+                      <AnimatedLink
+                        href="/polityka-prywatnosci"
+                        target="_blank"
+                        className="text-sm"
+                        showArrow={false}
+                        variant="dark"
+                      >
+                        Privacy Policy
+                      </AnimatedLink>
+                      . I understand that I may withdraw my consent at any time.
+                    </>
+                  ) : (
+                    <>
+                      Wyrażam zgodę na przetwarzanie moich danych osobowych
+                      w celach rekrutacyjnych, zgodnie z 
+                      <AnimatedLink
+                        href="/polityka-prywatnosci"
+                        target="_blank"
+                        className="text-sm"
+                        showArrow={false}
+                        variant="dark"
+                      >
+                        Polityką Prywatności
+                      </AnimatedLink>
+                      . Rozumiem, że mogę w każdej chwili wycofać swoją zgodę.
+                    </>
+                  )}
                 </FormLabel>
                 <FormMessage />
               </div>
