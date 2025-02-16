@@ -1,5 +1,6 @@
 // cSpell:disable
 import { defineType, defineField } from "sanity";
+import { seoFields } from "../fields/seoFields";
 
 export const caseStudies = defineType({
   name: "caseStudies",
@@ -39,6 +40,10 @@ export const caseStudyHeader = defineType({
     {
       name: "obrazSekcji",
       title: "Obraz sekcji",
+    },
+    {
+      name: "seo",
+      title: "SEO",
     },
   ],
   fields: [
@@ -124,4 +129,12 @@ export const caseStudyHeader = defineType({
       group: "obrazSekcji",
     }),
   ],
+});
+
+export const caseStudiesPageSeo = defineType({
+  name: "caseStudiesPageSeo",
+  title: "SEO & Ustawienia Meta – Realizacje",
+  type: "document",
+  options: { singleton: true },
+  fields: [...seoFields],
 });
