@@ -31,24 +31,26 @@ const portableTextComponents: PortableTextComponents = {
     ),
   },
   list: {
-    bullet: ({ children }) => (
-      <ul className="mb-8 list-disc pl-6">{children}</ul>
-    ),
-    number: ({ children }) => <ol className="list-decimal pl-4">{children}</ol>,
+    bullet: ({ children }) => <ul className="list-disc pl-6">{children}</ul>,
+    number: ({ children }) => <ol className="list-decimal pl-6">{children}</ol>,
     // Fallback for unsupported list types
     default: ({ children }) => (
-      <ul className="list-none pb-4 pl-6">
+      <ul className="list-none pb-4">
         <li>{children}</li>
       </ul>
     ),
   },
   listItem: {
     bullet: ({ children }) => (
+      <li className="mb-2 list-disc text-[1.1rem]">{children}</li>
+    ),
+    number: ({ children }) => (
+      <li className="mb-2 list-decimal text-[1.1rem]">{children}</li>
+    ),
+    // Fallback for unsupported list item types
+    default: ({ children }) => (
       <li className="mb-2 text-[1.1rem]">{children}</li>
     ),
-    number: ({ children }) => <li className="mb-0">{children}</li>,
-    // Fallback for unsupported list item types
-    default: ({ children }) => <li className="mb-2">{children}</li>,
   },
   marks: {
     strong: ({ children }) => (
