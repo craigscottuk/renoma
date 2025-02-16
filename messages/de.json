@@ -109,7 +109,7 @@
     "privacy": "Durch die Angabe Ihrer persönlichen Daten akzeptieren Sie unsere DSGVO-Richtlinie und die Art und Weise, wie Ihre Daten in unserer Datenschutzerklärung verarbeitet werden.",
     "submit": "SENDEN",
     "sending": "Senden...",
-    "success": "Danke für Ihre Kontaktaufnahme!",
+    "success": "Danke für Ihre Kontaktaufnahme! Eine Kopie wurde zu Ihrer E-Mail-Adresse geschickt.",
     "attachment": "Anhang",
     "validation": {
       "firstName": "Der Vorname muss mindestens 2 Zeichen lang sein",
@@ -149,7 +149,7 @@
     "motivationLetterMaxHint": "Bis zu 1500 Zeichen",
     "submit": "Bewerbung senden",
     "thankYouTitle": "Vielen Dank für Ihre Bewerbung!",
-    "thankYouBody": "Wir haben Ihre Bewerbung erhalten und melden uns bald.",
+    "thankYouBody": "Wir haben Ihre Bewerbung erhalten und auch eine Kopie an Ihre E-Mail-Adresse geschickt. Wir melden uns bald bei Ihnen.",
     "closeButton": "Fenster schließen",
     "errorTitle": "Fehler beim Senden Ihrer Bewerbung.",
     "errorBody": "Bitte versuchen Sie es später noch einmal oder rufen Sie uns an.",
