@@ -1,5 +1,6 @@
 // cSpell:disable
 import { defineType, defineField } from "sanity";
+import { seoFields } from "../fields/seoFields";
 
 export const privacy = defineType({
   name: "privacy",
@@ -101,4 +102,12 @@ export const privacyText = defineType({
       ],
     }),
   ],
+});
+
+export const privacyPageSeo = defineType({
+  name: "privacyPageSeo",
+  title: "SEO & Ustawienia Meta – Polityka Prywatności",
+  type: "document",
+  options: { singleton: true },
+  fields: [...seoFields],
 });
