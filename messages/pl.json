@@ -110,7 +110,7 @@
     "privacy": "Podając swoje dane osobowe, akceptujesz naszą politykę RODO oraz sposób przetwarzania Twoich danych opisany w naszej polityce prywatności.",
     "submit": "WYŚLIJ",
     "sending": "Wysyłanie...",
-    "success": "Dziękujemy za kontakt!",
+    "success": "Dziękujemy za kontakt! Kopia wiadomości została wysłana na Twój adres email.",
     "validation": {
       "firstName": "Imię musi mieć co najmniej 2 znaki",
       "lastName": "Nazwisko musi mieć co najmniej 2 znaki",
@@ -153,7 +153,7 @@
     "uploadFormatsHint": "Dozwolone formaty: PDF, DOC, DOCX, JPG, PNG, ZIP, RAR",
     "submit": "Wyślij aplikację",
     "thankYouTitle": "Dziękujemy za przesłanie aplikacji!",
-    "thankYouBody": "Otrzymaliśmy Twoje zgłoszenie. Wkrótce się z Tobą skontaktujemy.",
+    "thankYouBody": "Otrzymaliśmy Twoje zgłoszenie i przesłaliśmy jego kopię na Twój email. Skontaktujemy się z Tobą wkrótce.",
     "closeButton": "Zamknij okno",
     "errorTitle": "Wystąpił błąd podczas wysyłania aplikacji.",
     "errorBody": "Prosimy spróbować ponownie później lub skontaktować się z nami telefonicznie.",
