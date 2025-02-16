@@ -26,7 +26,7 @@ export default function HeroSection({ title, sectionCTA }: HeroSectionProps) {
       />
 
       {/* Overlay for better readability */}
-      <div className="absolute inset-0 bg-zinc-900 bg-opacity-30"></div>
+      <div className="absolute inset-0 bg-zinc-900 bg-opacity-25"></div>
 
       {/* Hero Content */}
       <div className="absolute inset-0 flex items-center">
