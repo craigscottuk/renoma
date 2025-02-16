@@ -82,8 +82,8 @@ export default function JobOfferCard({ job }: { job: JobOffer }) {
           selectedColorScheme.card,
         )}
         onClick={() => {
-          // Expand when clicking the card
-          if (!isExpanded) {
+          // Prevent expanding when modal is open
+          if (!isExpanded && !isModalOpen) {
             setIsExpanded(true);
             cardRef.current?.scrollIntoView({ behavior: "smooth" });
           }
@@ -192,14 +192,17 @@ export default function JobOfferCard({ job }: { job: JobOffer }) {
             className="text-zinc-800 hover:text-zinc-900"
             onClick={(e) => {
               e.stopPropagation();
-              cardRef.current?.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-              });
-              const delay = isExpanded ? 300 : 700;
-              setTimeout(() => {
-                setIsExpanded(!isExpanded);
-              }, delay);
+              // Prevent expanding/collapsing when modal is open
+              if (!isModalOpen) {
+                cardRef.current?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+                const delay = isExpanded ? 300 : 700;
+                setTimeout(() => {
+                  setIsExpanded(!isExpanded);
+                }, delay);
+              }
             }}
           >
             {isExpanded ? (
