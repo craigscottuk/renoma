@@ -12,7 +12,6 @@ function asString(value: FormDataEntryValue | null): string {
 export async function POST(req: NextRequest) {
   try {
     // 1) Read the request body as FormData
-    //    This is a Web standard API (no Node stream).
     const formData = await req.formData();
 
     function sanitize(str: string) {
@@ -42,7 +41,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Validation failed" }, { status: 400 });
     }
 
-    // 3) Extract the files if present
+    // Comment out file handling
+    /*
     const fileEntries = formData.getAll("attachment");
     const MAX_SIZE = 25 * 1024 * 1024;
     let totalSize = 0;
@@ -66,8 +66,6 @@ export async function POST(req: NextRequest) {
       contentType?: string;
     }[] = [];
 
-    // 4) If files are uploaded (FormDataEntryValue is a File)
-    //    We'll read them into Buffers and attach to Nodemailer
     for (const entry of fileEntries) {
       if (entry instanceof File && entry.size > 0) {
         const arrayBuffer = await entry.arrayBuffer();
@@ -80,6 +78,7 @@ export async function POST(req: NextRequest) {
         });
       }
     }
+    */
 
     // 5) Configure Nodemailer
     const transporter = nodemailer.createTransport({
@@ -96,19 +95,23 @@ export async function POST(req: NextRequest) {
     const mailOptions = {
       from: `"PKZ Renoma Website" <${process.env.HOMEPL_USER}>`,
       to: "craig@craigscott.me", // or admin@pkzrenoma.com
-      subject: `New Form Submission: ${topic}`,
+      cc: email, // Send a copy to the user
+      subject: `Nowa wiadomość z formularza kontaktowego: ${topic}`,
       text: `
-A new contact form was submitted:
+Nowa wiadomość została złożona w formularzu kontaktowym:
 
-Name: ${firstName} ${lastName}
-Email: ${email}
-Phone: ${phone}
-Topic: ${topic}
-Message: ${message}
+Imię i nazwisko: ${firstName} ${lastName}
+Telefon: ${phone}
+Adres email: ${email}
+Temat: ${topic}
 
-Privacy accepted: ${privacy}
+Wiadomość:
+${message}
+
+Zgoda na przetwarzanie danych: ${privacy}
       `,
-      attachments,
+      // Remove attachments from mailOptions
+      // attachments,
     };
 
     // 7) Send
