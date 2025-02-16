@@ -16,6 +16,7 @@ const jobApplicationSchema = z.object({
   phone: z.string().regex(/^[0-9+\s-]{9,}$/),
   motivationLetter: z.string().max(1500),
   consent: z.string(), // Expecting "true" or "false"
+  formSource: z.string().optional(),
 });
 
 export async function POST(req: NextRequest) {
@@ -35,6 +36,7 @@ export async function POST(req: NextRequest) {
       asString(formData.get("motivationLetter")),
     );
     const consent = asString(formData.get("consent"));
+    const formSource = asString(formData.get("formSource"));
 
     // 3) Server-side validation
     const parseResult = jobApplicationSchema.safeParse({
@@ -43,10 +45,19 @@ export async function POST(req: NextRequest) {
       phone,
       motivationLetter,
       consent,
+      formSource,
     });
 
     if (!parseResult.success) {
       return NextResponse.json({ error: "Validation failed" }, { status: 400 });
+    }
+
+    let subjectLine = "Nowe zgłoszenie rekrutacyjne";
+    let firstLine = "Otrzymano nowe zgłoszenie rekrutacyjne:";
+
+    if (parseResult.data.formSource === "whoWeAre") {
+      subjectLine = "Nowe zgłoszenie do Programu Staży i Praktyk";
+      firstLine = "Otrzymano nowe zgłoszenie do Programu Staży i Praktyk:";
     }
 
     // 4) Extract the files if present
@@ -102,16 +113,19 @@ export async function POST(req: NextRequest) {
     const mailOptions = {
       from: `"PKZ Renoma Website" <${process.env.HOMEPL_USER}>`,
       to: "craig@craigscott.me", // or your target email
-      subject: `New Job Application`,
+      cc: email, // Send a copy to the user
+      subject: subjectLine,
       text: `
-New job application received:
+${firstLine}
 
-Name: ${fullName}
+Imię i nazwisko: ${fullName}
 Email: ${email}
-Phone: ${phone}
-Motivation Letter: ${motivationLetter}
+Telefon: ${phone}
 
-Privacy consent: ${consent}
+List motywacyjny:
+${motivationLetter}
+
+Zgoda na przetwarzanie danych: ${consent}
 `,
       attachments,
     };
