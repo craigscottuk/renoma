@@ -1,5 +1,6 @@
 // cSpell:disable
 import { defineType, defineField } from "sanity";
+import { seoFields } from "../fields/seoFields";
 
 export const contact = defineType({
   name: "contact",
@@ -278,4 +279,12 @@ export const contactDetails = defineType({
       group: "daneDoFaktur",
     }),
   ],
+});
+
+export const contactPageSeo = defineType({
+  name: "contactPageSeo",
+  title: "SEO & Ustawienia Meta – Kontakt",
+  type: "document",
+  options: { singleton: true },
+  fields: [...seoFields],
 });
