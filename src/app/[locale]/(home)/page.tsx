@@ -7,7 +7,6 @@ import { client } from "@/sanity/client";
 import { setRequestLocale } from "next-intl/server";
 import LogoShowcase from "./logos";
 import CTA from "../../../components/cta";
-import { getTranslations } from "next-intl/server";
 
 const QUERY = `
 {
@@ -166,7 +165,6 @@ interface Content {
 
 // Metadata from translations and generateMetadata function
 export async function generateMetadata({ params: { locale } }: Props) {
-  const t = await getTranslations({ locale, namespace: "metadata" });
   const { homePageSeo } = await client.fetch(QUERY, { locale }, OPTIONS);
 
   return {
