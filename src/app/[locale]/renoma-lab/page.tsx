@@ -1,11 +1,11 @@
 // cSpell:disable
+//src/app/[locale]/renoma-lab/page.tsx
 import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header";
 import { client } from "@/sanity/client";
 import LabOffer from "./offer";
 // import { AboutLab } from "./about-lab";
 import { PortableTextBlock } from "next-sanity";
-import { getTranslations } from "next-intl/server";
 import CTA from "@/components/cta";
 
 const QUERY = `
@@ -37,6 +37,13 @@ const QUERY = `
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
+  },
+  "renomaLabPageSeo": *[_type == "renomaLabPageSeo"][0]{
+    "pageTitle": coalesce(pageTitle[_key == $locale][0].value, "Default SEO Title"),
+    "metaDescription": coalesce(metaDescription[_key == $locale][0].value, "Default SEO Description"),
+    "ogTitle": coalesce(ogTitle[_key == $locale][0].value, "Default OG Title"),
+    "ogDescription": coalesce(ogDescription[_key == $locale][0].value, "Default OG Description"),
+    "ogImage": ogImage
   }
 }
 `;
@@ -86,18 +93,21 @@ interface Content {
 
 // Metadata from translations and generateMetadata function
 export async function generateMetadata({ params: { locale } }: Props) {
-  const t = await getTranslations({ locale, namespace: "metadata" });
+  const { renomaLabPageSeo } = await client.fetch(QUERY, { locale }, OPTIONS);
 
   return {
-    title: t("renomaLab.title"),
-    description: t("renomaLab.description"),
+    title: renomaLabPageSeo?.pageTitle,
+    description: renomaLabPageSeo?.metaDescription,
     openGraph: {
-      title: t("renomaLab.title"),
-      description: t("renomaLab.description"),
+      title: renomaLabPageSeo?.ogTitle,
+      description: renomaLabPageSeo?.ogDescription,
+      images: renomaLabPageSeo?.ogImage
+        ? [{ url: renomaLabPageSeo.ogImage.asset?.url }]
+        : undefined,
     },
     twitter: {
-      title: t("renomaLab.title"),
-      description: t("renomaLab.description"),
+      title: renomaLabPageSeo?.ogTitle,
+      description: renomaLabPageSeo?.ogDescription,
     },
   };
 }
