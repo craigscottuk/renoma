@@ -1,10 +1,10 @@
+// src/app/[locale]/pracuj-z-nami/page.tsx
 // cSpell:disable
 import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header";
 import { client } from "@/sanity/client";
 import { PortableTextBlock } from "next-sanity";
 import SectionJobOffer from "./section-job-offer";
-import { getTranslations } from "next-intl/server";
 import CTA from "@/components/cta";
 
 const QUERY = `
@@ -35,6 +35,13 @@ const QUERY = `
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
+  },
+  "workWithUsPageSeo": *[_type == "workWithUsPageSeo"][0]{
+    "pageTitle": coalesce(pageTitle[_key == $locale][0].value, "Default SEO Title"),
+    "metaDescription": coalesce(metaDescription[_key == $locale][0].value, "Default SEO Description"),
+    "ogTitle": coalesce(ogTitle[_key == $locale][0].value, "Default OG Title"),
+    "ogDescription": coalesce(ogDescription[_key == $locale][0].value, "Default OG Description"),
+    "ogImage": ogImage
   }
 }
 `;
@@ -81,18 +88,21 @@ interface Content {
 }
 
 export async function generateMetadata({ params: { locale } }: Props) {
-  const t = await getTranslations({ locale, namespace: "metadata" });
+  const { workWithUsPageSeo } = await client.fetch(QUERY, { locale }, OPTIONS);
 
   return {
-    title: t("work-with-us.title"),
-    description: t("work-with-us.description"),
+    title: workWithUsPageSeo?.pageTitle,
+    description: workWithUsPageSeo?.metaDescription,
     openGraph: {
-      title: t("work-with-us.title"),
-      description: t("work-with-us.description"),
+      title: workWithUsPageSeo?.ogTitle,
+      description: workWithUsPageSeo?.ogDescription,
+      images: workWithUsPageSeo?.ogImage
+        ? [{ url: workWithUsPageSeo.ogImage.asset?.url }]
+        : undefined,
     },
     twitter: {
-      title: t("work-with-us.title"),
-      description: t("work-with-us.description"),
+      title: workWithUsPageSeo?.ogTitle,
+      description: workWithUsPageSeo?.ogDescription,
     },
   };
 }
