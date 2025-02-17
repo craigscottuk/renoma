@@ -29,6 +29,14 @@ const QUERY = `
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
+  },
+
+  "faqPageSeo": *[_type == "faqPageSeo"][0]{
+    "pageTitle": coalesce(pageTitle[_key == $locale][0].value, "Default SEO Title"),
+    "metaDescription": coalesce(metaDescription[_key == $locale][0].value, "Default SEO Description"),
+    "ogTitle": coalesce(ogTitle[_key == $locale][0].value, "Default OG Title"),
+    "ogDescription": coalesce(ogDescription[_key == $locale][0].value, "Default OG Description"),
+    "ogImage": ogImage
   }
 }
 `;
@@ -74,16 +82,21 @@ interface Content {
 export async function generateMetadata({ params: { locale } }: Props) {
   const t = await getTranslations({ locale, namespace: "metadata" });
 
+  const { faqPageSeo } = await client.fetch(QUERY, { locale }, OPTIONS);
+
   return {
-    title: t("faq.title"),
-    description: t("faq.description"),
+    title: faqPageSeo?.pageTitle,
+    description: faqPageSeo?.metaDescription,
     openGraph: {
-      title: t("faq.title"),
-      description: t("faq.description"),
+      title: faqPageSeo?.ogTitle,
+      description: faqPageSeo?.ogDescription,
+      images: faqPageSeo?.ogImage
+        ? [{ url: faqPageSeo.ogImage.asset?.url }]
+        : undefined,
     },
     twitter: {
-      title: t("faq.title"),
-      description: t("faq.description"),
+      title: faqPageSeo?.ogTitle,
+      description: faqPageSeo?.ogDescription,
     },
   };
 }
