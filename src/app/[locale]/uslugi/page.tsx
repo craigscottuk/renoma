@@ -1,9 +1,9 @@
 // cSpell:disable
+// src/app/[locale]/uslugi/page.tsx
 import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header";
 import { client } from "@/sanity/client";
 import ServicesList from "@/app/[locale]/uslugi/services-list";
-import { getTranslations } from "next-intl/server";
 import CTA from "@/components/cta";
 
 // import SectionFaqHome from "../faq/faq";
@@ -76,6 +76,13 @@ const QUERY = `
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
+  },
+  "servicesPageSeo": *[_type == "servicesPageSeo"][0]{
+    "pageTitle": coalesce(pageTitle[_key == $locale][0].value, "Default SEO Title"),
+    "metaDescription": coalesce(metaDescription[_key == $locale][0].value, "Default SEO Description"),
+    "ogTitle": coalesce(ogTitle[_key == $locale][0].value, "Default OG Title"),
+    "ogDescription": coalesce(ogDescription[_key == $locale][0].value, "Default OG Description"),
+    "ogImage": ogImage
   }
 }
 `;
@@ -167,22 +174,36 @@ interface Content {
     description: string;
     buttonText: string;
   };
+  servicesPageSeo: {
+    pageTitle: string;
+    metaDescription: string;
+    ogTitle: string;
+    ogDescription: string;
+    ogImage?: {
+      asset: {
+        url: string;
+      };
+    };
+  };
 }
 
 // Metadata from translations and generateMetadata function
 export async function generateMetadata({ params: { locale } }: Props) {
-  const t = await getTranslations({ locale, namespace: "metadata" });
+  const { servicesPageSeo } = await client.fetch(QUERY, { locale }, OPTIONS);
 
   return {
-    title: t("services.title"),
-    description: t("services.description"),
+    title: servicesPageSeo?.pageTitle,
+    description: servicesPageSeo?.metaDescription,
     openGraph: {
-      title: t("services.title"),
-      description: t("services.description"),
+      title: servicesPageSeo?.ogTitle,
+      description: servicesPageSeo?.ogDescription,
+      images: servicesPageSeo?.ogImage
+        ? [{ url: servicesPageSeo.ogImage.asset?.url }]
+        : undefined,
     },
     twitter: {
-      title: t("services.title"),
-      description: t("services.description"),
+      title: servicesPageSeo?.ogTitle,
+      description: servicesPageSeo?.ogDescription,
     },
   };
 }
