@@ -1,11 +1,11 @@
 // cSpell:disable
+// src/app/[locale]/ucz-sie-z-nami/page.tsx
 import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header";
 import { client } from "@/sanity/client";
 import WhatWeOffer from "./what-we-offer";
 import WhoWeAreLookingFor from "./who-we-are-looking-for";
 import { PortableTextBlock } from "next-sanity";
-import { getTranslations } from "next-intl/server";
 import CTA from "@/components/cta";
 
 const QUERY = `
@@ -37,6 +37,13 @@ const QUERY = `
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
+  },
+  "learnWithUsPageSeo": *[_type == "learnWithUsPageSeo"][0]{
+    "pageTitle": coalesce(pageTitle[_key == $locale][0].value, "Default SEO Title"),
+    "metaDescription": coalesce(metaDescription[_key == $locale][0].value, "Default SEO Description"),
+    "ogTitle": coalesce(ogTitle[_key == $locale][0].value, "Default OG Title"),
+    "ogDescription": coalesce(ogDescription[_key == $locale][0].value, "Default OG Description"),
+    "ogImage": ogImage
   }
 }
 `;
@@ -82,18 +89,21 @@ interface Content {
 }
 
 export async function generateMetadata({ params: { locale } }: Props) {
-  const t = await getTranslations({ locale, namespace: "metadata" });
+  const { learnWithUsPageSeo } = await client.fetch(QUERY, { locale }, OPTIONS);
 
   return {
-    title: t("learn-with-us.title"),
-    description: t("learn-with-us.description"),
+    title: learnWithUsPageSeo?.pageTitle,
+    description: learnWithUsPageSeo?.metaDescription,
     openGraph: {
-      title: t("learn-with-us.title"),
-      description: t("learn-with-us.description"),
+      title: learnWithUsPageSeo?.ogTitle,
+      description: learnWithUsPageSeo?.ogDescription,
+      images: learnWithUsPageSeo?.ogImage
+        ? [{ url: learnWithUsPageSeo.ogImage.asset?.url }]
+        : undefined,
     },
     twitter: {
-      title: t("learn-with-us.title"),
-      description: t("learn-with-us.description"),
+      title: learnWithUsPageSeo?.ogTitle,
+      description: learnWithUsPageSeo?.ogDescription,
     },
   };
 }
