@@ -33,6 +33,13 @@ const QUERY = `
     "numerRegonOne": coalesce(numerRegonOne, "Brak tłumaczenia"),
     "numerNipTwo": coalesce(numerNipTwo[_key == $locale][0].value, "Brak tłumaczenia"),
     "numerRegonTwo": coalesce(numerRegonTwo, "Brak tłumaczenia")
+  },
+  "contactPageSeo": *[_type == "contactPageSeo"][0]{
+    "pageTitle": coalesce(pageTitle[_key == $locale][0].value, "Default SEO Title"),
+    "metaDescription": coalesce(metaDescription[_key == $locale][0].value, "Default SEO Description"),
+    "ogTitle": coalesce(ogTitle[_key == $locale][0].value, "Default OG Title"),
+    "ogDescription": coalesce(ogDescription[_key == $locale][0].value, "Default OG Description"),
+    "ogImage": ogImage
   }
 }
 `;
@@ -80,17 +87,21 @@ interface Content {
 
 export async function generateMetadata({ params: { locale } }: Props) {
   const t = await getTranslations({ locale, namespace: "metadata" });
+  const { contactPageSeo } = await client.fetch(QUERY, { locale }, OPTIONS);
 
   return {
-    title: t("contact.title"),
-    description: t("contact.description"),
+    title: contactPageSeo?.pageTitle,
+    description: contactPageSeo?.metaDescription,
     openGraph: {
-      title: t("contact.title"),
-      description: t("contact.description"),
+      title: contactPageSeo?.ogTitle,
+      description: contactPageSeo?.ogDescription,
+      images: contactPageSeo?.ogImage
+        ? [{ url: contactPageSeo.ogImage.asset?.url }]
+        : undefined,
     },
     twitter: {
-      title: t("contact.title"),
-      description: t("contact.description"),
+      title: contactPageSeo?.ogTitle,
+      description: contactPageSeo?.ogDescription,
     },
   };
 }
