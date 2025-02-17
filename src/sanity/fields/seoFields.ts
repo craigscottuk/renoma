@@ -19,14 +19,6 @@ export const seoFields = [
       Rule.max(160).warning("Optymalna długość to maks. 160 znaków."),
   }),
   defineField({
-    name: "metaKeywords",
-    title: "Meta słowa kluczowe",
-    description: "Lista słów kluczowych związanych z tą stroną.",
-    type: "array",
-    of: [{ type: "string" }],
-    options: { layout: "tags" },
-  }),
-  defineField({
     name: "ogTitle",
     title: "Open Graph tytuł",
     description:
