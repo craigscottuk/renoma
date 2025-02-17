@@ -5,7 +5,6 @@ import { AboutUs } from "./about-us";
 import { client } from "@/sanity/client";
 import { PortableTextBlock } from "next-sanity";
 import PageHeader from "@/components/page-header";
-import { getTranslations } from "next-intl/server";
 import { setRequestLocale } from "next-intl/server";
 import CTA from "@/components/cta";
 
@@ -44,6 +43,14 @@ const QUERY = `
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
+  },
+
+  "aboutPageSeo": *[_type == "aboutPageSeo"][0]{
+    "pageTitle": coalesce(pageTitle[_key == $locale][0].value, "Default SEO Title"),
+    "metaDescription": coalesce(metaDescription[_key == $locale][0].value, "Default SEO Description"),
+    "ogTitle": coalesce(ogTitle[_key == $locale][0].value, "Default OG Title"),
+    "ogDescription": coalesce(ogDescription[_key == $locale][0].value, "Default OG Description"),
+    "ogImage": ogImage
   }
 }
 `;
@@ -84,6 +91,17 @@ interface Content {
     description: string;
     buttonText: string;
   };
+  aboutPageSeo: {
+    pageTitle: string;
+    metaDescription: string;
+    ogTitle: string;
+    ogDescription: string;
+    ogImage?: {
+      asset?: {
+        url: string;
+      };
+    };
+  };
 }
 
 interface TimelineItem {
@@ -100,18 +118,22 @@ interface TimelineImage {
 }
 
 export async function generateMetadata({ params: { locale } }: Props) {
-  const t = await getTranslations({ locale, namespace: "metadata" });
+  const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
+  const { aboutPageSeo } = content;
 
   return {
-    title: t("about.title"),
-    description: t("about.description"),
+    title: aboutPageSeo?.pageTitle,
+    description: aboutPageSeo?.metaDescription,
     openGraph: {
-      title: t("about.title"),
-      description: t("about.description"),
+      title: aboutPageSeo?.ogTitle,
+      description: aboutPageSeo?.ogDescription,
+      images: aboutPageSeo?.ogImage
+        ? [{ url: aboutPageSeo.ogImage.asset?.url }]
+        : undefined,
     },
     twitter: {
-      title: t("about.title"),
-      description: t("about.description"),
+      title: aboutPageSeo?.ogTitle,
+      description: aboutPageSeo?.ogDescription,
     },
   };
 }
