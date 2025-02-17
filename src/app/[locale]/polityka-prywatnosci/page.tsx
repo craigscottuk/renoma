@@ -16,6 +16,13 @@ const QUERY = `
   },
   "privacyText": *[_type == "privacyText"][0]{
     "content": coalesce(content[$locale], [])
+  },
+  "privacyPageSeo": *[_type == "privacyPageSeo"][0]{
+    "pageTitle": coalesce(pageTitle[_key == $locale][0].value, "Default SEO Title"),
+    "metaDescription": coalesce(metaDescription[_key == $locale][0].value, "Default SEO Description"),
+    "ogTitle": coalesce(ogTitle[_key == $locale][0].value, "Default OG Title"),
+    "ogDescription": coalesce(ogDescription[_key == $locale][0].value, "Default OG Description"),
+    "ogImage": ogImage
   }
 }`;
 
@@ -34,6 +41,26 @@ interface Content {
   };
   privacyText: {
     content: PortableTextBlock[];
+  };
+}
+
+export async function generateMetadata({ params: { locale } }: Props) {
+  const { privacyPageSeo } = await client.fetch(QUERY, { locale }, OPTIONS);
+
+  return {
+    title: privacyPageSeo?.pageTitle,
+    description: privacyPageSeo?.metaDescription,
+    openGraph: {
+      title: privacyPageSeo?.ogTitle,
+      description: privacyPageSeo?.ogDescription,
+      images: privacyPageSeo?.ogImage
+        ? [{ url: privacyPageSeo.ogImage.asset?.url }]
+        : undefined,
+    },
+    twitter: {
+      title: privacyPageSeo?.ogTitle,
+      description: privacyPageSeo?.ogDescription,
+    },
   };
 }
 
