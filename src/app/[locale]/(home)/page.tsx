@@ -1,3 +1,4 @@
+// src/app/[locale]/home/page.tsx;
 // cSpell:disable
 import HeroSection from "./hero";
 import SectionAbout from "./about";
@@ -67,6 +68,14 @@ const QUERY = `
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
+  },
+
+  "homePageSeo": *[_type == "homePageSeo"][0]{
+    "pageTitle": coalesce(pageTitle[_key == $locale][0].value, "Default SEO Title"),
+    "metaDescription": coalesce(metaDescription[_key == $locale][0].value, "Default SEO Description"),
+    "ogTitle": coalesce(ogTitle[_key == $locale][0].value, "Default OG Title"),
+    "ogDescription": coalesce(ogDescription[_key == $locale][0].value, "Default OG Description"),
+    "ogImage": ogImage
   }
 }
 `;
@@ -142,21 +151,37 @@ interface Content {
     description: string;
     buttonText: string;
   };
+  homePageSeo: {
+    pageTitle: string;
+    metaDescription: string;
+    ogTitle: string;
+    ogDescription: string;
+    ogImage: {
+      asset: {
+        url: string;
+      };
+    };
+  };
 }
 
 // Metadata from translations and generateMetadata function
 export async function generateMetadata({ params: { locale } }: Props) {
   const t = await getTranslations({ locale, namespace: "metadata" });
+  const { homePageSeo } = await client.fetch(QUERY, { locale }, OPTIONS);
+
   return {
-    title: t("homepage.title"),
-    description: t("homepage.description"),
+    title: homePageSeo?.pageTitle,
+    description: homePageSeo?.metaDescription,
     openGraph: {
-      title: t("homepage.title"),
-      description: t("homepage.description"),
+      title: homePageSeo?.ogTitle,
+      description: homePageSeo?.ogDescription,
+      images: homePageSeo?.ogImage
+        ? [{ url: homePageSeo.ogImage.asset?.url }]
+        : undefined,
     },
     twitter: {
-      title: t("homepage.title"),
-      description: t("homepage.description"),
+      title: homePageSeo?.ogTitle,
+      description: homePageSeo?.ogDescription,
     },
   };
 }
