@@ -3,8 +3,6 @@
 import { setRequestLocale } from "next-intl/server";
 import { client } from "@/sanity/client";
 import PageHeader from "@/components/page-header";
-
-import { getTranslations } from "next-intl/server";
 import ProjectCard from "./project-card";
 import CTA from "@/components/cta";
 
@@ -32,6 +30,13 @@ const QUERY = `
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
+  },
+  "caseStudiesPageSeo": *[_type == "caseStudiesPageSeo"][0]{
+    "pageTitle": coalesce(pageTitle[_key == $locale][0].value, "Default SEO Title"),
+    "metaDescription": coalesce(metaDescription[_key == $locale][0].value, "Default SEO Description"),
+    "ogTitle": coalesce(ogTitle[_key == $locale][0].value, "Default OG Title"),
+    "ogDescription": coalesce(ogDescription[_key == $locale][0].value, "Default OG Description"),
+    "ogImage": ogImage
   }
 }
 `;
@@ -44,18 +49,21 @@ type Props = {
 };
 
 export async function generateMetadata({ params: { locale } }: Props) {
-  const t = await getTranslations({ locale, namespace: "metadata" });
+  const { caseStudiesPageSeo } = await client.fetch(QUERY, { locale }, OPTIONS);
 
   return {
-    title: t("projects.title"),
-    description: t("projects.description"),
+    title: caseStudiesPageSeo?.pageTitle,
+    description: caseStudiesPageSeo?.metaDescription,
     openGraph: {
-      title: t("projects.title"),
-      description: t("projects.description"),
+      title: caseStudiesPageSeo?.ogTitle,
+      description: caseStudiesPageSeo?.ogDescription,
+      images: caseStudiesPageSeo?.ogImage
+        ? [{ url: caseStudiesPageSeo.ogImage.asset?.url }]
+        : undefined,
     },
     twitter: {
-      title: t("projects.title"),
-      description: t("projects.description"),
+      title: caseStudiesPageSeo?.ogTitle,
+      description: caseStudiesPageSeo?.ogDescription,
     },
   };
 }
