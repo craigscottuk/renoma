@@ -2,7 +2,6 @@
 import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header";
 import { client } from "@/sanity/client";
-import { getTranslations } from "next-intl/server";
 import CTA from "@/components/cta";
 import FaqAccordion from "./faq";
 
@@ -80,8 +79,6 @@ interface Content {
 
 // Metadata from translations and generateMetadata function
 export async function generateMetadata({ params: { locale } }: Props) {
-  const t = await getTranslations({ locale, namespace: "metadata" });
-
   const { faqPageSeo } = await client.fetch(QUERY, { locale }, OPTIONS);
 
   return {
