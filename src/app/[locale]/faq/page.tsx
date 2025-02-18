@@ -1,3 +1,4 @@
+// src/app/[locale]/faq/page.tsx
 // cSpell:disable
 import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header";
