@@ -1,4 +1,5 @@
 // cSpell:disable
+// src/app/[locale]/kontakt/page.tsx
 import { client } from "@/sanity/client";
 import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header";
