@@ -16,7 +16,7 @@ export default function HeroSection({ title, sectionCTA }: HeroSectionProps) {
 
       <MuxPlayer
         streamType="on-demand"
-        playbackId="8vtYheWj7nHa1Rp1gblbittUCE8bM62fNB28a02CZtqw"
+        playbackId="xgOUTdWiGS2xzXqzdu02003z2Q01ILmhBPPk802mW21t2JM"
         metadataVideoTitle="Renoma"
         metadataViewerUserId="Renoma"
         thumbnailTime={0}
