@@ -160,7 +160,7 @@ export default function PageHeader({
 
             {/* Section content */}
             <MaxWidthWrapper
-              className={clsx("flex flex-col", {
+              className={clsx("flex min-h-80 flex-col", {
                 "space-x-8 lg:flex-row lg:items-start":
                   imageUrl && !headerFullWidth,
                 "lg:flex-row lg:gap-8": !imageUrl || headerFullWidth,
@@ -217,9 +217,9 @@ export default function PageHeader({
               {imageUrl && !headerFullWidth && showImage && (
                 <div
                   className={clsx(
-                    "relative hidden lg:block",
+                    "relative hidden min-h-[400px] lg:block",
                     imageLayout === "portraitRight"
-                      ? "lg:-mb-80 lg:-mt-12 lg:ml-auto lg:h-[530px] lg:w-[450px]"
+                      ? "lg:-mb-80 lg:-mt-12 lg:ml-auto lg:h-[505px] lg:w-[430px]"
                       : "",
                     imageLayout === "landscapeRight"
                       ? "lg:mx-auto lg:aspect-[16/10] lg:w-1/2 lg:self-center"
