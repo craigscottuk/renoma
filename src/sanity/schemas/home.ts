@@ -40,7 +40,6 @@ export const heroSection = defineType({
       title: "Tytuł Sekcji",
       type: "internationalizedArrayString",
       group: "tytulSekcji",
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "sectionCTA",
