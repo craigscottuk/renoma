@@ -57,7 +57,7 @@ export const structure: StructureResolver = (S, context) =>
                 S,
                 context,
                 type: "logoSectionHome",
-                title: "Sekcja 4: Zaufali nam",
+                title: "Sekcja 4: Współpraca",
                 id: "singletonLogoSectionHome",
               }),
               singletonDocumentListItem({
