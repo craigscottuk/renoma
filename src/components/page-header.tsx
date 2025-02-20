@@ -27,6 +27,7 @@ interface PageHeaderProps {
   backgroundColor?: "white" | "black";
   twoColumnText?: boolean;
   portableTextBlock?: PortableTextBlock[];
+  aspectRatio?: "standard" | "wide";
 }
 
 export default function PageHeader({
@@ -40,6 +41,7 @@ export default function PageHeader({
   backgroundColor = "white",
   twoColumnText = false,
   portableTextBlock,
+  aspectRatio = "wide", // default to wide (16:9)
 }: PageHeaderProps) {
   // Generate the header image URL from Sanity or use the raw string URL
   const imageUrl =
@@ -71,7 +73,9 @@ export default function PageHeader({
         imageUrl &&
         imagePosition === "above" &&
         showImage && (
-          <div className="relative mt-24 h-96 w-full lg:min-h-[22rem]">
+          <div
+            className={`relative mt-24 h-96 w-full lg:min-h-[22rem] ${aspectRatio === "standard" ? "aspect-[4/3]" : "aspect-[16/10]"}`}
+          >
             <Image
               src={imageUrl || "/fallback-image.svg"}
               alt={imageAlt || "Obraz nagłówka"}
@@ -160,7 +164,7 @@ export default function PageHeader({
 
             {/* Section content */}
             <MaxWidthWrapper
-              className={clsx("flex min-h-80 flex-col", {
+              className={clsx("flex min-h-96 flex-col", {
                 "space-x-8 lg:flex-row lg:items-start":
                   imageUrl && !headerFullWidth,
                 "lg:flex-row lg:gap-8": !imageUrl || headerFullWidth,
@@ -217,12 +221,22 @@ export default function PageHeader({
               {imageUrl && !headerFullWidth && showImage && (
                 <div
                   className={clsx(
-                    "relative hidden min-h-[400px] lg:block",
+                    "relative hidden lg:block",
                     imageLayout === "portraitRight"
-                      ? "lg:-mb-80 lg:-mt-12 lg:ml-auto lg:h-[505px] lg:w-[430px]"
+                      ? clsx(
+                          "lg:-mb-80 lg:-mt-12 lg:h-auto lg:w-[420px]",
+                          aspectRatio === "standard"
+                            ? "lg:aspect-[3/4]"
+                            : "lg:aspect-[3/4]",
+                        )
                       : "",
                     imageLayout === "landscapeRight"
-                      ? "lg:mx-auto lg:aspect-[16/10] lg:w-1/2 lg:self-center"
+                      ? clsx(
+                          "lg:mx-auto lg:w-1/2 lg:self-start",
+                          aspectRatio === "standard"
+                            ? "lg:aspect-[4/3]"
+                            : "lg:aspect-[16/10]",
+                        )
                       : "",
                   )}
                 >
