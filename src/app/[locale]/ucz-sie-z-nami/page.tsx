@@ -49,7 +49,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } };
+const OPTIONS = { next: { revalidate: 60 } };
 // 86400
 
 type Props = {
