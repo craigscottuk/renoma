@@ -79,7 +79,7 @@ export default function ProjectCard({
                   selectedColorScheme.card,
                 )}
               >
-                <div className="relative h-64 md:h-80 lg:h-80">
+                <div className="relative aspect-[4/3]">
                   <a href={`/realizacje/${project.slug}`}>
                     <Image
                       src={project.imageUrl}
