@@ -103,6 +103,22 @@ export const servicesHeader = defineType({
     }),
 
     defineField({
+      name: "aspectRatio",
+      title: "Proporcje obrazu",
+      description: "Określ proporcje obrazu w nagłówku.",
+      type: "string",
+      options: {
+        list: [
+          { title: "4:3", value: "standard" },
+          { title: "16:10", value: "wide" },
+        ],
+        layout: "radio",
+      },
+      group: "obrazSekcji",
+      initialValue: "wide",
+    }),
+
+    defineField({
       name: "backgroundColor",
       title: "Kolor tła",
       description:
@@ -238,10 +254,21 @@ export const servicesList = defineType({
                   description:
                     "Opcjonalny podpis do obrazu, np. 'Widok przed konserwacją'.",
                 }),
+                defineField({
+                  name: "aspectRatio",
+                  title: "Proporcje obrazu",
+                  description: "Określ proporcje obrazu w nagłówku.",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "4:3", value: "standard" },
+                      { title: "16:10", value: "wide" },
+                    ],
+                    layout: "radio",
+                  },
+                  initialValue: "wide",
+                }),
               ],
-              options: {
-                hotspot: true,
-              },
             }),
           ],
           description:
