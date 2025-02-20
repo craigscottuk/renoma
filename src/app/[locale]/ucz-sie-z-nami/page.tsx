@@ -17,7 +17,8 @@ const QUERY = `
     "image": image, 
     "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
     "imageLayout": imageLayout,
-    "backgroundColor": backgroundColor
+    "backgroundColor": backgroundColor,
+    "aspectRatio": coalesce(aspectRatio, "wide")
   },
   "whatWeOffer": *[_type == "whatWeOffer"][0]{
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -69,6 +70,7 @@ interface Content {
       | "landscapeRight"
       | "noImage";
     backgroundColor?: "white" | "black";
+    aspectRatio?: "standard" | "wide";
   };
   whatWeOffer: {
     title: string;
@@ -130,6 +132,7 @@ export default async function UczSieZNami({ params: { locale } }: Props) {
           imageAlt={learnWithUsHeader.imageAlt}
           imageLayout={learnWithUsHeader.imageLayout}
           backgroundColor={learnWithUsHeader.backgroundColor}
+          aspectRatio={learnWithUsHeader.aspectRatio}
         />
       )}
 
