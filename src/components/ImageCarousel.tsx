@@ -12,14 +12,15 @@ interface ImageCarouselProps {
   images: Array<{
     src: string;
     caption?: string;
-    aspectRatio?: "none" | "landscape" | "portrait" | "square";
   }>;
   onCaptionHeightChange?: (height: number) => void;
+  aspectRatio?: "wide" | "standard";
 }
 
 export default function ImageCarousel({
   images,
   onCaptionHeightChange,
+  aspectRatio,
 }: ImageCarouselProps) {
   const locale = useLocale();
 
@@ -82,29 +83,21 @@ export default function ImageCarousel({
   const currentCaption = images[currentIndex]?.caption;
   const hasCurrentCaption = Boolean(currentCaption);
 
+  const isStandard = aspectRatio === "standard";
+
   if (!images || images.length === 0) {
     return null;
   }
 
   if (images.length === 1) {
     const image = images[0];
-    // const sizeClass =
-    //   {
-    //     none: "h-auto w-auto",
-    //     landscape: "h-64 md:h-80 aspect-video",
-    //     portrait: "h-64 md:h-80 aspect-[4/3]",
-    //     square: "h-64 md:h-80 aspect-square",
-    //   }[image.aspectRatio || "landscape"] || "h-64 w-full";
-    const objectPositionClass =
-      {
-        none: "object-center",
-        landscape: "object-center",
-        portrait: "object-top",
-        square: "object-center",
-      }[image.aspectRatio || "landscape"] || "object-center";
 
     return (
-      <div className={`aspect-square relative h-96`}>
+      <div
+        className={`${
+          isStandard ? "aspect-[4/3]" : "aspect-[16/9]"
+        } relative w-full`}
+      >
         {/* Ensure spacing around the carousel */}
         <div className="relative h-full w-full">
           <Image
@@ -112,7 +105,7 @@ export default function ImageCarousel({
             alt={image.caption || "Image"}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
-            className={`rounded-[4px] object-cover ${objectPositionClass}`}
+            className="rounded-[4px] object-cover object-center"
           />
         </div>
         {hasCurrentCaption && (
@@ -137,25 +130,12 @@ export default function ImageCarousel({
         >
           <div className="embla__container flex h-full w-full">
             {images.map((image, index) => {
-              // const sizeClass =
-              //   {
-              //     none: "h-auto w-auto",
-              //     landscape: "h-64 md:h-80 aspect-video",
-              //     portrait: "h-64 md:h-80 aspect-[4/3]",
-              //     square: "h-64 md:h-80 aspect-square",
-              //   }[image.aspectRatio || "landscape"] || "h-64 w-full";
-              const objectPositionClass =
-                {
-                  none: "object-center",
-                  landscape: "object-center",
-                  portrait: "object-top",
-                  square: "object-center",
-                }[image.aspectRatio || "landscape"] || "object-center";
-
               return (
                 <div
                   key={index}
-                  className={`embla__slide aspect-square relative h-96 flex-[0_0_100%]`}
+                  className={`embla__slide ${
+                    isStandard ? "aspect-[4/3]" : "aspect-[16/9]"
+                  } relative w-full flex-[0_0_100%]`}
                 >
                   <div className="embla__slide__inner relative h-full w-full">
                     <Image
@@ -163,7 +143,7 @@ export default function ImageCarousel({
                       alt={image.caption || `Image ${index + 1}`}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      className={`rounded-[4px] object-cover ${objectPositionClass}`}
+                      className="rounded-[4px] object-cover object-center"
                     />
                   </div>
                 </div>
