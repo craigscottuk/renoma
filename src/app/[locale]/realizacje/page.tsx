@@ -19,6 +19,7 @@ const QUERY = `
   },
   "projects": *[_type == "caseStudyEntry" && language == $locale]
     | order(_createdAt asc){
+      draft,
       title,
       "location": details.lokalizacja,
       "timeframe": details.czasTrwania,
@@ -41,7 +42,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } };
+const OPTIONS = { next: { revalidate: 10 } };
 // 86400
 
 type Props = {
