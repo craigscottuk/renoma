@@ -14,7 +14,8 @@ const QUERY = `
     "image": image, 
     "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
     "imageLayout": imageLayout,
-    "backgroundColor": backgroundColor
+    "backgroundColor": backgroundColor,
+    "aspectRatio": coalesce(aspectRatio, "wide")
   },
   "contactForm": *[_type == "contactForm"][0]{
     "contactFormSubjects": contactFormSubjects[].label[_key == $locale][0].value
@@ -65,6 +66,7 @@ interface Content {
       | "landscapeRight"
       | "noImage";
     backgroundColor?: "black" | "white";
+    aspectRatio?: "standard" | "wide";
   };
   contactForm: {
     contactFormSubjects: string[];
@@ -126,6 +128,7 @@ export default async function Kontakt({ params: { locale } }: Props) {
           imageAlt={contactHeader.imageAlt}
           imageLayout={contactHeader.imageLayout}
           backgroundColor={contactHeader.backgroundColor}
+          aspectRatio={contactHeader.aspectRatio}
         />
       )}
 
