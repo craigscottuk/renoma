@@ -18,11 +18,11 @@ export function AboutUs({ title, text, paddingY }: AboutUsProps) {
   const newText = transformPortableTextBlocks(text);
 
   return (
-    <section className={clsx("mx-auto bg-zinc-900 text-zinc-100/90", paddingY)}>
+    <section className={clsx("mx-auto bg-zinc-200 text-zinc-950/90", paddingY)}>
       <MaxWidthWrapper>
         <FadeInSection>
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-28">
-            <SectionTitle title={title} textColor="white" />
+            <SectionTitle title={title} textColor="black" />
             <div className="lg:col-span-2 lg:col-start-2 lg:columns-2 lg:gap-8">
               <PortableText
                 value={newText}
