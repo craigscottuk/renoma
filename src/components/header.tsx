@@ -3,10 +3,9 @@ import MaxWidthWrapper from "./max-width-wrapper";
 import LocaleSwitcher from "./navigation/locale-switcher";
 import MainNavigation from "./navigation/main-navigation";
 import SideNavigation from "./navigation/side-navigation";
+// import BreakpointReadout from "./breakpoint-readout";
 
 export default function Header() {
-  // test classes: sm:bg-slate-200 md:h-24 md:bg-slate-400 lg:bg-slate-600
-
   return (
     <header className="fixed left-0 z-30 h-20 w-[100vw] bg-white md:h-24">
       <MaxWidthWrapper className="h-full">
@@ -30,6 +29,8 @@ export default function Header() {
           </div>
         </div>
       </MaxWidthWrapper>
+      {/* Breakpoint Readout */}
+      {/* <BreakpointReadout /> */}
     </header>
   );
 }
