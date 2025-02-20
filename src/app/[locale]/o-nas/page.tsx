@@ -1,7 +1,7 @@
 // cSpell:disable
 // src/app/[locale]/o-nas/page.tsx
 import { AboutUs } from "./about-us";
-// import OurHistory from "./our-history";
+// j
 import { client } from "@/sanity/client";
 import { PortableTextBlock } from "next-sanity";
 import PageHeader from "@/components/page-header";
@@ -17,7 +17,8 @@ const QUERY = `
     "image": image,
     "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
     "imageLayout": imageLayout,
-    "backgroundColor": backgroundColor
+    "backgroundColor": backgroundColor,
+    "aspectRatio": aspectRatio
   },
 
   "aboutUs": *[_type == "aboutUs"][0]{
@@ -34,7 +35,7 @@ const QUERY = `
       "images": images[]{
         "src": src.asset->url,
         "caption": coalesce(caption[_key == $locale][0].value, ""),
-        "aspectRatio": aspectRatio
+        "aspectRatio": aspectRatio // Ensure aspectRatio is queried
       }
     }
   },
@@ -55,7 +56,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } };
+const OPTIONS = { next: { revalidate: 10 } };
 //86400
 
 type Props = {
@@ -76,6 +77,7 @@ interface Content {
       | "landscapeRight"
       | "noImage";
     backgroundColor?: "black" | "white";
+    aspectRatio?: "standard" | "wide";
   };
   aboutUs: {
     title: string;
@@ -114,7 +116,7 @@ interface TimelineItem {
 interface TimelineImage {
   src: string;
   caption: string;
-  aspectRatio?: "none" | "landscape" | "portrait" | "square";
+  aspectRatio?: "wide" | "standard";
 }
 
 export async function generateMetadata({ params: { locale } }: Props) {
@@ -148,7 +150,7 @@ export default async function About({ params: { locale } }: Props) {
   const {
     aboutUsHeader,
     aboutUs,
-    //  ourHistory,
+    // ourHistory,
     ctaContent,
   } = content;
 
@@ -164,6 +166,7 @@ export default async function About({ params: { locale } }: Props) {
           imageAlt={aboutUsHeader.imageAlt}
           imageLayout={aboutUsHeader.imageLayout}
           backgroundColor={aboutUsHeader.backgroundColor}
+          aspectRatio={aboutUsHeader.aspectRatio}
         />
       )}
 
