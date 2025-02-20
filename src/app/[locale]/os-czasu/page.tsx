@@ -31,10 +31,10 @@ const QUERY = `
       "images": images[]{
         "src": src.asset->url,
         "caption": coalesce(caption[_key == $locale][0].value, ""),
-        "aspectRatio": aspectRatio
+        "aspectRatio": aspectRatio // Ensure aspectRatio is queried
       }
     }
-  }
+  },
 }
 `;
 
@@ -81,7 +81,7 @@ interface TimelineItem {
 interface TimelineImage {
   src: string;
   caption: string;
-  aspectRatio?: "none" | "landscape" | "portrait" | "square";
+  aspectRatio?: "wide" | "standard";
 }
 
 export async function generateMetadata({ params: { locale } }: Props) {
