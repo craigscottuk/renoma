@@ -24,17 +24,17 @@ export default function WhatWeOffer({
   paddingY,
 }: WhatWeOfferProps & WhatWeOfferComponentProps) {
   return (
-    <section className={clsx("mx-auto bg-zinc-900 text-zinc-50", paddingY)}>
+    <section className={clsx("mx-auto bg-zinc-200 text-zinc-950", paddingY)}>
       <MaxWidthWrapper>
         <FadeInSection translateY>
-          <SectionTitle title={title} className="mb-20" textColor="white" />
+          <SectionTitle title={title} className="mb-20" textColor="black" />
         </FadeInSection>
       </MaxWidthWrapper>
       <MaxWidthWrapper>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {offers.map((feature, index) => (
             <FadeInSection translateY key={index}>
-              <Card className="h-full border-zinc-700 bg-zinc-800 text-zinc-100/90">
+              <Card className="h-full border-zinc-300 bg-zinc-100 text-zinc-900/90">
                 <CardHeader>
                   <div className="flex flex-col items-start">
                     <CircleCheck className="mb-4 h-8 w-8 text-gold-900" />
@@ -44,7 +44,7 @@ export default function WhatWeOffer({
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-[1.1rem] text-zinc-300">
+                  <p className="text-[1.1rem] text-zinc-800">
                     {fixPolishOrphans(feature.description)}
                   </p>
                 </CardContent>
