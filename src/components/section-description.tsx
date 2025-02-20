@@ -71,13 +71,13 @@ export default function SectionDescription({
         animate={controls}
         variants={descriptionVariants}
         className={clsx(
-          "text-pretty",
+          "text-balance",
           "max-w-sm text-[1.1rem] leading-relaxed",
           textColorClass,
           textAlign,
           textStyle,
           className,
-          "md:max-w-[30rem]",
+          "md:max-w-[32rem]",
         )}
       >
         {finalDescription}
