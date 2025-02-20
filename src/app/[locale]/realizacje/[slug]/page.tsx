@@ -37,7 +37,21 @@ const QUERY = `
     content[]{
       ...,
       _type == "textAndImageGallery" => {
-        layout
+        layout,
+        images[]{
+          ...,
+          aspectRatio
+        }
+      },
+      _type == "imageGalleryAndImageGallery" => {
+        images1[]{
+          ...,
+          aspectRatio
+        },
+        images2[]{
+          ...,
+          aspectRatio
+        }
       }
     }
   },
@@ -46,7 +60,21 @@ const QUERY = `
     content[]{
       ...,
       _type == "textAndImageGallery" => {
-        layout
+        layout,
+        images[]{
+          ...,
+          aspectRatio
+        }
+      },
+      _type == "imageGalleryAndImageGallery" => {
+        images1[]{
+          ...,
+          aspectRatio
+        },
+        images2[]{
+          ...,
+          aspectRatio
+        }
       }
     }
   },
@@ -127,7 +155,7 @@ type Props = {
 export default async function ProjectPage({ params: { slug, locale } }: Props) {
   setRequestLocale(locale);
 
-  const OPTIONS = { next: { revalidate: 86400 } };
+  const OPTIONS = { next: { revalidate: 10 } };
   // 86400
 
   // Error handling for fetching data
@@ -184,6 +212,7 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
               imageAlt={project.imageAlt}
               imageLayout={project.imageLayout}
               backgroundColor={project.backgroundColor}
+              aspectRatio={"standard"}
             />
           )}
           {project.details && (
