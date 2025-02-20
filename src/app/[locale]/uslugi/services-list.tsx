@@ -23,6 +23,7 @@ import CustomButton from "@/components/ui/custom-button";
 type ImageType = {
   asset: SanityImageSource | string;
   caption?: string;
+  aspectRatio?: "standard" | "wide";
 };
 
 interface Service {
@@ -233,9 +234,10 @@ export default function ServicesList({
                                   ? urlFor(img.asset)
                                   : "",
                             caption: img.caption || "",
+                            aspectRatio: img.aspectRatio || "wide",
                           })) || []
                         }
-                        // aspectRatio="landscape"
+                        aspectRatio={service.images?.[0]?.aspectRatio || "wide"}
                       />
                     </FadeInSection>
                   </div>
