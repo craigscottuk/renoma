@@ -12,6 +12,10 @@ import { Separator } from "@/components/ui/separator";
 import { FadeInSection } from "@/components/fade-in-section";
 import { transformPortableTextBlocks } from "@/utils/transformPortableTextBlocks";
 
+function parseAspectRatio(ratio: string | undefined): "standard" | "wide" {
+  return ratio === "wide" ? "wide" : "standard";
+}
+
 export default function ContentSection({
   title,
   content,
@@ -84,6 +88,9 @@ export default function ContentSection({
                           <div className="flex flex-col lg:w-1/2 lg:items-start">
                             <div className="w-full">
                               <ImageCarousel
+                                aspectRatio={parseAspectRatio(
+                                  section.images?.[0]?.aspectRatio,
+                                )}
                                 images={
                                   section.images?.map(
                                     (img: {
@@ -98,7 +105,6 @@ export default function ContentSection({
                                     }),
                                   ) || []
                                 }
-                                // aspectRatio={section.aspectRatio}
                               />
                             </div>
                           </div>
@@ -112,6 +118,9 @@ export default function ContentSection({
                           <div className="flex flex-col lg:w-1/2 lg:items-start">
                             <div className="w-full">
                               <ImageCarousel
+                                aspectRatio={parseAspectRatio(
+                                  section.images?.[0]?.aspectRatio,
+                                )}
                                 images={
                                   section.images?.map(
                                     (img: {
@@ -126,7 +135,6 @@ export default function ContentSection({
                                     }),
                                   ) || []
                                 }
-                                // aspectRatio={section.aspectRatio}
                               />
                             </div>
                           </div>
@@ -194,6 +202,9 @@ export default function ContentSection({
                   >
                     <div className="flex-1 lg:w-1/2">
                       <ImageCarousel
+                        aspectRatio={parseAspectRatio(
+                          section.images1?.[0]?.aspectRatio,
+                        )}
                         images={
                           section.images1?.map(
                             (img: {
@@ -208,11 +219,13 @@ export default function ContentSection({
                             }),
                           ) || []
                         }
-                        // aspectRatio={section.aspectRatio1}
                       />
                     </div>
                     <div className="flex flex-col lg:w-1/2 lg:items-start">
                       <ImageCarousel
+                        aspectRatio={parseAspectRatio(
+                          section.images2?.[0]?.aspectRatio,
+                        )}
                         images={
                           section.images2?.map(
                             (img: {
@@ -227,7 +240,6 @@ export default function ContentSection({
                             }),
                           ) || []
                         }
-                        // aspectRatio={section.aspectRatio2}
                       />
                     </div>
                   </MaxWidthWrapper>
