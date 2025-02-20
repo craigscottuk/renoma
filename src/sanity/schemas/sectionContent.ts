@@ -45,6 +45,20 @@ export const sectionContent = defineType({
                   description:
                     "Opcjonalny podpis dla obrazu. Ułatwia zrozumienie kontekstu obrazu i poprawia SEO.",
                 }),
+                defineField({
+                  name: "aspectRatio",
+                  title: "Proporcje obrazu",
+                  description: "Określ proporcje obrazu w nagłówku.",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "4:3", value: "standard" },
+                      { title: "16:10", value: "wide" },
+                    ],
+                    layout: "radio",
+                  },
+                  initialValue: "wide",
+                }),
               ],
               preview: {
                 select: {
@@ -61,22 +75,7 @@ export const sectionContent = defineType({
             },
           ],
         }),
-        defineField({
-          name: "aspectRatio",
-          title: "Proporcje Obrazu",
-          type: "string",
-          options: {
-            list: [
-              { title: "Brak", value: "none" },
-              { title: "Krajobraz", value: "landscape" },
-              { title: "Portret", value: "portrait" },
-              { title: "Kwadrat", value: "square" },
-            ],
-            layout: "radio",
-          },
-          initialValue: "none",
-          description: "Wybierz proporcje obrazów w tej galerii.",
-        }),
+
         defineField({
           name: "layout",
           title: "Układ",
@@ -112,7 +111,7 @@ export const sectionContent = defineType({
       },
     },
     // ================================
-    // textAndImageGallery
+    // text wrap two coluns
     // ================================
 
     {
@@ -236,52 +235,20 @@ export const sectionContent = defineType({
                   description:
                     "Opcjonalny podpis dla obrazu. Ułatwia zrozumienie kontekstu obrazu i poprawia SEO.",
                 }),
-              ],
-              preview: {
-                select: {
-                  title: "caption ",
-                  media: "image",
-                },
-                prepare({ title, media }) {
-                  return {
-                    title: title || "Brak podpisu pod obrazem",
-                    media,
-                  };
-                },
-              },
-            },
-          ],
-        }),
-        defineField({
-          name: "aspectRatio1",
-          title: "Proporcje Obrazu",
-          type: "string",
-          options: {
-            list: [
-              { title: "Brak", value: "none" },
-              { title: "Krajobraz", value: "landscape" },
-              { title: "Portret", value: "portrait" },
-              { title: "Kwadrat", value: "square" },
-            ],
-            layout: "radio",
-          },
-          initialValue: "none",
-          description: "Wybierz proporcje obrazów w tej galerii.",
-        }),
-        defineField({
-          name: "images2",
-          title: "Galeria Obrazów 2",
-          type: "array",
-          of: [
-            {
-              type: "image",
-              fields: [
+
                 defineField({
-                  name: "caption",
+                  name: "aspectRatio",
+                  title: "Proporcje obrazu",
+                  description: "Określ proporcje obrazu w nagłówku.",
                   type: "string",
-                  title: "Podpis Obrazu",
-                  description:
-                    "Opcjonalny podpis dla obrazu. Ułatwia zrozumienie kontekstu obrazu i poprawia SEO.",
+                  options: {
+                    list: [
+                      { title: "4:3", value: "standard" },
+                      { title: "16:10", value: "wide" },
+                    ],
+                    layout: "radio",
+                  },
+                  initialValue: "wide",
                 }),
               ],
               preview: {
@@ -300,20 +267,49 @@ export const sectionContent = defineType({
           ],
         }),
         defineField({
-          name: "aspectRatio2",
-          title: "Proporcje Obrazu",
-          type: "string",
-          options: {
-            list: [
-              { title: "Brak", value: "none" },
-              { title: "Krajobraz", value: "landscape" },
-              { title: "Portret", value: "portrait" },
-              { title: "Kwadrat", value: "square" },
-            ],
-            layout: "radio",
-          },
-          initialValue: "none",
-          description: "Wybierz proporcje obrazów w tej galerii.",
+          name: "images2",
+          title: "Galeria Obrazów 2",
+          type: "array",
+          of: [
+            {
+              type: "image",
+              fields: [
+                defineField({
+                  name: "caption",
+                  type: "string",
+                  title: "Podpis Obrazu",
+                  description:
+                    "Opcjonalny podpis dla obrazu. Ułatwia zrozumienie kontekstu obrazu i poprawia SEO.",
+                }),
+                defineField({
+                  name: "aspectRatio",
+                  title: "Proporcje obrazu",
+                  description: "Określ proporcje obrazu w nagłówku.",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "4:3", value: "standard" },
+                      { title: "16:10", value: "wide" },
+                    ],
+                    layout: "radio",
+                  },
+                  initialValue: "wide",
+                }),
+              ],
+              preview: {
+                select: {
+                  title: "caption ",
+                  media: "image",
+                },
+                prepare({ title, media }) {
+                  return {
+                    title: title || "Brak podpisu pod obrazem",
+                    media,
+                  };
+                },
+              },
+            },
+          ],
         }),
       ],
       preview: {
