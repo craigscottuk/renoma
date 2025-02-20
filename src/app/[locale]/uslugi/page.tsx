@@ -17,7 +17,8 @@ const QUERY = `
     "image": image, 
     "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
     "imageLayout": imageLayout,
-    "backgroundColor": backgroundColor
+    "backgroundColor": backgroundColor,
+    "aspectRatio": coalesce(aspectRatio, "wide")
   },
   
   "servicesGroup": *[_type == "servicesGroup"][0]{
@@ -87,7 +88,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } };
+const OPTIONS = { next: { revalidate: 10 } };
 // 86400
 
 type Props = {
@@ -108,6 +109,7 @@ interface Content {
       | "landscapeRight"
       | "noImage";
     backgroundColor?: "black" | "white";
+    aspectRatio?: "standard" | "wide";
   };
   servicesGroup: {
     serviceGroupOne: {
@@ -234,6 +236,9 @@ export default async function ONas({ params: { locale } }: Props) {
           imageAlt={servicesHeader.imageAlt}
           imageLayout={servicesHeader.imageLayout}
           backgroundColor={servicesHeader.backgroundColor}
+          aspectRatio={
+            servicesHeader.aspectRatio as "standard" | "wide" | undefined
+          }
         />
       )}
       {/* Conditionally render Services Group Sections */}
