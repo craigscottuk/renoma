@@ -14,7 +14,7 @@ export interface TimelineEvent {
   images?: Array<{
     src: string;
     caption?: string;
-    aspectRatio?: "none" | "landscape" | "portrait" | "square";
+    aspectRatio?: "wide" | "standard";
   }>;
 }
 
@@ -209,6 +209,7 @@ export default function Timeline({ events }: TimelineProps) {
                     {event.images && event.images.length > 0 && (
                       <div className="mb-0">
                         <ImageCarousel
+                          aspectRatio={event.images[0].aspectRatio} // Pass the aspectRatio prop
                           images={event.images.map((image) => ({
                             ...image,
                             src: image?.src || "",
