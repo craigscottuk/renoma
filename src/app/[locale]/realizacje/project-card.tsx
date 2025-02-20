@@ -91,7 +91,7 @@ export default function ProjectCard({
                   </div>
                   <CardHeader>
                     <div className="flex items-center space-x-2">
-                      <CardTitle className="font-regular text-[1.7rem] leading-tight tracking-[-0.015em] text-zinc-800">
+                      <CardTitle className="text-[1.7rem] leading-tight tracking-[-0.015em] text-zinc-800">
                         <h2>
                           {/* <a href={`/realizacje/${project.slug}`}> */}
                           {project.title}
