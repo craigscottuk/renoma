@@ -25,6 +25,13 @@ export const caseStudyEntry = defineType({
   ],
   fields: [
     defineField({
+      name: "draft",
+      type: "boolean",
+      title: "Szkic",
+      description: "Jeśli aktywowane, dokument nie będzie wyświetlany.",
+      initialValue: false,
+    }),
+    defineField({
       name: "language",
       type: "string",
       title: "Język",
@@ -63,7 +70,7 @@ export const caseStudyEntry = defineType({
         "Krótki opis wyświetlany na kartach dla każdego projektu na stronie www.pzkrenoma.com/pl/realizacje.",
       type: "text",
       rows: 8,
-      validation: (rule) => rule.required().error("Opis karty jest wymagany."),
+      // validation: (rule) => rule.required().error("Opis karty jest wymagany."),
     }),
 
     defineField({
@@ -73,8 +80,8 @@ export const caseStudyEntry = defineType({
         "Krótki opis projektu używany jako wprowadzenie do studium przypadku w sekcji nagłówkowej strony dla każdego indywidualnego studium przypadku.",
       type: "text",
       rows: 8,
-      validation: (rule) =>
-        rule.required().error("Podsumowanie jest wymagane."),
+      // validation: (rule) =>
+      //   rule.required().error("Podsumowanie jest wymagane."),
     }),
 
     defineField({
