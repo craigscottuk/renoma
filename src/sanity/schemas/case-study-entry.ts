@@ -327,17 +327,11 @@ export const caseStudyEntry = defineType({
                   name: "imageBefore",
                   title: "Obraz przed",
                   type: "image",
-                  options: {
-                    hotspot: true,
-                  },
                 },
                 {
                   name: "imageAfter",
                   title: "Obraz po",
                   type: "image",
-                  options: {
-                    hotspot: true,
-                  },
                 },
               ],
             },
