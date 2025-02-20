@@ -99,6 +99,21 @@ export const aboutUsHeader = defineType({
     }),
 
     defineField({
+      name: "aspectRatio",
+      title: "Proporcje obrazu",
+      description: "Określ proporcje obrazu w nagłówku.",
+      type: "string",
+      options: {
+        list: [
+          { title: "4:3", value: "standard" },
+          { title: "16:10", value: "wide" },
+        ],
+        layout: "radio",
+      },
+      group: "obrazSekcji",
+      initialValue: "wide",
+    }),
+    defineField({
       name: "backgroundColor",
       title: "Kolor tła",
       description:
@@ -237,9 +252,6 @@ export const ourHistory = defineType({
                       title: "Obraz",
                       type: "image",
                       description: "Obraz ilustrujący wydarzenie.",
-                      options: {
-                        hotspot: true,
-                      },
                     }),
                     defineField({
                       name: "caption",
@@ -248,23 +260,22 @@ export const ourHistory = defineType({
                       description:
                         "Krótki tekst opisujący obraz, aby uzupełnić kontekst i poprawić SEO.",
                     }),
-                    // defineField({
-                    //   name: "aspectRatio",
-                    //   title: "Proporcje obrazu",
-                    //   type: "string",
-                    //   options: {
-                    //     list: [
-                    //       { title: "Brak", value: "none" },
-                    //       { title: "Krajobraz", value: "landscape" },
-                    //       { title: "Portret", value: "portrait" },
-                    //       { title: "Kwadrat", value: "square" },
-                    //     ],
-                    //     layout: "radio",
-                    //   },
-                    //   initialValue: "none",
-                    //   description: "Określ proporcje obrazu w galerii.",
-                    // }),
+                    defineField({
+                      name: "aspectRatio",
+                      title: "Proporcje obrazu",
+                      description: "Określ proporcje obrazu w nagłówku.",
+                      type: "string",
+                      options: {
+                        list: [
+                          { title: "4:3", value: "standard" },
+                          { title: "16:10", value: "wide" },
+                        ],
+                        layout: "radio",
+                      },
+                      initialValue: "wide",
+                    }),
                   ],
+
                   preview: {
                     select: {
                       title: "caption.0.value",
