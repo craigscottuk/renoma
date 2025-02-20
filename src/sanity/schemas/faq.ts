@@ -103,6 +103,22 @@ export const faqHeader = defineType({
     }),
 
     defineField({
+      name: "aspectRatio",
+      title: "Proporcje obrazu",
+      description: "Określ proporcje obrazu w nagłówku.",
+      type: "string",
+      options: {
+        list: [
+          { title: "4:3", value: "standard" },
+          { title: "16:10", value: "wide" },
+        ],
+        layout: "radio",
+      },
+      group: "obrazSekcji",
+      initialValue: "wide",
+    }),
+
+    defineField({
       name: "backgroundColor",
       title: "Kolor tła",
       description:
@@ -118,6 +134,7 @@ export const faqHeader = defineType({
       group: "obrazSekcji",
       initialValue: "white",
     }),
+
     defineField({
       name: "imageAlt",
       title: "Alternatywny tekst obrazu nagłówka",
