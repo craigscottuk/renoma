@@ -95,6 +95,18 @@ export const renomaLabHeader = defineType({
     }),
 
     defineField({
+      name: "mobileImage",
+      title: "Obraz nagłówka (mobile)",
+      description:
+        "Opcjonalny obraz wyświetlany w nagłówku na urządzeniach mobilnych. Jeśli nie zostanie wybrany, użyty zostanie główny obraz.",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+      group: "obrazSekcji",
+    }),
+
+    defineField({
       name: "imageAlt",
       title: "Alternatywny tekst obrazu nagłówka",
       description:
