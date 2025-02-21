@@ -17,6 +17,7 @@ interface PageHeaderProps {
   description: string;
   sectionButton?: string;
   image?: SanityImageSource | string;
+  mobileImage?: SanityImageSource | string; // Add this new prop
   imageAlt?: string;
   imageLayout?:
     | "fullWidthAbove"
@@ -36,6 +37,7 @@ export default function PageHeader({
   description,
   sectionButton,
   image,
+  mobileImage,
   imageAlt,
   imageLayout = "fullWidthAbove",
   backgroundColor = "white",
@@ -43,7 +45,7 @@ export default function PageHeader({
   portableTextBlock,
   aspectRatio = "wide", // default to wide (16:9)
 }: PageHeaderProps) {
-  // Generate the header image URL from Sanity or use the raw string URL
+  // Generate URLs for both desktop and mobile images
   const imageUrl =
     typeof image === "string"
       ? image
@@ -55,6 +57,13 @@ export default function PageHeader({
               : 1200,
           )
         : "/fallback-image.svg";
+
+  const mobileImageUrl =
+    typeof mobileImage === "string"
+      ? mobileImage
+      : mobileImage
+        ? urlFor(mobileImage, 800)
+        : imageUrl;
 
   const headerFullWidth = twoColumnText || imageLayout.startsWith("fullWidth");
   const imagePosition = imageLayout === "fullWidthBelow" ? "below" : "above";
@@ -74,10 +83,13 @@ export default function PageHeader({
         imagePosition === "above" &&
         showImage && (
           <div
-            className={`relative mt-24 h-96 w-full lg:min-h-[22rem] ${aspectRatio === "standard" ? "aspect-[4/3]" : "aspect-[16/10]"}`}
+            className={`relative mt-24 h-auto w-full md:aspect-[4/3] md:min-h-[22rem] lg:h-96 ${
+              aspectRatio === "standard" ? "aspect-[4/3]" : "aspect-[16/10]"
+            }`}
           >
+            {/* Mobile Image */}
             <Image
-              src={imageUrl || "/fallback-image.svg"}
+              src={mobileImageUrl}
               alt={imageAlt || "Obraz nagłówka"}
               fill
               style={{
@@ -85,6 +97,19 @@ export default function PageHeader({
                 objectPosition: "center",
               }}
               loading="lazy"
+              className="lg:hidden"
+            />
+            {/* Desktop Image */}
+            <Image
+              src={imageUrl}
+              alt={imageAlt || "Obraz nagłówka"}
+              fill
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+              loading="lazy"
+              className="hidden lg:block"
             />
           </div>
         )}
