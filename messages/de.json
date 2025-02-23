@@ -111,6 +111,11 @@
     "sending": "Senden...",
     "success": "Danke für Ihre Kontaktaufnahme! Eine Kopie wurde zu Ihrer E-Mail-Adresse geschickt.",
     "attachment": "Anhang",
+    "thankYou": {
+      "title": "Danke!",
+      "message": "Vielen Dank für Ihre Nachricht! Eine Kopie wurde an Ihre E-Mail-Adresse gesendet.",
+      "button": "Eine weitere Nachricht senden"
+    },
     "validation": {
       "firstName": "Der Vorname muss mindestens 2 Zeichen lang sein",
       "lastName": "Der Nachname muss mindestens 2 Zeichen lang sein",
@@ -135,6 +140,7 @@
     "nextCaseStudy": "Nächste Fallstudie"
   },
   "jobOfferForm": {
+    "sending": "Senden...",
     "applyNow": "Jetzt bewerben",
     "applyPosition": "Bewerben für: {jobTitle}",
     "responsibilitiesTitle": "Aufgaben:",
@@ -148,7 +154,7 @@
     "motivationLetterPlaceholder": "Kurzes Motivationsschreiben",
     "motivationLetterMaxHint": "Bis zu 1500 Zeichen",
     "submit": "Bewerbung senden",
-    "thankYouTitle": "Vielen Dank für Ihre Bewerbung!",
+    "thankYouTitle": "Danke!",
     "thankYouBody": "Wir haben Ihre Bewerbung erhalten und auch eine Kopie an Ihre E-Mail-Adresse geschickt. Wir melden uns bald bei Ihnen.",
     "closeButton": "Fenster schließen",
     "errorTitle": "Fehler beim Senden Ihrer Bewerbung.",
