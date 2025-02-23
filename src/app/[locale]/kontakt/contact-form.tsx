@@ -3,6 +3,7 @@
 import clsx from "clsx";
 import * as z from "zod";
 import { useState } from "react";
+import { Send } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
@@ -27,6 +28,13 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import AnimatedLink from "@/components/animated-link";
 import { useLocale } from "next-intl";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 interface ContactFormProps {
   color?: "light" | "dark";
@@ -47,7 +55,9 @@ export default function ContactForm({
     email: z.string().email(t("contact-form.validation.email")),
     phone: z
       .string()
-      .regex(/^\+?[0-9\s-]{9,}$/, t("contact-form.validation.phone")),
+      .regex(/^\+?[0-9\s-]{9,}$/, t("contact-form.validation.phone"))
+      .optional()
+      .or(z.literal("")),
     topic: z.string().min(1, t("contact-form.validation.topic")),
     message: z
       .string()
@@ -89,14 +99,12 @@ export default function ContactForm({
   const darkSelectContentClassNames =
     "border-zinc-800 bg-zinc-800 text-zinc-100/90";
   const darkCheckboxClassNames = "border-white";
-  const darkButtonClassNames = " bg-zinc-900 hover:text-zinc-950 px-6 py-5";
 
   const lightInputClassNames =
     "border-zinc-200 bg-zinc-100 text-zinc-800 ring-offset-zinc-200 focus-visible:ring-zinc-800 text-[1.1rem]";
   const lightSelectContentClassNames =
     "border-zinc-300 bg-zinc-100 text-zinc-800 text-[1.1rem]";
-  const lightButtonClassNames =
-    " bg-zinc-100 hover:text-zinc-950 px-6 py-5 text-[1.1rem]";
+
   const lightCheckboxClassNames = "border-zinc-900 text-[1.1rem]";
 
   const inputClassNames =
@@ -107,8 +115,6 @@ export default function ContactForm({
       : lightSelectContentClassNames;
   const checkboxContentClassNames =
     color === "dark" ? darkCheckboxClassNames : lightCheckboxClassNames;
-  const buttonClassNames =
-    color === "dark" ? darkButtonClassNames : lightButtonClassNames;
 
   async function onSubmit(values: FormData) {
     // File size validation
@@ -135,7 +141,9 @@ export default function ContactForm({
       formData.append("firstName", values.firstName);
       formData.append("lastName", values.lastName);
       formData.append("email", values.email);
-      formData.append("phone", values.phone);
+      if (values.phone) {
+        formData.append("phone", values.phone);
+      }
       formData.append("topic", values.topic);
       formData.append("message", values.message);
       formData.append("privacy", values.privacy.toString());
@@ -171,7 +179,7 @@ export default function ContactForm({
   return (
     <Form {...form}>
       {isSubmitted ? (
-        <div className="text-green-600">{t("contact-form.success")}</div>
+        <ContactFormThankYou onReset={() => setIsSubmitted(false)} />
       ) : (
         // Notice: we keep the same fields. We'll add a new file input below.
         <form
@@ -298,7 +306,7 @@ export default function ContactForm({
                   />
                 </FormControl>
                 <FormMessage aria-live="assertive" />
-                <p className="text-xs text-zinc-600">
+                <p className="text-sm text-zinc-600">
                   {t("contact-form.validation.messageMax")}
                 </p>
               </FormItem>
@@ -335,7 +343,7 @@ export default function ContactForm({
             control={form.control}
             name="privacy"
             render={({ field }) => (
-              <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+              <FormItem className="flex max-w-[32rem] flex-row items-start space-x-3 space-y-0">
                 <FormControl>
                   <Checkbox
                     className={clsx(checkboxContentClassNames, "mt-1.5")}
@@ -349,9 +357,14 @@ export default function ContactForm({
                     {locale === "de" ? (
                       <>
                         Ich willige in die Verarbeitung meiner personenbezogenen
-                        Daten durch die Restaurierungswerkstatt RENOMA Hanna
-                        Rubnikowicz-Góźdź und RENOMA IGOR GÓŹDŹ zum Zwecke der
-                        Beantwortung meiner Anfrage gemäß der{" "}
+                        Daten durch die{" "}
+                        <span className="font-regular">
+                          Pracownię Konserwacji Zabytków RENOMA Hanna
+                          Rubnikowicz-Góźdź
+                        </span>{" "}
+                        und{" "}
+                        <span className="font-regular">RENOMA Igor Góźdź</span>{" "}
+                        zum Zwecke der Beantwortung meiner Anfrage gemäß der{" "}
                         <AnimatedLink
                           href="/polityka-prywatnosci"
                           target="_blank"
@@ -364,10 +377,15 @@ export default function ContactForm({
                       </>
                     ) : locale === "en" ? (
                       <>
-                        “I consent to the processing of my personal data by the
-                        Workshop for Monument Conservation RENOMA Hanna
-                        Rubnikowicz-Góźdź and RENOMA IGOR GÓŹDŹ, for the purpose
-                        of responding to my inquiry, in accordance with the{" "}
+                        “I consent to the processing of my personal data by the{" "}
+                        <span className="font-regular">
+                          Pracownię Konserwacji Zabytków RENOMA Hanna
+                          Rubnikowicz-Góźdź
+                        </span>{" "}
+                        and{" "}
+                        <span className="font-regular">RENOMA Igor Góźdź</span>{" "}
+                        , for the purpose of responding to my inquiry, in
+                        accordance with the{" "}
                         <AnimatedLink
                           href="/polityka-prywatnosci"
                           target="_blank"
@@ -380,13 +398,19 @@ export default function ContactForm({
                     ) : (
                       <>
                         Wyrażam zgodę na przetwarzanie moich danych osobowych
-                        przez Pracownię Konserwacji Zabytków RENOMA Hanna
-                        Rubnikowicz-Góźdź oraz RENOMA IGOR GÓŹDŹ w celu
-                        udzielenia odpowiedzi na moje zapytanie, zgodnie z 
+                        przez{" "}
+                        <span className="font-regular">
+                          Pracownię Konserwacji Zabytków RENOMA Hanna
+                          Rubnikowicz-Góźdź
+                        </span>{" "}
+                        oraz{" "}
+                        <span className="font-regular">RENOMA Igor Góźdź</span>{" "}
+                        w celu udzielenia odpowiedzi na moje zapytanie, zgodnie
+                        z{" "}
                         <AnimatedLink
                           href="/polityka-prywatnosci"
                           target="_blank"
-                          className="text-base"
+                          className="font-regular text-base"
                           showArrow={false}
                         >
                           polityce prywatności.
@@ -401,15 +425,40 @@ export default function ContactForm({
           />
 
           <Button
-            variant="outline"
             type="submit"
             disabled={isLoading}
-            className={clsx("w-auto", buttonClassNames)}
+            className="w-full rounded-none bg-zinc-50 text-zinc-900 hover:bg-zinc-900 hover:text-zinc-50 md:w-auto"
           >
             {isLoading ? t("contact-form.sending") : t("contact-form.submit")}
           </Button>
         </form>
       )}
     </Form>
+  );
+}
+
+export function ContactFormThankYou({ onReset }: { onReset: () => void }) {
+  const t = useTranslations("contact-form.thankYou");
+  return (
+    <div className="flex min-h-screen w-full items-start">
+      <Card className="mx-auto max-w-md bg-zinc-200 shadow-none">
+        <CardHeader>
+          <CardTitle className="text-center font-bolder text-[1.7rem] text-zinc-900">
+            <div className="flex items-center justify-center">
+              <Send className="mr-4 h-6 w-6 text-zinc-900" />
+              {t("title")}
+            </div>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-center text-[1.1rem] text-zinc-800">
+            {t("message")}
+          </p>
+        </CardContent>
+        <CardFooter className="flex justify-center">
+          <Button onClick={onReset}>{t("button")}</Button>
+        </CardFooter>
+      </Card>
+    </div>
   );
 }
