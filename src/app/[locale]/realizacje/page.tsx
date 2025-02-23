@@ -42,7 +42,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } };
+const OPTIONS = { next: { revalidate: 60 } };
 // 86400
 
 type Props = {
@@ -92,6 +92,7 @@ export default async function Realizacje({ params: { locale } }: Props) {
           imageAlt={caseStudyHeader.imageAlt}
           imageLayout={caseStudyHeader.imageLayout}
           backgroundColor={caseStudyHeader.backgroundColor}
+          paddingY="py-20 md:pt-24 md:pb-36"
         />
       )}
 
