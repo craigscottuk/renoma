@@ -172,8 +172,6 @@ export const logoSectionHome = defineType({
       name: "label",
       title: "Etykieta Sekcji",
       type: "internationalizedArrayString",
-
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "title",
