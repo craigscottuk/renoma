@@ -7,7 +7,7 @@ const portableTextComponents: PortableTextComponents = {
   block: {
     // Handle default text blocks (e.g., paragraphs)
     normal: ({ children }) => (
-      <p className="mb-4 text-[1.1rem]">{children || "No content provided"}</p>
+      <p className="mb-6 text-[1.1rem]">{children || "No content provided"}</p>
     ),
     h2: ({ children }) => (
       <h2 className="mb-8 font-bolder text-[2rem] text-zinc-800">{children}</h2>
