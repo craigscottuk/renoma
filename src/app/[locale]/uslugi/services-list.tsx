@@ -41,6 +41,7 @@ interface ServiceGroup {
 
 export default function ServicesList({
   serviceGroups,
+  paddingY = "py-12 lg:py-32",
 }: {
   serviceGroups: ServiceGroup[];
   paddingY?: string;
@@ -140,7 +141,7 @@ export default function ServicesList({
       </div>
 
       {/* Main Content */}
-      <div className="">
+      <div className={paddingY}>
         {serviceGroups?.map((group) => (
           <section
             key={group.title}
@@ -153,7 +154,7 @@ export default function ServicesList({
             // )}
           >
             <MaxWidthWrapper>
-              <div className="flex-between mb-10 mt-16 flex items-center">
+              <div className="flex-between mb-10 mt-24 flex items-center">
                 <div className="w-1/2">
                   <SectionTitle
                     title={group.title}
@@ -179,7 +180,7 @@ export default function ServicesList({
                 key={service.title}
                 className={cn(
                   serviceIndex % 2 === 0 ? "bg-zinc-100" : "bg-zinc-50",
-                  "py-16",
+                  "py-24",
                 )}
               >
                 <MaxWidthWrapper>
@@ -247,7 +248,7 @@ export default function ServicesList({
                       animateOnView={true}
                       animationDirection="up"
                       href="/renoma-lab"
-                      className="-mt-12"
+                      className=""
                     >
                       Odwiedź stronę Renoma LAB
                     </CustomButton>
