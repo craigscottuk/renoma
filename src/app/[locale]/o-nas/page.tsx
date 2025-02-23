@@ -56,7 +56,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 10 } };
+const OPTIONS = { next: { revalidate: 60 } };
 //86400
 
 type Props = {
@@ -167,6 +167,7 @@ export default async function About({ params: { locale } }: Props) {
           imageLayout={aboutUsHeader.imageLayout}
           backgroundColor={aboutUsHeader.backgroundColor}
           aspectRatio={aboutUsHeader.aspectRatio}
+          paddingY="py-20 md:pt-24 md:pb-36"
         />
       )}
 
@@ -175,7 +176,7 @@ export default async function About({ params: { locale } }: Props) {
         <AboutUs
           title={aboutUs.title}
           text={aboutUs.text}
-          paddingY="py-20 md:py-48"
+          paddingY="py-20 md:py-36"
         />
       )}
 
