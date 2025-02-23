@@ -30,7 +30,7 @@ type ContactDetailsSectionProps = {
 
 const paragraphClass = "text-zinc-900 text-[1rem] leading-relaxed";
 const headingClass =
-  "mb-3 font-regular text-[1.5rem] leading-tight tracking-[-0.015em] text-zinc-800";
+  "mb-4 font-bolder text-[1.7rem] leading-tight tracking-[-0.015em] text-zinc-800";
 
 export default function ContactFormAndDetails({
   contactDetails,
@@ -42,12 +42,12 @@ export default function ContactFormAndDetails({
   return (
     <section className={clsx("bg-zinc-200", paddingY)}>
       <MaxWidthWrapper>
-        <div className="grid gap-24 lg:grid-cols-2">
+        <div className="grid gap-x-24 lg:grid-cols-2">
           {/* Contact Information in 2x2 Grid */}
-          <FadeInSection className="grid grid-cols-2 py-10">
+          <FadeInSection className="grid h-fit max-w-[32rem] grid-cols-2 gap-y-12 pt-8">
             {/* Phone Section */}
             <div className="bg-zinc flex max-w-60 items-start gap-4">
-              <Phone className="h-6 w-6" aria-hidden="true" />
+              <Phone className="min-h-6 min-w-6" aria-hidden="true" />
               <div>
                 <h3 className={headingClass}>{t("phone")}</h3>
                 <p className={paragraphClass}>{contactDetails.numerTelefonu}</p>
@@ -56,7 +56,7 @@ export default function ContactFormAndDetails({
 
             {/* Email Section */}
             <div className="flex max-w-60 items-start gap-4">
-              <Mail className="h-6 w-6" aria-hidden="true" />
+              <Mail className="min-h-6 min-w-6" aria-hidden="true" />
               <div>
                 <h3 className={headingClass}>{t("email")}</h3>
                 <p className={paragraphClass}>
@@ -72,7 +72,7 @@ export default function ContactFormAndDetails({
 
             {/* Address Section */}
             <div className="flex max-w-60 items-start gap-4">
-              <MapPin className="h-7 w-7" aria-hidden="true" />
+              <MapPin className="min-h-6 min-w-6" aria-hidden="true" />
               <div>
                 <h3 className={headingClass}>{t("office")}</h3>
                 <p className={paragraphClass}>
@@ -92,48 +92,54 @@ export default function ContactFormAndDetails({
             </div>
 
             {/* Invoice Information Section */}
-            <div className="flex max-w-60 flex-col items-start gap-4">
-              <FileText className="max-h-10 max-w-10" aria-hidden="true" />
-              <div>
-                <h3 className={headingClass}>{t("invoice-info")}</h3>
-                <p className={paragraphClass}>
-                  <strong>{contactDetails.nazwaFirmyOne}</strong>
-                </p>
-                <p className={paragraphClass}>
-                  {contactDetails.adresFakturLineOne}
-                </p>
-                <p className={paragraphClass}>
-                  {contactDetails.adresFakturLineTwo}
-                </p>
-                <p className={paragraphClass}>
-                  <span>NIP:</span> {contactDetails.numerNipOne}
-                </p>
-                <p className={paragraphClass}>
-                  <span>REGON:</span> {contactDetails.numerRegonOne}
-                </p>
-              </div>
-              <div className="mt-1">
-                <p className={paragraphClass}>
-                  <strong>{contactDetails.nazwaFirmyTwo}</strong>
-                </p>
-                <p className={paragraphClass}>
-                  {contactDetails.adresFakturLineOne}
-                </p>
-                <p className={paragraphClass}>
-                  {contactDetails.adresFakturLineTwo}
-                </p>
-                <p className={paragraphClass}>
-                  <span>NIP:</span> {contactDetails.numerNipTwo}
-                </p>
-                <p className={paragraphClass}>
-                  <span>REGON:</span> {contactDetails.numerRegonTwo}
-                </p>
+            <div className="flex max-w-60 items-start gap-4">
+              <FileText className="min-h-6 min-w-6" aria-hidden="true" />
+              <div className="flex flex-col space-y-4">
+                <div>
+                  <h3 className={headingClass}>{t("invoice-info")}</h3>
+                  <p className={paragraphClass}>
+                    <span className="font-bolder text-[1.025rem] leading-tight">
+                      {contactDetails.nazwaFirmyOne}
+                    </span>
+                  </p>
+                  <p className={paragraphClass}>
+                    {contactDetails.adresFakturLineOne}
+                  </p>
+                  <p className={paragraphClass}>
+                    {contactDetails.adresFakturLineTwo}
+                  </p>
+                  <p className={paragraphClass}>
+                    <span>NIP:</span> {contactDetails.numerNipOne}
+                  </p>
+                  <p className={paragraphClass}>
+                    <span>REGON:</span> {contactDetails.numerRegonOne}
+                  </p>
+                </div>
+                <div className="mt-1">
+                  <p className={paragraphClass}>
+                    <span className="font-bolder text-[1.025rem] leading-tight">
+                      {contactDetails.nazwaFirmyTwo}
+                    </span>
+                  </p>
+                  <p className={paragraphClass}>
+                    {contactDetails.adresFakturLineOne}
+                  </p>
+                  <p className={paragraphClass}>
+                    {contactDetails.adresFakturLineTwo}
+                  </p>
+                  <p className={paragraphClass}>
+                    <span>NIP:</span> {contactDetails.numerNipTwo}
+                  </p>
+                  <p className={paragraphClass}>
+                    <span>REGON:</span> {contactDetails.numerRegonTwo}
+                  </p>
+                </div>
               </div>
             </div>
           </FadeInSection>
 
           {/* Contact Form */}
-          <FadeInSection className="max-w-xl">
+          <FadeInSection className="mt-8 max-w-xl">
             <ContactForm
               color={"light"}
               contactFormSubjects={contactForm.contactFormSubjects.map(
