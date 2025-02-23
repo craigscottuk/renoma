@@ -13,7 +13,11 @@ function asString(value: FormDataEntryValue | null): string {
 const jobApplicationSchema = z.object({
   fullName: z.string().min(2),
   email: z.string().email(),
-  phone: z.string().regex(/^[0-9+\s-]{9,}$/),
+  phone: z
+    .string()
+    .regex(/^[0-9+\s-]{9,}$/)
+    .optional()
+    .or(z.literal("")),
   motivationLetter: z.string().max(1500),
   consent: z.string(), // Expecting "true" or "false"
   formSource: z.string().optional(),
