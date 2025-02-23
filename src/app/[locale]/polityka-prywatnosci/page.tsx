@@ -26,7 +26,7 @@ const QUERY = `
   }
 }`;
 
-const OPTIONS = { next: { revalidate: 86400 } };
+const OPTIONS = { next: { revalidate: 60 } };
 // 86400
 
 type Props = {
@@ -86,7 +86,7 @@ export default async function PolitykaPrywatnosci({
               : "bg-white"
           }
         >
-          <MaxWidthWrapper className="mt-24 py-24">
+          <MaxWidthWrapper className="mt-24 pb-40 pt-24">
             <div className="mx-auto max-w-2xl text-center">
               <SectionTitle
                 label={privacyHeader.label}
@@ -104,7 +104,7 @@ export default async function PolitykaPrywatnosci({
 
       {/* Privacy Policy text content */}
       {privacyText && (
-        <Privacy content={privacyText.content} paddingY="pt-16 pb-36" />
+        <Privacy content={privacyText.content} paddingY="pt-28 pb-36" />
       )}
     </>
   );
