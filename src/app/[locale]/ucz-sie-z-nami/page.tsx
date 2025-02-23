@@ -49,7 +49,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } };
+const OPTIONS = { next: { revalidate: 60 } };
 // 86400
 
 type Props = {
@@ -133,6 +133,7 @@ export default async function UczSieZNami({ params: { locale } }: Props) {
           imageLayout={learnWithUsHeader.imageLayout}
           backgroundColor={learnWithUsHeader.backgroundColor}
           aspectRatio={learnWithUsHeader.aspectRatio}
+          paddingY="py-20 md:pt-24 md:pb-36"
         />
       )}
 
@@ -141,7 +142,7 @@ export default async function UczSieZNami({ params: { locale } }: Props) {
         <WhatWeOffer
           title={whatWeOffer.title}
           offers={whatWeOffer.offers}
-          paddingY="py-20 md:py-24"
+          paddingY="py-20 md:py-28"
         />
       )}
 
@@ -153,7 +154,7 @@ export default async function UczSieZNami({ params: { locale } }: Props) {
           image={whoWeAreLookingFor.image}
           imageAlt={whoWeAreLookingFor.imageAlt}
           applyButtonText={whoWeAreLookingFor.applyButtonText}
-          paddingY="py-20 md:py-16"
+          paddingY="py-20 md:py-24"
         />
       )}
 
