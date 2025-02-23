@@ -29,6 +29,7 @@ interface PageHeaderProps {
   twoColumnText?: boolean;
   portableTextBlock?: PortableTextBlock[];
   aspectRatio?: "standard" | "wide";
+  paddingY?: string;
 }
 
 export default function PageHeader({
@@ -44,6 +45,7 @@ export default function PageHeader({
   twoColumnText = false,
   portableTextBlock,
   aspectRatio = "wide", // default to wide (16:9)
+  paddingY = "py-12 lg:py-32", // default value
 }: PageHeaderProps) {
   // Generate URLs for both desktop and mobile images
   const imageUrl =
@@ -118,7 +120,7 @@ export default function PageHeader({
       {twoColumnText ? (
         <section
           className={clsx(
-            "relative mx-auto py-12 lg:py-20",
+            "relative mx-auto py-12 lg:py-32",
             backgroundColor === "black" ? "bg-zinc-900" : "bg-white",
             imageLayout === "noImage" || imageLayout === "fullWidthBelow"
               ? "mt-24"
@@ -126,7 +128,7 @@ export default function PageHeader({
           )}
         >
           <MaxWidthWrapper>
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-16">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-20">
               <SectionTitle
                 label={label}
                 title={title}
@@ -138,7 +140,7 @@ export default function PageHeader({
               />
               <div
                 className={clsx(
-                  "motion-preset-blur-up lg:col-span-2 lg:col-start-2 lg:columns-2 lg:gap-8",
+                  "motion-preset-blur-up lg:col-span-2 lg:col-start-2 lg:columns-2 lg:gap-20",
                   textColor === "white" ? "text-white" : "text-black",
                 )}
               >
@@ -157,7 +159,8 @@ export default function PageHeader({
           {/* Text - Section title and description */}
           <section
             className={clsx(
-              "relative mx-auto py-12 lg:py-20",
+              "relative mx-auto",
+              paddingY, //py-12 lg:py-32
               headerFullWidth && imagePosition === "above" && showImage
                 ? "mt-24 lg:mt-0"
                 : "",
@@ -249,7 +252,7 @@ export default function PageHeader({
                     "relative hidden lg:block",
                     imageLayout === "portraitRight"
                       ? clsx(
-                          "lg:-mb-80 lg:-mt-12 lg:h-auto lg:w-[420px]",
+                          "lg:-mb-80 lg:-mt-16 lg:h-auto lg:w-[420px]",
                           aspectRatio === "standard"
                             ? "lg:aspect-[3/4]"
                             : "lg:aspect-[3/4]",
@@ -257,7 +260,7 @@ export default function PageHeader({
                       : "",
                     imageLayout === "landscapeRight"
                       ? clsx(
-                          "lg:mx-auto lg:w-1/2 lg:self-start",
+                          "mt-[38px] lg:mx-auto lg:w-1/2 lg:self-start",
                           aspectRatio === "standard"
                             ? "lg:aspect-[4/3]"
                             : "lg:aspect-[16/10]",
