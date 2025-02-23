@@ -88,7 +88,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } };
+const OPTIONS = { next: { revalidate: 60 } };
 // 86400
 
 type Props = {
@@ -236,9 +236,8 @@ export default async function ONas({ params: { locale } }: Props) {
           imageAlt={servicesHeader.imageAlt}
           imageLayout={servicesHeader.imageLayout}
           backgroundColor={servicesHeader.backgroundColor}
-          aspectRatio={
-            servicesHeader.aspectRatio as "standard" | "wide" | undefined
-          }
+          aspectRatio={servicesHeader.aspectRatio}
+          paddingY="py-20 md:pt-24 md:pb-36"
         />
       )}
       {/* Conditionally render Services Group Sections */}
@@ -249,6 +248,7 @@ export default async function ONas({ params: { locale } }: Props) {
             servicesGroup.serviceGroupTwo,
             servicesGroup.serviceGroupThree,
           ]}
+          paddingY="py-20 md:pt-5 pb-32"
         />
       )}
 
