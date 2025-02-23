@@ -42,7 +42,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 10 } };
+const OPTIONS = { next: { revalidate: 60 } };
 // 86400
 
 type Props = {
@@ -122,7 +122,8 @@ export default async function Faq({ params: { locale } }: Props) {
           imageAlt={faqHeader.imageAlt}
           imageLayout={faqHeader.imageLayout}
           backgroundColor={faqHeader.backgroundColor}
-          aspectRatio={faqHeader.aspectRatio as "standard" | "wide" | undefined}
+          aspectRatio={faqHeader.aspectRatio}
+          paddingY="py-20 md:pt-24 md:pb-36"
         />
       )}
 
