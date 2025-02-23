@@ -3,7 +3,7 @@
 import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header";
 import { client } from "@/sanity/client";
-import LabOffer from "./offer";
+import LabOffer from "./lab-offer";
 // import { AboutLab } from "./about-lab";
 import { PortableTextBlock } from "next-sanity";
 import CTA from "@/components/cta";
@@ -50,7 +50,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } };
+const OPTIONS = { next: { revalidate: 60 } };
 // 86400
 
 type Props = {
@@ -164,7 +164,7 @@ export default async function RenomaLab({ params: { locale } }: Props) {
           title={labOffer.title}
           offers={labOffer.offers}
           collaborationDescription={labOffer.collaborationDescription}
-          paddingY="py-36"
+          paddingY="py-24"
           colorScheme="zincLight"
         />
       )}
