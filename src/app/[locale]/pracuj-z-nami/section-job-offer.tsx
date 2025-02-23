@@ -5,6 +5,7 @@ import { PortableTextBlock } from "next-sanity";
 import SectionTitle from "@/components/section-title";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { FadeInSection } from "@/components/fade-in-section";
+import { Separator } from "@/components/ui/separator";
 
 interface SectionJobOfferProps {
   title: string;
@@ -37,11 +38,15 @@ export default function SectionJobOffer({
               motionPreset="blur-left"
               textColor="black"
               textAlign="left"
+              className="mb-10"
             />
           </FadeInSection>
         </div>
+        <FadeInSection translateY>
+          <Separator className="mb-12" />
+        </FadeInSection>
 
-        <div className="mx-auto px-4 py-12">
+        <div className="mx-auto">
           {jobOffers.map((job, index) => (
             <JobOfferCard key={index} job={job} />
           ))}
