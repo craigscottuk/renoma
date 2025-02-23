@@ -45,7 +45,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 10 } };
+const OPTIONS = { next: { revalidate: 60 } };
 // 86400
 
 type Props = {
@@ -129,6 +129,7 @@ export default async function Kontakt({ params: { locale } }: Props) {
           imageLayout={contactHeader.imageLayout}
           backgroundColor={contactHeader.backgroundColor}
           aspectRatio={contactHeader.aspectRatio}
+          paddingY="py-20 md:pt-24 md:pb-36"
         />
       )}
 
@@ -137,7 +138,7 @@ export default async function Kontakt({ params: { locale } }: Props) {
         <ContactFormAndDetails
           contactForm={contactForm}
           contactDetails={contactDetails}
-          paddingY="py-16 md:py-28"
+          paddingY="py-16 md:pt-32 md:pb-36"
         />
       )}
     </>
