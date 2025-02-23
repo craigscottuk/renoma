@@ -57,12 +57,12 @@ export default function WhoWeAreLookingFor({
                     as="h2"
                     className="mb-20"
                   />
-
-                  <PortableText
-                    value={newCriteria}
-                    components={portableTextComponents}
-                  />
-
+                  <div className="list-indented mb-10">
+                    <PortableText
+                      value={newCriteria}
+                      components={portableTextComponents}
+                    />
+                  </div>
                   {/* <CustomButton
                     animateOnView={false}
                     onClick={() => setIsModalOpen(true)}
@@ -79,7 +79,7 @@ export default function WhoWeAreLookingFor({
                     {applyButtonText}
                   </Button>
                 </div>
-                <div className="relative m-6 h-[400px] lg:max-h-[600px] lg:min-h-full">
+                <div className="relative">
                   <Image
                     src={imageUrl}
                     alt={imageAlt || "Header image"}
@@ -94,13 +94,13 @@ export default function WhoWeAreLookingFor({
             </CardContent>
           </Card>
         </FadeInSection>
+        <JobApplicationDialog
+          open={isModalOpen}
+          onOpenChange={setIsModalOpen}
+          jobTitle={"Generic Position"}
+          formSource="whoWeAre"
+        />
       </MaxWidthWrapper>
-      <JobApplicationDialog
-        open={isModalOpen}
-        onOpenChange={setIsModalOpen}
-        jobTitle={"Generic Position"}
-        formSource="whoWeAre"
-      />
     </section>
   );
 }
