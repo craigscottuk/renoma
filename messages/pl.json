@@ -111,6 +111,11 @@
     "submit": "WYŚLIJ",
     "sending": "Wysyłanie...",
     "success": "Dziękujemy za kontakt! Kopia wiadomości została wysłana na Twój adres email.",
+    "thankYou": {
+      "title": "Dziękujemy!",
+      "message": "Dziękujemy za kontakt! Kopia wiadomości została wysłana na Twój adres email.",
+      "button": "Wyślij kolejną wiadomość"
+    },
     "validation": {
       "firstName": "Imię musi mieć co najmniej 2 znaki",
       "lastName": "Nazwisko musi mieć co najmniej 2 znaki",
@@ -124,7 +129,7 @@
   },
   "footer": {
     "copyright": "© {year} PKZ Renoma. Wszelkie prawa zastrzeżone.",
-    "privacyPolicy": "Polityka Prywatności",
+    "privacyPolicy": "Polityka prywatności",
     "scrollToTop": "Powrót do góry",
     "contactLink": "/kontakt",
     "contact": "Kontakt",
@@ -135,6 +140,7 @@
     "nextCaseStudy": "Następna realizacja"
   },
   "jobOfferForm": {
+    "sending": "Wysyłanie...",
     "applyNow": "Aplikuj teraz",
     "applyPosition": "Aplikuj na stanowisko: {jobTitle}",
     "applyInternship": "Aplikuj na program staży i praktyk",
@@ -152,7 +158,7 @@
     "uploadHint": "Przeciągnij pliki lub kliknij, aby dodać",
     "uploadFormatsHint": "Dozwolone formaty: PDF, DOC, DOCX, JPG, PNG, ZIP, RAR",
     "submit": "Wyślij aplikację",
-    "thankYouTitle": "Dziękujemy za przesłanie aplikacji!",
+    "thankYouTitle": "Dziękujemy!",
     "thankYouBody": "Otrzymaliśmy Twoje zgłoszenie i przesłaliśmy jego kopię na Twój email. Skontaktujemy się z Tobą wkrótce.",
     "closeButton": "Zamknij okno",
     "errorTitle": "Wystąpił błąd podczas wysyłania aplikacji.",
