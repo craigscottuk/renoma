@@ -90,7 +90,7 @@ function FaqAccordion({ faqItems }: FaqAccordionProps) {
             <AccordionTrigger className="text-[1.4rem] text-zinc-950">
               {item.question}
             </AccordionTrigger>
-            <AccordionContent className="max-w-[95%] text-pretty pb-6 text-[1.1rem] text-zinc-900">
+            <AccordionContent className="max-w-[90%] text-pretty pb-6 text-[1.1rem] text-zinc-900">
               <div>{fixPolishOrphans(item.answer)}</div>
               <AnimatedLink
                 className="text-`zinc-900 mt-5 text-base"
