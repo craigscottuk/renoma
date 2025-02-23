@@ -78,8 +78,11 @@ export default function JobOfferCard({ job }: { job: JobOffer }) {
       <Card
         ref={cardRef}
         className={clsx(
-          "mb-6 cursor-pointer scroll-mt-28",
+          "mb-12 scroll-mt-28 px-10 py-6",
           selectedColorScheme.card,
+          {
+            "cursor-pointer": !isExpanded,
+          },
         )}
         onClick={() => {
           // Prevent expanding when modal is open
@@ -93,7 +96,7 @@ export default function JobOfferCard({ job }: { job: JobOffer }) {
           <div className="flex items-start justify-between">
             <div>
               <CardTitle
-                className="mb-5 text-[1.8rem] tracking-[-0.015em] marker:leading-tight"
+                className="mb-6 cursor-pointer p-0 text-left font-bolder text-[2rem] leading-tight tracking-[-0.015em] text-zinc-900"
                 onClick={(e) => {
                   e.stopPropagation();
                   cardRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -103,7 +106,7 @@ export default function JobOfferCard({ job }: { job: JobOffer }) {
               </CardTitle>
               <CardDescription
                 className={clsx(
-                  "mb-5 max-w-[55rem] text-[1.1rem]",
+                  "mb-5 max-w-[75ch] text-[1.1rem]",
                   selectedColorScheme.cardContent,
                 )}
               >
@@ -129,43 +132,45 @@ export default function JobOfferCard({ job }: { job: JobOffer }) {
         </CardHeader>
         <CardContent>
           <div
-            className={`max-w-[52rem] overflow-hidden text-pretty transition-all duration-300 ${
-              isExpanded ? "max-h-[1000px]" : "max-h-0"
+            className={`overflow-hidden transition-all duration-300 ${
+              isExpanded ? "max-h-[2000px]" : "max-h-0"
             }`}
           >
-            {newResponsibilities.length > 0 && (
-              <>
-                <h3 className="mb-2 text-lg font-semibold">
-                  {t("responsibilitiesTitle")}
-                </h3>
-                <PortableText
-                  value={newResponsibilities}
-                  components={portableTextComponents}
-                />
-              </>
-            )}
-            {newRequirements.length > 0 && (
-              <>
-                <h3 className="mb-2 text-lg font-semibold">
-                  {t("requirementsTitle")}
-                </h3>
-                <PortableText
-                  value={newRequirements}
-                  components={portableTextComponents}
-                />
-              </>
-            )}
-            {newBenefits.length > 0 && (
-              <>
-                <h3 className="mb-2 text-lg font-semibold">
-                  {t("benefitsTitle")}
-                </h3>
-                <PortableText
-                  value={newBenefits}
-                  components={portableTextComponents}
-                />
-              </>
-            )}
+            <div className="list-indented my-10 max-w-[70ch] space-y-10 text-pretty">
+              {newResponsibilities.length > 0 && (
+                <div className="space-y-5">
+                  <h3 className="mb-2 font-bolder text-xl text-zinc-800">
+                    {t("responsibilitiesTitle")}
+                  </h3>
+                  <PortableText
+                    value={newResponsibilities}
+                    components={portableTextComponents}
+                  />
+                </div>
+              )}
+              {newRequirements.length > 0 && (
+                <div className="space-y-5">
+                  <h3 className="mb-2 font-bolder text-xl text-zinc-800">
+                    {t("requirementsTitle")}
+                  </h3>
+                  <PortableText
+                    value={newRequirements}
+                    components={portableTextComponents}
+                  />
+                </div>
+              )}
+              {newBenefits.length > 0 && (
+                <div className="space-y-5">
+                  <h3 className="mb-2 font-bolder text-xl text-zinc-800">
+                    {t("benefitsTitle")}
+                  </h3>
+                  <PortableText
+                    value={newBenefits}
+                    components={portableTextComponents}
+                  />
+                </div>
+              )}
+            </div>
           </div>
         </CardContent>
         <CardFooter className="flex items-center justify-between">
