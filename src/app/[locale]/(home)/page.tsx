@@ -54,7 +54,7 @@ const QUERY = `
   // },
 
   "logoSectionHome": *[_type == "logoSectionHome"][0]{
-    "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
+    "label": coalesce(label[_key == $locale][0].value, ""),
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     logos[]{
       company,
@@ -79,7 +79,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 10 } };
+const OPTIONS = { next: { revalidate: 60 } };
 // 86400
 
 type Props = {
