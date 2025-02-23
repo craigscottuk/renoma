@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { client } from "@/sanity/client";
 import AnimatedLink from "@/components/animated-link";
 import { FadeInSection } from "@/components/fade-in-section";
+import fixPolishOrphans from "@/utils/fixPolishOrphans";
 
 interface FooterProps {
   variant?: "light" | "dark";
@@ -62,7 +63,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } };
+const OPTIONS = { next: { revalidate: 60 } };
 
 const linkClasses =
   "text-base text-zinc-300 decoration-zinc-200 decoration-1 underline-offset-8 hover:text-zinc-50 hover:underline";
@@ -107,7 +108,9 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {serviceGroups.map((group, index) => (
                 <div key={index} className="space-y-4">
-                  <h4 className="font-bolder text-xl">{group.title}</h4>
+                  <h4 className="font-bolder text-xl">
+                    {fixPolishOrphans(group.title)}
+                  </h4>
                   <ul className="space-y-2">
                     {group.services.map((service, index) => (
                       <li key={index}>
@@ -117,7 +120,7 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
                           href={`/uslugi#${service.title.toLowerCase().replace(/\s+/g, "-")}`}
                           className={linkClasses}
                         >
-                          {service.title}
+                          {fixPolishOrphans(service.title)}
                         </AnimatedLink>
                       </li>
                     ))}
