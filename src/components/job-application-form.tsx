@@ -47,6 +47,7 @@ export function JobApplicationForm({
   const locale = useLocale();
 
   const [files, setFiles] = useState<File[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const formSchema = z.object({
     fullName: z.string().min(2, {
@@ -55,9 +56,11 @@ export function JobApplicationForm({
     email: z.string().email({
       message: t("validation.emailInvalid"),
     }),
-    phone: z.string().regex(/^[0-9+\s-]{9,}$/, {
-      message: t("validation.phoneInvalid"),
-    }),
+    phone: z
+      .string()
+      .regex(/^[0-9+\s-]{9,}$/, { message: t("validation.phoneInvalid") })
+      .optional()
+      .or(z.literal("")),
     motivationLetter: z.string().max(1500, {
       message: t("validation.motivationLetterMax"),
     }),
@@ -107,11 +110,14 @@ export function JobApplicationForm({
   };
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true);
     try {
       const formData = new FormData();
       formData.append("fullName", values.fullName);
       formData.append("email", values.email);
-      formData.append("phone", values.phone);
+      if (values.phone) {
+        formData.append("phone", values.phone);
+      }
       formData.append("motivationLetter", values.motivationLetter);
       formData.append("consent", values.consent.toString());
       formData.append("formSource", formSource);
@@ -134,6 +140,8 @@ export function JobApplicationForm({
     } catch (error) {
       console.error(error);
       onError();
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -342,7 +350,7 @@ export function JobApplicationForm({
           type="submit"
           className="w-full rounded-none bg-zinc-700 hover:bg-zinc-100 hover:text-zinc-800 md:w-auto"
         >
-          {t("submit")}
+          {isLoading ? t("sending") : t("submit")}
         </Button>
       </form>
       <style jsx global>{`
