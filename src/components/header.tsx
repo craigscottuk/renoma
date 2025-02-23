@@ -3,7 +3,7 @@ import MaxWidthWrapper from "./max-width-wrapper";
 import LocaleSwitcher from "./navigation/locale-switcher";
 import MainNavigation from "./navigation/main-navigation";
 import SideNavigation from "./navigation/side-navigation";
-import BreakpointReadout from "./breakpoint-readout";
+// import BreakpointReadout from "./breakpoint-readout";
 
 export default function Header() {
   return (
@@ -30,7 +30,7 @@ export default function Header() {
         </div>
       </MaxWidthWrapper>
       {/* Breakpoint Readout */}
-      <BreakpointReadout />
+      {/* <BreakpointReadout /> */}
     </header>
   );
 }
