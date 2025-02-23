@@ -10,6 +10,14 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { JobApplicationForm } from "./job-application-form";
 import { useTranslations } from "next-intl";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
+import { Send } from "lucide-react";
 
 interface JobApplicationDialogProps {
   open: boolean;
@@ -34,11 +42,31 @@ export function JobApplicationDialog({
   if (submissionStatus === "success") {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="myDialog h-[90vh] max-w-3xl overflow-y-auto bg-zinc-900 px-16 py-12 text-zinc-50">
-          <div className="space-y-4 text-center">
-            <h2 className="text-xl font-bold">{t("thankYouTitle")}</h2>
-            <p className="text-sm text-zinc-300">{t("thankYouBody")}</p>
-            <Button onClick={handleClose}>{t("closeButton")}</Button>
+        <DialogContent className="myDialog h-[90vh] max-w-3xl overflow-hidden border-none bg-zinc-900 px-16 py-12 text-zinc-50">
+          <div className="pt- flex min-h-screen w-full items-start">
+            <Card className="mx-auto max-w-md border-none bg-zinc-900 shadow-none">
+              <CardHeader>
+                <CardTitle className="text-center font-bolder text-[1.7rem] text-zinc-50">
+                  <div className="flex items-center justify-center">
+                    <Send className="mr-4 h-6 w-6 text-zinc-50" />
+                    {t("thankYouTitle")}
+                  </div>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-pretty text-center text-[1.1rem] text-zinc-200">
+                  {t("thankYouBody")}
+                </p>
+              </CardContent>
+              <CardFooter className="flex justify-center">
+                <Button
+                  className="mt-4 bg-zinc-200 text-[1.1rem] text-zinc-900 hover:bg-zinc-50"
+                  onClick={handleClose}
+                >
+                  {t("closeButton")}
+                </Button>
+              </CardFooter>
+            </Card>
           </div>
         </DialogContent>
       </Dialog>
@@ -88,3 +116,23 @@ export function JobApplicationDialog({
     </Dialog>
   );
 }
+
+<style jsx global>{`
+  .myDialog::-webkit-scrollbar {
+    width: 6px;
+  }
+  .myDialog::-webkit-scrollbar-track {
+    background: #18181b;
+  }
+  .myDialog::-webkit-scrollbar-thumb {
+    background: #27272a;
+    border-radius: 9999px;
+  }
+  .myDialog::-webkit-scrollbar-thumb:hover {
+    background: #27272a;
+  }
+  .myDialog {
+    scrollbar-width: auto;
+    scrollbar-color: #27272a #18181b;
+  }
+`}</style>;
