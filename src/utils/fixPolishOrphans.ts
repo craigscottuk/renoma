@@ -1,7 +1,7 @@
 // Fixes Polish orphans by replacing specific spaces with non-breaking spaces.
 export default function fixPolishOrphans(text: string) {
   if (!text) return text;
-  const shortWords = ["z", "w", "i", "na", "o", "że"];
+  const shortWords = ["z", "w", "i", "na", "o", "że", "aby"];
   let fixedText = text;
   shortWords.forEach((word) => {
     const capitalizedWord = word.charAt(0).toUpperCase() + word.slice(1);
