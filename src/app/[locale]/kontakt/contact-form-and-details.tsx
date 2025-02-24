@@ -98,7 +98,7 @@ export default function ContactFormAndDetails({
                 <div>
                   <h3 className={headingClass}>{t("invoice-info")}</h3>
                   <p className={paragraphClass}>
-                    <span className="font-bolder text-[1.025rem] leading-tight">
+                    <span className="text-[1.025rem] leading-tight">
                       {contactDetails.nazwaFirmyOne}
                     </span>
                   </p>
@@ -117,7 +117,7 @@ export default function ContactFormAndDetails({
                 </div>
                 <div className="mt-1">
                   <p className={paragraphClass}>
-                    <span className="font-bolder text-[1.025rem] leading-tight">
+                    <span className="text-[1.025rem] leading-tight">
                       {contactDetails.nazwaFirmyTwo}
                     </span>
                   </p>
