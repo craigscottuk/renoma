@@ -358,13 +358,12 @@ export default function ContactForm({
                       <>
                         Ich willige in die Verarbeitung meiner personenbezogenen
                         Daten durch die{" "}
-                        <span className="font-regular">
+                        <span className="">
                           Pracownię Konserwacji Zabytków RENOMA Hanna
                           Rubnikowicz-Góźdź
                         </span>{" "}
-                        und{" "}
-                        <span className="font-regular">RENOMA Igor Góźdź</span>{" "}
-                        zum Zwecke der Beantwortung meiner Anfrage gemäß der{" "}
+                        und <span className="">RENOMA Igor Góźdź</span> zum
+                        Zwecke der Beantwortung meiner Anfrage gemäß der{" "}
                         <AnimatedLink
                           href="/polityka-prywatnosci"
                           target="_blank"
@@ -378,14 +377,13 @@ export default function ContactForm({
                     ) : locale === "en" ? (
                       <>
                         “I consent to the processing of my personal data by the{" "}
-                        <span className="font-regular">
+                        <span className="">
                           Pracownię Konserwacji Zabytków RENOMA Hanna
                           Rubnikowicz-Góźdź
                         </span>{" "}
-                        and{" "}
-                        <span className="font-regular">RENOMA Igor Góźdź</span>{" "}
-                        , for the purpose of responding to my inquiry, in
-                        accordance with the{" "}
+                        and <span className="">RENOMA Igor Góźdź</span> , for
+                        the purpose of responding to my inquiry, in accordance
+                        with the{" "}
                         <AnimatedLink
                           href="/polityka-prywatnosci"
                           target="_blank"
@@ -399,18 +397,16 @@ export default function ContactForm({
                       <>
                         Wyrażam zgodę na przetwarzanie moich danych osobowych
                         przez{" "}
-                        <span className="font-regular">
+                        <span className="">
                           Pracownię Konserwacji Zabytków RENOMA Hanna
                           Rubnikowicz-Góźdź
                         </span>{" "}
-                        oraz{" "}
-                        <span className="font-regular">RENOMA Igor Góźdź</span>{" "}
-                        w celu udzielenia odpowiedzi na moje zapytanie, zgodnie
-                        z{" "}
+                        oraz <span className="">RENOMA Igor Góźdź</span> w celu
+                        udzielenia odpowiedzi na moje zapytanie, zgodnie z{" "}
                         <AnimatedLink
                           href="/polityka-prywatnosci"
                           target="_blank"
-                          className="font-regular text-base"
+                          className="text-base"
                           showArrow={false}
                         >
                           polityce prywatności.
