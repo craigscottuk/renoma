@@ -95,7 +95,7 @@ export default function ImageCarousel({
     return (
       <div
         className={`${
-          isStandard ? "aspect-[4/3]" : "aspect-[16/9]"
+          isStandard ? "aspect-[4/3]" : "aspect-[16/10]"
         } relative w-full`}
       >
         {/* Ensure spacing around the carousel */}
@@ -105,7 +105,7 @@ export default function ImageCarousel({
             alt={image.caption || "Image"}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="rounded-[4px] object-cover object-center"
+            className="object-cover object-center"
           />
         </div>
         {hasCurrentCaption && (
