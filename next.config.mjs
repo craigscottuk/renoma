@@ -25,6 +25,18 @@ const nextConfig = {
         destination: "/admin",
         permanent: true,
       },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "pkzrenoma.com" }],
+        destination: "https://pkzrenoma.com/:path*",
+        permanent: false, // false means temporary redirect (302)
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "pkzrenoma.pl" }],
+        destination: "https://pkzrenoma.com/pl/:path*",
+        permanent: false,
+      },
     ];
   },
 };
