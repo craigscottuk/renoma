@@ -30,7 +30,7 @@ import {
   caseStudiesPageSeo,
 } from "./case-studies";
 import {
-  aboutLab,
+  // aboutLab,
   labOffer,
   renomaLab,
   renomaLabHeader,
@@ -104,7 +104,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     // Renoma Lab
     renomaLab,
     renomaLabHeader,
-    aboutLab,
+    // aboutLab,
     labOffer,
     renomaLabPageSeo,
 
