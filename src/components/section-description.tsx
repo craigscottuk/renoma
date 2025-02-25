@@ -11,7 +11,7 @@ interface SectionDescriptionProps {
   textColor?: "black" | "white";
   textAlign?: "left" | "right";
   marginTop?: boolean;
-  textStyle?: "text-wrap" | "text-balance" | "text-normal";
+  textStyle?: "text-wrap" | "text-balance" | "text-normal" | "";
   animateOnView?: boolean;
   animationDirection?: "left" | "right" | "up";
   delay?: number;
@@ -24,7 +24,7 @@ export default function SectionDescription({
   textColor = "black",
   textAlign = "left",
   marginTop = false,
-  textStyle = "text-balance",
+  textStyle = "",
   animateOnView = false,
   delay = 0.2,
 }: SectionDescriptionProps) {
@@ -71,13 +71,12 @@ export default function SectionDescription({
         animate={controls}
         variants={descriptionVariants}
         className={clsx(
-          "text-balance",
-          "max-w-sm text-[1.1rem] leading-relaxed",
+          "max-w-md text-[0.95rem] leading-relaxed lg:text-[1.1rem]",
           textColorClass,
           textAlign,
           textStyle,
           className,
-          "md:max-w-[32rem]",
+          "lg:max-w-[32rem]",
         )}
       >
         {finalDescription}
