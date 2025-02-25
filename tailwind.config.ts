@@ -95,13 +95,14 @@ const config: Config = {
         },
         scroll: {
           "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(calc(-100% - 3rem))" }, // Adjust for gap
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        scroll: "scroll 20s linear infinite",
+        scroll: "scroll 60s linear infinite", // Desktop
+        "scroll-mobile": "scroll 70s linear infinite", // Mobile
       },
     },
   },
