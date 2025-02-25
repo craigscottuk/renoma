@@ -176,18 +176,18 @@ export const structure: StructureResolver = (S, context) =>
                 title: "Sekcja 1: Nagłówek",
                 id: "singletonRenomaLabHeader",
               }),
-              singletonDocumentListItem({
-                S,
-                context,
-                type: "aboutLab",
-                title: "Sekcja 2: O RenomaLAB",
-                id: "singletonAboutLab",
-              }),
+              // singletonDocumentListItem({
+              //   S,
+              //   context,
+              //   type: "aboutLab",
+              //   title: "Sekcja 2: O RenomaLAB",
+              //   id: "singletonAboutLab",
+              // }),
               singletonDocumentListItem({
                 S,
                 context,
                 type: "labOffer",
-                title: "Sekcja 3: Oferta",
+                title: "Sekcja 2: Oferta",
                 id: "singletonLabOffer",
               }),
               singletonDocumentListItem({
