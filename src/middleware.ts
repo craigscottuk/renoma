@@ -18,3 +18,7 @@ export const config = {
     "/((?!api|_next|_vercel|admin|.*\\..*).*)",
   ],
 };
+
+// TODO: To restore multi-language support:
+// 1) Change "/(pl)/:path*" back to "/(de|en|pl)/:path*"
+// 2) This will allow multiple locale segments again
