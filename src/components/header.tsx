@@ -1,6 +1,6 @@
 import { Link } from "@/i18n/routing";
 import MaxWidthWrapper from "./max-width-wrapper";
-import LocaleSwitcher from "./navigation/locale-switcher";
+// import LocaleSwitcher from "./navigation/locale-switcher";
 import MainNavigation from "./navigation/main-navigation";
 import SideNavigation from "./navigation/side-navigation";
 // import BreakpointReadout from "./breakpoint-readout";
@@ -23,7 +23,7 @@ export default function Header() {
           <div className="ml-auto flex h-full items-center pt-2.5 md:pt-5">
             <MainNavigation />
             {/* Locale Switcher */}
-            <LocaleSwitcher className="motion-preset-blur-up-sm hidden xl:flex" />
+            {/* <LocaleSwitcher className="motion-preset-blur-up-sm hidden xl:flex" /> */}
             {/* Side Navigation */}
             <SideNavigation />
           </div>
