@@ -63,7 +63,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 10 } };
+const OPTIONS = { next: { revalidate: 86400 } };
 
 const linkClasses =
   "text-base text-zinc-300 decoration-zinc-200 decoration-1 underline-offset-8 hover:text-zinc-50 hover:underline";
@@ -151,79 +151,80 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
             )}
           />
           <FadeInSection>
-            <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-between">
-              <div className="flex w-full flex-col-reverse items-center gap-4 sm:w-auto sm:flex-row">
-                <div className="flex flex-col items-center gap-4 sm:flex-row">
-                  <Link
-                    href={"/polityka-prywatnosci" as StaticRoutePaths}
-                    className={clsx(linkClasses, "text-sm")}
-                  >
-                    {t("privacyPolicy")}
-                  </Link>
-                  <div className="flex space-x-4">
-                    <NextLink
-                      href={socialMediaLinks.linkedIn}
-                      aria-label="LinkedIn"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <LinkedInIcon
-                        className={clsx(
-                          "h-5 w-5 fill-zinc-200",
-                          variant === "light"
-                            ? "fill-zinc-950"
-                            : "fill-zinc-200",
-                        )}
-                      />
-                    </NextLink>
-                    <NextLink
-                      href={socialMediaLinks.facebook}
-                      aria-label="Facebook"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FacebookIcon
-                        className={clsx(
-                          "h-5 w-5 fill-zinc-200",
-                          variant === "light"
-                            ? "fill-zinc-950"
-                            : "fill-zinc-200",
-                        )}
-                      />
-                    </NextLink>
-                    <NextLink
-                      href={socialMediaLinks.instagram}
-                      aria-label="Instagram"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <InstagramIcon
-                        className={clsx(
-                          "h-5 w-5 fill-zinc-200",
-                          variant === "light"
-                            ? "fill-zinc-950"
-                            : "fill-zinc-200",
-                        )}
-                      />
-                    </NextLink>
-                  </div>
-                </div>
+            <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-4">
+              <div
+                className={clsx(
+                  "flex flex-col items-center gap-4 sm:flex-row sm:gap-4",
+                  variant === "light" ? lightClasses : darkClasses,
+                )}
+              >
                 <p className="text-center text-sm text-zinc-200">
                   {t("copyright", { year: currentYear })}
                 </p>
               </div>
-              <Button
-                variant="outline"
-                size="icon"
-                className={clsx(
-                  variant === "light" ? "fill-red-500" : "fill-blue-500",
-                  variant === "light" ? lightClasses : darkClasses,
-                )}
-                onClick={scrollToTop}
-                aria-label={t("scrollToTop")}
-              >
-                <ChevronUp className="h-4 w-4" />
-              </Button>
+              <div className="flex items-center space-x-8">
+                <Link
+                  href={"/polityka-prywatnosci" as StaticRoutePaths}
+                  className={clsx(linkClasses, "text-sm")}
+                >
+                  {t("privacyPolicy")}
+                </Link>
+                <div className="flex space-x-4">
+                  <NextLink
+                    href={socialMediaLinks.linkedIn}
+                    aria-label="LinkedIn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <LinkedInIcon
+                      className={clsx(
+                        "h-5 w-5 fill-zinc-200",
+                        variant === "light" ? "fill-zinc-950" : "fill-zinc-200",
+                      )}
+                    />
+                  </NextLink>
+                  <NextLink
+                    href={socialMediaLinks.facebook}
+                    aria-label="Facebook"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FacebookIcon
+                      className={clsx(
+                        "h-5 w-5 fill-zinc-200",
+                        variant === "light" ? "fill-zinc-950" : "fill-zinc-200",
+                      )}
+                    />
+                  </NextLink>
+                  <NextLink
+                    href={socialMediaLinks.instagram}
+                    aria-label="Instagram"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <InstagramIcon
+                      className={clsx(
+                        "h-5 w-5 fill-zinc-200",
+                        variant === "light" ? "fill-zinc-950" : "fill-zinc-200",
+                      )}
+                    />
+                  </NextLink>
+                </div>
+
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className={clsx(
+                    "ml-5",
+                    variant === "light" ? "fill-red-500" : "fill-blue-500",
+                    variant === "light" ? lightClasses : darkClasses,
+                  )}
+                  onClick={scrollToTop}
+                  aria-label={t("scrollToTop")}
+                >
+                  <ChevronUp className="h-4 w-4" />
+                </Button>
+              </div>
             </div>
           </FadeInSection>
         </div>
