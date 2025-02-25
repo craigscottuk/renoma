@@ -2,7 +2,7 @@
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
-import { Mail, MapPin, Phone, FileText } from "lucide-react";
+import { Mail, MapPin, Phone, FileText, Mailbox } from "lucide-react";
 import ContactForm from "@/app/[locale]/kontakt/contact-form";
 import AnimatedLink from "@/components/animated-link";
 import { FadeInSection } from "@/components/fade-in-section";
@@ -30,7 +30,7 @@ type ContactDetailsSectionProps = {
 
 const paragraphClass = "text-zinc-900 text-[1rem] leading-relaxed";
 const headingClass =
-  "mb-4 font-bolder text-[1.7rem] leading-tight tracking-[-0.015em] text-zinc-800";
+  "mb-4 font-bolder text-[1.5rem] leading-tight tracking-[-0.015em] text-zinc-800";
 
 export default function ContactFormAndDetails({
   contactDetails,
@@ -71,23 +71,40 @@ export default function ContactFormAndDetails({
             </div>
 
             {/* Address Section */}
-            <div className="flex max-w-60 items-start gap-4">
-              <MapPin className="min-h-6 min-w-6" aria-hidden="true" />
-              <div>
-                <h3 className={headingClass}>{t("office")}</h3>
-                <p className={paragraphClass}>
-                  {contactDetails.adresBiuraLineOne}
-                </p>
-                <p className={paragraphClass}>
-                  {contactDetails.adresBiuraLineTwo}
-                </p>
-                <AnimatedLink
-                  href="https://maps.app.goo.gl/jeWnz8HYg3yHwUdE7"
-                  external={true}
-                  className="mt-4 text-base"
-                >
-                  Zobacz na mapie
-                </AnimatedLink>
+            <div className="flex max-w-60 flex-col space-y-8">
+              {/* Office Address Block */}
+              <div className="flex items-start gap-4">
+                <FileText className="min-h-6 min-w-6" aria-hidden="true" />
+                <div>
+                  <h3 className={headingClass}>{t("office")}</h3>
+                  <p className={paragraphClass}>
+                    {contactDetails.adresBiuraLineOne}
+                  </p>
+                  <p className={paragraphClass}>
+                    {contactDetails.adresBiuraLineTwo}
+                  </p>
+                  <AnimatedLink
+                    href="https://maps.app.goo.gl/jeWnz8HYg3yHwUdE7"
+                    external={true}
+                    className="mt-4 text-base"
+                  >
+                    Zobacz na mapie
+                  </AnimatedLink>
+                </div>
+              </div>
+
+              {/* Correspondence Address Block */}
+              <div className="flex items-start gap-4">
+                <Mailbox className="min-h-6 min-w-6" aria-hidden="true" />
+                <div>
+                  <h3 className={headingClass}>Adres korespondencyjny</h3>
+                  <p className={paragraphClass}>
+                    {contactDetails.adresBiuraLineOne}
+                  </p>
+                  <p className={paragraphClass}>
+                    {contactDetails.adresBiuraLineTwo}
+                  </p>
+                </div>
               </div>
             </div>
 
