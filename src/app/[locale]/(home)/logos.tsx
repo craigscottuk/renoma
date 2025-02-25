@@ -59,15 +59,11 @@ export default function LogoShowcase({
 }: LogoShowcaseProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // Removed the duplication logic, so there's only one .scroll-content row
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
-
-    // Clone the logos to ensure smooth infinite scrolling
-    const content = scrollContainer.querySelector(".scroll-content");
-    if (content) {
-      scrollContainer.appendChild(content.cloneNode(true));
-    }
+    // No more cloning...
   }, []);
 
   return (
@@ -93,23 +89,26 @@ export default function LogoShowcase({
             />
           </div>
         </div>
+
         <FadeInSection>
-          <div ref={scrollRef} className="relative flex w-full overflow-hidden">
-            <div className="scroll-content flex min-w-full shrink-0 animate-scroll items-center justify-around gap-8 bg-white grayscale">
+          <div ref={scrollRef} className="relative w-full overflow-hidden">
+            <div className="scroll-content animate-scroll-mobile flex min-w-max shrink-0 flex-nowrap items-center gap-4 bg-white grayscale md:animate-scroll md:gap-10">
               {logos.map((logo: Logo, index: number) => (
                 <Link
                   key={index}
                   href={logo.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-auto w-auto items-center justify-center"
+                  className="flex h-auto w-auto flex-shrink-0 items-center justify-center"
                 >
                   <Image
                     src={logo.src}
                     alt={logo.company}
-                    className="h-[130px] w-full object-contain"
+                    className="h-[100px] w-auto object-contain md:h-[130px]"
                     width={240}
                     height={112}
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, 240px"
                   />
                 </Link>
               ))}
