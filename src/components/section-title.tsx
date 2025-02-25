@@ -65,7 +65,7 @@ export default function SectionTitle({
     <div
       ref={ref}
       className={clsx(
-        "max-w-[22rem] sm:max-w-[33rem] md:max-w-[43rem]",
+        "max-w-[22rem] sm:max-w-[33rem] md:max-w-[36rem] lg:max-w-[43rem]",
         textAlign === "center" && "mx-auto",
       )}
       aria-label={label || title} // Accessibility improvement
@@ -78,7 +78,7 @@ export default function SectionTitle({
         >
           <p
             className={clsx(
-              "mb-4 text-sm uppercase tracking-wide md:mb-6",
+              "mb-6 text-sm uppercase tracking-wide",
               textAlign === "left"
                 ? "text-left"
                 : textAlign === "right"
@@ -100,7 +100,7 @@ export default function SectionTitle({
           className={clsx(
             `motion-preset-${motionPreset}`,
             // `motion-preset-blur-right`,
-            "text-balance text-5xl font-light leading-[1.06] md:text-6xl md:leading-[1.06]",
+            "text-balance text-[2.75rem] font-light leading-[1.06] md:text-6xl md:text-[3rem] md:leading-[1.06]",
             className,
             textColor === "black" ? "text-zinc-950" : "text-zinc-100",
             textAlign === "left"
