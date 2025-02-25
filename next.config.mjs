@@ -25,30 +25,30 @@ const nextConfig = {
         destination: "/admin",
         permanent: true,
       },
-      {
-        source: "/((?!pl).*)",
-        has: [{ type: "host", value: "pkzrenoma.com" }],
-        destination: "https://pkzrenoma.com/pl/:path*",
-        permanent: false, // false means temporary redirect (302)
-      },
-      {
-        source: "/((?!pl).*)",
-        has: [{ type: "host", value: "pkzrenoma.pl" }],
-        destination: "https://pkzrenoma.com/pl/:path*",
-        permanent: false,
-      },
-      {
-        source: "/((?!pl).*)",
-        has: [{ type: "host", value: "pkzrenoma.com" }],
-        destination: "https://pkzrenoma.com/pl/:path*",
-        permanent: false,
-      },
-      {
-        source: "/((?!pl).*)",
-        has: [{ type: "host", value: "pkzrenoma.pl" }],
-        destination: "https://pkzrenoma.com/pl/:path*",
-        permanent: false,
-      },
+      // {
+      //   source: "/((?!pl).*)",
+      //   has: [{ type: "host", value: "pkzrenoma.com" }],
+      //   destination: "https://pkzrenoma.com/pl/:path*",
+      //   permanent: false, // false means temporary redirect (302)
+      // },
+      // {
+      //   source: "/((?!pl).*)",
+      //   has: [{ type: "host", value: "pkzrenoma.pl" }],
+      //   destination: "https://pkzrenoma.com/pl/:path*",
+      //   permanent: false,
+      // },
+      // {
+      //   source: "/((?!pl).*)",
+      //   has: [{ type: "host", value: "pkzrenoma.com" }],
+      //   destination: "https://pkzrenoma.com/pl/:path*",
+      //   permanent: false,
+      // },
+      // {
+      //   source: "/((?!pl).*)",
+      //   has: [{ type: "host", value: "pkzrenoma.pl" }],
+      //   destination: "https://pkzrenoma.com/pl/:path*",
+      //   permanent: false,
+      // },
     ];
   },
 };
