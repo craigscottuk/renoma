@@ -12,6 +12,9 @@ type Props = {
 
 // TODO: To restore multi-language support:
 // 1. Change this back to: return routing.locales.map((locale) => ({ locale }));
+// TODO: To restore multi-language support:
+// 1) Change generateStaticParams back to: return routing.locales.map((locale) => ({ locale }));
+// 2) Modify the if statement to include all locales (de|en|pl)
 export function generateStaticParams() {
   // Temporarily only generate Polish
   return [{ locale: "pl" }];
