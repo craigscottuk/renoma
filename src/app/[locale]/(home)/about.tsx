@@ -23,9 +23,9 @@ export default function SectionAbout({
   return (
     <section className={clsx("mx-auto bg-white", paddingY)}>
       <MaxWidthWrapper>
-        <div className="grid gap-0 md:grid-cols-2 md:gap-24">
+        <div className="grid pr-5 md:grid-cols-2 md:gap-16 lg:gap-24">
           {/* Right Column (Heading and Title) for Mobile, Hidden on Desktop */}
-          <div className="mb-6 md:hidden">
+          <div className="mb-7 md:hidden">
             <SectionTitle
               label={label}
               title={title}
@@ -45,7 +45,6 @@ export default function SectionAbout({
               textColor="black"
               animateOnView={true}
               animationDirection="left"
-              className="text-pretty"
             />
           </div>
 
