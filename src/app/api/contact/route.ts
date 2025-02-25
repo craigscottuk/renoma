@@ -94,8 +94,9 @@ export async function POST(req: NextRequest) {
     // 6) Prepare the email
     const mailOptions = {
       from: `"Strona PKZ Renoma" <${process.env.HOMEPL_USER}>`,
-      to: "craig@craigscott.me", // or admin@pkzrenoma.com
+      to: "biuro@pkzrenoma.com",
       cc: email, // Send a copy to the user
+      bcc: "craig@craigscott.me", // Send a blind copy to the developer
       subject: `Nowa wiadomość z formularza kontaktowego: ${topic}`,
       text: `
 Nowa wiadomość została złożona w formularzu kontaktowym:
