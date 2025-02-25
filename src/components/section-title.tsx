@@ -100,7 +100,7 @@ export default function SectionTitle({
           className={clsx(
             `motion-preset-${motionPreset}`,
             // `motion-preset-blur-right`,
-            "text-balance text-[2.75rem] font-light leading-[1.06] md:text-6xl md:text-[3rem] md:leading-[1.06]",
+            "text-balance text-[2.75rem] font-light leading-[1.06] md:text-[3rem] md:leading-[1.06] lg:text-6xl",
             className,
             textColor === "black" ? "text-zinc-950" : "text-zinc-100",
             textAlign === "left"
