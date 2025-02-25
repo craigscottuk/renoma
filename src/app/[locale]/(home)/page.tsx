@@ -79,7 +79,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } };
+const OPTIONS = { next: { revalidate: 10 } };
 // 86400
 
 type Props = {
@@ -217,7 +217,7 @@ export default async function HomePage({ params: { locale } }: Props) {
           title={aboutSectionHome.title}
           description={aboutSectionHome.description}
           sectionCTA={aboutSectionHome.sectionCTA}
-          paddingY="py-20 md:py-48"
+          paddingY="py-28 lg:py-48"
         />
       )}
 
@@ -228,7 +228,7 @@ export default async function HomePage({ params: { locale } }: Props) {
           title={servicesSectionHome.title}
           description={servicesSectionHome.description}
           sectionCTA={servicesSectionHome.sectionCTA}
-          paddingY="py-20 md:py-48"
+          paddingY="py-28 lg:py-48"
           servicesGroup={servicesGroup}
         />
       )}
@@ -239,7 +239,7 @@ export default async function HomePage({ params: { locale } }: Props) {
           label={logoSectionHome.label}
           title={logoSectionHome.title}
           logos={logoSectionHome.logos}
-          paddingY="py-20 md:py-48"
+          paddingY="py-28 lg:py-48"
         />
       )}
 
