@@ -48,7 +48,7 @@ export default function SectionUslugiHome({
   return (
     <section className={clsx("mx-auto bg-zinc-900 text-zinc-100", paddingY)}>
       <MaxWidthWrapper>
-        <div className="relative grid items-center gap-6 md:grid-cols-2 md:gap-24">
+        <div className="relative grid items-center gap-6 pr-5 md:grid-cols-2 md:gap-24">
           {/* Left Column */}
           <SectionTitle
             label={label}
