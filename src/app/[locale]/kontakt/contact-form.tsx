@@ -2,7 +2,7 @@
 "use client";
 import clsx from "clsx";
 import * as z from "zod";
-import { useState } from "react";
+import { useState, useEffect } from "react"; // Import useEffect
 import { Send } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
@@ -75,20 +75,34 @@ export default function ContactForm({
 
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [selectKey, setSelectKey] = useState(0); // Add a key for the Select component
+
+  // Define initial default values, include topic
+  const initialDefaultValues = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    topic: "", // Add topic with an empty string
+    message: "",
+    privacy: false,
+  };
+
+  const [defaultValues, setDefaultValues] = useState(initialDefaultValues);
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      topic: "",
-      message: "",
-      privacy: false,
-      // attachment: undefined,
-    },
+    defaultValues: defaultValues, // Use the stateful defaultValues
   });
+
+  // Update defaultValues when isSubmitted changes to false
+  useEffect(() => {
+    if (!isSubmitted) {
+      setDefaultValues(initialDefaultValues);
+      form.reset(initialDefaultValues); // Reset form with initial values
+      setSelectKey((prevKey) => prevKey + 1); // Update the key to re-render the Select
+    }
+  }, [isSubmitted, form]);
 
   // Comment out file state
   // const [files, setFiles] = useState<File[]>([]);
@@ -179,7 +193,11 @@ export default function ContactForm({
   return (
     <Form {...form}>
       {isSubmitted ? (
-        <ContactFormThankYou onReset={() => setIsSubmitted(false)} />
+        <ContactFormThankYou
+          onReset={() => {
+            setIsSubmitted(false);
+          }}
+        />
       ) : (
         // Notice: we keep the same fields. We'll add a new file input below.
         <form
@@ -269,6 +287,7 @@ export default function ContactForm({
               <FormItem>
                 <FormControl>
                   <Select
+                    key={selectKey} // Use the key to force re-render
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
