@@ -74,7 +74,7 @@ export default function ContactFormAndDetails({
             <div className="flex max-w-60 flex-col space-y-8">
               {/* Office Address Block */}
               <div className="flex items-start gap-4">
-                <FileText className="min-h-6 min-w-6" aria-hidden="true" />
+                <MapPin className="min-h-6 min-w-6" aria-hidden="true" />
                 <div>
                   <h3 className={headingClass}>{t("office")}</h3>
                   <p className={paragraphClass}>
