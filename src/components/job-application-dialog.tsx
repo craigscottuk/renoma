@@ -43,7 +43,7 @@ export function JobApplicationDialog({
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent className="myDialog h-[90vh] max-w-3xl overflow-hidden border-none bg-zinc-900 px-16 py-12 text-zinc-50">
-          <div className="pt- flex min-h-screen w-full items-start">
+          <div className="pt- flex min-h-screen w-full items-center">
             <Card className="mx-auto max-w-md border-none bg-zinc-900 shadow-none">
               <CardHeader>
                 <CardTitle className="text-center font-bolder text-[1.7rem] text-zinc-50">
