@@ -37,7 +37,7 @@ export default function CustomButton({
   });
 
   const defaultClasses =
-    "group inline-flex items-center text-base transition-opacity";
+    "group inline-flex items-center text-[0.9rem] md:text-base transition-opacity";
   const lightClasses = "text-zinc-950 border-black hover:text-zinc-950";
   const darkClasses = "text-zinc-100 border-white hover:text-zinc-100";
 
@@ -68,7 +68,7 @@ export default function CustomButton({
       initial={animateOnView ? "hidden" : "visible"}
       animate={controls}
       variants={motionVariants}
-      className="mt-16 flex w-full"
+      className="mt-12 flex w-full md:mt-16"
     >
       <span
         className={clsx(
@@ -84,13 +84,13 @@ export default function CustomButton({
       </span>
       <div
         className={clsx(
-          "flex h-10 w-8 items-center justify-center border border-current p-2 transition-colors delay-200 duration-200 group-hover:delay-0",
+          "flex h-7 w-6 items-center justify-center border border-current p-1 transition-colors delay-200 duration-200 group-hover:delay-0 md:h-9 md:w-8 md:p-2",
           variant === "light"
             ? "group-hover:bg-zinc-900 group-hover:text-zinc-100"
             : "group-hover:border-white group-hover:bg-white group-hover:text-zinc-950",
         )}
       >
-        <ChevronRight className="transform transition-transform" />
+        <ChevronRight className="transform text-base" />
       </div>
     </motion.div>
   );
