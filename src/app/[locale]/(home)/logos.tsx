@@ -6,8 +6,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { FadeInSection } from "@/components/fade-in-section";
 
 interface Logo {
   company: string;
@@ -20,35 +19,6 @@ interface LogoShowcaseProps {
   title: string;
   logos: Logo[];
   paddingY: string;
-}
-
-function FadeInSection({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  const { ref, controls } = useIntersectionObserver({
-    animateOnView: true,
-    threshold: 0.3,
-    once: true, // Animate only once
-  });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={controls}
-      variants={{
-        hidden: { opacity: 0, y: 50 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-      }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
 }
 
 export default function LogoShowcase({
@@ -92,7 +62,7 @@ export default function LogoShowcase({
 
         <FadeInSection>
           <div ref={scrollRef} className="relative w-full overflow-hidden">
-            <div className="scroll-content animate-scroll-mobile flex min-w-max shrink-0 flex-nowrap items-center gap-4 bg-white grayscale md:animate-scroll md:gap-10">
+            <div className="scroll-content flex min-w-max shrink-0 animate-scroll-mobile flex-nowrap items-center gap-4 bg-white grayscale md:animate-scroll md:gap-10">
               {logos.map((logo: Logo, index: number) => (
                 <Link
                   key={index}
