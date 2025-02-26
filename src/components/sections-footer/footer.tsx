@@ -154,15 +154,15 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
             <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-4">
               <div
                 className={clsx(
-                  "flex flex-col items-center gap-4 sm:flex-row sm:gap-4",
+                  "order-2 flex flex-col items-center gap-4 sm:order-1 sm:flex-row sm:gap-4",
                   variant === "light" ? lightClasses : darkClasses,
                 )}
               >
-                <p className="text-center text-sm text-zinc-200">
+                <p className="mt-4 text-center text-sm text-zinc-200 md:mt-0">
                   {t("copyright", { year: currentYear })}
                 </p>
               </div>
-              <div className="flex items-center space-x-8">
+              <div className="order-1 flex items-center space-x-8 sm:order-2">
                 <Link
                   href={"/polityka-prywatnosci" as StaticRoutePaths}
                   className={clsx(linkClasses, "text-sm")}
