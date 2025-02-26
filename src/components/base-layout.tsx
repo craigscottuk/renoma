@@ -6,7 +6,7 @@ import localFont from "next/font/local";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import Footer from "@/components/sections-footer/footer";
-import { Analytics } from "@vercel/analytics/react";
+// import { Analytics } from "@vercel/analytics/react";
 
 const helveticaNeueLight = localFont({
   src: "./fonts/HelveticaNeueLight.otf",
@@ -53,7 +53,7 @@ export default async function BaseLayout({ children, locale }: Props) {
             <Footer locale={locale} />
           </div>
         </NextIntlClientProvider>
-        <Analytics />
+        {/* <Analytics /> */}
       </body>
     </html>
   );
