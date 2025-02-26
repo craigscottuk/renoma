@@ -3,7 +3,6 @@
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import SectionTitle from "@/components/section-title";
 import clsx from "clsx";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { FadeInSection } from "@/components/fade-in-section";
@@ -29,7 +28,6 @@ export default function LogoShowcase({
 }: LogoShowcaseProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Removed the duplication logic, so there's only one .scroll-content row
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
@@ -51,8 +49,8 @@ export default function LogoShowcase({
           </div>
           <div className="md:hidden">
             <SectionTitle
-              label="NASI KLIENCI"
-              title="Zaufali nam"
+              label={label}
+              title={title}
               textAlign="left"
               animateOnView={true}
               animationDirection="left"
@@ -71,14 +69,12 @@ export default function LogoShowcase({
                   rel="noopener noreferrer"
                   className="flex h-auto w-auto flex-shrink-0 items-center justify-center"
                 >
-                  <Image
+                  <img
                     src={logo.src}
                     alt={logo.company}
                     className="h-[100px] w-auto object-contain md:h-[130px]"
                     width={240}
                     height={112}
-                    loading="lazy"
-                    sizes="(max-width: 768px) 100vw, 240px"
                   />
                 </Link>
               ))}
