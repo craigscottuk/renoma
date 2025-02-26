@@ -70,6 +70,7 @@ export default function SectionUslugiHome({
                 textColor="white"
                 animateOnView={true}
                 animationDirection="right"
+                animationDirectionMobile="left"
               />
               <div className="w-full text-left">
                 <CustomButton
