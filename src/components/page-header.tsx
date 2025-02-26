@@ -17,7 +17,7 @@ interface PageHeaderProps {
   description: string;
   sectionButton?: string;
   image?: SanityImageSource | string;
-  mobileImage?: SanityImageSource | string; // Add this new prop
+  mobileImage?: SanityImageSource | string;
   imageAlt?: string;
   imageLayout?:
     | "fullWidthAbove"
@@ -123,7 +123,7 @@ export default function PageHeader({
             "relative mx-auto py-12 lg:py-32",
             backgroundColor === "black" ? "bg-zinc-900" : "bg-white",
             imageLayout === "noImage" || imageLayout === "fullWidthBelow"
-              ? "mt-24"
+              ? "mt-20 md:mt-24"
               : "",
           )}
         >
@@ -169,7 +169,7 @@ export default function PageHeader({
                 : "",
               imageLayout === "portraitRight" ||
                 imageLayout === "landscapeRight"
-                ? "mt-24"
+                ? "md:mt-24" // make edits here mt-12
                 : "",
               imageLayout === "noImage" ? "lg:mt-24 lg:min-h-[22rem]" : "",
               backgroundColor === "black" ? "bg-zinc-900" : "bg-white",
@@ -177,7 +177,7 @@ export default function PageHeader({
           >
             {/* Small-screen header image strip */}
             {!headerFullWidth && imageUrl && showImage && (
-              <MaxWidthWrapper className="relative -mt-12 mb-4 block h-44 w-full lg:hidden">
+              <MaxWidthWrapper className="relative mb-4 block h-44 w-full lg:hidden">
                 <Image
                   src={imageUrl}
                   alt={imageAlt || "Header image"}
@@ -260,7 +260,7 @@ export default function PageHeader({
                       : "",
                     imageLayout === "landscapeRight"
                       ? clsx(
-                          "mt-[38px] lg:mx-auto lg:w-1/2 lg:self-start",
+                          "lg:mx-auto lg:mt-[38px] lg:w-1/2 lg:self-start",
                           aspectRatio === "standard"
                             ? "lg:aspect-[4/3]"
                             : "lg:aspect-[16/10]",
