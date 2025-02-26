@@ -216,7 +216,6 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
                   size="icon"
                   className={clsx(
                     "ml-5",
-                    variant === "light" ? "fill-red-500" : "fill-blue-500",
                     variant === "light" ? lightClasses : darkClasses,
                   )}
                   onClick={scrollToTop}

@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { motion, Variants } from "framer-motion";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import fixPolishOrphans from "@/utils/fixPolishOrphans";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 interface SectionDescriptionProps {
   description: string;
@@ -14,6 +15,7 @@ interface SectionDescriptionProps {
   textStyle?: "text-wrap" | "text-balance" | "text-normal" | "";
   animateOnView?: boolean;
   animationDirection?: "left" | "right" | "up";
+  animationDirectionMobile?: "left" | "right" | "up";
   delay?: number;
 }
 
@@ -26,6 +28,8 @@ export default function SectionDescription({
   marginTop = false,
   textStyle = "",
   animateOnView = false,
+  animationDirection = "right",
+  animationDirectionMobile,
   delay = 0.2,
 }: SectionDescriptionProps) {
   const { ref, controls } = useIntersectionObserver({
@@ -34,13 +38,30 @@ export default function SectionDescription({
     once: true,
   });
 
+  const isSmallScreen = useMediaQuery("(max-width: 768px)");
+
+  const currentAnimationDirection =
+    isSmallScreen && animationDirectionMobile
+      ? animationDirectionMobile
+      : animationDirection;
+
   const textColorClass =
     textColor === "black" ? "text-zinc-950/90" : "text-zinc-100/90";
 
   const createMotionVariants = (additionalDelay = 0): Variants => {
-    const presetDirection =
-      motionPreset === "blur-left" ? -3 : motionPreset === "blur-right" ? 3 : 0;
-    const presetVertical = motionPreset === "blur-up" ? -3 : 0;
+    let presetDirection = 0;
+    let presetVertical = 0;
+
+    if (animateOnView) {
+      if (currentAnimationDirection === "left") {
+        presetDirection = -3;
+      } else if (currentAnimationDirection === "right") {
+        presetDirection = 3;
+      } else if (currentAnimationDirection === "up") {
+        presetVertical = animationDirectionMobile ? 3 : 3;
+      }
+    }
+
     return {
       hidden: {
         opacity: 0,

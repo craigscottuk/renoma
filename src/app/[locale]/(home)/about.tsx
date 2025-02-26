@@ -45,6 +45,7 @@ export default function SectionAbout({
               textColor="black"
               animateOnView={true}
               animationDirection="left"
+              animationDirectionMobile="up"
             />
           </div>
 
@@ -63,7 +64,7 @@ export default function SectionAbout({
             <CustomButton
               variant="light"
               animateOnView={true}
-              animationDirection="left"
+              animationDirection="up"
               href="/o-nas"
             >
               {sectionCTA}

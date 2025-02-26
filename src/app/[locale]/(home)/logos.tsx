@@ -3,11 +3,9 @@
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import SectionTitle from "@/components/section-title";
 import clsx from "clsx";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { FadeInSection } from "@/components/fade-in-section";
 
 interface Logo {
   company: string;
@@ -22,35 +20,6 @@ interface LogoShowcaseProps {
   paddingY: string;
 }
 
-function FadeInSection({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  const { ref, controls } = useIntersectionObserver({
-    animateOnView: true,
-    threshold: 0.3,
-    once: true, // Animate only once
-  });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={controls}
-      variants={{
-        hidden: { opacity: 0, y: 50 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-      }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
 export default function LogoShowcase({
   label,
   title,
@@ -59,7 +28,6 @@ export default function LogoShowcase({
 }: LogoShowcaseProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Removed the duplication logic, so there's only one .scroll-content row
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
@@ -81,8 +49,8 @@ export default function LogoShowcase({
           </div>
           <div className="md:hidden">
             <SectionTitle
-              label="NASI KLIENCI"
-              title="Zaufali nam"
+              label={label}
+              title={title}
               textAlign="left"
               animateOnView={true}
               animationDirection="left"
@@ -92,7 +60,7 @@ export default function LogoShowcase({
 
         <FadeInSection>
           <div ref={scrollRef} className="relative w-full overflow-hidden">
-            <div className="scroll-content animate-scroll-mobile flex min-w-max shrink-0 flex-nowrap items-center gap-4 bg-white grayscale md:animate-scroll md:gap-10">
+            <div className="scroll-content flex min-w-max shrink-0 animate-scroll-mobile flex-nowrap items-center gap-4 bg-white grayscale md:animate-scroll md:gap-10">
               {logos.map((logo: Logo, index: number) => (
                 <Link
                   key={index}
@@ -101,14 +69,12 @@ export default function LogoShowcase({
                   rel="noopener noreferrer"
                   className="flex h-auto w-auto flex-shrink-0 items-center justify-center"
                 >
-                  <Image
+                  <img
                     src={logo.src}
                     alt={logo.company}
                     className="h-[100px] w-auto object-contain md:h-[130px]"
                     width={240}
                     height={112}
-                    loading="lazy"
-                    sizes="(max-width: 768px) 100vw, 240px"
                   />
                 </Link>
               ))}
