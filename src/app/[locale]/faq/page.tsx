@@ -123,7 +123,7 @@ export default async function Faq({ params: { locale } }: Props) {
           imageLayout={faqHeader.imageLayout}
           backgroundColor={faqHeader.backgroundColor}
           aspectRatio={faqHeader.aspectRatio}
-          paddingY="py-20 md:pt-24 md:pb-36"
+          paddingY="py-20 md:pb-24 lg:pt-24 lg:pb-36"
         />
       )}
 
