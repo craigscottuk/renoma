@@ -131,7 +131,7 @@ export default async function PracujZNami({ params: { locale } }: Props) {
           imageLayout={workWithUsHeader.imageLayout}
           backgroundColor={workWithUsHeader.backgroundColor}
           aspectRatio={workWithUsHeader.aspectRatio}
-          paddingY="py-20 md:pt-24 md:pb-36"
+          paddingY="py-20 md:pb-24 lg:pt-24 lg:pb-36"
         />
       )}
 
