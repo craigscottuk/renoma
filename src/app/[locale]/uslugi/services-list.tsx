@@ -290,7 +290,7 @@ export default function ServicesList({
           className="flex h-14 cursor-pointer items-center justify-between pl-3 pr-5"
           onClick={() => setMenuOpen((prev) => !prev)}
         >
-          <div className="flex items-center overflow-hidden text-sm text-zinc-50">
+          <div className="flex items-center overflow-hidden text-sm text-zinc-50 md:text-base">
             <Text className="h-5 w-5" />
             <span className="ml-3 mt-1 max-w-[95%] truncate">
               {menuDisplayText}
@@ -319,7 +319,7 @@ export default function ServicesList({
                 {/* Group heading */}
                 <div
                   className={cn(
-                    "flex cursor-pointer items-center justify-between border-b border-t border-zinc-800 py-4 pl-4 pr-5 text-sm hover:bg-zinc-900",
+                    "flex cursor-pointer items-center justify-between border-b border-t border-zinc-800 py-4 pl-4 pr-5 text-sm hover:bg-zinc-900 md:text-base",
                     currentGroup === group.title && "bg-zinc-900",
                   )}
                   onClick={(e) => {
@@ -343,7 +343,7 @@ export default function ServicesList({
                       <div
                         key={service.title}
                         className={cn(
-                          "cursor-pointer py-3 pl-12 pr-8 text-sm hover:bg-black",
+                          "cursor-pointer py-3 pl-12 pr-8 text-sm hover:bg-black md:text-base",
                           currentService === service.title && "bg-gold-900",
                         )}
                         onClick={() =>
