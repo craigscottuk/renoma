@@ -11,8 +11,7 @@ import { FacebookIcon, InstagramIcon, LinkedInIcon } from "./socials";
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
 import { StaticRoutePaths } from "@/lib/routes";
-import { useEffect, useState } from "react";
-import { client } from "@/sanity/client";
+
 import AnimatedLink from "@/components/animated-link";
 import { FadeInSection } from "@/components/fade-in-section";
 import fixPolishOrphans from "@/utils/fixPolishOrphans";
@@ -20,6 +19,8 @@ import fixPolishOrphans from "@/utils/fixPolishOrphans";
 interface FooterProps {
   variant?: "light" | "dark";
   locale: string;
+  serviceGroups: ServiceGroup[];
+  socialMediaLinks: SocialMediaLinks;
 }
 
 interface ServiceGroup {
@@ -33,66 +34,19 @@ interface SocialMediaLinks {
   linkedIn: string;
 }
 
-const QUERY = `
-{
-  "serviceGroups": *[_type == "servicesGroup"][0]{
-    "serviceGroupOne": {
-      "title": coalesce(serviceGroupOne.title, "Brak tłumaczenia"),
-      "services": serviceGroupOne.services[]{
-        "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia")
-      }
-    },
-    "serviceGroupTwo": {
-      "title": coalesce(serviceGroupTwo.title, "Brak tłumaczenia"),
-      "services": serviceGroupTwo.services[]{
-        "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia")
-      }
-    },
-    "serviceGroupThree": {
-      "title": coalesce(serviceGroupThree.title, "Brak tłumaczenia"),
-      "services": serviceGroupThree.services[]{
-        "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia")
-      }
-    }
-  },
-  "socialMediaLinks": *[_type == "socialMediaLinks"][0]{
-    "facebook": coalesce(facebook, ""),
-    "instagram": coalesce(instagram, ""),
-    "linkedIn": coalesce(linkedIn, "")
-  }
-}
-`;
-
-const OPTIONS = { next: { revalidate: 86400 } };
-
 const linkClasses =
   "text-base text-zinc-300 decoration-zinc-200 decoration-1 underline-offset-8 hover:text-zinc-50 hover:underline";
 
-export default function Footer({ variant = "dark", locale }: FooterProps) {
+export default function Footer({
+  variant = "dark",
+  serviceGroups,
+  socialMediaLinks,
+}: FooterProps) {
   const t = useTranslations("footer");
-  const [serviceGroups, setServiceGroups] = useState<ServiceGroup[]>([]);
-  const [socialMediaLinks, setSocialMediaLinks] = useState<SocialMediaLinks>({
-    facebook: "",
-    instagram: "",
-    linkedIn: "",
-  });
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await client.fetch(QUERY, { locale }, OPTIONS);
-      setServiceGroups([
-        data.serviceGroups.serviceGroupOne,
-        data.serviceGroups.serviceGroupTwo,
-        data.serviceGroups.serviceGroupThree,
-      ]);
-      setSocialMediaLinks(data.socialMediaLinks);
-    };
-
-    fetchData();
-  }, [locale]);
 
   const currentYear = new Date().getFullYear();
   const darkClasses = "text-zinc-100 bg-zinc-900";
@@ -103,7 +57,7 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
       className={clsx("", variant === "light" ? lightClasses : darkClasses)}
     >
       <MaxWidthWrapper>
-        <div className="py-16 pt-24">
+        <div className="py-16 pt-16 lg:pt-24">
           <FadeInSection>
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {serviceGroups.map((group, index) => (
@@ -158,7 +112,7 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
                   variant === "light" ? lightClasses : darkClasses,
                 )}
               >
-                <p className="mt-4 text-center text-sm text-zinc-200 md:mt-0">
+                <p className="mt-3 text-center text-sm text-zinc-300 md:mt-0 md:text-zinc-200">
                   {t("copyright", { year: currentYear })}
                 </p>
               </div>
