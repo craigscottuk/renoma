@@ -237,7 +237,7 @@ export default async function ONas({ params: { locale } }: Props) {
           imageLayout={servicesHeader.imageLayout}
           backgroundColor={servicesHeader.backgroundColor}
           aspectRatio={servicesHeader.aspectRatio}
-          paddingY="py-20 md:pt-24 md:pb-36"
+          paddingY="py-20 md:pb-24 lg:pt-24 lg:pb-36"
         />
       )}
       {/* Conditionally render Services Group Sections */}
@@ -248,7 +248,7 @@ export default async function ONas({ params: { locale } }: Props) {
             servicesGroup.serviceGroupTwo,
             servicesGroup.serviceGroupThree,
           ]}
-          paddingY="py-20 md:pt-5 pb-32"
+          paddingY="py-0 md:pt-5 lg:pb-32"
         />
       )}
 
