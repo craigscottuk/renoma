@@ -129,7 +129,7 @@ export default async function Kontakt({ params: { locale } }: Props) {
           imageLayout={contactHeader.imageLayout}
           backgroundColor={contactHeader.backgroundColor}
           aspectRatio={contactHeader.aspectRatio}
-          paddingY="py-20 md:pt-24 md:pb-36"
+          paddingY="py-20 md:pb-24 lg:pt-24 lg:pb-36"
         />
       )}
 
