@@ -169,7 +169,7 @@ export default function PageHeader({
                 : "",
               imageLayout === "portraitRight" ||
                 imageLayout === "landscapeRight"
-                ? "md:mt-24" // make edits here mt-12
+                ? "lg:mt-24"
                 : "",
               imageLayout === "noImage" ? "lg:mt-24 lg:min-h-[22rem]" : "",
               backgroundColor === "black" ? "bg-zinc-900" : "bg-white",
@@ -177,7 +177,7 @@ export default function PageHeader({
           >
             {/* Small-screen header image strip */}
             {!headerFullWidth && imageUrl && showImage && (
-              <MaxWidthWrapper className="relative mb-4 block h-44 w-full lg:hidden">
+              <MaxWidthWrapper className="relative mb-16 block aspect-[16/10] w-full lg:hidden">
                 <Image
                   src={imageUrl}
                   alt={imageAlt || "Header image"}
@@ -192,7 +192,7 @@ export default function PageHeader({
 
             {/* Section content */}
             <MaxWidthWrapper
-              className={clsx("flex min-h-96 flex-col", {
+              className={clsx("flex h-auto flex-col lg:min-h-96", {
                 "space-x-8 lg:flex-row lg:items-start":
                   imageUrl && !headerFullWidth,
                 "lg:flex-row lg:gap-8": !imageUrl || headerFullWidth,
