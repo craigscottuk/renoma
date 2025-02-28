@@ -38,15 +38,15 @@ export default function SectionJobOffer({
               motionPreset="blur-left"
               textColor="black"
               textAlign="left"
-              className="mb-10"
+              className="mb-8 md:mb-12 lg:mb-16"
             />
           </FadeInSection>
         </div>
         <FadeInSection translateY>
-          <Separator className="mb-12" />
+          <Separator className="mb-8 md:mb-12 lg:mb-16" />
         </FadeInSection>
 
-        <div className="mx-auto">
+        <div className="mx-auto space-y-6 lg:space-y-10">
           {jobOffers.map((job, index) => (
             <JobOfferCard key={index} job={job} />
           ))}
