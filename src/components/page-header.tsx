@@ -140,7 +140,7 @@ export default function PageHeader({
               />
               <div
                 className={clsx(
-                  "motion-preset-blur-up lg:col-span-2 lg:col-start-2 lg:columns-2 lg:gap-20",
+                  "motion-preset-blur-up pr-5 md:pr-20 lg:col-span-2 lg:col-start-2 lg:columns-2 lg:gap-20 lg:pr-0",
                   textColor === "white" ? "text-white" : "text-black",
                 )}
               >
