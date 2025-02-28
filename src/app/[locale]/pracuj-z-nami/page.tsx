@@ -140,7 +140,7 @@ export default async function PracujZNami({ params: { locale } }: Props) {
         <SectionJobOffer
           title={jobOffers.title}
           jobOffers={jobOffers.jobOffer}
-          paddingY="py-20 md:py-24"
+          paddingY="py-16 md:py-20 lg:py-24"
         />
       )}
 
