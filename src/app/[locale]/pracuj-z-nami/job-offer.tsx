@@ -78,7 +78,7 @@ export default function JobOfferCard({ job }: { job: JobOffer }) {
       <Card
         ref={cardRef}
         className={clsx(
-          "mb-12 scroll-mt-28 px-10 py-6",
+          "scroll-mt-28 px-1 py-1 md:px-3 md:py-5 lg:px-10 lg:py-6",
           selectedColorScheme.card,
           {
             "cursor-pointer": !isExpanded,
