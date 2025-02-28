@@ -164,7 +164,7 @@ export default async function RenomaLab({ params: { locale } }: Props) {
           title={labOffer.title}
           offers={labOffer.offers}
           collaborationDescription={labOffer.collaborationDescription}
-          paddingY="py-24"
+          paddingY="py-16 md:py-20 lg:py-24"
           colorScheme="zincLight"
         />
       )}
