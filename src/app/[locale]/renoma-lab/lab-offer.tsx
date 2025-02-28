@@ -94,7 +94,7 @@ export default function LabOffer({
       <section className={clsx("", selectedColorScheme.section, paddingY)}>
         <MaxWidthWrapper>
           <div>
-            <div className="justify-left mb-10 flex">
+            <div className="justify-left mb-8 flex md:mb-12 lg:mb-10">
               <FadeInSection translateY>
                 <SectionTitle
                   title={title}
@@ -105,18 +105,20 @@ export default function LabOffer({
             </div>
 
             <FadeInSection translateY>
-              <Separator className="mb-12" />
+              <Separator className="mb-8 md:mb-12 lg:mb-16" />
             </FadeInSection>
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-4 md:grid-cols-2 lg:gap-6">
               {newOffers.map((offer, index) => {
                 const IconComponent = iconComponents[offer.icon] || Microscope;
                 return (
                   <FadeInSection translateY key={index}>
-                    <Card className={`${selectedColorScheme.card} p-8`}>
+                    <Card
+                      className={`${selectedColorScheme.card} md:p-3 lg:p-8`}
+                    >
                       <CardHeader>
-                        <div className="flex items-start space-x-3">
+                        <div className="items-left flex flex-col space-y-3 lg:flex-row lg:items-start lg:space-x-3 lg:space-y-0">
                           <IconComponent className="h-8 w-8 text-gold-800" />
-                          <CardTitle className="mb-3 font-bolder text-[1.7rem] leading-tight tracking-[-0.015em]">
+                          <CardTitle className="mb-3 text-left font-bolder text-[1.7rem] leading-tight tracking-[-0.015em] lg:text-left">
                             {fixPolishOrphans(offer.title)}
                           </CardTitle>
                         </div>
