@@ -96,14 +96,10 @@ export default async function Realizacje({ params: { locale } }: Props) {
         />
       )}
 
-      {/* {projects && projects.length > 0 && (
-        <ProjectsList projects={projects} paddingY="py-20 md:py-48" />
-      )} */}
-
       {/* List of Projects / Case Studies */}
       <ProjectCard
         projectCardData={projects}
-        paddingY="py-36"
+        paddingY="py-20 md:py-24 lg:py-36"
         colorScheme="zincLight"
       />
 
