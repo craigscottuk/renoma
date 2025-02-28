@@ -9,7 +9,6 @@ import SectionTitle from "@/components/section-title";
 import { urlFor } from "@/sanity/lib/image";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import Image from "next/image";
-// import CustomButton from "@/components/ui/custom-button";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { FadeInSection } from "@/components/fade-in-section";
 import { transformPortableTextBlocks } from "@/utils/transformPortableTextBlocks";
@@ -47,15 +46,26 @@ export default function WhoWeAreLookingFor({
     <section className={clsx("mx-auto bg-white text-zinc-950/90", paddingY)}>
       <MaxWidthWrapper>
         <FadeInSection translateY>
+          <div className="relative aspect-[4/3] w-full lg:hidden">
+            <Image
+              src={imageUrl}
+              alt={imageAlt || "Header image"}
+              fill
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+            />
+          </div>
           <Card className="border-none bg-zinc-100">
-            <CardContent className="p-10">
+            <CardContent className="p-12 md:p-16 lg:p-14">
               <div className="grid gap-8 lg:grid-cols-2">
-                <div className="p-8 lg:p-12">
+                <div className="">
                   <SectionTitle
                     title={title}
                     textColor="black"
                     as="h2"
-                    className="mb-20"
+                    className="mb-8 md:mb-10 lg:mb-20"
                   />
                   <div className="list-indented mb-10">
                     <PortableText
@@ -63,12 +73,7 @@ export default function WhoWeAreLookingFor({
                       components={portableTextComponents}
                     />
                   </div>
-                  {/* <CustomButton
-                    animateOnView={false}
-                    onClick={() => setIsModalOpen(true)}
-                  >
-                    {applyButtonText}
-                  </CustomButton> */}
+
                   <Button
                     className="hover:bg-zinc-800 hover:text-zinc-100"
                     variant="outline"
@@ -79,13 +84,13 @@ export default function WhoWeAreLookingFor({
                     {applyButtonText}
                   </Button>
                 </div>
-                <div className="relative">
+                <div className="relative hidden min-h-[300px] w-full lg:block">
                   <Image
                     src={imageUrl}
                     alt={imageAlt || "Header image"}
                     fill
                     style={{
-                      objectFit: "cover", //
+                      objectFit: "cover",
                       objectPosition: "center",
                     }}
                   />
