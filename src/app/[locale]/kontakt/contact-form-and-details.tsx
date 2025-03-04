@@ -42,11 +42,11 @@ export default function ContactFormAndDetails({
   return (
     <section className={clsx("bg-zinc-200", paddingY)}>
       <MaxWidthWrapper>
-        <div className="grid gap-x-24 lg:grid-cols-2">
+        <div className="grid justify-center gap-x-24 gap-y-16 lg:grid-cols-2">
           {/* Contact Information in 2x2 Grid */}
-          <FadeInSection className="grid h-fit max-w-[32rem] grid-cols-2 gap-y-12 pt-8">
+          <FadeInSection className="grid h-fit max-w-[32rem] gap-x-10 gap-y-12 pt-8 md:grid-cols-2">
             {/* Phone Section */}
-            <div className="bg-zinc flex max-w-60 items-start gap-4">
+            <div className="flex max-w-60 items-start gap-4">
               <Phone className="min-h-6 min-w-6" aria-hidden="true" />
               <div>
                 <h3 className={headingClass}>{t("phone")}</h3>
