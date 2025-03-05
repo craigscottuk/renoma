@@ -41,6 +41,10 @@ export const learnWithUsHeader = defineType({
       name: "obrazSekcji",
       title: "Obraz sekcji",
     },
+    {
+      name: "kolorSekcji",
+      title: "Kolor sekcji",
+    },
   ],
   fields: [
     defineField({
@@ -71,13 +75,13 @@ export const learnWithUsHeader = defineType({
     defineField({
       name: "image",
       title: "Obraz nagłówka",
-      description:
-        "Obraz wyświetlany w nagłówku strony programu absolwenckiego, przedstawiający np. młodych profesjonalistów w trakcie pracy.",
+      description: "Obraz wyświetlany w nagłówku strony.",
       type: "image",
       options: {
         hotspot: true,
       },
       group: "obrazSekcji",
+      hidden: ({ parent }) => parent?.imageLayout === "noImage",
     }),
 
     defineField({
@@ -90,7 +94,7 @@ export const learnWithUsHeader = defineType({
         list: [
           { title: "Pełna szerokość powyżej", value: "fullWidthAbove" },
           { title: "Pełna szerokość poniżej", value: "fullWidthBelow" },
-          { title: "Portret po prawej", value: "portraitRight" },
+          { title: "Portret po prawej (ratio 3:4)", value: "portraitRight" },
           { title: "Krajobraz po prawej", value: "landscapeRight" },
           { title: "Brak obrazu", value: "noImage" },
         ],
@@ -114,7 +118,29 @@ export const learnWithUsHeader = defineType({
       },
       group: "obrazSekcji",
       initialValue: "wide",
+      hidden: ({ parent }) => parent?.imageLayout !== "landscapeRight",
     }),
+
+    defineField({
+      name: "landscapeMobileForPortraitRight",
+      title: "Obraz krajobrazowy dla małych i średnich urządzeń",
+      description:
+        "Obraz krajobrazowy 16:10, który będzie wyświetlany w nagłówku na małych i średnich urządzeniach (telefony i tablety).",
+      type: "image",
+      group: "obrazSekcji",
+      hidden: ({ parent }) => parent?.imageLayout !== "portraitRight",
+    }),
+
+    defineField({
+      name: "imageAlt",
+      title: "Alternatywny tekst obrazu nagłówka",
+      description:
+        "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie młodych profesjonalistów współpracujących przy projekcie'.",
+      type: "internationalizedArrayString",
+      group: "obrazSekcji",
+      hidden: ({ parent }) => parent?.imageLayout === "noImage",
+    }),
+
     defineField({
       name: "backgroundColor",
       title: "Kolor tła",
@@ -128,16 +154,8 @@ export const learnWithUsHeader = defineType({
         ],
         layout: "radio",
       },
-      group: "obrazSekcji",
+      group: "kolorSekcji",
       initialValue: "white",
-    }),
-    defineField({
-      name: "imageAlt",
-      title: "Alternatywny tekst obrazu nagłówka",
-      description:
-        "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie młodych profesjonalistów współpracujących przy projekcie'.",
-      type: "internationalizedArrayString",
-      group: "obrazSekcji",
     }),
   ],
 });
