@@ -1,3 +1,4 @@
+// src/app/[locale]/pracuj-z-nami/section-job-offer.tsx
 "use client";
 import clsx from "clsx";
 import JobOfferCard from "./job-offer";
@@ -38,12 +39,12 @@ export default function SectionJobOffer({
               motionPreset="blur-left"
               textColor="black"
               textAlign="left"
-              className="mb-8 md:mb-12 lg:mb-16"
+              className="mb-7"
             />
           </FadeInSection>
         </div>
         <FadeInSection translateY>
-          <Separator className="mb-8 md:mb-12 lg:mb-16" />
+          <Separator className="mb-10" />
         </FadeInSection>
 
         <div className="mx-auto space-y-6 lg:space-y-10">
