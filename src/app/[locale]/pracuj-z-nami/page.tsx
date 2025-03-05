@@ -17,7 +17,8 @@ const QUERY = `
     "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
     "imageLayout": imageLayout,
     "backgroundColor": backgroundColor,
-    "aspectRatio": coalesce(aspectRatio, "wide")
+    "aspectRatio": coalesce(aspectRatio, "wide"),
+    "landscapeMobileForPortraitRight": landscapeMobileForPortraitRight
   },
   "jobOffers": *[_type == "jobOffers"][0]{
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -69,6 +70,7 @@ interface Content {
       | "noImage";
     backgroundColor?: "black" | "white";
     aspectRatio?: "standard" | "wide";
+    landscapeMobileForPortraitRight?: string;
   };
   jobOffers: {
     title: string;
@@ -131,6 +133,9 @@ export default async function PracujZNami({ params: { locale } }: Props) {
           imageLayout={workWithUsHeader.imageLayout}
           backgroundColor={workWithUsHeader.backgroundColor}
           aspectRatio={workWithUsHeader.aspectRatio}
+          landscapeMobileForPortraitRight={
+            workWithUsHeader.landscapeMobileForPortraitRight
+          }
           paddingY="py-20 md:pb-24 lg:pt-24 lg:pb-36"
         />
       )}
