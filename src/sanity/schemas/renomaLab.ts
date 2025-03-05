@@ -40,6 +40,10 @@ export const renomaLabHeader = defineType({
       name: "obrazSekcji",
       title: "Obraz sekcji",
     },
+    {
+      name: "kolorSekcji",
+      title: "Kolor sekcji",
+    },
   ],
   fields: [
     defineField({
@@ -85,34 +89,13 @@ export const renomaLabHeader = defineType({
     defineField({
       name: "image",
       title: "Obraz nagłówka",
-      description:
-        "Obraz wyświetlany w nagłówku strony Renoma LAB, przedstawiający laboratorium lub sprzęt badawczy.",
+      description: "Obraz wyświetlany w nagłówku strony.",
       type: "image",
       options: {
         hotspot: true,
       },
       group: "obrazSekcji",
-    }),
-
-    defineField({
-      name: "mobileImage",
-      title: "Obraz nagłówka (mobile)",
-      description:
-        "Opcjonalny obraz wyświetlany w nagłówku na urządzeniach mobilnych. Jeśli nie zostanie wybrany, użyty zostanie główny obraz.",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-      group: "obrazSekcji",
-    }),
-
-    defineField({
-      name: "imageAlt",
-      title: "Alternatywny tekst obrazu nagłówka",
-      description:
-        "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie sprzętu laboratoryjnego do badań materiałów budowlanych'.",
-      type: "internationalizedArrayString",
-      group: "obrazSekcji",
+      hidden: ({ parent }) => parent?.imageLayout === "noImage",
     }),
 
     defineField({
@@ -125,8 +108,8 @@ export const renomaLabHeader = defineType({
         list: [
           { title: "Pełna szerokość powyżej", value: "fullWidthAbove" },
           { title: "Pełna szerokość poniżej", value: "fullWidthBelow" },
-          // { title: "Portret po prawej", value: "portraitRight" },
-          // { title: "Krajobraz po prawej", value: "landscapeRight" },
+          { title: "Portret po prawej (ratio 3:4)", value: "portraitRight" },
+          { title: "Krajobraz po prawej", value: "landscapeRight" },
           { title: "Brak obrazu", value: "noImage" },
         ],
         layout: "radio",
@@ -149,6 +132,27 @@ export const renomaLabHeader = defineType({
       },
       group: "obrazSekcji",
       initialValue: "wide",
+      hidden: ({ parent }) => parent?.imageLayout !== "landscapeRight",
+    }),
+
+    defineField({
+      name: "landscapeMobileForPortraitRight",
+      title: "Obraz krajobrazowy dla małych i średnich urządzeń",
+      description:
+        "Obraz krajobrazowy 16:10, który będzie wyświetlany w nagłówku na małych i średnich urządzeniach (telefony i tablety).",
+      type: "image",
+      group: "obrazSekcji",
+      hidden: ({ parent }) => parent?.imageLayout !== "portraitRight",
+    }),
+
+    defineField({
+      name: "imageAlt",
+      title: "Alternatywny tekst obrazu nagłówka",
+      description:
+        "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie młodych profesjonalistów współpracujących przy projekcie'.",
+      type: "internationalizedArrayString",
+      group: "obrazSekcji",
+      hidden: ({ parent }) => parent?.imageLayout === "noImage",
     }),
 
     defineField({
@@ -164,7 +168,7 @@ export const renomaLabHeader = defineType({
         ],
         layout: "radio",
       },
-      group: "obrazSekcji",
+      group: "kolorSekcji",
       initialValue: "white",
     }),
   ],
