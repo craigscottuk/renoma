@@ -30,6 +30,8 @@ interface PageHeaderProps {
   portableTextBlock?: PortableTextBlock[];
   aspectRatio?: "standard" | "wide";
   paddingY?: string;
+  mobileSubMenu?: boolean;
+  landscapeMobileForPortraitRight?: SanityImageSource | string;
 }
 
 export default function PageHeader({
@@ -46,6 +48,8 @@ export default function PageHeader({
   portableTextBlock,
   aspectRatio = "wide", // default to wide (16:9)
   paddingY = "py-12 lg:py-32", // default value
+  mobileSubMenu,
+  landscapeMobileForPortraitRight,
 }: PageHeaderProps) {
   // Generate URLs for both desktop and mobile images
   const imageUrl =
@@ -65,7 +69,14 @@ export default function PageHeader({
       ? mobileImage
       : mobileImage
         ? urlFor(mobileImage, 800)
-        : imageUrl;
+        : landscapeMobileForPortraitRight
+          ? urlFor(landscapeMobileForPortraitRight, 800)
+          : imageUrl;
+
+  const smallScreenImageUrl =
+    imageLayout === "portraitRight" && landscapeMobileForPortraitRight
+      ? urlFor(landscapeMobileForPortraitRight, 800)
+      : imageUrl;
 
   const headerFullWidth = twoColumnText || imageLayout.startsWith("fullWidth");
   const imagePosition = imageLayout === "fullWidthBelow" ? "below" : "above";
@@ -176,10 +187,15 @@ export default function PageHeader({
             )}
           >
             {/* Small-screen header image strip */}
-            {!headerFullWidth && imageUrl && showImage && (
-              <MaxWidthWrapper className="relative mb-16 block aspect-[16/10] w-full lg:hidden">
+            {!headerFullWidth && showImage && (
+              <MaxWidthWrapper
+                className={clsx(
+                  "relative mb-16 block aspect-[16/10] w-full lg:hidden",
+                  mobileSubMenu ? "mt-14 lg:mt-0" : "",
+                )}
+              >
                 <Image
-                  src={imageUrl}
+                  src={smallScreenImageUrl}
                   alt={imageAlt || "Header image"}
                   fill
                   style={{
