@@ -31,7 +31,7 @@ export default function AnimatedLink({
   const darkClasses = "text-zinc-100";
 
   const commonClasses = clsx(
-    "group inline-flex items-center gap-1.5 text-[1.1rem]",
+    "group inline-flex items-center gap-1 text-[1.1rem]",
     variant === "light" ? lightClasses : darkClasses,
     className,
   );
@@ -72,7 +72,7 @@ export default function AnimatedLink({
         (external ? (
           <ExternalLink className="mb-1 h-4 w-4" />
         ) : (
-          <ArrowRight className="h-4 w-4" />
+          <ArrowRight className="mb-0.5 h-4 w-4" />
         ))}
     </Link>
   );
