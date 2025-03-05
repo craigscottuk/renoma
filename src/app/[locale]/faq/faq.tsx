@@ -12,6 +12,10 @@ import { motion } from "framer-motion";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import fixPolishOrphans from "@/utils/fixPolishOrphans";
 import AnimatedLink from "@/components/animated-link";
+import SectionTitle from "@/components/section-title";
+
+import { FadeInSection } from "@/components/fade-in-section";
+import { Separator } from "@/components/ui/separator";
 
 interface FaqAccordionProps {
   faqItems: {
@@ -30,41 +34,23 @@ interface SectionFaqHomeProps {
 // FAQ Section
 // ====================
 
-function FadeInSection({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  const { ref, controls } = useIntersectionObserver({
-    animateOnView: true,
-    threshold: 0.3,
-    once: true, // Animate only once
-  });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={controls}
-      variants={{
-        hidden: { opacity: 0, y: 50 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-      }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
 export default function SectionFaqHome({ faqItems }: SectionFaqHomeProps) {
   return (
     <section className="mx-auto bg-zinc-200 py-16">
       <MaxWidthWrapper>
-        <FadeInSection>
-          <FaqAccordion faqItems={faqItems} />
+        <FadeInSection translateY>
+          <SectionTitle title={"FAQ"} className="mb-7" textColor="black" />
+        </FadeInSection>
+        <FadeInSection translateY>
+          <Separator className="mb-10" />
+        </FadeInSection>
+      </MaxWidthWrapper>
+
+      <MaxWidthWrapper>
+        <FadeInSection translateY>
+          <div className="mx-auto w-full bg-zinc-100 px-5 py-1 md:px-6 md:py-3 lg:px-8 lg:py-6">
+            <FaqAccordion faqItems={faqItems} />
+          </div>
         </FadeInSection>
       </MaxWidthWrapper>
     </section>
@@ -80,26 +66,28 @@ function FaqAccordion({ faqItems }: FaqAccordionProps) {
     <div className="mx-auto w-full">
       <Accordion type="single" collapsible className="w-full">
         {faqItems.map((item, index) => (
-          <AccordionItem
-            className={clsx("border-zinc-950/40", {
-              "border-b-0": index === faqItems.length - 1,
-            })}
-            key={index}
-            value={`item-${index}`}
-          >
-            <AccordionTrigger className="text-[1.4rem] text-zinc-950">
-              {item.question}
-            </AccordionTrigger>
-            <AccordionContent className="max-w-[90%] text-pretty pb-6 text-[1.1rem] text-zinc-900">
-              <div>{fixPolishOrphans(item.answer)}</div>
-              <AnimatedLink
-                className="text-`zinc-900 mt-5 text-base"
-                href={"/uslugi"}
-              >
-                Sprawdź nasze usługi
-              </AnimatedLink>
-            </AccordionContent>
-          </AccordionItem>
+          <FadeInSection translateY>
+            <AccordionItem
+              className={clsx("py-3", {
+                "border-b-0": index === faqItems.length - 1,
+              })}
+              key={index}
+              value={`item-${index}`}
+            >
+              <AccordionTrigger className="text-[1.3rem] leading-snug text-zinc-900 lg:text-[1.4rem]">
+                {item.question}
+              </AccordionTrigger>
+              <AccordionContent className="text-pretty pb-6 text-[1.1rem] text-zinc-900 md:max-w-[95%] lg:max-w-[90%]">
+                <div>{fixPolishOrphans(item.answer)}</div>
+                <AnimatedLink
+                  className="mt-10 text-[1.1rem] text-zinc-950"
+                  href={"/uslugi"}
+                >
+                  Sprawdź nasze usługi
+                </AnimatedLink>
+              </AccordionContent>
+            </AccordionItem>
+          </FadeInSection>
         ))}
       </Accordion>
     </div>
