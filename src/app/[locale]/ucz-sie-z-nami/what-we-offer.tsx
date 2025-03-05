@@ -28,14 +28,10 @@ export default function WhatWeOffer({
     <section className={clsx("mx-auto bg-zinc-200 text-zinc-950", paddingY)}>
       <MaxWidthWrapper>
         <FadeInSection translateY>
-          <SectionTitle
-            title={title}
-            className="mb-8 md:mb-12 lg:mb-16"
-            textColor="black"
-          />
+          <SectionTitle title={title} className="mb-7" textColor="black" />
         </FadeInSection>
         <FadeInSection translateY>
-          <Separator className="mb-8 md:mb-12 lg:mb-16" />
+          <Separator className="mb-10" />
         </FadeInSection>
       </MaxWidthWrapper>
 
