@@ -16,7 +16,8 @@ const QUERY = `
     "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
     "imageLayout": imageLayout,
     "backgroundColor": backgroundColor,
-    "aspectRatio": coalesce(aspectRatio, "wide")
+    "aspectRatio": coalesce(aspectRatio, "wide"),
+    "landscapeMobileForPortraitRight": landscapeMobileForPortraitRight
   },
 
   "faqList": *[_type == "faqList"][0]{
@@ -64,6 +65,7 @@ interface Content {
       | "noImage";
     backgroundColor?: "black" | "white";
     aspectRatio?: "standard" | "wide";
+    landscapeMobileForPortraitRight?: string;
   };
 
   faqList: {
@@ -123,6 +125,9 @@ export default async function Faq({ params: { locale } }: Props) {
           imageLayout={faqHeader.imageLayout}
           backgroundColor={faqHeader.backgroundColor}
           aspectRatio={faqHeader.aspectRatio}
+          landscapeMobileForPortraitRight={
+            faqHeader.landscapeMobileForPortraitRight
+          }
           paddingY="py-20 md:pb-24 lg:pt-24 lg:pb-36"
         />
       )}
