@@ -21,6 +21,7 @@ const QUERY = `
     "backgroundColor": backgroundColor,
     "descriptionTwoColumns": coalesce(descriptionTwoColumns[$locale], []),
     "aspectRatio": coalesce(aspectRatio, "wide"),
+    "landscapeMobileForPortraitRight": landscapeMobileForPortraitRight
   },
   "aboutLab": *[_type == "aboutLab"][0]{
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -74,6 +75,7 @@ interface Content {
     backgroundColor?: "white" | "black";
     descriptionTwoColumns: PortableTextBlock[];
     aspectRatio?: "standard" | "wide";
+    landscapeMobileForPortraitRight?: string;
   };
   aboutLab: {
     title: string;
@@ -146,6 +148,9 @@ export default async function RenomaLab({ params: { locale } }: Props) {
           aspectRatio={renomaLabHeader.aspectRatio}
           twoColumnText={true}
           portableTextBlock={renomaLabHeader.descriptionTwoColumns}
+          landscapeMobileForPortraitRight={
+            renomaLabHeader.landscapeMobileForPortraitRight
+          }
         />
       )}
 
