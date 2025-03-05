@@ -436,33 +436,38 @@ export default function ServicesList({
                               .replace(/\s+/g, "-")}`;
 
                             return (
-                              <AccordionItem
-                                key={action.title}
-                                value={action.title}
-                                // So we can apply scroll-mt offset:
-                                id={actionId}
-                                className="scroll-mt-36 md:scroll-mt-40"
-                              >
-                                <AccordionTrigger
-                                  className="text-[1.3rem] leading-snug"
-                                  onClick={() =>
-                                    handleAccordionTriggerClick(actionId)
-                                  }
+                              <FadeInSection translateY>
+                                <AccordionItem
+                                  key={action.title}
+                                  value={action.title}
+                                  // So we can apply scroll-mt offset:
+                                  id={actionId}
+                                  className="scroll-mt-36 md:scroll-mt-40"
                                 >
-                                  {fixPolishOrphans(action.title)}
-                                </AccordionTrigger>
-                                <AccordionContent className="mb-4 pr-5">
-                                  <p className="text-zinc-700">
-                                    {fixPolishOrphans(action.content)}
-                                  </p>
-                                </AccordionContent>
-                              </AccordionItem>
+                                  <AccordionTrigger
+                                    className="text-[1.3rem] leading-snug"
+                                    onClick={() =>
+                                      handleAccordionTriggerClick(actionId)
+                                    }
+                                  >
+                                    {fixPolishOrphans(action.title)}
+                                  </AccordionTrigger>
+                                  <AccordionContent className="mb-4 pr-5">
+                                    <p className="text-zinc-700">
+                                      {fixPolishOrphans(action.content)}
+                                    </p>
+                                  </AccordionContent>
+                                </AccordionItem>
+                              </FadeInSection>
                             );
                           })}
                         </Accordion>
                       </FadeInSection>
 
-                      <FadeInSection className="mt-8 pt-5 lg:mt-0 lg:w-1/2">
+                      <FadeInSection
+                        translateY
+                        className="mt-8 pt-5 lg:mt-0 lg:w-1/2"
+                      >
                         <ImageCarousel
                           images={
                             service.images?.map((img) => ({
