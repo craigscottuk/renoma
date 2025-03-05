@@ -18,7 +18,8 @@ const QUERY = `
     "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
     "imageLayout": imageLayout,
     "backgroundColor": backgroundColor,
-    "aspectRatio": coalesce(aspectRatio, "wide")
+    "aspectRatio": coalesce(aspectRatio, "wide"),
+    "landscapeMobileForPortraitRight": landscapeMobileForPortraitRight
   },
   "whatWeOffer": *[_type == "whatWeOffer"][0]{
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -49,7 +50,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } };
+const OPTIONS = { next: { revalidate: 10 } };
 // 86400
 
 type Props = {
@@ -71,6 +72,7 @@ interface Content {
       | "noImage";
     backgroundColor?: "white" | "black";
     aspectRatio?: "standard" | "wide";
+    landscapeMobileForPortraitRight?: string;
   };
   whatWeOffer: {
     title: string;
@@ -133,6 +135,9 @@ export default async function UczSieZNami({ params: { locale } }: Props) {
           imageLayout={learnWithUsHeader.imageLayout}
           backgroundColor={learnWithUsHeader.backgroundColor}
           aspectRatio={learnWithUsHeader.aspectRatio}
+          landscapeMobileForPortraitRight={
+            learnWithUsHeader.landscapeMobileForPortraitRight
+          }
           paddingY="py-20 md:pb-24 lg:pt-24 lg:pb-36"
         />
       )}
