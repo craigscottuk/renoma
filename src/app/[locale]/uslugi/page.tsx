@@ -6,8 +6,6 @@ import { client } from "@/sanity/client";
 import ServicesList from "@/app/[locale]/uslugi/services-list";
 import CTA from "@/components/cta";
 
-// import SectionFaqHome from "../faq/faq";
-
 const QUERY = `
 {
   "servicesHeader": *[_type == "servicesHeader"][0]{
@@ -18,7 +16,8 @@ const QUERY = `
     "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
     "imageLayout": imageLayout,
     "backgroundColor": backgroundColor,
-    "aspectRatio": coalesce(aspectRatio, "wide")
+    "aspectRatio": coalesce(aspectRatio, "wide"),
+    "landscapeMobileForPortraitRight": landscapeMobileForPortraitRight
   },
   
   "servicesGroup": *[_type == "servicesGroup"][0]{
@@ -110,6 +109,7 @@ interface Content {
       | "noImage";
     backgroundColor?: "black" | "white";
     aspectRatio?: "standard" | "wide";
+    landscapeMobileForPortraitRight?: string;
   };
   servicesGroup: {
     serviceGroupOne: {
@@ -237,7 +237,11 @@ export default async function ONas({ params: { locale } }: Props) {
           imageLayout={servicesHeader.imageLayout}
           backgroundColor={servicesHeader.backgroundColor}
           aspectRatio={servicesHeader.aspectRatio}
+          landscapeMobileForPortraitRight={
+            servicesHeader.landscapeMobileForPortraitRight
+          }
           paddingY="py-20 md:pb-24 lg:pt-24 lg:pb-36"
+          mobileSubMenu={true}
         />
       )}
       {/* Conditionally render Services Group Sections */}
@@ -251,18 +255,6 @@ export default async function ONas({ params: { locale } }: Props) {
           paddingY="py-0 md:pt-5 lg:pb-32"
         />
       )}
-
-      {/* FAQ Section */}
-      {/* {faqSectionHome && (
-        <SectionFaqHome
-          label={faqSectionHome.label}
-          title={faqSectionHome.title}
-          description={faqSectionHome.description}
-          sectionCTA={faqSectionHome.sectionCTA}
-          faqItems={faqSectionHome.faqItems}
-          paddingY="py-20 md:py-48"
-        />
-      )} */}
 
       {/* CTA */}
       {ctaContent && (
