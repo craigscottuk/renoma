@@ -15,7 +15,8 @@ const QUERY = `
     "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
     "imageLayout": imageLayout,
     "backgroundColor": backgroundColor,
-    "aspectRatio": coalesce(aspectRatio, "wide")
+    "aspectRatio": coalesce(aspectRatio, "wide"),
+    "landscapeMobileForPortraitRight": landscapeMobileForPortraitRight
   },
   "contactForm": *[_type == "contactForm"][0]{
     "contactFormSubjects": contactFormSubjects[].label[_key == $locale][0].value
@@ -45,7 +46,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } };
+const OPTIONS = { next: { revalidate: 10 } };
 // 86400
 
 type Props = {
@@ -67,6 +68,7 @@ interface Content {
       | "noImage";
     backgroundColor?: "black" | "white";
     aspectRatio?: "standard" | "wide";
+    landscapeMobileForPortraitRight?: string;
   };
   contactForm: {
     contactFormSubjects: string[];
@@ -129,6 +131,9 @@ export default async function Kontakt({ params: { locale } }: Props) {
           imageLayout={contactHeader.imageLayout}
           backgroundColor={contactHeader.backgroundColor}
           aspectRatio={contactHeader.aspectRatio}
+          landscapeMobileForPortraitRight={
+            contactHeader.landscapeMobileForPortraitRight
+          }
           paddingY="py-20 md:pb-24 lg:pt-24 lg:pb-36"
         />
       )}
