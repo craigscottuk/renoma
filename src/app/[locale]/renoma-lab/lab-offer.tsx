@@ -1,3 +1,5 @@
+// src/app/[locale]/renoma-lab/lab-offer.tsx
+
 "use client";
 
 import React from "react";
@@ -94,7 +96,7 @@ export default function LabOffer({
       <section className={clsx("", selectedColorScheme.section, paddingY)}>
         <MaxWidthWrapper>
           <div>
-            <div className="justify-left mb-8 flex md:mb-12 lg:mb-10">
+            <div className="justify-left mb-7 flex">
               <FadeInSection translateY>
                 <SectionTitle
                   title={title}
@@ -105,7 +107,7 @@ export default function LabOffer({
             </div>
 
             <FadeInSection translateY>
-              <Separator className="mb-8 md:mb-12 lg:mb-16" />
+              <Separator className="mb-10" />
             </FadeInSection>
             <div className="grid gap-4 md:grid-cols-2 lg:gap-6">
               {newOffers.map((offer, index) => {
