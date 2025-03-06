@@ -1,32 +1,38 @@
 "use client";
 
-import clsx from "clsx";
-import { useSelectedLayoutSegment } from "next/navigation";
-import { ComponentProps } from "react";
 import { Link } from "@/i18n/routing";
+import { cn } from "@/lib/utils";
+import { StaticRoutePaths } from "@/lib/routes";
+import { ReactNode } from "react";
+import { useSelectedLayoutSegment } from "next/navigation";
 
-export default function NavigationLink({
+interface NavigationLinkItemProps {
+  href: StaticRoutePaths;
+  children: ReactNode;
+  className?: string;
+  isHovered: boolean;
+  isAnyHovered: boolean;
+  onHover: (hovered: boolean) => void;
+}
+
+export default function NavigationLinkItem({
   href,
+  children,
   className,
   isHovered,
   isAnyHovered,
   onHover,
-  ...rest
-}: ComponentProps<typeof Link> & {
-  isHovered: boolean;
-  isAnyHovered: boolean;
-  onHover: (hovered: boolean) => void;
-}) {
+}: NavigationLinkItemProps) {
   const selectedLayoutSegment = useSelectedLayoutSegment();
   const pathname = selectedLayoutSegment ? `/${selectedLayoutSegment}` : "/";
   const isActive = pathname === href;
 
   return (
     <Link
+      href={href}
       aria-current={isActive ? "page" : undefined}
-      className={clsx(
-        "group motion-preset-blur-up inline-block py-0.5 uppercase leading-none tracking-[0.04em] antialiased transition-colors duration-300 ease-in-out",
-        className,
+      className={cn(
+        "transition-colors duration-200 ease-in-out",
         isActive
           ? "text-gold-800 underline decoration-gold-800 decoration-1 underline-offset-8"
           : isHovered
@@ -34,17 +40,13 @@ export default function NavigationLink({
             : isAnyHovered
               ? "text-zinc-400"
               : "text-zinc-950 hover:text-zinc-950",
+        className,
       )}
-      href={href}
       onMouseEnter={() => onHover(true)}
       onMouseLeave={() => onHover(false)}
-      {...rest}
     >
-      <span className="relative">
-        {rest.children}
-        {!isActive && (
-          <span className="absolute inset-x-0 -bottom-1 h-px w-0 bg-current transition-all group-hover:w-full" />
-        )}
+      <span className="block transform transition-all duration-200 ease-in-out">
+        {children}
       </span>
     </Link>
   );
