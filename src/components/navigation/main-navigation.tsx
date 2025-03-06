@@ -16,12 +16,12 @@ export default function MainNavigation() {
   }, []);
 
   return (
-    <nav className="hidden w-full items-end justify-between gap-x-1 uppercase lg:flex lg:max-w-[800px] lg:gap-x-2 lg:pl-12 xl:max-w-[1000px] xl:gap-x-3">
+    <nav className="hidden w-full items-end justify-between gap-x-1 uppercase lg:flex lg:max-w-[800px] lg:gap-x-2 lg:pl-10 xl:max-w-[1000px] xl:gap-x-3">
       {navItems.map((item, index) => {
         const { link, label } = item;
         return (
           <NavigationLinkItem
-            className="whitespace-nowrap px-0.5 text-[0.85rem] lg:px-1 lg:text-[0.95rem] xl:text-base"
+            className="whitespace-nowrap px-0.5 text-[0.85rem] tracking-[0.03em] lg:px-1 lg:text-[0.95rem] xl:text-base"
             key={index}
             href={link as StaticRoutePaths}
             isHovered={hoveredIndex === index}
