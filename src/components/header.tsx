@@ -39,7 +39,7 @@ export default function Header({ socialMediaLinks }: HeaderProps) {
             <MainNavigation />
 
             {/* Locale Switcher */}
-            <LocaleSwitcher className="motion-preset-blur-up-sm ml-1 lg:ml-0 xl:ml-4" />
+            <LocaleSwitcher className="motion-preset-blur-up-sm ml-1 lg:ml-0.5 xl:ml-4" />
 
             {/* Contact */}
             <Link href="/kontakt">
