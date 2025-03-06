@@ -78,7 +78,7 @@ export default function JobOfferCard({ job }: { job: JobOffer }) {
       <Card
         ref={cardRef}
         className={clsx(
-          "scroll-mt-28 px-1 py-1 md:px-3 md:py-5 lg:px-10 lg:py-6",
+          "scroll-mt-28 px-0 py-1 md:px-3 md:py-5 lg:px-10 lg:py-6",
           selectedColorScheme.card,
           {
             "cursor-pointer": !isExpanded,
@@ -96,7 +96,7 @@ export default function JobOfferCard({ job }: { job: JobOffer }) {
           <div className="flex items-start justify-between">
             <div>
               <CardTitle
-                className="mb-6 cursor-pointer p-0 text-left font-bolder text-[2rem] leading-tight tracking-[-0.015em] text-zinc-900"
+                className="mb-6 cursor-pointer p-0 text-left font-bolder text-[1.7rem] leading-tight tracking-[-0.015em] text-zinc-900 md:text-[2rem]"
                 onClick={(e) => {
                   e.stopPropagation();
                   cardRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -212,12 +212,11 @@ export default function JobOfferCard({ job }: { job: JobOffer }) {
           >
             {isExpanded ? (
               <>
-                {t("lessDetails")} <ChevronUp className="ml-1 inline h-4 w-4" />
+                {t("lessDetails")} <ChevronUp className="inline h-4 w-4" />
               </>
             ) : (
               <>
-                {t("moreDetails")}{" "}
-                <ChevronDown className="ml-1 inline h-4 w-4" />
+                {t("moreDetails")} <ChevronDown className="inline h-4 w-4" />
               </>
             )}
           </Button>
