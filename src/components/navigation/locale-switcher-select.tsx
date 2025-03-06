@@ -174,21 +174,21 @@ export default function LocaleSwitcherSelect({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild className={`h-[20px] py-0 ${className}`}>
+      <DropdownMenuTrigger asChild className={`h-[20px]${className}`}>
         <Button
           variant="ghost"
-          className="w-fit justify-between border-0 text-zinc-950 hover:bg-white focus-visible:ring-[none]"
+          className="w-fit justify-between border-0 p-2 px-[0.36rem] text-zinc-800 focus-visible:ring-[none] md:gap-[0.12rem] lg:pl-3 lg:hover:bg-white"
         >
-          <span className="flex items-center text-base tracking-wide">
-            <span className="mb-1 mr-2 text-base">
+          <span className="flex items-center text-base tracking-wide lg:text-[0.95rem]">
+            <span className="mb-1 mr-2 text-base lg:text-[0.95rem]">
               {localeMap[language].flag}
             </span>
             {localeMap[language].name}
           </span>
-          <ChevronDown className="h-4 w-4 opacity-50" />
+          <ChevronDown className="hidden h-4 w-4 opacity-50 xl:flex" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-fit">
+      <DropdownMenuContent className="w-fit pl-2 pt-0 md:pl-0 lg:pl-1">
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child)) {
             const { value } = child.props;
@@ -204,7 +204,7 @@ export default function LocaleSwitcherSelect({
                 }}
                 className="cursor-pointer"
               >
-                <span className="mr-2 text-base">{localeMap[value].flag}</span>
+                <span className="mb-1">{localeMap[value].flag}</span>
                 <span className="flex-1 text-base tracking-wider">
                   {localeMap[value].name}
                 </span>
