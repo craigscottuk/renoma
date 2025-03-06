@@ -143,7 +143,7 @@ export default async function Kontakt({ params: { locale } }: Props) {
         <ContactFormAndDetails
           contactForm={contactForm}
           contactDetails={contactDetails}
-          paddingY="py-16 lg:pt-32 lg:pb-36"
+          paddingY="pt-6 pb-12 md:py-16 lg:pt-32 lg:pb-36"
         />
       )}
     </>
