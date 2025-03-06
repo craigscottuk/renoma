@@ -112,11 +112,11 @@ export default function Footer({
                   variant === "light" ? lightClasses : darkClasses,
                 )}
               >
-                <p className="mt-3 text-center text-sm text-zinc-300 md:mt-0 md:text-zinc-200">
+                <p className="text-center text-sm text-zinc-300 md:mt-0 md:text-zinc-200">
                   {t("copyright", { year: currentYear })}
                 </p>
               </div>
-              <div className="order-1 flex items-center space-x-8 sm:order-2">
+              <div className="order-1 flex items-center space-x-10 sm:order-2 md:space-x-8">
                 <Link
                   href={"/polityka-prywatnosci" as StaticRoutePaths}
                   className={clsx(linkClasses, "text-sm")}
@@ -169,7 +169,7 @@ export default function Footer({
                   variant="outline"
                   size="icon"
                   className={clsx(
-                    "ml-5",
+                    "ml-5 h-8 w-8 lg:h-10 lg:w-10",
                     variant === "light" ? lightClasses : darkClasses,
                   )}
                   onClick={scrollToTop}
