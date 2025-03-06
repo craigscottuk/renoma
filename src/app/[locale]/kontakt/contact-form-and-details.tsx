@@ -28,9 +28,12 @@ type ContactDetailsSectionProps = {
   paddingY?: string;
 };
 
-const paragraphClass = "text-zinc-900 text-[1rem] leading-relaxed";
+const paragraphClass = "text-zinc-900 text-[1.1rem] leading-relaxed";
 const headingClass =
-  "mb-4 font-bolder text-[1.5rem] leading-tight tracking-[-0.015em] text-zinc-800";
+  " mb-3 md:mb-4 font-bolder text-[1.3rem] md:text-[1.5rem] leading-tight tracking-[-0.015em] text-zinc-800";
+
+const iconClass =
+  "min-h-5 min-w-5 max-h-5 max-w-5 md:min-h-6 md:min-w-6 md:max-h-6 md:max-w-6";
 
 export default function ContactFormAndDetails({
   contactDetails,
@@ -44,10 +47,11 @@ export default function ContactFormAndDetails({
       <MaxWidthWrapper>
         <div className="grid justify-center gap-x-24 gap-y-16 lg:grid-cols-2">
           {/* Contact Information in 2x2 Grid */}
-          <FadeInSection className="grid h-fit max-w-[32rem] gap-x-10 gap-y-12 pt-8 md:grid-cols-2">
+
+          <FadeInSection className="order-2 grid h-fit max-w-[32rem] gap-x-10 gap-y-12 pt-8 md:grid-cols-2 lg:order-1">
             {/* Phone Section */}
             <div className="flex max-w-60 items-start gap-4">
-              <Phone className="min-h-6 min-w-6" aria-hidden="true" />
+              <Phone className={iconClass} aria-hidden="true" />
               <div>
                 <h3 className={headingClass}>{t("phone")}</h3>
                 <p className={paragraphClass}>{contactDetails.numerTelefonu}</p>
@@ -56,7 +60,7 @@ export default function ContactFormAndDetails({
 
             {/* Email Section */}
             <div className="flex max-w-60 items-start gap-4">
-              <Mail className="min-h-6 min-w-6" aria-hidden="true" />
+              <Mail className={iconClass} aria-hidden="true" />
               <div>
                 <h3 className={headingClass}>{t("email")}</h3>
                 <p className={paragraphClass}>
@@ -71,10 +75,10 @@ export default function ContactFormAndDetails({
             </div>
 
             {/* Address Section */}
-            <div className="flex max-w-60 flex-col space-y-8">
+            <div className="flex max-w-60 flex-col space-y-12">
               {/* Office Address Block */}
               <div className="flex items-start gap-4">
-                <MapPin className="min-h-6 min-w-6" aria-hidden="true" />
+                <MapPin className={iconClass} aria-hidden="true" />
                 <div>
                   <h3 className={headingClass}>{t("office")}</h3>
                   <p className={paragraphClass}>
@@ -95,7 +99,7 @@ export default function ContactFormAndDetails({
 
               {/* Correspondence Address Block */}
               <div className="flex items-start gap-4">
-                <Mailbox className="min-h-6 min-w-6" aria-hidden="true" />
+                <Mailbox className={iconClass} aria-hidden="true" />
                 <div>
                   <h3 className={headingClass}>Adres korespondencyjny</h3>
                   <p className={paragraphClass}>
@@ -110,7 +114,7 @@ export default function ContactFormAndDetails({
 
             {/* Invoice Information Section */}
             <div className="flex max-w-60 items-start gap-4">
-              <FileText className="min-h-6 min-w-6" aria-hidden="true" />
+              <FileText className={iconClass} aria-hidden="true" />
               <div className="flex flex-col space-y-4">
                 <div>
                   <h3 className={headingClass}>{t("invoice-info")}</h3>
@@ -156,7 +160,7 @@ export default function ContactFormAndDetails({
           </FadeInSection>
 
           {/* Contact Form */}
-          <FadeInSection className="mt-8 max-w-xl">
+          <FadeInSection className="order-1 mt-8 max-w-xl lg:order-2">
             <ContactForm
               color={"light"}
               contactFormSubjects={contactForm.contactFormSubjects.map(
