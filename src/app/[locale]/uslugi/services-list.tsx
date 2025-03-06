@@ -273,7 +273,7 @@ export default function ServicesList({
       {/* Mobile overlay */}
       <div
         className={cn(
-          "fixed inset-0 z-[20] bg-black/50 backdrop-blur-sm transition-opacity duration-300 lg:hidden",
+          "fixed inset-0 z-[20] bg-black/40 backdrop-blur-sm transition-opacity duration-300 lg:hidden",
           menuOpen ? "opacity-100" : "pointer-events-none opacity-0",
         )}
         onClick={() => setMenuOpen(false)}
@@ -282,7 +282,7 @@ export default function ServicesList({
       {/* Mobile Sub Menu */}
       <div
         className={cn(
-          "fixed left-0 right-0 top-20 z-[40] overflow-hidden bg-zinc-900 text-zinc-100 shadow-lg transition-all duration-300 ease-in-out md:top-24 lg:hidden",
+          "fixed left-0 right-0 top-20 z-[21] overflow-hidden bg-zinc-900 text-zinc-100 shadow-lg transition-all duration-300 ease-in-out md:top-24 lg:hidden",
           menuOpen ? "max-h-[80vh] bg-black" : "max-h-14",
         )}
       >
@@ -290,7 +290,7 @@ export default function ServicesList({
           className="flex h-14 cursor-pointer items-center justify-between pl-3 pr-5"
           onClick={() => setMenuOpen((prev) => !prev)}
         >
-          <div className="flex items-center overflow-hidden text-base text-zinc-50">
+          <div className="flex items-center overflow-hidden text-[0.95rem] text-zinc-50">
             <Text className="h-5 w-5" />
             <span className="ml-3 mt-1 max-w-[95%] truncate">
               {menuDisplayText}
@@ -319,7 +319,7 @@ export default function ServicesList({
                 {/* Group heading */}
                 <div
                   className={cn(
-                    "flex cursor-pointer items-center justify-between border-b border-t border-zinc-800 py-4 pl-4 pr-5 text-base hover:bg-zinc-900",
+                    "flex cursor-pointer items-center justify-between border-b border-t border-zinc-800 py-4 pl-4 pr-5 text-[0.95rem] hover:bg-zinc-900",
                     currentGroup === group.title && "bg-zinc-900",
                   )}
                   onClick={(e) => {
@@ -338,13 +338,14 @@ export default function ServicesList({
 
                 {/* Services in group */}
                 {isGroupExpanded && (
-                  <div className="bg-zinc-900 text-zinc-300">
+                  <div className="bg-zinc-900 text-[0.95rem] text-zinc-300">
                     {group.services.map((service) => (
                       <div
                         key={service.title}
                         className={cn(
-                          "cursor-pointer py-3 pl-12 pr-8 text-sm hover:bg-black md:text-base",
-                          currentService === service.title && "bg-gold-900",
+                          "cursor-pointer py-3 pl-8 pr-6 hover:bg-black md:text-[0.95rem]",
+                          currentService === service.title &&
+                            "bg-gradient-to-r from-gold-800 to-gold-900 pl-10 font-regular text-zinc-950",
                         )}
                         onClick={() =>
                           scrollToService(group.title, service.title)
@@ -399,7 +400,7 @@ export default function ServicesList({
                   <MaxWidthWrapper>
                     <div
                       className={cn(
-                        "lg:flex lg:items-start lg:gap-36",
+                        "lg:flex lg:items-start lg:gap-16 xl:gap-36",
                         serviceIndex % 2 === 1 && "flex-row-reverse",
                       )}
                     >
