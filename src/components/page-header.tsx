@@ -1,4 +1,6 @@
+"use client";
 // cSpell:disable
+
 import clsx from "clsx";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
@@ -10,6 +12,7 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { portableTextComponents } from "@/lib/portableTextComponents";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
 import { transformPortableTextBlocks } from "@/utils/transformPortableTextBlocks";
+import { FadeInSection } from "./fade-in-section";
 
 interface PageHeaderProps {
   label: string;
@@ -149,9 +152,10 @@ export default function PageHeader({
                 animateOnView={true}
                 animationDirection="left"
               />
+
               <div
                 className={clsx(
-                  "lg:col-span-2 lg:col-start-2 lg:columns-2 lg:gap-8 xl:gap-20",
+                  "motion-preset-blur-up lg:col-span-2 lg:col-start-2 lg:columns-2 lg:gap-8 xl:gap-20",
                   textColor === "white" ? "text-white" : "text-black",
                 )}
               >
