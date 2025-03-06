@@ -159,7 +159,7 @@ export default async function UczSieZNami({ params: { locale } }: Props) {
           image={whoWeAreLookingFor.image}
           imageAlt={whoWeAreLookingFor.imageAlt}
           applyButtonText={whoWeAreLookingFor.applyButtonText}
-          paddingY="py-20 md:py-20 lg:py-24"
+          paddingY="py-0 md:py-20 lg:py-24"
         />
       )}
 
