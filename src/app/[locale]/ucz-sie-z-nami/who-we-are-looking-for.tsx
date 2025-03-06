@@ -44,9 +44,9 @@ export default function WhoWeAreLookingFor({
 
   return (
     <section className={clsx("mx-auto bg-white text-zinc-950/90", paddingY)}>
-      <MaxWidthWrapper>
+      <MaxWidthWrapper className="p-0">
         <FadeInSection translateY>
-          <div className="relative aspect-[4/3] w-full lg:hidden">
+          <div className="relative aspect-[4/4] w-full lg:hidden">
             <Image
               src={imageUrl}
               alt={imageAlt || "Header image"}
@@ -58,8 +58,8 @@ export default function WhoWeAreLookingFor({
             />
           </div>
           <Card className="border-none bg-zinc-100">
-            <CardContent className="p-12 md:p-16 lg:p-14">
-              <div className="grid gap-8 lg:grid-cols-2">
+            <CardContent className="p-12 md:p-16 lg:p-12 xl:p-14">
+              <div className="grid items-center gap-14 lg:grid-cols-2">
                 <div className="">
                   <SectionTitle
                     title={title}
@@ -67,7 +67,7 @@ export default function WhoWeAreLookingFor({
                     as="h2"
                     className="mb-8 md:mb-10 lg:mb-20"
                   />
-                  <div className="list-indented mb-10">
+                  <div className="list-indented mb-10 max-w-prose">
                     <PortableText
                       value={newCriteria}
                       components={portableTextComponents}
@@ -84,7 +84,7 @@ export default function WhoWeAreLookingFor({
                     {applyButtonText}
                   </Button>
                 </div>
-                <div className="relative hidden min-h-[300px] w-full lg:block">
+                <div className="relative hidden aspect-[4/4] min-h-[300px] w-full lg:block">
                   <Image
                     src={imageUrl}
                     alt={imageAlt || "Header image"}
