@@ -30,10 +30,9 @@ type ContactDetailsSectionProps = {
 
 const paragraphClass = "text-zinc-900 text-[1.1rem] leading-relaxed";
 const headingClass =
-  " mb-3 md:mb-4 font-bolder text-[1.3rem] md:text-[1.5rem] leading-tight tracking-[-0.015em] text-zinc-800";
+  "mb-3 md:mb-4 font-bolder text-[1.3rem] md:text-[1.5rem] leading-tight tracking-[-0.015em] text-zinc-800";
 
-const iconClass =
-  "min-h-5 min-w-5 max-h-5 max-w-5 md:min-h-6 md:min-w-6 md:max-h-6 md:max-w-6";
+const iconClass = "min-h-5 min-w-5 md:min-h-6 md:min-w-6";
 
 export default function ContactFormAndDetails({
   contactDetails,
@@ -50,113 +49,122 @@ export default function ContactFormAndDetails({
 
           <FadeInSection className="order-2 grid h-fit max-w-[32rem] gap-x-10 gap-y-12 pt-8 md:grid-cols-2 lg:order-1">
             {/* Phone Section */}
-            <div className="flex max-w-60 items-start gap-4">
-              <Phone className={iconClass} aria-hidden="true" />
-              <div>
-                <h3 className={headingClass}>{t("phone")}</h3>
-                <p className={paragraphClass}>{contactDetails.numerTelefonu}</p>
+            <FadeInSection>
+              <div className="flex max-w-60 items-start gap-4">
+                <Phone className={iconClass} aria-hidden="true" />
+                <div>
+                  <h3 className={headingClass}>{t("phone")}</h3>
+                  <p className={paragraphClass}>
+                    {contactDetails.numerTelefonu}
+                  </p>
+                </div>
               </div>
-            </div>
-
+            </FadeInSection>
             {/* Email Section */}
-            <div className="flex max-w-60 items-start gap-4">
-              <Mail className={iconClass} aria-hidden="true" />
-              <div>
-                <h3 className={headingClass}>{t("email")}</h3>
-                <p className={paragraphClass}>
-                  <a
-                    href={`mailto:${contactDetails.adresEmail}`}
-                    className="underline-offset-4 hover:underline"
-                  >
-                    {contactDetails.adresEmail}
-                  </a>
-                </p>
+            <FadeInSection>
+              <div className="flex max-w-60 items-start gap-4">
+                <Mail className={iconClass} aria-hidden="true" />
+                <div>
+                  <h3 className={headingClass}>{t("email")}</h3>
+                  <p className={paragraphClass}>
+                    <a
+                      href={`mailto:${contactDetails.adresEmail}`}
+                      className="underline-offset-4 hover:underline"
+                    >
+                      {contactDetails.adresEmail}
+                    </a>
+                  </p>
+                </div>
               </div>
-            </div>
+            </FadeInSection>
 
             {/* Address Section */}
-            <div className="flex max-w-60 flex-col space-y-12">
-              {/* Office Address Block */}
-              <div className="flex items-start gap-4">
-                <MapPin className={iconClass} aria-hidden="true" />
-                <div>
-                  <h3 className={headingClass}>{t("office")}</h3>
-                  <p className={paragraphClass}>
-                    {contactDetails.adresBiuraLineOne}
-                  </p>
-                  <p className={paragraphClass}>
-                    {contactDetails.adresBiuraLineTwo}
-                  </p>
-                  <AnimatedLink
-                    href="https://maps.app.goo.gl/jeWnz8HYg3yHwUdE7"
-                    external={true}
-                    className="mt-4 text-base"
-                  >
-                    Zobacz na mapie
-                  </AnimatedLink>
+            <FadeInSection>
+              <div className="flex max-w-60 flex-col space-y-12">
+                {/* Office Address Block */}
+                <div className="flex items-start gap-4">
+                  <MapPin className={iconClass} aria-hidden="true" />
+                  <div>
+                    <h3 className={headingClass}>{t("office")}</h3>
+                    <p className={paragraphClass}>
+                      {contactDetails.adresBiuraLineOne}
+                    </p>
+                    <p className={paragraphClass}>
+                      {contactDetails.adresBiuraLineTwo}
+                    </p>
+                    <AnimatedLink
+                      href="https://maps.app.goo.gl/jeWnz8HYg3yHwUdE7"
+                      external={true}
+                      className="mt-4 text-base"
+                    >
+                      Zobacz na mapie
+                    </AnimatedLink>
+                  </div>
                 </div>
-              </div>
 
-              {/* Correspondence Address Block */}
-              <div className="flex items-start gap-4">
-                <Mailbox className={iconClass} aria-hidden="true" />
-                <div>
-                  <h3 className={headingClass}>Adres korespondencyjny</h3>
-                  <p className={paragraphClass}>
-                    {contactDetails.adresBiuraLineOne}
-                  </p>
-                  <p className={paragraphClass}>
-                    {contactDetails.adresBiuraLineTwo}
-                  </p>
+                {/* Correspondence Address Block */}
+                <div className="flex items-start gap-4">
+                  <Mailbox className={iconClass} aria-hidden="true" />
+                  <div>
+                    <h3 className={headingClass}>Adres korespondencyjny</h3>
+                    <p className={paragraphClass}>
+                      {contactDetails.adresBiuraLineOne}
+                    </p>
+                    <p className={paragraphClass}>
+                      {contactDetails.adresBiuraLineTwo}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </FadeInSection>
 
             {/* Invoice Information Section */}
-            <div className="flex max-w-60 items-start gap-4">
-              <FileText className={iconClass} aria-hidden="true" />
-              <div className="flex flex-col space-y-4">
-                <div>
-                  <h3 className={headingClass}>{t("invoice-info")}</h3>
-                  <p className={paragraphClass}>
-                    <span className="text-[1.025rem] leading-tight">
-                      {contactDetails.nazwaFirmyOne}
-                    </span>
-                  </p>
-                  <p className={paragraphClass}>
-                    {contactDetails.adresFakturLineOne}
-                  </p>
-                  <p className={paragraphClass}>
-                    {contactDetails.adresFakturLineTwo}
-                  </p>
-                  <p className={paragraphClass}>
-                    <span>NIP:</span> {contactDetails.numerNipOne}
-                  </p>
-                  <p className={paragraphClass}>
-                    <span>REGON:</span> {contactDetails.numerRegonOne}
-                  </p>
-                </div>
-                <div className="mt-1">
-                  <p className={paragraphClass}>
-                    <span className="text-[1.025rem] leading-tight">
-                      {contactDetails.nazwaFirmyTwo}
-                    </span>
-                  </p>
-                  <p className={paragraphClass}>
-                    {contactDetails.adresFakturLineOne}
-                  </p>
-                  <p className={paragraphClass}>
-                    {contactDetails.adresFakturLineTwo}
-                  </p>
-                  <p className={paragraphClass}>
-                    <span>NIP:</span> {contactDetails.numerNipTwo}
-                  </p>
-                  <p className={paragraphClass}>
-                    <span>REGON:</span> {contactDetails.numerRegonTwo}
-                  </p>
+            <FadeInSection>
+              <div className="flex max-w-60 items-start gap-4">
+                <FileText className={iconClass} aria-hidden="true" />
+                <div className="flex flex-col space-y-4">
+                  <div>
+                    <h3 className={headingClass}>{t("invoice-info")}</h3>
+                    <p className={paragraphClass}>
+                      <span className="text-[1.025rem] leading-tight">
+                        {contactDetails.nazwaFirmyOne}
+                      </span>
+                    </p>
+                    <p className={paragraphClass}>
+                      {contactDetails.adresFakturLineOne}
+                    </p>
+                    <p className={paragraphClass}>
+                      {contactDetails.adresFakturLineTwo}
+                    </p>
+                    <p className={paragraphClass}>
+                      <span>NIP:</span> {contactDetails.numerNipOne}
+                    </p>
+                    <p className={paragraphClass}>
+                      <span>REGON:</span> {contactDetails.numerRegonOne}
+                    </p>
+                  </div>
+                  <div className="mt-1">
+                    <p className={paragraphClass}>
+                      <span className="text-[1.025rem] leading-tight">
+                        {contactDetails.nazwaFirmyTwo}
+                      </span>
+                    </p>
+                    <p className={paragraphClass}>
+                      {contactDetails.adresFakturLineOne}
+                    </p>
+                    <p className={paragraphClass}>
+                      {contactDetails.adresFakturLineTwo}
+                    </p>
+                    <p className={paragraphClass}>
+                      <span>NIP:</span> {contactDetails.numerNipTwo}
+                    </p>
+                    <p className={paragraphClass}>
+                      <span>REGON:</span> {contactDetails.numerRegonTwo}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </FadeInSection>
           </FadeInSection>
 
           {/* Contact Form */}
