@@ -139,7 +139,7 @@ export default function PageHeader({
           )}
         >
           <MaxWidthWrapper>
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-20">
+            <div className="mr-10 grid grid-cols-1 gap-8 md:mr-20 lg:mr-0 lg:grid-cols-3 lg:gap-20 xl:gap-20">
               <SectionTitle
                 label={label}
                 title={title}
@@ -151,7 +151,7 @@ export default function PageHeader({
               />
               <div
                 className={clsx(
-                  "motion-preset-blur-up pr-5 md:pr-20 lg:col-span-2 lg:col-start-2 lg:columns-2 lg:gap-20 lg:pr-0",
+                  "lg:col-span-2 lg:col-start-2 lg:columns-2 lg:gap-8 xl:gap-20",
                   textColor === "white" ? "text-white" : "text-black",
                 )}
               >
