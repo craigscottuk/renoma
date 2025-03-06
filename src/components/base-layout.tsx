@@ -2,10 +2,11 @@ import { clsx } from "clsx";
 import Header from "./header";
 import { ReactNode } from "react";
 import localFont from "next/font/local";
+import { client } from "@/sanity/client";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import Footer from "@/components/sections-footer/footer";
-import { client } from "@/sanity/client";
+import { MobileNavStateProvider } from "./navigation/mobile-nav-provider";
 
 const helveticaNeueLight = localFont({
   src: "./fonts/HelveticaNeueLight.otf",
@@ -85,15 +86,17 @@ export default async function BaseLayout({ children, locale }: Props) {
         )}
       >
         <NextIntlClientProvider messages={messages}>
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer
-              locale={locale}
-              serviceGroups={serviceGroups}
-              socialMediaLinks={footerData.socialMediaLinks}
-            />
-          </div>
+          <MobileNavStateProvider>
+            <div className="flex min-h-screen flex-col">
+              <Header socialMediaLinks={footerData.socialMediaLinks} />
+              <main className="flex-1">{children}</main>
+              <Footer
+                locale={locale}
+                serviceGroups={serviceGroups}
+                socialMediaLinks={footerData.socialMediaLinks}
+              />
+            </div>
+          </MobileNavStateProvider>
         </NextIntlClientProvider>
         {/* <Analytics /> */}
       </body>
