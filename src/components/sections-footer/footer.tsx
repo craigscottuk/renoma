@@ -169,7 +169,7 @@ export default function Footer({
                   variant="outline"
                   size="icon"
                   className={clsx(
-                    "ml-5 h-8 w-8 lg:h-10 lg:w-10",
+                    "ml-5 h-8 w-8 lg:h-9 lg:w-8",
                     variant === "light" ? lightClasses : darkClasses,
                   )}
                   onClick={scrollToTop}
