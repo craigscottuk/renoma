@@ -7,9 +7,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { JobApplicationForm } from "./job-application-form";
+import { Send } from "lucide-react";
 import { useTranslations } from "next-intl";
 import {
   Card,
@@ -18,8 +17,9 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import { Send } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import fixPolishOrphans from "@/utils/fixPolishOrphans";
+import { JobApplicationForm } from "./job-application-form";
 
 interface JobApplicationDialogProps {
   open: boolean;
@@ -45,7 +45,7 @@ export function JobApplicationDialog({
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent className="scrollable-area h-[85vh] max-w-3xl overflow-hidden border-none bg-zinc-900 px-4 py-16 text-zinc-50 md:px-14 md:py-20 lg:px-24 lg:py-16">
-          <div className="flex min-h-screen w-full items-start justify-center lg:items-center">
+          <div className="flex min-h-[85vh] w-full items-center justify-center">
             <Card className="mx-auto max-w-md border-none bg-zinc-900 shadow-none">
               <CardHeader>
                 <CardTitle className="text-center font-bolder text-[1.7rem] text-zinc-50">
