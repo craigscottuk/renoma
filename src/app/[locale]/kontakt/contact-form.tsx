@@ -202,7 +202,7 @@ export default function ContactForm({
         // Notice: we keep the same fields. We'll add a new file input below.
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-6"
+          className="light-form space-y-6"
           // Remove encType since we're not handling files
           // encType="multipart/form-data"
         >
