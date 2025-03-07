@@ -15,8 +15,7 @@ const QUERY = `
     "image": image,
     "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
     "imageLayout": imageLayout,
-    "backgroundColor": backgroundColor,
-    "landscapeMobileForPortraitRight": landscapeMobileForPortraitRight
+    "backgroundColor": backgroundColor
   },
   "projects": *[_type == "caseStudyEntry" && language == $locale]
     | order(_createdAt asc){
@@ -70,25 +69,6 @@ export async function generateMetadata({ params: { locale } }: Props) {
   };
 }
 
-interface Content {
-  caseStudyHeader: {
-    label: string;
-    title: string;
-    description: string;
-    image: any;
-    imageAlt: string;
-    imageLayout: string;
-    backgroundColor: string;
-    landscapeMobileForPortraitRight?: string;
-  };
-  projects: any[];
-  ctaContent: {
-    title: string;
-    description: string;
-    buttonText: string;
-  };
-}
-
 export default async function Realizacje({ params: { locale } }: Props) {
   // Set the locale for static generation
   setRequestLocale(locale);
@@ -115,14 +95,14 @@ export default async function Realizacje({ params: { locale } }: Props) {
           landscapeMobileForPortraitRight={
             caseStudyHeader.landscapeMobileForPortraitRight
           }
-          paddingY="py-20 md:pb-24 lg:pt-24 lg:pb-36"
+          paddingY="py-20 md:pt-24 md:pb-36"
         />
       )}
 
       {/* List of Projects / Case Studies */}
       <ProjectCard
         projectCardData={projects}
-        paddingY="py-20 md:py-24 lg:py-36"
+        paddingY="py-36"
         colorScheme="zincLight"
       />
 
