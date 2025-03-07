@@ -1,3 +1,5 @@
+// src/components/job-application-form.tsx
+
 // cSpell:disable
 "use client";
 import { useState } from "react";
@@ -147,7 +149,10 @@ export function JobApplicationForm({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="dark-form space-y-6"
+      >
         {/* Full Name */}
         <FormField
           control={form.control}
@@ -353,50 +358,6 @@ export function JobApplicationForm({
           {isLoading ? t("sending") : t("submit")}
         </Button>
       </form>
-      <style jsx global>{`
-        /* Disable Chrome autofill styles while preserving focus styles */
-        input:-webkit-autofill,
-        input:-webkit-autofill:hover,
-        input:-webkit-autofill:focus,
-        textarea:-webkit-autofill,
-        textarea:-webkit-autofill:hover,
-        textarea:-webkit-autofill:focus,
-        select:-webkit-autofill,
-        select:-webkit-autofill:hover,
-        select:-webkit-autofill:focus {
-          -webkit-text-fill-color: white;
-          -webkit-box-shadow: 0 0 0px 1000px #27272a inset;
-          transition: background-color 5000s ease-in-out 0s;
-          font-size: 17.6px;
-        }
-
-        /* Preserve shadcn input focus styles */
-        .bg-zinc-800:focus-within {
-          outline: 2px solid hsl(var(--ring));
-          outline-offset: -2px;
-        }
-
-        /* Scroll bar styles */
-        .myDialog::-webkit-scrollbar {
-          width: 6px;
-        }
-        .myDialog::-webkit-scrollbar-track {
-          background: #18181b;
-        }
-        .myDialog::-webkit-scrollbar-thumb {
-          background: #27272a;
-          border-radius: 9999px;
-        }
-        .myDialog::-webkit-scrollbar-thumb:hover {
-          background: #27272a;
-        }
-
-        /* For Firefox */
-        .myDialog {
-          scrollbar-width: auto;
-          scrollbar-color: #27272a #18181b;
-        }
-      `}</style>
     </Form>
   );
 }
