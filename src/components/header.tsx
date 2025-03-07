@@ -9,6 +9,7 @@ import MainNavigation from "./navigation/main-navigation";
 // import BreakpointReadout from "./breakpoint-readout";
 import { MobileNav } from "./navigation/mobile-nav";
 import { useMobileNav } from "./navigation/mobile-nav-provider";
+import { useTranslations } from "next-intl";
 
 interface HeaderProps {
   socialMediaLinks: {
@@ -19,6 +20,7 @@ interface HeaderProps {
 }
 
 export default function Header({ socialMediaLinks }: HeaderProps) {
+  const t = useTranslations("header");
   // Get the isOpen, openMobileNav, and closeMobileNav functions from context
   const { isOpen, openMobileNav, closeMobileNav } = useMobileNav();
   return (
@@ -46,7 +48,7 @@ export default function Header({ socialMediaLinks }: HeaderProps) {
               <Button
                 variant="ghost"
                 className="px-1.5 sm:px-2 lg:hidden"
-                aria-label="Kontakt" // get translation for this
+                aria-label={t("contactAriaLabel")}
               >
                 <Mail className="mr-0.5 min-h-5 min-w-5 stroke-1 text-zinc-950 sm:min-h-6 sm:min-w-6" />
               </Button>
@@ -57,7 +59,7 @@ export default function Header({ socialMediaLinks }: HeaderProps) {
               variant="ghost"
               className="px-1.5 sm:px-2 lg:hidden"
               onClick={openMobileNav}
-              aria-label="Open menu"
+              aria-label={t("openMenuAriaLabel")}
             >
               <Menu className="min-h-7 min-w-7 stroke-1 text-zinc-950" />
             </Button>
