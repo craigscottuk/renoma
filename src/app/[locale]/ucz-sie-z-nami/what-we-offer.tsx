@@ -43,7 +43,7 @@ export default function WhatWeOffer({
                 <CardHeader>
                   <div className="flex flex-col items-start">
                     <CircleCheck className="mb-4 min-h-8 min-w-8 text-gold-900" />
-                    <CardTitle className="font-bolder text-[1.7rem] leading-tight tracking-[-0.015em]">
+                    <CardTitle className="font-bolder text-[1.6rem] leading-tight tracking-[-0.015em] lg:text-[1.7rem]">
                       {feature.title}
                     </CardTitle>
                   </div>
