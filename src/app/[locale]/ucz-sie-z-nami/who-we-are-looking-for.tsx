@@ -1,12 +1,7 @@
 "use client";
 
 // cSpell:disable
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import clsx from "clsx";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
 import { portableTextComponents } from "@/lib/portableTextComponents";
@@ -68,13 +63,23 @@ export default function WhoWeAreLookingFor({
             </CardHeader>
             <CardContent className="">
               <div className="grid items-start lg:grid-cols-2 lg:gap-10 xl:gap-24">
-                <div className="">
+                <div className="space-y-10">
                   <div className="list-indented max-w-prose">
                     <PortableText
                       value={newCriteria}
                       components={portableTextComponents}
                     />
                   </div>
+
+                  <Button
+                    className="w-full bg-zinc-900 text-zinc-100 hover:bg-zinc-800 hover:text-zinc-100 lg:w-auto"
+                    variant="outline"
+                    onClick={() => {
+                      setIsModalOpen(true);
+                    }}
+                  >
+                    {applyButtonText}
+                  </Button>
                 </div>
                 <div className="relative hidden aspect-[4/4] min-h-[300px] w-full lg:block">
                   <Image
@@ -89,17 +94,6 @@ export default function WhoWeAreLookingFor({
                 </div>
               </div>
             </CardContent>
-            <CardFooter className="">
-              <Button
-                className="w-full bg-zinc-900 text-zinc-100 hover:bg-zinc-800 hover:text-zinc-100 lg:w-auto lg:px-8 xl:px-14"
-                variant="outline"
-                onClick={() => {
-                  setIsModalOpen(true);
-                }}
-              >
-                {applyButtonText}
-              </Button>
-            </CardFooter>
           </Card>
         </FadeInSection>
         <JobApplicationDialog
