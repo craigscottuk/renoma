@@ -8,8 +8,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { motion } from "framer-motion";
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import fixPolishOrphans from "@/utils/fixPolishOrphans";
 import AnimatedLink from "@/components/animated-link";
 import SectionTitle from "@/components/section-title";
@@ -66,7 +64,7 @@ function FaqAccordion({ faqItems }: FaqAccordionProps) {
     <div className="mx-auto w-full">
       <Accordion type="single" collapsible className="w-full">
         {faqItems.map((item, index) => (
-          <FadeInSection translateY>
+          <FadeInSection translateY key={index}>
             <AccordionItem
               className={clsx("py-3", {
                 "border-b-0": index === faqItems.length - 1,
