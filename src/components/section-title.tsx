@@ -16,6 +16,7 @@ interface SectionTitleProps {
   animateOnView?: boolean;
   animationDirection?: "left" | "right" | "up";
   delay?: number;
+  id?: string; // Add this line
 }
 
 export default function SectionTitle({
@@ -29,6 +30,7 @@ export default function SectionTitle({
   animateOnView = false,
   animationDirection = "right",
   delay = 0,
+  id, // Add this line
 }: SectionTitleProps) {
   const { ref, controls } = useIntersectionObserver({
     animateOnView,
@@ -97,6 +99,7 @@ export default function SectionTitle({
         variants={titleVariants}
       >
         <Tag
+          id={id} // Add this line
           className={clsx(
             `motion-preset-${motionPreset}`,
             // `motion-preset-blur-right`,
