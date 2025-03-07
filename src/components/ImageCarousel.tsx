@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { ArrowUp, Plus, Minus } from "lucide-react";
+// import { useRef } from "react";
+import { useState, useEffect } from "react";
+// import { ArrowUp, Plus, Minus } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
-import { Button } from "./ui/button";
+// import { Button } from "./ui/button";
 import { useLocale } from "next-intl";
 import AnimatedLink from "./animated-link";
 
@@ -19,7 +20,7 @@ interface ImageCarouselProps {
 
 export default function ImageCarousel({
   images,
-  onCaptionHeightChange,
+  // onCaptionHeightChange,
   aspectRatio,
 }: ImageCarouselProps) {
   const locale = useLocale();
@@ -29,15 +30,15 @@ export default function ImageCarousel({
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [showCaptions, setShowCaptions] = useState(false);
+  // const [showCaptions, setShowCaptions] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [captionHeight, setCaptionHeight] = useState(0);
-  const captionRef = useRef<HTMLDivElement>(null);
+  // const [captionHeight, setCaptionHeight] = useState(0);
+  // const captionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
-      setShowCaptions(window.innerWidth >= 768); // Always show captions on mobile
+      // setShowCaptions(window.innerWidth >= 768); // Always show captions on mobile
     };
 
     checkMobile();
@@ -53,35 +54,35 @@ export default function ImageCarousel({
     }
   }, [emblaApi]);
 
-  useEffect(() => {
-    if (captionRef.current) {
-      const height = showCaptions ? captionRef.current.clientHeight : 0;
-      setCaptionHeight(height);
-      if (onCaptionHeightChange) {
-        onCaptionHeightChange(height);
-      }
-    }
-  }, [currentIndex, showCaptions, isMobile, onCaptionHeightChange]);
+  // useEffect(() => {
+  //   if (captionRef.current) {
+  //     const height = showCaptions ? captionRef.current.clientHeight : 0;
+  //     setCaptionHeight(height);
+  //     if (onCaptionHeightChange) {
+  //       onCaptionHeightChange(height);
+  //     }
+  //   }
+  // }, [currentIndex, showCaptions, isMobile, onCaptionHeightChange]);
 
-  const toggleCaptions = () => {
-    setShowCaptions((prev) => {
-      const newShowCaptions = !prev;
-      if (captionRef.current) {
-        const height = newShowCaptions ? captionRef.current.clientHeight : 0;
-        setCaptionHeight(height);
-        if (onCaptionHeightChange) {
-          onCaptionHeightChange(height);
-        }
-      }
-      return newShowCaptions;
-    });
-  };
+  // const toggleCaptions = () => {
+  //   setShowCaptions((prev) => {
+  //     const newShowCaptions = !prev;
+  //     if (captionRef.current) {
+  //       const height = newShowCaptions ? captionRef.current.clientHeight : 0;
+  //       setCaptionHeight(height);
+  //       if (onCaptionHeightChange) {
+  //         onCaptionHeightChange(height);
+  //       }
+  //     }
+  //     return newShowCaptions;
+  //   });
+  // };
 
   // const scrollPrev = () => emblaApi?.scrollPrev();
   const scrollNext = () => emblaApi?.scrollNext();
 
-  const currentCaption = images[currentIndex]?.caption;
-  const hasCurrentCaption = Boolean(currentCaption);
+  // const currentCaption = images[currentIndex]?.caption;
+  // const hasCurrentCaption = Boolean(currentCaption);
 
   const isStandard = aspectRatio === "standard";
 
@@ -108,20 +109,20 @@ export default function ImageCarousel({
             className="object-cover object-center"
           />
         </div>
-        {hasCurrentCaption && (
+        {/* {hasCurrentCaption && (
           <div className="relative z-10 bg-zinc-50 px-4 py-3 text-sm text-zinc-600">
             <div className="flex items-start gap-2">
               <ArrowUp className="mt-1 h-4 w-4 flex-shrink-0" />
               <span>{currentCaption}</span>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     );
   }
 
   return (
-    <div className="relative" style={{ marginBottom: captionHeight }}>
+    <div className="relative">
       {/* Added bottom margin to prevent overlap */}
       <div className="relative h-full w-full">
         <div
@@ -187,7 +188,7 @@ export default function ImageCarousel({
         </div>
 
         {/* Caption Toggle for Mobile */}
-        {isMobile && hasCurrentCaption && (
+        {/* {isMobile && hasCurrentCaption && (
           <Button
             variant="outline"
             onClick={toggleCaptions}
@@ -202,11 +203,11 @@ export default function ImageCarousel({
               <Plus className="h-5 w-5" />
             )}
           </Button>
-        )}
+        )} */}
       </div>
 
       {/* Caption Section */}
-      {isMobile && (
+      {/* {isMobile && (
         <div
           ref={captionRef}
           className={`relative z-10 bg-zinc-50 px-4 py-3 text-sm text-zinc-950 ${
@@ -220,9 +221,9 @@ export default function ImageCarousel({
             </div>
           )}
         </div>
-      )}
+      )} */}
 
-      {!isMobile && currentCaption && images.length > 1 && (
+      {/* {!isMobile && currentCaption && images.length > 1 && (
         <div
           ref={captionRef}
           className="text-zin-950 relative z-10 flex justify-between bg-zinc-50 px-3 py-3 text-sm"
@@ -230,10 +231,9 @@ export default function ImageCarousel({
           <div className="flex items-start gap-2 text-pretty">
             <ArrowUp className="mr-1 mt-1 h-4 w-4 flex-shrink-0" />
             <span>{currentCaption}</span>
-            {/* Removed the animated PREV/NEXT links from here */}
           </div>
         </div>
-      )}
+      )} */}
 
       {images.length > 1 && (
         <div className="absolute bottom-0 right-0 z-10 flex items-center space-x-2 bg-white p-2">
@@ -254,14 +254,14 @@ export default function ImageCarousel({
         </div>
       )}
 
-      {!isMobile && currentCaption && images.length <= 1 && (
+      {/* {!isMobile && currentCaption && images.length <= 1 && (
         <div className="relative z-10 bg-zinc-50 px-4 py-3 text-sm text-zinc-600">
           <div className="flex items-start gap-2">
             <ArrowUp className="mt-1 h-4 w-4 flex-shrink-0" />
             <span>{currentCaption}</span>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
