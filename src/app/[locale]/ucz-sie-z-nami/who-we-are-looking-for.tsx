@@ -1,7 +1,12 @@
 "use client";
 
 // cSpell:disable
-import { Card, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 import clsx from "clsx";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
 import { portableTextComponents } from "@/lib/portableTextComponents";
@@ -44,7 +49,7 @@ export default function WhoWeAreLookingFor({
 
   return (
     <section className={clsx("mx-auto bg-white text-zinc-950/90", paddingY)}>
-      <MaxWidthWrapper className="p-0">
+      <MaxWidthWrapper className="p-0 xl:px-12">
         <FadeInSection translateY>
           <div className="relative aspect-[4/4] w-full lg:hidden">
             <Image
@@ -57,32 +62,19 @@ export default function WhoWeAreLookingFor({
               }}
             />
           </div>
-          <Card className="border-none bg-zinc-100">
-            <CardContent className="p-12 md:p-16 lg:p-12 xl:p-14">
-              <div className="grid items-center gap-14 lg:grid-cols-2">
+          <Card className="space-y-4 border-none bg-zinc-100 px-1 py-7 md:p-8 lg:py-12 xl:px-10">
+            <CardHeader>
+              <SectionTitle title={title} textColor="black" as="h2" />
+            </CardHeader>
+            <CardContent className="">
+              <div className="grid items-start lg:grid-cols-2 lg:gap-10 xl:gap-24">
                 <div className="">
-                  <SectionTitle
-                    title={title}
-                    textColor="black"
-                    as="h2"
-                    className="mb-8 md:mb-10 lg:mb-20"
-                  />
-                  <div className="list-indented mb-10 max-w-prose">
+                  <div className="list-indented max-w-prose">
                     <PortableText
                       value={newCriteria}
                       components={portableTextComponents}
                     />
                   </div>
-
-                  <Button
-                    className="hover:bg-zinc-800 hover:text-zinc-100"
-                    variant="outline"
-                    onClick={() => {
-                      setIsModalOpen(true);
-                    }}
-                  >
-                    {applyButtonText}
-                  </Button>
                 </div>
                 <div className="relative hidden aspect-[4/4] min-h-[300px] w-full lg:block">
                   <Image
@@ -97,6 +89,17 @@ export default function WhoWeAreLookingFor({
                 </div>
               </div>
             </CardContent>
+            <CardFooter className="">
+              <Button
+                className="w-full bg-zinc-900 text-zinc-100 hover:bg-zinc-800 hover:text-zinc-100 lg:w-auto lg:px-8 xl:px-14"
+                variant="outline"
+                onClick={() => {
+                  setIsModalOpen(true);
+                }}
+              >
+                {applyButtonText}
+              </Button>
+            </CardFooter>
           </Card>
         </FadeInSection>
         <JobApplicationDialog
