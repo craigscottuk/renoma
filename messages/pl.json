@@ -97,7 +97,8 @@
     "phone": "Telefon",
     "email": "Email",
     "office": "Biuro",
-    "invoice-info": "Dane do faktur"
+    "invoice-info": "Dane do faktur",
+    "correspondenceAddress": "Adres korespondencyjny"
   },
   "contact-form": {
     "firstName": "Imię",
@@ -174,5 +175,12 @@
       "motivationLetterMax": "List motywacyjny nie może przekraczać 1500 znaków.",
       "consentRequired": "Musisz wyrazić zgodę na przetwarzanie danych osobowych."
     }
+  },
+  "header": {
+    "contactAriaLabel": "Kontakt",
+    "openMenuAriaLabel": "Otwórz menu"
+  },
+  "servicesList": {
+    "visitRenomaLab": "Odwiedź stronę Renoma LAB"
   }
 }
