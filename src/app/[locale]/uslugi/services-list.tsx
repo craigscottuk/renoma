@@ -332,14 +332,14 @@ export default function ServicesList({
 
                 {/* Services in group */}
                 {isGroupExpanded && (
-                  <div className="bg-zinc-900 text-[0.95rem] text-zinc-300">
+                  <div className="bg-zinc-900 text-[0.95rem] text-zinc-100">
                     {group.services.map((service) => (
                       <div
                         key={service.title}
                         className={cn(
                           "cursor-pointer py-3 pl-8 pr-6 hover:bg-black md:text-[0.95rem]",
                           currentService === service.title &&
-                            "bg-gradient-to-r from-gold-800 to-gold-900 pl-10 font-regular text-zinc-950",
+                            "bg-gradient-to-r from-gold-800 to-gold-900 pl-10 font-regular text-zinc-100",
                         )}
                         onClick={() =>
                           scrollToService(group.title, service.title)
