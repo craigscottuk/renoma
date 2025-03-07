@@ -111,6 +111,8 @@ mux-player::part(gesture-layer) {
 }
 
 /* Disable Chrome autofill while preserving focus styles */
+
+/* Dark */
 .dark-form input:-webkit-autofill,
 .dark-form input:-webkit-autofill:hover,
 .dark-form input:-webkit-autofill:focus,
@@ -124,7 +126,7 @@ mux-player::part(gesture-layer) {
   -webkit-box-shadow: 0 0 0px 1000px #27272a inset;
   transition: background-color 5000s ease-in-out 0s;
 }
-
+/* Light */
 .light-form input:-webkit-autofill,
 .light-form input:-webkit-autofill:hover,
 .light-form input:-webkit-autofill:focus,
@@ -134,8 +136,8 @@ mux-player::part(gesture-layer) {
 .light-form select:-webkit-autofill,
 .light-form select:-webkit-autofill:hover,
 .light-form select:-webkit-autofill:focus {
-  -webkit-text-fill-color: black;
-  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
+  -webkit-text-fill-color: #27272a;
+  -webkit-box-shadow: 0 0 0px 1000px #f2f2f3 inset;
   transition: background-color 5000s ease-in-out 0s;
 }
 
