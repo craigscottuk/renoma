@@ -248,7 +248,7 @@ export function JobApplicationForm({
                 <div className="flex w-full flex-col items-center justify-center">
                   <label className="flex h-32 w-full cursor-pointer flex-col items-center justify-center rounded-none border-2 border-dashed border-zinc-700 bg-zinc-800 hover:bg-zinc-700">
                     <div className="flex flex-col items-center justify-center pb-6 pt-5">
-                      <Upload className="mb-3 h-8 w-8 text-[#737373]" />
+                      <Upload className="mb-3 h-6 w-6 text-[#737373]" />
                       <p className="mb-2 text-[1.1rem] text-[#737373]">
                         <span>{t("uploadHint")}</span>
                       </p>
@@ -353,7 +353,7 @@ export function JobApplicationForm({
 
         <Button
           type="submit"
-          className="w-full rounded-none bg-zinc-700 hover:bg-zinc-100 hover:text-zinc-800 md:w-auto"
+          className="w-full rounded-none bg-zinc-50 text-zinc-950 hover:bg-zinc-200 md:w-auto"
         >
           {isLoading ? t("sending") : t("submit")}
         </Button>
