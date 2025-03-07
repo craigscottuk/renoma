@@ -21,6 +21,8 @@ type ContactDetailsSectionProps = {
     numerRegonOne: string;
     numerNipTwo: string;
     numerRegonTwo: string;
+    adresKorespondencyjnyLineOne: string;
+    adresKorespondencyjnyLineTwo: string;
   };
   contactForm: {
     contactFormSubjects: string[];
@@ -107,12 +109,14 @@ export default function ContactFormAndDetails({
                 <div className="flex items-start gap-4">
                   <Mailbox className={iconClass} aria-hidden="true" />
                   <div>
-                    <h3 className={headingClass}>Adres korespondencyjny</h3>
+                    <h3 className={headingClass}>
+                      {t("correspondenceAddress")}
+                    </h3>
                     <p className={paragraphClass}>
-                      {contactDetails.adresBiuraLineOne}
+                      {contactDetails.adresKorespondencyjnyLineOne}
                     </p>
                     <p className={paragraphClass}>
-                      {contactDetails.adresBiuraLineTwo}
+                      {contactDetails.adresKorespondencyjnyLineTwo}
                     </p>
                   </div>
                 </div>
