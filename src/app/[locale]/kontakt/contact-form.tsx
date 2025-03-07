@@ -89,17 +89,14 @@ export default function ContactForm({
     privacy: false,
   };
 
-  const [defaultValues, setDefaultValues] = useState(initialDefaultValues);
-
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
-    defaultValues: defaultValues, // Use the stateful defaultValues
+    defaultValues: initialDefaultValues,
   });
 
   // Update defaultValues when isSubmitted changes to false
   useEffect(() => {
     if (!isSubmitted) {
-      setDefaultValues(initialDefaultValues);
       form.reset(initialDefaultValues); // Reset form with initial values
       setSelectKey((prevKey) => prevKey + 1); // Update the key to re-render the Select
     }
