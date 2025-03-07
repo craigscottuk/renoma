@@ -304,13 +304,7 @@ export default function ServicesList({
         </div>
 
         {/* Dropdown Menu (scrollable) */}
-        <div
-          className="scrollbar-thin scrollbar-track-zinc-800 scrollbar-thumb-zinc-600 hover:scrollbar-thumb-zinc-500 max-h-[calc(80vh-3.5rem)] overflow-y-auto bg-black"
-          style={{
-            scrollbarWidth: "thin",
-            scrollbarColor: "#52525b #27272a",
-          }}
-        >
+        <div className="scrollable-area max-h-[calc(80vh-3.5rem)] overflow-y-auto bg-black">
           {serviceGroups?.map((group) => {
             const isGroupExpanded = expandedGroups.has(group.title);
 
