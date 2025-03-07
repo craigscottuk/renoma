@@ -35,6 +35,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import fixPolishOrphans from "@/utils/fixPolishOrphans";
 
 interface ContactFormProps {
   color?: "light" | "dark";
@@ -202,11 +203,11 @@ export default function ContactForm({
         // Notice: we keep the same fields. We'll add a new file input below.
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="light-form space-y-6"
+          className="light-form space-y-3.5 xl:space-y-6"
           // Remove encType since we're not handling files
           // encType="multipart/form-data"
         >
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-3 md:grid-cols-2 xl:gap-4">
             <FormField
               control={form.control}
               name="firstName"
@@ -243,7 +244,7 @@ export default function ContactForm({
             />
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-3 md:grid-cols-2 xl:gap-4">
             <FormField
               control={form.control}
               name="email"
@@ -357,95 +358,98 @@ export default function ContactForm({
             )}
           />
           */}
+          <div className="space-y-10">
+            <FormField
+              control={form.control}
+              name="privacy"
+              render={({ field }) => (
+                <FormItem className="flex max-w-[32rem] flex-row items-start space-x-3 space-y-0">
+                  <FormControl>
+                    <Checkbox
+                      className={clsx(checkboxContentClassNames, "mt-1.5")}
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                      aria-label={t("contact-form.privacy")}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel className="text-balance text-[1rem] leading-relaxed md:text-[1rem]">
+                      {locale === "de" ? (
+                        <>
+                          Ich willige in die Verarbeitung meiner
+                          personenbezogenen Daten durch die{" "}
+                          <span className="">
+                            Pracownię Konserwacji Zabytków RENOMA Hanna
+                            Rubnikowicz-Góźdź
+                          </span>{" "}
+                          und <span className="">RENOMA Igor Góźdź</span> zum
+                          Zwecke der Beantwortung meiner Anfrage gemäß der{" "}
+                          <AnimatedLink
+                            href="/polityka-prywatnosci"
+                            target="_blank"
+                            className="text-base"
+                            showArrow={false}
+                          >
+                            Datenschutzerklärung
+                          </AnimatedLink>{" "}
+                          ein.
+                        </>
+                      ) : locale === "en" ? (
+                        <>
+                          “I consent to the processing of my personal data by
+                          the{" "}
+                          <span className="">
+                            Pracownię Konserwacji Zabytków RENOMA Hanna
+                            Rubnikowicz-Góźdź
+                          </span>{" "}
+                          and <span className="">RENOMA Igor Góźdź</span> , for
+                          the purpose of responding to my inquiry, in accordance
+                          with the{" "}
+                          <AnimatedLink
+                            href="/polityka-prywatnosci"
+                            target="_blank"
+                            className="text-base"
+                            showArrow={false}
+                          >
+                            Privacy Policy.
+                          </AnimatedLink>
+                        </>
+                      ) : (
+                        <>
+                          Wyrażam zgodę na przetwarzanie moich danych osobowych
+                          przez{" "}
+                          <span className="">
+                            Pracownię Konserwacji Zabytków RENOMA Hanna
+                            Rubnikowicz-Góźdź
+                          </span>{" "}
+                          oraz <span className="">RENOMA Igor Góźdź</span>{" "}
+                          w celu udzielenia odpowiedzi na moje zapytanie,
+                          zgodnie z{" "}
+                          <AnimatedLink
+                            href="/polityka-prywatnosci"
+                            target="_blank"
+                            className="text-base"
+                            showArrow={false}
+                          >
+                            polityce prywatności.
+                          </AnimatedLink>
+                        </>
+                      )}
+                    </FormLabel>
+                    <FormMessage aria-live="assertive" />
+                  </div>
+                </FormItem>
+              )}
+            />
 
-          <FormField
-            control={form.control}
-            name="privacy"
-            render={({ field }) => (
-              <FormItem className="flex max-w-[32rem] flex-row items-start space-x-3 space-y-0">
-                <FormControl>
-                  <Checkbox
-                    className={clsx(checkboxContentClassNames, "mt-1.5")}
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                    aria-label={t("contact-form.privacy")}
-                  />
-                </FormControl>
-                <div className="space-y-1 leading-none">
-                  <FormLabel className="text-balance text-[1rem] leading-relaxed md:text-[1rem]">
-                    {locale === "de" ? (
-                      <>
-                        Ich willige in die Verarbeitung meiner personenbezogenen
-                        Daten durch die{" "}
-                        <span className="">
-                          Pracownię Konserwacji Zabytków RENOMA Hanna
-                          Rubnikowicz-Góźdź
-                        </span>{" "}
-                        und <span className="">RENOMA Igor Góźdź</span> zum
-                        Zwecke der Beantwortung meiner Anfrage gemäß der{" "}
-                        <AnimatedLink
-                          href="/polityka-prywatnosci"
-                          target="_blank"
-                          className="text-base"
-                          showArrow={false}
-                        >
-                          Datenschutzerklärung
-                        </AnimatedLink>{" "}
-                        ein.
-                      </>
-                    ) : locale === "en" ? (
-                      <>
-                        “I consent to the processing of my personal data by the{" "}
-                        <span className="">
-                          Pracownię Konserwacji Zabytków RENOMA Hanna
-                          Rubnikowicz-Góźdź
-                        </span>{" "}
-                        and <span className="">RENOMA Igor Góźdź</span> , for
-                        the purpose of responding to my inquiry, in accordance
-                        with the{" "}
-                        <AnimatedLink
-                          href="/polityka-prywatnosci"
-                          target="_blank"
-                          className="text-base"
-                          showArrow={false}
-                        >
-                          Privacy Policy.
-                        </AnimatedLink>
-                      </>
-                    ) : (
-                      <>
-                        Wyrażam zgodę na przetwarzanie moich danych osobowych
-                        przez{" "}
-                        <span className="">
-                          Pracownię Konserwacji Zabytków RENOMA Hanna
-                          Rubnikowicz-Góźdź
-                        </span>{" "}
-                        oraz <span className="">RENOMA Igor Góźdź</span> w celu
-                        udzielenia odpowiedzi na moje zapytanie, zgodnie z{" "}
-                        <AnimatedLink
-                          href="/polityka-prywatnosci"
-                          target="_blank"
-                          className="text-base"
-                          showArrow={false}
-                        >
-                          polityce prywatności.
-                        </AnimatedLink>
-                      </>
-                    )}
-                  </FormLabel>
-                  <FormMessage aria-live="assertive" />
-                </div>
-              </FormItem>
-            )}
-          />
-
-          <Button
-            type="submit"
-            disabled={isLoading}
-            className="w-full rounded-none bg-zinc-50 text-zinc-900 hover:bg-zinc-900 hover:text-zinc-50 md:w-auto"
-          >
-            {isLoading ? t("contact-form.sending") : t("contact-form.submit")}
-          </Button>
+            <Button
+              type="submit"
+              disabled={isLoading}
+              className="w-full rounded-none bg-zinc-900 px-8 text-zinc-100 hover:bg-zinc-800 hover:text-zinc-100"
+            >
+              {isLoading ? t("contact-form.sending") : t("contact-form.submit")}
+            </Button>
+          </div>
         </form>
       )}
     </Form>
@@ -455,19 +459,19 @@ export default function ContactForm({
 export function ContactFormThankYou({ onReset }: { onReset: () => void }) {
   const t = useTranslations("contact-form.thankYou");
   return (
-    <div className="flex min-h-screen w-full items-start">
+    <div className="flex w-full items-start lg:min-h-screen">
       <Card className="mx-auto max-w-md bg-zinc-200 shadow-none">
         <CardHeader>
           <CardTitle className="text-center font-bolder text-[1.7rem] text-zinc-900">
-            <div className="flex items-center justify-center">
-              <Send className="mr-4 h-6 w-6 text-zinc-900" />
+            <div className="flex flex-col items-center justify-center">
+              <Send className="h-6 w-6 text-zinc-900" />
               {t("title")}
             </div>
           </CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-center text-[1.1rem] text-zinc-800">
-            {t("message")}
+            {fixPolishOrphans(t("message"))}
           </p>
         </CardContent>
         <CardFooter className="flex justify-center">
