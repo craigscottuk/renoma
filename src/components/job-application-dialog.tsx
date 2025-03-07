@@ -19,6 +19,7 @@ import {
   CardTitle,
 } from "./ui/card";
 import { Send } from "lucide-react";
+import fixPolishOrphans from "@/utils/fixPolishOrphans";
 
 interface JobApplicationDialogProps {
   open: boolean;
@@ -43,25 +44,25 @@ export function JobApplicationDialog({
   if (submissionStatus === "success") {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="scrollable-area h-[90vh] max-w-3xl overflow-hidden border-none bg-zinc-900 px-16 py-12 text-zinc-50">
-          <div className="pt- flex min-h-screen w-full items-center">
+        <DialogContent className="scrollable-area h-[85vh] max-w-3xl overflow-hidden border-none bg-zinc-900 px-4 py-16 text-zinc-50 md:px-14 md:py-20 lg:px-24 lg:py-16">
+          <div className="flex min-h-screen w-full items-start justify-center lg:items-center">
             <Card className="mx-auto max-w-md border-none bg-zinc-900 shadow-none">
               <CardHeader>
                 <CardTitle className="text-center font-bolder text-[1.7rem] text-zinc-50">
-                  <div className="flex items-center justify-center">
-                    <Send className="mr-4 h-6 w-6 text-zinc-50" />
+                  <div className="flex flex-col items-center justify-center">
+                    <Send className="h-6 w-6 text-zinc-50" />
                     {t("thankYouTitle")}
                   </div>
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-pretty text-center text-[1.1rem] text-zinc-200">
-                  {t("thankYouBody")}
+                  {fixPolishOrphans(t("thankYouBody"))}
                 </p>
               </CardContent>
               <CardFooter className="flex justify-center">
                 <Button
-                  className="mt-4 bg-zinc-200 text-[1.1rem] text-zinc-900 hover:bg-zinc-50"
+                  className="mt-4 bg-zinc-50 text-[1.1rem] text-zinc-950 hover:bg-zinc-200"
                   onClick={handleClose}
                 >
                   {t("closeButton")}
@@ -77,7 +78,7 @@ export function JobApplicationDialog({
   if (submissionStatus === "error") {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="scrollable-area h-[90vh] max-w-3xl overflow-y-auto bg-zinc-900 px-16 py-12 text-zinc-50">
+        <DialogContent className="scrollable-area h-[90vh] max-w-3xl overflow-y-auto bg-zinc-900 px-4 py-16 text-zinc-50 md:px-14 md:py-20 lg:px-24 lg:py-16">
           <div className="space-y-4 text-center">
             <h2 className="mb-8 text-2xl font-bold text-red-400">
               {t("errorTitle")}
@@ -100,12 +101,14 @@ export function JobApplicationDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="scrollable-area h-[90vh] max-w-3xl overflow-y-auto border-none bg-zinc-900 px-16 py-12 text-zinc-50">
+      <DialogContent className="scrollable-area h-[90vh] max-w-3xl overflow-y-auto border-none bg-zinc-900 px-4 py-16 text-zinc-50 md:px-14 md:py-20 lg:px-24 lg:py-16">
         <DialogHeader>
-          <DialogTitle className="mb-5 text-xl tracking-[-0.015em] marker:leading-tight lg:text-[1.75rem]">
-            {formSource === "jobOffer"
-              ? t("applyPosition", { jobTitle })
-              : t("applyInternship")}
+          <DialogTitle className="mb-6 text-left text-[1.9rem] leading-snug lg:text-[1.75rem]">
+            {fixPolishOrphans(
+              formSource === "jobOffer"
+                ? t("applyPosition", { jobTitle })
+                : t("applyInternship"),
+            )}
           </DialogTitle>
         </DialogHeader>
         <JobApplicationForm
