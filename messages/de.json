@@ -97,7 +97,8 @@
     "phone": "Telefon",
     "email": "Email",
     "office": "Büro",
-    "invoice-info": "Rechnungsinformationen"
+    "invoice-info": "Rechnungsinformationen",
+    "correspondenceAddress": "Korrespondenzadresse"
   },
   "contact-form": {
     "firstName": "Vorname",
@@ -174,5 +175,12 @@
       "motivationLetterMax": "Das Anschreiben darf maximal 1500 Zeichen haben.",
       "consentRequired": "Sie müssen der Verarbeitung personenbezogener Daten zustimmen."
     }
+  },
+  "header": {
+    "contactAriaLabel": "Kontakt",
+    "openMenuAriaLabel": "Menü öffnen"
+  },
+  "servicesList": {
+    "visitRenomaLab": "Besuche die Renoma LAB-Seite"
   }
 }
