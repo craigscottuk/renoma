@@ -19,6 +19,7 @@ import fixPolishOrphans from "@/utils/fixPolishOrphans";
 import { Separator } from "@/components/ui/separator";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import CustomButton from "@/components/ui/custom-button";
+import { useTranslations } from "next-intl";
 
 // -------------------------------------------------------
 // A simple hook to detect if the screen is < 1024px wide
@@ -71,6 +72,7 @@ export default function ServicesList({
   serviceGroups: ServiceGroup[];
   paddingY?: string;
 }) {
+  const t = useTranslations("servicesList");
   const [currentGroup, setCurrentGroup] = useState(
     serviceGroups?.[0]?.title ?? "",
   );
@@ -234,17 +236,24 @@ export default function ServicesList({
     setIsScrollingToService(true);
     setMenuOpen(false); // Close menu immediately
 
-    if (serviceTitle) {
-      const id = serviceTitle.toLowerCase().replace(/\s+/g, "-");
-      const heading = document.getElementById(id);
-      if (heading) {
-        heading.scrollIntoView({ behavior: "smooth" });
+    // Get the ID based on whether we're scrolling to a group or service
+    const id = serviceTitle
+      ? serviceTitle.toLowerCase().replace(/\s+/g, "-")
+      : groupTitle.toLowerCase().replace(/\s+/g, "-");
 
-        // Wait for scroll to complete before showing new service name
-        setTimeout(() => {
-          setIsScrollingToService(false);
-        }, 500);
-      }
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+
+      // Wait for scroll to complete before showing new service name
+      setTimeout(() => {
+        setIsScrollingToService(false);
+        // Update current group/service
+        setCurrentGroup(groupTitle);
+        if (serviceTitle) {
+          setCurrentService(serviceTitle);
+        }
+      }, 500);
     }
   };
 
@@ -363,12 +372,18 @@ export default function ServicesList({
             <MaxWidthWrapper>
               <div className="mb-8 mt-16 flex items-center md:mb-12 lg:mb-10 lg:mt-24">
                 <div className="lg:w-1/2">
-                  <SectionTitle
-                    title={fixPolishOrphans(group.title)}
-                    textColor="black"
-                    className=""
-                    label="Usługi"
-                  />
+                  <button
+                    onClick={() => scrollToService(group.title)}
+                    className="cursor-pointer border-none bg-transparent p-0 text-left"
+                  >
+                    <SectionTitle
+                      title={fixPolishOrphans(group.title)}
+                      textColor="black"
+                      className="scroll-mt-48 lg:scroll-mt-40"
+                      id={group.title.toLowerCase().replace(/\s+/g, "-")}
+                      label="Usługi"
+                    />
+                  </button>
                 </div>
                 <div className="w-1/2 text-right text-xl font-bold">
                   {/* e.g. "Group #": {groupIndex + 1} */}
@@ -422,7 +437,7 @@ export default function ServicesList({
 
                         {/* Accordion */}
                         <Accordion type="single" collapsible className="w-full">
-                          {service.actions.map((action) => {
+                          {service.actions.map((action, index) => {
                             // Give each action a unique ID for scrolling:
                             const actionId = `action-${service.title
                               .toLowerCase()
@@ -431,7 +446,7 @@ export default function ServicesList({
                               .replace(/\s+/g, "-")}`;
 
                             return (
-                              <FadeInSection translateY>
+                              <FadeInSection translateY key={index}>
                                 <AccordionItem
                                   key={action.title}
                                   value={action.title}
@@ -490,7 +505,7 @@ export default function ServicesList({
                         href="/renoma-lab"
                         className=""
                       >
-                        Odwiedź stronę Renoma LAB
+                        {t("visitRenomaLab")}
                       </CustomButton>
                     )}
                   </MaxWidthWrapper>
