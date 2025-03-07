@@ -96,7 +96,8 @@
     "phone": "Phone",
     "email": "Email",
     "office": "Office",
-    "invoice-info": "Invoice Details"
+    "invoice-info": "Invoice Details",
+    "correspondenceAddress": "Correspondence Address"
   },
   "contact-form": {
     "firstName": "First Name",
@@ -173,5 +174,12 @@
       "motivationLetterMax": "Motivation letter cannot exceed 1500 characters.",
       "consentRequired": "You must consent to the processing of personal data."
     }
+  },
+  "header": {
+    "contactAriaLabel": "Contact",
+    "openMenuAriaLabel": "Open menu"
+  },
+  "servicesList": {
+    "visitRenomaLab": "Visit Renoma LAB"
   }
 }
