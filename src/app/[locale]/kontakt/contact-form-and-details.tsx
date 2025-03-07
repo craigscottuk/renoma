@@ -28,11 +28,12 @@ type ContactDetailsSectionProps = {
   paddingY?: string;
 };
 
-const paragraphClass = "text-zinc-900 text-[1.1rem] leading-relaxed";
+const paragraphClass =
+  "text-zinc-900 text-base xl:text-[1.1rem] leading-relaxed";
 const headingClass =
-  "mb-3 md:mb-4 font-bolder text-[1.3rem] md:text-[1.5rem] leading-tight tracking-[-0.015em] text-zinc-800";
+  "mb-3 md:mb-4 font-bolder text-[1.3rem] md:text-[1.3rem] xl:text-[1.4rem] leading-tight tracking-[-0.015em] text-zinc-800";
 
-const iconClass = "min-h-5 min-w-5 md:min-h-6 md:min-w-6";
+const iconClass = "min-h-5 min-w-5 xl:min-h-6 xl:min-w-6";
 
 export default function ContactFormAndDetails({
   contactDetails,
@@ -44,7 +45,7 @@ export default function ContactFormAndDetails({
   return (
     <section className={clsx("bg-zinc-200", paddingY)}>
       <MaxWidthWrapper>
-        <div className="grid justify-center gap-x-24 gap-y-16 lg:grid-cols-2">
+        <div className="grid justify-center gap-x-24 gap-y-14 lg:grid-cols-2">
           {/* Contact Information in 2x2 Grid */}
 
           <FadeInSection className="order-2 grid h-fit max-w-[32rem] gap-x-10 gap-y-12 pt-8 md:grid-cols-2 lg:order-1">
