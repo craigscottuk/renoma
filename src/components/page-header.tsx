@@ -12,7 +12,6 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { portableTextComponents } from "@/lib/portableTextComponents";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
 import { transformPortableTextBlocks } from "@/utils/transformPortableTextBlocks";
-import { FadeInSection } from "./fade-in-section";
 
 interface PageHeaderProps {
   label: string;
