@@ -87,7 +87,7 @@ export function MobileNav({
                           className={cn(
                             "group flex w-full items-center rounded-lg py-4 pl-8 text-[1.1rem] transition-all hover:bg-zinc-800",
                             isActive
-                              ? "bg-gradient-to-r from-gold-800 to-gold-900 pl-10 font-regular text-zinc-950"
+                              ? "bg-gradient-to-r from-gold-800 to-gold-900 pl-10 font-regular text-zinc-200"
                               : "text-zinc-100",
                           )}
                           onClick={onClose}
