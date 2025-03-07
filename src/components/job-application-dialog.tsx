@@ -1,3 +1,4 @@
+// src/components/job-application-dialog.tsx
 // cSpell:disable
 "use client";
 import {
@@ -42,7 +43,7 @@ export function JobApplicationDialog({
   if (submissionStatus === "success") {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="myDialog h-[90vh] max-w-3xl overflow-hidden border-none bg-zinc-900 px-16 py-12 text-zinc-50">
+        <DialogContent className="scrollable-area h-[90vh] max-w-3xl overflow-hidden border-none bg-zinc-900 px-16 py-12 text-zinc-50">
           <div className="pt- flex min-h-screen w-full items-center">
             <Card className="mx-auto max-w-md border-none bg-zinc-900 shadow-none">
               <CardHeader>
@@ -76,7 +77,7 @@ export function JobApplicationDialog({
   if (submissionStatus === "error") {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="myDialog h-[90vh] max-w-3xl overflow-y-auto bg-zinc-900 px-16 py-12 text-zinc-50">
+        <DialogContent className="scrollable-area h-[90vh] max-w-3xl overflow-y-auto bg-zinc-900 px-16 py-12 text-zinc-50">
           <div className="space-y-4 text-center">
             <h2 className="mb-8 text-2xl font-bold text-red-400">
               {t("errorTitle")}
@@ -99,7 +100,7 @@ export function JobApplicationDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="myDialog h-[90vh] max-w-3xl overflow-y-auto border-none bg-zinc-900 px-16 py-12 text-zinc-50">
+      <DialogContent className="scrollable-area h-[90vh] max-w-3xl overflow-y-auto border-none bg-zinc-900 px-16 py-12 text-zinc-50">
         <DialogHeader>
           <DialogTitle className="mb-5 text-xl tracking-[-0.015em] marker:leading-tight lg:text-[1.75rem]">
             {formSource === "jobOffer"
@@ -116,23 +117,3 @@ export function JobApplicationDialog({
     </Dialog>
   );
 }
-
-<style jsx global>{`
-  .myDialog::-webkit-scrollbar {
-    width: 6px;
-  }
-  .myDialog::-webkit-scrollbar-track {
-    background: #18181b;
-  }
-  .myDialog::-webkit-scrollbar-thumb {
-    background: #27272a;
-    border-radius: 9999px;
-  }
-  .myDialog::-webkit-scrollbar-thumb:hover {
-    background: #27272a;
-  }
-  .myDialog {
-    scrollbar-width: auto;
-    scrollbar-color: #27272a #18181b;
-  }
-`}</style>;
