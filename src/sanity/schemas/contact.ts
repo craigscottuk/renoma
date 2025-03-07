@@ -159,17 +159,6 @@ export const contactHeader = defineType({
   ],
 });
 
-// Contact form section
-
-// Zapytania ogólne
-// Usługi konserwatorskie
-// Prace budowlane i rewitalizacja
-// Dotacje i wsparcie administracyjne
-// Zapytanie ofertowe
-// Praca i współpraca
-// Reklamacje i uwagi
-// Media i PR
-
 export const contactForm = defineType({
   name: "contactForm",
   title: "Sekcja formularza kontaktowego",
@@ -233,6 +222,10 @@ export const contactDetails = defineType({
       title: "Biuro",
     },
     {
+      name: "adresKorespondencyjny",
+      title: "Adres korespondencyjny",
+    },
+    {
       name: "daneDoFaktur",
       title: "Dane do faktur",
     },
@@ -263,6 +256,18 @@ export const contactDetails = defineType({
       title: "Adres biura, linia 2",
       type: "string",
       group: "biuro",
+    }),
+    defineField({
+      name: "adresKorespondencyjnyLineOne",
+      title: "Adres korespondencyjny, linia 1",
+      type: "internationalizedArrayString",
+      group: "adresKorespondencyjny",
+    }),
+    defineField({
+      name: "adresKorespondencyjnyLineTwo",
+      title: "Adres korespondencyjny, linia 2",
+      type: "string",
+      group: "adresKorespondencyjny",
     }),
     defineField({
       name: "nazwaFirmyOne",
