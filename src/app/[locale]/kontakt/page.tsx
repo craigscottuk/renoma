@@ -26,11 +26,12 @@ const QUERY = `
     "adresEmail": coalesce(adresEmail, "Brak tłumaczenia"),
     "adresBiuraLineOne": coalesce(adresBiuraLineOne[_key == $locale][0].value, "Brak tłumaczenia"),
     "adresBiuraLineTwo": coalesce(adresBiuraLineTwo, "Brak tłumaczenia"),
+    "adresKorespondencyjnyLineOne": coalesce(adresKorespondencyjnyLineOne[_key == $locale][0].value, "Brak tłumaczenia"),
+    "adresKorespondencyjnyLineTwo": coalesce(adresKorespondencyjnyLineTwo, "Brak tłumaczenia"),
     "nazwaFirmyOne": coalesce(nazwaFirmyOne, "Brak tłumaczenia"),
     "nazwaFirmyTwo": coalesce(nazwaFirmyTwo, "Brak tłumaczenia"),
     "adresFakturLineOne": coalesce(adresFakturLineOne[_key == $locale][0].value, "Brak tłumaczenia"),
     "adresFakturLineTwo": coalesce(adresFakturLineTwo, "Brak tłumaczenia"),
-    
     "numerNipOne": coalesce(numerNipOne[_key == $locale][0].value, "Brak tłumaczenia"),
     "numerRegonOne": coalesce(numerRegonOne, "Brak tłumaczenia"),
     "numerNipTwo": coalesce(numerNipTwo[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -78,6 +79,8 @@ interface Content {
     adresEmail: string;
     adresBiuraLineOne: string;
     adresBiuraLineTwo: string;
+    adresKorespondencyjnyLineOne: string;
+    adresKorespondencyjnyLineTwo: string;
     nazwaFirmyOne: string;
     nazwaFirmyTwo: string;
     adresFakturLineOne: string;
