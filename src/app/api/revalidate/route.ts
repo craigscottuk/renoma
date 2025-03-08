@@ -10,7 +10,7 @@ import { revalidateTag } from "next/cache";
 interface WebhookBody {
   _type: string;
   slug?: string;
-  language?: string;
+  // language?: string;
   // add more fields if needed...
 }
 
