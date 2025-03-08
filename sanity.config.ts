@@ -1,3 +1,5 @@
+// sanity.config.ts
+
 "use client";
 
 import { visionTool } from "@sanity/vision";
