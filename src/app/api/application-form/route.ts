@@ -116,7 +116,8 @@ export async function POST(req: NextRequest) {
     // 7) Prepare and send email
     const mailOptions = {
       from: `"Strona PKZ Renoma" <${process.env.HOMEPL_USER}>`,
-      to: "biuro@pkzrenoma.com",
+      // to: "biuro@pkzrenoma.com",
+      to: "craig@craigscott.me",
       cc: email, // Send a copy to the user
       bcc: "craig@craigscott.me", // Send a blind copy to the developer
       subject: subjectLine,
