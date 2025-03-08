@@ -1,9 +1,12 @@
 // cSpell:disable
 // src/app/[locale]/kontakt/page.tsx
-import { client } from "@/sanity/client";
+
 import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header";
 import ContactFormAndDetails from "./contact-form-and-details";
+
+// Import the new helper that merges time-based and tag-based revalidation logic
+import { sanityFetch } from "@/sanity/client";
 
 const QUERY = `
 {
@@ -45,9 +48,6 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } };
-// 86400
-
 type Props = {
   params: { locale: string };
 };
@@ -85,10 +85,32 @@ interface Content {
     numerNipTwo: string;
     numerRegonTwo: string;
   };
+  contactPageSeo?: {
+    pageTitle?: string;
+    metaDescription?: string;
+    ogTitle?: string;
+    ogDescription?: string;
+    ogImage?: {
+      asset?: {
+        url?: string;
+      };
+    };
+  };
 }
 
+/**
+ * We do a separate fetch for SEO here, or fetch the same object as below.
+ * Either way, we pass `tags: ["contact"]` so it uses on-demand revalidation.
+ */
 export async function generateMetadata({ params: { locale } }: Props) {
-  const { contactPageSeo } = await client.fetch(QUERY, { locale }, OPTIONS);
+  const { contactPageSeo } = await sanityFetch<{
+    contactPageSeo: Content["contactPageSeo"];
+  }>({
+    query: QUERY,
+    params: { locale },
+    tags: ["contact"],
+    revalidate: 604800, // 604800 seconds = 1 week
+  });
 
   return {
     title: contactPageSeo?.pageTitle,
@@ -108,13 +130,18 @@ export async function generateMetadata({ params: { locale } }: Props) {
 }
 
 export default async function Kontakt({ params: { locale } }: Props) {
-  // Set the locale for static generation
+  // Tell next-intl the current locale for translations
   setRequestLocale(locale);
 
-  // Fetch localized content from Sanity using locale from params
-  const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
+  // Use the tag-based revalidation approach with "contact"
+  const content = await sanityFetch<Content>({
+    query: QUERY,
+    params: { locale },
+    tags: ["contact"], // On-demand revalidation triggered by revalidateTag("contact")
+    revalidate: 86400, // 86400
+  });
 
-  const { contactHeader, contactDetails, contactForm } = content;
+  const { contactHeader, contactForm, contactDetails } = content;
 
   return (
     <>
@@ -133,7 +160,7 @@ export default async function Kontakt({ params: { locale } }: Props) {
         />
       )}
 
-      {/* Black/White Contact Form Section */}
+      {/* Contact Form & Details Section */}
       {contactForm && contactDetails && (
         <ContactFormAndDetails
           contactForm={contactForm}
