@@ -1,0 +1,7375 @@
+[
+  {
+    "options": {
+      "apiVersion": "2022-11-27",
+      "languages": [
+        {
+          "id": "pl",
+          "title": "PL"
+        },
+        {
+          "id": "en",
+          "title": "EN"
+        },
+        {
+          "id": "de",
+          "title": "DE"
+        }
+      ]
+    },
+    "validation": [
+      {
+        "rules": [
+          {
+            "flag": "custom"
+          }
+        ],
+        "level": "error"
+      }
+    ],
+    "of": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "type": "internationalizedArrayReferenceValue",
+        "title": "Internationalized array [object Object]"
+      }
+    ],
+    "name": "internationalizedArrayReference",
+    "type": "array",
+    "title": "Internationalized array"
+  },
+  {
+    "fields": [
+      {
+        "weak": false,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "to": [
+          {
+            "type": "caseStudyEntry"
+          }
+        ],
+        "name": "value",
+        "type": "reference"
+      }
+    ],
+    "name": "internationalizedArrayReferenceValue",
+    "type": "object",
+    "title": "Internationalized array [object Object]"
+  },
+  {
+    "liveEdit": true,
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "PL"
+            },
+            {
+              "id": "en",
+              "title": "EN"
+            },
+            {
+              "id": "de",
+              "title": "DE"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "translations",
+        "type": "internationalizedArrayReference"
+      },
+      {
+        "options": {
+          "list": [
+            "caseStudyEntry"
+          ]
+        },
+        "description": "Optional: Used to filter the reference fields above so all translations share the same types.",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "readOnly": "conditional",
+        "name": "schemaTypes",
+        "type": "array"
+      }
+    ],
+    "name": "translation.metadata",
+    "type": "document",
+    "title": "Translation metadata"
+  },
+  {
+    "options": {
+      "apiVersion": "2022-11-27",
+      "languages": [
+        {
+          "id": "pl",
+          "title": "Polish"
+        },
+        {
+          "id": "en",
+          "title": "English"
+        },
+        {
+          "id": "de",
+          "title": "German"
+        }
+      ]
+    },
+    "validation": [
+      {
+        "rules": [
+          {
+            "flag": "custom"
+          }
+        ],
+        "level": "error"
+      }
+    ],
+    "of": [
+      {
+        "type": "internationalizedArrayStringValue",
+        "title": "Internationalized array string"
+      }
+    ],
+    "name": "internationalizedArrayString",
+    "type": "array",
+    "title": "Internationalized array"
+  },
+  {
+    "options": {
+      "apiVersion": "2022-11-27",
+      "languages": [
+        {
+          "id": "pl",
+          "title": "Polish"
+        },
+        {
+          "id": "en",
+          "title": "English"
+        },
+        {
+          "id": "de",
+          "title": "German"
+        }
+      ]
+    },
+    "validation": [
+      {
+        "rules": [
+          {
+            "flag": "custom"
+          }
+        ],
+        "level": "error"
+      }
+    ],
+    "of": [
+      {
+        "type": "internationalizedArrayTextValue",
+        "title": "Internationalized array text"
+      }
+    ],
+    "name": "internationalizedArrayText",
+    "type": "array",
+    "title": "Internationalized array"
+  },
+  {
+    "fields": [
+      {
+        "name": "value",
+        "type": "string"
+      }
+    ],
+    "name": "internationalizedArrayStringValue",
+    "type": "object",
+    "title": "Internationalized array string"
+  },
+  {
+    "fields": [
+      {
+        "name": "value",
+        "type": "text"
+      }
+    ],
+    "name": "internationalizedArrayTextValue",
+    "type": "object",
+    "title": "Internationalized array text"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "name": "placeholder",
+        "type": "string"
+      }
+    ],
+    "name": "home",
+    "type": "document",
+    "title": "Dom"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł Sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "sectionCTA",
+        "type": "internationalizedArrayString",
+        "title": "Przycisk Sekcji"
+      }
+    ],
+    "name": "heroSection",
+    "type": "document",
+    "title": "Sekcja Powitalny"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "label",
+        "type": "internationalizedArrayString",
+        "title": "Etykieta Sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł Sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "description",
+        "type": "internationalizedArrayText",
+        "title": "Opis Sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "sectionCTA",
+        "type": "internationalizedArrayString",
+        "title": "Przycisk Sekcji"
+      }
+    ],
+    "name": "aboutSectionHome",
+    "type": "document",
+    "title": "Sekcja O Nas"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "label",
+        "type": "internationalizedArrayString",
+        "title": "Etykieta Sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł Sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "description",
+        "type": "internationalizedArrayText",
+        "title": "Opis Sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "sectionCTA",
+        "type": "internationalizedArrayString",
+        "title": "Przycisk Sekcji"
+      }
+    ],
+    "name": "servicesSectionHome",
+    "type": "document",
+    "title": "Sekcja Usług"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "label",
+        "type": "internationalizedArrayString",
+        "title": "Etykieta Sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł Sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "description",
+        "type": "internationalizedArrayText",
+        "title": "Opis Sekcji"
+      },
+      {
+        "description": "Dodaj loga firm, które nam zaufały.",
+        "of": [
+          {
+            "fields": [
+              {
+                "description": "Dodaj nazwę firmy, która nam zaufała.",
+                "name": "company",
+                "type": "string",
+                "title": "Nazwa firmy"
+              },
+              {
+                "description": "Dodaj logo firmy, która nam zaufała.",
+                "name": "src",
+                "type": "image",
+                "title": "Źródło logo"
+              },
+              {
+                "description": "Dodaj link do strony firmy, która nam zaufała.",
+                "name": "link",
+                "type": "string"
+              }
+            ],
+            "type": "object",
+            "name": "logoItem",
+            "title": "Logo"
+          }
+        ],
+        "name": "logos",
+        "type": "array",
+        "title": "Loga"
+      }
+    ],
+    "name": "logoSectionHome",
+    "type": "document",
+    "title": "Sekcja Zaufali nam"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł, który pojawi się w zakładce przeglądarki i wynikach wyszukiwania.",
+        "name": "pageTitle",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł strony"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ],
+            "level": "warning",
+            "message": "Optymalna długość to maks. 160 znaków."
+          }
+        ],
+        "description": "Krótki opis strony dla wyników wyszukiwania (maks. 160 znaków).",
+        "name": "metaDescription",
+        "type": "internationalizedArrayString",
+        "title": "Meta opis"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł strony widoczny w podglądzie na Facebooku, Twitterze itp.",
+        "name": "ogTitle",
+        "type": "internationalizedArrayString",
+        "title": "Open Graph tytuł"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Opis strony używany przy udostępnianiu na mediach społecznościowych.",
+        "name": "ogDescription",
+        "type": "internationalizedArrayString",
+        "title": "Open Graph opis"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Obraz widoczny przy udostępnianiu strony w mediach społecznościowych.",
+        "name": "ogImage",
+        "type": "image",
+        "title": "Open Graph obraz"
+      }
+    ],
+    "name": "homePageSeo",
+    "type": "document",
+    "title": "SEO & Ustawienia Meta – Strona Główna"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "name": "placeholder",
+        "type": "string",
+        "title": "Zastępczy tekst"
+      }
+    ],
+    "name": "about",
+    "type": "document",
+    "title": "O Nas"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Krótki tekst nad tytułem, np. 'O NAS'.",
+        "name": "label",
+        "type": "internationalizedArrayString",
+        "title": "Etykieta sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Główny tytuł sekcji na stronie o nas, np. 'Poznaj nas'.",
+        "name": "title",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tekst opisujący firmę lub zespół, umieszczony na stronie o nas.",
+        "name": "description",
+        "type": "internationalizedArrayText",
+        "title": "Opis sekcji"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Obraz wyświetlany w nagłówku strony o nas.",
+        "name": "image",
+        "type": "image",
+        "title": "Obraz nagłówka"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Pełna szerokość powyżej",
+              "value": "fullWidthAbove"
+            },
+            {
+              "title": "Pełna szerokość poniżej",
+              "value": "fullWidthBelow"
+            },
+            {
+              "title": "Portret po prawej",
+              "value": "portraitRight"
+            },
+            {
+              "title": "Krajobraz po prawej",
+              "value": "landscapeRight"
+            },
+            {
+              "title": "Brak obrazu",
+              "value": "noImage"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "fullWidthAbove",
+        "description": "Wybierz między pełną szerokością obrazu a portretem po prawej stronie. Dla pełnej szerokości wybierz pozycję obrazu względem treści.",
+        "name": "imageLayout",
+        "type": "string",
+        "title": "Układ obrazu na dużych urządzeniach"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "4:3",
+              "value": "standard"
+            },
+            {
+              "title": "16:10",
+              "value": "wide"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "wide",
+        "description": "Określ proporcje obrazu w nagłówku.",
+        "name": "aspectRatio",
+        "type": "string",
+        "title": "Proporcje obrazu"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Biały",
+              "value": "white"
+            },
+            {
+              "title": "Czarny",
+              "value": "black"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "white",
+        "description": "Wybierz kolor tła dla nagłówka strony. Jeśli wybierzesz biały, tekst będzie czarny, a jeśli wybierzesz czarny, tekst będzie biały.",
+        "name": "backgroundColor",
+        "type": "string",
+        "title": "Kolor tła"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie przedstawiające zespół firmy'.",
+        "name": "imageAlt",
+        "type": "internationalizedArrayString",
+        "title": "Alternatywny tekst obrazu nagłówka"
+      }
+    ],
+    "name": "aboutUsHeader",
+    "type": "document",
+    "title": "Nagłówek strony o nas"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł sekcji, np. 'O nas'.",
+        "name": "title",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł sekcji"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Treść opisująca firmę, jej misję i wartości.",
+        "fields": [
+          {
+            "name": "pl",
+            "type": "portableTextWithHeadings",
+            "title": "PL"
+          },
+          {
+            "name": "en",
+            "type": "portableTextWithHeadings",
+            "title": "EN"
+          },
+          {
+            "name": "de",
+            "type": "portableTextWithHeadings",
+            "title": "DE"
+          }
+        ],
+        "name": "text",
+        "type": "object",
+        "title": "Tekst sekcji"
+      }
+    ],
+    "name": "aboutUs",
+    "type": "document",
+    "title": "Sekcja 'O nas i nasza wartości'"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "description": "Sekcja osi czasu przedstawia najważniejsze wydarzenia lub osiągnięcia w porządku chronologicznym.",
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Główny tytuł sekcji, np. 'Nasza historia'.",
+        "name": "title",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Treść wprowadzająca do sekcji, np. 'Nasza historia to lata wyzwań i sukcesów.'.",
+        "name": "text",
+        "type": "internationalizedArrayText",
+        "title": "Tekst sekcji"
+      },
+      {
+        "description": "Lista kluczowych wydarzeń w kolejności chronologicznej, przedstawiająca historię lub osiągnięcia.",
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "min",
+                        "constraint": 1900
+                      },
+                      {
+                        "flag": "max",
+                        "constraint": 2025
+                      }
+                    ],
+                    "level": "error",
+                    "message": "Rok musi być w formacie YYYY i znajdować się pomiędzy 1900 a bieżącym rokiem."
+                  }
+                ],
+                "description": "Rok, w którym wydarzenie miało miejsce.",
+                "name": "year",
+                "type": "number",
+                "title": "Rok"
+              },
+              {
+                "description": "Opis wydarzenia w dostępnych językach.",
+                "fields": [
+                  {
+                    "name": "pl",
+                    "type": "basicText",
+                    "title": "PL"
+                  },
+                  {
+                    "name": "en",
+                    "type": "basicText",
+                    "title": "EN"
+                  },
+                  {
+                    "name": "de",
+                    "type": "basicText",
+                    "title": "DE"
+                  }
+                ],
+                "name": "content",
+                "type": "object",
+                "title": "Treść wydarzenia"
+              },
+              {
+                "description": "Obrazy ilustrujące wydarzenie. Dodaj podpisy, aby uzupełnić kontekst.",
+                "of": [
+                  {
+                    "fields": [
+                      {
+                        "description": "Obraz ilustrujący wydarzenie.",
+                        "name": "src",
+                        "type": "image",
+                        "title": "Obraz"
+                      },
+                      {
+                        "options": {
+                          "apiVersion": "2022-11-27",
+                          "languages": [
+                            {
+                              "id": "pl",
+                              "title": "Polish"
+                            },
+                            {
+                              "id": "en",
+                              "title": "English"
+                            },
+                            {
+                              "id": "de",
+                              "title": "German"
+                            }
+                          ]
+                        },
+                        "validation": [
+                          {
+                            "rules": [
+                              {
+                                "flag": "custom"
+                              }
+                            ],
+                            "level": "error"
+                          }
+                        ],
+                        "description": "Krótki tekst opisujący obraz, aby uzupełnić kontekst i poprawić SEO.",
+                        "name": "caption",
+                        "type": "internationalizedArrayString",
+                        "title": "Podpis obrazu"
+                      },
+                      {
+                        "options": {
+                          "list": [
+                            {
+                              "title": "4:3",
+                              "value": "standard"
+                            },
+                            {
+                              "title": "16:10",
+                              "value": "wide"
+                            }
+                          ],
+                          "layout": "radio"
+                        },
+                        "initialValue": "wide",
+                        "description": "Określ proporcje obrazu w nagłówku.",
+                        "name": "aspectRatio",
+                        "type": "string",
+                        "title": "Proporcje obrazu"
+                      }
+                    ],
+                    "type": "object",
+                    "name": "imageItem",
+                    "title": "Obraz z podpisem"
+                  }
+                ],
+                "name": "images",
+                "type": "array",
+                "title": "Obrazy"
+              }
+            ],
+            "type": "object",
+            "name": "timelineItem",
+            "title": "Element osi czasu"
+          }
+        ],
+        "name": "timeline",
+        "type": "array",
+        "title": "Oś czasu"
+      }
+    ],
+    "name": "ourHistory",
+    "type": "document",
+    "title": "Sekcja osi czasu"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł, który pojawi się w zakładce przeglądarki i wynikach wyszukiwania.",
+        "name": "pageTitle",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł strony"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ],
+            "level": "warning",
+            "message": "Optymalna długość to maks. 160 znaków."
+          }
+        ],
+        "description": "Krótki opis strony dla wyników wyszukiwania (maks. 160 znaków).",
+        "name": "metaDescription",
+        "type": "internationalizedArrayString",
+        "title": "Meta opis"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł strony widoczny w podglądzie na Facebooku, Twitterze itp.",
+        "name": "ogTitle",
+        "type": "internationalizedArrayString",
+        "title": "Open Graph tytuł"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Opis strony używany przy udostępnianiu na mediach społecznościowych.",
+        "name": "ogDescription",
+        "type": "internationalizedArrayString",
+        "title": "Open Graph opis"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Obraz widoczny przy udostępnianiu strony w mediach społecznościowych.",
+        "name": "ogImage",
+        "type": "image",
+        "title": "Open Graph obraz"
+      }
+    ],
+    "name": "aboutPageSeo",
+    "type": "document",
+    "title": "SEO & Ustawienia Meta – O Nas"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "name": "placeholder",
+        "type": "string",
+        "title": "Zastępczy tekst"
+      }
+    ],
+    "name": "services",
+    "type": "document",
+    "title": "Usługi"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Krótki tekst nad tytułem, np. 'USŁUGI'.",
+        "name": "label",
+        "type": "internationalizedArrayString",
+        "title": "Etykieta sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Główny tytuł sekcji na stronie usług, np. 'Nasze Usługi'.",
+        "name": "title",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tekst opisujący główne usługi firmy, przedstawiony na stronie usług.",
+        "name": "description",
+        "type": "internationalizedArrayText",
+        "title": "Opis sekcji"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Obraz wyświetlany w nagłówku strony usług, przedstawiający np. procesy konserwatorskie lub sprzęt budowlany.",
+        "name": "image",
+        "type": "image",
+        "title": "Obraz nagłówka"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Pełna szerokość powyżej",
+              "value": "fullWidthAbove"
+            },
+            {
+              "title": "Pełna szerokość poniżej",
+              "value": "fullWidthBelow"
+            },
+            {
+              "title": "Portret po prawej",
+              "value": "portraitRight"
+            },
+            {
+              "title": "Krajobraz po prawej",
+              "value": "landscapeRight"
+            },
+            {
+              "title": "Brak obrazu",
+              "value": "noImage"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "fullWidthAbove",
+        "description": "Wybierz między pełną szerokością obrazu a portretem po prawej stronie. Dla pełnej szerokości wybierz pozycję obrazu względem treści.",
+        "name": "imageLayout",
+        "type": "string",
+        "title": "Układ obrazu na dużych urządzeniach"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "4:3",
+              "value": "standard"
+            },
+            {
+              "title": "16:10",
+              "value": "wide"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "wide",
+        "description": "Określ proporcje obrazu w nagłówku.",
+        "name": "aspectRatio",
+        "type": "string",
+        "title": "Proporcje obrazu"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Biały",
+              "value": "white"
+            },
+            {
+              "title": "Czarny",
+              "value": "black"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "white",
+        "description": "Wybierz kolor tła dla nagłówka strony. Jeśli wybierzesz biały, tekst będzie czarny, a jeśli wybierzesz czarny, tekst będzie biały.",
+        "name": "backgroundColor",
+        "type": "string",
+        "title": "Kolor tła"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tekst alternatywny dla obrazu nagłówka, np. 'Sprzęt budowlany używany podczas prac konserwatorskich'.",
+        "name": "imageAlt",
+        "type": "internationalizedArrayString",
+        "title": "Alternatywny tekst obrazu nagłówka"
+      }
+    ],
+    "name": "servicesHeader",
+    "type": "document",
+    "title": "Nagłówek strony usług"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "description": "Zarządzaj grupami usług, np. sekcjami na stronie głównej.",
+    "fields": [
+      {
+        "fields": [
+          {
+            "initialValue": "Badania, Planowanie i Ekspertyzy",
+            "name": "title",
+            "type": "string",
+            "title": "Tytuł Sekcji"
+          },
+          {
+            "description": "Lista wszystkich usług, które znajdują się w ramach tego wpisu. Te usługi będą również wyświetlane na stronie głównej oraz w stopce.",
+            "name": "services",
+            "type": "servicesList",
+            "title": "Lista Usług"
+          }
+        ],
+        "name": "serviceGroupOne",
+        "type": "object",
+        "title": "01. Badania, Planowanie i Ekspertyzy"
+      },
+      {
+        "fields": [
+          {
+            "initialValue": "Realizacja i Nadzór",
+            "name": "title",
+            "type": "string",
+            "title": "Tytuł Sekcji"
+          },
+          {
+            "description": "Lista wszystkich usług, które znajdują się w ramach tego wpisu. Te usługi będą również wyświetlane na stronie głównej oraz w stopce.",
+            "name": "services",
+            "type": "servicesList",
+            "title": "Lista Usług"
+          }
+        ],
+        "name": "serviceGroupTwo",
+        "type": "object",
+        "title": "02. Realizacja i Nadzór"
+      },
+      {
+        "fields": [
+          {
+            "initialValue": "Rewaloryzacja i Wsparcie",
+            "name": "title",
+            "type": "string",
+            "title": "Tytuł Sekcji"
+          },
+          {
+            "description": "Lista wszystkich usług, które znajdują się w ramach tego wpisu. Te usługi będą również wyświetlane na stronie głównej oraz w stopce.",
+            "name": "services",
+            "type": "servicesList",
+            "title": "Lista Usług"
+          }
+        ],
+        "name": "serviceGroupThree",
+        "type": "object",
+        "title": "Rewaloryzacja i Wsparcie"
+      }
+    ],
+    "name": "servicesGroup",
+    "type": "document",
+    "title": "Grupa usług"
+  },
+  {
+    "description": "Lista wszystkich usług, które znajdują się w ramach tego wpisu. Te usługi będą również wyświetlane na stronie głównej oraz w stopce.",
+    "of": [
+      {
+        "fields": [
+          {
+            "options": {
+              "apiVersion": "2022-11-27",
+              "languages": [
+                {
+                  "id": "pl",
+                  "title": "Polish"
+                },
+                {
+                  "id": "en",
+                  "title": "English"
+                },
+                {
+                  "id": "de",
+                  "title": "German"
+                }
+              ]
+            },
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error",
+                "message": "Pole tytułu usługi jest wymagane."
+              }
+            ],
+            "description": "Nazwa usługi, np. 'Badania konserwatorskie i ekspertyzy'.",
+            "name": "title",
+            "type": "internationalizedArrayString",
+            "title": "Tytuł Usługi"
+          },
+          {
+            "options": {
+              "apiVersion": "2022-11-27",
+              "languages": [
+                {
+                  "id": "pl",
+                  "title": "Polish"
+                },
+                {
+                  "id": "en",
+                  "title": "English"
+                },
+                {
+                  "id": "de",
+                  "title": "German"
+                }
+              ]
+            },
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error",
+                "message": "Pole opisu usługi jest wymagane."
+              }
+            ],
+            "description": "Krótki opis wprowadzający dla danej usługi, np. 'Prowadzimy kompleksowe badania konserwatorskie wspierające ochronę zabytków.'.",
+            "name": "description",
+            "type": "internationalizedArrayText",
+            "title": "Opis Usługi"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  },
+                  {
+                    "flag": "min",
+                    "constraint": 1
+                  }
+                ],
+                "level": "error",
+                "message": "Dodaj przynajmniej jedno działanie."
+              }
+            ],
+            "description": "Lista działań realizowanych w ramach danej usługi, np. 'Ocena stanu zabytku', 'Analiza materiałowa', 'Badania historyczne'.",
+            "of": [
+              {
+                "fields": [
+                  {
+                    "options": {
+                      "apiVersion": "2022-11-27",
+                      "languages": [
+                        {
+                          "id": "pl",
+                          "title": "Polish"
+                        },
+                        {
+                          "id": "en",
+                          "title": "English"
+                        },
+                        {
+                          "id": "de",
+                          "title": "German"
+                        }
+                      ]
+                    },
+                    "validation": [
+                      {
+                        "rules": [
+                          {
+                            "flag": "presence",
+                            "constraint": "required"
+                          }
+                        ],
+                        "level": "error",
+                        "message": "Pole tytułu akcji jest wymagane."
+                      }
+                    ],
+                    "description": "Nazwa działania, np. 'Ocena stanu zabytku'.",
+                    "name": "title",
+                    "type": "internationalizedArrayString",
+                    "title": "Tytuł Akcji"
+                  },
+                  {
+                    "options": {
+                      "apiVersion": "2022-11-27",
+                      "languages": [
+                        {
+                          "id": "pl",
+                          "title": "Polish"
+                        },
+                        {
+                          "id": "en",
+                          "title": "English"
+                        },
+                        {
+                          "id": "de",
+                          "title": "German"
+                        }
+                      ]
+                    },
+                    "validation": [
+                      {
+                        "rules": [
+                          {
+                            "flag": "presence",
+                            "constraint": "required"
+                          }
+                        ],
+                        "level": "error",
+                        "message": "Pole treści akcji jest wymagane."
+                      }
+                    ],
+                    "description": "Szczegóły dotyczące działania, np. 'Badania in situ w celu oceny stopnia zniszczenia...'.",
+                    "name": "content",
+                    "type": "internationalizedArrayText",
+                    "title": "Treść Akcji"
+                  }
+                ],
+                "type": "object",
+                "name": "action",
+                "title": "Akcja"
+              }
+            ],
+            "name": "actions",
+            "type": "array",
+            "title": "Działania"
+          },
+          {
+            "description": "Obrazy ilustrujące usługę. Dodanie więcej niż jednego obrazu utworzy galerię lub karuzelę obrazów.",
+            "of": [
+              {
+                "fields": [
+                  {
+                    "description": "Opcjonalny podpis do obrazu, np. 'Widok przed konserwacją'.",
+                    "name": "caption",
+                    "type": "string",
+                    "title": "Podpis Obrazu"
+                  },
+                  {
+                    "options": {
+                      "list": [
+                        {
+                          "title": "4:3",
+                          "value": "standard"
+                        },
+                        {
+                          "title": "16:10",
+                          "value": "wide"
+                        }
+                      ],
+                      "layout": "radio"
+                    },
+                    "initialValue": "wide",
+                    "description": "Określ proporcje obrazu w nagłówku.",
+                    "name": "aspectRatio",
+                    "type": "string",
+                    "title": "Proporcje obrazu"
+                  }
+                ],
+                "type": "image",
+                "title": "Obraz"
+              }
+            ],
+            "name": "images",
+            "type": "array",
+            "title": "Obrazy Usługi"
+          },
+          {
+            "initialValue": false,
+            "description": "Czy dodać link do RenomaLab w tej sekcji usługi?",
+            "name": "addLinkToRenomaLab",
+            "type": "boolean",
+            "title": "Dodaj link do RenomaLab"
+          }
+        ],
+        "type": "object",
+        "name": "service",
+        "title": "Usługa"
+      }
+    ],
+    "name": "servicesList",
+    "type": "array",
+    "title": "Lista usług"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł, który pojawi się w zakładce przeglądarki i wynikach wyszukiwania.",
+        "name": "pageTitle",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł strony"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ],
+            "level": "warning",
+            "message": "Optymalna długość to maks. 160 znaków."
+          }
+        ],
+        "description": "Krótki opis strony dla wyników wyszukiwania (maks. 160 znaków).",
+        "name": "metaDescription",
+        "type": "internationalizedArrayString",
+        "title": "Meta opis"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł strony widoczny w podglądzie na Facebooku, Twitterze itp.",
+        "name": "ogTitle",
+        "type": "internationalizedArrayString",
+        "title": "Open Graph tytuł"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Opis strony używany przy udostępnianiu na mediach społecznościowych.",
+        "name": "ogDescription",
+        "type": "internationalizedArrayString",
+        "title": "Open Graph opis"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Obraz widoczny przy udostępnianiu strony w mediach społecznościowych.",
+        "name": "ogImage",
+        "type": "image",
+        "title": "Open Graph obraz"
+      }
+    ],
+    "name": "servicesPageSeo",
+    "type": "document",
+    "title": "SEO & Ustawienia Meta – Usługi"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "name": "placeholder",
+        "type": "string",
+        "title": "Zastępczy tekst"
+      }
+    ],
+    "name": "caseStudies",
+    "type": "document",
+    "title": "Realizacje"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Krótki tekst nad tytułem, np. 'Nasze Projekty'.",
+        "name": "label",
+        "type": "internationalizedArrayString",
+        "title": "Etykieta sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Główny tytuł sekcji na stronie Realizacje, np. 'Zrealizowane Projekty'.",
+        "name": "title",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Krótki opis prezentujący zakończone projekty firmy w branży budowlanej, np. 'Przegląd naszych zrealizowanych projektów budowlanych, które odzwierciedlają naszą wiedzę i jakość wykonania.'",
+        "name": "description",
+        "type": "internationalizedArrayText",
+        "title": "Opis sekcji"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Obraz wyświetlany w nagłówku strony Realizacje, przedstawiający zakończone projekty lub procesy budowlane.",
+        "name": "image",
+        "type": "image",
+        "title": "Obraz nagłówka"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Pełna szerokość powyżej",
+              "value": "fullWidthAbove"
+            },
+            {
+              "title": "Pełna szerokość poniżej",
+              "value": "fullWidthBelow"
+            },
+            {
+              "title": "Portret po prawej",
+              "value": "portraitRight"
+            },
+            {
+              "title": "Krajobraz po prawej",
+              "value": "landscapeRight"
+            },
+            {
+              "title": "Brak obrazu",
+              "value": "noImage"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "fullWidthAbove",
+        "description": "Wybierz między pełną szerokością obrazu a portretem po prawej stronie. Dla pełnej szerokości wybierz pozycję obrazu względem treści.",
+        "name": "imageLayout",
+        "type": "string",
+        "title": "Układ obrazu na dużych urządzeniach"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "4:3",
+              "value": "standard"
+            },
+            {
+              "title": "16:10",
+              "value": "wide"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "wide",
+        "description": "Określ proporcje obrazu w nagłówku.",
+        "name": "aspectRatio",
+        "type": "string",
+        "title": "Proporcje obrazu"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Biały",
+              "value": "white"
+            },
+            {
+              "title": "Czarny",
+              "value": "black"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "white",
+        "description": "Wybierz kolor tła dla nagłówka strony. Jeśli wybierzesz biały, tekst będzie czarny, a jeśli wybierzesz czarny, tekst będzie biały.",
+        "name": "backgroundColor",
+        "type": "string",
+        "title": "Kolor tła"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie ukończonego budynku zaprojektowanego i zrealizowanego przez firmę.'",
+        "name": "imageAlt",
+        "type": "internationalizedArrayString",
+        "title": "Alternatywny tekst obrazu nagłówka"
+      }
+    ],
+    "name": "caseStudyHeader",
+    "type": "document",
+    "title": "Nagłówek strony Realizacje"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł, który pojawi się w zakładce przeglądarki i wynikach wyszukiwania.",
+        "name": "pageTitle",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł strony"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ],
+            "level": "warning",
+            "message": "Optymalna długość to maks. 160 znaków."
+          }
+        ],
+        "description": "Krótki opis strony dla wyników wyszukiwania (maks. 160 znaków).",
+        "name": "metaDescription",
+        "type": "internationalizedArrayString",
+        "title": "Meta opis"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł strony widoczny w podglądzie na Facebooku, Twitterze itp.",
+        "name": "ogTitle",
+        "type": "internationalizedArrayString",
+        "title": "Open Graph tytuł"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Opis strony używany przy udostępnianiu na mediach społecznościowych.",
+        "name": "ogDescription",
+        "type": "internationalizedArrayString",
+        "title": "Open Graph opis"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Obraz widoczny przy udostępnianiu strony w mediach społecznościowych.",
+        "name": "ogImage",
+        "type": "image",
+        "title": "Open Graph obraz"
+      }
+    ],
+    "name": "caseStudiesPageSeo",
+    "type": "document",
+    "title": "SEO & Ustawienia Meta – Realizacje"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": false,
+        "description": "Jeśli aktywowane, dokument nie będzie wyświetlany.",
+        "name": "draft",
+        "type": "boolean",
+        "title": "Szkic"
+      },
+      {
+        "description": "To pole jest tylko do odczytu i przypisuje język do dokumentu. Służy jako odniesienie do języka dokumentu.",
+        "readOnly": true,
+        "name": "language",
+        "type": "string",
+        "title": "Język"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł realizacji, np. 'Konserwacja Baszty Ferbera'.",
+        "name": "title",
+        "type": "string",
+        "title": "Tytuł Realizacji"
+      },
+      {
+        "options": {
+          "source": "title"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error",
+            "message": "Slug jest wymagany do wygenerowania strony projektu."
+          }
+        ],
+        "description": "Unikalny identyfikator URL projektu, generowany na podstawie tytułu, np. 'konserwacja-baszty'.",
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "rows": 8,
+        "description": "Krótki opis wyświetlany na kartach dla każdego projektu na stronie www.pzkrenoma.com/pl/realizacje.",
+        "name": "cardDescription",
+        "type": "text",
+        "title": "Opis karty"
+      },
+      {
+        "rows": 8,
+        "description": "Krótki opis projektu używany jako wprowadzenie do studium przypadku w sekcji nagłówkowej strony dla każdego indywidualnego studium przypadku.",
+        "name": "summary",
+        "type": "text",
+        "title": "Podsumowanie"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Obraz wyświetlany w nagłówku strony kontaktowej.",
+        "name": "image",
+        "type": "image",
+        "title": "Obraz nagłówka"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Pełna szerokość powyżej",
+              "value": "fullWidthAbove"
+            },
+            {
+              "title": "Pełna szerokość poniżej",
+              "value": "fullWidthBelow"
+            },
+            {
+              "title": "Portret po prawej",
+              "value": "portraitRight"
+            },
+            {
+              "title": "Krajobraz po prawej",
+              "value": "landscapeRight"
+            },
+            {
+              "title": "Brak obrazu",
+              "value": "noImage"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "fullWidthAbove",
+        "description": "Wybierz między pełną szerokością obrazu a portretem po prawej stronie. Dla pełnej szerokości wybierz pozycję obrazu względem treści.",
+        "name": "imageLayout",
+        "type": "string",
+        "title": "Układ obrazu na dużych urządzeniach"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Biały",
+              "value": "white"
+            },
+            {
+              "title": "Czarny",
+              "value": "black"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "white",
+        "description": "Wybierz kolor tła dla nagłówka strony. Jeśli wybierzesz biały, tekst będzie czarny, a jeśli wybierzesz czarny, tekst będzie biały.",
+        "name": "backgroundColor",
+        "type": "string",
+        "title": "Kolor tła"
+      },
+      {
+        "description": "Zawiera szczegółowe informacje o projekcie, takie jak lokalizacja, status, czas trwania, typ obiektu, role oraz zakres prac.",
+        "fields": [
+          {
+            "description": "Podaj lokalizację projektu, np. 'Wzgórze Katedralne we Fromborku'.",
+            "name": "lokalizacja",
+            "type": "string"
+          },
+          {
+            "description": "Podaj aktualny status projektu, np. 'W trakcie realizacji' lub 'Zakończony'.",
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "description": "Podaj czas trwania projektu, np. '12 miesięcy (styczeń 2024 - grudzień 2024)'.",
+            "name": "czasTrwania",
+            "type": "string",
+            "title": "Czas trwania"
+          },
+          {
+            "description": "Podaj typ obiektu, np. 'Zabytek architektury obronnej'.",
+            "name": "typObiektu",
+            "type": "string"
+          },
+          {
+            "description": "Podaj role w projekcie, np. 'Autor programu prac konserwatorskich.', 'Generalny wykonawca prac konserwatorskich i restauratorskich oraz budowlanych'.",
+            "of": [
+              {
+                "type": "string"
+              }
+            ],
+            "name": "rola",
+            "type": "array"
+          },
+          {
+            "description": "Podaj zakres prac, np. 'Stabilizacja konstrukcji budynku.', 'Remont więźby dachowej.', 'Wymiana pokrycia dachowego.'.",
+            "of": [
+              {
+                "type": "string"
+              }
+            ],
+            "name": "zakresPrac",
+            "type": "array"
+          }
+        ],
+        "name": "details",
+        "type": "object",
+        "title": "Szczegóły Projektu"
+      },
+      {
+        "fields": [
+          {
+            "initialValue": "Rys historyczny",
+            "description": "Domyślny tytuł sekcji, który można zmienić na własny.",
+            "name": "title",
+            "type": "string",
+            "title": "Tytuł Sekcji"
+          },
+          {
+            "name": "content",
+            "type": "sectionContent",
+            "title": "Treść Sekcji"
+          }
+        ],
+        "name": "sectionOne",
+        "type": "object",
+        "title": "01. Rys Historyczny (lub własny)"
+      },
+      {
+        "fields": [
+          {
+            "initialValue": "Stan zachowania",
+            "description": "Domyślny tytuł sekcji, który można zmienić na własny.",
+            "name": "title",
+            "type": "string",
+            "title": "Tytuł Sekcji"
+          },
+          {
+            "name": "content",
+            "type": "sectionContent",
+            "title": "Treść Sekcji"
+          }
+        ],
+        "name": "sectionTwo",
+        "type": "object",
+        "title": "02. Stan zachowania (lub własny)"
+      },
+      {
+        "fields": [
+          {
+            "initialValue": "Założenia konserwatorskie",
+            "description": "Domyślny tytuł sekcji, który można zmienić na własny.",
+            "name": "title",
+            "type": "string",
+            "title": "Tytuł Sekcji"
+          },
+          {
+            "name": "content",
+            "type": "sectionContent",
+            "title": "Treść Sekcji"
+          }
+        ],
+        "name": "sectionThree",
+        "type": "object",
+        "title": "03. Założenia konserwatorskie (lub własny)"
+      },
+      {
+        "fields": [
+          {
+            "initialValue": "Przebieg prac konserwatorskich i restauratorskich oraz budowlanych",
+            "description": "Domyślny tytuł sekcji, który można zmienić na własny.",
+            "name": "title",
+            "type": "string",
+            "title": "Tytuł Sekcji"
+          },
+          {
+            "name": "content",
+            "type": "sectionContent",
+            "title": "Treść Sekcji"
+          }
+        ],
+        "name": "sectionFour",
+        "type": "object",
+        "title": "04. Przebieg prac konserwatorskich i restauratorskich oraz budowlanych"
+      },
+      {
+        "fields": [
+          {
+            "initialValue": "Efekty prac konserwatorskich i restauratorskich oraz budowlanych",
+            "description": "Domyślny tytuł sekcji, który można zmienić na własny.",
+            "name": "title",
+            "type": "string",
+            "title": "Tytuł Sekcji"
+          },
+          {
+            "name": "content",
+            "type": "portableTextWithHeadings",
+            "title": "Treść Sekcji"
+          },
+          {
+            "of": [
+              {
+                "fields": [
+                  {
+                    "description": "Tytuł porównania, np. 'Elewacja zewnętrzna'.",
+                    "name": "title",
+                    "type": "string",
+                    "title": "Tytuł"
+                  },
+                  {
+                    "name": "imageBefore",
+                    "type": "image",
+                    "title": "Obraz przed"
+                  },
+                  {
+                    "name": "imageAfter",
+                    "type": "image",
+                    "title": "Obraz po"
+                  }
+                ],
+                "type": "object"
+              }
+            ],
+            "name": "comparisons",
+            "type": "array",
+            "title": "Porównania"
+          }
+        ],
+        "name": "sectionFive",
+        "type": "object",
+        "title": "05. Efekty prac konserwatorskich i restauratorskich oraz budowlanych"
+      },
+      {
+        "fields": [
+          {
+            "initialValue": "Wybrana bibliografia",
+            "description": "Domyślny tytuł sekcji, który można zmienić na własny.",
+            "name": "title",
+            "type": "string",
+            "title": "Tytuł Sekcji"
+          },
+          {
+            "name": "content",
+            "type": "basicText",
+            "title": "Treść Sekcji"
+          }
+        ],
+        "name": "sectionSix",
+        "type": "object",
+        "title": "06. Wybrana bibliografia"
+      }
+    ],
+    "name": "caseStudyEntry",
+    "type": "document",
+    "title": "Wpis Realizacji"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "name": "placeholder",
+        "type": "string",
+        "title": "Zastępczy tekst"
+      }
+    ],
+    "name": "renomaLab",
+    "type": "document",
+    "title": "Renoma LAB"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Krótki tekst nad tytułem, np. 'RENOMA LAB'.",
+        "name": "label",
+        "type": "internationalizedArrayString",
+        "title": "Etykieta sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Główny tytuł sekcji na stronie Renoma LAB, np. 'Laboratorium badań materiałów budowlanych'.",
+        "name": "title",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tekst opisujący działalność laboratorium Renoma LAB, specjalizującego się w testach materiałów budowlanych i badaniach konserwatorskich.",
+        "name": "description",
+        "type": "internationalizedArrayText",
+        "title": "Opis sekcji"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tekst opisujący działalność laboratorium Renoma LAB w dwóch kolumnach.",
+        "fields": [
+          {
+            "name": "pl",
+            "type": "portableTextWithHeadings",
+            "title": "PL"
+          },
+          {
+            "name": "en",
+            "type": "portableTextWithHeadings",
+            "title": "EN"
+          },
+          {
+            "name": "de",
+            "type": "portableTextWithHeadings",
+            "title": "DE"
+          }
+        ],
+        "name": "descriptionTwoColumns",
+        "type": "object",
+        "title": "Opis sekcji w dwóch kolumnach"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Obraz wyświetlany w nagłówku strony Renoma LAB, przedstawiający laboratorium lub sprzęt badawczy.",
+        "name": "image",
+        "type": "image",
+        "title": "Obraz nagłówka"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Opcjonalny obraz wyświetlany w nagłówku na urządzeniach mobilnych. Jeśli nie zostanie wybrany, użyty zostanie główny obraz.",
+        "name": "mobileImage",
+        "type": "image",
+        "title": "Obraz nagłówka (mobile)"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie sprzętu laboratoryjnego do badań materiałów budowlanych'.",
+        "name": "imageAlt",
+        "type": "internationalizedArrayString",
+        "title": "Alternatywny tekst obrazu nagłówka"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Pełna szerokość powyżej",
+              "value": "fullWidthAbove"
+            },
+            {
+              "title": "Pełna szerokość poniżej",
+              "value": "fullWidthBelow"
+            },
+            {
+              "title": "Brak obrazu",
+              "value": "noImage"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "fullWidthAbove",
+        "description": "Wybierz między pełną szerokością obrazu a portretem po prawej stronie. Dla pełnej szerokości wybierz pozycję obrazu względem treści.",
+        "name": "imageLayout",
+        "type": "string",
+        "title": "Układ obrazu na dużych urządzeniach"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "4:3",
+              "value": "standard"
+            },
+            {
+              "title": "16:10",
+              "value": "wide"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "wide",
+        "description": "Określ proporcje obrazu w nagłówku.",
+        "name": "aspectRatio",
+        "type": "string",
+        "title": "Proporcje obrazu"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Biały",
+              "value": "white"
+            },
+            {
+              "title": "Czarny",
+              "value": "black"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "white",
+        "description": "Wybierz kolor tła dla nagłówka strony. Jeśli wybierzesz biały, tekst będzie czarny, a jeśli wybierzesz czarny, tekst będzie biały.",
+        "name": "backgroundColor",
+        "type": "string",
+        "title": "Kolor tła"
+      }
+    ],
+    "name": "renomaLabHeader",
+    "type": "document",
+    "title": "Nagłówek strony Renoma LAB"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł sekcji, np. 'Oferta'.",
+        "name": "title",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł sekcji"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Microscope",
+                      "value": "Microscope"
+                    },
+                    {
+                      "title": "Layers",
+                      "value": "Layers"
+                    },
+                    {
+                      "title": "Flask",
+                      "value": "Flask"
+                    },
+                    {
+                      "title": "Droplets",
+                      "value": "Droplets"
+                    },
+                    {
+                      "title": "Lightbulb",
+                      "value": "Lightbulb"
+                    },
+                    {
+                      "title": "Users",
+                      "value": "Users"
+                    }
+                  ],
+                  "layout": "dropdown"
+                },
+                "name": "icon",
+                "type": "string",
+                "title": "Ikona"
+              },
+              {
+                "options": {
+                  "apiVersion": "2022-11-27",
+                  "languages": [
+                    {
+                      "id": "pl",
+                      "title": "Polish"
+                    },
+                    {
+                      "id": "en",
+                      "title": "English"
+                    },
+                    {
+                      "id": "de",
+                      "title": "German"
+                    }
+                  ]
+                },
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "title",
+                "type": "internationalizedArrayString",
+                "title": "Tytuł"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Opis zawartości oferty",
+                "fields": [
+                  {
+                    "name": "pl",
+                    "type": "portableTextWithHeadings",
+                    "title": "PL"
+                  },
+                  {
+                    "name": "en",
+                    "type": "portableTextWithHeadings",
+                    "title": "EN"
+                  },
+                  {
+                    "name": "de",
+                    "type": "portableTextWithHeadings",
+                    "title": "DE"
+                  }
+                ],
+                "name": "content",
+                "type": "object",
+                "title": "Zawartość"
+              }
+            ],
+            "type": "object",
+            "name": "offer",
+            "title": "Oferta"
+          }
+        ],
+        "name": "offers",
+        "type": "array",
+        "title": "Lista Ofert"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Opis współpracy z zewnętrznymi specjalistami przeprowadzającymi badania instrumentalne.",
+        "name": "collaborationDescription",
+        "type": "internationalizedArrayText",
+        "title": "Opis współpracy"
+      }
+    ],
+    "name": "labOffer",
+    "type": "document",
+    "title": "Oferta Renoma LAB"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł, który pojawi się w zakładce przeglądarki i wynikach wyszukiwania.",
+        "name": "pageTitle",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł strony"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ],
+            "level": "warning",
+            "message": "Optymalna długość to maks. 160 znaków."
+          }
+        ],
+        "description": "Krótki opis strony dla wyników wyszukiwania (maks. 160 znaków).",
+        "name": "metaDescription",
+        "type": "internationalizedArrayString",
+        "title": "Meta opis"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł strony widoczny w podglądzie na Facebooku, Twitterze itp.",
+        "name": "ogTitle",
+        "type": "internationalizedArrayString",
+        "title": "Open Graph tytuł"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Opis strony używany przy udostępnianiu na mediach społecznościowych.",
+        "name": "ogDescription",
+        "type": "internationalizedArrayString",
+        "title": "Open Graph opis"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Obraz widoczny przy udostępnianiu strony w mediach społecznościowych.",
+        "name": "ogImage",
+        "type": "image",
+        "title": "Open Graph obraz"
+      }
+    ],
+    "name": "renomaLabPageSeo",
+    "type": "document",
+    "title": "SEO & Ustawienia Meta – Renoma LAB"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "name": "placeholder",
+        "type": "string",
+        "title": "Zastępczy tekst"
+      }
+    ],
+    "name": "learnWithUs",
+    "type": "document",
+    "title": "Ucz się z nami"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Krótki tekst nad tytułem, np. 'PROGRAM ABSOLWENCKI'.",
+        "name": "label",
+        "type": "internationalizedArrayString",
+        "title": "Etykieta sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Główny tytuł sekcji na stronie programu absolwenckiego, np. 'Dołącz do naszego programu absolwenckiego'.",
+        "name": "title",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tekst wprowadzający do programu absolwenckiego, który zachęca do zgłoszenia się do programu firmy.",
+        "name": "description",
+        "type": "internationalizedArrayText",
+        "title": "Opis sekcji"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Obraz wyświetlany w nagłówku strony programu absolwenckiego, przedstawiający np. młodych profesjonalistów w trakcie pracy.",
+        "name": "image",
+        "type": "image",
+        "title": "Obraz nagłówka"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Pełna szerokość powyżej",
+              "value": "fullWidthAbove"
+            },
+            {
+              "title": "Pełna szerokość poniżej",
+              "value": "fullWidthBelow"
+            },
+            {
+              "title": "Portret po prawej",
+              "value": "portraitRight"
+            },
+            {
+              "title": "Krajobraz po prawej",
+              "value": "landscapeRight"
+            },
+            {
+              "title": "Brak obrazu",
+              "value": "noImage"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "fullWidthAbove",
+        "description": "Wybierz między pełną szerokością obrazu a portretem po prawej stronie. Dla pełnej szerokości wybierz pozycję obrazu względem treści.",
+        "name": "imageLayout",
+        "type": "string",
+        "title": "Układ obrazu na dużych urządzeniach"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "4:3",
+              "value": "standard"
+            },
+            {
+              "title": "16:10",
+              "value": "wide"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "wide",
+        "description": "Określ proporcje obrazu w nagłówku.",
+        "name": "aspectRatio",
+        "type": "string",
+        "title": "Proporcje obrazu"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Biały",
+              "value": "white"
+            },
+            {
+              "title": "Czarny",
+              "value": "black"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "white",
+        "description": "Wybierz kolor tła dla nagłówka strony. Jeśli wybierzesz biały, tekst będzie czarny, a jeśli wybierzesz czarny, tekst będzie biały.",
+        "name": "backgroundColor",
+        "type": "string",
+        "title": "Kolor tła"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie młodych profesjonalistów współpracujących przy projekcie'.",
+        "name": "imageAlt",
+        "type": "internationalizedArrayString",
+        "title": "Alternatywny tekst obrazu nagłówka"
+      }
+    ],
+    "name": "learnWithUsHeader",
+    "type": "document",
+    "title": "Nagłówek strony programu absolwenckiego"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Główny tytuł sekcji, np. 'Co oferujemy?'",
+        "name": "title",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł sekcji"
+      },
+      {
+        "description": "Dodaj punkty oferty z tytułem i opisem.",
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "apiVersion": "2022-11-27",
+                  "languages": [
+                    {
+                      "id": "pl",
+                      "title": "Polish"
+                    },
+                    {
+                      "id": "en",
+                      "title": "English"
+                    },
+                    {
+                      "id": "de",
+                      "title": "German"
+                    }
+                  ]
+                },
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Krótki tytuł oferty, np. 'Praktyczne doświadczenie'.",
+                "name": "title",
+                "type": "internationalizedArrayString",
+                "title": "Tytuł"
+              },
+              {
+                "options": {
+                  "apiVersion": "2022-11-27",
+                  "languages": [
+                    {
+                      "id": "pl",
+                      "title": "Polish"
+                    },
+                    {
+                      "id": "en",
+                      "title": "English"
+                    },
+                    {
+                      "id": "de",
+                      "title": "German"
+                    }
+                  ]
+                },
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "custom"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Opis oferty, np. 'Uczestnicy będą mieli możliwość...'",
+                "name": "description",
+                "type": "internationalizedArrayText",
+                "title": "Opis"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "offers",
+        "type": "array",
+        "title": "Lista ofert"
+      }
+    ],
+    "name": "whatWeOffer",
+    "type": "document",
+    "title": "Co oferujemy?"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Główny tytuł sekcji, np. 'Kogo szukamy?'.",
+        "name": "title",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł sekcji"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tekst opisujący profil poszukiwanych osób oraz listę wymagań lub cech, które powinny one spełniać.",
+        "fields": [
+          {
+            "name": "pl",
+            "type": "portableTextWithHeadings",
+            "title": "PL"
+          },
+          {
+            "name": "en",
+            "type": "portableTextWithHeadings",
+            "title": "EN"
+          },
+          {
+            "name": "de",
+            "type": "portableTextWithHeadings",
+            "title": "DE"
+          }
+        ],
+        "name": "criteria",
+        "type": "object",
+        "title": "Profil i Kryteria"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Obrazek reprezentujący sekcję, np. zdjęcie osoby na budowie.",
+        "name": "image",
+        "type": "image",
+        "title": "Obraz"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Alternatywny tekst dla obrazu sekcji.",
+        "name": "imageAlt",
+        "type": "internationalizedArrayString",
+        "title": "Alternatywny tekst obrazu"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tekst na przycisku zachęcającym do aplikowania, np. 'Aplikuj teraz'.",
+        "name": "applyButtonText",
+        "type": "internationalizedArrayString",
+        "title": "Tekst przycisku aplikacji"
+      }
+    ],
+    "name": "whoWeAreLookingFor",
+    "type": "document",
+    "title": "Kogo szukamy?"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł, który pojawi się w zakładce przeglądarki i wynikach wyszukiwania.",
+        "name": "pageTitle",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł strony"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ],
+            "level": "warning",
+            "message": "Optymalna długość to maks. 160 znaków."
+          }
+        ],
+        "description": "Krótki opis strony dla wyników wyszukiwania (maks. 160 znaków).",
+        "name": "metaDescription",
+        "type": "internationalizedArrayString",
+        "title": "Meta opis"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł strony widoczny w podglądzie na Facebooku, Twitterze itp.",
+        "name": "ogTitle",
+        "type": "internationalizedArrayString",
+        "title": "Open Graph tytuł"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Opis strony używany przy udostępnianiu na mediach społecznościowych.",
+        "name": "ogDescription",
+        "type": "internationalizedArrayString",
+        "title": "Open Graph opis"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Obraz widoczny przy udostępnianiu strony w mediach społecznościowych.",
+        "name": "ogImage",
+        "type": "image",
+        "title": "Open Graph obraz"
+      }
+    ],
+    "name": "learnWithUsPageSeo",
+    "type": "document",
+    "title": "SEO & Ustawienia Meta – Ucz się z Nami"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "name": "placeholder",
+        "type": "string",
+        "title": "Zastępczy tekst"
+      }
+    ],
+    "name": "workWithUs",
+    "type": "document",
+    "title": "Pracuj z Nami"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Krótki tekst nad tytułem, np. 'PRACUJ Z NAMI'.",
+        "name": "label",
+        "type": "internationalizedArrayString",
+        "title": "Etykieta sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Główny tytuł sekcji na stronie Pracuj z Nami, np. 'Dołącz do naszego zespołu'.",
+        "name": "title",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tekst wprowadzający do strony Pracuj z Nami, zachęcający do aplikowania do zespołu.",
+        "name": "description",
+        "type": "internationalizedArrayText",
+        "title": "Opis sekcji"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Obraz wyświetlany w nagłówku strony Pracuj z Nami.",
+        "name": "image",
+        "type": "image",
+        "title": "Obraz nagłówka"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Pełna szerokość powyżej",
+              "value": "fullWidthAbove"
+            },
+            {
+              "title": "Pełna szerokość poniżej",
+              "value": "fullWidthBelow"
+            },
+            {
+              "title": "Portret po prawej",
+              "value": "portraitRight"
+            },
+            {
+              "title": "Krajobraz po prawej",
+              "value": "landscapeRight"
+            },
+            {
+              "title": "Brak obrazu",
+              "value": "noImage"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "fullWidthAbove",
+        "description": "Wybierz między pełną szerokością obrazu a portretem po prawej stronie. Dla pełnej szerokości wybierz pozycję obrazu względem treści.",
+        "name": "imageLayout",
+        "type": "string",
+        "title": "Układ obrazu na dużych urządzeniach"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "4:3",
+              "value": "standard"
+            },
+            {
+              "title": "16:10",
+              "value": "wide"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "wide",
+        "description": "Określ proporcje obrazu w nagłówku.",
+        "name": "aspectRatio",
+        "type": "string",
+        "title": "Proporcje obrazu"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Biały",
+              "value": "white"
+            },
+            {
+              "title": "Czarny",
+              "value": "black"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "white",
+        "description": "Wybierz kolor tła dla nagłówka strony. Jeśli wybierzesz biały, tekst będzie czarny, a jeśli wybierzesz czarny, tekst będzie biały.",
+        "name": "backgroundColor",
+        "type": "string",
+        "title": "Kolor tła"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie przedstawiające pracowników firmy'.",
+        "name": "imageAlt",
+        "type": "internationalizedArrayString",
+        "title": "Alternatywny tekst obrazu nagłówka"
+      }
+    ],
+    "name": "workWithUsHeader",
+    "type": "document",
+    "title": "Nagłówek strony Pracuj z Nami"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł Sekcji"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "apiVersion": "2022-11-27",
+                  "languages": [
+                    {
+                      "id": "pl",
+                      "title": "Polish"
+                    },
+                    {
+                      "id": "en",
+                      "title": "English"
+                    },
+                    {
+                      "id": "de",
+                      "title": "German"
+                    }
+                  ]
+                },
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Tytuł oferty pracy, np. 'Konserwator Zabytków'.",
+                "name": "jobTitle",
+                "type": "internationalizedArrayString",
+                "title": "Tytuł Oferty"
+              },
+              {
+                "options": {
+                  "apiVersion": "2022-11-27",
+                  "languages": [
+                    {
+                      "id": "pl",
+                      "title": "Polish"
+                    },
+                    {
+                      "id": "en",
+                      "title": "English"
+                    },
+                    {
+                      "id": "de",
+                      "title": "German"
+                    }
+                  ]
+                },
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Opis stanowiska, jego zakres obowiązków i wymagania.",
+                "name": "jobDescription",
+                "type": "internationalizedArrayText",
+                "title": "Opis Oferty"
+              },
+              {
+                "options": {
+                  "apiVersion": "2022-11-27",
+                  "languages": [
+                    {
+                      "id": "pl",
+                      "title": "Polish"
+                    },
+                    {
+                      "id": "en",
+                      "title": "English"
+                    },
+                    {
+                      "id": "de",
+                      "title": "German"
+                    }
+                  ]
+                },
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Lokalizacja pracy, np. 'Polska'.",
+                "name": "jobLocation",
+                "type": "internationalizedArrayString",
+                "title": "Lokalizacja"
+              },
+              {
+                "options": {
+                  "apiVersion": "2022-11-27",
+                  "languages": [
+                    {
+                      "id": "pl",
+                      "title": "Polish"
+                    },
+                    {
+                      "id": "en",
+                      "title": "English"
+                    },
+                    {
+                      "id": "de",
+                      "title": "German"
+                    }
+                  ]
+                },
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "custom"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Rodzaj umowy, np. 'Pełny etat'.",
+                "name": "jobType",
+                "type": "internationalizedArrayString",
+                "title": "Typ pracy"
+              },
+              {
+                "description": "Lista obowiązków na tym stanowisku",
+                "fields": [
+                  {
+                    "name": "pl",
+                    "type": "portableTextWithHeadings",
+                    "title": "PL"
+                  },
+                  {
+                    "name": "en",
+                    "type": "portableTextWithHeadings",
+                    "title": "EN"
+                  },
+                  {
+                    "name": "de",
+                    "type": "portableTextWithHeadings",
+                    "title": "DE"
+                  }
+                ],
+                "name": "responsibilities",
+                "type": "object",
+                "title": "Zakres Obowiązków"
+              },
+              {
+                "description": "Lista wymagań dla kandydata na to stanowisko.",
+                "fields": [
+                  {
+                    "name": "pl",
+                    "type": "portableTextWithHeadings",
+                    "title": "PL"
+                  },
+                  {
+                    "name": "en",
+                    "type": "portableTextWithHeadings",
+                    "title": "EN"
+                  },
+                  {
+                    "name": "de",
+                    "type": "portableTextWithHeadings",
+                    "title": "DE"
+                  }
+                ],
+                "name": "requirements",
+                "type": "object",
+                "title": "Wymagania"
+              },
+              {
+                "description": "Lista benefitów oferowanych na tym stanowisku.",
+                "fields": [
+                  {
+                    "name": "pl",
+                    "type": "portableTextWithHeadings",
+                    "title": "PL"
+                  },
+                  {
+                    "name": "en",
+                    "type": "portableTextWithHeadings",
+                    "title": "EN"
+                  },
+                  {
+                    "name": "de",
+                    "type": "portableTextWithHeadings",
+                    "title": "DE"
+                  }
+                ],
+                "name": "benefits",
+                "type": "object",
+                "title": "Oferujemy"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "jobOffer",
+        "type": "array",
+        "title": "Oferty Pracy"
+      }
+    ],
+    "name": "jobOffers",
+    "type": "document",
+    "title": "Oferty Pracy"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł, który pojawi się w zakładce przeglądarki i wynikach wyszukiwania.",
+        "name": "pageTitle",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł strony"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ],
+            "level": "warning",
+            "message": "Optymalna długość to maks. 160 znaków."
+          }
+        ],
+        "description": "Krótki opis strony dla wyników wyszukiwania (maks. 160 znaków).",
+        "name": "metaDescription",
+        "type": "internationalizedArrayString",
+        "title": "Meta opis"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł strony widoczny w podglądzie na Facebooku, Twitterze itp.",
+        "name": "ogTitle",
+        "type": "internationalizedArrayString",
+        "title": "Open Graph tytuł"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Opis strony używany przy udostępnianiu na mediach społecznościowych.",
+        "name": "ogDescription",
+        "type": "internationalizedArrayString",
+        "title": "Open Graph opis"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Obraz widoczny przy udostępnianiu strony w mediach społecznościowych.",
+        "name": "ogImage",
+        "type": "image",
+        "title": "Open Graph obraz"
+      }
+    ],
+    "name": "workWithUsPageSeo",
+    "type": "document",
+    "title": "SEO & Ustawienia Meta – Pracuj z Nami"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "name": "placeholder",
+        "type": "string",
+        "title": "Zastępczy tekst"
+      }
+    ],
+    "name": "faq",
+    "type": "document",
+    "title": "FAQ"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Krótki tekst nad tytułem, np. 'FAQ'.",
+        "name": "label",
+        "type": "internationalizedArrayString",
+        "title": "Etykieta sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł wyświetlany na stronie FAQ.",
+        "name": "title",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tekst opisujący główne usługi firmy, przedstawiony na stronie usług.",
+        "name": "description",
+        "type": "internationalizedArrayText",
+        "title": "Opis sekcji"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Obraz wyświetlany w nagłówku strony usług, przedstawiający np. procesy konserwatorskie lub sprzęt budowlany.",
+        "name": "image",
+        "type": "image",
+        "title": "Obraz nagłówka"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Pełna szerokość powyżej",
+              "value": "fullWidthAbove"
+            },
+            {
+              "title": "Pełna szerokość poniżej",
+              "value": "fullWidthBelow"
+            },
+            {
+              "title": "Krajobraz po prawej",
+              "value": "landscapeRight"
+            },
+            {
+              "title": "Brak obrazu",
+              "value": "noImage"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "fullWidthAbove",
+        "description": "Wybierz między pełną szerokością obrazu a portretem po prawej stronie. Dla pełnej szerokości wybierz pozycję obrazu względem treści.",
+        "name": "imageLayout",
+        "type": "string",
+        "title": "Układ obrazu na dużych urządzeniach"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "4:3",
+              "value": "standard"
+            },
+            {
+              "title": "16:10",
+              "value": "wide"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "wide",
+        "description": "Określ proporcje obrazu w nagłówku.",
+        "name": "aspectRatio",
+        "type": "string",
+        "title": "Proporcje obrazu"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Biały",
+              "value": "white"
+            },
+            {
+              "title": "Czarny",
+              "value": "black"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "white",
+        "description": "Wybierz kolor tła dla nagłówka strony. Jeśli wybierzesz biały, tekst będzie czarny, a jeśli wybierzesz czarny, tekst będzie biały.",
+        "name": "backgroundColor",
+        "type": "string",
+        "title": "Kolor tła"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tekst alternatywny dla obrazu nagłówka, np. 'Sprzęt budowlany używany podczas prac konserwatorskich'.",
+        "name": "imageAlt",
+        "type": "internationalizedArrayString",
+        "title": "Alternatywny tekst obrazu nagłówka"
+      }
+    ],
+    "name": "faqHeader",
+    "type": "document",
+    "title": "Nagłówek strony FAQ"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "description": "Dodaj pytania i odpowiedzi, które mają pojawić się w sekcji FAQ.",
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "apiVersion": "2022-11-27",
+                  "languages": [
+                    {
+                      "id": "pl",
+                      "title": "Polish"
+                    },
+                    {
+                      "id": "en",
+                      "title": "English"
+                    },
+                    {
+                      "id": "de",
+                      "title": "German"
+                    }
+                  ]
+                },
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "question",
+                "type": "internationalizedArrayString",
+                "title": "Pytanie"
+              },
+              {
+                "options": {
+                  "apiVersion": "2022-11-27",
+                  "languages": [
+                    {
+                      "id": "pl",
+                      "title": "Polish"
+                    },
+                    {
+                      "id": "en",
+                      "title": "English"
+                    },
+                    {
+                      "id": "de",
+                      "title": "German"
+                    }
+                  ]
+                },
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "answer",
+                "type": "internationalizedArrayText",
+                "title": "Odpowiedź"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "faqItems",
+        "type": "array",
+        "title": "Elementy FAQ"
+      }
+    ],
+    "name": "faqList",
+    "type": "document",
+    "title": "Sekcja FAQ"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł, który pojawi się w zakładce przeglądarki i wynikach wyszukiwania.",
+        "name": "pageTitle",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł strony"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ],
+            "level": "warning",
+            "message": "Optymalna długość to maks. 160 znaków."
+          }
+        ],
+        "description": "Krótki opis strony dla wyników wyszukiwania (maks. 160 znaków).",
+        "name": "metaDescription",
+        "type": "internationalizedArrayString",
+        "title": "Meta opis"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł strony widoczny w podglądzie na Facebooku, Twitterze itp.",
+        "name": "ogTitle",
+        "type": "internationalizedArrayString",
+        "title": "Open Graph tytuł"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Opis strony używany przy udostępnianiu na mediach społecznościowych.",
+        "name": "ogDescription",
+        "type": "internationalizedArrayString",
+        "title": "Open Graph opis"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Obraz widoczny przy udostępnianiu strony w mediach społecznościowych.",
+        "name": "ogImage",
+        "type": "image",
+        "title": "Open Graph obraz"
+      }
+    ],
+    "name": "faqPageSeo",
+    "type": "document",
+    "title": "SEO & Ustawienia Meta – FAQ"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "name": "placeholder",
+        "type": "string",
+        "title": "Zastępczy tekst"
+      }
+    ],
+    "name": "contact",
+    "type": "document",
+    "title": "Kontakt"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Krótki tekst nad tytułem, np. 'KONTAKT'.",
+        "name": "label",
+        "type": "internationalizedArrayString",
+        "title": "Etykieta sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Główny tytuł sekcji, np. 'Skontaktuj się z nami'.",
+        "name": "title",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł sekcji"
+      },
+      {
+        "options": {
+          "rows": 3
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tekst zachęcający do kontaktu.",
+        "name": "description",
+        "type": "internationalizedArrayText",
+        "title": "Opis sekcji"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Obraz wyświetlany w nagłówku strony kontaktowej.",
+        "name": "image",
+        "type": "image",
+        "title": "Obraz nagłówka"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Pełna szerokość powyżej",
+              "value": "fullWidthAbove"
+            },
+            {
+              "title": "Pełna szerokość poniżej",
+              "value": "fullWidthBelow"
+            },
+            {
+              "title": "Portret po prawej",
+              "value": "portraitRight"
+            },
+            {
+              "title": "Krajobraz po prawej",
+              "value": "landscapeRight"
+            },
+            {
+              "title": "Brak obrazu",
+              "value": "noImage"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "fullWidthAbove",
+        "description": "Wybierz między pełną szerokością obrazu a portretem po prawej stronie. Dla pełnej szerokości wybierz pozycję obrazu względem treści.",
+        "name": "imageLayout",
+        "type": "string",
+        "title": "Układ obrazu na dużych urządzeniach"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "4:3",
+              "value": "standard"
+            },
+            {
+              "title": "16:10",
+              "value": "wide"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "wide",
+        "description": "Określ proporcje obrazu w nagłówku.",
+        "name": "aspectRatio",
+        "type": "string",
+        "title": "Proporcje obrazu"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Biały",
+              "value": "white"
+            },
+            {
+              "title": "Czarny",
+              "value": "black"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "white",
+        "description": "Wybierz kolor tła dla nagłówka strony. Jeśli wybierzesz biały, tekst będzie czarny, a jeśli wybierzesz czarny, tekst będzie biały.",
+        "name": "backgroundColor",
+        "type": "string",
+        "title": "Kolor tła"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie przedstawiające biuro firmy'.",
+        "name": "imageAlt",
+        "type": "internationalizedArrayString",
+        "title": "Alternatywny tekst obrazu nagłówka"
+      }
+    ],
+    "name": "contactHeader",
+    "type": "document",
+    "title": "Nagłówek strony kontaktowej"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "description": "Dodaj lub usuń tematy, które pojawią się w rozwijanym menu formularza kontaktowego. Użytkownicy będą mogli wybrać temat zapytania.",
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "apiVersion": "2022-11-27",
+                  "languages": [
+                    {
+                      "id": "pl",
+                      "title": "Polish"
+                    },
+                    {
+                      "id": "en",
+                      "title": "English"
+                    },
+                    {
+                      "id": "de",
+                      "title": "German"
+                    }
+                  ]
+                },
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Wpisz nazwę tematu, która będzie widoczna w rozwijanym menu (możliwość dodania w różnych językach).",
+                "name": "label",
+                "type": "internationalizedArrayString",
+                "title": "Etykieta tematu"
+              }
+            ],
+            "type": "object",
+            "name": "subject",
+            "title": "Temat"
+          }
+        ],
+        "name": "contactFormSubjects",
+        "type": "array",
+        "title": "Tematy formularza kontaktowego"
+      }
+    ],
+    "name": "contactForm",
+    "type": "document",
+    "title": "Sekcja formularza kontaktowego"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "numerTelefonu",
+        "type": "string",
+        "title": "Numer telefonu"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "adresEmail",
+        "type": "string",
+        "title": "Adres email"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "adresBiuraLineOne",
+        "type": "internationalizedArrayString",
+        "title": "Adres biura, linia 1"
+      },
+      {
+        "name": "adresBiuraLineTwo",
+        "type": "string",
+        "title": "Adres biura, linia 2"
+      },
+      {
+        "name": "nazwaFirmyOne",
+        "type": "string",
+        "title": "Nazwa firmy 1"
+      },
+      {
+        "name": "nazwaFirmyTwo",
+        "type": "string",
+        "title": "Nazwa firmy 2"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "adresFakturLineOne",
+        "type": "internationalizedArrayString",
+        "title": "Adres do faktur, linia 1"
+      },
+      {
+        "name": "adresFakturLineTwo",
+        "type": "string",
+        "title": "Adres do faktur, linia 2"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "numerNipOne",
+        "type": "internationalizedArrayString",
+        "title": "NIP 1"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "numerNipTwo",
+        "type": "internationalizedArrayString",
+        "title": "NIP 2"
+      },
+      {
+        "name": "numerRegonOne",
+        "type": "string",
+        "title": "REGON 1"
+      },
+      {
+        "name": "numerRegonTwo",
+        "type": "string",
+        "title": "REGON 2"
+      }
+    ],
+    "name": "contactDetails",
+    "type": "document",
+    "title": "Sekcja danych kontaktowych"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł, który pojawi się w zakładce przeglądarki i wynikach wyszukiwania.",
+        "name": "pageTitle",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł strony"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ],
+            "level": "warning",
+            "message": "Optymalna długość to maks. 160 znaków."
+          }
+        ],
+        "description": "Krótki opis strony dla wyników wyszukiwania (maks. 160 znaków).",
+        "name": "metaDescription",
+        "type": "internationalizedArrayString",
+        "title": "Meta opis"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł strony widoczny w podglądzie na Facebooku, Twitterze itp.",
+        "name": "ogTitle",
+        "type": "internationalizedArrayString",
+        "title": "Open Graph tytuł"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Opis strony używany przy udostępnianiu na mediach społecznościowych.",
+        "name": "ogDescription",
+        "type": "internationalizedArrayString",
+        "title": "Open Graph opis"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Obraz widoczny przy udostępnianiu strony w mediach społecznościowych.",
+        "name": "ogImage",
+        "type": "image",
+        "title": "Open Graph obraz"
+      }
+    ],
+    "name": "contactPageSeo",
+    "type": "document",
+    "title": "SEO & Ustawienia Meta – Kontakt"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "name": "placeholder",
+        "type": "string",
+        "title": "Zastępczy tekst"
+      }
+    ],
+    "name": "cta",
+    "type": "document",
+    "title": "CTA"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Główny tytuł sekcji CTA, np. 'Skonsultuj swój projekt'.",
+        "name": "title",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł CTA"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Krótki opis sekcji CTA, który zachęca użytkowników do skontaktowania się lub podjęcia akcji.",
+        "name": "description",
+        "type": "internationalizedArrayText",
+        "title": "Opis CTA"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tekst widoczny na przycisku CTA, np. 'SKONSULTUJ'.",
+        "name": "buttonLabel",
+        "type": "internationalizedArrayString",
+        "title": "Etykieta Przycisku"
+      }
+    ],
+    "name": "ctaContent",
+    "type": "document",
+    "title": "CTA Sekcja"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "description": "Tekst zastępczy używany jako wypełnienie.",
+        "name": "placeholder",
+        "type": "string",
+        "title": "Zastępczy tekst"
+      }
+    ],
+    "name": "privacy",
+    "type": "document",
+    "title": "Polityka Prywatności"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Krótki tekst nad tytułem, np. 'POLITYKA PRYWATNOŚCI'.",
+        "name": "label",
+        "type": "internationalizedArrayString",
+        "title": "Etykieta sekcji"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Główny tytuł sekcji na stronie polityki prywatności, np. 'Polityka prywatności'.",
+        "name": "title",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł sekcji"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Biały",
+              "value": "white"
+            },
+            {
+              "title": "Czarny",
+              "value": "black"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "white",
+        "description": "Wybierz kolor tła dla nagłówka strony. Jeśli wybierzesz biały, tekst będzie czarny, a jeśli wybierzesz czarny, tekst będzie biały.",
+        "name": "backgroundColor",
+        "type": "string",
+        "title": "Kolor tła"
+      }
+    ],
+    "name": "privacyHeader",
+    "type": "document",
+    "title": "Nagłówek strony polityki prywatności"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Treść tekstowa strony polityki prywatności w wielu językach.",
+        "fields": [
+          {
+            "name": "pl",
+            "type": "portableTextWithHeadings",
+            "title": "PL"
+          },
+          {
+            "name": "en",
+            "type": "portableTextWithHeadings",
+            "title": "EN"
+          },
+          {
+            "name": "de",
+            "type": "portableTextWithHeadings",
+            "title": "DE"
+          }
+        ],
+        "name": "content",
+        "type": "object",
+        "title": "Treść polityki prywatności"
+      }
+    ],
+    "name": "privacyText",
+    "type": "document",
+    "title": "Treść strony polityki prywatności"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł, który pojawi się w zakładce przeglądarki i wynikach wyszukiwania.",
+        "name": "pageTitle",
+        "type": "internationalizedArrayString",
+        "title": "Tytuł strony"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ],
+            "level": "warning",
+            "message": "Optymalna długość to maks. 160 znaków."
+          }
+        ],
+        "description": "Krótki opis strony dla wyników wyszukiwania (maks. 160 znaków).",
+        "name": "metaDescription",
+        "type": "internationalizedArrayString",
+        "title": "Meta opis"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Tytuł strony widoczny w podglądzie na Facebooku, Twitterze itp.",
+        "name": "ogTitle",
+        "type": "internationalizedArrayString",
+        "title": "Open Graph tytuł"
+      },
+      {
+        "options": {
+          "apiVersion": "2022-11-27",
+          "languages": [
+            {
+              "id": "pl",
+              "title": "Polish"
+            },
+            {
+              "id": "en",
+              "title": "English"
+            },
+            {
+              "id": "de",
+              "title": "German"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Opis strony używany przy udostępnianiu na mediach społecznościowych.",
+        "name": "ogDescription",
+        "type": "internationalizedArrayString",
+        "title": "Open Graph opis"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Obraz widoczny przy udostępnianiu strony w mediach społecznościowych.",
+        "name": "ogImage",
+        "type": "image",
+        "title": "Open Graph obraz"
+      }
+    ],
+    "name": "privacyPageSeo",
+    "type": "document",
+    "title": "SEO & Ustawienia Meta – Polityka Prywatności"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "This field is the title of your blog.",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "description": "Used both for the <meta> description tag for SEO, and the blog subheader.",
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "fields": [
+                    {
+                      "name": "href",
+                      "type": "string",
+                      "title": "URL"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ]
+            },
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "description",
+        "type": "array"
+      },
+      {
+        "description": "This is a block of text that will be displayed at the bottom of the page.",
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/"
+                                  ],
+                                  "allowRelative": false,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "name": "href",
+                      "type": "url",
+                      "title": "Url"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "footer",
+        "type": "array",
+        "title": "Footer Info"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Displayed on social cards and search engine results.",
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "description": "Important for accessibility and SEO.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alternative text"
+          }
+        ],
+        "name": "ogImage",
+        "type": "image",
+        "title": "Open Graph Image"
+      }
+    ],
+    "name": "settings",
+    "type": "document",
+    "title": "Ustawienia"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "name": "placeholder",
+        "type": "string",
+        "title": "Zastępczy tekst"
+      }
+    ],
+    "name": "socialMedia",
+    "type": "document"
+  },
+  {
+    "options": {
+      "singleton": true
+    },
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "facebook",
+        "type": "url"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "instagram",
+        "type": "url"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "linkedIn",
+        "type": "url",
+        "title": "LinkedIn"
+      }
+    ],
+    "name": "socialMediaLinks",
+    "type": "document",
+    "title": "Linki Społecznościowe"
+  },
+  {
+    "of": [
+      {
+        "marks": {
+          "annotations": [
+            {
+              "fields": [
+                {
+                  "validation": [
+                    {
+                      "rules": [
+                        {
+                          "flag": "uri",
+                          "constraint": {
+                            "options": {
+                              "scheme": [
+                                "/^http$/",
+                                "/^https$/"
+                              ],
+                              "allowRelative": false,
+                              "relativeOnly": false,
+                              "allowCredentials": false
+                            }
+                          }
+                        }
+                      ],
+                      "level": "error"
+                    }
+                  ],
+                  "name": "href",
+                  "type": "url",
+                  "title": "URL"
+                }
+              ],
+              "name": "link",
+              "type": "object",
+              "title": "URL"
+            }
+          ],
+          "decorators": [
+            {
+              "value": "strong",
+              "title": "Bold"
+            },
+            {
+              "value": "em",
+              "title": "Emphasis"
+            }
+          ]
+        },
+        "lists": [
+          {
+            "value": "bullet",
+            "title": "Bullet"
+          },
+          {
+            "value": "number",
+            "title": "Numbered"
+          }
+        ],
+        "styles": [
+          {
+            "value": "normal",
+            "title": "Normal"
+          }
+        ],
+        "of": [],
+        "type": "block"
+      }
+    ],
+    "name": "basicText",
+    "type": "array"
+  },
+  {
+    "of": [
+      {
+        "marks": {
+          "annotations": [
+            {
+              "fields": [
+                {
+                  "validation": [
+                    {
+                      "rules": [
+                        {
+                          "flag": "uri",
+                          "constraint": {
+                            "options": {
+                              "scheme": [
+                                "/^http$/",
+                                "/^https$/"
+                              ],
+                              "allowRelative": false,
+                              "relativeOnly": false,
+                              "allowCredentials": false
+                            }
+                          }
+                        }
+                      ],
+                      "level": "error"
+                    }
+                  ],
+                  "name": "href",
+                  "type": "url",
+                  "title": "URL"
+                }
+              ],
+              "name": "link",
+              "type": "object",
+              "title": "URL"
+            }
+          ],
+          "decorators": [
+            {
+              "value": "strong",
+              "title": "Bold"
+            },
+            {
+              "value": "em",
+              "title": "Emphasis"
+            }
+          ]
+        },
+        "lists": [
+          {
+            "value": "bullet",
+            "title": "Bullet"
+          },
+          {
+            "value": "number",
+            "title": "Numbered"
+          }
+        ],
+        "styles": [
+          {
+            "value": "normal",
+            "title": "Normal"
+          },
+          {
+            "value": "h2",
+            "title": "Heading 2"
+          },
+          {
+            "value": "h3",
+            "title": "Heading 3"
+          },
+          {
+            "value": "h4",
+            "title": "Heading 4"
+          }
+        ],
+        "of": [],
+        "type": "block"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "description": "Important for accessibility and SEO.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alternative Text"
+          }
+        ],
+        "type": "image"
+      }
+    ],
+    "name": "portableTextWithImage",
+    "type": "array",
+    "title": "Portable Text with Image"
+  },
+  {
+    "of": [
+      {
+        "marks": {
+          "annotations": [
+            {
+              "fields": [
+                {
+                  "validation": [
+                    {
+                      "rules": [
+                        {
+                          "flag": "uri",
+                          "constraint": {
+                            "options": {
+                              "scheme": [
+                                "/^http$/",
+                                "/^https$/"
+                              ],
+                              "allowRelative": false,
+                              "relativeOnly": false,
+                              "allowCredentials": false
+                            }
+                          }
+                        }
+                      ],
+                      "level": "error"
+                    }
+                  ],
+                  "name": "href",
+                  "type": "url",
+                  "title": "URL"
+                }
+              ],
+              "name": "link",
+              "type": "object",
+              "title": "URL"
+            }
+          ],
+          "decorators": [
+            {
+              "value": "strong",
+              "title": "Bold"
+            },
+            {
+              "value": "em",
+              "title": "Emphasis"
+            }
+          ]
+        },
+        "lists": [
+          {
+            "value": "bullet",
+            "title": "Bullet"
+          },
+          {
+            "value": "number",
+            "title": "Numbered"
+          }
+        ],
+        "styles": [
+          {
+            "value": "normal",
+            "title": "Normal"
+          },
+          {
+            "value": "h2",
+            "title": "Heading 2"
+          },
+          {
+            "value": "h3",
+            "title": "Heading 3"
+          },
+          {
+            "value": "h4",
+            "title": "Heading 4"
+          }
+        ],
+        "of": [],
+        "type": "block"
+      },
+      {
+        "fields": [
+          {
+            "initialValue": "Separator",
+            "name": "label",
+            "type": "string"
+          }
+        ],
+        "type": "object",
+        "name": "separator"
+      }
+    ],
+    "name": "portableTextWithHeadings",
+    "type": "array",
+    "title": "Portable Text with Image"
+  },
+  {
+    "of": [
+      {
+        "fields": [
+          {
+            "description": "Opcjonalna nazwa bloku treści do odniesienia.",
+            "name": "contentBlock",
+            "type": "string",
+            "title": "Nazwa Bloku Treści"
+          },
+          {
+            "description": "Opcjonalny nagłówek H3 dla tej sekcji.",
+            "name": "heading3",
+            "type": "string",
+            "title": "Nagłówek H3"
+          },
+          {
+            "name": "text",
+            "type": "portableTextWithHeadings",
+            "title": "Tekst"
+          },
+          {
+            "description": "Wybór więcej niż jednego obrazu wyświetli karuzelę obrazów.",
+            "of": [
+              {
+                "fields": [
+                  {
+                    "description": "Opcjonalny podpis dla obrazu. Ułatwia zrozumienie kontekstu obrazu i poprawia SEO.",
+                    "name": "caption",
+                    "type": "string",
+                    "title": "Podpis Obrazu"
+                  },
+                  {
+                    "options": {
+                      "list": [
+                        {
+                          "title": "4:3",
+                          "value": "standard"
+                        },
+                        {
+                          "title": "16:10",
+                          "value": "wide"
+                        }
+                      ],
+                      "layout": "radio"
+                    },
+                    "initialValue": "wide",
+                    "description": "Określ proporcje obrazu w nagłówku.",
+                    "name": "aspectRatio",
+                    "type": "string",
+                    "title": "Proporcje obrazu"
+                  }
+                ],
+                "type": "image"
+              }
+            ],
+            "name": "images",
+            "type": "array",
+            "title": "Galeria Obrazów"
+          },
+          {
+            "options": {
+              "list": [
+                {
+                  "title": "Tekst po lewej, obraz po prawej",
+                  "value": "textLeftImageRight"
+                },
+                {
+                  "title": "Obraz po lewej, tekst po prawej",
+                  "value": "imageLeftTextRight"
+                }
+              ],
+              "layout": "radio"
+            },
+            "initialValue": "textLeftImageRight",
+            "description": "Wybierz układ dla tej sekcji.",
+            "name": "layout",
+            "type": "string",
+            "title": "Układ"
+          }
+        ],
+        "type": "object",
+        "name": "textAndImageGallery",
+        "title": "Tekst i Obraz/Galeria Obrazów"
+      },
+      {
+        "fields": [
+          {
+            "description": "Opcjonalna nazwa bloku treści do odniesienia.",
+            "name": "contentBlock",
+            "type": "string",
+            "title": "Nazwa Bloku Treści"
+          },
+          {
+            "description": "Opcjonalny nagłówek H3 dla tej sekcji.",
+            "name": "heading3",
+            "type": "string",
+            "title": "Nagłówek H3"
+          },
+          {
+            "description": "Tekst zostanie rozłożony na 2 kolumny na dużych urządzeniach.",
+            "name": "text",
+            "type": "portableTextWithHeadings",
+            "title": "Tekst"
+          }
+        ],
+        "type": "object",
+        "name": "textWrap",
+        "title": "Tekst Zawijany"
+      },
+      {
+        "fields": [
+          {
+            "description": "Opcjonalna nazwa bloku treści do odniesienia.",
+            "name": "contentBlock",
+            "type": "string",
+            "title": "Nazwa Bloku Treści"
+          },
+          {
+            "description": "Opcjonalny nagłówek H3 dla tej sekcji.",
+            "name": "heading3",
+            "type": "string",
+            "title": "Nagłówek H3"
+          },
+          {
+            "description": "Tekst w lewej kolumnie. Na dużych ekranach ten tekst będzie po lewej stronie.",
+            "name": "text1",
+            "type": "portableTextWithHeadings",
+            "title": "Tekst (Lewa Kolumna)"
+          },
+          {
+            "description": "Tekst w prawej kolumnie. Na dużych ekranach ten tekst będzie po prawej stronie.",
+            "name": "text2",
+            "type": "portableTextWithHeadings",
+            "title": "Tekst (Prawa Kolumna)"
+          }
+        ],
+        "type": "object",
+        "name": "textAndText",
+        "title": "Tekst"
+      },
+      {
+        "fields": [
+          {
+            "description": "Opcjonalna nazwa bloku treści do odniesienia.",
+            "name": "contentBlock",
+            "type": "string",
+            "title": "Nazwa Bloku Treści"
+          },
+          {
+            "description": "Opcjonalny nagłówek H3 dla tej sekcji.",
+            "name": "heading3",
+            "type": "string",
+            "title": "Nagłówek H3"
+          },
+          {
+            "of": [
+              {
+                "fields": [
+                  {
+                    "description": "Opcjonalny podpis dla obrazu. Ułatwia zrozumienie kontekstu obrazu i poprawia SEO.",
+                    "name": "caption",
+                    "type": "string",
+                    "title": "Podpis Obrazu"
+                  },
+                  {
+                    "options": {
+                      "list": [
+                        {
+                          "title": "4:3",
+                          "value": "standard"
+                        },
+                        {
+                          "title": "16:10",
+                          "value": "wide"
+                        }
+                      ],
+                      "layout": "radio"
+                    },
+                    "initialValue": "wide",
+                    "description": "Określ proporcje obrazu w nagłówku.",
+                    "name": "aspectRatio",
+                    "type": "string",
+                    "title": "Proporcje obrazu"
+                  }
+                ],
+                "type": "image"
+              }
+            ],
+            "name": "images1",
+            "type": "array",
+            "title": "Galeria Obrazów 1"
+          },
+          {
+            "of": [
+              {
+                "fields": [
+                  {
+                    "description": "Opcjonalny podpis dla obrazu. Ułatwia zrozumienie kontekstu obrazu i poprawia SEO.",
+                    "name": "caption",
+                    "type": "string",
+                    "title": "Podpis Obrazu"
+                  },
+                  {
+                    "options": {
+                      "list": [
+                        {
+                          "title": "4:3",
+                          "value": "standard"
+                        },
+                        {
+                          "title": "16:10",
+                          "value": "wide"
+                        }
+                      ],
+                      "layout": "radio"
+                    },
+                    "initialValue": "wide",
+                    "description": "Określ proporcje obrazu w nagłówku.",
+                    "name": "aspectRatio",
+                    "type": "string",
+                    "title": "Proporcje obrazu"
+                  }
+                ],
+                "type": "image"
+              }
+            ],
+            "name": "images2",
+            "type": "array",
+            "title": "Galeria Obrazów 2"
+          }
+        ],
+        "type": "object",
+        "name": "imageGalleryAndImageGallery",
+        "title": "Galeria Obrazów i Galeria Obrazów"
+      },
+      {
+        "fields": [
+          {
+            "description": "Opcjonalna nazwa bloku treści do odniesienia.",
+            "name": "contentBlock",
+            "type": "string",
+            "title": "Nazwa Bloku Treści"
+          },
+          {
+            "description": "Opcjonalny nagłówek H3 dla tej sekcji.",
+            "name": "heading3",
+            "type": "string",
+            "title": "Nagłówek H3"
+          },
+          {
+            "fields": [
+              {
+                "description": "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i poprawić SEO.",
+                "name": "caption",
+                "type": "string",
+                "title": "Podpis Obrazu"
+              }
+            ],
+            "name": "image",
+            "type": "image",
+            "title": "Obraz"
+          }
+        ],
+        "type": "object",
+        "name": "fullWidthImage",
+        "title": "Obraz Na Całą Szerokość"
+      },
+      {
+        "fields": [
+          {
+            "description": "Opcjonalna nazwa bloku treści do odniesienia.",
+            "name": "contentBlock",
+            "type": "string",
+            "title": "Nazwa Bloku Treści"
+          },
+          {
+            "description": "Opcjonalny nagłówek H3 dla tej sekcji.",
+            "name": "heading3",
+            "type": "string",
+            "title": "Nagłówek H3"
+          },
+          {
+            "fields": [
+              {
+                "description": "Opcjonalnie dodaj podpis pod obrazem, aby dodać więcej kontekstu i poprawić SEO.",
+                "name": "caption",
+                "type": "string",
+                "title": "Podpis Obrazu"
+              }
+            ],
+            "name": "image",
+            "type": "image",
+            "title": "Obraz"
+          }
+        ],
+        "type": "object",
+        "name": "standardImage",
+        "title": "Obraz Standardowy"
+      }
+    ],
+    "name": "sectionContent",
+    "type": "array",
+    "title": "Treść Sekcji"
+  }
+]
