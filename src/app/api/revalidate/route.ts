@@ -59,6 +59,13 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
       tags.push("footer");
       break;
 
+    case "contactHeader":
+    case "contactForm":
+    case "contactDetails":
+    case "contactPageSeo":
+      tags.push("contact");
+      break;
+
     default:
       console.log(`No revalidation rule for type: ${doc._type}`);
   }
