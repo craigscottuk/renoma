@@ -68,9 +68,9 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
 
 export async function POST(req: NextRequest) {
   try {
-    if (!process.env.SANITY_REVALIDATE_SECRET) {
+    if (!process.env.NEXT_PUBLIC_SANITY_HOOK_SECRET) {
       return NextResponse.json(
-        { message: "Missing SANITY_REVALIDATE_SECRET" },
+        { message: "Missing NEXT_PUBLIC_SANITY_HOOK_SECRET" },
         { status: 500 },
       );
     }
@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
     // parseBody can return { body: WebhookBody | null }
     const { isValidSignature, body } = await parseBody<WebhookBody>(
       req,
-      process.env.SANITY_REVALIDATE_SECRET,
+      process.env.NEXT_PUBLIC_SANITY_HOOK_SECRET,
     );
 
     if (!isValidSignature) {
