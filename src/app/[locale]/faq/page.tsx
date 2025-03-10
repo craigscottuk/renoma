@@ -5,6 +5,7 @@ import PageHeader from "@/components/page-header";
 import { client } from "@/sanity/client";
 import CTA from "@/components/cta";
 import FaqAccordion from "./faq";
+import Script from "next/script";
 
 const QUERY = `
 {
@@ -110,8 +111,30 @@ export default async function Faq({ params: { locale } }: Props) {
 
   const { faqHeader, faqList, ctaContent } = content;
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    inLanguage: locale,
+    mainEntity: faqList.faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+        inLanguage: locale,
+      },
+    })),
+  };
+
   return (
     <>
+      {/* Inject the FAQ JSON-LD */}
+      <Script
+        id="faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       {/* Conditionally render Page Header Section */}
       {faqHeader && (
         <PageHeader
