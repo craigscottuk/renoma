@@ -31,8 +31,8 @@ export async function sanityFetch<QueryResponse>({
     next: {
       // If tags are present, we override time-based revalidation
       // and rely purely on on-demand revalidation for those tags.
-      // revalidate: tags.length ? false : revalidate,
-      revalidate: revalidate,
+      revalidate: tags.length ? false : revalidate,
+      // revalidate: revalidate,
       tags,
     },
   });
