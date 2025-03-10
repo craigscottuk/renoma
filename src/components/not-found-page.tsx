@@ -11,8 +11,8 @@ export default function NotFound() {
       <p className="mb-8 text-lg">{t("description")}</p>
 
       {/* TODO */}
-      {/* <Link href='/' className='text-blue-500 hover:underline'> */}
-      <Link href="/pl" className="text-blue-500 hover:underline">
+      <Link href="/" className="text-blue-500 hover:underline">
+        {/* <Link href="/pl" className="text-blue-500 hover:underline"> */}
         {t("goBackHome")}
       </Link>
     </div>
