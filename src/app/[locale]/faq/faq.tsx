@@ -1,5 +1,6 @@
-"use client";
+// src/app/[locale]/faq/faq.tsx
 // cSpell:disable
+"use client";
 import clsx from "clsx";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import {

@@ -7,6 +7,7 @@ import { client } from "@/sanity/client";
 import { setRequestLocale } from "next-intl/server";
 import LogoShowcase from "./logos";
 import CTA from "../../../components/cta";
+import Script from "next/script";
 
 const QUERY = `
 {
@@ -28,30 +29,6 @@ const QUERY = `
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia")
   },
-
-  // "servicesGroup": *[_type == "servicesGroup"][0]{
-  //   "serviceGroupOne": {
-  //     "title": coalesce(serviceGroupOne.title, "Brak tłumaczenia"),
-  //     "services": serviceGroupOne.services[]{
-  //       "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
-  //       "shortDescription": coalesce(shortDescription[_key == $locale][0].value, "Brak tłumaczenia")
-  //     }
-  //   },
-  //   "serviceGroupTwo": {
-  //     "title": coalesce(serviceGroupTwo.title, "Brak tłumaczenia"),
-  //     "services": serviceGroupTwo.services[]{
-  //       "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
-  //       "shortDescription": coalesce(shortDescription[_key == $locale][0].value, "Brak tłumaczenia")
-  //     }
-  //   },
-  //   "serviceGroupThree": {
-  //     "title": coalesce(serviceGroupThree.title, "Brak tłumaczenia"),
-  //     "services": serviceGroupThree.services[]{
-  //       "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
-  //       "shortDescription": coalesce(shortDescription[_key == $locale][0].value, "Brak tłumaczenia")
-  //     }
-  //   }
-  // },
 
   "logoSectionHome": *[_type == "logoSectionHome"][0]{
     "label": coalesce(label[_key == $locale][0].value, ""),
@@ -79,7 +56,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } };
+const OPTIONS = { next: { revalidate: 604800 } };
 // 86400
 
 type Props = {
@@ -198,10 +175,67 @@ export default async function HomePage({ params: { locale } }: Props) {
     servicesGroup,
     logoSectionHome,
     ctaContent,
+    homePageSeo,
   } = content;
+
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: homePageSeo?.pageTitle, // Use fetched SEO data
+    legalName: "Pracownie Konserwacji Zabytków RENOMA",
+    url: "https://www.pkzrenoma.com",
+    logo: "https://www.pkzrenoma.com/renoma-logo.svg",
+    description: homePageSeo?.metaDescription, // Use fetched SEO data
+    foundingDate: "2012-08-01",
+    founder: [
+      {
+        "@type": "Person",
+        name: " Igor Góźdź",
+        jobTitle:
+          locale === "pl"
+            ? "Współzałożyciel"
+            : locale === "de"
+              ? "Mitgründer"
+              : "Co-Founder",
+      },
+      {
+        "@type": "Person",
+        name: "Hanna Rubnikowicz-Góźdź",
+        jobTitle:
+          locale === "pl"
+            ? "Współzałożycielka"
+            : locale === "de"
+              ? "Mitgründerin"
+              : "Co-Founder",
+        sameAs: ["https://www.linkedin.com/in/hanna-rubnikowicz-a5556083/"],
+      },
+    ],
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: "+48 514 360 051",
+        contactType: "customer service",
+        email: "biuro@pkzrenoma.com",
+        areaServed: ["PL"],
+        availableLanguage: ["Polish", "English", "German"],
+      },
+    ],
+    sameAs: [
+      "https://www.facebook.com/people/Renoma/61567069006693/",
+      "https://www.instagram.com/pkzrenoma/",
+      "https://www.linkedin.com/company/pracownie-konserwacji-zabytkow-renoma/",
+    ],
+  };
 
   return (
     <>
+      {/* JSON-LD */}
+      <Script
+        id="organization-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+
       {/* Hero Section */}
       {heroSection && (
         <HeroSection

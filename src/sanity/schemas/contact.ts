@@ -1,4 +1,5 @@
 // cSpell:disable
+//
 import { defineType, defineField } from "sanity";
 import { seoFields } from "../fields/seoFields";
 
