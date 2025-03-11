@@ -45,10 +45,6 @@ export const aboutUsHeader = defineType({
       name: "kolorSekcji",
       title: "Kolor sekcji",
     },
-    {
-      name: "kolorSekcji",
-      title: "Kolor sekcji",
-    },
   ],
   fields: [
     defineField({
