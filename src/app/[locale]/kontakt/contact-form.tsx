@@ -397,7 +397,7 @@ export default function ContactForm({
                       <>
                         “I consent to the processing of my personal data by the{" "}
                         <span className="">
-                          Pracownię Konserwacji Zabytków RENOMA Hanna
+                          Pracownie Konserwacji Zabytków RENOMA Hanna
                           Rubnikowicz-Góźdź
                         </span>{" "}
                         and <span className="">RENOMA Igor Góźdź</span> , for
