@@ -94,7 +94,7 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
     fetchData();
   }, [locale]);
 
-  const currentYear = new Date().getFullYear();
+  // const currentYear = new Date().getFullYear();
   const darkClasses = "text-zinc-100 bg-zinc-900";
   const lightClasses = "text-zinc-950 bg-white";
 
