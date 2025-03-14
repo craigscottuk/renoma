@@ -158,9 +158,9 @@ export default function Footer({ variant = "dark", locale }: FooterProps) {
                   variant === "light" ? lightClasses : darkClasses,
                 )}
               >
-                <p className="mt-4 text-center text-sm text-zinc-200 md:mt-0">
+                {/* <p className="mt-4 text-center text-sm text-zinc-200 md:mt-0">
                   {t("copyright", { year: currentYear })}
-                </p>
+                </p> */}
               </div>
               <div className="order-1 flex items-center space-x-8 sm:order-2">
                 <Link
