@@ -112,7 +112,7 @@ export default function Footer({
                   variant === "light" ? lightClasses : darkClasses,
                 )}
               >
-                <p className="text-center text-sm text-zinc-300 md:mt-0 md:text-zinc-200">
+                <p className="mt-4 text-center text-sm text-zinc-200 md:mt-0">
                   {t("copyright", { year: currentYear })}
                 </p>
               </div>
