@@ -1,4 +1,3 @@
-// cspell: disable
 // src/app/[locale]/kontakt/contact-form.tsx
 "use client";
 import clsx from "clsx";
@@ -377,7 +376,7 @@ export default function ContactForm({
                           Ich willige in die Verarbeitung meiner
                           personenbezogenen Daten durch die{" "}
                           <span className="">
-                            Pracownię Konserwacji Zabytków RENOMA Hanna
+                            Pracownie Konserwacji Zabytków RENOMA Hanna
                             Rubnikowicz-Góźdź
                           </span>{" "}
                           und <span className="">RENOMA Igor Góźdź</span> zum
@@ -397,7 +396,7 @@ export default function ContactForm({
                           “I consent to the processing of my personal data by
                           the{" "}
                           <span className="">
-                            Pracownię Konserwacji Zabytków RENOMA Hanna
+                            Pracownie Konserwacji Zabytków RENOMA Hanna
                             Rubnikowicz-Góźdź
                           </span>{" "}
                           and <span className="">RENOMA Igor Góźdź</span> , for
@@ -417,7 +416,7 @@ export default function ContactForm({
                           Wyrażam zgodę na przetwarzanie moich danych osobowych
                           przez{" "}
                           <span className="">
-                            Pracownię Konserwacji Zabytków RENOMA Hanna
+                            Pracownie Konserwacji Zabytków RENOMA Hanna
                             Rubnikowicz-Góźdź
                           </span>{" "}
                           oraz <span className="">RENOMA Igor Góźdź</span>{" "}
@@ -440,94 +439,14 @@ export default function ContactForm({
               )}
             />
 
-          <FormField
-            control={form.control}
-            name="privacy"
-            render={({ field }) => (
-              <FormItem className="flex max-w-[32rem] flex-row items-start space-x-3 space-y-0">
-                <FormControl>
-                  <Checkbox
-                    className={clsx(checkboxContentClassNames, "mt-1.5")}
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                    aria-label={t("contact-form.privacy")}
-                  />
-                </FormControl>
-                <div className="space-y-1 leading-none">
-                  <FormLabel className="text-balance text-[1rem] leading-relaxed md:text-[1rem]">
-                    {locale === "de" ? (
-                      <>
-                        Ich willige in die Verarbeitung meiner personenbezogenen
-                        Daten durch die{" "}
-                        <span className="">
-                          Pracownie Konserwacji Zabytków RENOMA Hanna
-                          Rubnikowicz-Góźdź
-                        </span>{" "}
-                        und <span className="">RENOMA Igor Góźdź</span> zum
-                        Zwecke der Beantwortung meiner Anfrage gemäß der{" "}
-                        <AnimatedLink
-                          href="/polityka-prywatnosci"
-                          target="_blank"
-                          className="text-base"
-                          showArrow={false}
-                        >
-                          Datenschutzerklärung
-                        </AnimatedLink>{" "}
-                        ein.
-                      </>
-                    ) : locale === "en" ? (
-                      <>
-                        “I consent to the processing of my personal data by the{" "}
-                        <span className="">
-                          Pracownie Konserwacji Zabytków RENOMA Hanna
-                          Rubnikowicz-Góźdź
-                        </span>{" "}
-                        and <span className="">RENOMA Igor Góźdź</span> , for
-                        the purpose of responding to my inquiry, in accordance
-                        with the{" "}
-                        <AnimatedLink
-                          href="/polityka-prywatnosci"
-                          target="_blank"
-                          className="text-base"
-                          showArrow={false}
-                        >
-                          Privacy Policy.
-                        </AnimatedLink>
-                      </>
-                    ) : (
-                      <>
-                        Wyrażam zgodę na przetwarzanie moich danych osobowych
-                        przez{" "}
-                        <span className="">
-                          Pracownie Konserwacji Zabytków RENOMA Hanna
-                          Rubnikowicz-Góźdź
-                        </span>{" "}
-                        oraz <span className="">RENOMA Igor Góźdź</span> w celu
-                        udzielenia odpowiedzi na moje zapytanie, zgodnie z{" "}
-                        <AnimatedLink
-                          href="/polityka-prywatnosci"
-                          target="_blank"
-                          className="text-base"
-                          showArrow={false}
-                        >
-                          polityce prywatności.
-                        </AnimatedLink>
-                      </>
-                    )}
-                  </FormLabel>
-                  <FormMessage aria-live="assertive" />
-                </div>
-              </FormItem>
-            )}
-          />
-
-          <Button
-            type="submit"
-            disabled={isLoading}
-            className="w-full rounded-none bg-zinc-50 text-zinc-900 hover:bg-zinc-900 hover:text-zinc-50 md:w-auto"
-          >
-            {isLoading ? t("contact-form.sending") : t("contact-form.submit")}
-          </Button>
+            <Button
+              type="submit"
+              disabled={isLoading}
+              className="w-full rounded-none bg-zinc-900 px-8 text-zinc-100 hover:bg-zinc-800 hover:text-zinc-100"
+            >
+              {isLoading ? t("contact-form.sending") : t("contact-form.submit")}
+            </Button>
+          </div>
         </form>
       )}
     </Form>
