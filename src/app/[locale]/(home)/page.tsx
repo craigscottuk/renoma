@@ -35,6 +35,7 @@ const QUERY = `
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "skzDescription": coalesce(skzDescription[_key == $locale][0].value, ""),
     "skzLogo": skzLogo.asset->url,
+    "link": link,
     logos[]{
       company,
       "src": src.asset->url,
@@ -120,6 +121,7 @@ interface Content {
     title: string;
     skzDescription: string;
     skzLogo: string;
+    link: string;
     logos: {
       company: string;
       src: string;
@@ -279,6 +281,7 @@ export default async function HomePage({ params: { locale } }: Props) {
           logos={logoSectionHome.logos}
           skzLogo={logoSectionHome.skzLogo}
           skzDescription={logoSectionHome.skzDescription}
+          link={logoSectionHome.link}
           paddingY="py-28 lg:py-48"
         />
       )}
