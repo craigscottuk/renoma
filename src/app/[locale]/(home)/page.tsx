@@ -5,7 +5,7 @@ import SectionAbout from "./about";
 import SectionUslugiHome from "./uslugi";
 import { client } from "@/sanity/client";
 import { setRequestLocale } from "next-intl/server";
-import LogoShowcase from "./logos";
+import LogoShowcase from "./cooperation";
 import CTA from "../../../components/cta";
 import Script from "next/script";
 
@@ -33,6 +33,8 @@ const QUERY = `
   "logoSectionHome": *[_type == "logoSectionHome"][0]{
     "label": coalesce(label[_key == $locale][0].value, ""),
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
+    "skzDescription": coalesce(skzDescription[_key == $locale][0].value, ""),
+    "skzLogo": skzLogo.asset->url,
     logos[]{
       company,
       "src": src.asset->url,
@@ -56,7 +58,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 604800 } };
+const OPTIONS = { next: { revalidate: 60 } };
 // 86400
 
 type Props = {
@@ -116,6 +118,8 @@ interface Content {
   logoSectionHome: {
     label: string;
     title: string;
+    skzDescription: string;
+    skzLogo: string;
     logos: {
       company: string;
       src: string;
@@ -267,12 +271,14 @@ export default async function HomePage({ params: { locale } }: Props) {
         />
       )}
 
-      {/* Our Clients */}
+      {/* Partnership */}
       {logoSectionHome && (
         <LogoShowcase
           label={logoSectionHome.label}
           title={logoSectionHome.title}
           logos={logoSectionHome.logos}
+          skzLogo={logoSectionHome.skzLogo}
+          skzDescription={logoSectionHome.skzDescription}
           paddingY="py-28 lg:py-48"
         />
       )}
