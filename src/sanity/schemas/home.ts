@@ -246,6 +246,12 @@ export const logoSectionHome = defineType({
         "Opis przynależności do Stowarzyszenia Konserwatorów Zabytków",
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: "link",
+      title: "Link",
+      type: "string",
+      description: "Dodaj link do strony SKZ.",
+    }),
   ],
 });
 
