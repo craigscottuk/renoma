@@ -21,6 +21,7 @@ interface LogoShowcaseProps {
   paddingY?: string;
   skzLogo?: string;
   skzDescription?: string;
+  link?: string;
 }
 
 export default function LogoShowcase({
@@ -30,6 +31,7 @@ export default function LogoShowcase({
   paddingY = "py-20 md:py-48",
   skzLogo,
   skzDescription,
+  link,
 }: LogoShowcaseProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -91,7 +93,12 @@ export default function LogoShowcase({
               <Separator className="my-24" />
             </FadeInSection>
             <FadeInSection>
-              <div className="flex w-full items-center space-x-6">
+              <Link
+                href={link || "http://www.skz.pl/skz_files/index.php"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex w-full cursor-pointer items-center space-x-6"
+              >
                 <img
                   src={skzLogo}
                   alt={"SKZ"}
@@ -102,7 +109,7 @@ export default function LogoShowcase({
                 <p className="max-w-sm text-pretty text-[0.90rem] leading-normal text-zinc-900 lg:text-[1.1rem] lg:leading-relaxed">
                   {skzDescription}
                 </p>
-              </div>
+              </Link>
             </FadeInSection>
           </>
         )}
