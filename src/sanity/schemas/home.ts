@@ -231,6 +231,21 @@ export const logoSectionHome = defineType({
         }),
       ],
     }),
+    defineField({
+      name: "skzLogo",
+      title: "Logo SKZ",
+      type: "image",
+      description: "Logo Stowarzyszenia Konserwatorów Zabytków",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "skzDescription",
+      title: "Opis SKZ",
+      type: "internationalizedArrayString",
+      description:
+        "Opis przynależności do Stowarzyszenia Konserwatorów Zabytków",
+      validation: (Rule) => Rule.required(),
+    }),
   ],
 });
 
