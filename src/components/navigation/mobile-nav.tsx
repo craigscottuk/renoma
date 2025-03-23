@@ -10,7 +10,7 @@ import {
   FacebookIcon,
   InstagramIcon,
   LinkedInIcon,
-} from "@/components/sections-footer/socials";
+} from "@/components/socials";
 import { useNavItems } from "@/lib/navItems";
 
 interface MobileNavProps {
