@@ -7,7 +7,7 @@ import { setRequestLocale } from "next-intl/server";
 
 const QUERY = `
 {
- "aboutUsHeader": *[_type == "aboutUsHeader"][0]{
+ "aboutHeader": *[_type == "aboutHeader"][0]{
     "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -38,7 +38,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 604800 } };
+const OPTIONS = { next: { revalidate: 10 } };
 //86400
 
 type Props = {
@@ -46,7 +46,7 @@ type Props = {
 };
 
 interface Content {
-  aboutUsHeader: {
+  aboutHeader: {
     label: string;
     title: string;
     description: string;
@@ -109,7 +109,7 @@ export default async function OsCzasu({ params: { locale } }: Props) {
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
   const {
-    //  aboutUsHeader,
+    //  aboutHeader,
     //  aboutUs,
     ourHistory,
   } = content;
@@ -117,15 +117,15 @@ export default async function OsCzasu({ params: { locale } }: Props) {
   return (
     <>
       {/* Page Header for About Us */}
-      {/* {aboutUsHeader && (
+      {/* {aboutHeader && (
         <PageHeader
-          label={aboutUsHeader.label}
-          title={aboutUsHeader.title}
-          description={aboutUsHeader.description}
-          image={aboutUsHeader.image}
-          imageAlt={aboutUsHeader.imageAlt}
-          imageLayout={aboutUsHeader.imageLayout}
-          backgroundColor={aboutUsHeader.backgroundColor}
+          label={aboutHeader.label}
+          title={aboutHeader.title}
+          description={aboutHeader.description}
+          image={aboutHeader.image}
+          imageAlt={aboutHeader.imageAlt}
+          imageLayout={aboutHeader.imageLayout}
+          backgroundColor={aboutHeader.backgroundColor}
         />
       )} */}
 
