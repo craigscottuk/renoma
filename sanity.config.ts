@@ -1,5 +1,4 @@
 // sanity.config.ts
-
 "use client";
 
 import { visionTool } from "@sanity/vision";
@@ -48,8 +47,7 @@ export default defineConfig({
 
       // defaultLanguages: ['pl'], // Default to Polish for new documents
       fieldTypes: ["string", "text"],
-      // buttonLocations: ['field'],
-      // buttonAddAll: false,
+      buttonAddAll: true,
     }),
   ],
 
