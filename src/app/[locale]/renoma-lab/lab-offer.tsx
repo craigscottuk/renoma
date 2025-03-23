@@ -1,8 +1,15 @@
 // src/app/[locale]/renoma-lab/lab-offer.tsx
-
 "use client";
-
+import clsx from "clsx";
 import React from "react";
+import SectionTitle from "@/components/section-title";
+import { Separator } from "@/components/ui/separator";
+import { transformPortableTextBlocks } from "@/utils/transformPortableTextBlocks";
+import fixPolishOrphans from "@/utils/fixPolishOrphans";
+import { FadeInSection } from "@/components/fade-in-section";
+import MaxWidthWrapper from "@/components/max-width-wrapper";
+import { PortableText, PortableTextBlock } from "@portabletext/react";
+import { portableTextComponents } from "@/lib/portableTextComponents";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Microscope,
@@ -12,15 +19,6 @@ import {
   Lightbulb,
   Users,
 } from "lucide-react";
-import clsx from "clsx";
-import { PortableText, PortableTextBlock } from "@portabletext/react";
-import SectionTitle from "@/components/section-title";
-import MaxWidthWrapper from "@/components/max-width-wrapper";
-import { portableTextComponents } from "@/lib/portableTextComponents";
-import { FadeInSection } from "@/components/fade-in-section";
-import { transformPortableTextBlocks } from "@/utils/transformPortableTextBlocks";
-import { Separator } from "@/components/ui/separator";
-import fixPolishOrphans from "@/utils/fixPolishOrphans";
 
 interface LabOfferProps {
   title: string;
@@ -31,7 +29,6 @@ interface LabOfferProps {
   }[];
   collaborationDescription: string;
   paddingY: string;
-  colorScheme: keyof typeof cardColorSchemes;
 }
 
 const iconComponents: Record<
@@ -46,61 +43,57 @@ const iconComponents: Record<
   Users,
 };
 
-const cardColorSchemes: Record<
-  string,
-  {
-    section: string;
-    card: string;
-    cardContent: string;
-    sectionTitle: "white" | "black";
-  }
-> = {
-  zincDark: {
-    section: "bg-zinc-900 text-zinc-50",
-    card: "border-zinc-700 bg-zinc-900 text-zinc-50 h-full",
-    cardContent: "text-zinc-100",
-    sectionTitle: "white",
-  },
-  zincLight: {
-    section: "text-zinc-950 bg-zinc-200",
-    card: "border-zinc-300 bg-zinc-100 h-full",
-    cardContent: "text-zinc-700",
-    sectionTitle: "black",
-  },
-  goldDark: {
-    section: "bg-gold-950 text-gold-50",
-    card: "border-gold-700 bg-gold-900 text-gold-50",
-    cardContent: "text-gold-200",
-    sectionTitle: "white",
-  },
-};
+function LabServicesList({ newOffers }: { newOffers: any[] }) {
+  return (
+    <div className="grid gap-4 md:grid-cols-2 lg:gap-6">
+      {newOffers.map((offer, index) => {
+        const IconComponent = iconComponents[offer.icon];
+        return (
+          <FadeInSection translateY key={index}>
+            <Card className="h-full border-zinc-300 bg-zinc-100 md:p-3 lg:p-8">
+              <CardHeader>
+                <div className="items-left flex flex-col space-y-3 lg:flex-row lg:items-start lg:space-x-3 lg:space-y-0">
+                  <IconComponent className="h-8 w-8 text-gold-800" />
+                  <CardTitle className="mb-3 text-left font-bolder text-[1.7rem] leading-tight tracking-[-0.015em] lg:text-left">
+                    {fixPolishOrphans(offer.title)}
+                  </CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent
+                className={clsx(
+                  "list-indented text-pretty text-[1.1rem]",
+                  "text-zinc-700",
+                )}
+              >
+                <PortableText
+                  value={offer.content}
+                  components={portableTextComponents}
+                />
+              </CardContent>
+            </Card>
+          </FadeInSection>
+        );
+      })}
+    </div>
+  );
+}
 
-export default function LabOffer({
-  title,
-  offers,
-  // collaborationDescription,
-  paddingY,
-  colorScheme = "zincLight",
-}: LabOfferProps) {
-  const selectedColorScheme =
-    cardColorSchemes[colorScheme] || cardColorSchemes.zincLight;
-
+export default function LabOffer({ title, offers, paddingY }: LabOfferProps) {
   const newOffers = offers.map((offer) => {
-    // Apply transformPortableTextBlocks to portableTextBlock before rendering to fix Polish orphans on the end of each line.
     const newContent = transformPortableTextBlocks(offer.content);
     return { ...offer, content: newContent };
   });
 
   return (
     <>
-      <section className={clsx("", selectedColorScheme.section, paddingY)}>
+      <section className={clsx("", "bg-zinc-200 text-zinc-950", paddingY)}>
         <MaxWidthWrapper>
           <div>
             <div className="justify-left mb-7 flex">
               <FadeInSection translateY>
                 <SectionTitle
                   title={title}
-                  textColor={selectedColorScheme.sectionTitle}
+                  textColor="black"
                   textAlign="right"
                 />
               </FadeInSection>
@@ -109,52 +102,10 @@ export default function LabOffer({
             <FadeInSection translateY>
               <Separator className="mb-10" />
             </FadeInSection>
-            <div className="grid gap-4 md:grid-cols-2 lg:gap-6">
-              {newOffers.map((offer, index) => {
-                const IconComponent = iconComponents[offer.icon] || Microscope;
-                return (
-                  <FadeInSection translateY key={index}>
-                    <Card
-                      className={`${selectedColorScheme.card} md:p-3 lg:p-8`}
-                    >
-                      <CardHeader>
-                        <div className="items-left flex flex-col space-y-3 lg:flex-row lg:items-start lg:space-x-3 lg:space-y-0">
-                          <IconComponent className="h-8 w-8 text-gold-800" />
-                          <CardTitle className="mb-3 text-left font-bolder text-[1.7rem] leading-tight tracking-[-0.015em] lg:text-left">
-                            {fixPolishOrphans(offer.title)}
-                          </CardTitle>
-                        </div>
-                      </CardHeader>
-                      <CardContent
-                        className={clsx(
-                          "list-indented text-pretty text-[1.1rem]",
-                          selectedColorScheme.cardContent,
-                        )}
-                      >
-                        <PortableText
-                          value={offer.content}
-                          components={portableTextComponents}
-                        />
-                      </CardContent>
-                    </Card>
-                  </FadeInSection>
-                );
-              })}
-            </div>
-            {/* <p className="mx-auto mt-8 px-5 py-10 text-center text-[1.1rem] text-zinc-900 md:max-w-[60rem]">
-              {collaborationDescription}
-            </p> */}
+            <LabServicesList newOffers={newOffers} />
           </div>
         </MaxWidthWrapper>
       </section>
-
-      {/* <div className="bg-white">
-        <MaxWidthWrapper>
-          <p className="mt-8 py-10 text-left text-zinc-900">
-            {collaborationDescription}
-          </p>
-        </MaxWidthWrapper>
-      </div> */}
     </>
   );
 }
