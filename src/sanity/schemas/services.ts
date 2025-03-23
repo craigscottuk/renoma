@@ -18,10 +18,6 @@ export const services = defineType({
   ],
 });
 
-// ================================
-// Services page header section
-// ================================
-
 export const servicesHeader = defineType({
   name: "servicesHeader",
   title: "Nagłówek strony usług",
@@ -79,9 +75,7 @@ export const servicesHeader = defineType({
       title: "Obraz nagłówka",
       description: "Obraz wyświetlany w nagłówku strony.",
       type: "image",
-      options: {
-        hotspot: true,
-      },
+
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout === "noImage",
     }),
@@ -96,7 +90,7 @@ export const servicesHeader = defineType({
         list: [
           { title: "Pełna szerokość powyżej", value: "fullWidthAbove" },
           { title: "Pełna szerokość poniżej", value: "fullWidthBelow" },
-          { title: "Portret po prawej (ratio 3:4)", value: "portraitRight" },
+          { title: "Portret po prawej (ratio 4:3)", value: "portraitRight" },
           { title: "Krajobraz po prawej", value: "landscapeRight" },
           { title: "Brak obrazu", value: "noImage" },
         ],
@@ -134,10 +128,22 @@ export const servicesHeader = defineType({
     }),
 
     defineField({
+      name: "mobileImage",
+      title: "Obraz krajobrazowy dla małych i średnich urządzeń",
+      description:
+        "Obraz krajobrazowy 16:10, który będzie wyświetlany w nagłówku na małych i średnich urządzeniach (telefony i tablety).",
+      type: "image",
+      group: "obrazSekcji",
+      hidden: ({ parent }) =>
+        parent?.imageLayout !== "fullWidthAbove" &&
+        parent?.imageLayout !== "fullWidthBelow",
+    }),
+
+    defineField({
       name: "imageAlt",
       title: "Alternatywny tekst obrazu nagłówka",
       description:
-        "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie młodych profesjonalistów współpracujących przy projekcie'.",
+        "Krótki tekst opisujący obraz, aby uzupełnić kontekst i poprawić SEO",
       type: "internationalizedArrayString",
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout === "noImage",
@@ -146,8 +152,7 @@ export const servicesHeader = defineType({
     defineField({
       name: "backgroundColor",
       title: "Kolor tła",
-      description:
-        "Wybierz kolor tła dla nagłówka strony. Jeśli wybierzesz biały, tekst będzie czarny, a jeśli wybierzesz czarny, tekst będzie biały.",
+      description: "Wybierz kolor tła dla nagłówka strony.",
       type: "string",
       options: {
         list: [
@@ -162,12 +167,8 @@ export const servicesHeader = defineType({
   ],
 });
 
-// ================================
-// Services List Entries
-// ================================
-
-export const servicesList = defineType({
-  name: "servicesList",
+export const serviceItem = defineType({
+  name: "serviceItem",
   title: "Lista usług",
 
   description:
@@ -244,16 +245,6 @@ export const servicesList = defineType({
           ],
         }),
 
-        // defineField({
-        //   name: "shortDescription",
-        //   title: "Krótki Opis Usługi na stronie głównej",
-        //   type: "internationalizedArrayText",
-        //   description:
-        //     "Skrócony opis usługi wyświetlany w sekcji usług na stronie głównej, np. 'Zapewniamy kompleksowe badania w celu ochrony zabytków.'.",
-        //   validation: (Rule) =>
-        //     Rule.required().error("Pole krótkiego opisu usługi jest wymagane."),
-        // }),
-
         defineField({
           name: "images",
           title: "Obrazy Usługi",
@@ -316,7 +307,7 @@ export const servicesList = defineType({
 });
 
 // ================================
-// 01. Badania, Planowanie i Ekspertyzy
+// 01. Badania, programy i ekspertyzy
 // ================================
 
 export const servicesGroup = defineType({
@@ -329,19 +320,19 @@ export const servicesGroup = defineType({
     // Group 1
     defineField({
       name: "serviceGroupOne",
-      title: "01. Badania, Planowanie i Ekspertyzy",
+      title: "01. Badania, programy i ekspertyzy",
       type: "object",
       fields: [
         defineField({
           name: "title",
           title: "Tytuł Sekcji",
           type: "string",
-          initialValue: "Badania, Planowanie i Ekspertyzy",
+          initialValue: "Badania, programy i ekspertyzy",
         }),
         defineField({
           name: "services",
           title: "Lista Usług",
-          type: "servicesList",
+          type: "serviceItem",
         }),
       ],
     }),
@@ -364,13 +355,13 @@ export const servicesGroup = defineType({
         defineField({
           name: "services",
           title: "Lista Usług",
-          type: "servicesList",
+          type: "serviceItem",
         }),
       ],
     }),
 
     // ================================
-    // 03. Rewaloryzacja i Wsparcie
+    // 03. Wsparcie administracyjne
     // ================================
 
     defineField({
@@ -387,73 +378,15 @@ export const servicesGroup = defineType({
         defineField({
           name: "services",
           title: "Lista Usług",
-          type: "servicesList",
+          type: "serviceItem",
         }),
       ],
     }),
   ],
 });
 
-// ==========================================================
-// ServicesListSection with internationalized portableText
-// ==========================================================
-
-// // List of Services section
-// export const servicesList = defineType({
-//   name: "servicesList",
-//   title: "Lista usług",
-//   type: "document",
-//   options: { singleton: true },
-//   description:
-//     "W tej sekcji możesz dodawać i edytować usługi dostępne na stronie.",
-//   fields: [
-//     defineField({
-//       name: "services",
-//       title: "Usługi",
-//       type: "array",
-//       description: "Lista usług, które można dodać, edytować lub usunąć.",
-//       of: [
-//         defineField({
-//           name: "service",
-//           title: "Usługa",
-//           type: "object",
-//           fields: [
-//             defineField({
-//               name: "title",
-//               title: "Tytuł usługi",
-//               type: "internationalizedArrayString",
-//               description: "Dodaj tytuł usługi w wybranych językach.",
-//             }),
-//             defineField({
-//               name: "description",
-//               title: "Opis",
-//               type: "object",
-//               description: "Dodaj opis usługi w językach PL, EN lub DE.",
-//               fields: [
-//                 { name: "pl", title: "PL", type: "basicText" },
-//                 { name: "en", title: "EN", type: "basicText" },
-//                 { name: "de", title: "DE", type: "basicText" },
-//               ],
-//             }),
-//           ],
-//           preview: {
-//             select: {
-//               title: "title.0.value", // Shows the first language entry as a preview
-//             },
-//             prepare({ title }) {
-//               return {
-//                 title: title || "Brak tytułu", // Default if no title is set
-//               };
-//             },
-//           },
-//         }),
-//       ],
-//     }),
-//   ],
-// });
-
-export const servicesPageSeo = defineType({
-  name: "servicesPageSeo",
+export const servicesPageMeta = defineType({
+  name: "servicesPageMeta",
   title: "SEO & Ustawienia Meta – Usługi",
   type: "document",
   options: { singleton: true },
