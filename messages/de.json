@@ -180,7 +180,7 @@
     "contactAriaLabel": "Kontakt",
     "openMenuAriaLabel": "Menü öffnen"
   },
-  "servicesList": {
+  "serviceItem": {
     "visitRenomaLab": "Besuche die Renoma LAB-Seite"
   }
 }
