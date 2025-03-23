@@ -38,7 +38,7 @@ const QUERY = `
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
   },
-  "workWithUsPageSeo": *[_type == "workWithUsPageSeo"][0]{
+  "workWithUsPageMeta": *[_type == "workWithUsPageMeta"][0]{
     "pageTitle": coalesce(pageTitle[_key == $locale][0].value, "Default SEO Title"),
     "metaDescription": coalesce(metaDescription[_key == $locale][0].value, "Default SEO Description"),
     "ogTitle": coalesce(ogTitle[_key == $locale][0].value, "Default OG Title"),
@@ -48,8 +48,8 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 604800 } };
-// 86400
+const OPTIONS = { next: { revalidate: 10 } };
+// 604800
 
 type Props = {
   params: { locale: string };
@@ -92,21 +92,21 @@ interface Content {
 }
 
 export async function generateMetadata({ params: { locale } }: Props) {
-  const { workWithUsPageSeo } = await client.fetch(QUERY, { locale }, OPTIONS);
+  const { workWithUsPageMeta } = await client.fetch(QUERY, { locale }, OPTIONS);
 
   return {
-    title: workWithUsPageSeo?.pageTitle,
-    description: workWithUsPageSeo?.metaDescription,
+    title: workWithUsPageMeta?.pageTitle,
+    description: workWithUsPageMeta?.metaDescription,
     openGraph: {
-      title: workWithUsPageSeo?.ogTitle,
-      description: workWithUsPageSeo?.ogDescription,
-      images: workWithUsPageSeo?.ogImage
-        ? [{ url: workWithUsPageSeo.ogImage.asset?.url }]
+      title: workWithUsPageMeta?.ogTitle,
+      description: workWithUsPageMeta?.ogDescription,
+      images: workWithUsPageMeta?.ogImage
+        ? [{ url: workWithUsPageMeta.ogImage.asset?.url }]
         : undefined,
     },
     twitter: {
-      title: workWithUsPageSeo?.ogTitle,
-      description: workWithUsPageSeo?.ogDescription,
+      title: workWithUsPageMeta?.ogTitle,
+      description: workWithUsPageMeta?.ogDescription,
     },
   };
 }
