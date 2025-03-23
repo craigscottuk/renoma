@@ -5,8 +5,6 @@ import { Link } from "@/i18n/routing";
 import MaxWidthWrapper from "./max-width-wrapper";
 import LocaleSwitcher from "./navigation/locale-switcher";
 import MainNavigation from "./navigation/main-navigation";
-// import SideNavigation from "./navigation/side-navigation";
-// import BreakpointReadout from "./breakpoint-readout";
 import { MobileNav } from "./navigation/mobile-nav";
 import { useMobileNav } from "./navigation/mobile-nav-provider";
 import { useTranslations } from "next-intl";
@@ -71,8 +69,6 @@ export default function Header({ socialMediaLinks }: HeaderProps) {
         onClose={closeMobileNav}
         socialMediaLinks={socialMediaLinks}
       />
-      {/* Breakpoint Readout */}
-      {/* <BreakpointReadout /> */}
     </header>
   );
 }
