@@ -47,7 +47,7 @@ export const privacyHeader = defineType({
     defineField({
       name: "label",
       title: "Etykieta sekcji",
-      description: "Krótki tekst nad tytułem, np. 'POLITYKA PRYWATNOŚCI'.",
+      description: "Krótki tekst nad tytułem",
       type: "internationalizedArrayString",
       group: "etykietaSekcji",
       validation: (Rule) => Rule.required(),
@@ -55,8 +55,7 @@ export const privacyHeader = defineType({
     defineField({
       name: "title",
       title: "Tytuł sekcji",
-      description:
-        "Główny tytuł sekcji na stronie polityki prywatności, np. 'Polityka prywatności'.",
+      description: "Główny tytuł sekcji na stronie polityki prywatności.",
       type: "internationalizedArrayString",
       group: "tytulSekcji",
       validation: (Rule) => Rule.required(),
@@ -65,8 +64,7 @@ export const privacyHeader = defineType({
     defineField({
       name: "backgroundColor",
       title: "Kolor tła",
-      description:
-        "Wybierz kolor tła dla nagłówka strony. Jeśli wybierzesz biały, tekst będzie czarny, a jeśli wybierzesz czarny, tekst będzie biały.",
+      description: "Wybierz kolor tła dla nagłówka strony.",
       type: "string",
       options: {
         list: [
@@ -82,8 +80,8 @@ export const privacyHeader = defineType({
 });
 
 // Privacy Policy text section
-export const privacyText = defineType({
-  name: "privacyText",
+export const privacyBody = defineType({
+  name: "privacyBody",
   title: "Treść strony polityki prywatności",
   type: "document",
   options: { singleton: true },
@@ -104,8 +102,8 @@ export const privacyText = defineType({
   ],
 });
 
-export const privacyPageSeo = defineType({
-  name: "privacyPageSeo",
+export const privacyPageMeta = defineType({
+  name: "privacyPageMeta",
   title: "SEO & Ustawienia Meta – Polityka Prywatności",
   type: "document",
   options: { singleton: true },
