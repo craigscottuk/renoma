@@ -41,7 +41,7 @@ const QUERY = `
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
   },
-  "renomaLabPageSeo": *[_type == "renomaLabPageSeo"][0]{
+  "renomaLabPageMeta": *[_type == "renomaLabPageMeta"][0]{
     "pageTitle": coalesce(pageTitle[_key == $locale][0].value, "Default SEO Title"),
     "metaDescription": coalesce(metaDescription[_key == $locale][0].value, "Default SEO Description"),
     "ogTitle": coalesce(ogTitle[_key == $locale][0].value, "Default OG Title"),
@@ -51,8 +51,8 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 604800 } };
-// 86400
+const OPTIONS = { next: { revalidate: 10 } };
+// 604800
 
 type Props = {
   params: { locale: string };
@@ -99,21 +99,21 @@ interface Content {
 
 // Metadata from translations and generateMetadata function
 export async function generateMetadata({ params: { locale } }: Props) {
-  const { renomaLabPageSeo } = await client.fetch(QUERY, { locale }, OPTIONS);
+  const { renomaLabPageMeta } = await client.fetch(QUERY, { locale }, OPTIONS);
 
   return {
-    title: renomaLabPageSeo?.pageTitle,
-    description: renomaLabPageSeo?.metaDescription,
+    title: renomaLabPageMeta?.pageTitle,
+    description: renomaLabPageMeta?.metaDescription,
     openGraph: {
-      title: renomaLabPageSeo?.ogTitle,
-      description: renomaLabPageSeo?.ogDescription,
-      images: renomaLabPageSeo?.ogImage
-        ? [{ url: renomaLabPageSeo.ogImage.asset?.url }]
+      title: renomaLabPageMeta?.ogTitle,
+      description: renomaLabPageMeta?.ogDescription,
+      images: renomaLabPageMeta?.ogImage
+        ? [{ url: renomaLabPageMeta.ogImage.asset?.url }]
         : undefined,
     },
     twitter: {
-      title: renomaLabPageSeo?.ogTitle,
-      description: renomaLabPageSeo?.ogDescription,
+      title: renomaLabPageMeta?.ogTitle,
+      description: renomaLabPageMeta?.ogDescription,
     },
   };
 }
@@ -170,7 +170,6 @@ export default async function RenomaLab({ params: { locale } }: Props) {
           offers={labOffer.offers}
           collaborationDescription={labOffer.collaborationDescription}
           paddingY="py-16 md:py-20 lg:py-24"
-          colorScheme="zincLight"
         />
       )}
 
