@@ -179,7 +179,7 @@
     "contactAriaLabel": "Contact",
     "openMenuAriaLabel": "Open menu"
   },
-  "servicesList": {
+  "serviceItem": {
     "visitRenomaLab": "Visit Renoma LAB"
   }
 }
