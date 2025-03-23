@@ -1,7 +1,7 @@
 // src/app/api/contact/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { contactSchema } from "@/shared/validation/contact-schema";
+import { contactSchema } from "@/lib/contact-schema";
 import sanitizeHtml from "sanitize-html";
 
 /** Safely convert a form field to string. */
