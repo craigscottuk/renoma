@@ -1,5 +1,4 @@
 // src/components/job-application-form.tsx
-
 // cSpell:disable
 "use client";
 import { useState } from "react";
