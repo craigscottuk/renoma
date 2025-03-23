@@ -12,7 +12,7 @@ import {
 import { urlFor } from "@/sanity/lib/image";
 import { ChevronDown, ChevronUp, Text } from "lucide-react";
 import SectionTitle from "@/components/section-title";
-import ImageCarousel from "@/components/ImageCarousel";
+import ImageCarousel from "@/components/image-carousel";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { FadeInSection } from "@/components/fade-in-section";
 import fixPolishOrphans from "@/utils/fixPolishOrphans";
@@ -72,7 +72,7 @@ export default function ServicesList({
   serviceGroups: ServiceGroup[];
   paddingY?: string;
 }) {
-  const t = useTranslations("servicesList");
+  const t = useTranslations("serviceItem");
   const [currentGroup, setCurrentGroup] = useState(
     serviceGroups?.[0]?.title ?? "",
   );
@@ -165,9 +165,6 @@ export default function ServicesList({
     return currentService || "Nasze usługi";
   })();
 
-  // -------------------------------------------------------
-  // IntersectionObserver for Scrollspy
-  // -------------------------------------------------------
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
