@@ -47,7 +47,7 @@ export default function SectionFaqHome({ faqItems }: SectionFaqHomeProps) {
 
       <MaxWidthWrapper>
         <FadeInSection translateY>
-          <div className="mx-auto w-full bg-zinc-100 px-5 py-1 md:px-6 md:py-3 lg:px-8 lg:py-6">
+          <div className="mx-auto w-full bg-zinc-200 px-5 py-1 md:px-6 md:py-3 lg:px-8 lg:py-6">
             <FaqAccordion faqItems={faqItems} />
           </div>
         </FadeInSection>
