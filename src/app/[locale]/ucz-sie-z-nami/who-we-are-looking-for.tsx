@@ -37,7 +37,7 @@ export default function WhoWeAreLookingFor({
   const imageUrl =
     typeof image === "string" ? image : image ? urlFor(image, 1200) : "";
 
-  // Apply transformPortableTextBlocks to portableTextBlock before rendering to fix Polish orphans on the end of each line.
+  // Transform PortableText blocks to fix Polish orphans of each line before rendering.
   const newCriteria = transformPortableTextBlocks(criteria);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -63,7 +63,7 @@ export default function WhoWeAreLookingFor({
             </CardHeader>
             <CardContent className="">
               <div className="grid items-start lg:grid-cols-2 lg:gap-10 xl:gap-24">
-                <div className="space-y-10">
+                <div className="h-full space-y-10 lg:flex lg:flex-col lg:justify-between lg:space-y-0">
                   <div className="list-indented max-w-prose">
                     <PortableText
                       value={newCriteria}
@@ -72,7 +72,7 @@ export default function WhoWeAreLookingFor({
                   </div>
 
                   <Button
-                    className="w-full bg-zinc-900 text-zinc-100 hover:bg-zinc-800 hover:text-zinc-100 lg:w-auto"
+                    className="w-full bg-zinc-50 text-zinc-950 hover:bg-zinc-800 hover:text-zinc-100 lg:w-fit"
                     variant="outline"
                     onClick={() => {
                       setIsModalOpen(true);
