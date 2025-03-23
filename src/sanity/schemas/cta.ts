@@ -28,7 +28,7 @@ export const ctaContent = defineType({
     defineField({
       name: "title",
       title: "Tytuł CTA",
-      description: "Główny tytuł sekcji CTA, np. 'Skonsultuj swój projekt'.",
+      description: "Główny tytuł sekcji CTA, np. „Skonsultuj swój projekt”.",
       type: "internationalizedArrayString",
       validation: (Rule) => Rule.required(),
     }),
@@ -42,7 +42,7 @@ export const ctaContent = defineType({
     defineField({
       name: "buttonLabel",
       title: "Etykieta Przycisku",
-      description: "Tekst widoczny na przycisku CTA, np. 'SKONSULTUJ'.",
+      description: "Tekst widoczny na przycisku CTA, np. „SKONSULTUJ”.",
       type: "internationalizedArrayString",
       validation: (Rule) => Rule.required(),
     }),
