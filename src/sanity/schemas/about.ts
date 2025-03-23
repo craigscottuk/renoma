@@ -18,10 +18,9 @@ export const about = defineType({
   ],
 });
 
-// About page header section
-export const aboutUsHeader = defineType({
-  name: "aboutUsHeader",
-  title: "Nagłówek strony o nas",
+export const aboutHeader = defineType({
+  name: "aboutHeader",
+  title: "Nagłówek strony „O nas”",
   type: "document",
   options: { singleton: true },
   groups: [
@@ -50,7 +49,7 @@ export const aboutUsHeader = defineType({
     defineField({
       name: "label",
       title: "Etykieta sekcji",
-      description: "Krótki tekst nad tytułem, np. 'O NAS'.",
+      description: "Krótki tekst nad tytułem.",
       type: "internationalizedArrayString",
       group: "etykietaSekcji",
       validation: (Rule) => Rule.required(),
@@ -58,7 +57,7 @@ export const aboutUsHeader = defineType({
     defineField({
       name: "title",
       title: "Tytuł sekcji",
-      description: "Główny tytuł sekcji na stronie o nas, np. 'Poznaj nas'.",
+      description: "Główny tytuł sekcji na stronie „O nas”.",
       type: "internationalizedArrayString",
       group: "tytulSekcji",
       validation: (Rule) => Rule.required(),
@@ -66,8 +65,7 @@ export const aboutUsHeader = defineType({
     defineField({
       name: "description",
       title: "Opis sekcji",
-      description:
-        "Tekst opisujący firmę lub zespół, umieszczony na stronie o nas.",
+      description: "Krótki opis sekcji, który pojawia się pod tytułem.",
       type: "internationalizedArrayText",
       group: "opisSekcji",
     }),
@@ -76,9 +74,6 @@ export const aboutUsHeader = defineType({
       title: "Obraz nagłówka",
       description: "Obraz wyświetlany w nagłówku strony.",
       type: "image",
-      options: {
-        hotspot: true,
-      },
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout === "noImage",
     }),
@@ -93,7 +88,7 @@ export const aboutUsHeader = defineType({
         list: [
           { title: "Pełna szerokość powyżej", value: "fullWidthAbove" },
           { title: "Pełna szerokość poniżej", value: "fullWidthBelow" },
-          { title: "Portret po prawej (ratio 3:4)", value: "portraitRight" },
+          { title: "Portret po prawej (ratio 4:3)", value: "portraitRight" },
           { title: "Krajobraz po prawej", value: "landscapeRight" },
           { title: "Brak obrazu", value: "noImage" },
         ],
@@ -131,10 +126,22 @@ export const aboutUsHeader = defineType({
     }),
 
     defineField({
+      name: "mobileImage",
+      title: "Obraz krajobrazowy dla małych i średnich urządzeń",
+      description:
+        "Obraz krajobrazowy 16:10, który będzie wyświetlany w nagłówku na małych i średnich urządzeniach (telefony i tablety).",
+      type: "image",
+      group: "obrazSekcji",
+      hidden: ({ parent }) =>
+        parent?.imageLayout !== "fullWidthAbove" &&
+        parent?.imageLayout !== "fullWidthBelow",
+    }),
+
+    defineField({
       name: "imageAlt",
       title: "Alternatywny tekst obrazu nagłówka",
       description:
-        "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie młodych profesjonalistów współpracujących przy projekcie'.",
+        "Krótki tekst opisujący obraz, aby uzupełnić kontekst i poprawić SEO.",
       type: "internationalizedArrayString",
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout === "noImage",
@@ -143,8 +150,7 @@ export const aboutUsHeader = defineType({
     defineField({
       name: "backgroundColor",
       title: "Kolor tła",
-      description:
-        "Wybierz kolor tła dla nagłówka strony. Jeśli wybierzesz biały, tekst będzie czarny, a jeśli wybierzesz czarny, tekst będzie biały.",
+      description: "Wybierz kolor tła dla nagłówka strony.",
       type: "string",
       options: {
         list: [
@@ -159,10 +165,9 @@ export const aboutUsHeader = defineType({
   ],
 });
 
-// About Us / Our Valuessection
 export const aboutUs = defineType({
   name: "aboutUs",
-  title: "Sekcja 'O nas i nasza wartości'",
+  title: "Sekcja „O nas”",
   type: "document",
   options: {
     singleton: true,
@@ -194,7 +199,7 @@ export const aboutUs = defineType({
 // Our History section
 export const ourHistory = defineType({
   name: "ourHistory",
-  title: "Sekcja osi czasu",
+  title: "Sekcja „Nasza historia”",
   type: "document",
   options: { singleton: true },
   description:
@@ -203,7 +208,7 @@ export const ourHistory = defineType({
     defineField({
       name: "title",
       title: "Tytuł sekcji",
-      description: "Główny tytuł sekcji, np. 'Nasza historia'.",
+      description: "Główny tytuł sekcji, np. „Nasza historia”.",
       type: "internationalizedArrayString",
       validation: (Rule) => Rule.required(),
     }),
@@ -212,7 +217,7 @@ export const ourHistory = defineType({
       name: "text",
       title: "Tekst sekcji",
       description:
-        "Treść wprowadzająca do sekcji, np. 'Nasza historia to lata wyzwań i sukcesów.'.",
+        "Treść wprowadzająca do sekcji, np. „Nasza historia to lata wyzwań i sukcesów.”.",
       type: "internationalizedArrayText",
       validation: (Rule) => Rule.required(),
     }),
@@ -263,7 +268,7 @@ export const ourHistory = defineType({
               of: [
                 defineField({
                   name: "imageItem",
-                  title: "Obraz z podpisem",
+                  title: "Obraz",
                   type: "object",
                   fields: [
                     defineField({
@@ -273,8 +278,8 @@ export const ourHistory = defineType({
                       description: "Obraz ilustrujący wydarzenie.",
                     }),
                     defineField({
-                      name: "caption",
-                      title: "Podpis obrazu",
+                      name: "altText",
+                      title: "Alternatywny tekst obrazu",
                       type: "internationalizedArrayString",
                       description:
                         "Krótki tekst opisujący obraz, aby uzupełnić kontekst i poprawić SEO.",
@@ -297,12 +302,12 @@ export const ourHistory = defineType({
 
                   preview: {
                     select: {
-                      title: "caption.0.value",
+                      title: "altText.0.value",
                       media: "src",
                     },
                     prepare({ title, media }) {
                       return {
-                        title: title || "Brak podpisu obrazu",
+                        title: title || "Brak alternatywnego tekstu obrazu",
                         media,
                       };
                     },
@@ -327,8 +332,8 @@ export const ourHistory = defineType({
   ],
 });
 
-export const aboutPageSeo = defineType({
-  name: "aboutPageSeo",
+export const aboutPageMeta = defineType({
+  name: "aboutPageMeta",
   title: "SEO & Ustawienia Meta – O Nas",
   type: "document",
   options: { singleton: true },
