@@ -85,7 +85,8 @@ export default function PageHeader({
   const textColor = backgroundColor === "black" ? "white" : "black";
   const showImage = imageLayout !== "noImage";
 
-  // Apply transformPortableTextBlocks to portableTextBlock before rendering to fix Polish orphans on the end of each line.
+  // Transform PortableText blocks to fix Polish orphans of each line before rendering.
+
   if (portableTextBlock) {
     portableTextBlock = transformPortableTextBlocks(portableTextBlock);
   }
