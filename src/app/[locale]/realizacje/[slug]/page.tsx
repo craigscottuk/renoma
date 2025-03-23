@@ -1,10 +1,8 @@
 // cSpell:disable
 // app/[locale]/realizacje/[slug]/page.tsx
-
 import { client } from "@/sanity/client";
 import { setRequestLocale } from "next-intl/server";
 import { redirect } from "@/i18n/routing";
-import NoTranslationMessage from "@/components/NoTranslationMessage";
 import ContentSection from "@/app/[locale]/realizacje/[slug]/content-section";
 import ProjectDetailsSection from "./details";
 import PageHeader from "@/components/page-header";
@@ -12,6 +10,7 @@ import ComparisonSection from "./comparison-section";
 import BibliographySection from "./bibliography-section";
 import CTA from "@/components/cta";
 import { PrevNextCaseStudy } from "./prev-next-case-study";
+import { notFound } from "next/navigation";
 
 const QUERY = `
 *[_type == "caseStudyEntry" && slug.current == $slug][0]{
@@ -155,8 +154,8 @@ type Props = {
 export default async function ProjectPage({ params: { slug, locale } }: Props) {
   setRequestLocale(locale);
 
-  const OPTIONS = { next: { revalidate: 604800 } };
-  // 86400
+  const OPTIONS = { next: { revalidate: 10 } };
+  // 604800
 
   // Error handling for fetching data
   const [project, ctaContent] = await Promise.all([
@@ -165,7 +164,7 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
   ]);
 
   if (!project) {
-    return <div>Project not found.</div>; // Optionally, redirect to a 404 page
+    notFound();
   }
 
   // Determine the translation for the selected locale
@@ -307,10 +306,7 @@ export default async function ProjectPage({ params: { slug, locale } }: Props) {
           )}
         </>
       ) : (
-        <NoTranslationMessage
-          locale={locale}
-          translations={project._translations}
-        />
+        notFound()
       )}
     </>
   );
