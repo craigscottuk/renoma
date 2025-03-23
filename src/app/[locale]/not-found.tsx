@@ -1,3 +1,4 @@
+// src/app/[locale]/not-found.tsx
 // Note that `app/[locale]/[...rest]/page.tsx` is necessary for this page to render.
 
 export const dynamic = "force-dynamic";
