@@ -1,5 +1,4 @@
 "use client";
-
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import SectionTitle from "@/components/section-title";
 import clsx from "clsx";
@@ -14,7 +13,7 @@ interface Logo {
   link: string;
 }
 
-interface LogoShowcaseProps {
+interface CooperationSectionProps {
   label?: string;
   title: string;
   logos: Logo[];
@@ -24,7 +23,7 @@ interface LogoShowcaseProps {
   link?: string;
 }
 
-export default function LogoShowcase({
+export default function CooperationSection({
   label,
   title,
   logos,
@@ -32,14 +31,7 @@ export default function LogoShowcase({
   skzLogo,
   skzDescription,
   link,
-}: LogoShowcaseProps) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer) return;
-  }, []);
-
+}: CooperationSectionProps) {
   return (
     <section className={clsx("mx-auto bg-white", paddingY)}>
       <MaxWidthWrapper>
@@ -63,57 +55,87 @@ export default function LogoShowcase({
             />
           </div>
         </div>
-        <FadeInSection>
-          <div ref={scrollRef} className="relative w-full overflow-hidden">
-            <div className="scroll-content flex min-w-max shrink-0 animate-scroll-mobile flex-nowrap items-center gap-4 bg-white grayscale md:animate-scroll md:gap-10">
-              {logos.map((logo: Logo, index: number) => (
-                <Link
-                  key={index}
-                  href={logo.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-auto w-auto flex-shrink-0 items-center justify-center"
-                >
-                  <img
-                    src={logo.src}
-                    alt={logo.company}
-                    className="h-[100px] w-auto object-contain md:h-[130px]"
-                    width={240}
-                    height={112}
-                  />
-                </Link>
-              ))}
-            </div>
-          </div>
-        </FadeInSection>
-        {/* Only render Separator and SKZ section if both skzLogo and skzDescription exist */}
+        <LogoSection logos={logos} />
         {skzLogo && skzDescription && (
-          <>
-            <FadeInSection>
-              <Separator className="my-24" />
-            </FadeInSection>
-            <FadeInSection>
-              <Link
-                href={link || "http://www.skz.pl/skz_files/index.php"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex w-full cursor-pointer items-center space-x-6"
-              >
-                <img
-                  src={skzLogo}
-                  alt={"SKZ"}
-                  className="h-[80px] w-auto object-contain md:h-[95px]"
-                  width={100}
-                  height={100}
-                />
-                <p className="max-w-sm text-pretty text-[0.90rem] leading-normal text-zinc-900 lg:text-[1.1rem] lg:leading-relaxed">
-                  {skzDescription}
-                </p>
-              </Link>
-            </FadeInSection>
-          </>
+          <SkzSection
+            skzLogo={skzLogo}
+            skzDescription={skzDescription}
+            link={link}
+          />
         )}
       </MaxWidthWrapper>
     </section>
   );
 }
+
+// Scrolling logos section
+const LogoSection = ({ logos }: { logos: Logo[] }) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+  }, []);
+
+  return (
+    <FadeInSection>
+      <div ref={scrollRef} className="relative w-full overflow-hidden">
+        <div className="scroll-content flex min-w-max shrink-0 animate-scroll-mobile flex-nowrap items-center gap-4 bg-white grayscale md:animate-scroll md:gap-10">
+          {logos.map((logo: Logo, index: number) => (
+            <Link
+              key={index}
+              href={logo.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-auto w-auto flex-shrink-0 items-center justify-center"
+            >
+              <img
+                src={logo.src}
+                alt={logo.company}
+                className="h-[100px] w-auto object-contain md:h-[130px]"
+                width={240}
+                height={112}
+              />
+            </Link>
+          ))}
+        </div>
+      </div>
+    </FadeInSection>
+  );
+};
+
+// SKZ membership section
+const SkzSection = ({
+  skzLogo,
+  skzDescription,
+  link,
+}: {
+  skzLogo: string;
+  skzDescription: string;
+  link?: string;
+}) => (
+  <>
+    <FadeInSection>
+      <Separator className="my-24" />
+    </FadeInSection>
+    <FadeInSection>
+      <Link
+        href={link || "http://www.skz.pl/skz_files/index.php"}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex w-full cursor-pointer items-center space-x-6"
+      >
+        <img
+          src={skzLogo}
+          alt={"SKZ"}
+          className="h-[80px] w-auto object-contain md:h-[95px]"
+          width={100}
+          height={100}
+        />
+        <p className="max-w-sm text-pretty text-[0.90rem] leading-normal text-zinc-900 lg:text-[1.1rem] lg:leading-relaxed">
+          {skzDescription}
+        </p>
+      </Link>
+    </FadeInSection>
+  </>
+);
