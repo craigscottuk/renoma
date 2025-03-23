@@ -1,5 +1,4 @@
 // cSpell:disable
-//
 import { defineType, defineField } from "sanity";
 import { seoFields } from "../fields/seoFields";
 
@@ -19,7 +18,6 @@ export const contact = defineType({
   ],
 });
 
-// Contact page header section
 export const contactHeader = defineType({
   name: "contactHeader",
   title: "Nagłówek strony kontaktowej",
@@ -51,7 +49,7 @@ export const contactHeader = defineType({
     defineField({
       name: "label",
       title: "Etykieta sekcji",
-      description: "Krótki tekst nad tytułem, np. 'KONTAKT'.",
+      description: "Krótki tekst nad tytułem.",
       type: "internationalizedArrayString",
       group: "etykietaSekcji",
       validation: (Rule) => Rule.required(),
@@ -59,7 +57,7 @@ export const contactHeader = defineType({
     defineField({
       name: "title",
       title: "Tytuł sekcji",
-      description: "Główny tytuł sekcji, np. 'Skontaktuj się z nami'.",
+      description: "Główny tytuł sekcji.",
       type: "internationalizedArrayString",
       group: "tytulSekcji",
       validation: (Rule) => Rule.required(),
@@ -77,9 +75,7 @@ export const contactHeader = defineType({
       title: "Obraz nagłówka",
       description: "Obraz wyświetlany w nagłówku strony.",
       type: "image",
-      options: {
-        hotspot: true,
-      },
+
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout === "noImage",
     }),
@@ -94,7 +90,7 @@ export const contactHeader = defineType({
         list: [
           { title: "Pełna szerokość powyżej", value: "fullWidthAbove" },
           { title: "Pełna szerokość poniżej", value: "fullWidthBelow" },
-          { title: "Portret po prawej (ratio 3:4)", value: "portraitRight" },
+          { title: "Portret po prawej (ratio 4:3)", value: "portraitRight" },
           { title: "Krajobraz po prawej", value: "landscapeRight" },
           { title: "Brak obrazu", value: "noImage" },
         ],
@@ -132,10 +128,22 @@ export const contactHeader = defineType({
     }),
 
     defineField({
+      name: "mobileImage",
+      title: "Obraz krajobrazowy dla małych i średnich urządzeń",
+      description:
+        "Obraz krajobrazowy 16:10, który będzie wyświetlany w nagłówku na małych i średnich urządzeniach (telefony i tablety).",
+      type: "image",
+      group: "obrazSekcji",
+      hidden: ({ parent }) =>
+        parent?.imageLayout !== "fullWidthAbove" &&
+        parent?.imageLayout !== "fullWidthBelow",
+    }),
+
+    defineField({
       name: "imageAlt",
       title: "Alternatywny tekst obrazu nagłówka",
       description:
-        "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie młodych profesjonalistów współpracujących przy projekcie'.",
+        "Krótki tekst opisujący obraz, aby uzupełnić kontekst i poprawić SEO",
       type: "internationalizedArrayString",
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout === "noImage",
@@ -144,8 +152,7 @@ export const contactHeader = defineType({
     defineField({
       name: "backgroundColor",
       title: "Kolor tła",
-      description:
-        "Wybierz kolor tła dla nagłówka strony. Jeśli wybierzesz biały, tekst będzie czarny, a jeśli wybierzesz czarny, tekst będzie biały.",
+      description: "Wybierz kolor tła dla nagłówka strony.",
       type: "string",
       options: {
         list: [
@@ -193,7 +200,7 @@ export const contactForm = defineType({
             },
             prepare({ title }) {
               return {
-                title: title || "Brak tytułu", // Default if no title is set
+                title: title || "Brak tytułu",
               };
             },
           },
@@ -203,7 +210,6 @@ export const contactForm = defineType({
   ],
 });
 
-// Contact details section
 export const contactDetails = defineType({
   name: "contactDetails",
   title: "Sekcja danych kontaktowych",
@@ -321,8 +327,8 @@ export const contactDetails = defineType({
   ],
 });
 
-export const contactPageSeo = defineType({
-  name: "contactPageSeo",
+export const contactPageMeta = defineType({
+  name: "contactPageMeta",
   title: "SEO & Ustawienia Meta – Kontakt",
   type: "document",
   options: { singleton: true },
