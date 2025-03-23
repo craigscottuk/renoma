@@ -5,7 +5,7 @@ import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header";
 import ContactFormAndDetails from "./contact-form-and-details";
 
-// Import the new helper that merges time-based and tag-based revalidation logic
+//  helper that merges time-based and tag-based revalidation logic
 import { sanityFetch } from "@/sanity/client";
 
 const QUERY = `
@@ -40,7 +40,7 @@ const QUERY = `
     "numerNipTwo": coalesce(numerNipTwo[_key == $locale][0].value, "Brak tłumaczenia"),
     "numerRegonTwo": coalesce(numerRegonTwo, "Brak tłumaczenia")
   },
-  "contactPageSeo": *[_type == "contactPageSeo"][0]{
+  "contactPageMeta": *[_type == "contactPageMeta"][0]{
     "pageTitle": coalesce(pageTitle[_key == $locale][0].value, "Default SEO Title"),
     "metaDescription": coalesce(metaDescription[_key == $locale][0].value, "Default SEO Description"),
     "ogTitle": coalesce(ogTitle[_key == $locale][0].value, "Default OG Title"),
@@ -90,7 +90,7 @@ interface Content {
     numerNipTwo: string;
     numerRegonTwo: string;
   };
-  contactPageSeo?: {
+  contactPageMeta?: {
     pageTitle?: string;
     metaDescription?: string;
     ogTitle?: string;
@@ -108,8 +108,8 @@ interface Content {
  * Either way, we pass `tags: ["contact"]` so it uses on-demand revalidation.
  */
 export async function generateMetadata({ params: { locale } }: Props) {
-  const { contactPageSeo } = await sanityFetch<{
-    contactPageSeo: Content["contactPageSeo"];
+  const { contactPageMeta } = await sanityFetch<{
+    contactPageMeta: Content["contactPageMeta"];
   }>({
     query: QUERY,
     params: { locale },
@@ -118,18 +118,18 @@ export async function generateMetadata({ params: { locale } }: Props) {
   });
 
   return {
-    title: contactPageSeo?.pageTitle,
-    description: contactPageSeo?.metaDescription,
+    title: contactPageMeta?.pageTitle,
+    description: contactPageMeta?.metaDescription,
     openGraph: {
-      title: contactPageSeo?.ogTitle,
-      description: contactPageSeo?.ogDescription,
-      images: contactPageSeo?.ogImage
-        ? [{ url: contactPageSeo.ogImage.asset?.url }]
+      title: contactPageMeta?.ogTitle,
+      description: contactPageMeta?.ogDescription,
+      images: contactPageMeta?.ogImage
+        ? [{ url: contactPageMeta.ogImage.asset?.url }]
         : undefined,
     },
     twitter: {
-      title: contactPageSeo?.ogTitle,
-      description: contactPageSeo?.ogDescription,
+      title: contactPageMeta?.ogTitle,
+      description: contactPageMeta?.ogDescription,
     },
   };
 }
@@ -143,7 +143,7 @@ export default async function Kontakt({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["contact"], // On-demand revalidation triggered by revalidateTag("contact")
-    revalidate: 86400, // 86400
+    revalidate: 86400, // 604800
   });
 
   const { contactHeader, contactForm, contactDetails } = content;
