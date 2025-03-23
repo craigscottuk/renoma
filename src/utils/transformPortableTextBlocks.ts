@@ -4,10 +4,9 @@ import { PortableTextBlock } from "@portabletext/react";
 interface BlockChild {
   _type: string;
   text?: string;
-  // ...add other needed properties if necessary...
 }
 
-// Transforms Portable Text blocks by applying non-breaking space fixes to span texts.
+// Transforms Portable Text blocks by fixing Polish orphans in text spans.
 export function transformPortableTextBlocks(blocks: PortableTextBlock[]) {
   return blocks.map((block) => {
     if (block._type === "block") {
