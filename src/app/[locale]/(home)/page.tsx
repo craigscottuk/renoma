@@ -1,13 +1,13 @@
 // src/app/[locale]/home/page.tsx;
 // cSpell:disable
-import HeroSection from "./hero";
-import SectionAbout from "./about";
-import SectionUslugiHome from "./uslugi";
-import { client } from "@/sanity/client";
-import { setRequestLocale } from "next-intl/server";
-import LogoShowcase from "./cooperation";
-import CTA from "../../../components/cta";
 import Script from "next/script";
+import HeroSection from "./hero";
+import AboutSection from "./about";
+import { client } from "@/sanity/client";
+import ServicesSection from "./services";
+import CTA from "../../../components/cta";
+import CooperationSection from "./cooperation";
+import { setRequestLocale } from "next-intl/server";
 
 const QUERY = `
 {
@@ -15,22 +15,19 @@ const QUERY = `
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia")
   },
-
-  "aboutSectionHome": *[_type == "aboutSectionHome"][0]{
+  "aboutSection": *[_type == "aboutSection"][0]{
     "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia")
   },
-
-  "servicesSectionHome": *[_type == "servicesSectionHome"][0]{
+  "servicesSection": *[_type == "servicesSection"][0]{
     "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "sectionCTA": coalesce(sectionCTA[_key == $locale][0].value, "Brak tłumaczenia")
   },
-
-  "logoSectionHome": *[_type == "logoSectionHome"][0]{
+  "cooperationSection": *[_type == "cooperationSection"][0]{
     "label": coalesce(label[_key == $locale][0].value, ""),
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "skzDescription": coalesce(skzDescription[_key == $locale][0].value, ""),
@@ -42,14 +39,12 @@ const QUERY = `
       link
     }
   },
-
   "ctaContent": *[_type == "ctaContent"][0]{
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
   },
-
-  "homePageSeo": *[_type == "homePageSeo"][0]{
+  "homePageMeta": *[_type == "homePageMeta"][0]{
     "pageTitle": coalesce(pageTitle[_key == $locale][0].value, "Default SEO Title"),
     "metaDescription": coalesce(metaDescription[_key == $locale][0].value, "Default SEO Description"),
     "ogTitle": coalesce(ogTitle[_key == $locale][0].value, "Default OG Title"),
@@ -59,8 +54,8 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 604800 } };
-// 86400
+const OPTIONS = { next: { revalidate: 10 } };
+// 604800
 
 type Props = {
   params: { locale: string };
@@ -71,13 +66,13 @@ interface Content {
     title: string;
     sectionCTA: string;
   };
-  aboutSectionHome: {
+  aboutSection: {
     label: string;
     title: string;
     description: string;
     sectionCTA: string;
   };
-  servicesSectionHome: {
+  servicesSection: {
     label: string;
     title: string;
     description: string;
@@ -116,7 +111,7 @@ interface Content {
       }[];
     };
   };
-  logoSectionHome: {
+  cooperationSection: {
     label: string;
     title: string;
     skzDescription: string;
@@ -133,7 +128,7 @@ interface Content {
     description: string;
     buttonText: string;
   };
-  homePageSeo: {
+  homePageMeta: {
     pageTitle: string;
     metaDescription: string;
     ogTitle: string;
@@ -148,21 +143,21 @@ interface Content {
 
 // Metadata from translations and generateMetadata function
 export async function generateMetadata({ params: { locale } }: Props) {
-  const { homePageSeo } = await client.fetch(QUERY, { locale }, OPTIONS);
+  const { homePageMeta } = await client.fetch(QUERY, { locale }, OPTIONS);
 
   return {
-    title: homePageSeo?.pageTitle,
-    description: homePageSeo?.metaDescription,
+    title: homePageMeta?.pageTitle,
+    description: homePageMeta?.metaDescription,
     openGraph: {
-      title: homePageSeo?.ogTitle,
-      description: homePageSeo?.ogDescription,
-      images: homePageSeo?.ogImage
-        ? [{ url: homePageSeo.ogImage.asset?.url }]
+      title: homePageMeta?.ogTitle,
+      description: homePageMeta?.ogDescription,
+      images: homePageMeta?.ogImage
+        ? [{ url: homePageMeta.ogImage.asset?.url }]
         : undefined,
     },
     twitter: {
-      title: homePageSeo?.ogTitle,
-      description: homePageSeo?.ogDescription,
+      title: homePageMeta?.ogTitle,
+      description: homePageMeta?.ogDescription,
     },
   };
 }
@@ -173,25 +168,26 @@ export default async function HomePage({ params: { locale } }: Props) {
 
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
+  console.log("Query Results:", content);
 
   const {
     heroSection,
-    aboutSectionHome,
-    servicesSectionHome,
+    aboutSection,
+    servicesSection,
     servicesGroup,
-    logoSectionHome,
+    cooperationSection,
     ctaContent,
-    homePageSeo,
+    homePageMeta,
   } = content;
 
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: homePageSeo?.pageTitle, // Use fetched SEO data
+    name: homePageMeta?.pageTitle, // Use fetched SEO data
     legalName: "Pracownie Konserwacji Zabytków RENOMA",
     url: "https://www.pkzrenoma.com",
     logo: "https://www.pkzrenoma.com/renoma-logo.svg",
-    description: homePageSeo?.metaDescription, // Use fetched SEO data
+    description: homePageMeta?.metaDescription, // Use fetched SEO data
     foundingDate: "2012-08-01",
     founder: [
       {
@@ -251,37 +247,37 @@ export default async function HomePage({ params: { locale } }: Props) {
       )}
 
       {/* About Section */}
-      {aboutSectionHome && (
-        <SectionAbout
-          label={aboutSectionHome.label}
-          title={aboutSectionHome.title}
-          description={aboutSectionHome.description}
-          sectionCTA={aboutSectionHome.sectionCTA}
+      {aboutSection && (
+        <AboutSection
+          label={aboutSection.label}
+          title={aboutSection.title}
+          description={aboutSection.description}
+          sectionCTA={aboutSection.sectionCTA}
           paddingY="py-28 lg:py-48"
         />
       )}
 
       {/* Services Section */}
-      {servicesSectionHome && (
-        <SectionUslugiHome
-          label={servicesSectionHome.label}
-          title={servicesSectionHome.title}
-          description={servicesSectionHome.description}
-          sectionCTA={servicesSectionHome.sectionCTA}
+      {servicesSection && (
+        <ServicesSection
+          label={servicesSection.label}
+          title={servicesSection.title}
+          description={servicesSection.description}
+          sectionCTA={servicesSection.sectionCTA}
           paddingY="py-28 lg:py-48"
           servicesGroup={servicesGroup}
         />
       )}
 
-      {/* Partnership */}
-      {logoSectionHome && (
-        <LogoShowcase
-          label={logoSectionHome.label}
-          title={logoSectionHome.title}
-          logos={logoSectionHome.logos}
-          skzLogo={logoSectionHome.skzLogo}
-          skzDescription={logoSectionHome.skzDescription}
-          link={logoSectionHome.link}
+      {/* Cooperation Section */}
+      {cooperationSection && (
+        <CooperationSection
+          label={cooperationSection.label}
+          title={cooperationSection.title}
+          logos={cooperationSection.logos}
+          skzLogo={cooperationSection.skzLogo}
+          skzDescription={cooperationSection.skzDescription}
+          link={cooperationSection.link}
           paddingY="py-28 lg:py-48"
         />
       )}
