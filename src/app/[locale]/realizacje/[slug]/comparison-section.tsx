@@ -29,7 +29,7 @@ export default function ComparisonSection({
     return null;
   }
 
-  // Apply transformPortableTextBlocks to portableTextBlock before rendering to fix Polish orphans on the end of each line.
+  // Transform PortableText blocks to fix Polish orphans of each line before rendering.
   const newContent = transformPortableTextBlocks(content);
 
   return (
