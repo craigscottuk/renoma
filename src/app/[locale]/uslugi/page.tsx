@@ -77,7 +77,7 @@ const QUERY = `
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
   },
-  "servicesPageSeo": *[_type == "servicesPageSeo"][0]{
+  "servicesPageMeta": *[_type == "servicesPageMeta"][0]{
     "pageTitle": coalesce(pageTitle[_key == $locale][0].value, "Default SEO Title"),
     "metaDescription": coalesce(metaDescription[_key == $locale][0].value, "Default SEO Description"),
     "ogTitle": coalesce(ogTitle[_key == $locale][0].value, "Default OG Title"),
@@ -87,8 +87,8 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 604800 } };
-// 86400
+const OPTIONS = { next: { revalidate: 10 } };
+// 604800
 
 type Props = {
   params: { locale: string };
@@ -176,7 +176,7 @@ interface Content {
     description: string;
     buttonText: string;
   };
-  servicesPageSeo: {
+  servicesPageMeta: {
     pageTitle: string;
     metaDescription: string;
     ogTitle: string;
@@ -191,21 +191,21 @@ interface Content {
 
 // Metadata from translations and generateMetadata function
 export async function generateMetadata({ params: { locale } }: Props) {
-  const { servicesPageSeo } = await client.fetch(QUERY, { locale }, OPTIONS);
+  const { servicesPageMeta } = await client.fetch(QUERY, { locale }, OPTIONS);
 
   return {
-    title: servicesPageSeo?.pageTitle,
-    description: servicesPageSeo?.metaDescription,
+    title: servicesPageMeta?.pageTitle,
+    description: servicesPageMeta?.metaDescription,
     openGraph: {
-      title: servicesPageSeo?.ogTitle,
-      description: servicesPageSeo?.ogDescription,
-      images: servicesPageSeo?.ogImage
-        ? [{ url: servicesPageSeo.ogImage.asset?.url }]
+      title: servicesPageMeta?.ogTitle,
+      description: servicesPageMeta?.ogDescription,
+      images: servicesPageMeta?.ogImage
+        ? [{ url: servicesPageMeta.ogImage.asset?.url }]
         : undefined,
     },
     twitter: {
-      title: servicesPageSeo?.ogTitle,
-      description: servicesPageSeo?.ogDescription,
+      title: servicesPageMeta?.ogTitle,
+      description: servicesPageMeta?.ogDescription,
     },
   };
 }
@@ -226,7 +226,7 @@ export default async function ONas({ params: { locale } }: Props) {
 
   return (
     <>
-      {/* Conditionally render Page Header Section */}
+      {/* Page Header Section */}
       {servicesHeader && (
         <PageHeader
           label={servicesHeader.label}
@@ -244,7 +244,7 @@ export default async function ONas({ params: { locale } }: Props) {
           mobileSubMenu={true}
         />
       )}
-      {/* Conditionally render Services Group Sections */}
+      {/* Services Group */}
       {servicesGroup && (
         <ServicesList
           serviceGroups={[
