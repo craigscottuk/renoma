@@ -3,12 +3,12 @@
 import { setRequestLocale } from "next-intl/server";
 import { client } from "@/sanity/client";
 import PageHeader from "@/components/page-header";
-import ProjectCard from "./project-card";
+import ProjectsList from "./projects-list";
 import CTA from "@/components/cta";
 
 const QUERY = `
 {
-  "caseStudyHeader": *[_type == "caseStudyHeader"][0]{
+  "projectsHeader": *[_type == "projectsHeader"][0]{
     "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -32,7 +32,7 @@ const QUERY = `
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
   },
-  "caseStudiesPageSeo": *[_type == "caseStudiesPageSeo"][0]{
+  "projectsPageMeta": *[_type == "projectsPageMeta"][0]{
     "pageTitle": coalesce(pageTitle[_key == $locale][0].value, "Default SEO Title"),
     "metaDescription": coalesce(metaDescription[_key == $locale][0].value, "Default SEO Description"),
     "ogTitle": coalesce(ogTitle[_key == $locale][0].value, "Default OG Title"),
@@ -42,29 +42,29 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 604800 } };
-// 86400
+const OPTIONS = { next: { revalidate: 10 } };
+// 604800
 
 type Props = {
   params: { locale: string };
 };
 
 export async function generateMetadata({ params: { locale } }: Props) {
-  const { caseStudiesPageSeo } = await client.fetch(QUERY, { locale }, OPTIONS);
+  const { projectsPageMeta } = await client.fetch(QUERY, { locale }, OPTIONS);
 
   return {
-    title: caseStudiesPageSeo?.pageTitle,
-    description: caseStudiesPageSeo?.metaDescription,
+    title: projectsPageMeta?.pageTitle,
+    description: projectsPageMeta?.metaDescription,
     openGraph: {
-      title: caseStudiesPageSeo?.ogTitle,
-      description: caseStudiesPageSeo?.ogDescription,
-      images: caseStudiesPageSeo?.ogImage
-        ? [{ url: caseStudiesPageSeo.ogImage.asset?.url }]
+      title: projectsPageMeta?.ogTitle,
+      description: projectsPageMeta?.ogDescription,
+      images: projectsPageMeta?.ogImage
+        ? [{ url: projectsPageMeta.ogImage.asset?.url }]
         : undefined,
     },
     twitter: {
-      title: caseStudiesPageSeo?.ogTitle,
-      description: caseStudiesPageSeo?.ogDescription,
+      title: projectsPageMeta?.ogTitle,
+      description: projectsPageMeta?.ogDescription,
     },
   };
 }
@@ -74,7 +74,7 @@ export default async function Realizacje({ params: { locale } }: Props) {
   setRequestLocale(locale);
 
   // Fetch localized content from Sanity using locale from params
-  const { caseStudyHeader, projects, ctaContent } = await client.fetch(
+  const { projectsHeader, projects, ctaContent } = await client.fetch(
     QUERY,
     { locale },
     OPTIONS,
@@ -82,29 +82,25 @@ export default async function Realizacje({ params: { locale } }: Props) {
 
   return (
     <>
-      {/* Page Header Section */}
-      {caseStudyHeader && (
+      {/* Page Header */}
+      {projectsHeader && (
         <PageHeader
-          label={caseStudyHeader.label}
-          title={caseStudyHeader.title}
-          description={caseStudyHeader.description}
-          image={caseStudyHeader.image}
-          imageAlt={caseStudyHeader.imageAlt}
-          imageLayout={caseStudyHeader.imageLayout}
-          backgroundColor={caseStudyHeader.backgroundColor}
+          label={projectsHeader.label}
+          title={projectsHeader.title}
+          description={projectsHeader.description}
+          image={projectsHeader.image}
+          imageAlt={projectsHeader.imageAlt}
+          imageLayout={projectsHeader.imageLayout}
+          backgroundColor={projectsHeader.backgroundColor}
           landscapeMobileForPortraitRight={
-            caseStudyHeader.landscapeMobileForPortraitRight
+            projectsHeader.landscapeMobileForPortraitRight
           }
           paddingY="py-20 md:pt-24 md:pb-36"
         />
       )}
 
-      {/* List of Projects / Case Studies */}
-      <ProjectCard
-        projectCardData={projects}
-        paddingY="py-36"
-        colorScheme="zincLight"
-      />
+      {/* Projects List */}
+      <ProjectsList projectCardData={projects} paddingY="py-36" />
 
       {/* CTA */}
       {ctaContent && (
