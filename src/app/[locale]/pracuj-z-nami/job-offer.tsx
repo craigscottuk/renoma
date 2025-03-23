@@ -175,7 +175,7 @@ export default function JobOfferCard({ job }: { job: JobOffer }) {
         </CardContent>
         <CardFooter className="flex items-center justify-between">
           <Button
-            className="bg-zinc-900 text-zinc-50 hover:bg-zinc-800 hover:text-zinc-100"
+            className="bg-zinc-50 text-zinc-950 hover:bg-zinc-800 hover:text-zinc-100"
             variant="outline"
             onClick={(e) => {
               e.stopPropagation();
