@@ -18,7 +18,7 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
   const tags: string[] = [];
 
   switch (doc._type) {
-    case "aboutUsHeader":
+    case "aboutHeader":
     case "aboutUs":
     case "ourHistory":
     case "aboutPageMetadata":
@@ -31,9 +31,9 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
       break;
 
     case "heroSection":
-    case "aboutSectionHome":
-    case "servicesSectionHome":
-    case "logoSectionHome":
+    case "aboutSection":
+    case "servicesSection":
+    case "cooperationSection":
       tags.push("home");
       break;
 
@@ -42,7 +42,7 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
       tags.push("services");
       break;
 
-    case "caseStudyHeader":
+    case "projectsHeader":
       tags.push("projectsList");
       break;
 
@@ -62,7 +62,7 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
     case "contactHeader":
     case "contactForm":
     case "contactDetails":
-    case "contactPageSeo":
+    case "contactPageMeta":
       tags.push("contact");
       break;
 
@@ -87,6 +87,9 @@ export async function POST(req: NextRequest) {
       req,
       process.env.NEXT_PUBLIC_SANITY_HOOK_SECRET,
     );
+
+    // Log the webhook body for debugging
+    console.log("Webhook body:", body);
 
     if (!isValidSignature) {
       return new NextResponse("Invalid signature", { status: 401 });
