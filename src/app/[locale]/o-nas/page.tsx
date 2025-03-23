@@ -1,7 +1,6 @@
 // cSpell:disable
 // src/app/[locale]/o-nas/page.tsx
 import { AboutUs } from "./about-us";
-// j
 import { client } from "@/sanity/client";
 import { PortableTextBlock } from "next-sanity";
 import PageHeader from "@/components/page-header";
@@ -10,7 +9,7 @@ import CTA from "@/components/cta";
 
 const QUERY = `
 {
- "aboutUsHeader": *[_type == "aboutUsHeader"][0]{
+ "aboutHeader": *[_type == "aboutHeader"][0]{
     "label": coalesce(label[_key == $locale][0].value, "Brak tłumaczenia"),
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -21,12 +20,10 @@ const QUERY = `
     "aspectRatio": aspectRatio,
     "landscapeMobileForPortraitRight": landscapeMobileForPortraitRight
   },
-
   "aboutUs": *[_type == "aboutUs"][0]{
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
      "text": coalesce(text[$locale], []),
   },
-
   "ourHistory": *[_type == "ourHistory"][0]{
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
      "text": coalesce(text[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -40,14 +37,12 @@ const QUERY = `
       }
     }
   },
-
   "ctaContent": *[_type == "ctaContent"][0]{
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "buttonText": coalesce(buttonLabel[_key == $locale][0].value, "Brak tłumaczenia")
   },
-
-  "aboutPageSeo": *[_type == "aboutPageSeo"][0]{
+  "aboutPageMeta": *[_type == "aboutPageMeta"][0]{
     "pageTitle": coalesce(pageTitle[_key == $locale][0].value, "Default SEO Title"),
     "metaDescription": coalesce(metaDescription[_key == $locale][0].value, "Default SEO Description"),
     "ogTitle": coalesce(ogTitle[_key == $locale][0].value, "Default OG Title"),
@@ -57,7 +52,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 604800 } };
+const OPTIONS = { next: { revalidate: 10 } };
 //86400
 
 type Props = {
@@ -65,7 +60,7 @@ type Props = {
 };
 
 interface Content {
-  aboutUsHeader: {
+  aboutHeader: {
     label: string;
     title: string;
     description: string;
@@ -95,7 +90,7 @@ interface Content {
     description: string;
     buttonText: string;
   };
-  aboutPageSeo: {
+  aboutPageMeta: {
     pageTitle: string;
     metaDescription: string;
     ogTitle: string;
@@ -123,21 +118,21 @@ interface TimelineImage {
 
 export async function generateMetadata({ params: { locale } }: Props) {
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
-  const { aboutPageSeo } = content;
+  const { aboutPageMeta } = content;
 
   return {
-    title: aboutPageSeo?.pageTitle,
-    description: aboutPageSeo?.metaDescription,
+    title: aboutPageMeta?.pageTitle,
+    description: aboutPageMeta?.metaDescription,
     openGraph: {
-      title: aboutPageSeo?.ogTitle,
-      description: aboutPageSeo?.ogDescription,
-      images: aboutPageSeo?.ogImage
-        ? [{ url: aboutPageSeo.ogImage.asset?.url }]
+      title: aboutPageMeta?.ogTitle,
+      description: aboutPageMeta?.ogDescription,
+      images: aboutPageMeta?.ogImage
+        ? [{ url: aboutPageMeta.ogImage.asset?.url }]
         : undefined,
     },
     twitter: {
-      title: aboutPageSeo?.ogTitle,
-      description: aboutPageSeo?.ogDescription,
+      title: aboutPageMeta?.ogTitle,
+      description: aboutPageMeta?.ogDescription,
     },
   };
 }
@@ -150,7 +145,7 @@ export default async function About({ params: { locale } }: Props) {
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
   const {
-    aboutUsHeader,
+    aboutHeader,
     aboutUs,
     // ourHistory,
     ctaContent,
@@ -158,19 +153,19 @@ export default async function About({ params: { locale } }: Props) {
 
   return (
     <>
-      {/* Page Header for About Us */}
-      {aboutUsHeader && (
+      {/* Page Header */}
+      {aboutHeader && (
         <PageHeader
-          label={aboutUsHeader.label}
-          title={aboutUsHeader.title}
-          description={aboutUsHeader.description}
-          image={aboutUsHeader.image}
-          imageAlt={aboutUsHeader.imageAlt}
-          imageLayout={aboutUsHeader.imageLayout}
-          backgroundColor={aboutUsHeader.backgroundColor}
-          aspectRatio={aboutUsHeader.aspectRatio}
+          label={aboutHeader.label}
+          title={aboutHeader.title}
+          description={aboutHeader.description}
+          image={aboutHeader.image}
+          imageAlt={aboutHeader.imageAlt}
+          imageLayout={aboutHeader.imageLayout}
+          backgroundColor={aboutHeader.backgroundColor}
+          aspectRatio={aboutHeader.aspectRatio}
           landscapeMobileForPortraitRight={
-            aboutUsHeader.landscapeMobileForPortraitRight
+            aboutHeader.landscapeMobileForPortraitRight
           }
           paddingY="py-20 md:pb-24 lg:pt-24 lg:pb-36"
         />
@@ -185,7 +180,7 @@ export default async function About({ params: { locale } }: Props) {
         />
       )}
 
-      {/* Interactive Timeline component */}
+      {/* Our History Sectiont */}
       {/* {ourHistory && (
         <OurHistory
           title={ourHistory.title}
