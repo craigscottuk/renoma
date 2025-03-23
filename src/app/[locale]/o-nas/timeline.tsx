@@ -3,7 +3,7 @@
 "use client";
 import { ChevronUp } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
-import ImageCarousel from "@/components/ImageCarousel";
+import ImageCarousel from "@/components/image-carousel";
 import { PortableText, PortableTextBlock } from "@portabletext/react";
 import { portableTextComponents } from "@/lib/portableTextComponents";
 import { transformPortableTextBlocks } from "@/utils/transformPortableTextBlocks";
@@ -39,7 +39,7 @@ export default function Timeline({ events }: TimelineProps) {
 
   const sortedEvents = events
     .map((event) => {
-      // Apply transformPortableTextBlocks to portableTextBlock before rendering to fix Polish orphans on the end of each line.
+      // Transform PortableText blocks to fix Polish orphans of each line before rendering.
       const newContent = transformPortableTextBlocks(event.content);
       return { ...event, content: newContent };
     })
