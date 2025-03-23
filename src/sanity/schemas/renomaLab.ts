@@ -91,9 +91,6 @@ export const renomaLabHeader = defineType({
       title: "Obraz nagłówka",
       description: "Obraz wyświetlany w nagłówku strony.",
       type: "image",
-      options: {
-        hotspot: true,
-      },
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout === "noImage",
     }),
@@ -108,7 +105,7 @@ export const renomaLabHeader = defineType({
         list: [
           { title: "Pełna szerokość powyżej", value: "fullWidthAbove" },
           { title: "Pełna szerokość poniżej", value: "fullWidthBelow" },
-          { title: "Portret po prawej (ratio 3:4)", value: "portraitRight" },
+          { title: "Portret po prawej (ratio 4:3)", value: "portraitRight" },
           { title: "Krajobraz po prawej", value: "landscapeRight" },
           { title: "Brak obrazu", value: "noImage" },
         ],
@@ -146,10 +143,22 @@ export const renomaLabHeader = defineType({
     }),
 
     defineField({
+      name: "mobileImage",
+      title: "Obraz krajobrazowy dla małych i średnich urządzeń",
+      description:
+        "Obraz krajobrazowy 16:10, który będzie wyświetlany w nagłówku na małych i średnich urządzeniach (telefony i tablety).",
+      type: "image",
+      group: "obrazSekcji",
+      hidden: ({ parent }) =>
+        parent?.imageLayout !== "fullWidthAbove" &&
+        parent?.imageLayout !== "fullWidthBelow",
+    }),
+
+    defineField({
       name: "imageAlt",
       title: "Alternatywny tekst obrazu nagłówka",
       description:
-        "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie młodych profesjonalistów współpracujących przy projekcie'.",
+        "Krótki tekst opisujący obraz, aby uzupełnić kontekst i poprawić SEO",
       type: "internationalizedArrayString",
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout === "noImage",
@@ -158,8 +167,7 @@ export const renomaLabHeader = defineType({
     defineField({
       name: "backgroundColor",
       title: "Kolor tła",
-      description:
-        "Wybierz kolor tła dla nagłówka strony. Jeśli wybierzesz biały, tekst będzie czarny, a jeśli wybierzesz czarny, tekst będzie biały.",
+      description: "Wybierz kolor tła dla nagłówka strony.",
       type: "string",
       options: {
         list: [
@@ -291,8 +299,8 @@ export const labOffer = defineType({
   ],
 });
 
-export const renomaLabPageSeo = defineType({
-  name: "renomaLabPageSeo",
+export const renomaLabPageMeta = defineType({
+  name: "renomaLabPageMeta",
   title: "SEO & Ustawienia Meta – Renoma LAB",
   type: "document",
   options: { singleton: true },
