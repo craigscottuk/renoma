@@ -18,10 +18,9 @@ export const learnWithUs = defineType({
   ],
 });
 
-// Graduate Program page header section
 export const learnWithUsHeader = defineType({
   name: "learnWithUsHeader",
-  title: "Nagłówek strony programu absolwenckiego",
+  title: "Nagłówek strony Ucz się z Nami",
   type: "document",
   options: { singleton: true },
   groups: [
@@ -50,7 +49,7 @@ export const learnWithUsHeader = defineType({
     defineField({
       name: "label",
       title: "Etykieta sekcji",
-      description: "Krótki tekst nad tytułem, np. 'PROGRAM ABSOLWENCKI'.",
+      description: "Krótki tekst nad tytułem, np. „PROGRAM ABSOLWENCKI”.",
       type: "internationalizedArrayString",
       group: "etykietaSekcji",
       validation: (Rule) => Rule.required(),
@@ -59,7 +58,7 @@ export const learnWithUsHeader = defineType({
       name: "title",
       title: "Tytuł sekcji",
       description:
-        "Główny tytuł sekcji na stronie programu absolwenckiego, np. 'Dołącz do naszego programu absolwenckiego'.",
+        "Główny tytuł sekcji na stronie programu absolwenckiego, np. „Dołącz do naszego programu absolwenckiego”.",
       type: "internationalizedArrayString",
       group: "tytulSekcji",
       validation: (Rule) => Rule.required(),
@@ -77,13 +76,9 @@ export const learnWithUsHeader = defineType({
       title: "Obraz nagłówka",
       description: "Obraz wyświetlany w nagłówku strony.",
       type: "image",
-      options: {
-        hotspot: true,
-      },
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout === "noImage",
     }),
-
     defineField({
       name: "imageLayout",
       title: "Układ obrazu na dużych urządzeniach",
@@ -94,7 +89,7 @@ export const learnWithUsHeader = defineType({
         list: [
           { title: "Pełna szerokość powyżej", value: "fullWidthAbove" },
           { title: "Pełna szerokość poniżej", value: "fullWidthBelow" },
-          { title: "Portret po prawej (ratio 3:4)", value: "portraitRight" },
+          { title: "Portret po prawej (ratio 4:3)", value: "portraitRight" },
           { title: "Krajobraz po prawej", value: "landscapeRight" },
           { title: "Brak obrazu", value: "noImage" },
         ],
@@ -132,10 +127,22 @@ export const learnWithUsHeader = defineType({
     }),
 
     defineField({
+      name: "mobileImage",
+      title: "Obraz krajobrazowy dla małych i średnich urządzeń",
+      description:
+        "Obraz krajobrazowy 16:10, który będzie wyświetlany w nagłówku na małych i średnich urządzeniach (telefony i tablety).",
+      type: "image",
+      group: "obrazSekcji",
+      hidden: ({ parent }) =>
+        parent?.imageLayout !== "fullWidthAbove" &&
+        parent?.imageLayout !== "fullWidthBelow",
+    }),
+
+    defineField({
       name: "imageAlt",
       title: "Alternatywny tekst obrazu nagłówka",
       description:
-        "Tekst alternatywny dla obrazu nagłówka, np. 'Zdjęcie młodych profesjonalistów współpracujących przy projekcie'.",
+        "Krótki tekst opisujący obraz, aby uzupełnić kontekst i poprawić SEO",
       type: "internationalizedArrayString",
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout === "noImage",
@@ -144,8 +151,7 @@ export const learnWithUsHeader = defineType({
     defineField({
       name: "backgroundColor",
       title: "Kolor tła",
-      description:
-        "Wybierz kolor tła dla nagłówka strony. Jeśli wybierzesz biały, tekst będzie czarny, a jeśli wybierzesz czarny, tekst będzie biały.",
+      description: "Wybierz kolor tła dla nagłówka strony.",
       type: "string",
       options: {
         list: [
@@ -160,7 +166,6 @@ export const learnWithUsHeader = defineType({
   ],
 });
 
-// What We Offer section
 export const whatWeOffer = defineType({
   name: "whatWeOffer",
   title: "Co oferujemy?",
@@ -170,7 +175,7 @@ export const whatWeOffer = defineType({
     defineField({
       name: "title",
       title: "Tytuł sekcji",
-      description: "Główny tytuł sekcji, np. 'Co oferujemy?'",
+      description: "Główny tytuł sekcji",
       type: "internationalizedArrayString",
       validation: (Rule) => Rule.required(),
     }),
@@ -186,16 +191,14 @@ export const whatWeOffer = defineType({
             {
               name: "title",
               title: "Tytuł",
-              description:
-                "Krótki tytuł oferty, np. 'Praktyczne doświadczenie'.",
+              description: "Krótki tytuł oferty.",
               type: "internationalizedArrayString",
               validation: (Rule) => Rule.required(),
             },
             {
               name: "description",
               title: "Opis",
-              description:
-                "Opis oferty, np. 'Uczestnicy będą mieli możliwość...'",
+              description: "Opis oferty'",
               type: "internationalizedArrayText",
             },
           ],
@@ -215,7 +218,6 @@ export const whatWeOffer = defineType({
   ],
 });
 
-// Who We Are Looking For section
 export const whoWeAreLookingFor = defineType({
   name: "whoWeAreLookingFor",
   title: "Kogo szukamy?",
@@ -225,7 +227,7 @@ export const whoWeAreLookingFor = defineType({
     defineField({
       name: "title",
       title: "Tytuł sekcji",
-      description: "Główny tytuł sekcji, np. 'Kogo szukamy?'.",
+      description: "Główny tytuł sekcji, np. „Kogo szukamy?”.",
       type: "internationalizedArrayString",
       validation: (Rule) => Rule.required(),
     }),
@@ -262,14 +264,14 @@ export const whoWeAreLookingFor = defineType({
       name: "applyButtonText",
       title: "Tekst przycisku aplikacji",
       description:
-        "Tekst na przycisku zachęcającym do aplikowania, np. 'Aplikuj teraz'.",
+        "Tekst na przycisku zachęcającym do aplikowania, np. „Aplikuj teraz”.",
       type: "internationalizedArrayString",
     }),
   ],
 });
 
-export const learnWithUsPageSeo = defineType({
-  name: "learnWithUsPageSeo",
+export const learnWithUsPageMeta = defineType({
+  name: "learnWithUsPageMeta",
   title: "SEO & Ustawienia Meta – Ucz się z Nami",
   type: "document",
   options: { singleton: true },
