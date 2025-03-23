@@ -4,60 +4,60 @@ import { type SchemaTypeDefinition } from "sanity";
 import {
   home,
   heroSection,
-  aboutSectionHome,
-  servicesSectionHome,
-  logoSectionHome,
-  homePageSeo,
+  aboutSection,
+  servicesSection,
+  cooperationSection,
+  homePageMeta,
 } from "./home";
 import {
   about,
-  aboutUsHeader,
+  aboutHeader,
   ourHistory,
   aboutUs,
-  aboutPageSeo,
+  aboutPageMeta,
 } from "./about";
 import {
-  servicesList,
-  servicesHeader,
   services,
+  servicesHeader,
+  serviceItem,
   servicesGroup,
-  servicesPageSeo,
+  servicesPageMeta,
 } from "./services";
-import { caseStudyEntry } from "./case-study-entry";
-import {
-  caseStudyHeader,
-  caseStudies,
-  caseStudiesPageSeo,
-} from "./case-studies";
+import { caseStudyEntry } from "./project-entry";
+import { projectsHeader, projects, projectsPageMeta } from "./projects";
 import {
   // aboutLab,
   labOffer,
   renomaLab,
   renomaLabHeader,
-  renomaLabPageSeo,
+  renomaLabPageMeta,
 } from "./renomaLab";
 import {
   learnWithUsHeader,
   learnWithUs,
   whatWeOffer,
   whoWeAreLookingFor,
-  learnWithUsPageSeo,
+  learnWithUsPageMeta,
 } from "./learn-with-us";
 import {
   jobOffers,
   workWithUs,
   workWithUsHeader,
-  workWithUsPageSeo,
+  workWithUsPageMeta,
 } from "./work-with-us";
 import {
   contact,
   contactHeader,
   contactForm,
   contactDetails,
-  contactPageSeo,
+  contactPageMeta,
 } from "./contact";
-import { settings } from "./settings";
-import { privacy, privacyHeader, privacyText, privacyPageSeo } from "./privacy";
+import {
+  privacy,
+  privacyHeader,
+  privacyBody,
+  privacyPageMeta,
+} from "./privacy";
 import {
   basicText,
   portableTextWithHeadings,
@@ -66,7 +66,7 @@ import {
 import { sectionContent } from "./sectionContent";
 import { cta, ctaContent } from "./cta";
 import { socialMedia, socialMediaLinks } from "./socialMedia";
-import { faq, faqHeader, faqList, faqPageSeo } from "./faq";
+import { faq, faqHeader, faqList, faqPageMeta } from "./faq";
 
 // Export schema configuration
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -74,29 +74,29 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     // home
     home,
     heroSection,
-    aboutSectionHome,
-    servicesSectionHome,
-    logoSectionHome,
-    homePageSeo,
+    aboutSection,
+    servicesSection,
+    cooperationSection,
+    homePageMeta,
 
     // O nas
     about,
-    aboutUsHeader,
+    aboutHeader,
     aboutUs,
     ourHistory,
-    aboutPageSeo,
+    aboutPageMeta,
 
     // Usługi
     services,
     servicesHeader,
     servicesGroup,
-    servicesList,
-    servicesPageSeo,
+    serviceItem,
+    servicesPageMeta,
 
     // Realizacje
-    caseStudies,
-    caseStudyHeader,
-    caseStudiesPageSeo,
+    projects,
+    projectsHeader,
+    projectsPageMeta,
 
     // Wpis realizacji
     caseStudyEntry,
@@ -106,33 +106,33 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     renomaLabHeader,
     // aboutLab,
     labOffer,
-    renomaLabPageSeo,
+    renomaLabPageMeta,
 
     // Ucz się z nami
     learnWithUs,
     learnWithUsHeader,
     whatWeOffer,
     whoWeAreLookingFor,
-    learnWithUsPageSeo,
+    learnWithUsPageMeta,
 
     // Pracuj z nami
     workWithUs,
     workWithUsHeader,
     jobOffers,
-    workWithUsPageSeo,
+    workWithUsPageMeta,
 
     // FAQ
     faq,
     faqHeader,
     faqList,
-    faqPageSeo,
+    faqPageMeta,
 
     // Kontakt
     contact,
     contactHeader,
     contactForm,
     contactDetails,
-    contactPageSeo,
+    contactPageMeta,
 
     // CTA
     cta,
@@ -141,11 +141,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     // Polityka prywatności
     privacy,
     privacyHeader,
-    privacyText,
-    privacyPageSeo,
-
-    // Ustawienia
-    settings,
+    privacyBody,
+    privacyPageMeta,
 
     // Social Media
     socialMedia,
