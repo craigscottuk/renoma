@@ -5,21 +5,21 @@ import localFont from "next/font/local";
 import { client } from "@/sanity/client";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
-import Footer from "@/components/sections-footer/footer";
+import Footer from "@/components/footer";
 import { MobileNavStateProvider } from "./navigation/mobile-nav-provider";
 
 const helveticaNeueLight = localFont({
-  src: "./fonts/HelveticaNeueLight.otf",
+  src: "../fonts/HelveticaNeueLight.otf",
   variable: "--font-helvetica-neue-light",
 });
 
 const helveticaNeueRegular = localFont({
-  src: "./fonts/HelveticaNeueRegular.otf",
+  src: "../fonts/HelveticaNeueRegular.otf",
   variable: "--font-helvetica-neue-regular",
 });
 
 const helveticaNeueMedium = localFont({
-  src: "./fonts/HelveticaNeueMedium.otf",
+  src: "../fonts/HelveticaNeueMedium.otf",
   variable: "--font-helvetica-neue-medium",
 });
 
@@ -53,7 +53,7 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 86400 } };
+const OPTIONS = { next: { revalidate: 600 } };
 
 type Props = {
   children: ReactNode;
