@@ -1,13 +1,13 @@
 "use client";
 
 import MaxWidthWrapper from "@/components/max-width-wrapper";
-import ImageCarousel from "@/components/ImageCarousel";
+import ImageCarousel from "@/components/image-carousel";
 import { PortableText } from "@portabletext/react";
 import { portableTextComponents } from "@/lib/portableTextComponents";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import { CaseStudySectionContent } from "@/types";
+import { CaseStudySectionContent } from "@/lib/types";
 import { Separator } from "@/components/ui/separator";
 import { FadeInSection } from "@/components/fade-in-section";
 import { transformPortableTextBlocks } from "@/utils/transformPortableTextBlocks";
@@ -23,7 +23,7 @@ export default function ContentSection({
   title: string;
   content: CaseStudySectionContent[];
 }) {
-  // Apply transformPortableTextBlocks to portableTextBlock before rendering to fix Polish orphans on the end of each line.
+  // Transform PortableText blocks to fix Polish orphans of each line before rendering.
   const transformedContent = content?.map((section) => {
     const newSection = { ...section };
 
