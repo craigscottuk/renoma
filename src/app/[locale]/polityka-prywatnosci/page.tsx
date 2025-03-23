@@ -14,10 +14,10 @@ const QUERY = `
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "backgroundColor": backgroundColor
   },
-  "privacyText": *[_type == "privacyText"][0]{
+  "privacyBody": *[_type == "privacyBody"][0]{
     "content": coalesce(content[$locale], [])
   },
-  "privacyPageSeo": *[_type == "privacyPageSeo"][0]{
+  "privacyPageMeta": *[_type == "privacyPageMeta"][0]{
     "pageTitle": coalesce(pageTitle[_key == $locale][0].value, "Default SEO Title"),
     "metaDescription": coalesce(metaDescription[_key == $locale][0].value, "Default SEO Description"),
     "ogTitle": coalesce(ogTitle[_key == $locale][0].value, "Default OG Title"),
@@ -26,8 +26,8 @@ const QUERY = `
   }
 }`;
 
-const OPTIONS = { next: { revalidate: 604800 } };
-// 86400
+const OPTIONS = { next: { revalidate: 10 } };
+// 604800
 
 type Props = {
   params: { locale: string };
@@ -39,27 +39,27 @@ interface Content {
     title: string;
     backgroundColor?: "black" | "white";
   };
-  privacyText: {
+  privacyBody: {
     content: PortableTextBlock[];
   };
 }
 
 export async function generateMetadata({ params: { locale } }: Props) {
-  const { privacyPageSeo } = await client.fetch(QUERY, { locale }, OPTIONS);
+  const { privacyPageMeta } = await client.fetch(QUERY, { locale }, OPTIONS);
 
   return {
-    title: privacyPageSeo?.pageTitle,
-    description: privacyPageSeo?.metaDescription,
+    title: privacyPageMeta?.pageTitle,
+    description: privacyPageMeta?.metaDescription,
     openGraph: {
-      title: privacyPageSeo?.ogTitle,
-      description: privacyPageSeo?.ogDescription,
-      images: privacyPageSeo?.ogImage
-        ? [{ url: privacyPageSeo.ogImage.asset?.url }]
+      title: privacyPageMeta?.ogTitle,
+      description: privacyPageMeta?.ogDescription,
+      images: privacyPageMeta?.ogImage
+        ? [{ url: privacyPageMeta.ogImage.asset?.url }]
         : undefined,
     },
     twitter: {
-      title: privacyPageSeo?.ogTitle,
-      description: privacyPageSeo?.ogDescription,
+      title: privacyPageMeta?.ogTitle,
+      description: privacyPageMeta?.ogDescription,
     },
   };
 }
@@ -73,7 +73,7 @@ export default async function PolitykaPrywatnosci({
   // Fetch localized content from Sanity using locale from params
   const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
 
-  const { privacyHeader, privacyText } = content;
+  const { privacyHeader, privacyBody } = content;
 
   return (
     <>
@@ -103,8 +103,8 @@ export default async function PolitykaPrywatnosci({
       )}
 
       {/* Privacy Policy text content */}
-      {privacyText && (
-        <Privacy content={privacyText.content} paddingY="pt-28 pb-36" />
+      {privacyBody && (
+        <Privacy content={privacyBody.content} paddingY="pt-28 pb-36" />
       )}
     </>
   );
