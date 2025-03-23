@@ -14,7 +14,7 @@ interface AboutUsProps {
 }
 
 export function AboutUs({ title, text, paddingY }: AboutUsProps) {
-  // Apply transformPortableTextBlocks to portableTextBlock before rendering to fix Polish orphans on the end of each line.
+  // Transform PortableText blocks to fix Polish orphans of each line before rendering.
   const newText = transformPortableTextBlocks(text);
 
   return (
