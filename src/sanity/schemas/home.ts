@@ -18,7 +18,6 @@ export const home = defineType({
   ],
 });
 
-// Hero section
 export const heroSection = defineType({
   name: "heroSection",
   title: "Sekcja Powitalny",
@@ -51,9 +50,8 @@ export const heroSection = defineType({
   ],
 });
 
-// about section
-export const aboutSectionHome = defineType({
-  name: "aboutSectionHome",
+export const aboutSection = defineType({
+  name: "aboutSection",
   title: "Sekcja O Nas",
   type: "document",
   options: { singleton: true },
@@ -107,8 +105,8 @@ export const aboutSectionHome = defineType({
 });
 
 // services section
-export const servicesSectionHome = defineType({
-  name: "servicesSectionHome",
+export const servicesSection = defineType({
+  name: "servicesSection",
   title: "Sekcja Usług",
   type: "document",
   options: { singleton: true },
@@ -161,8 +159,8 @@ export const servicesSectionHome = defineType({
 });
 
 // FAQ section
-export const logoSectionHome = defineType({
-  name: "logoSectionHome",
+export const cooperationSection = defineType({
+  name: "cooperationSection",
   title: "Sekcja Zaufali nam",
   type: "document",
   options: { singleton: true },
@@ -255,8 +253,8 @@ export const logoSectionHome = defineType({
   ],
 });
 
-export const homePageSeo = defineType({
-  name: "homePageSeo",
+export const homePageMeta = defineType({
+  name: "homePageMeta",
   title: "SEO & Ustawienia Meta – Strona Główna",
   type: "document",
   options: { singleton: true },
