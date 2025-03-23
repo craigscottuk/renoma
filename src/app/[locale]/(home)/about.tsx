@@ -5,7 +5,7 @@ import CustomButton from "@/components/ui/custom-button";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import SectionDescription from "@/components/section-description";
 
-interface SectionAboutProps {
+interface AboutSectionProps {
   label: string;
   title: string;
   description: string;
@@ -13,13 +13,13 @@ interface SectionAboutProps {
   paddingY?: string;
 }
 
-export default function SectionAbout({
+export default function AboutSection({
   label,
   title,
   description,
   sectionCTA,
   paddingY = "py-16 md:py-44",
-}: SectionAboutProps) {
+}: AboutSectionProps) {
   return (
     <section className={clsx("mx-auto bg-white", paddingY)}>
       <MaxWidthWrapper>
