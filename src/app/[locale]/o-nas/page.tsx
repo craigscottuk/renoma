@@ -1,7 +1,7 @@
 // cSpell:disable
 // src/app/[locale]/o-nas/page.tsx
 import { AboutUs } from "./about-us";
-import { client } from "@/sanity/client";
+import { sanityFetch } from "@/sanity/client";
 import { PortableTextBlock } from "next-sanity";
 import PageHeader from "@/components/page-header";
 import { setRequestLocale } from "next-intl/server";
@@ -51,9 +51,6 @@ const QUERY = `
   }
 }
 `;
-
-const OPTIONS = { next: { revalidate: 10 } };
-//86400
 
 type Props = {
   params: { locale: string };
@@ -116,8 +113,14 @@ interface TimelineImage {
   aspectRatio?: "wide" | "standard";
 }
 
+// Metadata from translations and generateMetadata function
 export async function generateMetadata({ params: { locale } }: Props) {
-  const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
+  const content = await sanityFetch<Content>({
+    query: QUERY,
+    params: { locale },
+    tags: ["about"],
+    revalidate: 10, // 604800
+  });
   const { aboutPageMeta } = content;
 
   return {
@@ -142,7 +145,12 @@ export default async function About({ params: { locale } }: Props) {
   setRequestLocale(locale);
 
   // Fetch localized content from Sanity using locale from params
-  const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
+  const content = await sanityFetch<Content>({
+    query: QUERY,
+    params: { locale },
+    tags: ["about"],
+    revalidate: 10, // 604800
+  });
 
   const {
     aboutHeader,
@@ -171,7 +179,7 @@ export default async function About({ params: { locale } }: Props) {
         />
       )}
 
-      {/* About Us, Our Values section */}
+      {/* About Us */}
       {aboutUs && (
         <AboutUs
           title={aboutUs.title}
@@ -180,7 +188,7 @@ export default async function About({ params: { locale } }: Props) {
         />
       )}
 
-      {/* Our History Sectiont */}
+      {/* Our History and Timeline */}
       {/* {ourHistory && (
         <OurHistory
           title={ourHistory.title}
