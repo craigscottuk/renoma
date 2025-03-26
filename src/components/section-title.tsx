@@ -1,5 +1,4 @@
 "use client";
-
 import { ElementType } from "react";
 import { motion, Variants } from "framer-motion";
 import clsx from "clsx";
@@ -16,7 +15,7 @@ interface SectionTitleProps {
   animateOnView?: boolean;
   animationDirection?: "left" | "right" | "up";
   delay?: number;
-  id?: string; // Add this line
+  id?: string;
 }
 
 export default function SectionTitle({
@@ -30,11 +29,11 @@ export default function SectionTitle({
   animateOnView = false,
   animationDirection = "right",
   delay = 0,
-  id, // Add this line
+  id,
 }: SectionTitleProps) {
   const { ref, controls } = useIntersectionObserver({
     animateOnView,
-    threshold: 0.6, // Ensure consistency
+    threshold: 0.6,
     once: true, // Animate only once
   });
 
@@ -70,7 +69,7 @@ export default function SectionTitle({
         "max-w-[22rem] sm:max-w-[33rem] md:max-w-[36rem] lg:max-w-[43rem]",
         textAlign === "center" && "mx-auto",
       )}
-      aria-label={label || title} // Accessibility improvement
+      aria-label={label || title}
     >
       {label && (
         <motion.div
@@ -99,10 +98,9 @@ export default function SectionTitle({
         variants={titleVariants}
       >
         <Tag
-          id={id} // Add this line
+          id={id}
           className={clsx(
             `motion-preset-${motionPreset}`,
-            // `motion-preset-blur-right`,
             "text-balance text-[2.75rem] font-light leading-[1.06] md:text-[3rem] md:leading-[1.06] lg:text-6xl",
             className,
             textColor === "black" ? "text-zinc-950" : "text-zinc-100",
