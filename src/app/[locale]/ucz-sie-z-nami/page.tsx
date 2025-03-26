@@ -2,7 +2,7 @@
 // src/app/[locale]/ucz-sie-z-nami/page.tsx
 import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header";
-import { client } from "@/sanity/client";
+import { sanityFetch } from "@/sanity/client";
 import WhatWeOffer from "./what-we-offer";
 import WhoWeAreLookingFor from "./who-we-are-looking-for";
 import { PortableTextBlock } from "next-sanity";
@@ -50,9 +50,6 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 10 } };
-// 604800
-
 type Props = {
   params: { locale: string };
 };
@@ -92,12 +89,22 @@ interface Content {
   };
 }
 
+// Metadata from translations and generateMetadata function
 export async function generateMetadata({ params: { locale } }: Props) {
-  const { learnWithUsPageMeta } = await client.fetch(
-    QUERY,
-    { locale },
-    OPTIONS,
-  );
+  const { learnWithUsPageMeta } = await sanityFetch<{
+    learnWithUsPageMeta: {
+      pageTitle: string;
+      metaDescription: string;
+      ogTitle: string;
+      ogDescription: string;
+      ogImage: { asset: { url: string } };
+    };
+  }>({
+    query: QUERY,
+    params: { locale },
+    tags: ["learnWithUs"],
+    revalidate: 10, // 604800
+  });
 
   return {
     title: learnWithUsPageMeta?.pageTitle,
@@ -121,8 +128,12 @@ export default async function UczSieZNami({ params: { locale } }: Props) {
   setRequestLocale(locale);
 
   // Fetch localized content from Sanity using locale from params
-  const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
-
+  const content = await sanityFetch<Content>({
+    query: QUERY,
+    params: { locale },
+    tags: ["learnWithUs"],
+    revalidate: 10, // 604800
+  });
   const { learnWithUsHeader, whatWeOffer, whoWeAreLookingFor, ctaContent } =
     content;
 
