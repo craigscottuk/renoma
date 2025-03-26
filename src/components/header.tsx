@@ -1,13 +1,13 @@
 "use client";
-import { Menu, Mail } from "lucide-react";
 import { Button } from "./ui/button";
 import { Link } from "@/i18n/routing";
-import MaxWidthWrapper from "./max-width-wrapper";
-import LocaleSwitcher from "./navigation/locale-switcher";
-import MainNavigation from "./navigation/main-navigation";
-import { MobileNav } from "./navigation/mobile-nav";
-import { useMobileNav } from "./navigation/mobile-nav-provider";
+import { Menu, Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
+import MaxWidthWrapper from "./max-width-wrapper";
+import { MobileNav } from "./navigation/mobile-nav";
+import MainNavigation from "./navigation/main-navigation";
+import LocaleSwitcher from "./navigation/locale-switcher";
+import { useMobileNav } from "./navigation/mobile-nav-provider";
 
 interface HeaderProps {
   socialMediaLinks: {
@@ -24,7 +24,7 @@ export default function Header({ socialMediaLinks }: HeaderProps) {
   return (
     <header className="fixed left-0 z-30 h-20 w-[100vw] bg-white md:h-24">
       <MaxWidthWrapper className="h-full">
-        <div className="flex h-full w-full items-center pb-1.5 md:pb-0">
+        <div className="flex h-full w-full items-center md:pb-0">
           {/* Logo */}
           <Link href="/">
             <img
@@ -52,7 +52,7 @@ export default function Header({ socialMediaLinks }: HeaderProps) {
               </Button>
             </Link>
 
-            {/* Mobile menu button */}
+            {/* Mobile menu */}
             <Button
               variant="ghost"
               className="px-1.5 sm:px-2 lg:hidden"
