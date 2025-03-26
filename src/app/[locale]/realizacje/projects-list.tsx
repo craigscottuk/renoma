@@ -18,7 +18,7 @@ interface ProjectsListProps {
     title: string;
     location: string;
     timeframe: string;
-    cardDescription?: string; // Made optional
+    cardDescription: string;
     imageUrl: string;
     slug: string;
     draft?: boolean;
