@@ -17,7 +17,6 @@ export const renomaLab = defineType({
   ],
 });
 
-// Renoma Lab page header section
 export const renomaLabHeader = defineType({
   name: "renomaLabHeader",
   title: "Nagłówek strony Renoma LAB",
@@ -131,7 +130,6 @@ export const renomaLabHeader = defineType({
       initialValue: "wide",
       hidden: ({ parent }) => parent?.imageLayout !== "landscapeRight",
     }),
-
     defineField({
       name: "landscapeMobileForPortraitRight",
       title: "Obraz krajobrazowy dla małych i średnich urządzeń",
@@ -141,7 +139,6 @@ export const renomaLabHeader = defineType({
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout !== "portraitRight",
     }),
-
     defineField({
       name: "mobileImage",
       title: "Obraz krajobrazowy dla małych i średnich urządzeń",
@@ -153,7 +150,6 @@ export const renomaLabHeader = defineType({
         parent?.imageLayout !== "fullWidthAbove" &&
         parent?.imageLayout !== "fullWidthBelow",
     }),
-
     defineField({
       name: "imageAlt",
       title: "Alternatywny tekst obrazu nagłówka",
