@@ -1,7 +1,7 @@
 // cSpell:disable
 //src/app/[locale]/polityka-prywatnosci/page.tsx
 import { setRequestLocale } from "next-intl/server";
-import { client } from "@/sanity/client";
+import { sanityFetch } from "@/sanity/client";
 import { PortableTextBlock } from "next-sanity";
 import Privacy from "@/app/[locale]/polityka-prywatnosci/privacy";
 import SectionTitle from "@/components/section-title";
@@ -26,9 +26,6 @@ const QUERY = `
   }
 }`;
 
-const OPTIONS = { next: { revalidate: 10 } };
-// 604800
-
 type Props = {
   params: { locale: string };
 };
@@ -44,8 +41,22 @@ interface Content {
   };
 }
 
+// Metadata from translations and generateMetadata function
 export async function generateMetadata({ params: { locale } }: Props) {
-  const { privacyPageMeta } = await client.fetch(QUERY, { locale }, OPTIONS);
+  const { privacyPageMeta } = await sanityFetch<{
+    privacyPageMeta: {
+      pageTitle: string;
+      metaDescription: string;
+      ogTitle: string;
+      ogDescription: string;
+      ogImage: { asset: { url: string } };
+    };
+  }>({
+    query: QUERY,
+    params: { locale },
+    tags: ["privacy"],
+    revalidate: 10, // 604800
+  });
 
   return {
     title: privacyPageMeta?.pageTitle,
@@ -71,7 +82,12 @@ export default async function PolitykaPrywatnosci({
   setRequestLocale(locale);
 
   // Fetch localized content from Sanity using locale from params
-  const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
+  const content = await sanityFetch<Content>({
+    query: QUERY,
+    params: { locale },
+    tags: ["privacy"],
+    revalidate: 10, // 604800
+  });
 
   const { privacyHeader, privacyBody } = content;
 
@@ -102,7 +118,7 @@ export default async function PolitykaPrywatnosci({
         </div>
       )}
 
-      {/* Privacy Policy text content */}
+      {/* Privacy Policy */}
       {privacyBody && (
         <Privacy content={privacyBody.content} paddingY="pt-28 pb-36" />
       )}
