@@ -10,8 +10,6 @@ import { revalidateTag } from "next/cache";
 interface WebhookBody {
   _type: string;
   slug?: string;
-  // language?: string;
-  // add more fields if needed...
 }
 
 function getTagsToRevalidate(doc: WebhookBody): string[] {
@@ -39,16 +37,56 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
 
     case "servicesHeader":
     case "servicesGroup":
+    case "servicesPageMeta":
       tags.push("services");
       break;
 
     case "projectsHeader":
-      tags.push("projectsList");
+      tags.push("projects");
+      tags.push("projectsPageMeta");
       break;
 
     case "caseStudyEntry":
       tags.push("projectsList");
       tags.push("caseStudyEntry");
+      break;
+
+    case "renomaLabHeader":
+    case "labOffer":
+    case "renomaLabPageMeta":
+      tags.push("renomaLab");
+      break;
+
+    case "learnWithUsHeader":
+    case "whatWeOffer":
+    case "whoWeAreLookingFor":
+    case "learnWithUsPageMeta":
+      tags.push("learnWithUs");
+      break;
+
+    case "workWithUsHeader":
+    case "jobOffers":
+    case "workWithUsPageMeta":
+      tags.push("workWithUs");
+      break;
+
+    case "faqHeader":
+    case "faqList":
+    case "faqPageMeta":
+      tags.push("faq");
+      break;
+
+    case "contactHeader":
+    case "contactForm":
+    case "contactDetails":
+    case "contactPageMeta":
+      tags.push("contact");
+      break;
+
+    case "privacyHeader":
+    case "privacyBody":
+    case "privacyPageMeta":
+      tags.push("privacy");
       break;
 
     case "ctaContent":
@@ -57,13 +95,6 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
 
     case "socialMediaLinks":
       tags.push("footer");
-      break;
-
-    case "contactHeader":
-    case "contactForm":
-    case "contactDetails":
-    case "contactPageMeta":
-      tags.push("contact");
       break;
 
     default:
