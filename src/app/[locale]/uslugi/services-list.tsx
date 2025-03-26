@@ -181,7 +181,7 @@ export default function ServicesList({
         });
       },
       {
-        // Tweak rootMargin as desired
+        // Tweaked rootMargin
         rootMargin: "-20% 0px -80% 0px",
         threshold: 0,
       },
@@ -253,8 +253,6 @@ export default function ServicesList({
       }, 500);
     }
   };
-
-  // Remove the unused openGroup function
 
   // -------------------------------------------------------
   // When an accordion trigger is clicked on mobile/tablet:
@@ -345,7 +343,7 @@ export default function ServicesList({
                         className={cn(
                           "cursor-pointer py-3 pl-8 pr-6 hover:bg-black md:text-[0.95rem]",
                           currentService === service.title &&
-                            "bg-gradient-to-r from-gold-800 to-gold-900 pl-10 font-regular text-zinc-100",
+                            "bg-gradient-to-r from-[#5d4a1f] via-[#9f7928] to-[#D1B464] pl-10 font-regular text-zinc-100",
                         )}
                         onClick={() =>
                           scrollToService(group.title, service.title)
@@ -447,7 +445,6 @@ export default function ServicesList({
                                 <AccordionItem
                                   key={action.title}
                                   value={action.title}
-                                  // So we can apply scroll-mt offset:
                                   id={actionId}
                                   className="scroll-mt-36 md:scroll-mt-40"
                                 >
