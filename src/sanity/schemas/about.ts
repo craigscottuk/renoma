@@ -77,7 +77,6 @@ export const aboutHeader = defineType({
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout === "noImage",
     }),
-
     defineField({
       name: "imageLayout",
       title: "Układ obrazu na dużych urządzeniach",
@@ -97,7 +96,6 @@ export const aboutHeader = defineType({
       group: "obrazSekcji",
       initialValue: "fullWidthAbove",
     }),
-
     defineField({
       name: "aspectRatio",
       title: "Proporcje obrazu",
@@ -114,7 +112,6 @@ export const aboutHeader = defineType({
       initialValue: "wide",
       hidden: ({ parent }) => parent?.imageLayout !== "landscapeRight",
     }),
-
     defineField({
       name: "landscapeMobileForPortraitRight",
       title: "Obraz krajobrazowy dla małych i średnich urządzeń",
@@ -124,7 +121,6 @@ export const aboutHeader = defineType({
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout !== "portraitRight",
     }),
-
     defineField({
       name: "mobileImage",
       title: "Obraz krajobrazowy dla małych i średnich urządzeń",
@@ -136,7 +132,6 @@ export const aboutHeader = defineType({
         parent?.imageLayout !== "fullWidthAbove" &&
         parent?.imageLayout !== "fullWidthBelow",
     }),
-
     defineField({
       name: "imageAlt",
       title: "Alternatywny tekst obrazu nagłówka",
@@ -146,7 +141,6 @@ export const aboutHeader = defineType({
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout === "noImage",
     }),
-
     defineField({
       name: "backgroundColor",
       title: "Kolor tła",
@@ -180,7 +174,6 @@ export const aboutUs = defineType({
       type: "internationalizedArrayString",
       validation: (Rule) => Rule.required(),
     }),
-
     defineField({
       name: "text",
       title: "Tekst sekcji",
@@ -212,7 +205,6 @@ export const ourHistory = defineType({
       type: "internationalizedArrayString",
       validation: (Rule) => Rule.required(),
     }),
-
     defineField({
       name: "text",
       title: "Tekst sekcji",
@@ -221,7 +213,6 @@ export const ourHistory = defineType({
       type: "internationalizedArrayText",
       validation: (Rule) => Rule.required(),
     }),
-
     defineField({
       name: "timeline",
       title: "Oś czasu",
