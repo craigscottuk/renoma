@@ -13,7 +13,7 @@ interface AnimatedLinkProps {
   target?: "_self" | "_blank";
   rel?: string;
   underline?: boolean;
-  external?: boolean; // New prop
+  external?: boolean;
 }
 
 export default function AnimatedLink({
@@ -25,7 +25,7 @@ export default function AnimatedLink({
   showArrow = true,
   target = "_self",
   underline = true,
-  external = false, // New prop default value
+  external = false,
 }: AnimatedLinkProps) {
   const lightClasses = "text-black";
   const darkClasses = "text-zinc-100";
