@@ -82,7 +82,6 @@ export const workWithUsHeader = defineType({
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout === "noImage",
     }),
-
     defineField({
       name: "imageLayout",
       title: "Układ obrazu na dużych urządzeniach",
@@ -102,7 +101,6 @@ export const workWithUsHeader = defineType({
       group: "obrazSekcji",
       initialValue: "fullWidthAbove",
     }),
-
     defineField({
       name: "aspectRatio",
       title: "Proporcje obrazu",
@@ -119,7 +117,6 @@ export const workWithUsHeader = defineType({
       initialValue: "wide",
       hidden: ({ parent }) => parent?.imageLayout !== "landscapeRight",
     }),
-
     defineField({
       name: "landscapeMobileForPortraitRight",
       title: "Obraz krajobrazowy dla małych i średnich urządzeń",
@@ -129,7 +126,6 @@ export const workWithUsHeader = defineType({
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout !== "portraitRight",
     }),
-
     defineField({
       name: "mobileImage",
       title: "Obraz krajobrazowy dla małych i średnich urządzeń",
@@ -141,7 +137,6 @@ export const workWithUsHeader = defineType({
         parent?.imageLayout !== "fullWidthAbove" &&
         parent?.imageLayout !== "fullWidthBelow",
     }),
-
     defineField({
       name: "imageAlt",
       title: "Alternatywny tekst obrazu nagłówka",
@@ -151,7 +146,6 @@ export const workWithUsHeader = defineType({
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout === "noImage",
     }),
-
     defineField({
       name: "backgroundColor",
       title: "Kolor tła",
