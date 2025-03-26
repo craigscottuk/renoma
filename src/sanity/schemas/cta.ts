@@ -17,7 +17,6 @@ export const cta = defineType({
   ],
 });
 
-// CTA section
 export const ctaContent = defineType({
   name: "ctaContent",
   title: "CTA Sekcja",
