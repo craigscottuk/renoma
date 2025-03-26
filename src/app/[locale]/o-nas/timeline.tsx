@@ -204,7 +204,7 @@ export default function Timeline({ events }: TimelineProps) {
                       : "md:mr-auto md:pr-10"
                   } md:w-1/2`}
                 >
-                  {/* Affects the whole div. Could add bg-color */}
+                  {/* Note: Affects the whole year event div.  */}
                   <div className="px-5 pt-6">
                     {event.images && event.images.length > 0 && (
                       <div className="mb-0">
