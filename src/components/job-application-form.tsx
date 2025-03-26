@@ -158,7 +158,6 @@ export function JobApplicationForm({
           name="fullName"
           render={({ field }) => (
             <FormItem>
-              {/* <FormLabel className="text-zinc-50">Imię i Nazwisko</FormLabel> */}
               <FormControl>
                 <Input
                   placeholder={t("fullNamePlaceholder")}
@@ -178,7 +177,6 @@ export function JobApplicationForm({
             name="email"
             render={({ field }) => (
               <FormItem>
-                {/* <FormLabel className="text-zinc-50">Adres email</FormLabel> */}
                 <FormControl>
                   <Input
                     placeholder={t("emailPlaceholder")}
@@ -196,7 +194,6 @@ export function JobApplicationForm({
             name="phone"
             render={({ field }) => (
               <FormItem>
-                {/* <FormLabel className="text-zinc-50">Numer telefonu</FormLabel> */}
                 <FormControl>
                   <Input
                     placeholder={t("phonePlaceholder")}
@@ -216,7 +213,6 @@ export function JobApplicationForm({
           name="motivationLetter"
           render={({ field }) => (
             <FormItem>
-              {/* <FormLabel className="text-zinc-50">Krótki list motywacyjny</FormLabel> */}
               <FormControl>
                 <Textarea
                   placeholder={
