@@ -79,7 +79,6 @@ export const servicesHeader = defineType({
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout === "noImage",
     }),
-
     defineField({
       name: "imageLayout",
       title: "Układ obrazu na dużych urządzeniach",
@@ -99,7 +98,6 @@ export const servicesHeader = defineType({
       group: "obrazSekcji",
       initialValue: "fullWidthAbove",
     }),
-
     defineField({
       name: "aspectRatio",
       title: "Proporcje obrazu",
@@ -116,7 +114,6 @@ export const servicesHeader = defineType({
       initialValue: "wide",
       hidden: ({ parent }) => parent?.imageLayout !== "landscapeRight",
     }),
-
     defineField({
       name: "landscapeMobileForPortraitRight",
       title: "Obraz krajobrazowy dla małych i średnich urządzeń",
@@ -126,7 +123,6 @@ export const servicesHeader = defineType({
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout !== "portraitRight",
     }),
-
     defineField({
       name: "mobileImage",
       title: "Obraz krajobrazowy dla małych i średnich urządzeń",
@@ -138,7 +134,6 @@ export const servicesHeader = defineType({
         parent?.imageLayout !== "fullWidthAbove" &&
         parent?.imageLayout !== "fullWidthBelow",
     }),
-
     defineField({
       name: "imageAlt",
       title: "Alternatywny tekst obrazu nagłówka",
@@ -148,7 +143,6 @@ export const servicesHeader = defineType({
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout === "noImage",
     }),
-
     defineField({
       name: "backgroundColor",
       title: "Kolor tła",
@@ -198,7 +192,6 @@ export const serviceItem = defineType({
           validation: (Rule) =>
             Rule.required().error("Pole opisu usługi jest wymagane."),
         }),
-
         defineField({
           name: "actions",
           title: "Działania",
@@ -244,7 +237,6 @@ export const serviceItem = defineType({
             }),
           ],
         }),
-
         defineField({
           name: "images",
           title: "Obrazy Usługi",
