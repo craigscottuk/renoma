@@ -1,6 +1,5 @@
 "use client";
 // cSpell:disable
-
 import clsx from "clsx";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
@@ -23,7 +22,6 @@ interface PageHeaderProps {
   imageAlt?: string;
   imageLayout?:
     | "fullWidthAbove"
-    | "fullWidthBelow"
     | "portraitRight"
     | "landscapeRight"
     | "noImage";
@@ -49,7 +47,7 @@ export default function PageHeader({
   twoColumnText = false,
   portableTextBlock,
   aspectRatio = "wide", // default to wide (16:9)
-  paddingY = "py-12 lg:py-32", // default value
+  paddingY = "py-12 lg:py-32",
   mobileSubMenu,
   landscapeMobileForPortraitRight,
 }: PageHeaderProps) {
@@ -58,35 +56,29 @@ export default function PageHeader({
     typeof image === "string"
       ? image
       : image
-        ? urlFor(
-            image,
-            imageLayout === "fullWidthAbove" || imageLayout === "fullWidthBelow"
-              ? 2500
-              : 1200,
-          )
+        ? urlFor(image, imageLayout === "fullWidthAbove" ? 2500 : 1200)
         : "/fallback-image.svg";
 
   const mobileImageUrl =
     typeof mobileImage === "string"
       ? mobileImage
       : mobileImage
-        ? urlFor(mobileImage, 800)
+        ? urlFor(mobileImage, 1000)
         : landscapeMobileForPortraitRight
-          ? urlFor(landscapeMobileForPortraitRight, 800)
+          ? urlFor(landscapeMobileForPortraitRight, 1000)
           : imageUrl;
 
   const smallScreenImageUrl =
     imageLayout === "portraitRight" && landscapeMobileForPortraitRight
-      ? urlFor(landscapeMobileForPortraitRight, 800)
+      ? urlFor(landscapeMobileForPortraitRight, 1000)
       : imageUrl;
 
-  const headerFullWidth = twoColumnText || imageLayout.startsWith("fullWidth");
-  const imagePosition = imageLayout === "fullWidthBelow" ? "below" : "above";
+  const headerFullWidth = twoColumnText || imageLayout === "fullWidthAbove";
+  const imagePosition = "above";
   const textColor = backgroundColor === "black" ? "white" : "black";
   const showImage = imageLayout !== "noImage";
 
   // Transform PortableText blocks to fix Polish orphans of each line before rendering.
-
   if (portableTextBlock) {
     portableTextBlock = transformPortableTextBlocks(portableTextBlock);
   }
@@ -99,32 +91,31 @@ export default function PageHeader({
         imagePosition === "above" &&
         showImage && (
           <div
-            className={`relative mt-24 h-auto w-full md:aspect-[4/3] md:min-h-[22rem] lg:h-96 ${
-              aspectRatio === "standard" ? "aspect-[4/3]" : "aspect-[16/10]"
-            }`}
+            className={`relative mt-20 aspect-[16/10] h-auto w-full md:aspect-[16/10] md:min-h-[22rem] lg:mt-24 lg:h-96`}
           >
             {/* Mobile Image */}
             <Image
               src={mobileImageUrl}
               alt={imageAlt || "Obraz nagłówka"}
               fill
+              loading="lazy"
               style={{
                 objectFit: "cover",
                 objectPosition: "center",
               }}
-              loading="lazy"
               className="lg:hidden"
             />
+
             {/* Desktop Image */}
             <Image
               src={imageUrl}
               alt={imageAlt || "Obraz nagłówka"}
               fill
+              loading="lazy"
               style={{
                 objectFit: "cover",
                 objectPosition: "center",
               }}
-              loading="lazy"
               className="hidden lg:block"
             />
           </div>
@@ -136,9 +127,7 @@ export default function PageHeader({
           className={clsx(
             "relative mx-auto py-12 lg:py-32",
             backgroundColor === "black" ? "bg-zinc-900" : "bg-white",
-            imageLayout === "noImage" || imageLayout === "fullWidthBelow"
-              ? "mt-20 md:mt-24"
-              : "",
+            imageLayout === "noImage" ? "mt-20 md:mt-24" : "",
           )}
         >
           <MaxWidthWrapper>
@@ -175,18 +164,17 @@ export default function PageHeader({
           <section
             className={clsx(
               "relative mx-auto",
-              paddingY, //py-12 lg:py-32
+              paddingY,
               headerFullWidth && imagePosition === "above" && showImage
-                ? "mt-24 lg:mt-0"
-                : "",
-              headerFullWidth && imagePosition === "below" && showImage
-                ? "mt-24"
+                ? "mt-0 lg:mt-0"
                 : "",
               imageLayout === "portraitRight" ||
                 imageLayout === "landscapeRight"
                 ? "lg:mt-24"
                 : "",
-              imageLayout === "noImage" ? "lg:mt-24 lg:min-h-[22rem]" : "",
+              imageLayout === "noImage"
+                ? "mt-20 lg:mt-24 lg:min-h-[22rem]"
+                : "",
               backgroundColor === "black" ? "bg-zinc-900" : "bg-white",
             )}
           >
@@ -243,7 +231,7 @@ export default function PageHeader({
                 </div>
               ) : (
                 // Two-column layout for large screens with a full-width image or without.
-                <>
+                <div>
                   <div className="flex-1">
                     <SectionTitle
                       label={label}
@@ -253,7 +241,7 @@ export default function PageHeader({
                       textColor={textColor}
                     />
                   </div>
-                  <div className="flex flex-col items-end md:max-w-[29rem]">
+                  <div className="flex flex-col items-start md:max-w-[29rem] lg:items-end">
                     <SectionDescription
                       description={description}
                       marginTop={true}
@@ -262,7 +250,7 @@ export default function PageHeader({
                       motionPreset="blur-up"
                     />
                   </div>
-                </>
+                </div>
               )}
 
               {/* Large-screen layout with image on the right */}
@@ -271,12 +259,7 @@ export default function PageHeader({
                   className={clsx(
                     "relative hidden lg:block",
                     imageLayout === "portraitRight"
-                      ? clsx(
-                          "lg:-mb-80 lg:-mt-16 lg:h-auto lg:w-[420px]",
-                          aspectRatio === "standard"
-                            ? "lg:aspect-[3/4]"
-                            : "lg:aspect-[3/4]",
-                        )
+                      ? "lg:-mb-80 lg:-mt-16 lg:aspect-[3/4] lg:h-auto lg:w-[420px]"
                       : "",
                     imageLayout === "landscapeRight"
                       ? clsx(
@@ -304,25 +287,6 @@ export default function PageHeader({
           </section>
         </>
       )}
-
-      {/* Full-width header image below content */}
-      {headerFullWidth &&
-        imageUrl &&
-        imagePosition === "below" &&
-        showImage && (
-          <div className="relative h-96 w-full lg:min-h-72">
-            <Image
-              src={imageUrl || "/fallback-image.svg"}
-              alt={imageAlt || "Obraz nagłówka"}
-              fill
-              style={{
-                objectFit: "cover",
-                objectPosition: "center",
-              }}
-              loading="lazy"
-            />
-          </div>
-        )}
     </>
   );
 }
