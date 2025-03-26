@@ -1,7 +1,7 @@
 // cSpell:disable
 // app/[locale]/realizacje/page.tsx
 import { setRequestLocale } from "next-intl/server";
-import { client } from "@/sanity/client";
+import { sanityFetch } from "@/sanity/client";
 import PageHeader from "@/components/page-header";
 import ProjectsList from "./projects-list";
 import CTA from "@/components/cta";
@@ -42,15 +42,60 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 10 } };
-// 604800
-
 type Props = {
   params: { locale: string };
 };
 
+type Content = {
+  projectsHeader?: {
+    label: string;
+    title: string;
+    description: string;
+    image?: string;
+    imageAlt?: string;
+    imageLayout?:
+      | "fullWidthAbove"
+      | "fullWidthBelow"
+      | "portraitRight"
+      | "landscapeRight"
+      | "noImage";
+    backgroundColor?: "black" | "white";
+    aspectRatio?: "standard" | "wide";
+    landscapeMobileForPortraitRight?: string;
+  };
+  projects?: {
+    draft: boolean;
+    title: string;
+    location: string;
+    timeframe: string;
+    cardDescription: string;
+    imageUrl: string;
+    slug: string;
+  }[];
+
+  ctaContent?: {
+    title: string;
+    description: string;
+    buttonText: string;
+  };
+};
+
+// Metadata from translations and generateMetadata function
 export async function generateMetadata({ params: { locale } }: Props) {
-  const { projectsPageMeta } = await client.fetch(QUERY, { locale }, OPTIONS);
+  const { projectsPageMeta } = await sanityFetch<{
+    projectsPageMeta: {
+      pageTitle: string;
+      metaDescription: string;
+      ogTitle: string;
+      ogDescription: string;
+      ogImage: { asset: { url: string } };
+    };
+  }>({
+    query: QUERY,
+    params: { locale },
+    tags: ["projects"],
+    revalidate: 10, // 604800
+  });
 
   return {
     title: projectsPageMeta?.pageTitle,
@@ -74,11 +119,14 @@ export default async function Realizacje({ params: { locale } }: Props) {
   setRequestLocale(locale);
 
   // Fetch localized content from Sanity using locale from params
-  const { projectsHeader, projects, ctaContent } = await client.fetch(
-    QUERY,
-    { locale },
-    OPTIONS,
-  );
+  const content = await sanityFetch<Content>({
+    query: QUERY,
+    params: { locale },
+    tags: ["projects"],
+    revalidate: 10, // 604800
+  });
+
+  const { projectsHeader, projects, ctaContent } = content;
 
   return (
     <>
@@ -100,7 +148,7 @@ export default async function Realizacje({ params: { locale } }: Props) {
       )}
 
       {/* Projects List */}
-      <ProjectsList projectCardData={projects} paddingY="py-36" />
+      <ProjectsList projectCardData={projects ?? []} paddingY="py-36" />
 
       {/* CTA */}
       {ctaContent && (
