@@ -10,7 +10,6 @@ export default function NotFound() {
       <h1 className="mb-4 text-4xl font-bold">{t("title")}</h1>
       <p className="mb-8 text-lg">{t("description")}</p>
 
-      {/* TODO */}
       <Link href="/" className="text-blue-500 hover:underline">
         {t("goBackHome")}
       </Link>
