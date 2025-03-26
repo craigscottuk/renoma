@@ -25,7 +25,6 @@ export default function ComparisonSection({
 }: ComparisonSectionProps) {
   // Render nothing if both properties are missing
   if (!(content?.length || comparisons?.length)) {
-    // console.log("No content or comparisons to render.");
     return null;
   }
 
