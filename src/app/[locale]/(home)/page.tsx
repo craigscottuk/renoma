@@ -3,7 +3,7 @@
 import Script from "next/script";
 import HeroSection from "./hero";
 import AboutSection from "./about";
-import { client } from "@/sanity/client";
+import { sanityFetch } from "@/sanity/client";
 import ServicesSection from "./services";
 import CTA from "../../../components/cta";
 import CooperationSection from "./cooperation";
@@ -53,9 +53,6 @@ const QUERY = `
   }
 }
 `;
-
-const OPTIONS = { next: { revalidate: 10 } };
-// 604800
 
 type Props = {
   params: { locale: string };
@@ -143,7 +140,20 @@ interface Content {
 
 // Metadata from translations and generateMetadata function
 export async function generateMetadata({ params: { locale } }: Props) {
-  const { homePageMeta } = await client.fetch(QUERY, { locale }, OPTIONS);
+  const { homePageMeta } = await sanityFetch<{
+    homePageMeta: {
+      pageTitle: string;
+      metaDescription: string;
+      ogTitle: string;
+      ogDescription: string;
+      ogImage: { asset: { url: string } };
+    };
+  }>({
+    query: QUERY,
+    params: { locale },
+    tags: ["home"],
+    revalidate: 10, // 604800
+  });
 
   return {
     title: homePageMeta?.pageTitle,
@@ -167,8 +177,12 @@ export default async function HomePage({ params: { locale } }: Props) {
   setRequestLocale(locale);
 
   // Fetch localized content from Sanity using locale from params
-  const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
-  console.log("Query Results:", content);
+  const content = await sanityFetch<Content>({
+    query: QUERY,
+    params: { locale },
+    tags: ["home"],
+    revalidate: 10, // 604800
+  });
 
   const {
     heroSection,
