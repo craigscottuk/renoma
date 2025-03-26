@@ -4,8 +4,6 @@
 import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header";
 import ContactFormAndDetails from "./contact-form-and-details";
-
-//  helper that merges time-based and tag-based revalidation logic
 import { sanityFetch } from "@/sanity/client";
 
 const QUERY = `
@@ -103,10 +101,7 @@ interface Content {
   };
 }
 
-/**
- * We do a separate fetch for SEO here, or fetch the same object as below.
- * Either way, we pass `tags: ["contact"]` so it uses on-demand revalidation.
- */
+// Metadata from translations and generateMetadata function
 export async function generateMetadata({ params: { locale } }: Props) {
   const { contactPageMeta } = await sanityFetch<{
     contactPageMeta: Content["contactPageMeta"];
@@ -114,7 +109,7 @@ export async function generateMetadata({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["contact"],
-    revalidate: 604800, // 604800 seconds = 1 week
+    revalidate: 10, // 604800 // 604800 seconds = 1 week
   });
 
   return {
@@ -143,7 +138,7 @@ export default async function Kontakt({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["contact"], // On-demand revalidation triggered by revalidateTag("contact")
-    revalidate: 86400, // 604800
+    revalidate: 10, // 604800 // 604800
   });
 
   const { contactHeader, contactForm, contactDetails } = content;
