@@ -34,7 +34,6 @@ const paragraphClass =
   "text-zinc-900 text-base xl:text-[1.1rem] leading-relaxed";
 const headingClass =
   "mb-3 md:mb-4 font-bolder text-[1.3rem] md:text-[1.3rem] xl:text-[1.4rem] leading-tight tracking-[-0.015em] text-zinc-800";
-
 const iconClass = "min-h-5 min-w-5 xl:min-h-6 xl:min-w-6";
 
 export default function ContactFormAndDetails({
@@ -49,7 +48,6 @@ export default function ContactFormAndDetails({
       <MaxWidthWrapper>
         <div className="grid justify-center gap-x-24 gap-y-14 lg:grid-cols-2">
           {/* Contact Information in 2x2 Grid */}
-
           <FadeInSection className="order-2 grid h-fit max-w-[32rem] gap-x-10 gap-y-12 pt-8 md:grid-cols-2 lg:order-1">
             {/* Phone Section */}
             <FadeInSection>
