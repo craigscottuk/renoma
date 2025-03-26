@@ -1,12 +1,11 @@
 // cSpell:disable
 //src/app/[locale]/renoma-lab/page.tsx
-import { setRequestLocale } from "next-intl/server";
-import PageHeader from "@/components/page-header";
-import { client } from "@/sanity/client";
-import LabOffer from "./lab-offer";
-// import { AboutLab } from "./about-lab";
-import { PortableTextBlock } from "next-sanity";
 import CTA from "@/components/cta";
+import LabOffer from "./lab-offer";
+import { sanityFetch } from "@/sanity/client";
+import { PortableTextBlock } from "next-sanity";
+import PageHeader from "@/components/page-header";
+import { setRequestLocale } from "next-intl/server";
 
 const QUERY = `
 {
@@ -22,10 +21,6 @@ const QUERY = `
     "descriptionTwoColumns": coalesce(descriptionTwoColumns[$locale], []),
     "aspectRatio": coalesce(aspectRatio, "wide"),
     "landscapeMobileForPortraitRight": landscapeMobileForPortraitRight
-  },
-  "aboutLab": *[_type == "aboutLab"][0]{
-    "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
-    "text": coalesce(text[$locale], []),
   },
   "labOffer": *[_type == "labOffer"][0]{
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -51,9 +46,6 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 10 } };
-// 604800
-
 type Props = {
   params: { locale: string };
 };
@@ -64,7 +56,7 @@ interface Content {
     title: string;
     description: string;
     image?: string;
-    mobileImage?: string; // Add this to your interface
+    mobileImage?: string;
     imageAlt?: string;
     imageLayout?:
       | "fullWidthAbove"
@@ -99,7 +91,20 @@ interface Content {
 
 // Metadata from translations and generateMetadata function
 export async function generateMetadata({ params: { locale } }: Props) {
-  const { renomaLabPageMeta } = await client.fetch(QUERY, { locale }, OPTIONS);
+  const { renomaLabPageMeta } = await sanityFetch<{
+    renomaLabPageMeta: {
+      pageTitle: string;
+      metaDescription: string;
+      ogTitle: string;
+      ogDescription: string;
+      ogImage: { asset: { url: string } };
+    };
+  }>({
+    query: QUERY,
+    params: { locale },
+    tags: ["renomaLab"],
+    revalidate: 10, // 604800
+  });
 
   return {
     title: renomaLabPageMeta?.pageTitle,
@@ -123,7 +128,12 @@ export default async function RenomaLab({ params: { locale } }: Props) {
   setRequestLocale(locale);
 
   // Fetch localized content from Sanity using locale from params
-  const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
+  const content = await sanityFetch<Content>({
+    query: QUERY,
+    params: { locale },
+    tags: ["renomaLab"],
+    revalidate: 10, // 604800
+  });
 
   const {
     renomaLabHeader,
@@ -153,15 +163,6 @@ export default async function RenomaLab({ params: { locale } }: Props) {
           }
         />
       )}
-
-      {/* About Lab */}
-      {/* {!renomaLabHeader.descriptionTwoColumns && (
-        <AboutLab
-          title={aboutLab.title}
-          text={aboutLab.text}
-          paddingY="py-36"
-        />
-      )} */}
 
       {/* Lab Offer */}
       {labOffer && (
