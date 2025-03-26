@@ -9,12 +9,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import fixPolishOrphans from "@/utils/fixPolishOrphans";
 import AnimatedLink from "@/components/animated-link";
 import SectionTitle from "@/components/section-title";
-
-import { FadeInSection } from "@/components/fade-in-section";
 import { Separator } from "@/components/ui/separator";
+import fixPolishOrphans from "@/utils/fixPolishOrphans";
+import { FadeInSection } from "@/components/fade-in-section";
 
 interface FaqAccordionProps {
   faqItems: {
