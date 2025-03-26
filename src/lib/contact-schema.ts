@@ -7,7 +7,7 @@ export const contactSchema = z.object({
   phone: z
     .string()
     .regex(/^\+?[0-9\s-]{9,}$/)
-    .optional() // Make it optional
+    .optional()
     .or(z.literal("")),
   topic: z.string().min(1),
   message: z.string().min(10).max(1500),
