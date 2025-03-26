@@ -98,7 +98,6 @@ export const learnWithUsHeader = defineType({
       group: "obrazSekcji",
       initialValue: "fullWidthAbove",
     }),
-
     defineField({
       name: "aspectRatio",
       title: "Proporcje obrazu",
@@ -115,7 +114,6 @@ export const learnWithUsHeader = defineType({
       initialValue: "wide",
       hidden: ({ parent }) => parent?.imageLayout !== "landscapeRight",
     }),
-
     defineField({
       name: "landscapeMobileForPortraitRight",
       title: "Obraz krajobrazowy dla małych i średnich urządzeń",
@@ -125,7 +123,6 @@ export const learnWithUsHeader = defineType({
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout !== "portraitRight",
     }),
-
     defineField({
       name: "mobileImage",
       title: "Obraz krajobrazowy dla małych i średnich urządzeń",
@@ -137,7 +134,6 @@ export const learnWithUsHeader = defineType({
         parent?.imageLayout !== "fullWidthAbove" &&
         parent?.imageLayout !== "fullWidthBelow",
     }),
-
     defineField({
       name: "imageAlt",
       title: "Alternatywny tekst obrazu nagłówka",
@@ -147,7 +143,6 @@ export const learnWithUsHeader = defineType({
       group: "obrazSekcji",
       hidden: ({ parent }) => parent?.imageLayout === "noImage",
     }),
-
     defineField({
       name: "backgroundColor",
       title: "Kolor tła",
@@ -245,7 +240,6 @@ export const whoWeAreLookingFor = defineType({
         { name: "de", title: "DE", type: "portableTextWithHeadings" },
       ],
     }),
-
     defineField({
       name: "image",
       title: "Obraz",
