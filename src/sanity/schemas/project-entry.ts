@@ -39,7 +39,6 @@ export const caseStudyEntry = defineType({
         "To pole jest tylko do odczytu i przypisuje język do dokumentu. Służy jako odniesienie do języka dokumentu.",
       readOnly: true,
     }),
-
     defineField({
       name: "title",
       title: "Tytuł Realizacji",
@@ -47,7 +46,6 @@ export const caseStudyEntry = defineType({
       type: "string",
       validation: (Rule) => Rule.required(),
     }),
-
     defineField({
       name: "slug",
       type: "slug",
@@ -62,7 +60,6 @@ export const caseStudyEntry = defineType({
           .required()
           .error("Slug jest wymagany do wygenerowania strony projektu."),
     }),
-
     defineField({
       name: "cardDescription",
       title: "Opis karty",
@@ -72,7 +69,6 @@ export const caseStudyEntry = defineType({
       rows: 8,
       // validation: (rule) => rule.required().error("Opis karty jest wymagany."),
     }),
-
     defineField({
       name: "summary",
       title: "Podsumowanie",
@@ -83,14 +79,12 @@ export const caseStudyEntry = defineType({
       // validation: (rule) =>
       //   rule.required().error("Podsumowanie jest wymagane."),
     }),
-
     defineField({
       name: "image",
       title: "Obraz nagłówka",
       description: "Obraz wyświetlany w nagłówku strony kontaktowej.",
       type: "image",
     }),
-
     defineField({
       name: "imageLayout",
       title: "Układ obrazu na dużych urządzeniach",
@@ -110,7 +104,6 @@ export const caseStudyEntry = defineType({
 
       initialValue: "fullWidthAbove",
     }),
-
     defineField({
       name: "backgroundColor",
       title: "Kolor tła",
