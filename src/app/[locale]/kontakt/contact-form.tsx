@@ -84,7 +84,7 @@ export default function ContactForm({
     lastName: "",
     email: "",
     phone: "",
-    topic: "", // Add topic with an empty string
+    topic: "",
     message: "",
     privacy: false,
   };
@@ -102,7 +102,6 @@ export default function ContactForm({
     }
   }, [isSubmitted, form]);
 
-  // Comment out file state
   // const [files, setFiles] = useState<File[]>([]);
 
   // Style classes for dark/light themes (unchanged).
