@@ -2,7 +2,7 @@
 // cSpell:disable
 import { setRequestLocale } from "next-intl/server";
 import PageHeader from "@/components/page-header";
-import { client } from "@/sanity/client";
+import { sanityFetch } from "@/sanity/client";
 import CTA from "@/components/cta";
 import FaqAccordion from "./faq";
 import Script from "next/script";
@@ -44,9 +44,6 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 10 } };
-// 604800
-
 type Props = {
   params: { locale: string };
 };
@@ -85,7 +82,20 @@ interface Content {
 
 // Metadata from translations and generateMetadata function
 export async function generateMetadata({ params: { locale } }: Props) {
-  const { faqPageMeta } = await client.fetch(QUERY, { locale }, OPTIONS);
+  const { faqPageMeta } = await sanityFetch<{
+    faqPageMeta: {
+      pageTitle?: string;
+      metaDescription?: string;
+      ogTitle?: string;
+      ogDescription?: string;
+      ogImage?: { asset?: { url?: string } };
+    };
+  }>({
+    query: QUERY,
+    params: { locale },
+    tags: ["faq"],
+    revalidate: 10, // 604800
+  });
 
   return {
     title: faqPageMeta?.pageTitle,
@@ -109,7 +119,12 @@ export default async function Faq({ params: { locale } }: Props) {
   setRequestLocale(locale);
 
   // Fetch localized content from Sanity using locale from params
-  const content = await client.fetch<Content>(QUERY, { locale }, OPTIONS);
+  const content = await sanityFetch<Content>({
+    query: QUERY,
+    params: { locale },
+    tags: ["faq"],
+    revalidate: 10, // 604800
+  });
 
   const { faqHeader, faqList, ctaContent } = content;
 
