@@ -25,9 +25,6 @@ export default function ImageCarousel({
 }: ImageCarouselProps) {
   const locale = useLocale();
 
-  // Log the aspectRatio data
-  // console.log("ImageCarousel images", images);
-
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [currentIndex, setCurrentIndex] = useState(0);
   // const [showCaptions, setShowCaptions] = useState(false);
