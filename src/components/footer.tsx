@@ -11,7 +11,6 @@ import { FacebookIcon, InstagramIcon, LinkedInIcon } from "./socials";
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
 import { StaticRoutePaths } from "@/lib/routes";
-
 import AnimatedLink from "@/components/animated-link";
 import { FadeInSection } from "@/components/fade-in-section";
 import fixPolishOrphans from "@/utils/fixPolishOrphans";
