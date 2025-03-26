@@ -19,7 +19,6 @@ export const privacy = defineType({
   ],
 });
 
-// Privacy Policy page header section
 export const privacyHeader = defineType({
   name: "privacyHeader",
   title: "Nagłówek strony polityki prywatności",
@@ -60,7 +59,6 @@ export const privacyHeader = defineType({
       group: "tytulSekcji",
       validation: (Rule) => Rule.required(),
     }),
-
     defineField({
       name: "backgroundColor",
       title: "Kolor tła",
@@ -79,7 +77,6 @@ export const privacyHeader = defineType({
   ],
 });
 
-// Privacy Policy text section
 export const privacyBody = defineType({
   name: "privacyBody",
   title: "Treść strony polityki prywatności",
