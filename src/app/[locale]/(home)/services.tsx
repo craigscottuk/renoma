@@ -42,7 +42,6 @@ export default function ServicesSection({
   description,
   sectionCTA,
   paddingY = "py-16 md:py-44",
-  servicesGroup,
 }: ServicesSectionProps) {
   return (
     <section className={clsx("mx-auto bg-zinc-900 text-zinc-100", paddingY)}>
