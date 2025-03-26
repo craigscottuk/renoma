@@ -43,7 +43,13 @@ const iconComponents: Record<
   Users,
 };
 
-function LabServicesList({ newOffers }: { newOffers: any[] }) {
+interface Offer {
+  icon: string;
+  title: string;
+  content: PortableTextBlock[];
+}
+
+function LabServicesList({ newOffers }: { newOffers: Offer[] }) {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:gap-6">
       {newOffers.map((offer, index) => {
