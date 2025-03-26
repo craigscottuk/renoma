@@ -81,9 +81,6 @@ export const portableTextWithImage = defineType({
       name: "image",
       type: "image",
       title: "Image",
-      options: {
-        hotspot: true, // Enables image cropping
-      },
       fields: [
         {
           name: "alt",
