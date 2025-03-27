@@ -1,8 +1,8 @@
 import { clsx } from "clsx";
 import Header from "./header";
-import { ReactNode } from "react";
+import { ReactNode, JSX } from "react";
 import localFont from "next/font/local";
-import { client } from "@/sanity/client";
+import { sanityFetch } from "@/sanity/client";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import Footer from "@/components/footer";
@@ -53,14 +53,41 @@ const QUERY = `
 }
 `;
 
-const OPTIONS = { next: { revalidate: 600 } };
+interface Service {
+  title: string;
+}
+
+interface ServiceGroup {
+  title: string;
+  services: Service[];
+}
+
+interface ServiceGroups {
+  serviceGroupOne: ServiceGroup;
+  serviceGroupTwo: ServiceGroup;
+  serviceGroupThree: ServiceGroup;
+}
+
+interface SocialMediaLinks {
+  facebook: string;
+  instagram: string;
+  linkedIn: string;
+}
+
+interface FooterData {
+  serviceGroups: ServiceGroups;
+  socialMediaLinks: SocialMediaLinks;
+}
 
 type Props = {
   children: ReactNode;
   locale: string;
 };
 
-export default async function BaseLayout({ children, locale }: Props) {
+export default async function BaseLayout({
+  children,
+  locale,
+}: Props): Promise<JSX.Element> {
   let messages = {};
   try {
     messages = await getMessages();
@@ -68,7 +95,13 @@ export default async function BaseLayout({ children, locale }: Props) {
     console.error("Error loading messages:", error);
   }
 
-  const footerData = await client.fetch(QUERY, { locale }, OPTIONS);
+  const footerData = await sanityFetch<FooterData>({
+    query: QUERY,
+    params: { locale },
+    tags: ["footer"],
+    revalidate: 60, // 604800
+  });
+
   const serviceGroups = [
     footerData.serviceGroups.serviceGroupOne,
     footerData.serviceGroups.serviceGroupTwo,
