@@ -12,7 +12,7 @@ const QUERY = `
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "image": image,
-    "imageAlt": coalesce(image.alt[_key == $locale][0].value, "Brak tłumaczenia"),
+"imageAlt": coalesce(imageAlt[_key == $locale][0].value, "Header image"),
     "imageLayout": imageLayout,
     "backgroundColor": backgroundColor
   },
