@@ -225,6 +225,7 @@ export default function PageHeader({
                     motionPreset="blur-right"
                     animateOnView={true}
                     animationDirection="left"
+                    animationDirectionMobile="up"
                   />
                   {sectionButton && (
                     <CustomButton animateOnView={false}>
