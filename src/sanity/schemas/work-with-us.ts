@@ -91,7 +91,6 @@ export const workWithUsHeader = defineType({
       options: {
         list: [
           { title: "Pełna szerokość powyżej", value: "fullWidthAbove" },
-          { title: "Pełna szerokość poniżej", value: "fullWidthBelow" },
           { title: "Portret po prawej (ratio 4:3)", value: "portraitRight" },
           { title: "Krajobraz po prawej", value: "landscapeRight" },
           { title: "Brak obrazu", value: "noImage" },
@@ -133,9 +132,7 @@ export const workWithUsHeader = defineType({
         "Obraz krajobrazowy 16:10, który będzie wyświetlany w nagłówku na małych i średnich urządzeniach (telefony i tablety).",
       type: "image",
       group: "obrazSekcji",
-      hidden: ({ parent }) =>
-        parent?.imageLayout !== "fullWidthAbove" &&
-        parent?.imageLayout !== "fullWidthBelow",
+      hidden: ({ parent }) => parent?.imageLayout !== "fullWidthAbove",
     }),
     defineField({
       name: "imageAlt",
