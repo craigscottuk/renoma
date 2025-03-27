@@ -54,7 +54,7 @@ const portableTextComponents: PortableTextComponents = {
   },
   marks: {
     strong: ({ children }) => (
-      <strong className="font-regular tracking-wide text-zinc-900">
+      <strong className="font-semibold tracking-wide text-zinc-900">
         {children}
       </strong>
     ),
