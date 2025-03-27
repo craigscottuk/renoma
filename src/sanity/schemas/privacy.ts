@@ -77,8 +77,8 @@ export const privacyHeader = defineType({
   ],
 });
 
-export const privacyBody = defineType({
-  name: "privacyBody",
+export const privacyContent = defineType({
+  name: "privacyContent",
   title: "Treść strony polityki prywatności",
   type: "document",
   options: { singleton: true },
