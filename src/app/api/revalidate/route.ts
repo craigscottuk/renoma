@@ -23,25 +23,23 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
       tags.push("about");
       break;
 
-    case "faqHeader":
-    case "faqList":
-      tags.push("faq");
-      break;
-
     case "heroSection":
     case "aboutSection":
     case "servicesSection":
     case "cooperationSection":
+    case "ctaContent":
       tags.push("home");
       break;
 
     case "servicesHeader":
     case "servicesGroup":
     case "servicesPageMeta":
+    case "ctaContent":
       tags.push("services");
       break;
 
     case "projectsHeader":
+    case "ctaContent":
       tags.push("projects");
       tags.push("projectsPageMeta");
       break;
@@ -49,11 +47,13 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
     case "caseStudyEntry":
       tags.push("projectsList");
       tags.push("caseStudyEntry");
+
       break;
 
     case "renomaLabHeader":
     case "labOffer":
     case "renomaLabPageMeta":
+    case "ctaContent":
       tags.push("renomaLab");
       break;
 
@@ -61,18 +61,21 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
     case "whatWeOffer":
     case "whoWeAreLookingFor":
     case "learnWithUsPageMeta":
+    case "ctaContent":
       tags.push("learnWithUs");
       break;
 
     case "workWithUsHeader":
     case "jobOffers":
     case "workWithUsPageMeta":
+    case "ctaContent":
       tags.push("workWithUs");
       break;
 
     case "faqHeader":
     case "faqList":
     case "faqPageMeta":
+    case "ctaContent":
       tags.push("faq");
       break;
 
