@@ -1,9 +1,9 @@
 // cSpell:disable
 //src/app/[locale]/polityka-prywatnosci/page.tsx
-import { setRequestLocale } from "next-intl/server";
+import Privacy from "./privacy";
 import { sanityFetch } from "@/sanity/client";
 import { PortableTextBlock } from "next-sanity";
-import Privacy from "@/app/[locale]/polityka-prywatnosci/privacy";
+import { setRequestLocale } from "next-intl/server";
 import SectionTitle from "@/components/section-title";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 
@@ -14,8 +14,8 @@ const QUERY = `
     "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
     "backgroundColor": backgroundColor
   },
-  "privacyBody": *[_type == "privacyBody"][0]{
-    "content": coalesce(content[$locale], [])
+  "privacyContent": *[_type == "privacyContent"][0]{
+    "content": content[$locale]
   },
   "privacyPageMeta": *[_type == "privacyPageMeta"][0]{
     "pageTitle": coalesce(pageTitle[_key == $locale][0].value, "Default SEO Title"),
@@ -36,7 +36,7 @@ interface Content {
     title: string;
     backgroundColor?: "black" | "white";
   };
-  privacyBody: {
+  privacyContent: {
     content: PortableTextBlock[];
   };
 }
@@ -89,7 +89,12 @@ export default async function PolitykaPrywatnosci({
     revalidate: 10, // 604800
   });
 
-  const { privacyHeader, privacyBody } = content;
+  console.log("Locale:", locale);
+  console.log("Raw privacyContent:", content.privacyContent);
+
+  const { privacyHeader, privacyContent } = content;
+
+  console.log(content);
 
   return (
     <>
@@ -119,8 +124,8 @@ export default async function PolitykaPrywatnosci({
       )}
 
       {/* Privacy Policy */}
-      {privacyBody && (
-        <Privacy content={privacyBody.content} paddingY="pt-28 pb-36" />
+      {privacyContent && (
+        <Privacy content={privacyContent.content} paddingY="pt-28 pb-36" />
       )}
     </>
   );
