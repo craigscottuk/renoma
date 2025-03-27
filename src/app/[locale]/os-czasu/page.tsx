@@ -54,7 +54,6 @@ interface Content {
     imageAlt?: string;
     imageLayout?:
       | "fullWidthAbove"
-      | "fullWidthBelow"
       | "portraitRight"
       | "landscapeRight"
       | "noImage";
