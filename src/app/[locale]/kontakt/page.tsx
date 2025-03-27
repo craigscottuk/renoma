@@ -108,7 +108,7 @@ export async function generateMetadata({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["contact"],
-    revalidate: 10, // 604800 // 604800 seconds = 1 week
+    revalidate: 60, // 604800 // 604800 seconds = 1 week
   });
 
   return {
@@ -137,7 +137,7 @@ export default async function Kontakt({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["contact"], // On-demand revalidation triggered by revalidateTag("contact")
-    revalidate: 10, // 604800 // 604800
+    revalidate: 60, // 604800 // 604800
   });
 
   const { contactHeader, contactForm, contactDetails } = content;
