@@ -41,7 +41,7 @@ export function MobileNav({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed inset-0 z-[50] bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 z-[190] bg-black/40 backdrop-blur-sm"
             onClick={onClose}
             aria-hidden="true"
           />
@@ -52,14 +52,14 @@ export function MobileNav({
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
-            className="fixed inset-y-0 right-0 z-[60] w-full max-w-xs bg-zinc-900 shadow-xl"
+            className="fixed inset-y-0 right-0 z-[200] w-full max-w-xs bg-zinc-900 shadow-xl"
           >
             <div className="flex h-full flex-col overflow-y-auto overscroll-contain">
               <div className="flex items-center justify-end border-zinc-800 px-4 pt-5">
                 <Button
                   variant="ghost"
                   onClick={onClose}
-                  className="px-1 pb-1 text-zinc-400 hover:text-zinc-100"
+                  className="px-1 pb-1 text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200"
                   aria-label="Close menu"
                 >
                   <X className="min-h-6 min-w-6" />
