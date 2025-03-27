@@ -118,7 +118,7 @@ export async function generateMetadata({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["about"],
-    revalidate: 10, // 604800
+    revalidate: 60, // 604800
   });
   const { aboutPageMeta } = content;
 
@@ -148,7 +148,7 @@ export default async function About({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["about"],
-    revalidate: 10, // 604800
+    revalidate: 60, // 604800
   });
 
   const {
@@ -157,8 +157,6 @@ export default async function About({ params: { locale } }: Props) {
     // ourHistory,
     ctaContent,
   } = content;
-
-  console.log(content.aboutHeader);
 
   return (
     <>
