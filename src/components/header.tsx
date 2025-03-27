@@ -17,12 +17,14 @@ interface HeaderProps {
   };
 }
 
+// motion-preset-fade-lg
+
 export default function Header({ socialMediaLinks }: HeaderProps) {
   const t = useTranslations("header");
   // Get the isOpen, openMobileNav, and closeMobileNav functions from context
   const { isOpen, openMobileNav, closeMobileNav } = useMobileNav();
   return (
-    <header className="fixed left-0 z-30 h-20 w-[100vw] bg-white md:h-24">
+    <header className="motion-preset-focus-md fixed left-0 z-30 h-20 w-[100vw] bg-white md:h-24">
       <MaxWidthWrapper className="h-full">
         <div className="flex h-full w-full items-center md:pb-0">
           {/* Logo */}
