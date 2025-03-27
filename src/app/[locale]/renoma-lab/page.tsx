@@ -15,7 +15,7 @@ const QUERY = `
     "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
     "image": image,
     "mobileImage": mobileImage,
-    "imageAlt": coalesce(imageAlt[_key == $locale][0].value, "Brak tłumaczenia"),
+"imageAlt": coalesce(imageAlt[_key == $locale][0].value, "Header image"),
     "imageLayout": imageLayout,
     "backgroundColor": backgroundColor,
     "descriptionTwoColumns": coalesce(descriptionTwoColumns[$locale], []),
