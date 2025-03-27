@@ -2,10 +2,10 @@ import { clsx } from "clsx";
 import Header from "./header";
 import { ReactNode, JSX } from "react";
 import localFont from "next/font/local";
+import Footer from "@/components/footer";
 import { sanityFetch } from "@/sanity/client";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
-import Footer from "@/components/footer";
 import { MobileNavStateProvider } from "./navigation/mobile-nav-provider";
 
 const helveticaNeueLight = localFont({
@@ -99,7 +99,7 @@ export default async function BaseLayout({
     query: QUERY,
     params: { locale },
     tags: ["footer"],
-    revalidate: 60, // 604800
+    revalidate: 604800, // 604800
   });
 
   const serviceGroups = [
