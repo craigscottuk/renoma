@@ -45,6 +45,7 @@ function useIsMobileOrTablet() {
 type ImageType = {
   asset: SanityImageSource | string;
   caption?: string;
+  imageAlt?: string;
   aspectRatio?: "standard" | "wide";
 };
 
@@ -481,6 +482,7 @@ export default function ServicesList({
                                     ? urlFor(img.asset)
                                     : "",
                               caption: img.caption || "",
+                              imageAlt: img.imageAlt || "",
                               aspectRatio: img.aspectRatio || "wide",
                             })) || []
                           }
