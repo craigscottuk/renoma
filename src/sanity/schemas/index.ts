@@ -55,7 +55,7 @@ import {
 import {
   privacy,
   privacyHeader,
-  privacyBody,
+  privacyContent,
   privacyPageMeta,
 } from "./privacy";
 import {
@@ -141,7 +141,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     // Polityka prywatności
     privacy,
     privacyHeader,
-    privacyBody,
+
+    privacyContent,
     privacyPageMeta,
 
     // Social Media
