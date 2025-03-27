@@ -3,9 +3,9 @@
 import Script from "next/script";
 import HeroSection from "./hero";
 import AboutSection from "./about";
-import { sanityFetch } from "@/sanity/client";
 import ServicesSection from "./services";
 import CTA from "../../../components/cta";
+import { sanityFetch } from "@/sanity/client";
 import CooperationSection from "./cooperation";
 import { setRequestLocale } from "next-intl/server";
 
@@ -152,7 +152,7 @@ export async function generateMetadata({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["home"],
-    revalidate: 60, // 604800
+    revalidate: 604800, // 604800
   });
 
   return {
@@ -181,7 +181,7 @@ export default async function HomePage({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["home"],
-    revalidate: 60, // 604800
+    revalidate: 604800, // 604800
   });
 
   const {
