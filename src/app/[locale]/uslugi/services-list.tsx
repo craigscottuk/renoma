@@ -1,5 +1,4 @@
 "use client";
-
 import { useRef, useState, useEffect } from "react";
 import clsx from "clsx";
 import { cn } from "@/lib/utils";
@@ -10,16 +9,16 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { urlFor } from "@/sanity/lib/image";
-import { ChevronDown, ChevronUp, Text } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { Separator } from "@/components/ui/separator";
 import SectionTitle from "@/components/section-title";
 import ImageCarousel from "@/components/image-carousel";
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import { FadeInSection } from "@/components/fade-in-section";
 import fixPolishOrphans from "@/utils/fixPolishOrphans";
-import { Separator } from "@/components/ui/separator";
-import MaxWidthWrapper from "@/components/max-width-wrapper";
 import CustomButton from "@/components/ui/custom-button";
-import { useTranslations } from "next-intl";
+import { ChevronDown, ChevronUp, Text } from "lucide-react";
+import MaxWidthWrapper from "@/components/max-width-wrapper";
+import { FadeInSection } from "@/components/fade-in-section";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 // -------------------------------------------------------
 // A simple hook to detect if the screen is < 1024px wide
