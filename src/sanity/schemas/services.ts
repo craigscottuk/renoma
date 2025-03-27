@@ -244,12 +244,19 @@ export const serviceItem = defineType({
               type: "image",
               title: "Obraz",
               fields: [
+                // defineField({
+                //   name: "caption",
+                //   type: "string",
+                //   title: "Podpis Obrazu",
+                //   description:
+                //     "Opcjonalny podpis do obrazu, np. 'Widok przed konserwacją'.",
+                // }),
                 defineField({
-                  name: "caption",
-                  type: "string",
-                  title: "Podpis Obrazu",
+                  name: "imageAlt",
+                  type: "internationalizedArrayString",
+                  title: "Alternatywny tekst obrazu",
                   description:
-                    "Opcjonalny podpis do obrazu, np. 'Widok przed konserwacją'.",
+                    "Krótki tekst opisujący obraz, aby uzupełnić kontekst i poprawić SEO",
                 }),
                 defineField({
                   name: "aspectRatio",
@@ -266,6 +273,19 @@ export const serviceItem = defineType({
                   initialValue: "wide",
                 }),
               ],
+
+              preview: {
+                select: {
+                  title: "imageAlt.0.value",
+                  media: "images",
+                },
+                prepare({ title, media }) {
+                  return {
+                    title: title || "Brak alternatywnego tekstu obrazu",
+                    media,
+                  };
+                },
+              },
             }),
           ],
           description:
