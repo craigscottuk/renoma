@@ -120,7 +120,7 @@ export async function POST(req: NextRequest) {
     );
 
     // Log the webhook body for debugging
-    console.log("Webhook body:", body);
+    // console.log("Webhook body:", body);
 
     if (!isValidSignature) {
       return new NextResponse("Invalid signature", { status: 401 });
