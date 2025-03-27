@@ -378,9 +378,9 @@ export const structure: StructureResolver = (S, context) =>
               singletonDocumentListItem({
                 S,
                 context,
-                type: "privacyBody",
+                type: "privacyContent",
                 title: "Sekcja 2: Treść",
-                id: "singletonPrivacyText",
+                id: "singletonPrivacyContent",
               }),
               singletonDocumentListItem({
                 S,
