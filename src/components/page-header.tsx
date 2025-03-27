@@ -6,6 +6,7 @@ import { urlFor } from "@/sanity/lib/image";
 import CustomButton from "./ui/custom-button";
 import MaxWidthWrapper from "./max-width-wrapper";
 import SectionTitle from "@/components/section-title";
+import { FadeInSection } from "@/components/fade-in-section";
 import SectionDescription from "@/components/section-description";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { portableTextComponents } from "@/lib/portableTextComponents";
@@ -222,6 +223,8 @@ export default function PageHeader({
                     textStyle="text-balance"
                     textColor={textColor}
                     motionPreset="blur-right"
+                    animateOnView={true}
+                    animationDirection="left"
                   />
                   {sectionButton && (
                     <CustomButton animateOnView={false}>
@@ -271,16 +274,18 @@ export default function PageHeader({
                       : "",
                   )}
                 >
-                  <Image
-                    src={imageUrl}
-                    alt={imageAlt || "Obraz nagłówka"}
-                    fill
-                    unoptimized
-                    style={{
-                      objectFit: "cover",
-                      objectPosition: "center",
-                    }}
-                  />
+                  <FadeInSection>
+                    <Image
+                      src={imageUrl}
+                      alt={imageAlt || "Obraz nagłówka"}
+                      fill
+                      unoptimized
+                      style={{
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </FadeInSection>
                 </div>
               )}
             </MaxWidthWrapper>
