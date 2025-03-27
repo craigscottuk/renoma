@@ -93,6 +93,7 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
       tags.push("cta");
       break;
 
+    case "servicesGroup":
     case "socialMediaLinks":
       tags.push("footer");
       break;
