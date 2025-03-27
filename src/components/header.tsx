@@ -25,8 +25,8 @@ export default function Header({ socialMediaLinks }: HeaderProps) {
   const { isOpen, openMobileNav, closeMobileNav } = useMobileNav();
   return (
     <>
-      <header className="motion-preset-focus-md fixed left-0 z-30 h-20 w-[100vw] bg-white md:h-24">
-        <MaxWidthWrapper className="h-full">
+      <header className="fixed left-0 z-30 h-20 w-[100vw] bg-white md:h-24">
+        <MaxWidthWrapper className="motion-preset-focus-md h-full">
           <div className="flex h-full w-full items-center md:pb-0">
             {/* Logo */}
             <Link href="/">
