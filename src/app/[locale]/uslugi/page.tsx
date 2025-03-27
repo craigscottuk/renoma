@@ -30,7 +30,10 @@ const QUERY = `
           "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
           "content": coalesce(content[_key == $locale][0].value, "Brak tłumaczenia")
         },
-        "images": images,
+        "images": images[]{
+          "asset": asset->,
+          "imageAlt": coalesce(imageAlt[_key == $locale][0].value, "")
+        },
         "addLinkToRenomaLab": addLinkToRenomaLab
       }
     },
@@ -43,7 +46,10 @@ const QUERY = `
           "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
           "content": coalesce(content[_key == $locale][0].value, "Brak tłumaczenia")
         },
-        "images": images,
+        "images": images[]{
+          "asset": asset->,
+          "imageAlt": coalesce(imageAlt[_key == $locale][0].value, "")
+        },
         "addLinkToRenomaLab": addLinkToRenomaLab
       }
     },
@@ -56,7 +62,10 @@ const QUERY = `
           "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
           "content": coalesce(content[_key == $locale][0].value, "Brak tłumaczenia")
         },
-        "images": images,
+        "images": images[]{
+          "asset": asset->,
+          "imageAlt": coalesce(imageAlt[_key == $locale][0].value, "")
+        },
         "addLinkToRenomaLab": addLinkToRenomaLab
       }
     }
@@ -109,6 +118,7 @@ interface Content {
         images?: {
           asset: string;
           caption?: string;
+          imageAlt?: string;
         }[];
         addLinkToRenomaLab?: boolean;
       }[];
@@ -125,6 +135,7 @@ interface Content {
         images?: {
           asset: string;
           caption?: string;
+          imageAlt?: string;
         }[];
         addLinkToRenomaLab?: boolean;
       }[];
@@ -141,6 +152,7 @@ interface Content {
         images?: {
           asset: string;
           caption?: string;
+          imageAlt?: string;
         }[];
         addLinkToRenomaLab?: boolean;
       }[];
