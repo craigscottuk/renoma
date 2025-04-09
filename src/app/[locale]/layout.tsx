@@ -18,8 +18,8 @@ export default async function LocaleLayout({
   children,
   params: { locale },
 }: Props) {
-  // Ensure that the incoming `locale` is valid
-  if (!routing.locales.includes(locale as "pl" | "en" | "de")) {
+  // TO RESTORE OTHER LANGUAGES: Change type to "pl" | "en" | "de"
+  if (!routing.locales.includes(locale as "pl")) {
     notFound();
   }
 
