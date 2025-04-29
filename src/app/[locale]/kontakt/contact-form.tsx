@@ -372,14 +372,15 @@ export default function ContactForm({
                     <FormLabel className="text-balance text-[1rem] leading-relaxed md:text-[1rem]">
                       {locale === "de" ? (
                         <>
-                          Ich willige in die Verarbeitung meiner
-                          personenbezogenen Daten durch die{" "}
+                          Ich erkläre mich damit einverstanden, dass meine
+                          personenbezogenen Daten durch{" "}
                           <span className="">
                             Pracownie Konserwacji Zabytków RENOMA Hanna
                             Rubnikowicz-Góźdź
                           </span>{" "}
                           und <span className="">RENOMA Igor Góźdź</span> zum
-                          Zwecke der Beantwortung meiner Anfrage gemäß der{" "}
+                          Zweck der Beantwortung meiner Anfrage verarbeitet
+                          werden, entsprechend der{" "}
                           <AnimatedLink
                             href="/polityka-prywatnosci"
                             target="_blank"
@@ -392,14 +393,13 @@ export default function ContactForm({
                         </>
                       ) : locale === "en" ? (
                         <>
-                          “I consent to the processing of my personal data by
-                          the{" "}
+                          I consent to the processing of my personal data by{" "}
                           <span className="">
                             Pracownie Konserwacji Zabytków RENOMA Hanna
                             Rubnikowicz-Góźdź
                           </span>{" "}
                           and <span className="">RENOMA Igor Góźdź</span> , for
-                          the purpose of responding to my inquiry, in accordance
+                          the purpose of responding to my enquiry, in accordance
                           with the{" "}
                           <AnimatedLink
                             href="/polityka-prywatnosci"
