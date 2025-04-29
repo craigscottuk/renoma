@@ -5,7 +5,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
   let locale = await requestLocale;
 
   // TO RESTORE OTHER LANGUAGES: Change type to "pl" | "en" | "de"
-  if (!locale || !routing.locales.includes(locale as "pl")) {
+  if (!locale || !routing.locales.includes(locale as "pl" | "en" | "de")) {
     locale = routing.defaultLocale;
   }
 
