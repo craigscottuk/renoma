@@ -102,7 +102,7 @@ export async function generateMetadata({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["learnWithUs"],
-    revalidate: 604800, // 604800
+    revalidate: 30, // 604800
   });
 
   return {
@@ -131,7 +131,7 @@ export default async function UczSieZNami({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["learnWithUs"],
-    revalidate: 604800, // 604800
+    revalidate: 30, // 604800
   });
   const { learnWithUsHeader, whatWeOffer, whoWeAreLookingFor, ctaContent } =
     content;
