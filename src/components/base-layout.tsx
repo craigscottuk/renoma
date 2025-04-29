@@ -28,19 +28,19 @@ const QUERY = `
 {
   "serviceGroups": *[_type == "servicesGroup"][0]{
     "serviceGroupOne": {
-      "title": coalesce(serviceGroupOne.title, "Brak tłumaczenia"),
+      "title": coalesce(serviceGroupOne.title[_key == $locale][0].value, "Brak tłumaczenia"),
       "services": serviceGroupOne.services[]{
         "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia")
       }
     },
     "serviceGroupTwo": {
-      "title": coalesce(serviceGroupTwo.title, "Brak tłumaczenia"),
+      "title": coalesce(serviceGroupTwo.title[_key == $locale][0].value, "Brak tłumaczenia"),
       "services": serviceGroupTwo.services[]{
         "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia")
       }
     },
     "serviceGroupThree": {
-      "title": coalesce(serviceGroupThree.title, "Brak tłumaczenia"),
+      "title": coalesce(serviceGroupThree.title[_key == $locale][0].value, "Brak tłumaczenia"),
       "services": serviceGroupThree.services[]{
         "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia")
       }
@@ -100,7 +100,7 @@ export default async function BaseLayout({
     query: QUERY,
     params: { locale },
     tags: ["footer"],
-    revalidate: 30, // 604800
+    revalidate: 604800, // 604800
   });
 
   const serviceGroups = [
