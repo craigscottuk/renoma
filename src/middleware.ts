@@ -10,8 +10,7 @@ export const config = {
 
     // Set a cookie to remember the previous locale for
     // all requests that have a locale prefix
-    // TO RESTORE OTHER LANGUAGES: Uncomment 'de|en|' in the following line
-    "/(pl)/:path*",
+    "/(de|en|pl)/:path*",
 
     // Enable locale redirects for everything EXCEPT /api, /admin, /_next, /_vercel, or files
     "/((?!api|_next|_vercel|admin|.*\\..*).*)",
