@@ -16,6 +16,17 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
   const tags: string[] = [];
 
   switch (doc._type) {
+    // homepage
+    case "heroSection":
+    case "aboutSection":
+    case "servicesSection":
+    case "cooperationSection":
+    case "homePageMeta":
+    case "ctaContent":
+      tags.push("home");
+      break;
+
+    // about page
     case "aboutHeader":
     case "aboutUs":
     case "ourHistory":
@@ -23,14 +34,7 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
       tags.push("about");
       break;
 
-    case "heroSection":
-    case "aboutSection":
-    case "servicesSection":
-    case "cooperationSection":
-    case "ctaContent":
-      tags.push("home");
-      break;
-
+    // services page
     case "servicesHeader":
     case "servicesGroup":
     case "servicesPageMeta":
@@ -38,6 +42,7 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
       tags.push("services");
       break;
 
+    // projects page
     case "projectsHeader":
     case "ctaContent":
       tags.push("projects");
@@ -50,6 +55,7 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
 
       break;
 
+    // RenomaLab page
     case "renomaLabHeader":
     case "labOffer":
     case "renomaLabPageMeta":
@@ -57,6 +63,7 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
       tags.push("renomaLab");
       break;
 
+    // learn with us page
     case "learnWithUsHeader":
     case "whatWeOffer":
     case "whoWeAreLookingFor":
@@ -65,6 +72,7 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
       tags.push("learnWithUs");
       break;
 
+    // work with us page
     case "workWithUsHeader":
     case "jobOffers":
     case "workWithUsPageMeta":
@@ -72,6 +80,7 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
       tags.push("workWithUs");
       break;
 
+    // faq page
     case "faqHeader":
     case "faqList":
     case "faqPageMeta":
@@ -79,6 +88,7 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
       tags.push("faq");
       break;
 
+    // contact page
     case "contactHeader":
     case "contactForm":
     case "contactDetails":
@@ -86,16 +96,19 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
       tags.push("contact");
       break;
 
+    // privacy page
     case "privacyHeader":
     case "privacyBody":
     case "privacyPageMeta":
       tags.push("privacy");
       break;
 
+    // CTA
     case "ctaContent":
       tags.push("cta");
       break;
 
+    // footer
     case "servicesGroup":
     case "socialMediaLinks":
       tags.push("footer");
