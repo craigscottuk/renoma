@@ -62,19 +62,20 @@ export const renomaLabHeader = defineType({
       group: "tytulSekcji",
       validation: (Rule) => Rule.required(),
     }),
-    defineField({
-      name: "description",
-      title: "Opis sekcji",
-      description:
-        "Tekst opisujący działalność laboratorium Renoma LAB, specjalizującego się w testach materiałów budowlanych i badaniach konserwatorskich.",
-      type: "internationalizedArrayText",
-      group: "opisSekcji",
-    }),
+    // defineField({
+    //   name: "description",
+    //   title: "Opis sekcji",
+    //   description:
+    //     "Tekst opisujący działalność laboratorium Renoma LAB, specjalizującego się w testach materiałów budowlanych i badaniach konserwatorskich.",
+    //   type: "internationalizedArrayText",
+    //   group: "opisSekcji",
+    // }),
 
     defineField({
       name: "descriptionTwoColumns",
       title: "Opis sekcji w dwóch kolumnach",
       type: "object",
+      group: "opisSekcji",
       description:
         "Tekst opisujący działalność laboratorium Renoma LAB w dwóch kolumnach.",
       validation: (Rule) => Rule.required(),
@@ -282,13 +283,13 @@ export const labOffer = defineType({
         }),
       ],
     }),
-    defineField({
-      name: "collaborationDescription",
-      title: "Opis współpracy",
-      description:
-        "Opis współpracy z zewnętrznymi specjalistami przeprowadzającymi badania instrumentalne.",
-      type: "internationalizedArrayText",
-    }),
+    // defineField({
+    //   name: "collaborationDescription",
+    //   title: "Opis współpracy",
+    //   description:
+    //     "Opis współpracy z zewnętrznymi specjalistami przeprowadzającymi badania instrumentalne.",
+    //   type: "internationalizedArrayText",
+    // }),
   ],
 });
 
