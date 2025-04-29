@@ -123,7 +123,7 @@ const SkzSection = ({
         href={link || "http://www.skz.pl/skz_files/index.php"}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex w-full cursor-pointer items-center space-x-6"
+        className="flex w-fit cursor-pointer items-center space-x-6"
       >
         <img
           src={skzLogo}
