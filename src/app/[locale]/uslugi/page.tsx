@@ -200,7 +200,7 @@ export async function generateMetadata({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["services"],
-    revalidate: 604800, // 604800
+    revalidate: 30, // 604800
   });
 
   return {
@@ -229,7 +229,7 @@ export default async function ONas({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["services"],
-    revalidate: 604800, // 604800
+    revalidate: 30, // 604800
   });
 
   const { servicesHeader, servicesGroup, ctaContent } = content;
