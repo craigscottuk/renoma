@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/accordion";
 import AnimatedLink from "@/components/animated-link";
 import SectionTitle from "@/components/section-title";
+import { useLocale } from "next-intl";
 import { Separator } from "@/components/ui/separator";
 import fixPolishOrphans from "@/utils/fixPolishOrphans";
 import { FadeInSection } from "@/components/fade-in-section";
@@ -60,6 +61,7 @@ export default function SectionFaqHome({ faqItems }: SectionFaqHomeProps) {
 // ====================
 
 function FaqAccordion({ faqItems }: FaqAccordionProps) {
+  const locale = useLocale();
   return (
     <div className="mx-auto w-full">
       <Accordion type="single" collapsible className="w-full">
@@ -81,7 +83,12 @@ function FaqAccordion({ faqItems }: FaqAccordionProps) {
                   className="mt-10 text-[1.1rem] text-zinc-950"
                   href={"/uslugi"}
                 >
-                  Sprawdź nasze usługi
+                  {/* TRANSLATE */}
+                  {locale === "pl"
+                    ? "SPRAWDŹ NASZE USŁUGI"
+                    : locale === "de"
+                      ? "ENTDECKEN SIE UNSERE DIENSTLEISTUNGEN"
+                      : "EXPLORE OUR SERVICES"}
                 </AnimatedLink>
               </AccordionContent>
             </AccordionItem>
