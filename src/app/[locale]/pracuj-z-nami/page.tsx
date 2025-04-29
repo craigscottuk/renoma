@@ -101,7 +101,7 @@ export async function generateMetadata({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["workWithUs"],
-    revalidate: 604800, // 604800
+    revalidate: 30, // 604800
   });
 
   return {
@@ -130,7 +130,7 @@ export default async function PracujZNami({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["workWithUs"],
-    revalidate: 604800, // 604800
+    revalidate: 30, // 604800
   });
 
   const { workWithUsHeader, jobOffers, ctaContent } = content;
