@@ -55,7 +55,7 @@ export async function generateMetadata({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["privacy"],
-    revalidate: 30, // 604800
+    revalidate: 604800, // 604800
   });
 
   return {
@@ -86,7 +86,7 @@ export default async function PolitykaPrywatnosci({
     query: QUERY,
     params: { locale },
     tags: ["privacy"],
-    revalidate: 30, // 604800
+    revalidate: 604800, // 604800
   });
 
   const { privacyHeader, privacyContent } = content;
