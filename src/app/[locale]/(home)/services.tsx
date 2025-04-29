@@ -61,7 +61,7 @@ export default function ServicesSection({
 
           {/* Right Column */}
           <div className="flex flex-col md:items-end">
-            <div className="md:max-w-[38rem]">
+            <div className="md:max-w-[38rem] md:pt-5">
               <SectionDescription
                 description={description}
                 textAlign="left"
