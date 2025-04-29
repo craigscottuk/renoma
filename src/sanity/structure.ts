@@ -9,7 +9,7 @@ import {
   Info,
   Briefcase,
   FolderOpen,
-  FileText,
+  // FileText,
   Beaker,
   GraduationCap,
   Users,
@@ -158,9 +158,9 @@ export const structure: StructureResolver = (S, context) =>
               }),
             ]),
         ),
-      S.documentTypeListItem("caseStudyEntry")
-        .title("Wpis realizacji")
-        .icon(FileText),
+      // S.documentTypeListItem("caseStudyEntry")
+      //   .title("Wpis realizacji")
+      //   .icon(FileText),
       S.listItem()
         .title("Renoma LAB")
         .icon(Beaker)
