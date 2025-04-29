@@ -143,17 +143,17 @@
   "jobOfferForm": {
     "sending": "Senden...",
     "applyNow": "Jetzt bewerben",
-    "applyPosition": "Bewerben für: {jobTitle}",
+    "applyPosition": "Bewerbung für die Stelle: {jobTitle}",
     "responsibilitiesTitle": "Aufgaben:",
     "requirementsTitle": "Anforderungen:",
     "benefitsTitle": "Wir bieten:",
     "lessDetails": "Weniger Details",
     "moreDetails": "Mehr Details",
-    "fullNamePlaceholder": "Name und Nachname",
+    "fullNamePlaceholder": "Vor- und Nachname",
     "emailPlaceholder": "E-Mail-Adresse",
     "phonePlaceholder": "Telefonnummer",
     "motivationLetterPlaceholder": "Kurzes Motivationsschreiben",
-    "motivationLetterMaxHint": "Bis zu 1500 Zeichen",
+    "motivationLetterMaxHint": "Maximal 1.500 Zeichen",
     "submit": "Bewerbung senden",
     "thankYouTitle": "Danke!",
     "thankYouBody": "Wir haben Ihre Bewerbung erhalten und auch eine Kopie an Ihre E-Mail-Adresse geschickt. Wir melden uns bald bei Ihnen.",
@@ -163,9 +163,9 @@
     "tryAgain": "Erneut versuchen",
     "alertInvalidFiletype": "Einige Dateien wurden abgelehnt. Zulässig: PDF, DOC, DOCX, JPG, PNG, ZIP, RAR.",
     "alertTooManyFiles": "Maximal 5 Dateien sind erlaubt.",
-    "consentText": "Ich stimme der Verarbeitung meiner persönlichen Daten zu Rekrutierungszwecken zu.",
-    "uploadHint": "Dateien ziehen oder klicken, um hinzuzufügen",
-    "uploadFormatsHint": "Erlaubte Formate: PDF, DOC, DOCX, JPG, PNG, ZIP, RAR",
+    "consentText": "Ich stimme der Verarbeitung meiner personenbezogenen Daten zu Rekrutierungszwecken gemäß der Datenschutzerklärung zu. Mir ist bekannt, dass ich meine Einwilligung jederzeit widerrufen kann.",
+    "uploadHint": "Dateien per Drag & Drop hochladen oder per Klick hinzufügen",
+    "uploadFormatsHint": "Erlaubte Formate: PDF, DOC, DOCX, JPG, PNG, ZIP, RAR (max. 25MB)",
     "whyUsPlaceholder": "Warum möchten Sie an unserem Praktikumsprogramm teilnehmen?",
     "applyInternship": "Bewerben Sie sich für das Praktikumsprogramm",
     "validation": {
@@ -181,6 +181,6 @@
     "openMenuAriaLabel": "Menü öffnen"
   },
   "serviceItem": {
-    "visitRenomaLab": "Besuche die Renoma LAB-Seite"
+    "visitRenomaLab": "Besuchen Sie die RenomaLAB-Seite"
   }
 }
