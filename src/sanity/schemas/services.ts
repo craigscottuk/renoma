@@ -335,7 +335,7 @@ export const servicesGroup = defineType({
         defineField({
           name: "title",
           title: "Tytuł Sekcji",
-          type: "string",
+          type: "internationalizedArrayString",
           initialValue: "Badania, programy i ekspertyzy",
         }),
         defineField({
@@ -358,7 +358,7 @@ export const servicesGroup = defineType({
         defineField({
           name: "title",
           title: "Tytuł Sekcji",
-          type: "string",
+          type: "internationalizedArrayString",
           initialValue: "Realizacja i Nadzór",
         }),
         defineField({
@@ -381,7 +381,7 @@ export const servicesGroup = defineType({
         defineField({
           name: "title",
           title: "Tytuł Sekcji",
-          type: "string",
+          type: "internationalizedArrayString",
           initialValue: "Rewaloryzacja i Wsparcie",
         }),
         defineField({
