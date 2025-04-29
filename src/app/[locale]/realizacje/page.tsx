@@ -93,7 +93,7 @@ export async function generateMetadata({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["projects"],
-    revalidate: 30, // 604800
+    revalidate: 604800, // 604800
   });
 
   return {
@@ -122,7 +122,7 @@ export default async function Realizacje({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["projects"],
-    revalidate: 30, // 604800
+    revalidate: 604800, // 604800
   });
 
   const { projectsHeader, projects, ctaContent } = content;
