@@ -5,6 +5,7 @@ import localFont from "next/font/local";
 import Footer from "@/components/footer";
 import { sanityFetch } from "@/sanity/client";
 import { getMessages } from "next-intl/server";
+import { Analytics } from "@vercel/analytics/next";
 import { NextIntlClientProvider } from "next-intl";
 import { MobileNavStateProvider } from "./navigation/mobile-nav-provider";
 
@@ -99,7 +100,7 @@ export default async function BaseLayout({
     query: QUERY,
     params: { locale },
     tags: ["footer"],
-    revalidate: 604800, // 604800
+    revalidate: 30, // 604800
   });
 
   const serviceGroups = [
@@ -131,7 +132,7 @@ export default async function BaseLayout({
             </div>
           </MobileNavStateProvider>
         </NextIntlClientProvider>
-        {/* <Analytics /> */}
+        <Analytics />
       </body>
     </html>
   );
