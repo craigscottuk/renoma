@@ -152,7 +152,7 @@ export async function generateMetadata({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["home"],
-    revalidate: 30, // 604800
+    revalidate: 604800, // 604800
   });
 
   return {
@@ -181,7 +181,7 @@ export default async function HomePage({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["home"],
-    revalidate: 30, // 604800
+    revalidate: 604800, // 604800
   });
 
   const {
