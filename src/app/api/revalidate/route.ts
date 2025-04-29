@@ -40,6 +40,7 @@ function getTagsToRevalidate(doc: WebhookBody): string[] {
     case "servicesPageMeta":
     case "ctaContent":
       tags.push("services");
+      tags.push("footer");
       break;
 
     // projects page
