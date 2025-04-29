@@ -142,7 +142,7 @@
   "jobOfferForm": {
     "sending": "Sending...",
     "applyNow": "Apply now",
-    "applyPosition": "Apply for position: {jobTitle}",
+    "applyPosition": "Apply for the Position: {jobTitle}",
     "responsibilitiesTitle": "Responsibilities:",
     "requirementsTitle": "Requirements:",
     "benefitsTitle": "Our offer:",
@@ -180,6 +180,6 @@
     "openMenuAriaLabel": "Open menu"
   },
   "serviceItem": {
-    "visitRenomaLab": "Visit Renoma LAB"
+    "visitRenomaLab": "Visit the RenomaLAB page"
   }
 }
