@@ -1,6 +1,6 @@
 // cSpell:disable
 import { defineType, defineField } from "sanity";
-import { seoFields } from "../fields/seoFields";
+import { seoFields } from "./seoFields";
 
 export const privacy = defineType({
   name: "privacy",
