@@ -22,7 +22,7 @@ const QUERY = `
   
   "servicesGroup": *[_type == "servicesGroup"][0]{
     "serviceGroupOne": {
-      "title": coalesce(serviceGroupOne.title, "Brak tłumaczenia"),
+      "title": coalesce(serviceGroupOne.title[_key == $locale][0].value, "Brak tłumaczenia"),
       "services": serviceGroupOne.services[]{
         "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
         "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -38,7 +38,7 @@ const QUERY = `
       }
     },
     "serviceGroupTwo": {
-      "title": coalesce(serviceGroupTwo.title, "Brak tłumaczenia"),
+      "title": coalesce(serviceGroupTwo.title[_key == $locale][0].value, "Brak tłumaczenia"),
       "services": serviceGroupTwo.services[]{
         "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
         "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -54,7 +54,7 @@ const QUERY = `
       }
     },
     "serviceGroupThree": {
-      "title": coalesce(serviceGroupThree.title, "Brak tłumaczenia"),
+      "title": coalesce(serviceGroupThree.title[_key == $locale][0].value, "Brak tłumaczenia"),
       "services": serviceGroupThree.services[]{
         "title": coalesce(title[_key == $locale][0].value, "Brak tłumaczenia"),
         "description": coalesce(description[_key == $locale][0].value, "Brak tłumaczenia"),
@@ -200,7 +200,7 @@ export async function generateMetadata({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["services"],
-    revalidate: 30, // 604800
+    revalidate: 604800, // 604800
   });
 
   return {
@@ -229,7 +229,7 @@ export default async function ONas({ params: { locale } }: Props) {
     query: QUERY,
     params: { locale },
     tags: ["services"],
-    revalidate: 30, // 604800
+    revalidate: 604800, // 604800
   });
 
   const { servicesHeader, servicesGroup, ctaContent } = content;
