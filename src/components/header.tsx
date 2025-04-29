@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import MaxWidthWrapper from "./max-width-wrapper";
 import { MobileNav } from "./navigation/mobile-nav";
 import MainNavigation from "./navigation/main-navigation";
-// import LocaleSwitcher from "./navigation/locale-switcher";
+import LocaleSwitcher from "./navigation/locale-switcher";
 import { useMobileNav } from "./navigation/mobile-nav-provider";
 
 interface HeaderProps {
@@ -42,7 +42,7 @@ export default function Header({ socialMediaLinks }: HeaderProps) {
               <MainNavigation />
 
               {/* Locale Switcher */}
-              {/* <LocaleSwitcher className="motion-preset-blur-up-sm ml-1 lg:ml-0.5 xl:ml-4" /> */}
+              <LocaleSwitcher className="motion-preset-blur-up-sm ml-1 lg:ml-0.5 xl:ml-4" />
 
               {/* Contact */}
               <Link href="/kontakt">
