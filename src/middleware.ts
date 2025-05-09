@@ -13,6 +13,6 @@ export const config = {
     "/(de|en|pl)/:path*",
 
     // Enable locale redirects for everything EXCEPT /api, /admin, /_next, /_vercel, or files
-    "/((?!api|_next|_vercel|admin|.*\\..*).*)",
+    "/((?!api|_next|_vercel|admin|.*\\..*|sitemap\\.xml|robots\\.txt).*)",
   ],
 };
