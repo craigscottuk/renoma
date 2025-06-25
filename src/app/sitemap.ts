@@ -45,7 +45,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const alternates: Record<Locale, string> = {} as Record<Locale, string>;
     for (const locale of locales) {
       const localizedPath = routeMapping[locale];
-      alternates[locale] = `${BASE_URL}${localizedPath}`;
+      // Add the locale prefix to the URL for all locales
+      alternates[locale] = `${BASE_URL}/${locale}${localizedPath}`;
     }
 
     const defaultUrl = alternates[defaultLocale];
