@@ -92,8 +92,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Add the main project's language slug
     if (projectRouteMapping[projectLang]) {
       const mainTemplate = projectRouteMapping[projectLang];
-      const mainUrl =
-        BASE_URL + mainTemplate.replace("[slug]", project.slug.current);
+      const mainUrl = `${BASE_URL}/${projectLang}${mainTemplate.replace("[slug]", project.slug.current)}`;
       projectLocales[projectLang] = mainUrl;
     }
 
@@ -102,8 +101,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       const translationLang = t.language as Locale;
       if (projectRouteMapping[translationLang]) {
         const localizedTemplate = projectRouteMapping[translationLang];
-        const localizedUrl =
-          BASE_URL + localizedTemplate.replace("[slug]", t.slug.current);
+        const localizedUrl = `${BASE_URL}/${translationLang}${localizedTemplate.replace("[slug]", t.slug.current)}`;
         projectLocales[translationLang] = localizedUrl;
       }
     }
